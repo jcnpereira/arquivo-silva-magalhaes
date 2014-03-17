@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DadosArquivoFotografico.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DadosArquivoFotograficoTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DadosArquivoFotografico" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DadosArquivoFotograficoContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collections" EntityType="DadosArquivoFotografico.Collection" />
+          <EntitySet Name="Authors" EntityType="DadosArquivoFotografico.Author" />
+          <EntitySet Name="Documents" EntityType="DadosArquivoFotografico.Document" />
+          <EntitySet Name="PhotographicSpecies" EntityType="DadosArquivoFotografico.PhotographicSpecimen" />
+          <EntitySet Name="PhotographicProcesses" EntityType="DadosArquivoFotografico.PhotographicProcess" />
+          <EntitySet Name="PhotographicFormats" EntityType="DadosArquivoFotografico.PhotographicFormat" />
+          <AssociationSet Name="PhotographicSpecimenPhotographicProcess" Association="DadosArquivoFotografico.PhotographicSpecimenPhotographicProcess">
+            <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
+            <End Role="PhotographicProcess" EntitySet="PhotographicProcesses" />
+          </AssociationSet>
+          <AssociationSet Name="PhotographicSpecimenPhotographicFormat" Association="DadosArquivoFotografico.PhotographicSpecimenPhotographicFormat">
+            <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
+            <End Role="PhotographicFormat" EntitySet="PhotographicFormats" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provenience" Type="String" Nullable="false" />
+          <Property Name="Dimension" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="HistoricalDetails" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="ProductionDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Nationality" Type="String" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" />
+          <Property Name="DeathDate" Type="DateTime" Nullable="true" />
+          <Property Name="Biography" Type="String" Nullable="false" />
+          <Property Name="Curriculum" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="DocumentDate" Type="DateTime" Nullable="false" />
+          <Property Name="CatalogDate" Type="DateTime" Nullable="false" />
+          <Property Name="Notes" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhotographicSpecimen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorCode" Type="String" Nullable="false" />
+          <Property Name="Notes" Type="String" Nullable="false" />
+          <Property Name="InterventionDescription" Type="String" Nullable="false" />
+          <Property Name="Topic" Type="String" Nullable="false" />
+          <Property Name="SpecimenDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="PhotographicProcess" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicSpecimen" ToRole="PhotographicProcess" />
+          <NavigationProperty Name="PhotographicFormat" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicSpecimen" ToRole="PhotographicFormat" />
+        </EntityType>
+        <EntityType Name="PhotographicProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessName" Type="String" Nullable="false" />
+          <NavigationProperty Name="PhotographicSpecimen" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicProcess" ToRole="PhotographicSpecimen" />
+        </EntityType>
+        <EntityType Name="PhotographicFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormatDescription" Type="String" Nullable="false" />
+          <NavigationProperty Name="PhotographicSpecimen" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicFormat" ToRole="PhotographicSpecimen" />
+        </EntityType>
+        <Association Name="PhotographicSpecimenPhotographicProcess">
+          <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="DadosArquivoFotografico.PhotographicProcess" Role="PhotographicProcess" Multiplicity="1" />
+        </Association>
+        <Association Name="PhotographicSpecimenPhotographicFormat">
+          <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="DadosArquivoFotografico.PhotographicFormat" Role="PhotographicFormat" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DadosArquivoFotografico" />
+        <Alias Key="Target" Value="DadosArquivoFotografico.Store" />
+        <EntityContainerMapping CdmEntityContainer="DadosArquivoFotograficoContainer" StorageEntityContainer="DadosArquivoFotograficoTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
