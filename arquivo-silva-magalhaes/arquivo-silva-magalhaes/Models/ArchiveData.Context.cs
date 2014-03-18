@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes
+namespace ArquivoSilvaMagalhaes.Models
 {
     using System;
     using System.Data.Entity;

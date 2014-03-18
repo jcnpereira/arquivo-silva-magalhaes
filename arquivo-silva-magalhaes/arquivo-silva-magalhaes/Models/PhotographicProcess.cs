@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes
+namespace ArquivoSilvaMagalhaes.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PhotographicFormat
+    public partial class PhotographicProcess
     {
         public int Id { get; set; }
-        public string FormatDescription { get; set; }
+        public string ProcessName { get; set; }
     }
 }

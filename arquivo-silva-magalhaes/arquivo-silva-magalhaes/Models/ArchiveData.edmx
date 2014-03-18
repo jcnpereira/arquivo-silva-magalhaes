@@ -274,45 +274,45 @@
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ArquivoSilvaMagalhaes.Data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ArquivoSilvaMagalhaes.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ArchiveDataContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Collections" EntityType="ArquivoSilvaMagalhaes.Data.Collection" />
-          <EntitySet Name="Authors" EntityType="ArquivoSilvaMagalhaes.Data.Author" />
-          <EntitySet Name="Documents" EntityType="ArquivoSilvaMagalhaes.Data.Document" />
-          <EntitySet Name="PhotographicSpecies" EntityType="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" />
-          <EntitySet Name="PhotographicProcesses" EntityType="ArquivoSilvaMagalhaes.Data.PhotographicProcess" />
-          <EntitySet Name="PhotographicFormats" EntityType="ArquivoSilvaMagalhaes.Data.PhotographicFormat" />
-          <AssociationSet Name="PhotographicSpecimenPhotographicProcess" Association="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicProcess">
+          <EntitySet Name="Collections" EntityType="ArquivoSilvaMagalhaes.Models.Collection" />
+          <EntitySet Name="Authors" EntityType="ArquivoSilvaMagalhaes.Models.Author" />
+          <EntitySet Name="Documents" EntityType="ArquivoSilvaMagalhaes.Models.Document" />
+          <EntitySet Name="PhotographicSpecies" EntityType="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" />
+          <EntitySet Name="PhotographicProcesses" EntityType="ArquivoSilvaMagalhaes.Models.PhotographicProcess" />
+          <EntitySet Name="PhotographicFormats" EntityType="ArquivoSilvaMagalhaes.Models.PhotographicFormat" />
+          <AssociationSet Name="PhotographicSpecimenPhotographicProcess" Association="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicProcess">
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
             <End Role="PhotographicProcess" EntitySet="PhotographicProcesses" />
           </AssociationSet>
-          <AssociationSet Name="PhotographicSpecimenPhotographicFormat" Association="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicFormat">
+          <AssociationSet Name="PhotographicSpecimenPhotographicFormat" Association="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicFormat">
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
             <End Role="PhotographicFormat" EntitySet="PhotographicFormats" />
           </AssociationSet>
-          <AssociationSet Name="CollectionDocument" Association="ArquivoSilvaMagalhaes.Data.CollectionDocument">
+          <AssociationSet Name="CollectionDocument" Association="ArquivoSilvaMagalhaes.Models.CollectionDocument">
             <End Role="Collection" EntitySet="Collections" />
             <End Role="Document" EntitySet="Documents" />
           </AssociationSet>
-          <AssociationSet Name="DocumentPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Data.DocumentPhotographicSpecimen">
+          <AssociationSet Name="DocumentPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Models.DocumentPhotographicSpecimen">
             <End Role="Document" EntitySet="Documents" />
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
           </AssociationSet>
-          <EntitySet Name="KeyWords" EntityType="ArquivoSilvaMagalhaes.Data.KeyWord" />
-          <AssociationSet Name="KeyWordPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Data.KeyWordPhotographicSpecimen">
+          <EntitySet Name="KeyWords" EntityType="ArquivoSilvaMagalhaes.Models.KeyWord" />
+          <AssociationSet Name="KeyWordPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Models.KeyWordPhotographicSpecimen">
             <End Role="KeyWord" EntitySet="KeyWords" />
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
           </AssociationSet>
-          <AssociationSet Name="AuthorDocument" Association="ArquivoSilvaMagalhaes.Data.AuthorDocument">
+          <AssociationSet Name="AuthorDocument" Association="ArquivoSilvaMagalhaes.Models.AuthorDocument">
             <End Role="Author" EntitySet="Authors" />
             <End Role="Document" EntitySet="Documents" />
           </AssociationSet>
-          <AssociationSet Name="AuthorCollection" Association="ArquivoSilvaMagalhaes.Data.AuthorCollection">
+          <AssociationSet Name="AuthorCollection" Association="ArquivoSilvaMagalhaes.Models.AuthorCollection">
             <End Role="Author" EntitySet="Authors" />
             <End Role="Collection" EntitySet="Collections" />
           </AssociationSet>
-          <EntitySet Name="DigitalPhotos" EntityType="ArquivoSilvaMagalhaes.Data.DigitalPhoto" />
-          <AssociationSet Name="DigitalPhotoPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Data.DigitalPhotoPhotographicSpecimen">
+          <EntitySet Name="DigitalPhotos" EntityType="ArquivoSilvaMagalhaes.Models.DigitalPhoto" />
+          <AssociationSet Name="DigitalPhotoPhotographicSpecimen" Association="ArquivoSilvaMagalhaes.Models.DigitalPhotoPhotographicSpecimen">
             <End Role="DigitalPhoto" EntitySet="DigitalPhotos" />
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
           </AssociationSet>
@@ -340,8 +340,8 @@
           <Property Name="DeathDate" Type="DateTime" Nullable="true" />
           <Property Name="Biography" Type="String" Nullable="false" />
           <Property Name="Curriculum" Type="String" Nullable="false" />
-          <NavigationProperty Name="Documents" Relationship="ArquivoSilvaMagalhaes.Data.AuthorDocument" FromRole="Author" ToRole="Document" />
-          <NavigationProperty Name="Collections" Relationship="ArquivoSilvaMagalhaes.Data.AuthorCollection" FromRole="Author" ToRole="Collection" />
+          <NavigationProperty Name="Documents" Relationship="ArquivoSilvaMagalhaes.Models.AuthorDocument" FromRole="Author" ToRole="Document" />
+          <NavigationProperty Name="Collections" Relationship="ArquivoSilvaMagalhaes.Models.AuthorCollection" FromRole="Author" ToRole="Collection" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -352,11 +352,11 @@
           <Property Name="DocumentDate" Type="DateTime" Nullable="false" />
           <Property Name="CatalogDate" Type="DateTime" Nullable="false" />
           <Property Name="Notes" Type="String" Nullable="false" />
-          <NavigationProperty Name="Collection" Relationship="ArquivoSilvaMagalhaes.Data.CollectionDocument" FromRole="Document" ToRole="Collection" />
+          <NavigationProperty Name="Collection" Relationship="ArquivoSilvaMagalhaes.Models.CollectionDocument" FromRole="Document" ToRole="Collection" />
           <Property Name="CollectionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Author" Relationship="ArquivoSilvaMagalhaes.Data.AuthorDocument" FromRole="Document" ToRole="Author" />
+          <NavigationProperty Name="Author" Relationship="ArquivoSilvaMagalhaes.Models.AuthorDocument" FromRole="Document" ToRole="Author" />
           <Property Name="AuthorId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PhotographicSpecimens" Relationship="ArquivoSilvaMagalhaes.Data.DocumentPhotographicSpecimen" FromRole="Document" ToRole="PhotographicSpecimen" />
+          <NavigationProperty Name="PhotographicSpecimens" Relationship="ArquivoSilvaMagalhaes.Models.DocumentPhotographicSpecimen" FromRole="Document" ToRole="PhotographicSpecimen" />
         </EntityType>
         <EntityType Name="PhotographicSpecimen">
           <Key>
@@ -368,11 +368,11 @@
           <Property Name="InterventionDescription" Type="String" Nullable="false" />
           <Property Name="Topic" Type="String" Nullable="false" />
           <Property Name="SpecimenDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="PhotographicProcess" Relationship="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicSpecimen" ToRole="PhotographicProcess" />
-          <NavigationProperty Name="PhotographicFormat" Relationship="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicSpecimen" ToRole="PhotographicFormat" />
-          <NavigationProperty Name="Document" Relationship="ArquivoSilvaMagalhaes.Data.DocumentPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="Document" />
-          <NavigationProperty Name="KeyWords" Relationship="ArquivoSilvaMagalhaes.Data.KeyWordPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="KeyWord" />
-          <NavigationProperty Name="DigitalPhotos" Relationship="ArquivoSilvaMagalhaes.Data.DigitalPhotoPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="DigitalPhoto" />
+          <NavigationProperty Name="PhotographicProcess" Relationship="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicSpecimen" ToRole="PhotographicProcess" />
+          <NavigationProperty Name="PhotographicFormat" Relationship="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicSpecimen" ToRole="PhotographicFormat" />
+          <NavigationProperty Name="Document" Relationship="ArquivoSilvaMagalhaes.Models.DocumentPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="Document" />
+          <NavigationProperty Name="KeyWords" Relationship="ArquivoSilvaMagalhaes.Models.KeyWordPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="KeyWord" />
+          <NavigationProperty Name="DigitalPhotos" Relationship="ArquivoSilvaMagalhaes.Models.DigitalPhotoPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="DigitalPhoto" />
         </EntityType>
         <EntityType Name="PhotographicProcess">
           <Key>
@@ -389,16 +389,16 @@
           <Property Name="FormatDescription" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="PhotographicSpecimenPhotographicProcess">
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicProcess" Role="PhotographicProcess" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicProcess" Role="PhotographicProcess" Multiplicity="1" />
         </Association>
         <Association Name="PhotographicSpecimenPhotographicFormat">
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicFormat" Role="PhotographicFormat" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicFormat" Role="PhotographicFormat" Multiplicity="1" />
         </Association>
         <Association Name="CollectionDocument">
-          <End Type="ArquivoSilvaMagalhaes.Data.Collection" Role="Collection" Multiplicity="1" />
-          <End Type="ArquivoSilvaMagalhaes.Data.Document" Role="Document" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Collection" Role="Collection" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Document" Role="Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Collection">
               <PropertyRef Name="Id" />
@@ -409,8 +409,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="DocumentPhotographicSpecimen">
-          <End Type="ArquivoSilvaMagalhaes.Data.Document" Role="Document" Multiplicity="1" />
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Document" Role="Document" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
         </Association>
         <EntityType Name="KeyWord">
           <Key>
@@ -420,12 +420,12 @@
           <Property Name="Word" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="KeyWordPhotographicSpecimen">
-          <End Type="ArquivoSilvaMagalhaes.Data.KeyWord" Role="KeyWord" Multiplicity="*" />
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.KeyWord" Role="KeyWord" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
         </Association>
         <Association Name="AuthorDocument">
-          <End Type="ArquivoSilvaMagalhaes.Data.Author" Role="Author" Multiplicity="1" />
-          <End Type="ArquivoSilvaMagalhaes.Data.Document" Role="Document" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Author" Role="Author" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Document" Role="Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
               <PropertyRef Name="Id" />
@@ -436,19 +436,19 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AuthorCollection">
-          <End Type="ArquivoSilvaMagalhaes.Data.Author" Role="Author" Multiplicity="*" />
-          <End Type="ArquivoSilvaMagalhaes.Data.Collection" Role="Collection" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Author" Role="Author" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.Collection" Role="Collection" Multiplicity="*" />
         </Association>
         <EntityType Name="DigitalPhoto">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="PhotographicSpecimen" Relationship="ArquivoSilvaMagalhaes.Data.DigitalPhotoPhotographicSpecimen" FromRole="DigitalPhoto" ToRole="PhotographicSpecimen" />
+          <NavigationProperty Name="PhotographicSpecimen" Relationship="ArquivoSilvaMagalhaes.Models.DigitalPhotoPhotographicSpecimen" FromRole="DigitalPhoto" ToRole="PhotographicSpecimen" />
         </EntityType>
         <Association Name="DigitalPhotoPhotographicSpecimen">
-          <End Type="ArquivoSilvaMagalhaes.Data.DigitalPhoto" Role="DigitalPhoto" Multiplicity="*" />
-          <End Type="ArquivoSilvaMagalhaes.Data.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="1" />
+          <End Type="ArquivoSilvaMagalhaes.Models.DigitalPhoto" Role="DigitalPhoto" Multiplicity="*" />
+          <End Type="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -457,7 +457,7 @@
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ArquivoSilvaMagalhaesDataStoreContainer" CdmEntityContainer="ArchiveDataContext">
     <EntitySetMapping Name="Collections">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.Collection)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.Collection)">
         <MappingFragment StoreEntitySet="Collections">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Provenience" ColumnName="Provenience" />
@@ -469,7 +469,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Authors">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.Author)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.Author)">
         <MappingFragment StoreEntitySet="Authors">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -483,7 +483,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Documents">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.Document)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.Document)">
         <MappingFragment StoreEntitySet="Documents">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -496,7 +496,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PhotographicSpecies">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.PhotographicSpecimen)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.PhotographicSpecimen)">
         <MappingFragment StoreEntitySet="PhotographicSpecies">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="AuthorCode" ColumnName="AuthorCode" />
@@ -508,7 +508,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PhotographicProcesses">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.PhotographicProcess)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.PhotographicProcess)">
         <MappingFragment StoreEntitySet="PhotographicProcesses">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
@@ -516,7 +516,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PhotographicFormats">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.PhotographicFormat)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.PhotographicFormat)">
         <MappingFragment StoreEntitySet="PhotographicFormats">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FormatDescription" ColumnName="FormatDescription" />
@@ -524,7 +524,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KeyWords">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.KeyWord)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.KeyWord)">
         <MappingFragment StoreEntitySet="KeyWords">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Word" ColumnName="Word" />
@@ -532,13 +532,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DigitalPhotos">
-      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Data.DigitalPhoto)">
+      <EntityTypeMapping TypeName="IsTypeOf(ArquivoSilvaMagalhaes.Models.DigitalPhoto)">
         <MappingFragment StoreEntitySet="DigitalPhotos">
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="PhotographicSpecimenPhotographicProcess" TypeName="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicProcess" StoreEntitySet="PhotographicSpecies">
+    <AssociationSetMapping Name="PhotographicSpecimenPhotographicProcess" TypeName="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicProcess" StoreEntitySet="PhotographicSpecies">
       <EndProperty Name="PhotographicProcess">
         <ScalarProperty Name="Id" ColumnName="PhotographicProcess_Id" />
       </EndProperty>
@@ -546,7 +546,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PhotographicSpecimenPhotographicFormat" TypeName="ArquivoSilvaMagalhaes.Data.PhotographicSpecimenPhotographicFormat" StoreEntitySet="PhotographicSpecies">
+    <AssociationSetMapping Name="PhotographicSpecimenPhotographicFormat" TypeName="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicFormat" StoreEntitySet="PhotographicSpecies">
       <EndProperty Name="PhotographicFormat">
         <ScalarProperty Name="Id" ColumnName="PhotographicFormat_Id" />
       </EndProperty>
@@ -554,7 +554,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DocumentPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Data.DocumentPhotographicSpecimen" StoreEntitySet="PhotographicSpecies">
+    <AssociationSetMapping Name="DocumentPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Models.DocumentPhotographicSpecimen" StoreEntitySet="PhotographicSpecies">
       <EndProperty Name="Document">
         <ScalarProperty Name="Id" ColumnName="Document_Id" />
       </EndProperty>
@@ -562,7 +562,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="KeyWordPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Data.KeyWordPhotographicSpecimen" StoreEntitySet="KeyWordPhotographicSpecimen">
+    <AssociationSetMapping Name="KeyWordPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Models.KeyWordPhotographicSpecimen" StoreEntitySet="KeyWordPhotographicSpecimen">
       <EndProperty Name="KeyWord">
         <ScalarProperty Name="Id" ColumnName="KeyWords_Id" />
       </EndProperty>
@@ -570,7 +570,7 @@
         <ScalarProperty Name="Id" ColumnName="KeyWordPhotographicSpecimen_KeyWord_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="AuthorCollection" TypeName="ArquivoSilvaMagalhaes.Data.AuthorCollection" StoreEntitySet="AuthorCollection">
+    <AssociationSetMapping Name="AuthorCollection" TypeName="ArquivoSilvaMagalhaes.Models.AuthorCollection" StoreEntitySet="AuthorCollection">
       <EndProperty Name="Author">
         <ScalarProperty Name="Id" ColumnName="AuthorCollection_Collection_Id" />
       </EndProperty>
@@ -578,7 +578,7 @@
         <ScalarProperty Name="Id" ColumnName="Collections_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DigitalPhotoPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Data.DigitalPhotoPhotographicSpecimen" StoreEntitySet="DigitalPhotos">
+    <AssociationSetMapping Name="DigitalPhotoPhotographicSpecimen" TypeName="ArquivoSilvaMagalhaes.Models.DigitalPhotoPhotographicSpecimen" StoreEntitySet="DigitalPhotos">
       <EndProperty Name="PhotographicSpecimen">
         <ScalarProperty Name="Id" ColumnName="PhotographicSpecimen_Id" />
       </EndProperty>

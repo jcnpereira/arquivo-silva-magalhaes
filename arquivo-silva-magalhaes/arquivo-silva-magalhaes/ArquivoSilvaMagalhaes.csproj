@@ -160,79 +160,77 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="ArchiveData.Context.cs">
+    <Compile Include="Models\ArchiveData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchiveData.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ArchiveData.cs">
+    <Compile Include="Models\ArchiveData.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Author.cs">
+    <Compile Include="Models\Author.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Collection.cs">
+    <Compile Include="Models\Collection.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="ArchiveData.Designer.cs">
+    <Compile Include="Models\ArchiveData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchiveData.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DigitalPhoto.cs">
+    <Compile Include="Models\DigitalPhoto.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Document.cs">
+    <Compile Include="Models\Document.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="KeyWord.cs">
+    <Compile Include="Models\KeyWord.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="PhotographicFormat.cs">
+    <Compile Include="Models\PhotographicFormat.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotographicProcess.cs">
+    <Compile Include="Models\PhotographicProcess.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotographicSpecimen.cs">
+    <Compile Include="Models\PhotographicSpecimen.cs">
       <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ArchiveData.edmx.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DadosArquivoFotografico.edmx.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="ArchiveData.edmx">
+    <EntityDeploy Include="Models\ArchiveData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ArchiveData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ArchiveData.edmx.diagram">
+    <Content Include="Models\ArchiveData.edmx.diagram">
       <DependentUpon>ArchiveData.edmx</DependentUpon>
     </Content>
-    <Content Include="ArchiveData.Context.tt">
+    <Content Include="Models\ArchiveData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArchiveData.Context.cs</LastGenOutput>
       <DependentUpon>ArchiveData.edmx</DependentUpon>
     </Content>
-    <Content Include="ArchiveData.tt">
+    <Content Include="Models\ArchiveData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArchiveData.cs</LastGenOutput>
       <DependentUpon>ArchiveData.edmx</DependentUpon>
