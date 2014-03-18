@@ -24,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Document> Documents { get; set; }

@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="ArquivoSilvaMagalhaes.Models.Document" Width="2" PointX="7.5" PointY="0.5" />
         <EntityTypeShape EntityType="ArquivoSilvaMagalhaes.Models.PhotographicSpecimen" Width="2.25" PointX="7.375" PointY="4.125" />
         <EntityTypeShape EntityType="ArquivoSilvaMagalhaes.Models.PhotographicProcess" Width="1.75" PointX="4.5" PointY="6.5" />
-        <EntityTypeShape EntityType="ArquivoSilvaMagalhaes.Models.PhotographicFormat" Width="2" PointX="11.875" PointY="5.875" />
+        <EntityTypeShape EntityType="ArquivoSilvaMagalhaes.Models.PhotographicFormat" Width="2" PointX="10.875" PointY="5.875" />
         <AssociationConnector Association="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicProcess" />
         <AssociationConnector Association="ArquivoSilvaMagalhaes.Models.PhotographicSpecimenPhotographicFormat" />
         <AssociationConnector Association="ArquivoSilvaMagalhaes.Models.CollectionDocument" />
