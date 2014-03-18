@@ -160,51 +160,51 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Models\ArchiveData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ArchiveData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ArchiveData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ArchiveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Author.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Collection.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Models\ArchiveData.Designer.cs">
+    <Compile Include="Models\ArchiveDataModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ArchiveData.edmx</DependentUpon>
+      <DependentUpon>ArchiveDataModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DigitalPhoto.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
+    <Compile Include="Models\ArchiveDataModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Document.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
+    <Compile Include="Models\ArchiveDataModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveDataModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\KeyWord.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Author.cs">
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Collection.cs">
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DigitalPhoto.cs">
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Document.cs">
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KeyWord.cs">
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PhotographicFormat.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhotographicProcess.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhotographicSpecimen.cs">
-      <DependentUpon>ArchiveData.tt</DependentUpon>
+      <DependentUpon>ArchiveDataModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -218,22 +218,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ArchiveData.edmx">
+    <EntityDeploy Include="Models\ArchiveDataModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ArchiveData.Designer.cs</LastGenOutput>
+      <LastGenOutput>ArchiveDataModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ArchiveData.edmx.diagram">
-      <DependentUpon>ArchiveData.edmx</DependentUpon>
+    <Content Include="Models\ArchiveDataModels.edmx.diagram">
+      <DependentUpon>ArchiveDataModels.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ArchiveData.Context.tt">
+    <Content Include="Models\ArchiveDataModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ArchiveData.Context.cs</LastGenOutput>
-      <DependentUpon>ArchiveData.edmx</DependentUpon>
+      <LastGenOutput>ArchiveDataModels.Context.cs</LastGenOutput>
+      <DependentUpon>ArchiveDataModels.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ArchiveData.tt">
+    <Content Include="Models\ArchiveDataModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ArchiveData.cs</LastGenOutput>
-      <DependentUpon>ArchiveData.edmx</DependentUpon>
+      <LastGenOutput>ArchiveDataModels.cs</LastGenOutput>
+      <DependentUpon>ArchiveDataModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
