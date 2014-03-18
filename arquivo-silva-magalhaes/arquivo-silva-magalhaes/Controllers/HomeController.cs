@@ -10,6 +10,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
     {
         public ActionResult Index()
         {
+            using (var db = new ArchiveDataContext())
+            {
+                var author = db.Authors.Find(1);
+
+                ViewBag.AuthorName = String.Format("{0}, {1}", author.LastName, author.FirstName);
+            }
+
             return View();
         }
 

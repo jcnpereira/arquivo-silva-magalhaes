@@ -160,36 +160,82 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DadosArquivoFotografico.Designer.cs">
+    <Compile Include="ArchiveData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DadosArquivoFotografico.edmx</DependentUpon>
+      <DependentUpon>ArchiveData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchiveData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Author.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Collection.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ArchiveData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalPhoto.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="KeyWord.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PhotographicFormat.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhotographicProcess.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhotographicSpecimen.cs">
+      <DependentUpon>ArchiveData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ArchiveData.edmx.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DadosArquivoFotografico.edmx.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DadosArquivoFotografico.edmx">
+    <EntityDeploy Include="ArchiveData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DadosArquivoFotografico.Designer.cs</LastGenOutput>
+      <LastGenOutput>ArchiveData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DadosArquivoFotografico.edmx.diagram">
-      <DependentUpon>DadosArquivoFotografico.edmx</DependentUpon>
+    <Content Include="ArchiveData.edmx.diagram">
+      <DependentUpon>ArchiveData.edmx</DependentUpon>
+    </Content>
+    <Content Include="ArchiveData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArchiveData.Context.cs</LastGenOutput>
+      <DependentUpon>ArchiveData.edmx</DependentUpon>
+    </Content>
+    <Content Include="ArchiveData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArchiveData.cs</LastGenOutput>
+      <DependentUpon>ArchiveData.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -238,6 +284,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
