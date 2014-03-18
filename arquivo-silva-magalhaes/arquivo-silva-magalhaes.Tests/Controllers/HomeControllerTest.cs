@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using arquivo_silva_magalhaes;
-using arquivo_silva_magalhaes.Controllers;
+using ArquivoSilvaMagalhaes;
+using ArquivoSilvaMagalhaes.Controllers;
 
-namespace arquivo_silva_magalhaes.Tests.Controllers
+namespace ArquivoSilvaMagalhaes.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

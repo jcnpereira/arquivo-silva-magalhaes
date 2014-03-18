@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace arquivo_silva_magalhaes
+namespace ArquivoSilvaMagalhaes
 {
     public class BundleConfig
     {

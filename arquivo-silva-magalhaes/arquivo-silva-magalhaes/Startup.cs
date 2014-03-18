@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(arquivo_silva_magalhaes.Startup))]
-namespace arquivo_silva_magalhaes
+[assembly: OwinStartupAttribute(typeof(ArquivoSilvaMagalhaes.Startup))]
+namespace ArquivoSilvaMagalhaes
 {
     public partial class Startup
     {

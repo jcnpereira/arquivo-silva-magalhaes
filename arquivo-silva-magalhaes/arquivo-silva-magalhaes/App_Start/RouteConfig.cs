@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace arquivo_silva_magalhaes
+namespace ArquivoSilvaMagalhaes
 {
     public class RouteConfig
     {

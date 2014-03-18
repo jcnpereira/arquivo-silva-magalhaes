@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace arquivo_silva_magalhaes.Controllers
+namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : Controller
     {

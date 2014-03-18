@@ -27,6 +27,32 @@
             <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
             <End Role="PhotographicFormat" EntitySet="PhotographicFormats" />
           </AssociationSet>
+          <AssociationSet Name="CollectionDocument" Association="DadosArquivoFotografico.CollectionDocument">
+            <End Role="Collection" EntitySet="Collections" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentPhotographicSpecimen" Association="DadosArquivoFotografico.DocumentPhotographicSpecimen">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
+          </AssociationSet>
+          <EntitySet Name="KeyWords" EntityType="DadosArquivoFotografico.KeyWord" />
+          <AssociationSet Name="KeyWordPhotographicSpecimen" Association="DadosArquivoFotografico.KeyWordPhotographicSpecimen">
+            <End Role="KeyWord" EntitySet="KeyWords" />
+            <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorDocument" Association="DadosArquivoFotografico.AuthorDocument">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorCollection" Association="DadosArquivoFotografico.AuthorCollection">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Collection" EntitySet="Collections" />
+          </AssociationSet>
+          <EntitySet Name="DigitalPhotos" EntityType="DadosArquivoFotografico.DigitalPhoto" />
+          <AssociationSet Name="DigitalPhotoPhotographicSpecimen" Association="DadosArquivoFotografico.DigitalPhotoPhotographicSpecimen">
+            <End Role="DigitalPhoto" EntitySet="DigitalPhotos" />
+            <End Role="PhotographicSpecimen" EntitySet="PhotographicSpecies" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Collection">
           <Key>
@@ -61,6 +87,10 @@
           <Property Name="DocumentDate" Type="DateTime" Nullable="false" />
           <Property Name="CatalogDate" Type="DateTime" Nullable="false" />
           <Property Name="Notes" Type="String" Nullable="false" />
+          <NavigationProperty Name="Collection" Relationship="DadosArquivoFotografico.CollectionDocument" FromRole="Document" ToRole="Collection" />
+          <Property Name="CollectionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="DadosArquivoFotografico.AuthorDocument" FromRole="Document" ToRole="Author" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PhotographicSpecimen">
           <Key>
@@ -74,6 +104,7 @@
           <Property Name="SpecimenDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="PhotographicProcess" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicSpecimen" ToRole="PhotographicProcess" />
           <NavigationProperty Name="PhotographicFormat" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicSpecimen" ToRole="PhotographicFormat" />
+          <NavigationProperty Name="Document" Relationship="DadosArquivoFotografico.DocumentPhotographicSpecimen" FromRole="PhotographicSpecimen" ToRole="Document" />
         </EntityType>
         <EntityType Name="PhotographicProcess">
           <Key>
@@ -81,7 +112,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProcessName" Type="String" Nullable="false" />
-          <NavigationProperty Name="PhotographicSpecimen" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicProcess" FromRole="PhotographicProcess" ToRole="PhotographicSpecimen" />
         </EntityType>
         <EntityType Name="PhotographicFormat">
           <Key>
@@ -89,7 +119,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FormatDescription" Type="String" Nullable="false" />
-          <NavigationProperty Name="PhotographicSpecimen" Relationship="DadosArquivoFotografico.PhotographicSpecimenPhotographicFormat" FromRole="PhotographicFormat" ToRole="PhotographicSpecimen" />
         </EntityType>
         <Association Name="PhotographicSpecimenPhotographicProcess">
           <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
@@ -98,6 +127,60 @@
         <Association Name="PhotographicSpecimenPhotographicFormat">
           <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
           <End Type="DadosArquivoFotografico.PhotographicFormat" Role="PhotographicFormat" Multiplicity="1" />
+        </Association>
+        <Association Name="CollectionDocument">
+          <End Type="DadosArquivoFotografico.Collection" Role="Collection" Multiplicity="1" />
+          <End Type="DadosArquivoFotografico.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CollectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocumentPhotographicSpecimen">
+          <End Type="DadosArquivoFotografico.Document" Role="Document" Multiplicity="1" />
+          <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+        </Association>
+        <EntityType Name="KeyWord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Word" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="KeyWordPhotographicSpecimen">
+          <End Type="DadosArquivoFotografico.KeyWord" Role="KeyWord" Multiplicity="*" />
+          <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="*" />
+        </Association>
+        <Association Name="AuthorDocument">
+          <End Type="DadosArquivoFotografico.Author" Role="Author" Multiplicity="1" />
+          <End Type="DadosArquivoFotografico.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AuthorCollection">
+          <End Type="DadosArquivoFotografico.Author" Role="Author" Multiplicity="*" />
+          <End Type="DadosArquivoFotografico.Collection" Role="Collection" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DigitalPhoto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PhotographicSpecimen" Relationship="DadosArquivoFotografico.DigitalPhotoPhotographicSpecimen" FromRole="DigitalPhoto" ToRole="PhotographicSpecimen" />
+        </EntityType>
+        <Association Name="DigitalPhotoPhotographicSpecimen">
+          <End Type="DadosArquivoFotografico.DigitalPhoto" Role="DigitalPhoto" Multiplicity="*" />
+          <End Type="DadosArquivoFotografico.PhotographicSpecimen" Role="PhotographicSpecimen" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

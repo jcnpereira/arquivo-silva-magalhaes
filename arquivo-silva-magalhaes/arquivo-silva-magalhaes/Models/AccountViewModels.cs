@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace arquivo_silva_magalhaes.Models
+namespace ArquivoSilvaMagalhaes.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

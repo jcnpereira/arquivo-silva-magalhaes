@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using arquivo_silva_magalhaes.Models;
+using ArquivoSilvaMagalhaes.Models;
 
-namespace arquivo_silva_magalhaes.Controllers
+namespace ArquivoSilvaMagalhaes.Controllers
 {
     [Authorize]
     public class AccountController : Controller

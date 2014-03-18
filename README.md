@@ -1,4 +1,8 @@
-arquivo-silva-magalhaes
-=======================
+Portal do Arquvo Fotográfico Silva Magalhães
+============================================
 
-Projecto Final do Arquivo Fotográfico Silva Magalhães (IPT)
+Projecto Final do Arquivo Fotográfico Silva Magalhães (IPT).
+
+Alunos:
+ * Diogo Neto
+ * André Carvalho

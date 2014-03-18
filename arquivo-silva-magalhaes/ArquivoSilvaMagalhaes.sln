@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arquivo-silva-magalhaes", "arquivo-silva-magalhaes\arquivo-silva-magalhaes.csproj", "{A4A0B83F-7ED6-44D8-9570-96DA0EDDE716}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes", "arquivo-silva-magalhaes\ArquivoSilvaMagalhaes.csproj", "{A4A0B83F-7ED6-44D8-9570-96DA0EDDE716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arquivo-silva-magalhaes.Tests", "arquivo-silva-magalhaes.Tests\arquivo-silva-magalhaes.Tests.csproj", "{73F31C9F-AD08-4B13-8875-869680A3149E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Tests", "arquivo-silva-magalhaes.Tests\ArquivoSilvaMagalhaes.Tests.csproj", "{73F31C9F-AD08-4B13-8875-869680A3149E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
