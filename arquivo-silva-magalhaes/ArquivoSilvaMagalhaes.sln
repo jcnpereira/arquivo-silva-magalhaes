@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes", "ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Tests", "arquivo-silva-magalhaes.Tests\ArquivoSilvaMagalhaes.Tests.csproj", "{73F31C9F-AD08-4B13-8875-869680A3149E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Sandbox", "ArquivoSilvaMagalhaes.Sandbox\ArquivoSilvaMagalhaes.Sandbox.csproj", "{7E2B3B96-275C-4434-ADDD-60BD0A12D457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{73F31C9F-AD08-4B13-8875-869680A3149E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73F31C9F-AD08-4B13-8875-869680A3149E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F31C9F-AD08-4B13-8875-869680A3149E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2B3B96-275C-4434-ADDD-60BD0A12D457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2B3B96-275C-4434-ADDD-60BD0A12D457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2B3B96-275C-4434-ADDD-60BD0A12D457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2B3B96-275C-4434-ADDD-60BD0A12D457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

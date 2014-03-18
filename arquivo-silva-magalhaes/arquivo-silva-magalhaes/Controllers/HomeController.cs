@@ -13,9 +13,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             using (var db = new ArchiveDataContext())
             {
-                var author = db.Authors.Find(1);
+                var authors = db.Authors
+                               .Where(a => a.Id == 1)
+                               .Select(a => a)
+                               .ToList();
 
-                ViewBag.AuthorName = String.Format("{0}, {1}", author.LastName, author.FirstName);
+                if (authors.Count != 0)
+                {
+                    var author = authors[0];
+                    ViewBag.AuthorName = String.Format("{0}, {1}", author.LastName, author.FirstName);
+                }
+                else
+                {
+                    ViewBag.AuthorName = "None";
+                }
+                
             }
 
             return View();
