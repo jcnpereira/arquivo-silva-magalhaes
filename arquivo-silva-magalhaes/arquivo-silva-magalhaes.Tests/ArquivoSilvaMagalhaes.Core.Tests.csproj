@@ -93,9 +93,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\arquivo-silva-magalhaes\ArquivoSilvaMagalhaes.csproj">
+    <ProjectReference Include="..\arquivo-silva-magalhaes\ArquivoSilvaMagalhaes.Core.csproj">
       <Project>{A4A0B83F-7ED6-44D8-9570-96DA0EDDE716}</Project>
-      <Name>ArquivoSilvaMagalhaes</Name>
+      <Name>ArquivoSilvaMagalhaes.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -9,27 +9,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : Controller
     {
+        ArchiveDataContext _db = new ArchiveDataContext();
+        
         public ActionResult Index()
         {
-            using (var db = new ArchiveDataContext())
-            {
-                var authors = db.Authors
-                               .Where(a => a.Id == 1)
-                               .Select(a => a)
-                               .ToList();
 
-                if (authors.Count != 0)
-                {
-                    var author = authors[0];
-                    ViewBag.AuthorName = String.Format("{0}, {1}", author.LastName, author.FirstName);
-                }
-                else
-                {
-                    ViewBag.AuthorName = "None";
-                }
-                
-            }
+            var author = _db.Authors.Find(1);
 
+            var docList = _db.Documents
+                            .Where(d => d.Author.Id == author.Id)
+                            .ToList();
+
+            ViewBag.AuthorName = author.FirstName;
+
+            ViewBag.NumberOfDocs = author.Documents.Count;
+            
             return View();
         }
 
@@ -45,6 +39,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
