@@ -1,17 +1,18 @@
 namespace ArquivoSilvaMagalhaes.Migrations
 {
     using ArquivoSilvaMagalhaes.Models;
+    using ArquivoSilvaMagalhaes.Models.ArchiveModels;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ArquivoSilvaMagalhaes.Models.ArchiveDataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ArchiveDataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "ArquivoSilvaMagalhaes.Models.ArchiveDataContext";
+            ContextKey = "ArquivoSilvaMagalhaes.Models.ArchiveModels.ArchiveDataContext";
         }
 
         protected override void Seed(ArchiveDataContext context)
@@ -39,6 +40,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
             context.Collections.AddOrUpdate(
                 new Collection
                 {
+                    Id = 1,
                     Provenience = "Proveniência desta coleção.",
                     Type = "Coleção",
                     Dimension = 50,
@@ -54,6 +56,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
             context.Documents.AddOrUpdate(
                 new Document
                 {
+                    Id = 1,
                     Author = context.Authors.Find(1),
                     Collection = context.Collections.Find(1),
                     CatalogDate = new DateTime(2000, 12, 31),
@@ -71,6 +74,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
             context.Authors.AddOrUpdate(
                 new Author 
                 { 
+                    Id = 1,
                     FirstName = "António da",
                     LastName = "Silva Magalhães", 
                     Biography = "Biografia do Silva Magalhães.",

@@ -1,8 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using System;
-using System.Collections.Generic;
+﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
@@ -15,8 +12,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
 
             var author = _db.Authors.Find(1);
-
-            var whatever = "blah";
 
             var docList = _db.Documents
                             .Where(d => d.Author.Id == author.Id)

@@ -183,8 +183,17 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DataModels.cs" />
+    <Compile Include="Models\ArchiveModels\ArchiveDataContext.cs" />
+    <Compile Include="Models\ArchiveModels\Author.cs" />
+    <Compile Include="Models\ArchiveModels\Collection.cs" />
+    <Compile Include="Models\ArchiveModels\DigitalPhoto.cs" />
+    <Compile Include="Models\ArchiveModels\Document.cs" />
+    <Compile Include="Models\ArchiveModels\KeyWord.cs" />
+    <Compile Include="Models\ArchiveModels\PhotographicFormat.cs" />
+    <Compile Include="Models\ArchiveModels\PhotographicProcess.cs" />
+    <Compile Include="Models\ArchiveModels\PhotographicSpecimen.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\SiteModels\SiteDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DataStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -203,9 +212,9 @@
     <Content Include="App_Data\arquivo-silva-magalhaes-data_log.ldf">
       <DependentUpon>arquivo-silva-magalhaes-data.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\aspnet-arquivo-silva-magalhaes-20140317030902.mdf" />
-    <Content Include="App_Data\aspnet-arquivo-silva-magalhaes-20140317030902_log.ldf">
-      <DependentUpon>aspnet-arquivo-silva-magalhaes-20140317030902.mdf</DependentUpon>
+    <Content Include="App_Data\arquivo-silva-magalhaes-users.mdf" />
+    <Content Include="App_Data\arquivo-silva-magalhaes-users_log.ldf">
+      <DependentUpon>arquivo-silva-magalhaes-users.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
