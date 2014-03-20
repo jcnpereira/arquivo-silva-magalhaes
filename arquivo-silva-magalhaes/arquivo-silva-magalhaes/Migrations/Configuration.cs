@@ -35,6 +35,10 @@ namespace ArquivoSilvaMagalhaes.Migrations
             SeedDocuments(context);
         }
 
+        /// <summary>
+        /// Adds collections to the database.
+        /// </summary>
+        /// <param name="context"></param>
         private void SeedCollections(ArchiveDataContext context)
         {
             context.Collections.AddOrUpdate(
@@ -51,15 +55,21 @@ namespace ArquivoSilvaMagalhaes.Migrations
             );
         }
 
+        /// <summary>
+        /// Adds documents to the database.
+        /// </summary>
+        /// <param name="context"></param>
         private void SeedDocuments(ArchiveDataContext context)
         {
             context.Documents.AddOrUpdate(
                 new Document
                 {
                     Id = 1,
+                    Title = "Documento 1",
+                    Notes = "Notas do documento 1.",
                     Author = context.Authors.Find(1),
                     Collection = context.Collections.Find(1),
-                    CatalogDate = new DateTime(2000, 12, 31),
+                    CatalogDate = DateTime.Now,
                     DocumentDate = new DateTime(2000, 12, 31)
                 }
             );

@@ -10,6 +10,24 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public ArchiveDataContext() : base("name=ArchiveDataContext") { }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Convert datetime column types to datetime2, which allow a broader range of values.
+            modelBuilder.Entity<Document>()
+                    .Property(d => d.DocumentDate)
+                    .HasColumnType("datetime2");
+
+            modelBuilder.Entity<Document>()
+                    .Property(d => d.CatalogDate)
+                    .HasColumnType("datetime2");
+
+            modelBuilder.Entity<Collection>()
+                    .Property(c => c.ProductionDate)
+                    .HasColumnType("datetime2");
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
