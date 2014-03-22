@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
+namespace ArquivoSilvaMagalhaes.Models
 {
     public class ArchiveDataContext : DbContext
     {
@@ -36,5 +38,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual DbSet<PhotographicFormat> PhotographicFormats { get; set; }
         public virtual DbSet<KeyWord> KeyWords { get; set; }
         public virtual DbSet<DigitalPhoto> DigitalPhotos { get; set; }
+
+
+        // Site-related tables.
+        /// <summary>
+        /// Events of this archive.
+        /// </summary>
+        public virtual DbSet<Event> Events { get; set; }
     }
 }

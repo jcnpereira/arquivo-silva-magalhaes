@@ -1,4 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Linq;
 using System.Web.Mvc;
 
