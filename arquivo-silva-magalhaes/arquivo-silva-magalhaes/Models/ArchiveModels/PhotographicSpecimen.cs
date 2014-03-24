@@ -22,6 +22,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual PhotographicProcess PhotographicProcess { get; set; }
         public virtual PhotographicFormat PhotographicFormat { get; set; }
+
+        public virtual PhotographicClassification Classification { get; set; }
+
         public virtual Document Document { get; set; }
 
         /// <summary>

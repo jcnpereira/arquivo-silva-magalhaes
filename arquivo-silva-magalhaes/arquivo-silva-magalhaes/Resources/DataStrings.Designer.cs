@@ -104,5 +104,14 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("CollectionDimension", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sem classificação.
+        /// </summary>
+        public static string NoClassification {
+            get {
+                return ResourceManager.GetString("NoClassification", resourceCulture);
+            }
+        }
     }
 }

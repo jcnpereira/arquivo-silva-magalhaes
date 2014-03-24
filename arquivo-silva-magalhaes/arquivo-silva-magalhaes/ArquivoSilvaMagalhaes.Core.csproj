@@ -189,6 +189,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
     <Compile Include="Models\ArchiveModels\Author.cs" />
+    <Compile Include="Models\ArchiveModels\SpotLightPhotography.cs" />
+    <Compile Include="Models\ArchiveModels\DigitalPhotgraphy.cs" />
+    <Compile Include="Models\ArchiveModels\PhotographicClassification.cs" />
     <Compile Include="Models\ArchiveModels\Collection.cs" />
     <Compile Include="Models\ArchiveModels\DigitalPhoto.cs" />
     <Compile Include="Models\ArchiveModels\Document.cs" />
