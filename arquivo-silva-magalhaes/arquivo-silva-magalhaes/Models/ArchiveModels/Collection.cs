@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +16,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public int Id { get; set; }
         public string Provenience { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "CollectionDimension")]
         public short Dimension { get; set; }
         public string HistoricalDetails { get; set; }
         public string Type { get; set; }

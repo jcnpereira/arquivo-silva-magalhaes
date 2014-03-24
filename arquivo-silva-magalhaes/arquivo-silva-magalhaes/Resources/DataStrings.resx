@@ -131,4 +131,8 @@
   <data name="AuthorLastNamePrompt" xml:space="preserve">
     <value>Introduza o último nome do autor</value>
   </data>
+  <data name="CollectionDimension" xml:space="preserve">
+    <value>Dimensão da coleção</value>
+    <comment>The collection's dimension.</comment>
+  </data>
 </root>
