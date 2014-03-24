@@ -16,6 +16,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Local { get; set; }
+        public string AmbitAndContent{get;set;}
+        public string Responsable { get; set; }
 
         public System.DateTime DocumentDate { get; set; }
         public System.DateTime CatalogDate { get; set; }
