@@ -41,9 +41,12 @@ namespace ArquivoSilvaMagalhaes.Models
 
 
         // Site-related tables.
+
         /// <summary>
         /// Events of this archive.
         /// </summary>
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<NewsItem> News { get; set; }
+
     }
 }
