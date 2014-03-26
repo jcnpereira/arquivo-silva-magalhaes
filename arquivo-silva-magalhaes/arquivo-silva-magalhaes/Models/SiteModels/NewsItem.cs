@@ -8,10 +8,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     public class NewsItem
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Subtitle { get; set; }
-        public string Heading { get; set; }
-        public string TextContent { get; set; }
+       
         public DateTime PublishDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public bool HideAfterExpiry { get; set; }

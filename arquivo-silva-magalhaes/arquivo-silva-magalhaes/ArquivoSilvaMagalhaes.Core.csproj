@@ -190,6 +190,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
     <Compile Include="Models\ArchiveModels\Author.cs" />
+    <Compile Include="Models\SiteModels\ArchiveContact.cs" />
+    <Compile Include="Models\SiteModels\BannerPhotography.cs" />
+    <Compile Include="Models\SiteModels\BannerPhotographyText.cs" />
+    <Compile Include="Models\SiteModels\DocumentAttachmentText.cs" />
+    <Compile Include="Models\SiteModels\NewsText.cs" />
+    <Compile Include="Models\SiteModels\EventText.cs" />
     <Compile Include="Models\ArchiveModels\SpotLightPhotography.cs" />
     <Compile Include="Models\ArchiveModels\DigitalPhotgraphy.cs" />
     <Compile Include="Models\ArchiveModels\PhotographicClassification.cs" />
@@ -201,12 +207,16 @@
     <Compile Include="Models\ArchiveModels\PhotographicProcess.cs" />
     <Compile Include="Models\ArchiveModels\PhotographicSpecimen.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\SiteModels\Attachment.cs" />
+    <Compile Include="Models\SiteModels\DocumentAttachment.cs" />
     <Compile Include="Models\SiteModels\Collaborator.cs" />
     <Compile Include="Models\SiteModels\Event.cs" />
     <Compile Include="Models\SiteModels\NewsItem.cs" />
     <Compile Include="Models\SiteModels\Partnership.cs" />
+    <Compile Include="Models\SiteModels\PhotographicArchive.cs" />
+    <Compile Include="Models\SiteModels\PhotographyArchiveText.cs" />
     <Compile Include="Models\SiteModels\ReferencedLink.cs" />
+    <Compile Include="Models\SiteModels\TechnicalDocument.cs" />
+    <Compile Include="Models\SiteModels\VideoSpotLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DataStrings.Designer.cs">
       <AutoGen>True</AutoGen>
