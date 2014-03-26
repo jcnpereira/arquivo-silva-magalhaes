@@ -30,16 +30,15 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             AttachedDocuments = new HashSet<DocumentAttachment>();
         }
 
+
+
+
         public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Title { get; set; }
-
-        public string Heading { get; set; }
 
         [Required]
-        public string TextContent { get; set; }
         public string Place { get; set; }
         public string Coordinates { get; set; }
         public string VisitorInformation { get; set; }
@@ -64,6 +63,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual ICollection<Collaborator> Collaborators { get; set; }
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<DocumentAttachment> AttachedDocuments { get; set; }
-
+        
     }
 }
