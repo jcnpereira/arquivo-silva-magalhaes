@@ -11,29 +11,51 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Collection()
         {
-            this.Dimension = "0";
-            this.HasDocuments = false;
-            this.Visible = false;
+            this.CollectionTexts = new HashSet<CollectionText>();
+            this.Documents = new HashSet<Document>();
+            this.Authors = new HashSet<Author>();
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
-        public Enum Type { get; set; }
-        public DateTime ProductionsDate { get; set; }
-        public string AdministrativeHistoryAndBiography { get; set; }
-        public string Provenience { get; set; }
-        public bool HasDocuments { get; set; }
-        public string AmbitAndContent { get; set; }
-        public string Logotype { get; set; }
-        public string OgranizationSystem { get; set; }
-        public string Notes { get; set; }
-        public string ReproductionsConditions {get; set;}
-        public bool Visible { get; set;}
-
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionDimension")]
-        public string Dimension { get; set; }
-        public string HistoricalDetails { get; set; }
+        public CollectionType Type { get; set; }
         public System.DateTime ProductionDate { get; set; }
+        public string LogoLocation { get; set; }
+        public bool HasAttachments { get; set; }
+        public string OrganizationSystem { get; set; }
+        public string Notes { get; set; }
+        public bool IsVisible { get; set; }
+        public string CatalogCode { get; set; }
 
+        public virtual ICollection<CollectionText> CollectionTexts { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
+    }
+
+    public enum CollectionType : byte
+    {
+        Regular = 1,
+        Background = 2,
+        Other = 3
+    }
+
+    public partial class CollectionText
+    {
+        public CollectionText()
+        {
+            this.LanguageCode = "pt";
+        }
+
+        public int Id { get; set; }
+        public string LanguageCode { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Provenience { get; set; }
+        public string AdministrativeAndBiographicStory { get; set; }
+        public string Dimension { get; set; }
+        public string FieldAndContents { get; set; }
+        public string CopyrightInfo { get; set; }
+        public int CollectionId { get; set; }
+
+        public virtual Collection Collection { get; set; }
     }
 }

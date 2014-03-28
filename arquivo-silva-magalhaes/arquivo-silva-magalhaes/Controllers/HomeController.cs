@@ -11,17 +11,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         
         public ActionResult Index()
         {
-
-            var author = _db.Authors.Find(1);
-
-            var docList = _db.Documents
-                            .Where(d => d.Author.Id == author.Id)
-                            .ToList();
-
-            ViewBag.AuthorName = author.FirstName;
-
-            ViewBag.NumberOfDocs = author.Documents.Count;
-            
             return View();
         }
 

@@ -11,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Localization;
         public DateTime UploadedDate;
         public DateTime LastModificationDate;
-        public MimeMapping Format;
+        public String Format;
         public Enum DocumentType;
         public string Language;
 

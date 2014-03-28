@@ -37,8 +37,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Required]
         [MaxLength(50)]
-
-        [Required]
         public string Place { get; set; }
         public string Coordinates { get; set; }
         public string VisitorInformation { get; set; }
