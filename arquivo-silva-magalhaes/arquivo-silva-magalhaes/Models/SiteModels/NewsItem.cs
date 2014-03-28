@@ -7,6 +7,14 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class NewsItem
     {
+        public NewsItem()
+        {
+            Links = new HashSet<ReferencedLink>();
+            ReferencedNewsItems = new HashSet<NewsItem>();
+            ReferencedNewsText = new HashSet<NewsText>();
+            ReferencedDocuments = new HashSet<DocumentAttachment>();
+        }
+
         public int Id { get; set; }
        
         public DateTime PublishDate { get; set; }
@@ -17,6 +25,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<NewsItem> ReferencedNewsItems { get; set; }
+        public virtual ICollection<NewsText> ReferencedNewsText { get; set;}
+        public virtual ICollection<DocumentAttachment> ReferencedDocuments { get; set; }
+
         public int MyProperty { get; set; }
     }
 }

@@ -10,5 +10,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Localization { get; set;}
         public DateTime PublicationDate { get; set; }
         public DateTime RemotionDate { get; set; }
+    
     }
+
+
 }

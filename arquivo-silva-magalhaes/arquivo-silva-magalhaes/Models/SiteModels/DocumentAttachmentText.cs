@@ -7,6 +7,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class DocumentAttachmentText
     {
+        public DocumentAttachmentText()
+        {
+            DocumentsUsingAttachmentText = new HashSet<DocumentAttachment>();
+        }
 
 
         public string CodLanguage { get; set; }
