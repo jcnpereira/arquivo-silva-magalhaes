@@ -28,6 +28,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             Collaborators = new HashSet<Collaborator>();
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<DocumentAttachment>();
+            EventText = new HashSet<EventText>();
         }
 
 
@@ -63,6 +64,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual ICollection<Collaborator> Collaborators { get; set; }
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<DocumentAttachment> AttachedDocuments { get; set; }
+        public virtual ICollection<EventText> EventText { get; set; }
+
+
         
     }
 }

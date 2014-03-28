@@ -10,6 +10,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public ReferencedLink()
         {
             EventsUsingThis = new HashSet<Event>();
+            NewsUsingThis = new HashSet<NewsItem>();
         }
 
         public int Id { get; set; }
@@ -21,5 +22,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public DateTime LastModifiedDate { get; set; }
 
         public virtual ICollection<Event> EventsUsingThis { get; set; }
+        public virtual ICollection<NewsItem> NewsUsingThis { get; set;}
     }
 }

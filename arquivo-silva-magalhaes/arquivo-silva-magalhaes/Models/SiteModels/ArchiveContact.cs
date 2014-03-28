@@ -7,6 +7,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class ArchiveContact
     {
+        public ArchiveContact()
+        {
+            CodArchive = new HashSet<PhotographicArchive>();
+        }
+
         public string Name;
         public string Email;
         public string Address;

@@ -7,7 +7,14 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class PhotographicArchive
     {
-        public string CodPhotographicArchive { get; set; }
+        public PhotographicArchive()
+        {
+            ArchiveText = new HashSet<PhotographyArchiveText>();
+            Contacts = new HashSet<ArchiveContact>();
+        }
 
+        public string CodPhotographicArchive { get; set; }
+        public  ICollection<PhotographyArchiveText> ArchiveText;
+        public  ICollection<ArchiveContact> Contacts;
     }
 }
