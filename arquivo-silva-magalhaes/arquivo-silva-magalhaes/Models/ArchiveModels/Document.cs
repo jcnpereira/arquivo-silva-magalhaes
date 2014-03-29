@@ -13,24 +13,48 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         {
             this.DocumentTexts = new HashSet<DocumentText>();
             this.Keywords = new HashSet<Keyword>();
-            this.Specimen = new HashSet<Specimen>();
+            this.Specimens = new HashSet<Specimen>();
         }
 
         [Key]
         public int Id { get; set; }
+
+        /// <summary>
+        /// The name of the person that is responsible for this collection.
+        /// </summary>
+        [Required]
         public string ResponsibleName { get; set; }
-        public string DocumentDate { get; set; }
-        public System.DateTime CatalogationDate { get; set; }
+
+        /// <summary>
+        /// The date on which this document was made.
+        /// </summary>
+        public DateTime DocumentDate { get; set; }
+
+        /// <summary>
+        /// The date on which this document was catalogued.
+        /// </summary>
+        public DateTime CatalogationDate { get; set; }
+
+        /// <summary>
+        /// Notes issued by the people in the archive about
+        /// this document.
+        /// </summary>
         public string Notes { get; set; }
-        public int CollectionId { get; set; }
-        public int AuthorId { get; set; }
+
+        /// <summary>
+        /// Code used by the people in the archive to
+        /// physically catalog this document.
+        /// </summary>
         public string CatalogCode { get; set; }
 
+        /// <summary>
+        /// The collection on which this document belongs to.
+        /// </summary>
         public virtual Collection Collection { get; set; }
         public virtual ICollection<DocumentText> DocumentTexts { get; set; }
         public virtual Author Author { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
-        public virtual ICollection<Specimen> Specimen { get; set; }
+        public virtual ICollection<Specimen> Specimens { get; set; }
     }
 
     public partial class DocumentText

@@ -40,10 +40,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
+        [Required]
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// The date on which this author died.
         /// </summary>
+        [Required]
         public DateTime DeathDate { get; set; }
 
         /// <summary>
@@ -63,13 +65,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // The death date cannot be earlier than the birth date.
-            if (BirthDate != null && DeathDate != null)
+            if (DeathDate.CompareTo(BirthDate) < 0)
             {
-                if (DeathDate.CompareTo(BirthDate) < 0)
-                {
-                    yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
-                }
+                yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
             }
+
         }
     }
 
