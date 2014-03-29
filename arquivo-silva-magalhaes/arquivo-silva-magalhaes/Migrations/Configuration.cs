@@ -9,7 +9,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ArquivoSilvaMagalhaes.Models.ArchiveDataContext context)

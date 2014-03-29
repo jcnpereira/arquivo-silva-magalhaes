@@ -18,23 +18,15 @@ namespace ArquivoSilvaMagalhaes.Models
         }
 
         public virtual DbSet<Collection> CollectionSet { get; set; }
-        public virtual DbSet<CollectionText> CollectionTextSet { get; set; }
         public virtual DbSet<Document> DocumentSet { get; set; }
-        public virtual DbSet<DocumentText> DocumentTextSet { get; set; }
         public virtual DbSet<Author> AuthorSet { get; set; }
-        public virtual DbSet<AuthorText> AuthorTextSet { get; set; }
         public virtual DbSet<Keyword> KeywordSet { get; set; }
-        public virtual DbSet<KeywordText> KeywordTextSet { get; set; }
         public virtual DbSet<Specimen> SpecimenSet { get; set; }
-        public virtual DbSet<SpecimenText> SpecimenTextSet { get; set; }
         public virtual DbSet<Format> FormatSet { get; set; }
         public virtual DbSet<Process> ProcessSet { get; set; }
-        public virtual DbSet<ProcessText> ProcessTextSet { get; set; }
         public virtual DbSet<Classification> ClassificationSet { get; set; }
-        public virtual DbSet<ClassificationText> ClassificationTextSet { get; set; }
         public virtual DbSet<DigitalPhotograph> DigitalPhotographSet { get; set; }
         public virtual DbSet<ShowcasePhoto> ShowcasePhotoSet { get; set; }
-        public virtual DbSet<ShowcasePhotoText> ShowcasePhotoTextSet { get; set; }
 
 
         // Site-related tables.
@@ -42,8 +34,15 @@ namespace ArquivoSilvaMagalhaes.Models
         /// <summary>
         /// Events of this archive.
         /// </summary>
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<NewsItem> News { get; set; }
+        public virtual DbSet<Event> EventSet { get; set; }
+        public virtual DbSet<NewsItem> NewsSet { get; set; }
+        public virtual DbSet<BannerPhotograph> BannerPhotographSet { get; set; }
+        public virtual DbSet<Collaborator> CollaboratorSet { get; set; }
+        public virtual DbSet<DocumentAttachment> DocumentAttachmentSet { get; set; }
+        public virtual DbSet<Partnership> PartnershipSet { get; set; }
+        public virtual DbSet<ReferencedLink> ReferencedLinkSet { get; set; }
+        public virtual DbSet<SpotlightVideo> SpotlightVideoSet { get; set; }
+        public virtual DbSet<TechnicalDocument> TecnhicalDocumentSet { get; set; }
 
     }
 }

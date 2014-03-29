@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class Partnership
     {
-        public Partnership()
-        {
-            EventsAsPartner = new HashSet<Event>();
-        }
 
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Logo { get; set; }
@@ -19,6 +17,15 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string EmailAddress { get; set; }
         public string Contact { get; set; }
 
-        public virtual ICollection<Event> EventsAsPartner { get; set; }
+        public virtual Event Event { get; set; }
+
+        public PartnershipType PartnershipType { get; set; }
+    }
+
+    public enum PartnershipType : byte
+    {
+        Sponsor = 1,
+        Collaborator = 2,
+        Other = 100
     }
 }

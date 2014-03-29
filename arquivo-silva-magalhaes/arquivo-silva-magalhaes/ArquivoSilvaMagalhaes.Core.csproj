@@ -179,20 +179,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403182132346_InitialCreate.cs" />
-    <Compile Include="Migrations\201403182132346_InitialCreate.Designer.cs">
-      <DependentUpon>201403182132346_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201403291531473_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201403291531473_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201403291531473_ArchiveDataContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
     <Compile Include="Models\ArchiveModels\Author.cs" />
-    <Compile Include="Models\SiteModels\ArchiveContact.cs" />
-    <Compile Include="Models\SiteModels\BannerPhotography.cs" />
-    <Compile Include="Models\SiteModels\BannerPhotographyText.cs" />
-    <Compile Include="Models\SiteModels\DocumentAttachmentText.cs" />
-    <Compile Include="Models\SiteModels\NewsText.cs" />
-    <Compile Include="Models\SiteModels\EventText.cs" />
+    <Compile Include="Models\SiteModels\BannerPhotograph.cs" />
     <Compile Include="Models\ArchiveModels\ShowcasePhoto.cs" />
     <Compile Include="Models\ArchiveModels\DigitalPhotograph.cs" />
     <Compile Include="Models\ArchiveModels\Classification.cs" />
@@ -208,11 +203,10 @@
     <Compile Include="Models\SiteModels\Event.cs" />
     <Compile Include="Models\SiteModels\NewsItem.cs" />
     <Compile Include="Models\SiteModels\Partnership.cs" />
-    <Compile Include="Models\SiteModels\PhotographicArchive.cs" />
-    <Compile Include="Models\SiteModels\PhotographyArchiveText.cs" />
+    <Compile Include="Models\SiteModels\Archive.cs" />
     <Compile Include="Models\SiteModels\ReferencedLink.cs" />
     <Compile Include="Models\SiteModels\TechnicalDocument.cs" />
-    <Compile Include="Models\SiteModels\VideoSpotLight.cs" />
+    <Compile Include="Models\SiteModels\SpotlightVideo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DataStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -232,14 +226,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\arquivo-silva-magalhaes-data.mdf" />
-    <Content Include="App_Data\arquivo-silva-magalhaes-data_log.ldf">
-      <DependentUpon>arquivo-silva-magalhaes-data.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\arquivo-silva-magalhaes-users.mdf" />
-    <Content Include="App_Data\arquivo-silva-magalhaes-users_log.ldf">
-      <DependentUpon>arquivo-silva-magalhaes-users.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -302,6 +288,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -315,8 +302,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403182132346_InitialCreate.resx">
-      <DependentUpon>201403182132346_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403291531473_ArchiveDataContext.resx">
+      <DependentUpon>201403291531473_ArchiveDataContext.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

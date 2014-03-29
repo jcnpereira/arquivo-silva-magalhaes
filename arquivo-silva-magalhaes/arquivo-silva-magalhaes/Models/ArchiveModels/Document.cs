@@ -16,6 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.Specimen = new HashSet<Specimen>();
         }
 
+        [Key]
         public int Id { get; set; }
         public string ResponsibleName { get; set; }
         public string DocumentDate { get; set; }
@@ -39,7 +40,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.LanguageCode = "pt";
         }
 
+        [Key, Column(Order = 0)]
         public int Id { get; set; }
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
         public string DocumentLocation { get; set; }
         public string FieldAndContents { get; set; }

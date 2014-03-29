@@ -11,12 +11,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public enum EventType : byte
     {
-        [Display(ResourceType = typeof(SiteModelStrings), Name = "EventTypeSchool")]
-        School,
-        [Display(ResourceType = typeof(SiteModelStrings), Name = "EventTypeExpo")]
-        Expo,
-        [Display(ResourceType = typeof(SiteModelStrings), Name = "EventTypeOther")]
-        Other
+        Expo = 1,
+        School = 2,
+        Other = 100
     }
 
     public class Event
@@ -28,12 +25,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             Collaborators = new HashSet<Collaborator>();
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<DocumentAttachment>();
-            EventText = new HashSet<EventText>();
+            EventTexts = new HashSet<EventText>();
+
+            HideAfterExpiry = false;
         }
 
-
-
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -49,7 +46,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public DateTime PublishDate { get; set; }
         public DateTime ExpiryDate { get; set; }
 
-        [DefaultValue(false)]
         public bool HideAfterExpiry { get; set; }
 
         /// <summary>
@@ -62,9 +58,26 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual ICollection<Collaborator> Collaborators { get; set; }
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<DocumentAttachment> AttachedDocuments { get; set; }
-        public virtual ICollection<EventText> EventText { get; set; }
+        public virtual ICollection<EventText> EventTexts { get; set; }
+    }
 
+    public class EventText
+    {
+        public EventText()
+        {
+            LanguageCode = "pt";
+        }
 
-        
+        [Key, Column(Order = 0)]
+        public int Id { get; set; }
+        [Key, Column(Order = 1)]
+        public string LanguageCode { get; set; }
+        public string Title { get; set; }
+        public string Heading { get; set; }
+        public string SpotLight { get; set; }
+        public string TextContent { get; set; }
+
+        public virtual Event Event { get; set; }
+
     }
 }

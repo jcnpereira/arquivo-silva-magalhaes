@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.ShowcasePhotos = new HashSet<ShowcasePhoto>();
         }
 
+        [Key]
         public int Id { get; set; }
         public string ScanDate { get; set; }
         public string StoreLocation { get; set; }
