@@ -8,6 +8,9 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
+    /// <summary>
+    /// Defines a collection.
+    /// </summary>
     public partial class Collection
     {
         public Collection()
@@ -19,13 +22,33 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         public int Id { get; set; }
+
+        /// <summary>
+        /// The type of this collection.
+        /// </summary>
         public CollectionType Type { get; set; }
-        public System.DateTime ProductionDate { get; set; }
+
+        /// <summary>
+        /// The date on which this collection was created.
+        /// </summary>
+        public DateTime ProductionDate { get; set; }
+
+        /// <summary>
+        /// Location of the logo of this collection.
+        /// </summary>
         public string LogoLocation { get; set; }
+
         public bool HasAttachments { get; set; }
+
         public string OrganizationSystem { get; set; }
+
         public string Notes { get; set; }
         public bool IsVisible { get; set; }
+
+        /// <summary>
+        /// Code used by the archive to physically catalog this
+        /// collection.
+        /// </summary>
         public string CatalogCode { get; set; }
 
         public virtual ICollection<CollectionText> CollectionTexts { get; set; }
@@ -35,9 +58,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
     public enum CollectionType : byte
     {
-        Regular = 1,
+        Collection = 1,
         Background = 2,
-        Other = 3
+        Other = 100
     }
 
     public partial class CollectionText

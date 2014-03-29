@@ -23,6 +23,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public DateTime DateOfCreation { get; set; }
         public DateTime LastModifiedDate { get; set; }
 
+        public bool IsUsefulLink { get; set; }
+
         public virtual ICollection<Event> EventsUsingThis { get; set; }
         public virtual ICollection<NewsItem> NewsUsingThis { get; set; }
     }

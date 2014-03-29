@@ -9,6 +9,9 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
+    /// <summary>
+    /// Defines a classification of a photographic specimen.
+    /// </summary>
     public partial class Classification
     {
         public Classification()
@@ -24,6 +27,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<Specimen> Specimens { get; set; }
     }
 
+    /// <summary>
+    /// Details about a classification.
+    /// </summary>
     public partial class ClassificationText
     {
         public ClassificationText()
@@ -35,8 +41,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int Id { get; set; }
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
+        /// <summary>
+        /// The classification details.
+        /// </summary>
         public string Value { get; set; }
-        public int ClassificationId { get; set; }
 
         public virtual Classification Classification { get; set; }
     }

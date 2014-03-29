@@ -80,7 +80,6 @@
     <Compile Include="DocumentText.cs">
       <DependentUpon>EspolioTeste.tt</DependentUpon>
     </Compile>
-    <Compile Include="EnumTestEF.cs" />
     <Compile Include="EspolioTeste.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

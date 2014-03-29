@@ -14,16 +14,23 @@ namespace ArquivoSilvaMagalhaes.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Nothing.
+            // Nothing?
         }
 
         public virtual DbSet<Collection> CollectionSet { get; set; }
         public virtual DbSet<Document> DocumentSet { get; set; }
+
         public virtual DbSet<Author> AuthorSet { get; set; }
+        public virtual DbSet<AuthorText> AuthorTextSet { get; set; }
+
         public virtual DbSet<Keyword> KeywordSet { get; set; }
+
         public virtual DbSet<Specimen> SpecimenSet { get; set; }
+
         public virtual DbSet<Format> FormatSet { get; set; }
+
         public virtual DbSet<Process> ProcessSet { get; set; }
+
         public virtual DbSet<Classification> ClassificationSet { get; set; }
         public virtual DbSet<DigitalPhotograph> DigitalPhotographSet { get; set; }
         public virtual DbSet<ShowcasePhoto> ShowcasePhotoSet { get; set; }

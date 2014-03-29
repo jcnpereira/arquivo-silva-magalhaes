@@ -179,9 +179,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403291531473_ArchiveDataContext.cs" />
-    <Compile Include="Migrations\201403291531473_ArchiveDataContext.Designer.cs">
-      <DependentUpon>201403291531473_ArchiveDataContext.cs</DependentUpon>
+    <Compile Include="Migrations\201403291632130_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201403291632130_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -302,8 +302,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403291531473_ArchiveDataContext.resx">
-      <DependentUpon>201403291531473_ArchiveDataContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403291632130_ArchiveDataContext.resx">
+      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
