@@ -1,6 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
@@ -11,6 +13,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
         
         public ActionResult Index()
         {
+            ViewBag.Blah = _db.AuthorSet
+                              .Where(a => a.LastName.Contains("a"))
+                              .First().LastName;
+
             return View();
         }
 
@@ -26,6 +32,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Author()
+        {
+            var author = _db.AuthorSet.First(a => a.LastName.Contains("Maga"));
+
+            return Content(author.Biography);
         }
 
         protected override void Dispose(bool disposing)

@@ -174,14 +174,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403291632130_ArchiveDataContext.cs" />
-    <Compile Include="Migrations\201403291632130_ArchiveDataContext.Designer.cs">
-      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
+    <Compile Include="Migrations\201403301528213_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201403301528213_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201403301528213_ArchiveDataContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,7 +243,6 @@
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Web.config" />
     <Content Include="Areas\BackOffice\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -290,7 +290,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -303,8 +302,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403291632130_ArchiveDataContext.resx">
-      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403301528213_ArchiveDataContext.resx">
+      <DependentUpon>201403301528213_ArchiveDataContext.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

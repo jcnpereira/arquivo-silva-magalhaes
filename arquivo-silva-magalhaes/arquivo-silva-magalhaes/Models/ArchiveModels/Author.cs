@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
@@ -71,6 +72,32 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             }
 
         }
+
+        #region Non-mapped attributes
+        [NotMapped]
+        public string Biography
+        {
+            get
+            {
+                var authText = this.AuthorTexts
+                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+
+                return authText.Biography;
+            }
+        }
+
+        [NotMapped]
+        public string Curriculum
+        {
+            get
+            {
+                var authText = this.AuthorTexts
+                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+
+                return authText.Curriculum;
+            }
+        }
+        #endregion
     }
 
     /// <summary>
@@ -78,13 +105,20 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// </summary>
     public partial class AuthorText
     {
+        [NotMapped]
+        public const string DefaultLanguageCode = "pt";
+
         public AuthorText()
         {
-            this.LanguageCode = "pt";
+            this.LanguageCode = DefaultLanguageCode;
         }
 
+        /// <summary>
+        /// The author which is associated with this detail text.
+        /// </summary>
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public virtual Author Author { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
@@ -107,9 +141,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         public string Curriculum { get; set; }
 
-        /// <summary>
-        /// The author which is associated with this detail text.
-        /// </summary>
-        public virtual Author Author { get; set; }
+        
+        
     }
 }

@@ -41,10 +41,18 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 new Author { Id = 3, FirstName = "Luís Filipe", LastName = "de Aboim Pereira", BirthDate = new DateTime(1800, 1, 1), DeathDate = DateTime.Now }
             };
 
+            var authorTexts = new List<AuthorText>
+            {
+                new AuthorText { LanguageCode = "pt", Nationality = "pt", Author = authors[0], Biography = "Biografia pt.", Curriculum = "Curriculum pt." },
+                new AuthorText { LanguageCode = "pt-PT", Nationality = "pt", Author = authors[0], Biography = "Biografia pt-PT.", Curriculum = "Curriculum pt-PT." }
+            };
+
             authors.ForEach(author => db.AuthorSet.AddOrUpdate(a => a.LastName, author));
+            authorTexts.ForEach(text => db.AuthorTextSet.AddOrUpdate(text));
+
             db.SaveChanges();
-            
-            
+
+
         }
 
         protected void SeedDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
