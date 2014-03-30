@@ -1,6 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,40 +14,45 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public string Biography { get; set; }
         public string Curriculum { get; set; }
 
-        public AuthorViewModel(Author author, string locale)
+        public AuthorViewModel(Author author)
         {
             Name = String.Format("{0}, {1}", author.LastName, author.FirstName);
             BirthDate = author.BirthDate;
 
-            var localizedText = author.AuthorTexts.FirstOrDefault(t => locale.Contains(t.LanguageCode.Split('-')[0]));
-
-            Biography = localizedText.Biography;
-            Curriculum = localizedText.Curriculum;
+            Biography = author.Biography;
+            Curriculum = author.Curriculum;
         }
     }
 
     public class AuthorEditModel
     {
-        public List<AuthorTextEditModel> Texts { get; set; }
-
         public AuthorEditModel()
         {
-            Texts = new List<AuthorTextEditModel>
-            {
-                new AuthorTextEditModel
-                {
-                    LanguageCode = "pt",
-                    Curriculum = "",
-                    Biography = ""
-                }
-            };
+            LanguageCode = "pt";
         }
+
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
+
+        public string LanguageCode { get; set; }
+
+        public string Nationality { get; set; }
+        public string Biography { get; set; }
+        public string Curriculum { get; set; }
     }
 
     public class AuthorTextEditModel
     {
         public string LanguageCode { get; set; }
+        [Required]
         public string Curriculum { get; set; }
+        [Required]
         public string Biography { get; set; }
+        [Required]
+        public string Nationality { get; set; }
     }
 }

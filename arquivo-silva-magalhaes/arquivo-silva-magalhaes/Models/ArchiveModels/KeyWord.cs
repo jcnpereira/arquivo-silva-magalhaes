@@ -37,6 +37,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
         public string Value { get; set; }
 
+        [Required]
         public virtual Keyword Keyword { get; set; }
     }
 }

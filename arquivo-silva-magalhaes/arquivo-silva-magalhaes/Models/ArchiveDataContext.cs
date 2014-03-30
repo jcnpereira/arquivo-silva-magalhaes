@@ -14,7 +14,7 @@ namespace ArquivoSilvaMagalhaes.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Nothing?
+                
         }
 
         public virtual DbSet<Collection> CollectionSet { get; set; }

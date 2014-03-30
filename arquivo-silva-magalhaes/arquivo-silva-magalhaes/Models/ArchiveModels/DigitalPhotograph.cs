@@ -23,6 +23,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int SpecimenId { get; set; }
 
         public virtual ICollection<ShowcasePhoto> ShowcasePhotos { get; set; }
+
+        [Required]
         public virtual Specimen Specimen { get; set; }
     }
 }

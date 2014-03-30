@@ -28,8 +28,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     
         public virtual ICollection<SpecimenText> SpecimenTexts { get; set; }
         public virtual Format Format { get; set; }
+
+        [Required]
         public virtual Document Document { get; set; }
+
         public virtual Process Process { get; set; }
+
         public virtual ICollection<Classification> Classification { get; set; }
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
     }
@@ -52,8 +56,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string DetailedStateDescription { get; set; }
         public string InterventionDescription { get; set; }
         public string Publication { get; set; }
-        public int SpecimenId { get; set; }
     
+        [Required]
         public virtual Specimen Specimen { get; set; }
     }
 }

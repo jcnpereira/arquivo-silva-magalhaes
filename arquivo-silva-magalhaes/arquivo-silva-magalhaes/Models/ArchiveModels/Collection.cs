@@ -81,8 +81,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Dimension { get; set; }
         public string FieldAndContents { get; set; }
         public string CopyrightInfo { get; set; }
-        public int CollectionId { get; set; }
 
+        [Required]
         public virtual Collection Collection { get; set; }
     }
 }

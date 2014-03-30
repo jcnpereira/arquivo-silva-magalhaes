@@ -22,6 +22,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string VisibleSince { get; set; }
         public int DigitalPhotographId { get; set; }
 
+        [Required]
         public virtual DigitalPhotograph DigitalPhotograph { get; set; }
         public virtual ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
     }
@@ -40,6 +41,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Comment { get; set; }
         public int ShowcasePhotoId { get; set; }
 
+        [Required]
         public virtual ShowcasePhoto ShowcasePhoto { get; set; }
     }
 }

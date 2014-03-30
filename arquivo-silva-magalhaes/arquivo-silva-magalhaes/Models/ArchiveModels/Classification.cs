@@ -47,6 +47,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public string Value { get; set; }
 
+        [Required]
         public virtual Classification Classification { get; set; }
     }
 }

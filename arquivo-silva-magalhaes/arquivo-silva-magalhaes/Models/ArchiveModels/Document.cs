@@ -52,6 +52,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public virtual Collection Collection { get; set; }
         public virtual ICollection<DocumentText> DocumentTexts { get; set; }
+
+        [Required]
         public virtual Author Author { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
@@ -73,6 +75,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Description { get; set; }
         public int DocumentId { get; set; }
 
+        [Required]
         public virtual Document Document { get; set; }
     }
 }

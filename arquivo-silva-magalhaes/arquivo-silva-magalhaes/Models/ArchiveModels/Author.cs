@@ -80,7 +80,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             get
             {
                 var authText = this.AuthorTexts
-                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
+                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
 
                 return authText.Biography;
             }
@@ -92,7 +93,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             get
             {
                 var authText = this.AuthorTexts
-                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
+                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
 
                 return authText.Curriculum;
             }
@@ -116,10 +118,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The author which is associated with this detail text.
         /// </summary>
-        [Key, Column(Order = 0)]
-        public virtual Author Author { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         /// <summary>
@@ -141,7 +142,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         public string Curriculum { get; set; }
 
-        
+        [Required]
+        public virtual Author Author { get; set; }
         
     }
 }

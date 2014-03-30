@@ -36,6 +36,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Value { get; set; }
         public int ProcessId { get; set; }
 
+        [Required]
         public virtual Process Process { get; set; }
     }
 }
