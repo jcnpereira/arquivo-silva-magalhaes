@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
@@ -40,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public bool HasAttachments { get; set; }
 
-        public string OrganizationSystem { get; set; }
+        public string OrganizationCode { get; set; }
 
         public string Notes { get; set; }
         public bool IsVisible { get; set; }
@@ -54,25 +55,104 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<CollectionText> CollectionTexts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
+
+        #region Non-mapped Attributes
+
+        [NotMapped]
+        public string Title
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().Title;
+            }
+        }
+
+        [NotMapped]
+        public string Description
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().Description;
+            }
+        }
+
+        [NotMapped]
+        public string Provenience
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().Provenience;
+            }
+        }
+
+        [NotMapped]
+        public string AdministrativeAndBiographicStory
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().AdministrativeAndBiographicStory;
+            }
+        }
+
+        [NotMapped]
+        public string Dimension
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().Dimension;
+            }
+        }
+
+        [NotMapped]
+        public string FieldAndContents
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().FieldAndContents;
+            }
+        }
+
+        [NotMapped]
+        public string CopyrightInfo
+        {
+            get
+            {
+                return GetTextForCurrentLanguageOrDefault().CopyrightInfo;
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets the most appropriate translation for the current ui language.
+        /// </summary>
+        private CollectionText GetTextForCurrentLanguageOrDefault()
+        {
+            var locale = Thread.CurrentThread.CurrentUICulture.ToString();
+            return CollectionTexts
+                .First(t => locale.Contains(t.LanguageCode) || t.LanguageCode.Contains(CollectionText.DefaultLanguageCode));
+        }
     }
 
     public enum CollectionType : byte
     {
         Collection = 1,
-        Background = 2,
+        Fond = 2,
         Other = 100
     }
 
     public partial class CollectionText
     {
+        public const string DefaultLanguageCode = "pt";
+
         public CollectionText()
         {
-            this.LanguageCode = "pt";
+            this.LanguageCode = DefaultLanguageCode;
         }
 
         [Key, Column(Order = 0)]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+
         public string LanguageCode { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

@@ -43,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         ProductionDate = c.DateTime(nullable: false),
                         LogoLocation = c.String(),
                         HasAttachments = c.Boolean(nullable: false),
-                        OrganizationSystem = c.String(),
+                        OrganizationCode = c.String(),
                         Notes = c.String(),
                         IsVisible = c.Boolean(nullable: false),
                         CatalogCode = c.String(),
@@ -54,8 +54,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.CollectionTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Title = c.String(),
                         Description = c.String(),
                         Provenience = c.String(),
@@ -63,10 +63,11 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         Dimension = c.String(),
                         FieldAndContents = c.String(),
                         CopyrightInfo = c.String(),
+                        Collection_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
-                .ForeignKey("dbo.Collections", t => t.Id, cascadeDelete: true)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Collections", t => t.Collection_Id, cascadeDelete: true)
+                .Index(t => t.Collection_Id);
             
             CreateTable(
                 "dbo.Documents",
@@ -91,14 +92,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.DocumentTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         DocumentLocation = c.String(),
                         FieldAndContents = c.String(),
                         Description = c.String(),
                         DocumentId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Documents", t => t.DocumentId, cascadeDelete: true)
                 .Index(t => t.DocumentId);
             
@@ -114,13 +115,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.KeywordTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Value = c.String(),
+                        Keyword_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
-                .ForeignKey("dbo.Keywords", t => t.Id, cascadeDelete: true)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Keywords", t => t.Keyword_Id, cascadeDelete: true)
+                .Index(t => t.Keyword_Id);
             
             CreateTable(
                 "dbo.Specimen",
@@ -132,18 +134,18 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         HasMarksOrStamps = c.Boolean(nullable: false),
                         Indexation = c.String(),
                         Notes = c.String(),
-                        FormatId = c.Int(nullable: false),
-                        DocumentId = c.Int(nullable: false),
+                        Document_Id = c.Int(nullable: false),
+                        Format_Id = c.Int(),
                         Process_Id = c.Int(),
                         Keyword_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Documents", t => t.DocumentId, cascadeDelete: true)
-                .ForeignKey("dbo.Formats", t => t.FormatId, cascadeDelete: true)
+                .ForeignKey("dbo.Documents", t => t.Document_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Formats", t => t.Format_Id)
                 .ForeignKey("dbo.Processes", t => t.Process_Id)
                 .ForeignKey("dbo.Keywords", t => t.Keyword_Id)
-                .Index(t => t.FormatId)
-                .Index(t => t.DocumentId)
+                .Index(t => t.Document_Id)
+                .Index(t => t.Format_Id)
                 .Index(t => t.Process_Id)
                 .Index(t => t.Keyword_Id);
             
@@ -159,13 +161,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.ClassificationTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Value = c.String(),
+                        Classification_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
-                .ForeignKey("dbo.Classifications", t => t.Id, cascadeDelete: true)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Classifications", t => t.Classification_Id, cascadeDelete: true)
+                .Index(t => t.Classification_Id);
             
             CreateTable(
                 "dbo.DigitalPhotographs",
@@ -202,14 +205,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.ShowcasePhotoTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Comment = c.String(),
-                        ShowcasePhotoId = c.Int(nullable: false),
+                        ShowcasePhoto_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
-                .ForeignKey("dbo.ShowcasePhotoes", t => t.ShowcasePhotoId, cascadeDelete: true)
-                .Index(t => t.ShowcasePhotoId);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ShowcasePhotoes", t => t.ShowcasePhoto_Id, cascadeDelete: true)
+                .Index(t => t.ShowcasePhoto_Id);
             
             CreateTable(
                 "dbo.Formats",
@@ -232,12 +235,12 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.ProcessTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Value = c.String(),
                         ProcessId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Processes", t => t.ProcessId, cascadeDelete: true)
                 .Index(t => t.ProcessId);
             
@@ -245,8 +248,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 "dbo.SpecimenTexts",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        LanguageCode = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageCode = c.String(),
                         Title = c.String(),
                         Topic = c.String(),
                         Description = c.String(),
@@ -254,10 +257,11 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         DetailedStateDescription = c.String(),
                         InterventionDescription = c.String(),
                         Publication = c.String(),
+                        Specimen_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Id, t.LanguageCode })
-                .ForeignKey("dbo.Specimen", t => t.Id, cascadeDelete: true)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Specimen", t => t.Specimen_Id, cascadeDelete: true)
+                .Index(t => t.Specimen_Id);
             
             CreateTable(
                 "dbo.BannerPhotographs",
@@ -563,24 +567,24 @@ namespace ArquivoSilvaMagalhaes.Migrations
             DropForeignKey("dbo.DocumentAttachmentEvents", "DocumentAttachment_Id", "dbo.DocumentAttachments");
             DropForeignKey("dbo.BannerPhotographTexts", "Id", "dbo.BannerPhotographs");
             DropForeignKey("dbo.Specimen", "Keyword_Id", "dbo.Keywords");
-            DropForeignKey("dbo.SpecimenTexts", "Id", "dbo.Specimen");
+            DropForeignKey("dbo.SpecimenTexts", "Specimen_Id", "dbo.Specimen");
             DropForeignKey("dbo.Specimen", "Process_Id", "dbo.Processes");
             DropForeignKey("dbo.ProcessTexts", "ProcessId", "dbo.Processes");
-            DropForeignKey("dbo.Specimen", "FormatId", "dbo.Formats");
-            DropForeignKey("dbo.Specimen", "DocumentId", "dbo.Documents");
+            DropForeignKey("dbo.Specimen", "Format_Id", "dbo.Formats");
+            DropForeignKey("dbo.Specimen", "Document_Id", "dbo.Documents");
             DropForeignKey("dbo.DigitalPhotographs", "SpecimenId", "dbo.Specimen");
-            DropForeignKey("dbo.ShowcasePhotoTexts", "ShowcasePhotoId", "dbo.ShowcasePhotoes");
+            DropForeignKey("dbo.ShowcasePhotoTexts", "ShowcasePhoto_Id", "dbo.ShowcasePhotoes");
             DropForeignKey("dbo.ShowcasePhotoes", "DigitalPhotographId", "dbo.DigitalPhotographs");
             DropForeignKey("dbo.ClassificationSpecimen", "Specimen_Id", "dbo.Specimen");
             DropForeignKey("dbo.ClassificationSpecimen", "Classification_Id", "dbo.Classifications");
-            DropForeignKey("dbo.ClassificationTexts", "Id", "dbo.Classifications");
-            DropForeignKey("dbo.KeywordTexts", "Id", "dbo.Keywords");
+            DropForeignKey("dbo.ClassificationTexts", "Classification_Id", "dbo.Classifications");
+            DropForeignKey("dbo.KeywordTexts", "Keyword_Id", "dbo.Keywords");
             DropForeignKey("dbo.KeywordDocuments", "Document_Id", "dbo.Documents");
             DropForeignKey("dbo.KeywordDocuments", "Keyword_Id", "dbo.Keywords");
             DropForeignKey("dbo.DocumentTexts", "DocumentId", "dbo.Documents");
             DropForeignKey("dbo.Documents", "Collection_Id", "dbo.Collections");
             DropForeignKey("dbo.Documents", "Author_Id", "dbo.Authors");
-            DropForeignKey("dbo.CollectionTexts", "Id", "dbo.Collections");
+            DropForeignKey("dbo.CollectionTexts", "Collection_Id", "dbo.Collections");
             DropForeignKey("dbo.CollectionAuthors", "Author_Id", "dbo.Authors");
             DropForeignKey("dbo.CollectionAuthors", "Collection_Id", "dbo.Collections");
             DropForeignKey("dbo.AuthorTexts", "Author_Id", "dbo.Authors");
@@ -607,21 +611,21 @@ namespace ArquivoSilvaMagalhaes.Migrations
             DropIndex("dbo.NewsItems", new[] { "NewsItem_Id" });
             DropIndex("dbo.Events", new[] { "Event_Id" });
             DropIndex("dbo.BannerPhotographTexts", new[] { "Id" });
-            DropIndex("dbo.SpecimenTexts", new[] { "Id" });
+            DropIndex("dbo.SpecimenTexts", new[] { "Specimen_Id" });
             DropIndex("dbo.ProcessTexts", new[] { "ProcessId" });
-            DropIndex("dbo.ShowcasePhotoTexts", new[] { "ShowcasePhotoId" });
+            DropIndex("dbo.ShowcasePhotoTexts", new[] { "ShowcasePhoto_Id" });
             DropIndex("dbo.ShowcasePhotoes", new[] { "DigitalPhotographId" });
             DropIndex("dbo.DigitalPhotographs", new[] { "SpecimenId" });
-            DropIndex("dbo.ClassificationTexts", new[] { "Id" });
+            DropIndex("dbo.ClassificationTexts", new[] { "Classification_Id" });
             DropIndex("dbo.Specimen", new[] { "Keyword_Id" });
             DropIndex("dbo.Specimen", new[] { "Process_Id" });
-            DropIndex("dbo.Specimen", new[] { "DocumentId" });
-            DropIndex("dbo.Specimen", new[] { "FormatId" });
-            DropIndex("dbo.KeywordTexts", new[] { "Id" });
+            DropIndex("dbo.Specimen", new[] { "Format_Id" });
+            DropIndex("dbo.Specimen", new[] { "Document_Id" });
+            DropIndex("dbo.KeywordTexts", new[] { "Keyword_Id" });
             DropIndex("dbo.DocumentTexts", new[] { "DocumentId" });
             DropIndex("dbo.Documents", new[] { "Collection_Id" });
             DropIndex("dbo.Documents", new[] { "Author_Id" });
-            DropIndex("dbo.CollectionTexts", new[] { "Id" });
+            DropIndex("dbo.CollectionTexts", new[] { "Collection_Id" });
             DropIndex("dbo.AuthorTexts", new[] { "Author_Id" });
             DropTable("dbo.EventCollaborators");
             DropTable("dbo.NewsItemDocumentAttachments");
