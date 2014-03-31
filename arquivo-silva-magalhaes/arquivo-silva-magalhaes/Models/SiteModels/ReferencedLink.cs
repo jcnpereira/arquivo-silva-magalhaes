@@ -8,12 +8,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class ReferencedLink
     {
-        public ReferencedLink()
-        {
-            EventsUsingThis = new HashSet<Event>();
-            NewsUsingThis = new HashSet<NewsItem>();
-        }
-
+        
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
@@ -25,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public bool IsUsefulLink { get; set; }
 
-        public virtual ICollection<Event> EventsUsingThis { get; set; }
-        public virtual ICollection<NewsItem> NewsUsingThis { get; set; }
+        public virtual Event EventsUsingThis { get; set; }
+        public virtual NewsItem NewsUsingThis { get; set; }
     }
 }
