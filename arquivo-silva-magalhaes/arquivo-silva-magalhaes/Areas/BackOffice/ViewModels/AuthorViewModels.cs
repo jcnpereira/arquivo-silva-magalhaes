@@ -26,11 +26,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
     public class AuthorEditModel
     {
-        public AuthorEditModel()
-        {
-            LanguageCode = "pt";
-        }
-
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -38,21 +33,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public DateTime BirthDate { get; set; }
 
-        public string LanguageCode { get; set; }
-
-        public string Nationality { get; set; }
-        public string Biography { get; set; }
-        public string Curriculum { get; set; }
+        public List<AuthorTextEditModel> AuthorTextEditModels { get; set; }
     }
 
     public class AuthorTextEditModel
     {
         public string LanguageCode { get; set; }
-        [Required]
-        public string Curriculum { get; set; }
-        [Required]
-        public string Biography { get; set; }
-        [Required]
+        public string DisplayLanguageName { get; set; }
         public string Nationality { get; set; }
+        public string Biography { get; set; }
+        public string Curriculum { get; set; }
     }
 }

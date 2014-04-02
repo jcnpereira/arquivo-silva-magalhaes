@@ -10,6 +10,10 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Resources;
+using System.Threading;
+using System.Globalization;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -41,7 +45,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Author/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new AuthorEditModel();
+            
+            model.AuthorTextEditModels =
+                LanguageDefinitions.AcceptedLanguages
+                                   .Select(lang => new AuthorTextEditModel
+                                   {
+                                       LanguageCode = lang,
+                                       DisplayLanguageName = CultureInfo.GetCultureInfo(lang, Thread.CurrentThread.CurrentUICulture.ToString()).DisplayName
+                                   }).ToList();
+
+            return View(model);
         }
 
         // POST: /BackOffice/Author/Create
@@ -61,20 +75,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     DeathDate = DateTime.Now
                 };
 
-                var authorText = new AuthorText
-                {
-                    Author = author,
-                    Biography = model.Biography,
-                    Curriculum = model.Curriculum,
-                    Nationality = model.Nationality
-                };
 
-                db.AuthorSet.Add(author);
-                
-                await db.SaveChangesAsync();
 
-                db.AuthorTextSet.Add(authorText);
-                await db.SaveChangesAsync();
+                //db.AuthorSet.Add(author);
+
+                //await db.SaveChangesAsync();
+
+                //db.AuthorTextSet.Add(authorText);
+                //await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -102,7 +110,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,FirstName,LastName,BirthDate,DeathDate")] Author author)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,BirthDate,DeathDate")] Author author)
         {
             if (ModelState.IsValid)
             {
