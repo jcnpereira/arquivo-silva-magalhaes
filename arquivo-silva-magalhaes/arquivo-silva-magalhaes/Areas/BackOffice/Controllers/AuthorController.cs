@@ -45,18 +45,39 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Author/Create
         public ActionResult Create()
         {
-            var model = new AuthorEditModel();
-            
-            model.AuthorTextEditModels =
-                LanguageDefinitions.AcceptedLanguages
-                                   .Select(lang => new AuthorTextEditModel
-                                   {
-                                       LanguageCode = lang,
-                                       DisplayLanguageName = CultureInfo.GetCultureInfo(lang, Thread.CurrentThread.CurrentUICulture.ToString()).DisplayName
-                                   }).ToList();
+            var textList = new List<AuthorTextEditModel>
+            {
+                new AuthorTextEditModel { LanguageCode = "pt", DisplayLanguageName = "Português" },
+                new AuthorTextEditModel { LanguageCode = "en", DisplayLanguageName = "Inglês" }
+            };
 
-            return View(model);
+            // var model = new AuthorEditModel();
+            var tupleModel = new Tuple<AuthorEditModel, List<AuthorTextEditModel>>(new AuthorEditModel(), textList);
+
+            return View(tupleModel);
         }
+
+        // TODO: DOESN'T WORK
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create(Tuple<AuthorEditModel, List<AuthorTextEditModel>> tupleModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var author = new Author
+        //        {
+        //            FirstName = tupleModel.Item1.FirstName,
+        //            LastName = tupleModel.Item1.LastName,
+        //            BirthDate = tupleModel.Item1.BirthDate,
+        //            DeathDate = DateTime.Now
+        //        };
+
+                
+        //    }
+
+
+        //    return View(tupleModel);
+        //}
 
         // POST: /BackOffice/Author/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -75,14 +96,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     DeathDate = DateTime.Now
                 };
 
+                author.AuthorTexts = new HashSet<AuthorText>
+                {
+                    new AuthorText { Author = author, LanguageCode = "pt", Biography = model.BiographyPt, Nationality = model.NationalityPt, Curriculum = model.CurriculumPt },
+                    
+                };
+
+                if (model.BiographyEn != null && model.NationalityEn != null && model.CurriculumEn != null)
+                {
+                    author.AuthorTexts.Add(
+                        new AuthorText { Author = author, LanguageCode = "en", Biography = model.BiographyEn, Nationality = model.NationalityEn, Curriculum = model.CurriculumEn }
+                    );
+                }
 
 
-                //db.AuthorSet.Add(author);
 
-                //await db.SaveChangesAsync();
+                //author.AuthorTexts = model.AuthorTextEditModels
+                //    .Select(textmodel => new AuthorText
+                //    {
+                //        Author = author,
+                //        Biography = textmodel.Biography,
+                //        Curriculum = textmodel.Curriculum,
+                //        LanguageCode = textmodel.LanguageCode,
+                //        Nationality = textmodel.Nationality
+                //    }).ToList();
 
-                //db.AuthorTextSet.Add(authorText);
-                //await db.SaveChangesAsync();
+                db.AuthorSet.Add(author);
+
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
