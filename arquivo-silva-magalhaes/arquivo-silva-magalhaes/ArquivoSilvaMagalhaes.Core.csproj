@@ -223,6 +223,7 @@
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\LanguageDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
