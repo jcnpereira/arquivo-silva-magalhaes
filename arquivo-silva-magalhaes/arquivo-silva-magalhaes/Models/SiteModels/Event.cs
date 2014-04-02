@@ -27,6 +27,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             AttachedDocuments = new HashSet<DocumentAttachment>();
             EventTexts = new HashSet<EventText>();
 
+
             HideAfterExpiry = false;
         }
 

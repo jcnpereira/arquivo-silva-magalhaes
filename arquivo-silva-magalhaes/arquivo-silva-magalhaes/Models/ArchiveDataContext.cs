@@ -52,13 +52,24 @@ namespace ArquivoSilvaMagalhaes.Models
         /// Events of this archive.
         /// </summary>
         public virtual DbSet<Event> EventSet { get; set; }
+        public virtual DbSet<EventText> EventTextSet { get; set; }
+
         public virtual DbSet<NewsItem> NewsSet { get; set; }
+        public virtual DbSet<NewsText> NewsTextSet { get; set; }
+
         public virtual DbSet<BannerPhotograph> BannerPhotographSet { get; set; }
+        public virtual DbSet<BannerPhotographText> BannerPhotographTextSet { get; set; }
+
         public virtual DbSet<Collaborator> CollaboratorSet { get; set; }
+
         public virtual DbSet<DocumentAttachment> DocumentAttachmentSet { get; set; }
+
         public virtual DbSet<Partnership> PartnershipSet { get; set; }
+        
         public virtual DbSet<ReferencedLink> ReferencedLinkSet { get; set; }
+        
         public virtual DbSet<SpotlightVideo> SpotlightVideoSet { get; set; }
+
         public virtual DbSet<TechnicalDocument> TecnhicalDocumentSet { get; set; }
 
     }

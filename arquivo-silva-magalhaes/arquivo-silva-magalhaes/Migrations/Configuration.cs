@@ -1,6 +1,7 @@
 namespace ArquivoSilvaMagalhaes.Migrations
 {
     using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+    using ArquivoSilvaMagalhaes.Models.SiteModels;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -32,7 +33,13 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
             SeedAuthors(context);
             SeedCollections(context);
+
+            SeedCollaborators(context);
+            
         }
+
+
+
 
         protected void SeedAuthors(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
@@ -166,6 +173,18 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 }
             );
 
+            db.SaveChanges();
+        }
+
+
+
+        protected void SeedCollaborators(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        {
+            var collaborators = new List<Collaborator>{
+                    new Collaborator{ Id=1, Name="Abc",  Contact="999999999", EmailAddress="abc@mail.com", Task="xyz", ContactVisible=true},
+                    new Collaborator{ Id=2, Name="Def", Contact="911111111", EmailAddress="def@mail.com", Task="ghj", ContactVisible=true }
+                    
+            };
             db.SaveChanges();
         }
     }
