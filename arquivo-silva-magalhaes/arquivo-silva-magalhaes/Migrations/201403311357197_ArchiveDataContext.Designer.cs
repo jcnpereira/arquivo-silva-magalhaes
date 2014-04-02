@@ -13,7 +13,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201403302307029_ArchiveDataContext"; }
+            get { return "201403311357197_ArchiveDataContext"; }
         }
         
         string IMigrationMetadata.Source

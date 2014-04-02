@@ -23,19 +23,32 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public bool HasMarksOrStamps { get; set; }
         public string Indexation { get; set; }
         public string Notes { get; set; }
-        public int FormatId { get; set; }
-        public int DocumentId { get; set; }
-    
-        public virtual ICollection<SpecimenText> SpecimenTexts { get; set; }
-        public virtual Format Format { get; set; }
 
         [Required]
         public virtual Document Document { get; set; }
 
         public virtual Process Process { get; set; }
+        public virtual Format Format { get; set; }
 
         public virtual ICollection<Classification> Classification { get; set; }
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
+        public virtual ICollection<SpecimenText> SpecimenTexts { get; set; }
+
+        #region Non-mapped attributes
+
+        [NotMapped]
+        public string Code
+        {
+            get
+            {
+                var collectionCode = Document.Collection.CatalogCode;
+                var documentCode = Document.CatalogCode;
+
+                return String.Format("{0}.{1}.{2}", collectionCode, documentCode, CatalogCode);
+            }
+        }
+
+        #endregion
     }
 
     public partial class SpecimenText
@@ -47,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key, Column(Order = 0)]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+
         public string LanguageCode { get; set; }
         public string Title { get; set; }
         public string Topic { get; set; }

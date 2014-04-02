@@ -68,7 +68,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key, Column(Order = 0)]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+
         public string LanguageCode { get; set; }
         public string DocumentLocation { get; set; }
         public string FieldAndContents { get; set; }
