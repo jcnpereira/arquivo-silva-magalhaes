@@ -99,6 +99,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
                 return authText.Curriculum;
             }
         }
+
+        [NotMapped]
+        public string Nationality
+        {
+            get
+            {
+                var authText = this.AuthorTexts
+                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) ||
+                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+
+                return authText.Nationality;
+            }
+        }
         #endregion
     }
 
@@ -127,7 +140,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
         [Required]
-        [MaxLength(20)]
         public string Nationality { get; set; }
 
         /// <summary>
