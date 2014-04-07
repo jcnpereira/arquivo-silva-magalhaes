@@ -6,6 +6,13 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
+    public enum DocumentType : byte
+    {
+        PDF = 1,
+        Video = 2,
+        Other = 100
+    }
+
     public class TechnicalDocument
     {
         [Key]
