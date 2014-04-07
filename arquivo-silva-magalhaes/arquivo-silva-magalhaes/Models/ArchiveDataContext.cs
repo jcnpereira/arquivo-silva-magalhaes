@@ -72,5 +72,7 @@ namespace ArquivoSilvaMagalhaes.Models
 
         public virtual DbSet<TechnicalDocument> TecnhicalDocumentSet { get; set; }
 
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Archive> Archives { get; set; }
+
     }
 }

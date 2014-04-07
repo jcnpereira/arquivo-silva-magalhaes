@@ -376,11 +376,6 @@ namespace ArquivoSilvaMagalhaes.Migrations
              };
          }
 
-        
-
-
-
-
 
         protected void SeedTechnicalDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
@@ -416,12 +411,15 @@ namespace ArquivoSilvaMagalhaes.Migrations
         {
             var archives = new List<Archive>{
                 new Archive{
-                     Id=1
+                     Id=1,
+                     Contacts=Contact(1),
+                     ArchiveTexts=ArchiveText(1)
                 }
 
             };
         }
-       
+
+
         protected void SeedArchiveText (ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
             var archivetexts = new List<ArchiveText>{
@@ -454,17 +452,20 @@ namespace ArquivoSilvaMagalhaes.Migrations
             }
 
 
+        private ICollection<ArchiveText> ArchiveText(int p)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
+        private ICollection<Contact> Contact(int p)
+        {
+            throw new NotImplementedException();
+        }
 
         private Archive Archive(int p)
         {
             throw new NotImplementedException();
         }
-
-
-
 
 
         private BannerPhotograph BannerPhotograph(int p)

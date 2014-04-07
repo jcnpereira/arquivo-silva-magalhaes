@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Archive>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var archive in Model) {
+    <tr>
+        
+        <td>
+            <p>@archive.Id</p>
+            @Html.ActionLink("Edit", "Edit", new { id=archive.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=archive.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=archive.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
