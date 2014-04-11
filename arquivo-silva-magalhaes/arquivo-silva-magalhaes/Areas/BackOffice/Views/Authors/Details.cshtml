@@ -1,4 +1,4 @@
-﻿@model AuthorViewModel
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Author
 
 @{
     ViewBag.Title = "Details";
@@ -11,20 +11,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.FirstName)
         </dd>
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.LastName)
-        </dd>*@
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.BirthDate)
@@ -42,29 +42,6 @@
             @Html.DisplayFor(model => model.DeathDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nationality)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Curriculum)
-        </dd>
     </dl>
 </div>
 <p>

@@ -75,6 +75,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         #region Non-mapped attributes
         [NotMapped]
+        public string Name
+        {
+            get
+            {
+                return String.Format("{0}, {1}", LastName, FirstName);
+            }
+        }
+
+        [NotMapped]
         public string Biography
         {
             get

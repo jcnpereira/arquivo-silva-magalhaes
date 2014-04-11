@@ -50,6 +50,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The collection on which this document belongs to.
         /// </summary>
+        [Required]
         public virtual Collection Collection { get; set; }
         public virtual ICollection<DocumentText> DocumentTexts { get; set; }
 
@@ -73,7 +74,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string DocumentLocation { get; set; }
         public string FieldAndContents { get; set; }
         public string Description { get; set; }
-        public int DocumentId { get; set; }
 
         [Required]
         public virtual Document Document { get; set; }

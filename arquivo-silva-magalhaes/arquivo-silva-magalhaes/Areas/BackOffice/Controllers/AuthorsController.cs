@@ -13,17 +13,17 @@ using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class AuthorController : Controller
+    public class AuthorsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/Author
+        // GET: BackOffice/Authors
         public async Task<ActionResult> Index()
         {
             return View(await db.AuthorSet.ToListAsync());
         }
 
-        // GET: BackOffice/Author/Details/5
+        // GET: BackOffice/Authors/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,24 +35,31 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
+            return View(author);
+        }
 
-            var model = new AuthorViewModel(author);
+        // GET: BackOffice/Authors/Create
+        public ActionResult Create()
+        {
+            var model = new AuthorEditViewModel();
+
+            model.I18nModel = new AuthorI18nViewModel
+            {
+                AvailableLanguages = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "pt", Selected = true, Text = "Português" }
+                }
+            };
 
             return View(model);
         }
 
-        // GET: BackOffice/Author/Create
-        public ActionResult Create()
-        {
-            return View(new AuthorEditModel());
-        }
-
-        // POST: BackOffice/Author/Create
+        // POST: BackOffice/Authors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AuthorEditModel model)
+        public async Task<ActionResult> Create(AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -64,53 +71,79 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     DeathDate = model.DeathDate
                 };
 
-                var texts = new HashSet<AuthorText>
-                {
-                    new AuthorText
-                    {
-                        Author = author,
-                        LanguageCode = "pt",
-                        Nationality = model.NationalityPt,
-                        Curriculum = model.CurriculumPt,
-                        Biography = model.BiographyPt
-                    },
-                    
-                };
-
-                if (model.NationalityEn != null && model.CurriculumEn != null && model.BiographyEn != null)
-                {
-                    // Only add the english content if any exists.
-                    if (model.NationalityEn.Trim().Length != 0 &&
-                        model.CurriculumEn.Trim().Length != 0 &&
-                        model.CurriculumEn.Trim().Length != 0)
-                    {
-                        texts.Add(
-                            new AuthorText
-                            {
-                                Author = author,
-                                LanguageCode = "en",
-                                Nationality = model.NationalityEn,
-                                Curriculum = model.CurriculumEn,
-                                Biography = model.BiographyEn
-                            }
-                        );
-                    }
-                }
+                author.AuthorTexts.Add(
+                   new AuthorText
+                   {
+                       Author = author,
+                       LanguageCode = model.LanguageCode,
+                       Nationality = model.Nationality,
+                       Curriculum = model.Curriculum,
+                       Biography = model.Biography
+                   }
+                );
 
                 db.AuthorSet.Add(author);
-
                 await db.SaveChangesAsync();
-
-                db.AuthorTextSet.AddRange(texts);
-
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                // return RedirectToAction("Index");
+                ViewBag.AuthorId = author.Id;
+                return View("AddMoreLanguagesPrompt");
             }
 
             return View(model);
         }
 
-        // GET: BackOffice/Author/Edit/5
+        public async Task<ActionResult> AddLanguage(int? authorId)
+        {
+            if (authorId != null)
+            {
+                var author = await db.AuthorSet.FindAsync(authorId);
+
+                if (author == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(new AuthorI18nViewModel
+                {
+                    AuthorId = author.Id,
+                    AvailableLanguages = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "en", Text = "Inglês", Selected = true }
+                    }
+                });
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddLanguage(AuthorI18nViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var text = new AuthorText
+                {
+                    Author = db.AuthorSet.Find(model.AuthorId),
+                    LanguageCode = model.LanguageCode,
+                    Nationality = model.Nationality,
+                    Biography = model.Biography,
+                    Curriculum = model.Curriculum
+                };
+
+                db.AuthorTextSet.Add(text);
+                await db.SaveChangesAsync();
+
+                ViewBag.AuthorId = model.AuthorId;
+
+                return View("AddMoreLanguagesPrompt");
+            }
+
+            return View(model);
+        }
+
+        // GET: BackOffice/Authors/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -122,10 +155,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new AuthorEditModel(author));
+            return View(author);
         }
 
-        // POST: BackOffice/Author/Edit/5
+        // POST: BackOffice/Authors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -141,7 +174,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(author);
         }
 
-        // GET: BackOffice/Author/Delete/5
+        // GET: BackOffice/Authors/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,7 +189,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(author);
         }
 
-        // POST: BackOffice/Author/Delete/5
+        // POST: BackOffice/Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
