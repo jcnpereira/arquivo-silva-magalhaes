@@ -6,13 +6,28 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Archive</h4>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Detalhes do arquivo</h4>
 	<hr />
+    @Html.ValidationSummary()
+    <div class="from-group">
+        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+        @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+        <br />
+        
+        
+            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })    
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control"})
+        <br />
+       
+    </div>
     <dl class="dl-horizontal">
     </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar á lista de arquivos", "Index")
 </p>
+
+}

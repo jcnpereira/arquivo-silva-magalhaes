@@ -11,9 +11,9 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Archive</h4>
+        <h4>Arquivo</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary()
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
@@ -25,5 +25,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à lista de arquivos", "Index")
 </div>

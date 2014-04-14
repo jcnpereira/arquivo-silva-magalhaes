@@ -4,21 +4,49 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Delete Archive</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Archive</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+@using (Html.BeginForm("Delete", "Archive", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary()
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title, new { @class = "col-md-4 control-label" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            </div>
         </div>
-    }
+        <div class="col-md-offset-4 col-md-12">
+
+            <input type="submit" value="Delete" class="btn btn-default" onclick="confirmation()" />
+
+        </div>
+    </div>
+    <script>
+        function confirmation(){
+            var x;
+            var d = document.getElementById("Title");
+        var r=confirm("Tem a certeza que pretende eliminar o arquivo?");
+        if (r==true)
+        {
+            d.removeChild;
+         x="Arquivo eliminado!";
+        }
+        else
+        {
+            document.getElementsById("Title");
+        }
+        document.getElementById("demo").innerHTML=x;
+        }
+    </script>
+
+    
+    
+}
+
+<div>
+    @Html.ActionLink("Back to ArchivesList", "Index")
 </div>
