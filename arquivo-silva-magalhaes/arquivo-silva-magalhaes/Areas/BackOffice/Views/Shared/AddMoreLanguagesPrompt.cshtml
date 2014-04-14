@@ -1,5 +1,9 @@
 ﻿
 @{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+@{
     ViewBag.Title = "A terminar a inserção de conteúdo";
 }
 
@@ -7,6 +11,6 @@
 
 <p>Deseja Adicionar os conteúdos noutra linguagem?</p>
 
-@Html.ActionLink("Sim", "AddLanguage", new { authorId = ViewBag.AuthorId })
+@Html.ActionLink("Sim", "AddLanguage", new { Id = ViewBag.Id })
 @Html.ActionLink("Não", "Index")
 

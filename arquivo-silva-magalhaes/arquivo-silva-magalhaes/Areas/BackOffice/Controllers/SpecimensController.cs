@@ -7,112 +7,112 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class CollectionController : Controller
+    public class SpecimensController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: /BackOffice/Collection/
+        // GET: BackOffice/Specimens
         public async Task<ActionResult> Index()
         {
-            return View(await db.CollectionSet.ToListAsync());
+            return View(await db.SpecimenSet.ToListAsync());
         }
 
-        // GET: /BackOffice/Collection/Details/5
+        // GET: BackOffice/Specimens/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await db.CollectionSet.FindAsync(id);
-            if (collection == null)
+            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            if (specimen == null)
             {
                 return HttpNotFound();
             }
-            return View(collection);
+            return View(specimen);
         }
 
-        // GET: /BackOffice/Collection/Create
+        // GET: BackOffice/Specimens/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /BackOffice/Collection/Create
+        // POST: BackOffice/Specimens/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Type,ProductionDate,LogoLocation,HasAttachments,OrganizationCode,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Create([Bind(Include = "Id,CatalogCode,AuthorCatalogationCode,HasMarksOrStamps,Indexation,Notes")] Specimen specimen)
         {
             if (ModelState.IsValid)
             {
-                db.CollectionSet.Add(collection);
+                db.SpecimenSet.Add(specimen);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(collection);
+            return View(specimen);
         }
 
-        // GET: /BackOffice/Collection/Edit/5
+        // GET: BackOffice/Specimens/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await db.CollectionSet.FindAsync(id);
-            if (collection == null)
+            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            if (specimen == null)
             {
                 return HttpNotFound();
             }
-            return View(collection);
+            return View(specimen);
         }
 
-        // POST: /BackOffice/Collection/Edit/5
+        // POST: BackOffice/Specimens/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Type,ProductionDate,LogoLocation,HasAttachments,OrganizationCode,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,CatalogCode,AuthorCatalogationCode,HasMarksOrStamps,Indexation,Notes")] Specimen specimen)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(collection).State = EntityState.Modified;
+                db.Entry(specimen).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(collection);
+            return View(specimen);
         }
 
-        // GET: /BackOffice/Collection/Delete/5
+        // GET: BackOffice/Specimens/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await db.CollectionSet.FindAsync(id);
-            if (collection == null)
+            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            if (specimen == null)
             {
                 return HttpNotFound();
             }
-            return View(collection);
+            return View(specimen);
         }
 
-        // POST: /BackOffice/Collection/Delete/5
+        // POST: BackOffice/Specimens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Collection collection = await db.CollectionSet.FindAsync(id);
-            db.CollectionSet.Remove(collection);
+            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            db.SpecimenSet.Remove(specimen);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

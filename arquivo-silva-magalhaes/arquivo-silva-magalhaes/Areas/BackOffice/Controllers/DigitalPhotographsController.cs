@@ -12,107 +12,112 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class DocumentsController : Controller
+    public class DigitalPhotographsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/Documents
+        // GET: BackOffice/DigitalPhotographs
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentSet.ToListAsync());
+            var digitalPhotographSet = db.DigitalPhotographSet.Include(d => d.Specimen);
+            return View(await digitalPhotographSet.ToListAsync());
         }
 
-        // GET: BackOffice/Documents/Details/5
+        // GET: BackOffice/DigitalPhotographs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographSet.FindAsync(id);
+            if (digitalPhotograph == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(digitalPhotograph);
         }
 
-        // GET: BackOffice/Documents/Create
+        // GET: BackOffice/DigitalPhotographs/Create
         public ActionResult Create()
         {
+            ViewBag.SpecimenId = new SelectList(db.SpecimenSet, "Id", "CatalogCode");
             return View();
         }
 
-        // POST: BackOffice/Documents/Create
+        // POST: BackOffice/DigitalPhotographs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Create([Bind(Include = "Id,ScanDate,StoreLocation,Process,CopyrightInfo,IsVisible,SpecimenId")] DigitalPhotograph digitalPhotograph)
         {
             if (ModelState.IsValid)
             {
-                db.DocumentSet.Add(document);
+                db.DigitalPhotographSet.Add(digitalPhotograph);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            ViewBag.SpecimenId = new SelectList(db.SpecimenSet, "Id", "CatalogCode", digitalPhotograph.SpecimenId);
+            return View(digitalPhotograph);
         }
 
-        // GET: BackOffice/Documents/Edit/5
+        // GET: BackOffice/DigitalPhotographs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographSet.FindAsync(id);
+            if (digitalPhotograph == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            ViewBag.SpecimenId = new SelectList(db.SpecimenSet, "Id", "CatalogCode", digitalPhotograph.SpecimenId);
+            return View(digitalPhotograph);
         }
 
-        // POST: BackOffice/Documents/Edit/5
+        // POST: BackOffice/DigitalPhotographs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ScanDate,StoreLocation,Process,CopyrightInfo,IsVisible,SpecimenId")] DigitalPhotograph digitalPhotograph)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
+                db.Entry(digitalPhotograph).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            ViewBag.SpecimenId = new SelectList(db.SpecimenSet, "Id", "CatalogCode", digitalPhotograph.SpecimenId);
+            return View(digitalPhotograph);
         }
 
-        // GET: BackOffice/Documents/Delete/5
+        // GET: BackOffice/DigitalPhotographs/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographSet.FindAsync(id);
+            if (digitalPhotograph == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(digitalPhotograph);
         }
 
-        // POST: BackOffice/Documents/Delete/5
+        // POST: BackOffice/DigitalPhotographs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.DocumentSet.FindAsync(id);
-            db.DocumentSet.Remove(document);
+            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographSet.FindAsync(id);
+            db.DigitalPhotographSet.Remove(digitalPhotograph);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -12,107 +12,107 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class DocumentsController : Controller
+    public class ClassificationsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/Documents
+        // GET: BackOffice/Classifications
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentSet.ToListAsync());
+            return View(await db.ClassificationSet.ToListAsync());
         }
 
-        // GET: BackOffice/Documents/Details/5
+        // GET: BackOffice/Classifications/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Classification classification = await db.ClassificationSet.FindAsync(id);
+            if (classification == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(classification);
         }
 
-        // GET: BackOffice/Documents/Create
+        // GET: BackOffice/Classifications/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackOffice/Documents/Create
+        // POST: BackOffice/Classifications/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Create([Bind(Include = "Id")] Classification classification)
         {
             if (ModelState.IsValid)
             {
-                db.DocumentSet.Add(document);
+                db.ClassificationSet.Add(classification);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            return View(classification);
         }
 
-        // GET: BackOffice/Documents/Edit/5
+        // GET: BackOffice/Classifications/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Classification classification = await db.ClassificationSet.FindAsync(id);
+            if (classification == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(classification);
         }
 
-        // POST: BackOffice/Documents/Edit/5
+        // POST: BackOffice/Classifications/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Edit([Bind(Include = "Id")] Classification classification)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
+                db.Entry(classification).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            return View(classification);
         }
 
-        // GET: BackOffice/Documents/Delete/5
+        // GET: BackOffice/Classifications/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Classification classification = await db.ClassificationSet.FindAsync(id);
+            if (classification == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(classification);
         }
 
-        // POST: BackOffice/Documents/Delete/5
+        // POST: BackOffice/Classifications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.DocumentSet.FindAsync(id);
-            db.DocumentSet.Remove(document);
+            Classification classification = await db.ClassificationSet.FindAsync(id);
+            db.ClassificationSet.Remove(classification);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

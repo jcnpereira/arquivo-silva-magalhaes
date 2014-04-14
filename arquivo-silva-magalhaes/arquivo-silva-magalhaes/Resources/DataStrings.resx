@@ -117,19 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AuthorBiography" xml:space="preserve">
+    <value>Biografia</value>
+  </data>
+  <data name="AuthorBirthDate" xml:space="preserve">
+    <value>Data de nascimento</value>
+  </data>
+  <data name="AuthorCurriculum" xml:space="preserve">
+    <value>Curriculum</value>
+  </data>
+  <data name="AuthorDeathDate" xml:space="preserve">
+    <value>Data de falecimento</value>
+  </data>
   <data name="AuthorFirstName" xml:space="preserve">
     <value>Primeiro nome</value>
     <comment>The author's first name.</comment>
-  </data>
-  <data name="AuthorFirstNamePrompt" xml:space="preserve">
-    <value>Introduza o primeiro nome do autor</value>
   </data>
   <data name="AuthorLastName" xml:space="preserve">
     <value>Último nome</value>
     <comment>The author's last name.</comment>
   </data>
-  <data name="AuthorLastNamePrompt" xml:space="preserve">
-    <value>Introduza o último nome do autor</value>
+  <data name="AuthorNationality" xml:space="preserve">
+    <value>Nacionalidade</value>
   </data>
   <data name="CollectionDimension" xml:space="preserve">
     <value>Dimensão da coleção</value>

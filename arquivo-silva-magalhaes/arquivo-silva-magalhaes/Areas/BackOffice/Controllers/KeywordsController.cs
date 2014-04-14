@@ -12,107 +12,107 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class DocumentsController : Controller
+    public class KeywordsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/Documents
+        // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentSet.ToListAsync());
+            return View(await db.KeywordSet.ToListAsync());
         }
 
-        // GET: BackOffice/Documents/Details/5
+        // GET: BackOffice/Keywords/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(keyword);
         }
 
-        // GET: BackOffice/Documents/Create
+        // GET: BackOffice/Keywords/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackOffice/Documents/Create
+        // POST: BackOffice/Keywords/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Create([Bind(Include = "Id")] Keyword keyword)
         {
             if (ModelState.IsValid)
             {
-                db.DocumentSet.Add(document);
+                db.KeywordSet.Add(keyword);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            return View(keyword);
         }
 
-        // GET: BackOffice/Documents/Edit/5
+        // GET: BackOffice/Keywords/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(keyword);
         }
 
-        // POST: BackOffice/Documents/Edit/5
+        // POST: BackOffice/Keywords/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Edit([Bind(Include = "Id")] Keyword keyword)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
+                db.Entry(keyword).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            return View(keyword);
         }
 
-        // GET: BackOffice/Documents/Delete/5
+        // GET: BackOffice/Keywords/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(keyword);
         }
 
-        // POST: BackOffice/Documents/Delete/5
+        // POST: BackOffice/Keywords/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.DocumentSet.FindAsync(id);
-            db.DocumentSet.Remove(document);
+            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            db.KeywordSet.Remove(keyword);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

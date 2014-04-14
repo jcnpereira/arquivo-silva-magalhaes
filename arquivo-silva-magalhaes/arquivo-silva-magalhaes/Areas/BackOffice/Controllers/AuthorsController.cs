@@ -85,18 +85,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 db.AuthorSet.Add(author);
                 await db.SaveChangesAsync();
                 // return RedirectToAction("Index");
-                ViewBag.AuthorId = author.Id;
+                ViewBag.Id = author.Id;
                 return View("AddMoreLanguagesPrompt");
             }
 
             return View(model);
         }
 
-        public async Task<ActionResult> AddLanguage(int? authorId)
+        public async Task<ActionResult> AddLanguage(int? Id)
         {
-            if (authorId != null)
+            if (Id != null)
             {
-                var author = await db.AuthorSet.FindAsync(authorId);
+                var author = await db.AuthorSet.FindAsync(Id);
 
                 if (author == null)
                 {

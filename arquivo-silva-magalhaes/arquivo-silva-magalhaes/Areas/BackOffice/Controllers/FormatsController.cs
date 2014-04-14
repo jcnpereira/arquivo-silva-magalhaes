@@ -12,107 +12,107 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class DocumentsController : Controller
+    public class FormatsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/Documents
+        // GET: BackOffice/Formats
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentSet.ToListAsync());
+            return View(await db.FormatSet.ToListAsync());
         }
 
-        // GET: BackOffice/Documents/Details/5
+        // GET: BackOffice/Formats/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Format format = await db.FormatSet.FindAsync(id);
+            if (format == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(format);
         }
 
-        // GET: BackOffice/Documents/Create
+        // GET: BackOffice/Formats/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackOffice/Documents/Create
+        // POST: BackOffice/Formats/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Create([Bind(Include = "Id,FormatDescription")] Format format)
         {
             if (ModelState.IsValid)
             {
-                db.DocumentSet.Add(document);
+                db.FormatSet.Add(format);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            return View(format);
         }
 
-        // GET: BackOffice/Documents/Edit/5
+        // GET: BackOffice/Formats/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Format format = await db.FormatSet.FindAsync(id);
+            if (format == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(format);
         }
 
-        // POST: BackOffice/Documents/Edit/5
+        // POST: BackOffice/Formats/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FormatDescription")] Format format)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
+                db.Entry(format).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            return View(format);
         }
 
-        // GET: BackOffice/Documents/Delete/5
+        // GET: BackOffice/Formats/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
-            if (document == null)
+            Format format = await db.FormatSet.FindAsync(id);
+            if (format == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(format);
         }
 
-        // POST: BackOffice/Documents/Delete/5
+        // POST: BackOffice/Formats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.DocumentSet.FindAsync(id);
-            db.DocumentSet.Remove(document);
+            Format format = await db.FormatSet.FindAsync(id);
+            db.FormatSet.Remove(format);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
