@@ -1,4 +1,4 @@
-Portal do Arquvo Fotográfico Silva Magalhães
+Portal do Arquivo Fotográfico Silva Magalhães
 ============================================
 
 Projecto Final do Arquivo Fotográfico Silva Magalhães (IPT).
