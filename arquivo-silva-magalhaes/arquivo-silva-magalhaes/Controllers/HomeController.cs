@@ -13,11 +13,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
         
         public ActionResult Index()
         {
-            var collections = _db.CollectionSet
-                .Where(c => c.IsVisible)
-                .ToList();
+            //var collections = _db.CollectionSet
+            //    .Where(c => c.IsVisible)
+            //    .ToList();
 
-            return View(collections);
+            //return View(collections);
+            return View();
         }
 
         public ActionResult About()

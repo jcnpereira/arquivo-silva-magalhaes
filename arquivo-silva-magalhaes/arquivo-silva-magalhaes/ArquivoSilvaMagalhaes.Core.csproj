@@ -174,9 +174,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthorsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollectionController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DigitalPhotographsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DocumentsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\KeywordsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
