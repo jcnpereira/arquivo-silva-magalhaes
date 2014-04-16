@@ -15,14 +15,30 @@
         <hr />
         @Html.ValidationSummary()
         @Html.HiddenFor(model => model.Id)
-
+        @Html.HiddenFor(model => model.Title)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+
+                @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+                <br />
+
+
+                @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                
+                <br />
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+    <script>
+        function UpdateArchive(){
+            
+        }
+
+    </script>
 
 <div>
     @Html.ActionLink("Voltar à lista de arquivos", "Index")

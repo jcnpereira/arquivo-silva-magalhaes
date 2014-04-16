@@ -181,6 +181,7 @@
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +265,7 @@
     <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
     <Content Include="Areas\BackOffice\Views\Authors\AddMoreLanguagesPrompt.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\AddLanguage.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -312,6 +314,11 @@
     <Content Include="Views\Portal\Details.cshtml" />
     <Content Include="Views\Portal\Edit.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
