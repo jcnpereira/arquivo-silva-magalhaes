@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
+using System.Globalization;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -41,25 +43,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Authors/Create
         public ActionResult Create()
         {
-            var model = new AuthorEditViewModel();
-
-            model.I18nModel = new AuthorI18nViewModel
+            var model = new AuthorEditViewModel
             {
-                AvailableLanguages = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "pt", Selected = true, Text = "Português" }
-                }
+                LanguageCode = LanguageDefinitions.DefaultLanguage
             };
 
             return View(model);
         }
 
         // POST: BackOffice/Authors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AuthorEditViewModel model)
+        public async Task<ActionResult> Create([Bind(Exclude = "Id")] AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -72,60 +67,109 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 };
 
                 author.AuthorTexts.Add(
-                   new AuthorText
-                   {
-                       Author = author,
-                       LanguageCode = model.LanguageCode,
-                       Nationality = model.Nationality,
-                       Curriculum = model.Curriculum,
-                       Biography = model.Biography
-                   }
-                );
+                new AuthorText
+                {
+                    Author = author,
+                    Biography = model.Biography,
+                    Curriculum = model.Curriculum,
+                    Nationality = model.Nationality,
+
+                    // On the creation, we'll assume the default language,
+                    // this prevents overposting attacks.
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
 
                 db.AuthorSet.Add(author);
+
                 await db.SaveChangesAsync();
-                // return RedirectToAction("Index");
-                ViewBag.AuthorId = author.Id;
-                return View("AddMoreLanguagesPrompt");
+
+                if (AreLanguagesMissing(author))
+                {
+                    // There are languages which may be added.
+                    // Ask the used if he/she wants to any.
+                    ViewBag.Id = author.Id;
+                    return View("_AddLanguagePrompt");
+                }
+
+                // We don't need more languages. Redirect to the list.
+                return RedirectToAction("Index");
             }
 
             return View(model);
         }
 
-        public async Task<ActionResult> AddLanguage(int? authorId)
+        /// <summary>
+        /// Checks if languages are missing for a given
+        /// author.
+        /// </summary>
+        /// <param name="author">The Author which will be checked</param>
+        /// <returns>true if languages are missing, false otherwise.</returns>
+        private static bool AreLanguagesMissing(Author author)
         {
-            if (authorId != null)
+            // Check if we need to add more languages.
+            var langCodes = author.AuthorTexts
+                                  .Select(t => t.LanguageCode)
+                                  .ToList();
+
+            return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
+        }
+
+        // GET: BackOffice/Authors/AddLanguage
+        public async Task<ActionResult> AddLanguage(int? Id)
+        {
+            // There needs to be an author.
+            if (Id != null)
             {
-                var author = await db.AuthorSet.FindAsync(authorId);
+                var author = await db.AuthorSet.FindAsync(Id);
 
                 if (author == null)
                 {
                     return HttpNotFound();
                 }
 
-                return View(new AuthorI18nViewModel
-                {
-                    AuthorId = author.Id,
-                    AvailableLanguages = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "en", Text = "Inglês", Selected = true }
-                    }
-                });
+                var langCodes = author.AuthorTexts
+                                      .Select(t => t.LanguageCode)
+                                      .ToList();
+
+                // First, we'll check which languages we already have in the DB,
+                // we'll remove any which already exist.
+                var notDoneLanguages = LanguageDefinitions.Languages
+                                                          .Where(l => !langCodes.Contains(l));
+
+                // This should stop naughty attempts at adding a language
+                // to an entity which already has all languages done.
+                if (notDoneLanguages.Count() == 0) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                // Populate a SelectList with all available languages.
+                ViewBag.AvailableLanguages = notDoneLanguages
+                                                .Select(l => new SelectListItem
+                                                {
+                                                    // Get the localized language name.
+                                                    Text = CultureInfo.GetCultureInfo(l).NativeName,
+                                                    // Text = LanguageDefinitions.GetLanguageNameForCurrentLanguage(l),
+                                                    Value = l
+                                                })
+                                                .ToList();
+
+                return View();
             }
             else
             {
+                // If there's no author, we can't add a language to it.
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddLanguage(AuthorI18nViewModel model)
+        public async Task<ActionResult> AddLanguage(AuthorI18nEditModel model)
         {
             if (ModelState.IsValid)
             {
+                var author = db.AuthorSet.Find(model.Id);
+
                 var text = new AuthorText
                 {
-                    Author = db.AuthorSet.Find(model.AuthorId),
+                    Author = db.AuthorSet.Find(model.Id),
                     LanguageCode = model.LanguageCode,
                     Nationality = model.Nationality,
                     Biography = model.Biography,
@@ -135,9 +179,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 db.AuthorTextSet.Add(text);
                 await db.SaveChangesAsync();
 
-                ViewBag.AuthorId = model.AuthorId;
+                var langCodes = author.AuthorTexts
+                                      .Select(t => t.LanguageCode)
+                                      .ToList();
 
-                return View("AddMoreLanguagesPrompt");
+                // First, we'll check which languages we already have in the DB,
+                // we'll remove any which already exist.
+                var notDoneLanguages = LanguageDefinitions.Languages
+                                                          .Where(l => !langCodes.Contains(l));
+                if (notDoneLanguages.Count() > 0)
+                {
+                    ViewBag.Id = model.Id;
+
+                    return View("_AddLanguagePrompt");
+
+                }
+                return RedirectToAction("Index");
             }
 
             return View(model);
@@ -159,8 +216,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // POST: BackOffice/Authors/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,BirthDate,DeathDate")] Author author)

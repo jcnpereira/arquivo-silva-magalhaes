@@ -10,11 +10,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
     public class AuthorViewModel
     {
-        
+
     }
 
     public class AuthorEditViewModel : IValidatableObject
     {
+        
+        public int Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -50,9 +53,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public string Biography { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Curriculum { get; set; }
 
-        public AuthorI18nViewModel I18nModel { get; set; }
+        // public AuthorI18nViewModel I18nModel { get; set; }
 
 
 
@@ -65,11 +69,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         }
     }
 
-    public class AuthorI18nViewModel
+    public class AuthorI18nEditModel
     {
-        public int AuthorId { get; set; }
+        [Required]
+        public int Id { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(UiStrings), Name = "Language")]
         public string LanguageCode { get; set; }
         public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
 

@@ -227,6 +227,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UiPrompts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UiPrompts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UiStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UiStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SiteModelStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -267,9 +277,9 @@
     <Content Include="Areas\BackOffice\Views\Authors\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shared\_AuthorI18nPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_AuthorI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
-    <Content Include="Areas\BackOffice\Views\Authors\AddMoreLanguagesPrompt.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_AddLanguagePrompt.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\AddLanguage.cshtml" />
     <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -327,7 +337,6 @@
     <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +358,14 @@
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UiPrompts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UiStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SiteModelStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

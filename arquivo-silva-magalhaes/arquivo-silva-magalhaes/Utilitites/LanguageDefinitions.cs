@@ -2,17 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Utilitites
 {
     public class LanguageDefinitions
     {
-        public static readonly IList<string> AcceptedLanguages = new ReadOnlyCollection<string>
-        (new List<string>{
-            "pt",
+        public const string DefaultLanguage = "pt";
+
+        public static List<string> Languages = new List<string>
+        {
+            "pt", 
             "en"
-        });
+        };
+
+        //public static string GetLanguageNameForCurrentLanguage(string languageCode)
+        //{
+        //    return new CultureInfo(Thread.CurrentThread.CurrentUICulture.Name).Na
+        //}
     }
 }
