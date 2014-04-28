@@ -54,7 +54,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // POST: BackOffice/Authors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Exclude = "Id")] AuthorEditViewModel model)
+        public async Task<ActionResult> Create(AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -207,26 +207,59 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Author author = await db.AuthorSet.FindAsync(id);
+
             if (author == null)
             {
                 return HttpNotFound();
             }
-            return View(author);
+
+            var authText = author.AuthorTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+            var model = new AuthorEditViewModel
+            {
+                Id = author.Id,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                BirthDate = author.BirthDate,
+                DeathDate = author.DeathDate,
+                LanguageCode = LanguageDefinitions.DefaultLanguage,
+                Biography = authText.Biography,
+                Curriculum = authText.Curriculum,
+                Nationality = authText.Nationality
+            };
+
+            return View(model);
         }
 
         // POST: BackOffice/Authors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,BirthDate,DeathDate")] Author author)
+        public async Task<ActionResult> Edit(AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var author = db.AuthorSet.Find(model.Id);
+
+                author.FirstName = model.FirstName;
+                author.LastName = model.LastName;
+                author.BirthDate = model.BirthDate;
+                author.DeathDate = model.DeathDate;
+
+                var text = author.AuthorTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+                text.Biography = model.Biography;
+                text.Curriculum = model.Curriculum;
+                text.Nationality = model.Nationality;
+
+                db.Entry(text).State = EntityState.Modified;
                 db.Entry(author).State = EntityState.Modified;
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(author);
+            return View(model);
         }
 
         // GET: BackOffice/Authors/Delete/5

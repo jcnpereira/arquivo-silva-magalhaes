@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -19,7 +21,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.KeywordSet.ToListAsync());
+            return View(await db.KeywordSet.Select(k => new KeywordViewModel
+            {
+                Id = k.Id,
+                Keyword = k.KeywordTexts.First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+            }).ToListAsync());
         }
 
         // GET: BackOffice/Keywords/Details/5
@@ -40,19 +46,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new KeywordEditViewModel
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            };
+
+            return View(model);
         }
 
         // POST: BackOffice/Keywords/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id")] Keyword keyword)
+        public async Task<ActionResult> Create(KeywordEditViewModel keyword)
         {
             if (ModelState.IsValid)
             {
-                db.KeywordSet.Add(keyword);
+                db.KeywordSet.Add(new Keyword
+                {
+                    KeywordTexts = new List<KeywordText> { new KeywordText { LanguageCode = LanguageDefinitions.DefaultLanguage, Value = keyword.Keyword } }
+                });
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

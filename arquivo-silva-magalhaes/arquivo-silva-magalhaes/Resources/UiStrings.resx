@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Criar</value>
   </data>
@@ -138,8 +141,14 @@
   <data name="No" xml:space="preserve">
     <value>Não</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>Nota</value>
+  </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Guardar alterações</value>
+  </data>
+  <data name="WarningEditInDefault" xml:space="preserve">
+    <value>Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida.</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Sim</value>

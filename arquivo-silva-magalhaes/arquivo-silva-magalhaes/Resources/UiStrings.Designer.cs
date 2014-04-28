@@ -61,6 +61,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Criar.
         /// </summary>
         public static string Create {
@@ -124,11 +133,29 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nota.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar alterações.
         /// </summary>
         public static string SaveChanges {
             get {
                 return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida..
+        /// </summary>
+        public static string WarningEditInDefault {
+            get {
+                return ResourceManager.GetString("WarningEditInDefault", resourceCulture);
             }
         }
         

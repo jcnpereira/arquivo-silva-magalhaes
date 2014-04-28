@@ -8,11 +8,6 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public class AuthorViewModel
-    {
-
-    }
-
     public class AuthorEditViewModel : IValidatableObject
     {
         
@@ -20,6 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Required]
         [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -27,6 +23,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         /// </summary>
         [Required]
         [MaxLength(30)]
+        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
@@ -34,31 +31,32 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// The date on which this author died.
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
         [Required]
         public string LanguageCode { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         public string Biography { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
-
-        // public AuthorI18nViewModel I18nModel { get; set; }
-
-
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

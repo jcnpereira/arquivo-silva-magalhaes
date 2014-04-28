@@ -52,12 +52,5 @@
         @Html.Partial("_AuthorI18nPartial")
     </div>
 
-    
-    
-    <div class="form-inline">
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-default" />
-            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
-        </div>
-    </div>
+    @Html.Partial("_SubmitBackPartial")
 }
