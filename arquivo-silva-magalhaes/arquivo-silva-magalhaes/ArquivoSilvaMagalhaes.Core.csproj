@@ -315,6 +315,8 @@
     <Content Include="Areas\BackOffice\Views\Specimens\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_SubmitBackPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\DeleteText.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\EditText.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
