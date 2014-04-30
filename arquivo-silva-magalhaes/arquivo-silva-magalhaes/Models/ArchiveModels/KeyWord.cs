@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Utilitites;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +23,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<KeywordText> KeywordTexts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
+
+        [NotMapped]
+        public string Value
+        {
+            get
+            {
+                return KeywordTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value;
+            }
+        }
     }
 
     public partial class KeywordText

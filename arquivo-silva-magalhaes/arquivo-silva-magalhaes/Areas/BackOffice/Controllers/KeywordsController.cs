@@ -21,11 +21,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.KeywordSet.Select(k => new KeywordViewModel
-            {
-                Id = k.Id,
-                Keyword = k.KeywordTexts.First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-            }).ToListAsync());
+            return View(await db.KeywordSet.Select(k => new KeywordViewModel { Id = k.Id, Keyword = k.KeywordTexts
+                                                                                                     .First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value })
+                                                                                                     .ToListAsync());
         }
 
         // GET: BackOffice/Keywords/Details/5
