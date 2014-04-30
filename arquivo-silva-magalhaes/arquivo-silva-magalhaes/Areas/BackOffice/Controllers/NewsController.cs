@@ -10,109 +10,109 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
 
-namespace ArquivoSilvaMagalhaes.Controllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class PortalController : Controller
+    public class NewsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: /Portal/
+        // GET: /News/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Archives.ToListAsync());
+            return View(await db.NewsSet.ToListAsync());
         }
 
-        // GET: /Portal/Details/5
-         public async Task<ActionResult> Details(int? id)
+        // GET: /News/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
-            if (archive == null)
+            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            if (newsitem == null)
             {
                 return HttpNotFound();
             }
-            return View(archive);
+            return View(newsitem);
         }
 
-        // GET: /Portal/Create
+        // GET: /News/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Portal/Create
+        // POST: /News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id")] Archive archive)
+        public async Task<ActionResult> Create([Bind(Include="Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate")] NewsItem newsitem)
         {
             if (ModelState.IsValid)
             {
-                db.Archives.Add(archive);
+                db.NewsSet.Add(newsitem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(archive);
+            return View(newsitem);
         }
 
-        // GET: /Portal/Edit/5
+        // GET: /News/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
-            if (archive == null)
+            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            if (newsitem == null)
             {
                 return HttpNotFound();
             }
-            return View(archive);
+            return View(newsitem);
         }
 
-        // POST: /Portal/Edit/5
+        // POST: /News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id")] Archive archive)
+        public async Task<ActionResult> Edit([Bind(Include="Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate")] NewsItem newsitem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(archive).State = EntityState.Modified;
+                db.Entry(newsitem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(archive);
+            return View(newsitem);
         }
 
-        // GET: /Portal/Delete/5
+        // GET: /News/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
-            if (archive == null)
+            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            if (newsitem == null)
             {
                 return HttpNotFound();
             }
-            return View(archive);
+            return View(newsitem);
         }
 
-        // POST: /Portal/Delete/5
+        // POST: /News/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Archive archive = await db.Archives.FindAsync(id);
-            db.Archives.Remove(archive);
+            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            db.NewsSet.Remove(newsitem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

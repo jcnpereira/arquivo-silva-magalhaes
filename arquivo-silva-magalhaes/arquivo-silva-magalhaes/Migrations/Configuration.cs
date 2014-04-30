@@ -250,11 +250,6 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Links=null                        
                 }
                 };
-            db.SaveChanges();
-        }
-
-        protected void SeedNewsText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
             var newsText = new List<NewsText>{
                 new NewsText{ Id=1, 
                     LanguageCode="1", 
@@ -264,7 +259,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     NewsItem= db.NewsSet.Find(1),
                     TextContent= "Texto..."},
            
-            new NewsText{ Id=2, 
+                new NewsText{ Id=2, 
                     LanguageCode="1", 
                     Title="Título", 
                     Subtitle="Subtítulo", 
@@ -313,9 +308,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         IsUsefulLink=true, 
                         LastModifiedDate=DateTime.Now,  
                         Link="www.fotonews.com/newcollection"}
-
-    };
-        }
+                     };
+           }
 
         protected void SeedDocumentAttachment(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
@@ -330,7 +324,6 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Size=1, 
                     TextUsingAttachment=DocumentText(1)}
             };
-
         }
 
        
