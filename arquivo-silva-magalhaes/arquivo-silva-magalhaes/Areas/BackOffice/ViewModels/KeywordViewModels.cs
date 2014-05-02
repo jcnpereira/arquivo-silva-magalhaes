@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
     public class KeywordViewModel
@@ -7,7 +9,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public string Keyword { get; set; }
     }
 
-    public class KeywordEditViewModel
+    public class KeywordEditModel
     {
         public int Id { get; set; }
 
@@ -17,5 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Required]
         public string LanguageCode { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
     }
 }

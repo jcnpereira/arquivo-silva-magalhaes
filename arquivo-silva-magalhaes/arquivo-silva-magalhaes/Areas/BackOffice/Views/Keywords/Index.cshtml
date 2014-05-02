@@ -14,16 +14,17 @@
         <th>@Html.DisplayNameFor(model => model.Keyword)</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>@item.Keyword</td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Keyword</td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

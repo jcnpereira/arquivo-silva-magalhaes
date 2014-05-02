@@ -250,6 +250,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
+    <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -330,6 +331,11 @@
     <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\DeleteText.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\EditText.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\AddLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\EditLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\DeleteLanguage.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

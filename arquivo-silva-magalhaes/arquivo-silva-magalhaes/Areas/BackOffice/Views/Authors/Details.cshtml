@@ -85,6 +85,13 @@
             <hr />
         </div>
     }
+
+    @if (ViewBag.AreLanguagesMissing)
+    {
+        
+        @Html.ActionLink("AddLanguage", "AddLanguage", new { Id = Model.Id })
+    }
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
