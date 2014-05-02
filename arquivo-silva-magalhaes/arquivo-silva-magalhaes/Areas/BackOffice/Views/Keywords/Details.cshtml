@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Keyword
+﻿@model KeywordViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,6 +10,8 @@
     <h4>Keyword</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Keyword)</dt>
+        <dd>@Html.DisplayFor(model => model.Keyword)</dd>
     </dl>
 </div>
 <p>

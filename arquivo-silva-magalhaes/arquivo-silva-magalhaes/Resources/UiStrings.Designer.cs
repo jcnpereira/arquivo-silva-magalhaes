@@ -115,7 +115,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lingua.
+        ///   Looks up a localized string similar to Língua.
         /// </summary>
         public static string Language {
             get {

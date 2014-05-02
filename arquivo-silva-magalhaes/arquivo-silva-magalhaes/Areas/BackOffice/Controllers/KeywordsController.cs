@@ -44,7 +44,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords/Create
         public ActionResult Create()
         {
-            var model = new KeywordEditViewModel
+            var model = new KeywordEditModel
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             };
@@ -55,7 +55,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // POST: BackOffice/Keywords/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(KeywordEditViewModel keyword)
+        public async Task<ActionResult> Create(KeywordEditModel keyword)
         {
             if (ModelState.IsValid)
             {
@@ -90,15 +90,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id")] Keyword keyword)
+        public async Task<ActionResult> Edit(KeywordEditModel keywordModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(keyword).State = EntityState.Modified;
+                var keyword = db.KeywordSet.Find(keywordModel.Id);
+
+                var keywordText = keyword.KeywordTexts.First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+                keywordText.Value = keywordModel.Keyword;
+
+                db.Entry(keywordText).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(keyword);
+            return View(keywordModel);
         }
 
         // GET: BackOffice/Keywords/Delete/5
@@ -108,12 +114,82 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Keyword keyword = await db.KeywordSet.FindAsync(id);
             if (keyword == null)
             {
                 return HttpNotFound();
             }
             return View(keyword);
+        }
+
+        
+        public async Task<ActionResult> AddLanguage(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Keyword keyword = await db.KeywordSet.FindAsync(id);
+
+            if (keyword == null) return HttpNotFound();
+
+            if (keyword.KeywordTexts.Count == LanguageDefinitions.Languages.Count)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var codes = keyword.KeywordTexts.Select(kt => kt.LanguageCode)
+                                            .ToList();
+
+            var notDoneLanguages = LanguageDefinitions.Languages.Where(l => !codes.Contains(l))
+                                                                .ToList();
+
+            var kwModel = new KeywordEditModel
+            {
+                AvailableLanguages = notDoneLanguages
+                                        .Select(l => new SelectListItem
+                                                {
+                                                    Text = LanguageDefinitions.GetLanguageName(l),
+                                                    Value = l
+                                                })
+            };
+
+            return View(kwModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLanguage(KeywordEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            return View(model);
+        }
+
+        public ActionResult EditLanguage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditLanguage()
+        {
+            return View();
+        }
+
+        public ActionResult DeleteLanguage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteLanguage()
+        {
+            return View();
         }
 
         // POST: BackOffice/Keywords/Delete/5

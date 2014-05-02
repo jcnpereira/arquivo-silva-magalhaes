@@ -34,24 +34,65 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.AreLanguagesMissing = author.AuthorTexts.Count < LanguageDefinitions.Languages.Count;
+
             return View(author);
         }
 
         // GET: BackOffice/Authors/Create
         public ActionResult Create()
         {
-            var model = new AuthorEditViewModel
+            var model = new AuthorEditModel
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             };
 
             return View(model);
         }
+        // POST: BackOffice/Authors/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Author author)
+        {
+            if (ModelState.IsValid)
+            {
+                author.AuthorTexts.Add(
+                new AuthorText
+                {
+                    Author = author,
+                    Biography = author.Biography,
+                    Curriculum = author.Curriculum,
+                    Nationality = author.Nationality,
+
+                    // On the creation, we'll assume the default language.
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+                db.AuthorSet.Add(author);
+
+                await db.SaveChangesAsync();
+
+                if (AreLanguagesMissing(author))
+                {
+                    // There are languages which may be added.
+                    // Ask the used if he/she wants to any.
+                    ViewBag.Id = author.Id;
+                    return View("_AddLanguagePrompt");
+                }
+
+                // We don't need more languages. Redirect to the list.
+                return RedirectToAction("Index");
+            }
+
+            return View(author);
+        }
+
 
         // POST: BackOffice/Authors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AuthorEditViewModel model)
+        public async Task<ActionResult> Create(AuthorEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -71,8 +112,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Curriculum = model.Curriculum,
                     Nationality = model.Nationality,
 
-                    // On the creation, we'll assume the default language,
-                    // this prevents overposting attacks.
+                    // On the creation, we'll assume the default language.
                     LanguageCode = LanguageDefinitions.DefaultLanguage
                 });
 
@@ -157,6 +197,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             }
         }
 
+
         [HttpPost]
         public async Task<ActionResult> AddLanguage(AuthorI18nEditModel model)
         {
@@ -176,21 +217,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 db.AuthorTextSet.Add(text);
                 await db.SaveChangesAsync();
 
-                var langCodes = author.AuthorTexts
-                                      .Select(t => t.LanguageCode)
-                                      .ToList();
-
-                // First, we'll check which languages we already have in the DB,
-                // we'll remove any which already exist.
-                var notDoneLanguages = LanguageDefinitions.Languages
-                                                          .Where(l => !langCodes.Contains(l));
-                if (notDoneLanguages.Count() > 0)
+                if (AreLanguagesMissing(author))
                 {
-                    ViewBag.Id = model.Id;
-
+                    ViewBag.Id = author.Id;
                     return View("_AddLanguagePrompt");
-
                 }
+
                 return RedirectToAction("Index");
             }
 
@@ -214,7 +246,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             var authText = author.AuthorTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
 
-            var model = new AuthorEditViewModel
+            var model = new AuthorEditModel
             {
                 Id = author.Id,
                 FirstName = author.FirstName,
@@ -233,7 +265,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // POST: BackOffice/Authors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(AuthorEditViewModel model)
+        public async Task<ActionResult> Edit(AuthorEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -350,8 +382,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
             }
 
-
-
             return View(text);
         }
 
@@ -375,7 +405,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return RedirectToAction("Details", new { Id = authId });
         }
-
 
         protected override void Dispose(bool disposing)
         {

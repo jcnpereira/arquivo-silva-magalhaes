@@ -133,8 +133,11 @@
     <value>Dimensão da coleção</value>
     <comment>The collection's dimension.</comment>
   </data>
+  <data name="CollectionName" xml:space="preserve">
+    <value>Nome da coleção</value>
+  </data>
   <data name="Curriculum" xml:space="preserve">
-    <value>Curriculo</value>
+    <value>Currículo</value>
   </data>
   <data name="DeathDate" xml:space="preserve">
     <value>Data de falecimento</value>

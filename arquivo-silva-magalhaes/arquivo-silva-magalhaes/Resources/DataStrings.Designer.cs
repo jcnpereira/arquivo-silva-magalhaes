@@ -106,7 +106,16 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curriculo.
+        ///   Looks up a localized string similar to Nome da coleção.
+        /// </summary>
+        public static string CollectionName {
+            get {
+                return ResourceManager.GetString("CollectionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currículo.
         /// </summary>
         public static string Curriculum {
             get {

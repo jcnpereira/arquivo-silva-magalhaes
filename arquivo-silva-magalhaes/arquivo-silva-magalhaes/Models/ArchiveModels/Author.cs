@@ -29,6 +29,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The date on which this author was born.
         /// </summary>
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// The date on which this author died.
@@ -84,6 +86,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
 
         [NotMapped]
+        [Required]
         public string Biography
         {
             get
@@ -97,6 +100,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
 
         [NotMapped]
+        [Required]
         public string Curriculum
         {
             get
@@ -110,6 +114,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
 
         [NotMapped]
+        [Required]
         public string Nationality
         {
             get
@@ -129,6 +134,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// </summary>
     public partial class AuthorText
     {
+        [NotMapped]
+        [Required]
+        public int AuthorId { get; set; }
+
         [NotMapped]
         public const string DefaultLanguageCode = "pt";
 

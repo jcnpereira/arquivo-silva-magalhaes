@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public class AuthorEditViewModel : IValidatableObject
+    public class AuthorEditModel : IValidatableObject
     {
         
         public int Id { get; set; }
