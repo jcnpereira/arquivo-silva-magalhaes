@@ -12,6 +12,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System.Globalization;
+using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -287,6 +288,98 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> EditText(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
+            }
+
+            AuthorText text = await db.AuthorTextSet.FindAsync(id);
+
+            if (text == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new AuthorI18nEditModel
+                {
+                    Id = text.Id,
+                    Biography = text.Biography,
+                    Curriculum = text.Curriculum,
+                    Nationality = text.Nationality,
+                    LanguageCode = text.LanguageCode
+                });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditText(AuthorI18nEditModel textModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var text = await db.AuthorTextSet.FindAsync(textModel.Id);
+
+                text.Nationality = textModel.Nationality;
+                text.Biography = textModel.Biography;
+                text.Curriculum = textModel.Curriculum;
+
+                db.Entry(text).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Details", new { Id = text.Author.Id });
+            }
+
+            return View(textModel);
+        }
+
+
+        public async Task<ActionResult> DeleteText(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AuthorText text = await db.AuthorTextSet.FindAsync(id);
+
+            if (text == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Don't allow removal of texts which are in the default language.
+            if (text.LanguageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
+            }
+
+
+
+            return View(text);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteText(int id)
+        {
+            AuthorText text = await db.AuthorTextSet.FindAsync(id);
+
+            int authId = text.Author.Id;
+
+            // Don't allow removal of texts which are in the default language.
+            if (text.LanguageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
+            }
+
+            db.AuthorTextSet.Remove(text);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Details", new { Id = authId });
+        }
+
 
         protected override void Dispose(bool disposing)
         {

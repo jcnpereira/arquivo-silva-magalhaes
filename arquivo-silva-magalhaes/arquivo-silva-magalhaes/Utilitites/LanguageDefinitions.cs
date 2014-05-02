@@ -23,5 +23,10 @@ namespace ArquivoSilvaMagalhaes.Utilitites
         //{
         //    return new CultureInfo(Thread.CurrentThread.CurrentUICulture.Name).Na
         //}
+
+        public static string GetLanguageName(string languageCode)
+        {
+            return CultureInfo.GetCultureInfo(languageCode).NativeName;
+        }
     }
 }

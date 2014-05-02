@@ -1,0 +1,51 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.SpotlightVideo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>Details</h2>
+<div>
+    <h4>Spot Light Video</h4>	
+            <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.UriPath)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UriPath)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PublicationDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RemotionDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RemotionDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsPermanent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsPermanent)
+            </dd>
+    
+        </dl>
+    </div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+

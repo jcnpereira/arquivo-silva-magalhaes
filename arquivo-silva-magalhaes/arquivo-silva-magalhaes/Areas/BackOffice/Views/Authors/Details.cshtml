@@ -9,7 +9,7 @@
 <div>
     <h4>Author</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -41,8 +41,50 @@
         <dd>
             @Html.DisplayFor(model => model.DeathDate)
         </dd>
-
     </dl>
+
+    @foreach (var text in Model.AuthorTexts)
+    {
+        <div>
+            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
+
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nationality)
+                </dt>
+
+                <dd>
+                    @text.Nationality
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Curriculum)
+                </dt>
+
+                <dd>
+                    @text.Curriculum
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Biography)
+                </dt>
+                <dd>
+                    @text.Biography
+                </dd>
+
+            </dl>
+
+            @Html.ActionLink(@UiStrings.Edit, "EditText", new { Id = text.Id })
+
+            @*Only allow the removal of texts which are not the default language.*@
+            @if (text.LanguageCode != ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.DefaultLanguage)
+            {
+                @Html.ActionLink(@UiStrings.Delete, "DeleteText", new { Id = text.Id })
+            }
+
+            <hr />
+        </div>
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

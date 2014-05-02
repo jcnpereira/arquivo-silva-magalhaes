@@ -40,6 +40,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Coordinates { get; set; }
         public string VisitorInformation { get; set; }
 
+
         public DateTime StartMoment { get; set; }
         public DateTime EndMoment { get; set; }
 

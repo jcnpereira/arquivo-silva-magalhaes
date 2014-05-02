@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotDeleteDefaultLang" xml:space="preserve">
+    <value>Não pode eliminar informações textuais na linguagem pré-definida.</value>
+  </data>
   <data name="DeathDateEarlierThanBirthDate" xml:space="preserve">
     <value>A data de falecimento tem que ser posterior à data de nascimento.</value>
+  </data>
+  <data name="MustSpecifyContent" xml:space="preserve">
+    <value>Tem que especificar qual é o conteúdo que pretende modificar ou eliminar.</value>
   </data>
 </root>

@@ -177,15 +177,18 @@
     <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollectionController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DigitalPhotographsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\EventController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DocumentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\KeywordsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SpotLightVideoController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\CollectionViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\NewItemViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -317,6 +320,16 @@
     <Content Include="Areas\BackOffice\Views\Specimens\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_SubmitBackPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\AddLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -372,6 +385,7 @@
     <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\Collections\" />
   </ItemGroup>
