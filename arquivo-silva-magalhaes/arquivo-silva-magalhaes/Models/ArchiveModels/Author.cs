@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -93,7 +94,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             {
                 var authText = this.AuthorTexts
                     .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
-                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
 
                 return authText.Biography;
             }
@@ -107,7 +108,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             {
                 var authText = this.AuthorTexts
                     .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
-                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
 
                 return authText.Curriculum;
             }
@@ -121,7 +122,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             {
                 var authText = this.AuthorTexts
                     .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) ||
-                        text.LanguageCode.Contains(AuthorText.DefaultLanguageCode));
+                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
 
                 return authText.Nationality;
             }
@@ -134,18 +135,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// </summary>
     public partial class AuthorText
     {
-        [NotMapped]
-        [Required]
-        public int AuthorId { get; set; }
-
-        [NotMapped]
-        public const string DefaultLanguageCode = "pt";
-
-        public AuthorText()
-        {
-            this.LanguageCode = DefaultLanguageCode;
-        }
-
         /// <summary>
         /// The author which is associated with this detail text.
         /// </summary>

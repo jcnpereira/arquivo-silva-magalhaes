@@ -1,16 +1,16 @@
-﻿@model AuthorEditViewModel
+﻿@model AuthorEditModel
 
 @* Partial view for the form containing I18N-Able fields for an author. *@
 
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@if (ViewBag.AvailableLanguages != null)
+@if (Model.AvailableLanguages != null)
 {
     <div class="form-group">
         @Html.LabelFor(model => model.LanguageCode, htmlAttributes: new { @class = "control-label" })
 
         <div>
-            @Html.DropDownListFor(model => model.LanguageCode, (IEnumerable<SelectListItem>) ViewBag.AvailableLanguages, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.LanguageCode, Model.AvailableLanguages, new { @class = "form-control" })
         </div>
     </div>
 }

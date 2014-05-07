@@ -1,4 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,8 +10,7 @@ using System.Web.Mvc;
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
     public class AuthorEditModel : IValidatableObject
-    {
-        
+    {        
         public int Id { get; set; }
 
         [Required]
@@ -33,6 +33,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
+
         /// <summary>
         /// The date on which this author died.
         /// </summary>
@@ -58,6 +59,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
 
+
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (DeathDate.CompareTo(BirthDate) < 0)
@@ -75,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         [Display(ResourceType = typeof(UiStrings), Name = "Language")]
         public string LanguageCode { get; set; }
-        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
+        
 
         [Required]
         public string Nationality { get; set; }

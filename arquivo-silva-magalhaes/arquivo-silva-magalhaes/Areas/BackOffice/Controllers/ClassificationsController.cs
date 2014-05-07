@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -48,16 +50,24 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id")] Classification classification)
+        public async Task<ActionResult> Create(ClassificationEditModel model)
         {
             if (ModelState.IsValid)
             {
+                var classification = new Classification();
+
+                classification.ClassificationTexts.Add(new ClassificationText
+                    {
+                        LanguageCode = LanguageDefinitions.DefaultLanguage,
+                        Value = model.Classfication
+                    });
+
                 db.ClassificationSet.Add(classification);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(classification);
+            return View(model);
         }
 
         // GET: BackOffice/Classifications/Edit/5
@@ -72,7 +82,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(classification);
+            return View(new ClassificationEditModel
+                {
+                    Id = classification.Id,
+                    Classfication = classification.ClassificationTexts.First(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+                });
         }
 
         // POST: BackOffice/Classifications/Edit/5
@@ -80,15 +94,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id")] Classification classification)
+        public async Task<ActionResult> Edit(ClassificationEditModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(classification).State = EntityState.Modified;
+                var classification = db.ClassificationSet.Find(model.Id);
+
+                var t = classification.ClassificationTexts.First(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+                t.Value = model.Classfication;
+
+                db.Entry(t).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(classification);
+            return View(model);
         }
 
         // GET: BackOffice/Classifications/Delete/5
@@ -116,6 +136,44 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult AddLanguage(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLanguage(ClassificationEditModel model)
+        {
+            return View();
+        }
+
+        public ActionResult EditLanguage(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditLanguage(ClassificationEditModel model)
+        {
+            return View();
+        }
+
+        public ActionResult DeleteLanguage(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteLanguage(int id)
+        {
+            return View();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

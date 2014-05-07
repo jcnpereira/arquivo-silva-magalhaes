@@ -3,6 +3,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
+using System;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -50,44 +51,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(model);
         }
-        // POST: BackOffice/Authors/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Author author)
-        {
-            if (ModelState.IsValid)
-            {
-                author.AuthorTexts.Add(
-                new AuthorText
-                {
-                    Author = author,
-                    Biography = author.Biography,
-                    Curriculum = author.Curriculum,
-                    Nationality = author.Nationality,
-
-                    // On the creation, we'll assume the default language.
-                    LanguageCode = LanguageDefinitions.DefaultLanguage
-                });
-
-                db.AuthorSet.Add(author);
-
-                await db.SaveChangesAsync();
-
-                if (AreLanguagesMissing(author))
-                {
-                    // There are languages which may be added.
-                    // Ask the used if he/she wants to any.
-                    ViewBag.Id = author.Id;
-                    return View("_AddLanguagePrompt");
-                }
-
-                // We don't need more languages. Redirect to the list.
-                return RedirectToAction("Index");
-            }
-
-            return View(author);
-        }
-
 
         // POST: BackOffice/Authors/Create
         [HttpPost]
@@ -177,18 +140,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 // to an entity which already has all languages done.
                 if (notDoneLanguages.Count() == 0) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                // Populate a SelectList with all available languages.
-                ViewBag.AvailableLanguages = notDoneLanguages
-                                                .Select(l => new SelectListItem
-                                                {
-                                                    // Get the localized language name.
-                                                    Text = CultureInfo.GetCultureInfo(l).NativeName,
-                                                    // Text = LanguageDefinitions.GetLanguageNameForCurrentLanguage(l),
-                                                    Value = l
-                                                })
-                                                .ToList();
+                var model = new AuthorEditModel
+                {
+                    AvailableLanguages = notDoneLanguages
+                                            .Select(l => new SelectListItem
+                                            {
+                                                // Get the localized language name.
+                                                Text = CultureInfo.GetCultureInfo(l).NativeName,
+                                                // Text = LanguageDefinitions.GetLanguageNameForCurrentLanguage(l),
+                                                Value = l
+                                            })
+                                            .ToList()
+                };
 
-                return View();
+                return View(model);
             }
             else
             {
@@ -207,7 +172,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 var text = new AuthorText
                 {
-                    Author = db.AuthorSet.Find(model.Id),
+                    Author = author,
                     LanguageCode = model.LanguageCode,
                     Nationality = model.Nationality,
                     Biography = model.Biography,
@@ -349,12 +314,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 var text = await db.AuthorTextSet.FindAsync(textModel.Id);
 
+
+                // HACK: For some reason, if I don't specify the author,
+                // validation fails.
+                text.Author = db.AuthorSet.Find(text.Author.Id);
+
                 text.Nationality = textModel.Nationality;
                 text.Biography = textModel.Biography;
                 text.Curriculum = textModel.Curriculum;
 
                 db.Entry(text).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+
+
+                db.SaveChanges();
+
 
                 return RedirectToAction("Details", new { Id = text.Author.Id });
             }

@@ -21,8 +21,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.KeywordSet.Select(k => new KeywordViewModel { Id = k.Id, Keyword = k.KeywordTexts
-                                                                                                     .First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value })
+            return View(await db.KeywordSet.Select(k => new KeywordViewModel
+            {
+                Id = k.Id,
+                Keyword = k.KeywordTexts
+                           .First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+            })
                                                                                                      .ToListAsync());
         }
 
@@ -59,15 +63,36 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KeywordSet.Add(new Keyword
+                var k = new Keyword
                 {
                     KeywordTexts = new List<KeywordText> { new KeywordText { LanguageCode = LanguageDefinitions.DefaultLanguage, Value = keyword.Keyword } }
-                });
+                };
+
+                db.KeywordSet.Add(k);
                 await db.SaveChangesAsync();
+
+                if (AreLanguagesMissing(k))
+                {
+                    // There are languages which may be added.
+                    // Ask the used if he/she wants to any.
+                    ViewBag.Id = k.Id;
+                    return View("_AddLanguagePrompt");
+                }
+
                 return RedirectToAction("Index");
             }
 
             return View(keyword);
+        }
+
+        private static bool AreLanguagesMissing(Keyword k)
+        {
+            // Check if we need to add more languages.
+            var langCodes = k.KeywordTexts
+                                  .Select(t => t.LanguageCode)
+                                  .ToList();
+
+            return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
         }
 
         // GET: BackOffice/Keywords/Edit/5
@@ -123,7 +148,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(keyword);
         }
 
-        
+
         public async Task<ActionResult> AddLanguage(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,37 +183,93 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddLanguage(KeywordEditModel model)
+        public async Task<ActionResult> AddLanguage(KeywordEditModel model)
         {
             if (ModelState.IsValid)
             {
+                var kw = db.KeywordSet.Find(model.Id);
 
+                kw.KeywordTexts.Add(new KeywordText
+                    {
+                        Value = model.Keyword,
+                        LanguageCode = model.LanguageCode
+
+                    });
+
+                await db.SaveChangesAsync();
             }
 
             return View(model);
         }
 
-        public ActionResult EditLanguage()
+        public ActionResult EditLanguage(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var kw = db.KeywordTextSet.Find(id);
+
+            if (kw == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new KeywordEditModel
+                {
+                    Id = kw.Id,
+                    Keyword = kw.Value,
+                    LanguageCode = kw.LanguageCode
+                });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditLanguage()
+        public ActionResult EditLanguage(KeywordEditModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var kw = db.KeywordTextSet.Find(model.Id);
+
+                kw.Value = model.Keyword;
+
+                db.Entry(kw).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult DeleteLanguage()
+        public ActionResult DeleteLanguage(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var kw = db.KeywordTextSet.Find(id);
+
+            if (kw == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(kw);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteLanguage()
+        public ActionResult DeleteLanguage(int id)
         {
+            var kw = db.KeywordTextSet.Find(id);
+
+            if (kw == null) return HttpNotFound();
+
+            db.KeywordTextSet.Remove(kw);
+
+            db.SaveChanges();
+
             return View();
         }
 
