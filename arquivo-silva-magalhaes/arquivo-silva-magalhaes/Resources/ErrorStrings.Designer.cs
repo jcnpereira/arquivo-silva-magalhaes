@@ -86,5 +86,9 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("MustSpecifyContent", resourceCulture);
             }
         }
+
+        public static string EndMomentEarlierThanStartMoment { get; set; }
+
+        public static string ExpiryDateEarlierThanPublishDate { get; set; }
     }
 }

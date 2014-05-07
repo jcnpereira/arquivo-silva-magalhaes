@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EventEditViewModels>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Event>
 
 @{
     ViewBag.Title = "Index";
@@ -68,7 +68,7 @@
             @Html.DisplayFor(modelItem => item.HideAfterExpiry)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EventType)
+           @Html.DisplayFor(modelItem => item.EventType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

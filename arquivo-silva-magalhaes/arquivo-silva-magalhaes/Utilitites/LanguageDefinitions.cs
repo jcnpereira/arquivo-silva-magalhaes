@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -9,6 +10,9 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Utilitites
 {
+
+
+
     public class LanguageDefinitions
     {
         public const string DefaultLanguage = "pt";
@@ -18,6 +22,8 @@ namespace ArquivoSilvaMagalhaes.Utilitites
             "pt", 
             "en"
         };
+
+
 
         //public static string GetLanguageNameForCurrentLanguage(string languageCode)
         //{

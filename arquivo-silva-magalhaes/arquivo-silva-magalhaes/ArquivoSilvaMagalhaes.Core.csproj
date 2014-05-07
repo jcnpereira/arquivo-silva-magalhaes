@@ -174,7 +174,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthorsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CollaboratorController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollectionController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\EventController.cs" />
@@ -182,15 +184,20 @@
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DocumentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\KeywordsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\PartnershipController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SpotLightVideoController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\CollectionViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\NewItemViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\NewsController.cs" />
@@ -336,6 +343,26 @@
     <Content Include="Areas\BackOffice\Views\Keywords\AddLanguage.cshtml" />
     <Content Include="Areas\BackOffice\Views\Keywords\EditLanguage.cshtml" />
     <Content Include="Areas\BackOffice\Views\Keywords\DeleteLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -393,7 +420,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\Views\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

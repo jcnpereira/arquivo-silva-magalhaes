@@ -1,11 +1,10 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Author>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-<a href="~/Areas/BackOffice/Views/Authors/Index.cshtml">~/Areas/BackOffice/Views/Authors/Index.cshtml</a>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.UriPath)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.PublicationDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.DisplayNameFor(model => model.RemovalDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeathDate)
+            @Html.DisplayNameFor(model => model.IsVisible)
         </th>
         <th></th>
     </tr>
@@ -30,16 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.UriPath)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.PublicationDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
+            @Html.DisplayFor(modelItem => item.RemovalDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DeathDate)
+            @Html.DisplayFor(modelItem => item.IsVisible)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

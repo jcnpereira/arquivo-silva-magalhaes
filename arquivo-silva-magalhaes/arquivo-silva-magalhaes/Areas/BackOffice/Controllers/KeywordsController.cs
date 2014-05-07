@@ -168,10 +168,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(model);
         }
 
-        public ActionResult EditLanguage()
+      /*  public ActionResult EditLanguage()
         {
             return View();
-        }
+        }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -180,10 +180,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View();
         }
 
-        public ActionResult DeleteLanguage()
+     /*   public ActionResult DeleteLanguage()
         {
             return View();
-        }
+        }*/
 
         [HttpPost]
         [ValidateAntiForgeryToken]
