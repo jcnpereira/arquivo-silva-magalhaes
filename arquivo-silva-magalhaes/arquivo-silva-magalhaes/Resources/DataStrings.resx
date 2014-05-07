@@ -156,4 +156,7 @@
   <data name="NoClassification" xml:space="preserve">
     <value>Sem classificação</value>
   </data>
+  <data name="Place" xml:space="preserve">
+    <value>Local</value>
+  </data>
 </root>

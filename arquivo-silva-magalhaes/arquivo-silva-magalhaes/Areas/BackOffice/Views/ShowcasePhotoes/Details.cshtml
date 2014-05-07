@@ -1,0 +1,58 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShowcasePhoto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DigitalPhotograph.ScanDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DigitalPhotograph.ScanDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommenterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommenterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommenterEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommenterEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEmailVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEmailVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisibleSince)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisibleSince)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

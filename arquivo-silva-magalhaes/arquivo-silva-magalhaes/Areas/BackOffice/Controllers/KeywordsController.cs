@@ -241,6 +241,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+<<<<<<< HEAD
         public ActionResult DeleteLanguage(int? id)
         {
             if (id == null)
@@ -257,6 +258,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(kw);
         }
+=======
+     /*   public ActionResult DeleteLanguage()
+        {
+            return View();
+        }*/
+>>>>>>> origin/develop
 
         [HttpPost]
         [ValidateAntiForgeryToken]

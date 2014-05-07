@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Event
+﻿@model EventEditViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -82,11 +82,22 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.EventType, new { @class = "control-label col-md-2" })
+
+            <div>
+                
+                @Html.EnumDropDownListFor(model => model.EventType)
+
+                @Html.ValidationMessageFor(model => model.EventType)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.EventType, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EventType)
                 @Html.ValidationMessageFor(model => model.EventType)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

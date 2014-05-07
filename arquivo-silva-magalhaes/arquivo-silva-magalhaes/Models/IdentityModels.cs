@@ -13,7 +13,5 @@ namespace ArquivoSilvaMagalhaes.Models
             : base("DefaultConnection")
         {
         }
-
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Event> Events { get; set; }
     }
 }
