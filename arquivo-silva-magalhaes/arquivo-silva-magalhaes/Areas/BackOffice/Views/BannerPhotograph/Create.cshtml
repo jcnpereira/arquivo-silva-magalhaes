@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph
+﻿@model BannerPhotographViewModels
 
 @{
     ViewBag.Title = "Create";
@@ -52,9 +52,7 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+       @Html.Partial("_BannerPhotographI18npartial")
     </div>
+    @Html.Partial("_SubmitBackPartial")
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
