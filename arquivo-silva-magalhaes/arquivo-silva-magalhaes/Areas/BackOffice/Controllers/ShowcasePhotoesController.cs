@@ -129,7 +129,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddTranslation()
+        public ActionResult AddTranslation(Object model)
         {
             return View();
         }
@@ -141,7 +141,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditTranslation()
+        public ActionResult EditTranslation(Object model)
         {
             return View();
         }
@@ -153,7 +153,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteTranslation()
+        public ActionResult DeleteTranslation(Object model)
         {
             return View();
         }

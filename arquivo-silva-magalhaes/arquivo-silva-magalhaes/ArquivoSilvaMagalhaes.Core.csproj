@@ -178,7 +178,6 @@
     <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollectionsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollaboratorController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\CollectionController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DocumentAttachmentController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\EventController.cs" />

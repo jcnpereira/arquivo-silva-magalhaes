@@ -27,6 +27,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public int Size { get; set; }
 
+        public string LanguageCode { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
+
         public virtual ICollection<Event> EventsUsingAttachment { get; set; }
         public virtual ICollection<NewsItem> NewsUsingAttachment { get; set; }
         public virtual ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
@@ -47,6 +55,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public string Title { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Required]
         public virtual DocumentAttachment DocumentAttachment { get; set; }

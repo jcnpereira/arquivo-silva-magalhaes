@@ -169,7 +169,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteLanguage(int id)
+        [ActionName("DeleteLanguage")]
+        public ActionResult DeleteLanguageConfirmed(int id)
         {
             return View();
         }
