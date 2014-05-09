@@ -201,6 +201,7 @@
     <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\NewItemViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\NewsItemViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SpotLightVideoModels.cs" />
@@ -385,6 +386,9 @@
     <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\AddLanguage.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\_EventI18nPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsI18nPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographI18npartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

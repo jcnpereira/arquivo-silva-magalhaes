@@ -29,6 +29,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public bool IsVisible { get; set; }
         [Required]
         public virtual ICollection<BannerPhotographText> BannerTexts { get; set; }
+
+
+        [Key]
+        [Required]
+        public string LanguageCode { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string Description;
+
+
+
     }
 
     public class BannerPhotographText
@@ -49,6 +62,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public string Title { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Description;
 
         public virtual BannerPhotographViewModels Photograph { get; set; }

@@ -1,9 +1,11 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -89,7 +91,45 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
 
         }
+        [Required]
+        public string LanguageCode { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        public string Heading { get; set; }
+        [Required]
+        public string SpotLight { get; set; }
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string TextContent { get; set; }
+
     }
+    public class EventI18nPartialModels
+    {
+        public EventI18nPartialModels()
+        {
+            LanguageCode = "pt";
+        }
+        [Required]
+        [Key, Column(Order = 0)]
+        public int Id { get; set; }
+        [Key, Column(Order = 1)]
+        [Required]
+        public string LanguageCode { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        public string Heading { get; set; }
+        [Required]
+        public string SpotLight { get; set; }
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string TextContent { get; set; }
+        [Required]
+        public virtual Event Event { get; set; }
+
+    }
+
 
 
 }
