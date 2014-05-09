@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AboutController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
@@ -380,6 +381,10 @@
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\_DocumentI18nPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\EditLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationI18nPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\AddLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -437,6 +442,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Areas\BackOffice\Views\About\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

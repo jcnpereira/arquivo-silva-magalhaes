@@ -1,25 +1,24 @@
 ﻿@model ClassificationEditModel
 
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "EditLanguage";
 }
 
-<h2>Create</h2>
+<h2>EditLanguage</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.LanguageCode)
-    
+
     <div class="form-horizontal">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.LanguageCode)
 
         @Html.Partial("_ClassificationI18nPartial")
 
-        @Html.Partial("_SubmitbackPartial")
     </div>
+    @Html.Partial("_SubmitBackPartial")
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

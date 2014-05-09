@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Classification>
+﻿@model IEnumerable<ClassificationViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -11,11 +11,15 @@
 </p>
 <table class="table">
     <tr>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.Classification)</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Classification)
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

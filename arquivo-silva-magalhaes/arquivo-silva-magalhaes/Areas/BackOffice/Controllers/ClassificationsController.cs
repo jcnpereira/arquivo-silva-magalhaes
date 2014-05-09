@@ -21,7 +21,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Classifications
         public async Task<ActionResult> Index()
         {
-            return View(await db.ClassificationSet.ToListAsync());
+            return View(await db.ClassificationSet.Select(c => new ClassificationViewModel 
+            { 
+                Id = c.Id,
+                Classification = c.ClassificationTexts.FirstOrDefault(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+            })
+            .ToListAsync());
         }
 
         // GET: BackOffice/Classifications/Details/5
@@ -42,7 +47,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Classifications/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ClassificationEditModel { LanguageCode = LanguageDefinitions.DefaultLanguage });
         }
 
         // POST: BackOffice/Classifications/Create
@@ -64,6 +69,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 db.ClassificationSet.Add(classification);
                 await db.SaveChangesAsync();
+
+                if (classification.ClassificationTexts.Count < LanguageDefinitions.Languages.Count)
+                {
+                    ViewBag.Id = classification.Id;
+                    return View("_AddLanguagePrompt");
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -85,6 +97,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(new ClassificationEditModel
                 {
                     Id = classification.Id,
+                    LanguageCode = LanguageDefinitions.DefaultLanguage,
                     Classfication = classification.ClassificationTexts.First(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
                 });
         }
@@ -138,28 +151,95 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
 
-        public ActionResult AddLanguage(int id)
+        public ActionResult AddLanguage(int? id)
         {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var classification = db.ClassificationSet.Find(id);
+
+            if (classification == null) return HttpNotFound();
+
+            var doneLanguages = classification.ClassificationTexts.Select(l => l.LanguageCode);
+
+            return View(new ClassificationEditModel
+                {
+                    Id = classification.Id,
+                    AvailableLanguages = LanguageDefinitions.Languages.Where(l => !doneLanguages.Contains(l))
+                                                            .Select(l => new SelectListItem { Value = l, Text = LanguageDefinitions.GetLanguageName(l) }),
+                });
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddLanguage(ClassificationEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var classification = await db.ClassificationSet.FindAsync(model.Id);
+
+                classification.ClassificationTexts.Add(new ClassificationText
+                    {
+                        Classification = classification,
+                        LanguageCode = model.LanguageCode,
+                        Value = model.Classfication
+                    });
+
+                await db.SaveChangesAsync();
+
+                if (classification.ClassificationTexts.Count < LanguageDefinitions.Languages.Count)
+                {
+                    ViewBag.Id = classification.Id;
+                    return View("_AddLanguagePrompt");
+                }
+
+                return RedirectToAction("Index");
+            }
+
             return View();
+        }
+
+        public ActionResult EditLanguage(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var text = db.ClassificationTextSet.Find(id);
+
+            if (text == null) return HttpNotFound();
+
+            var availableLanguages = db.ClassificationSet.Find(text.Classification.Id)
+                                       .ClassificationTexts.Select(t => t.LanguageCode)
+                                       .ToList();
+
+            return View(new ClassificationEditModel
+                {
+                    Id = text.Id,
+                    Classfication = text.Value,
+                    LanguageCode = text.LanguageCode,
+                    // AvailableLanguages = availableLanguages.Select(l => new SelectListItem { Value = l, Text = LanguageDefinitions.GetLanguageName(l) })
+                });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddLanguage(ClassificationEditModel model)
+        public async Task<ActionResult> EditLanguage(ClassificationEditModel model)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                var text = db.ClassificationTextSet.Find(model.Id);
+                text.Classification = db.ClassificationSet.Find(text.Classification.Id);
 
-        public ActionResult EditLanguage(int id)
-        {
-            return View();
-        }
+                text.Value = model.Classfication;
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditLanguage(ClassificationEditModel model)
-        {
-            return View();
+                db.Entry(text).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Details", new { Id = text.Classification.Id });
+            }
+
+            return View(model);
         }
 
         public ActionResult DeleteLanguage(int id)

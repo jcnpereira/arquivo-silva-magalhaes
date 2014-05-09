@@ -1,0 +1,15 @@
+﻿@model ClassificationEditModel
+
+@{
+    ViewBag.Title = "AddLanguage";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    
+    @Html.Partial("_ClassificationI18nPartial")
+    @Html.Partial("_SubmitBackPartial")
+}
+
