@@ -180,6 +180,7 @@
     <Compile Include="Areas\BackOffice\Controllers\CollaboratorController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CollectionController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DigitalPhotographsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DocumentAttachmentController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\EventController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
@@ -188,9 +189,6 @@
     <Compile Include="Areas\BackOffice\Controllers\PartnershipController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ShowcasePhotoesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SpotLightVideoController.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
@@ -198,12 +196,14 @@
     <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\CollectionViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\DocumentAttachmentViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\NewItemViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\NewsController.cs" />
@@ -375,6 +375,12 @@
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\_DocumentI18nPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

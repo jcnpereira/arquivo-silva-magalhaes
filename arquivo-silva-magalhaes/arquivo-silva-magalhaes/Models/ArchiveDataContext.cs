@@ -75,5 +75,10 @@ namespace ArquivoSilvaMagalhaes.Models
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Archive> Archives { get; set; }
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveText> ArchiveTexts { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.AuthorEditModel> AuthorEditViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.DocumentAttachmentText> DocumentAttachmentTexts { get; set; }
+        
     }
 }
