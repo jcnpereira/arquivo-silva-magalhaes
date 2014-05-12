@@ -1,0 +1,129 @@
+﻿@model SpecimenPhotoUploadModel
+
+@{
+    ViewBag.Title = "AssociateDigitalPhoto";
+}
+
+<h2>AssociateDigitalPhoto</h2>
+
+@using (Html.BeginForm("AssociateDigitalPhoto", "Specimens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.SpecimenId)
+
+    <div id="afsm-add-picture-form" class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Items[0].Photo, htmlAttributes: new { @class = "control-label", data_afsm_show = "#afsm-fields-container[0]" })
+
+            <div>
+                @* Image preview. *@
+                <img class="hidden img-responsive" id="afsm-image-0" />
+
+                @* The upload input has to be done by hand :( *@
+                <input type="file" class="afsm-image-upload" name="Items[0].Photo" data-afsm-preview="#afsm-image-0" accept="image/*" />
+
+                @Html.ValidationMessageFor(model => model.Items[0].Photo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @* We'll hide all fields until the user uploads a file. *@
+
+        <div @*class="hidden"*@ id="afsm-fields-container[0]">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Items[0].Process)
+                <div>
+                    @Html.EditorFor(model => model.Items[0].Process, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Items[0].Process)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Items[0].ScanYear, "Data de digitalização")
+                <div class="afsm-date-input">
+                    @Html.EditorFor(model => model.Items[0].ScanYear, new { htmlAttributes = new { @class = "form-control", placeholder = "Ano" } })
+                    @Html.EditorFor(model => model.Items[0].ScanMonth, new { htmlAttributes = new { @class = "form-control", placeholder = "Mês" } })
+                    @Html.EditorFor(model => model.Items[0].ScanDay, new { htmlAttributes = new { @class = "form-control", placeholder = "Dia" } })
+
+
+                    @*@Html.DropDownListFor(model => model.Items[0].ScanYear, Enumerable.Range(1990, DateTime.Now.Year - 1990).Select(y => new SelectListItem { Value = y.ToString(), Text = y.ToString() }), new { @class = "afsm-year-input" })
+                        @Html.DropDownListFor(model => model.Items[0].ScanMonth, Enumerable.Range(1, 12).Select(m => new SelectListItem { Value = m.ToString(), Text = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(m) }), new { @class = "afsm-month-input" })
+                        @Html.DropDownListFor(model => model.Items[0].ScanDay, Enumerable.Range(1, 31).Select(d => new SelectListItem { Value = d.ToString(), Text = d.ToString() }), new { @class = "afsm-day-input" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Items[0].IsVisible)
+                <div>
+                    @Html.EditorFor(model => model.Items[0].IsVisible, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Items[0].IsVisible)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Items[0].CopyrightInfo)
+                <div>
+                    @Html.EditorFor(model => model.Items[0].CopyrightInfo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Items[0].CopyrightInfo)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<button class="btn btn-default" id="afsm-add-item">Adicionar item</button>*@
+
+    @Html.Partial("_SubmitBackPartial")
+}
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        (function (window, document) {
+            // Last index of an item.
+            var lastIndex = 0,
+                form = $('#afsm-add-picture-form');
+
+            function addItem() {
+                form.append('<input type="file" name="Items[' + (++lastIndex) + '].Photo" accept="image/*" />');
+                console.log(lastIndex);
+            }
+
+            $('#afsm-add-item').click(function (e) {
+                e.preventDefault();
+
+
+
+                addItem();
+            });
+
+            $('.afsm-image-upload').on('change', function (e) {
+                var $img = $($(this).data('afsm-preview')),
+                    file = e.target.files[0],
+                    reader = new FileReader();
+
+                
+
+                if (!file.type.match('image.*')) {
+                    alert('Tipo de ficheiro inválido. Só se aceitam imagens.');
+                }
+
+                reader.onload = (function (readFile) {
+                    return function (fe) {
+
+                        $img.attr('src', fe.target.result);
+
+                        $img.removeClass('hidden');
+                    }
+                }(file));
+
+                reader.readAsDataURL(file);
+
+                return false;
+            });
+
+        }(window, document));
+    </script>
+}

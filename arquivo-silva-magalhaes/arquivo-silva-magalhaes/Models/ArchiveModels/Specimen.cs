@@ -12,7 +12,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public Specimen()
         {
             this.SpecimenTexts = new HashSet<SpecimenText>();
-            this.Classification = new HashSet<Classification>();
             this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
         }
     
@@ -30,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual Process Process { get; set; }
         public virtual Format Format { get; set; }
 
-        public virtual ICollection<Classification> Classification { get; set; }
+        public virtual Classification Classification { get; set; }
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
         public virtual ICollection<SpecimenText> SpecimenTexts { get; set; }
 

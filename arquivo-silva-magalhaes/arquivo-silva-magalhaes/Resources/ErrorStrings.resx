@@ -123,6 +123,15 @@
   <data name="DeathDateEarlierThanBirthDate" xml:space="preserve">
     <value>A data de falecimento tem que ser posterior à data de nascimento.</value>
   </data>
+  <data name="EndMomentEarlierThanStartMoment" xml:space="preserve">
+    <value>A data de fim não pode ser anterior à data de início.</value>
+  </data>
+  <data name="ExpiryDateEarlierThanPublishDate" xml:space="preserve">
+    <value>A data de expiração não pode ser anterior à data de criação.</value>
+  </data>
+  <data name="InvalidDate" xml:space="preserve">
+    <value>Data inválida.</value>
+  </data>
   <data name="MustSpecifyContent" xml:space="preserve">
     <value>Tem que especificar qual é o conteúdo que pretende modificar ou eliminar.</value>
   </data>

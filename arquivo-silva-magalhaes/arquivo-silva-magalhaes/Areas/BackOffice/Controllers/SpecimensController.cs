@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using System.Diagnostics;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -116,6 +119,70 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+
+
+        /// <summary>
+        /// To associate a digital photo with a specimen.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> AssociateDigitalPhoto(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            //var specimen = await db.SpecimenSet.FindAsync(id);
+
+            //if (specimen == null) { return HttpNotFound(); }
+
+            //return View(specimen);
+            return View(new SpecimenPhotoUploadModel { SpecimenId = id.Value });
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssociateDigitalPhoto(SpecimenPhotoUploadModel model)
+        {
+            // Debug.WriteLine("Got {0} files. Model is valid: {1}", files.Count(), ModelState.IsValid);
+
+            Debug.WriteLine("Model is valid: {0}", ModelState.IsValid);
+
+            // var specimen = await db.DigitalPhotographSet.FindAsync(model.SpecimenId);
+
+            var photosToAdd = new List<DigitalPhotograph>();
+
+            foreach (var item in model.Items)
+            {
+                var fileName = Path.GetFileName(item.Photo.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads/Specimens"), model.SpecimenId.ToString());
+
+                Directory.CreateDirectory(path);
+
+                photosToAdd.Add(new DigitalPhotograph
+                    {
+                        SpecimenId = model.SpecimenId,
+                        CopyrightInfo = item.CopyrightInfo,
+                        IsVisible = item.IsVisible.ToString(),
+                        StoreLocation = Path.Combine(path, fileName),
+                        Process = item.Process,
+                        ScanDate = new DateTime(item.ScanYear, item.ScanMonth, item.ScanDay)
+                    });
+
+                Debug.WriteLine("Path is: {0}", path);
+
+
+                item.Photo.SaveAs(Path.Combine(path, fileName));
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

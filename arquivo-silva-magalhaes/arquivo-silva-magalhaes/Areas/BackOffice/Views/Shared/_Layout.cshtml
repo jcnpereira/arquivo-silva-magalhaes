@@ -30,9 +30,15 @@
 
     <div class="container body-content">
         <!-- Menu à esquerda. -->
-        <div class="col-md-3">Hello, world!</div>
+        <div class="col-md-2">
+            <ul class="nav nav-stacked">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
+                <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
+            </ul>
+        </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             @RenderBody()
         </div>
         <hr />

@@ -1,7 +1,5 @@
 ﻿
 <div class="form-inline">
-    <div class="form-group">
-        <input type="submit" value="@UiStrings.Done" class="btn btn-default" />
-        @Html.ActionLink(@UiStrings.Cancel, "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
-    </div>
+    <input type="submit" value="@UiStrings.Done" class="btn btn-default" />
+    @Html.ActionLink(@UiStrings.Cancel, "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
 </div>

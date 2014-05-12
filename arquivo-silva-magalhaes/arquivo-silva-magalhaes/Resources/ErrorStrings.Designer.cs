@@ -79,6 +79,33 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A data de fim não pode ser anterior à data de início..
+        /// </summary>
+        public static string EndMomentEarlierThanStartMoment {
+            get {
+                return ResourceManager.GetString("EndMomentEarlierThanStartMoment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de expiração não pode ser anterior à data de criação..
+        /// </summary>
+        public static string ExpiryDateEarlierThanPublishDate {
+            get {
+                return ResourceManager.GetString("ExpiryDateEarlierThanPublishDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data inválida..
+        /// </summary>
+        public static string InvalidDate {
+            get {
+                return ResourceManager.GetString("InvalidDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tem que especificar qual é o conteúdo que pretende modificar ou eliminar..
         /// </summary>
         public static string MustSpecifyContent {
@@ -86,9 +113,5 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("MustSpecifyContent", resourceCulture);
             }
         }
-
-        public static string EndMomentEarlierThanStartMoment { get; set; }
-
-        public static string ExpiryDateEarlierThanPublishDate { get; set; }
     }
 }

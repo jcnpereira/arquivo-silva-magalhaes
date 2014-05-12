@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         public int Id { get; set; }
-        public string ScanDate { get; set; }
+        public DateTime ScanDate { get; set; }
         public string StoreLocation { get; set; }
         public string Process { get; set; }
         public string CopyrightInfo { get; set; }
@@ -26,5 +26,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         public virtual Specimen Specimen { get; set; }
+
+
     }
 }

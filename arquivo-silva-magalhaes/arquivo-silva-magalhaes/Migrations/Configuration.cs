@@ -38,7 +38,23 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         }
 
-
+        //private void SeedSpecimens(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var specimens = new List<Specimen>
+        //    {
+        //        new Specimen { Id = 1, 
+        //            AuthorCatalogationCode = "whatever", 
+        //            CatalogCode = "whatever",
+        //            Classification = new Classification { ClassificationTexts = new List<ClassificationText> {new ClassificationText { Value = "whatever", LanguageCode = "pt" } }},
+        //            Document  = db.DocumentSet.Find(1),
+        //            Format = new Format { FormatDescription = "8x11" },
+        //            HasMarksOrStamps = false,
+        //            Indexation = "whatever",
+        //            Notes = "what?",
+        //            Process = new Process { ProcessTexts = new List<ProcessText> {new ProcessText {}}
+        //        }
+        //    };
+        //}
 
 
         protected void SeedAuthors(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
@@ -288,221 +304,162 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
 
 
-        protected void SeedReferencedLinks(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var links = new List<ReferencedLink>{
-                    new ReferencedLink{ Id=1, 
-                        Title="O grande evento", 
-                        Description="Ligação disponibilizada para o grande evento", 
-                        DateOfCreation=new DateTime(13,10,21), 
-                        EventsUsingThis=Event(1), 
-                        IsUsefulLink=true, 
-                        LastModifiedDate=DateTime.Now,  
-                        Link="www.ograndeevento.com"},
+        //protected void SeedReferencedLinks(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var links = new List<ReferencedLink>{
+        //            new ReferencedLink{ Id=1, 
+        //                Title="O grande evento", 
+        //                Description="Ligação disponibilizada para o grande evento", 
+        //                DateOfCreation=new DateTime(13,10,21), 
+        //                EventsUsingThis=Event(1), 
+        //                IsUsefulLink=true, 
+        //                LastModifiedDate=DateTime.Now,  
+        //                Link="www.ograndeevento.com"},
 
-                    new ReferencedLink{ Id=1, 
-                        Title="Nova coleção", 
-                        Description="Ligação disponibilizada para notícia da nova coleção fotográfica", 
-                        DateOfCreation=new DateTime(13,10,21), 
-                        EventsUsingThis=NewsItem(1), 
-                        IsUsefulLink=true, 
-                        LastModifiedDate=DateTime.Now,  
-                        Link="www.fotonews.com/newcollection"}
-                     };
-           }
+        //            new ReferencedLink{ Id=1, 
+        //                Title="Nova coleção", 
+        //                Description="Ligação disponibilizada para notícia da nova coleção fotográfica", 
+        //                DateOfCreation=new DateTime(13,10,21), 
+        //                EventsUsingThis=NewsItem(1), 
+        //                IsUsefulLink=true, 
+        //                LastModifiedDate=DateTime.Now,  
+        //                Link="www.fotonews.com/newcollection"}
+        //             };
+        //   }
 
-        protected void SeedDocumentAttachment(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var docs = new List<DocumentAttachment>
-            {
-                new DocumentAttachment{ 
-                    Id=1, 
-                    MimeFormat="text/pdf", 
-                    UriPath="h", 
-                    EventsUsingAttachment=EventText(1), 
-                    NewsUsingAttachment=NewsText(1),  
-                    Size=1, 
-                    TextUsingAttachment=DocumentText(1)}
-            };
-        }
+        //protected void SeedDocumentAttachment(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var docs = new List<DocumentAttachment>
+        //    {
+        //        new DocumentAttachment{ 
+        //            Id=1, 
+        //            MimeFormat="text/pdf", 
+        //            UriPath="h", 
+        //            EventsUsingAttachment=EventText(1), 
+        //            NewsUsingAttachment=NewsText(1),  
+        //            Size=1, 
+        //            TextUsingAttachment=DocumentText(1)}
+        //    };
+        //}
 
        
             
-         protected void SeedDocumentAttachmentText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var doctext = new List<DocumentAttachmentText>
-             {
-                 new DocumentAttachmentText{ 
-                     Id=1, 
-                     DocumentAttachment=DocumentAttachment(1), 
-                     Title="Revelação", 
-                     Description="Como revelar...", 
-                     LanguageCode="pt"}
-             };
-        }
+        // protected void SeedDocumentAttachmentText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var doctext = new List<DocumentAttachmentText>
+        //     {
+        //         new DocumentAttachmentText{ 
+        //             Id=1, 
+        //             DocumentAttachment=DocumentAttachment(1), 
+        //             Title="Revelação", 
+        //             Description="Como revelar...", 
+        //             LanguageCode="pt"}
+        //     };
+        //}
 
 
 
-         protected void SeedBannerPhotograph(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-         {
-             var banners = new BannerPhotograph
-             {
-                 Id = 1,
-                 BannerTexts = BannerPhotographText(1),
-                 IsVisible = true,
-                 PublicationDate = new DateTime(12, 01, 14),
-                 RemovalDate = new DateTime(15, 01, 14),
-                 UriPath = "asdasd"
-             };
-         }
+        // protected void SeedBannerPhotograph(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        // {
+        //     var banners = new BannerPhotograph
+        //     {
+        //         Id = 1,
+        //         BannerTexts = BannerPhotographText(1),
+        //         IsVisible = true,
+        //         PublicationDate = new DateTime(12, 01, 14),
+        //         RemovalDate = new DateTime(15, 01, 14),
+        //         UriPath = "asdasd"
+        //     };
+        // }
 
          
 
-         protected void SeedBannerPhotographText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-         {
-             var bannerTexts = new BannerPhotographText
-             {
-                 Id = 1,
-                 LanguageCode = "pt",
-                 Photograph = BannerPhotograph(1),
-                 Title = "PTbanner1"
-             };
-         }
+        // protected void SeedBannerPhotographText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        // {
+        //     var bannerTexts = new BannerPhotographText
+        //     {
+        //         Id = 1,
+        //         LanguageCode = "pt",
+        //         Photograph = BannerPhotograph(1),
+        //         Title = "PTbanner1"
+        //     };
+        // }
 
 
-        protected void SeedTechnicalDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var documents = new List<TechnicalDocument>{
-                new TechnicalDocument{ 
-                    Id=1,  
-                    DocumentType=DocumentType.PDF, 
-                    Format="texto",  
-                    Language="pt", 
-                    LastModificationDate=new DateTime(13,10,23), 
-                    Title="Processo de revelação",  
-                    UploadedDate=new DateTime(12,02,01),  
-                    UriPath="C:Processos/Revelacao/prorev.pdf"}
-            };
-        }
+        //protected void SeedTechnicalDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var documents = new List<TechnicalDocument>{
+        //        new TechnicalDocument{ 
+        //            Id=1,  
+        //            DocumentType=DocumentType.PDF, 
+        //            Format="texto",  
+        //            Language="pt", 
+        //            LastModificationDate=new DateTime(13,10,23), 
+        //            Title="Processo de revelação",  
+        //            UploadedDate=new DateTime(12,02,01),  
+        //            UriPath="C:Processos/Revelacao/prorev.pdf"}
+        //    };
+        //}
 
-        protected void SeedSpotLightVideo(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var videos = new List<SpotlightVideo>{
-                new SpotlightVideo{
-                    Id=1,
-                    IsPermanent=false,
-                    PublicationDate= new DateTime(13,10,23),
-                    RemotionDate = new DateTime(15,10,23),
-                    UriPath = "http://www.youtube.com/videoAFSM"
+        //protected void SeedSpotLightVideo(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var videos = new List<SpotlightVideo>{
+        //        new SpotlightVideo{
+        //            Id=1,
+        //            IsPermanent=false,
+        //            PublicationDate= new DateTime(13,10,23),
+        //            RemotionDate = new DateTime(15,10,23),
+        //            UriPath = "http://www.youtube.com/videoAFSM"
                     
-                }
+        //        }
 
-            };
-        }
+        //    };
+        //}
 
-        protected void SeedArchive( ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var archives = new List<Archive>{
-                new Archive{
-                     Id=1,
-                     Contacts=Contact(1),
-                     ArchiveTexts=ArchiveText(1)
-                }
+        //protected void SeedArchive( ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var archives = new List<Archive>{
+        //        new Archive{
+        //             Id=1,
+        //             Contacts=Contact(1),
+        //             ArchiveTexts=ArchiveText(1)
+        //        }
 
-            };
-        }
-
-
-        protected void SeedArchiveText (ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-        {
-            var archivetexts = new List<ArchiveText>{
-                new ArchiveText{
-                    Id=1,
-                    LanguageCode="pt",
-                    Archive=Archive(1),
-                    ArchiveHistory="blablabla...",
-                    ArchiveMission="blalala..."
-                }
-            };
-        }
+        //    };
+        //}
 
 
-        protected void SeedContact(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
-            {
-                var contacts = new List<Contact>{
-                new Contact{
-                    Id=1,
-                    Archive=Archive(1),
-                    Name="António",
-                    Address="Rua r",
-                    ContactDetails="Fixo",
-                    Email="antonio@mail.com",
-                    Service="Organizador de eventos"
-
-                }
-            };
-
-            }
+        //protected void SeedArchiveText (ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //{
+        //    var archivetexts = new List<ArchiveText>{
+        //        new ArchiveText{
+        //            Id=1,
+        //            LanguageCode="pt",
+        //            Archive=Archive(1),
+        //            ArchiveHistory="blablabla...",
+        //            ArchiveMission="blalala..."
+        //        }
+        //    };
+        //}
 
 
-        private ICollection<ArchiveText> ArchiveText(int p)
-        {
-            throw new NotImplementedException();
-        }
+        //protected void SeedContact(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        //    {
+        //        var contacts = new List<Contact>{
+        //        new Contact{
+        //            Id=1,
+        //            Archive=Archive(1),
+        //            Name="António",
+        //            Address="Rua r",
+        //            ContactDetails="Fixo",
+        //            Email="antonio@mail.com",
+        //            Service="Organizador de eventos"
 
-        private ICollection<Contact> Contact(int p)
-        {
-            throw new NotImplementedException();
-        }
+        //        }
+        //    };
 
-        private Archive Archive(int p)
-        {
-            throw new NotImplementedException();
-        }
+        //    }
 
-
-        private BannerPhotograph BannerPhotograph(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private ICollection<BannerPhotographText> BannerPhotographText(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private Event NewsItem(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private Event Event(int p)
-        {
- 	        throw new NotImplementedException();
-        }
-        
-        private DocumentAttachment DocumentAttachment(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private ICollection<DocumentAttachmentText> DocumentText(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private ICollection<NewsItem> NewsText(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private ICollection<Event> EventText(int p)
-        {
-            throw new NotImplementedException();
-        }
 
 
     }
