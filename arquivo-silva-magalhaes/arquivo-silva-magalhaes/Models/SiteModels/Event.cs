@@ -26,9 +26,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<DocumentAttachment>();
             EventTexts = new HashSet<EventText>();
-
-
-            HideAfterExpiry = false;
         }
 
         [Key]
@@ -65,21 +62,17 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
     public class EventText
     {
-        public EventText()
-        {
-            LanguageCode = "pt";
-        }
 
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int EventId { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Title { get; set; }
         public string Heading { get; set; }
         public string SpotLight { get; set; }
         public string TextContent { get; set; }
-
-        public virtual Event Event { get; set; }
 
     }
 }

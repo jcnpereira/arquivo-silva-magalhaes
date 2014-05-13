@@ -13,8 +13,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public ArchiveDataContext() : base("name=ArchiveDataContext") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-                
+        {                
         }
 
         public virtual DbSet<Collection> CollectionSet { get; set; }
@@ -63,6 +62,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<Collaborator> CollaboratorSet { get; set; }
 
         public virtual DbSet<DocumentAttachment> DocumentAttachmentSet { get; set; }
+        public virtual DbSet<DocumentAttachmentText> DocumentAttachmentTextSet { get; set; }
 
         public virtual DbSet<Partnership> PartnershipSet { get; set; }
         
@@ -72,13 +72,7 @@ namespace ArquivoSilvaMagalhaes.Models
 
         public virtual DbSet<TechnicalDocument> TecnhicalDocumentSet { get; set; }
 
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Archive> Archives { get; set; }
-
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveText> ArchiveTexts { get; set; }
-
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.AuthorEditModel> AuthorEditViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.DocumentAttachmentText> DocumentAttachmentTexts { get; set; }
-        
+        public virtual DbSet<Archive> ArchiveSet { get; set; }
+        public virtual DbSet<ArchiveText> ArchiveTextSet { get; set; }
     }
 }

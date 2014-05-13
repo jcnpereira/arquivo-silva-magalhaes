@@ -35,13 +35,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
 
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int ShowcasePhotoId { get; set; }
 
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Comment { get; set; }
-
-
-        [Required]
-        public virtual ShowcasePhoto ShowcasePhoto { get; set; }
     }
 }

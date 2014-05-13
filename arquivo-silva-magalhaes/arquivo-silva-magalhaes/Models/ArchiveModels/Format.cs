@@ -15,6 +15,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         public int Id { get; set; }
+
         public string FormatDescription { get; set; }
 
         public virtual ICollection<Specimen> Specimens { get; set; }

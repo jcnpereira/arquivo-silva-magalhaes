@@ -28,18 +28,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     public class BannerPhotographText
     {
 
-        public BannerPhotographText()
-        {
-            LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int BannerPhotographId { get; set; }
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Title { get; set; }
         public string Description;
-
-        public virtual BannerPhotograph Photograph { get; set; }
     }
 }

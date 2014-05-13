@@ -32,14 +32,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// </summary>
     public partial class ClassificationText
     {
-        public ClassificationText()
-        {
-            this.LanguageCode = "pt";
-        }
 
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int ClassificationId { get; set; }
 
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         /// <summary>
@@ -47,7 +44,5 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public string Value { get; set; }
 
-        [Required]
-        public virtual Classification Classification { get; set; }
     }
 }

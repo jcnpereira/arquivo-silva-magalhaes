@@ -23,15 +23,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<KeywordText> KeywordTexts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
-
-        [NotMapped]
-        public string Value
-        {
-            get
-            {
-                return KeywordTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value;
-            }
-        }
     }
 
     public partial class KeywordText
@@ -42,8 +33,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
 
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int KeywordId { get; set; }
 
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
         public string Value { get; set; }
 

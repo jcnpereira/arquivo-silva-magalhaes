@@ -218,7 +218,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(new KeywordEditModel
                 {
-                    Id = kw.Id,
+                    Id = kw.KeywordId,
                     Keyword = kw.Value,
                     LanguageCode = kw.LanguageCode
                 });

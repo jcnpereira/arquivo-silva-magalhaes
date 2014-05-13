@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /Portal/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Archives.ToListAsync());
+            return View(await db.ArchiveSet.ToListAsync());
         }
 
         // GET: /Portal/Details/5
@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
+            Archive archive = await db.ArchiveSet.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Archives.Add(archive);
+                db.ArchiveSet.Add(archive);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
+            Archive archive = await db.ArchiveSet.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
+            Archive archive = await db.ArchiveSet.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Archive archive = await db.Archives.FindAsync(id);
-            db.Archives.Remove(archive);
+            Archive archive = await db.ArchiveSet.FindAsync(id);
+            db.ArchiveSet.Remove(archive);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

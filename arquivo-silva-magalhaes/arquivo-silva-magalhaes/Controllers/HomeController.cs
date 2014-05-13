@@ -35,13 +35,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-        public ActionResult Author()
-        {
-            var author = _db.AuthorSet.First(a => a.LastName.Contains("Maga"));
-
-            return Content(author.Biography);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

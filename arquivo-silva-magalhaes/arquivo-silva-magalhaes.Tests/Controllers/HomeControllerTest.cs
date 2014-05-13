@@ -51,14 +51,5 @@ namespace ArquivoSilvaMagalhaes.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        public void Author()
-        {
-            HomeController controller = new HomeController();
-
-            ContentResult result = controller.Author() as ContentResult;
-
-            Assert.IsTrue(result.Content.Contains("Biografia"));
-        }
     }
 }

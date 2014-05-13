@@ -24,19 +24,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
     public partial class ProcessText
     {
-        public ProcessText()
-        {
-            this.LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
-
-        public string LanguageCode { get; set; }
-        public string Value { get; set; }
         public int ProcessId { get; set; }
 
-        [Required]
-        public virtual Process Process { get; set; }
+        [Key, Column(Order = 1)]
+        public string LanguageCode { get; set; }
+        public string Value { get; set; }
     }
 }

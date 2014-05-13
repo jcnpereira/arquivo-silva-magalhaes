@@ -74,7 +74,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     public class AuthorI18nEditModel
     {
         [Required]
-        public int Id { get; set; }
+        public int AuthorId { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(UiStrings), Name = "Language")]

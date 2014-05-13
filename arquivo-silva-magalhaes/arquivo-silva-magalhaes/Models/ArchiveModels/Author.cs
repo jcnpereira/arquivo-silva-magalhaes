@@ -46,6 +46,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
         /// <summary>
         /// The date on which this author died.
         /// </summary>
@@ -57,10 +58,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// author.
         /// </summary>
         public virtual ICollection<AuthorText> AuthorTexts { get; set; }
+
         /// <summary>
         /// Documents created by this author.
         /// </summary>
         public virtual ICollection<Document> Documents { get; set; }
+
         /// <summary>
         /// Collections created by this author.
         /// </summary>
@@ -75,59 +78,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             }
 
         }
-
-        #region Non-mapped attributes
-        [NotMapped]
-        public string Name
-        {
-            get
-            {
-                return String.Format("{0}, {1}", LastName, FirstName);
-            }
-        }
-
-        [NotMapped]
-        [Required]
-        public string Biography
-        {
-            get
-            {
-                var authText = this.AuthorTexts
-                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
-                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
-
-                return authText.Biography;
-            }
-        }
-
-        [NotMapped]
-        [Required]
-        public string Curriculum
-        {
-            get
-            {
-                var authText = this.AuthorTexts
-                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) || 
-                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
-
-                return authText.Curriculum;
-            }
-        }
-
-        [NotMapped]
-        [Required]
-        public string Nationality
-        {
-            get
-            {
-                var authText = this.AuthorTexts
-                    .First(text => Thread.CurrentThread.CurrentUICulture.ToString().Contains(text.LanguageCode) ||
-                        text.LanguageCode.Contains(LanguageDefinitions.DefaultLanguage));
-
-                return authText.Nationality;
-            }
-        }
-        #endregion
     }
 
     /// <summary>
@@ -139,8 +89,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The author which is associated with this detail text.
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        [Column(Order = 0)]
+        public int AuthorId { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         /// <summary>
@@ -160,9 +113,5 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         public string Curriculum { get; set; }
-
-        [Required]
-        public virtual Author Author { get; set; }
-        
     }
 }

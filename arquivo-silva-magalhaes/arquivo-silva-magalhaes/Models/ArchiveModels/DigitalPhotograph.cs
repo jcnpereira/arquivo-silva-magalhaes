@@ -15,18 +15,20 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         public int Id { get; set; }
+
         public DateTime ScanDate { get; set; }
+
         public string StoreLocation { get; set; }
+
         public string Process { get; set; }
+
         public string CopyrightInfo { get; set; }
+
         public string IsVisible { get; set; }
+
+        [Required]
         public int SpecimenId { get; set; }
 
         public virtual ICollection<ShowcasePhoto> ShowcasePhotos { get; set; }
-
-        [Required]
-        public virtual Specimen Specimen { get; set; }
-
-
     }
 }

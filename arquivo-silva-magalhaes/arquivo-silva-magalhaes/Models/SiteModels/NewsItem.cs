@@ -36,22 +36,16 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
     public class NewsText
     {
-        public NewsText()
-        {
-            LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int NewsItemId { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string Heading { get; set; }
         public string TextContent { get; set; }
-
-
-        public virtual NewsItem NewsItem { get; set; }
 
     }
 }

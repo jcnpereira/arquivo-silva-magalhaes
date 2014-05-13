@@ -47,35 +47,28 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public string CatalogCode { get; set; }
 
-        /// <summary>
-        /// The collection on which this document belongs to.
-        /// </summary>
         [Required]
-        public virtual Collection Collection { get; set; }
-        public virtual ICollection<DocumentText> DocumentTexts { get; set; }
+        public int CollectionId { get; set; }
 
         [Required]
-        public virtual Author Author { get; set; }
+        public int AuthorId { get; set; }
+
+        public virtual ICollection<DocumentText> DocumentTexts { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
     }
 
     public partial class DocumentText
     {
-        public DocumentText()
-        {
-            this.LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int DocumentId { get; set; }
 
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string DocumentLocation { get; set; }
         public string FieldAndContents { get; set; }
         public string Description { get; set; }
 
-        [Required]
-        public virtual Document Document { get; set; }
     }
 }

@@ -213,6 +213,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405131844355_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201405131844355_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201405131844355_ArchiveDataContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
@@ -461,6 +465,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405131844355_ArchiveDataContext.resx">
+      <DependentUpon>201405131844355_ArchiveDataContext.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>

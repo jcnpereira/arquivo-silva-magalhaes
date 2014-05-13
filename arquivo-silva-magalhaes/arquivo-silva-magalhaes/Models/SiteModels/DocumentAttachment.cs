@@ -30,20 +30,13 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
     public class DocumentAttachmentText
     {
-        public DocumentAttachmentText()
-        {
-            LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int DocumentId { get; set; }
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         public string Title { get; set; }
         
         public string Description { get; set; }
-
-        public virtual DocumentAttachment DocumentAttachment { get; set; }
     }
 }

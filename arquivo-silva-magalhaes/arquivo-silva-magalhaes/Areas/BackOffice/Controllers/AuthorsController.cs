@@ -30,13 +30,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Author author = await db.AuthorSet.FindAsync(id);
             if (author == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.AreLanguagesMissing = author.AuthorTexts.Count < LanguageDefinitions.Languages.Count;
+            ViewBag.AreLanguagesMissing = db.AuthorTextSet
+                                            .Where(t => t.AuthorId == author.Id).Count() < LanguageDefinitions.Languages.Count;
 
             return View(author);
         }
@@ -67,10 +69,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     DeathDate = model.DeathDate
                 };
 
-                author.AuthorTexts.Add(
+                db.AuthorTextSet.Add(
                 new AuthorText
                 {
-                    Author = author,
+                    AuthorId = author.Id,
                     Biography = model.Biography,
                     Curriculum = model.Curriculum,
                     Nationality = model.Nationality,
@@ -83,7 +85,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 await db.SaveChangesAsync();
 
-                if (AreLanguagesMissing(author))
+                var texts = db.AuthorTextSet.Where(t => t.AuthorId == author.Id);
+
+
+                if (texts.Count() < LanguageDefinitions.Languages.Count)
                 {
                     // There are languages which may be added.
                     // Ask the used if he/she wants to any.
@@ -104,32 +109,35 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         /// </summary>
         /// <param name="author">The Author which will be checked</param>
         /// <returns>true if languages are missing, false otherwise.</returns>
-        private static bool AreLanguagesMissing(Author author)
-        {
-            // Check if we need to add more languages.
-            var langCodes = author.AuthorTexts
-                                  .Select(t => t.LanguageCode)
-                                  .ToList();
+        //private static bool AreLanguagesMissing(Author author)
+        //{
 
-            return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
-        }
+
+        //    // Check if we need to add more languages.
+        //    var langCodes = author.AuthorTexts
+        //                          .Select(t => t.LanguageCode)
+        //                          .ToList();
+
+        //    return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
+        //}
 
         // GET: BackOffice/Authors/AddLanguage
-        public async Task<ActionResult> AddLanguage(int? Id)
+        public async Task<ActionResult> AddLanguage(int? AuthorId)
         {
             // There needs to be an author.
-            if (Id != null)
+            if (AuthorId != null)
             {
-                var author = await db.AuthorSet.FindAsync(Id);
+                var author = await db.AuthorSet.FindAsync(AuthorId);
 
                 if (author == null)
                 {
                     return HttpNotFound();
                 }
 
-                var langCodes = author.AuthorTexts
-                                      .Select(t => t.LanguageCode)
-                                      .ToList();
+                var langCodes = db.AuthorTextSet
+                                  .Where(t => t.AuthorId == author.Id)
+                                  .Select(t => t.LanguageCode)
+                                  .ToList();
 
                 // First, we'll check which languages we already have in the DB,
                 // we'll remove any which already exist.
@@ -155,11 +163,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 return View(model);
             }
-            else
-            {
-                // If there's no author, we can't add a language to it.
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            // If there's no author, we can't add a language to it.
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
 
@@ -168,11 +173,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var author = db.AuthorSet.Find(model.Id);
+                var author = db.AuthorSet.Find(model.AuthorId);
 
                 var text = new AuthorText
                 {
-                    Author = author,
+                    AuthorId = author.Id,
                     LanguageCode = model.LanguageCode,
                     Nationality = model.Nationality,
                     Biography = model.Biography,
@@ -182,7 +187,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 db.AuthorTextSet.Add(text);
                 await db.SaveChangesAsync();
 
-                if (AreLanguagesMissing(author))
+                var texts = db.AuthorTextSet.Where(t => t.AuthorId == author.Id);
+
+                if (texts.Count() < LanguageDefinitions.Languages.Count)
                 {
                     ViewBag.Id = author.Id;
                     return View("_AddLanguagePrompt");
@@ -209,7 +216,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
 
-            var authText = author.AuthorTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+            var authText = db.AuthorTextSet
+                             .First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage && t.AuthorId == author.Id);
 
             var model = new AuthorEditModel
             {
@@ -241,7 +249,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 author.BirthDate = model.BirthDate;
                 author.DeathDate = model.DeathDate;
 
-                var text = author.AuthorTexts.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+                var text = db.AuthorTextSet.Find(author.Id, LanguageDefinitions.DefaultLanguage);
 
                 text.Biography = model.Biography;
                 text.Curriculum = model.Curriculum;
@@ -282,14 +290,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> EditText(int? id)
+        public async Task<ActionResult> EditText(int? AuthorId, string LanguageCode)
         {
-            if (id == null)
+            if (AuthorId == null || LanguageCode == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
             }
 
-            AuthorText text = await db.AuthorTextSet.FindAsync(id);
+            AuthorText text = await db.AuthorTextSet.FirstAsync(t => t.AuthorId == AuthorId && t.LanguageCode == LanguageCode);
 
             if (text == null)
             {
@@ -298,7 +306,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(new AuthorI18nEditModel
                 {
-                    Id = text.Id,
+                    AuthorId = text.AuthorId,
                     Biography = text.Biography,
                     Curriculum = text.Curriculum,
                     Nationality = text.Nationality,
@@ -312,12 +320,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var text = await db.AuthorTextSet.FindAsync(textModel.Id);
-
-
-                // HACK: For some reason, if I don't specify the author,
-                // validation fails.
-                text.Author = db.AuthorSet.Find(text.Author.Id);
+                var text = await db.AuthorTextSet.FindAsync(textModel.AuthorId);
 
                 text.Nationality = textModel.Nationality;
                 text.Biography = textModel.Biography;
@@ -329,54 +332,49 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 db.SaveChanges();
 
 
-                return RedirectToAction("Details", new { Id = text.Author.Id });
+                return RedirectToAction("Details", new { Id = text.AuthorId });
             }
 
             return View(textModel);
         }
 
 
-        public async Task<ActionResult> DeleteText(int? id)
+        public async Task<ActionResult> DeleteText(int? AuthorId, string LanguageCode)
         {
-            if (id == null)
+            if (AuthorId == null || LanguageCode == null || LanguageCode == LanguageDefinitions.DefaultLanguage)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AuthorText text = await db.AuthorTextSet.FindAsync(id);
+
+            AuthorText text = await db.AuthorTextSet
+                                      .FindAsync(AuthorId, LanguageCode);
 
             if (text == null)
             {
                 return HttpNotFound();
             }
 
-            // Don't allow removal of texts which are in the default language.
-            if (text.LanguageCode == LanguageDefinitions.DefaultLanguage)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
-            }
-
             return View(text);
         }
 
         [HttpPost]
+        [ActionName("DeleteText")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteText(int id)
+        public async Task<ActionResult> DeleteTextConfirmed(int AuthorId, string LanguageCode)
         {
-            AuthorText text = await db.AuthorTextSet.FindAsync(id);
-
-            int authId = text.Author.Id;
-
             // Don't allow removal of texts which are in the default language.
-            if (text.LanguageCode == LanguageDefinitions.DefaultLanguage)
+            if (LanguageCode == LanguageDefinitions.DefaultLanguage)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
             }
+
+            AuthorText text = await db.AuthorTextSet.FindAsync(AuthorId, LanguageCode);
 
             db.AuthorTextSet.Remove(text);
 
             await db.SaveChangesAsync();
 
-            return RedirectToAction("Details", new { Id = authId });
+            return RedirectToAction("Details", new { Id = AuthorId });
         }
 
         protected override void Dispose(bool disposing)

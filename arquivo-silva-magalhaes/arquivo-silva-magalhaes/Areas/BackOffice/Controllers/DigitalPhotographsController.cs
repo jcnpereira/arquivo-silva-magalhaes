@@ -19,8 +19,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/DigitalPhotographs
         public async Task<ActionResult> Index()
         {
-            var digitalPhotographSet = db.DigitalPhotographSet.Include(d => d.Specimen);
-            return View(await digitalPhotographSet.ToListAsync());
+            // var digitalPhotographSet = db.DigitalPhotographSet.Include(d => d.Specimen);
+            // return View(await digitalPhotographSet.ToListAsync());
+            return View();
         }
 
         // GET: BackOffice/DigitalPhotographs/Details/5
