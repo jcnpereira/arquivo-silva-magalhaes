@@ -12,6 +12,11 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Diagnostics;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using System.IO;
+using System.Drawing;
+using ArquivoSilvaMagalhaes.Utilitites;
+using System.Drawing.Imaging;
+using ImageResizer;
+using System.Web.UI;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -152,36 +157,79 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             var photosToAdd = new List<DigitalPhotograph>();
 
-            foreach (var item in model.Items)
+            foreach (var item in model.Items.Where(i => i.IsToConsider))
             {
-                //var fileName = Path.GetFileName(item.Photo.FileName);
-                //var path = Path.Combine(Server.MapPath("~/App_Data/uploads/Specimens"), model.SpecimenId.ToString());
-
-                //Directory.CreateDirectory(path);
-
-                //photosToAdd.Add(new DigitalPhotograph
-                //    {
-                //        SpecimenId = model.SpecimenId,
-                //        CopyrightInfo = item.CopyrightInfo,
-                //        IsVisible = item.IsVisible,
-                //        FileName = Path.Combine(path, fileName),
-                //        Process = item.Process,
-                //        ScanDate = new DateTime(item.ScanYear, item.ScanMonth, item.ScanDay)
-                //    });
-
-                //Debug.WriteLine("Path is: {0}", path);
+                var file = model.Photos.First(p => p.FileName == item.OriginalFileName);
+                var newName = Guid.NewGuid().ToString();
 
 
-                //item.Photo.SaveAs(Path.Combine(path, fileName));
+                Debug.WriteLine(item.IsVisible);
+
+                photosToAdd.Add(new DigitalPhotograph
+                {
+                    SpecimenId = model.SpecimenId,
+                    CopyrightInfo = item.CopyrightInfo,
+                    ScanDate = new DateTime(item.ScanYear, item.ScanMonth, item.ScanDay),
+                    Process = item.Process,
+                    OriginalFileName = item.OriginalFileName,
+                    IsVisible = item.IsVisible,
+                    FileName = newName + Path.GetExtension(file.FileName),
+                    Encoding = file.ContentType
+                });
+
+                ImageJob j = new ImageJob
+                {
+                    Instructions = new Instructions
+                    {
+                        Width = 1024,
+                        Height = 768,
+                        Mode = FitMode.Max
+                    },
+                    Source = file.InputStream,
+                    Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", newName + ".jpg"),
+                    ResetSourceStream = true,
+                    DisposeSourceObject = false
+                };
+
+                ImageBuilder.Current.Build(j);
+
+                j.Instructions.Width = 500;
+                j.Instructions.Height = 300;
+                j.DisposeSourceObject = false;
+                j.Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", newName + ".jpg");
+
+                ImageBuilder.Current.Build(j);
+
+                file.SaveAs(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", newName + Path.GetExtension(file.FileName)));
+
+                file.InputStream.Dispose();
             }
+
+            db.DigitalPhotographSet.AddRange(photosToAdd);
+
+            await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> GetPicture(int? id, string size = "Large")
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
+            var p = await db.DigitalPhotographSet.FindAsync(id);
 
+            if (p == null || !p.IsVisible) { return HttpNotFound(); }
 
-
+            switch (size)
+            {
+                case "Large":
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", p.FileName + ".jpg"), p.Encoding);
+                case "Thumb":
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", p.FileName + ".jpg"), p.Encoding);
+                default:
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", p.FileName + ".jpg"), p.Encoding);
+            }
+        }
 
 
         protected override void Dispose(bool disposing)

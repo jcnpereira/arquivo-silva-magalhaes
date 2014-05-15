@@ -32,6 +32,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public bool IsVisible { get; set; }
 
+        public string Encoding { get; set; }
+
         [ForeignKey("SpecimenId")]
         public Specimen Specimen { get; set; }
 

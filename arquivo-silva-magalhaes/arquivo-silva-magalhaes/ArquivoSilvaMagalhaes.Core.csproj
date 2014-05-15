@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -212,10 +215,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405131844355_ArchiveDataContext.cs" />
-    <Compile Include="Migrations\201405131844355_ArchiveDataContext.Designer.cs">
-      <DependentUpon>201405131844355_ArchiveDataContext.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
@@ -267,6 +266,7 @@
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
   </ItemGroup>
@@ -738,9 +738,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405131844355_ArchiveDataContext.resx">
-      <DependentUpon>201405131844355_ArchiveDataContext.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>

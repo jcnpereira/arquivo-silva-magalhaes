@@ -26,13 +26,13 @@
 
         <div data-ng-repeat="photo in photos">
 
-            <input type="hidden" name="Items[{{photo.index}}].OriginalFileName" />
+            <input type="hidden" name="Items[{{photo.index}}].OriginalFileName" value="{{photo.fileName}}" />
 
             <div class="col-md-3">
                 <img class="img-responsive" id="photos-{{photo.index}}" />
 
                 <label class="control-label" for="Items[{{photo.index}}].IsToConsider">@Html.DisplayNameFor(model => model.Items[0].IsToConsider)</label>
-                <input class="checkbox" type="checkbox" checked="checked" name="Items[{{photo.index}}].IsToConsider" />
+                <input class="checkbox" type="checkbox" checked="checked" name="Items[{{photo.index}}].IsToConsider" value="true" />
             </div>
 
             <div class="col-md-9">
@@ -48,7 +48,7 @@
                     <label for="Items[{{photo.index}}].IsVisible">@Html.DisplayNameFor(model => model.Items[0].IsVisible)</label>
 
                     <div>
-                        <input class="checkbox" type="checkbox" name="Items[{{photo.index}}].IsVisible" />
+                        <input class="checkbox" type="checkbox" name="Items[{{photo.index}}].IsVisible" value="true" />
                     </div>
                 </div>
 
@@ -101,11 +101,12 @@
                 $scope.getPictures = function () {
                     _this.files = $('#Photos')[0].files;
 
-                    while ($scope.photos.length > 0) { $scope.photos.pop(); }
+                    $('#Photos').hide();
 
                     for (var i = 0; i < _this.files.length; i += 1) {
                         $scope.photos.push({
-                            index: i
+                            index: i,
+                            fileName: escape(_this.files[i].name)
                         });
                     }
 
