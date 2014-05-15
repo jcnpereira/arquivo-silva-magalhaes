@@ -16,24 +16,22 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         public int Id { get; set; }
+
         public string CommenterName { get; set; }
         public string CommenterEmail { get; set; }
         public string IsEmailVisible { get; set; }
         public string VisibleSince { get; set; }
+
         public int DigitalPhotographId { get; set; }
 
-        [Required]
-        public virtual DigitalPhotograph DigitalPhotograph { get; set; }
-        public virtual ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
+        [ForeignKey("DigitalPhotographId")]
+        public DigitalPhotograph DigitalPhotograph { get; set; }
+
+        public ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
     }
 
     public partial class ShowcasePhotoText
     {
-        public ShowcasePhotoText()
-        {
-            this.LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
         public int ShowcasePhotoId { get; set; }
 
@@ -41,5 +39,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         public string Comment { get; set; }
+
+        [ForeignKey("ShowcasePhotoId")]
+        public ShowcasePhoto ShowcasePhoto { get; set; }
     }
 }

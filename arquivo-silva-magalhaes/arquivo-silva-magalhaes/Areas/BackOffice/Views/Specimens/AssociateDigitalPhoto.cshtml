@@ -4,9 +4,13 @@
     ViewBag.Title = "AssociateDigitalPhoto";
 }
 
+@section headscripts{
+    @Scripts.Render("~/bundles/angular")
+}
+
 <h2>AssociateDigitalPhoto</h2>
 
-@using (Html.BeginForm("AssociateDigitalPhoto", "Specimens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AssociateDigitalPhoto", "Specimens", FormMethod.Post, new { enctype = "multipart/form-data", data_ng_app = "pictureForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -14,67 +18,67 @@
 
     @Html.HiddenFor(model => model.SpecimenId)
 
-    <div id="afsm-add-picture-form" class="form-horizontal">
+    <div class="form-horizontal" data-ng-controller="FormController as form">
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Items[0].Photo, htmlAttributes: new { @class = "control-label", data_afsm_show = "#afsm-fields-container[0]" })
+            <input type="file" name="Photos" id="Photos" accept="image/*" multiple onchange="angular.element(this).scope().getPictures()" />
+        </div>
 
-            <div>
-                @* Image preview. *@
-                <img class="hidden img-responsive" id="afsm-image-0" />
+        <div data-ng-repeat="photo in photos">
 
-                @* The upload input has to be done by hand :( *@
-                <input type="file" class="afsm-image-upload" name="Items[0].Photo" data-afsm-preview="#afsm-image-0" accept="image/*" />
+            <input type="hidden" name="Items[{{photo.index}}].OriginalFileName" />
 
-                @Html.ValidationMessageFor(model => model.Items[0].Photo, "", new { @class = "text-danger" })
+            <div class="col-md-3">
+                <img class="img-responsive" id="photos-{{photo.index}}" />
+
+                <label class="control-label" for="Items[{{photo.index}}].IsToConsider">@Html.DisplayNameFor(model => model.Items[0].IsToConsider)</label>
+                <input class="checkbox" type="checkbox" checked="checked" name="Items[{{photo.index}}].IsToConsider" />
+            </div>
+
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="Items[{{photo.index}}].Process">@Html.DisplayNameFor(model => model.Items[0].Process)</label>
+
+                    <div>
+                        <input class="form-control" type="text" name="Items[{{photo.index}}].Process" required="required" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Items[{{photo.index}}].IsVisible">@Html.DisplayNameFor(model => model.Items[0].IsVisible)</label>
+
+                    <div>
+                        <input class="checkbox" type="checkbox" name="Items[{{photo.index}}].IsVisible" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Items[{{photo.index}}].Process">@DataStrings.ScanDate</label>
+
+                    <div class="form-inline">
+                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanYear" required="required" placeholder="yyyy" />
+                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanMonth" required="required" min="1" max="12" placeholder="MM" />
+                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanDay" required="required" min="1" max="31" placeholder="dd" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Items[{{photo.index}}].IsVisible">@Html.DisplayNameFor(model => model.Items[0].CopyrightInfo)</label>
+
+                    <div>
+                        <textarea class="form-control" name="Items[{{photo.index}}].CopyrightInfo"></textarea>
+                    </div>
+                </div>
+
+                <hr />
             </div>
         </div>
 
-        @* We'll hide all fields until the user uploads a file. *@
-
-        <div @*class="hidden"*@ id="afsm-fields-container[0]">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Items[0].Process)
-                <div>
-                    @Html.EditorFor(model => model.Items[0].Process, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Items[0].Process)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Items[0].ScanYear, "Data de digitalização")
-                <div class="afsm-date-input">
-                    @Html.EditorFor(model => model.Items[0].ScanYear, new { htmlAttributes = new { @class = "form-control", placeholder = "Ano" } })
-                    @Html.EditorFor(model => model.Items[0].ScanMonth, new { htmlAttributes = new { @class = "form-control", placeholder = "Mês" } })
-                    @Html.EditorFor(model => model.Items[0].ScanDay, new { htmlAttributes = new { @class = "form-control", placeholder = "Dia" } })
-
-
-                    @*@Html.DropDownListFor(model => model.Items[0].ScanYear, Enumerable.Range(1990, DateTime.Now.Year - 1990).Select(y => new SelectListItem { Value = y.ToString(), Text = y.ToString() }), new { @class = "afsm-year-input" })
-                        @Html.DropDownListFor(model => model.Items[0].ScanMonth, Enumerable.Range(1, 12).Select(m => new SelectListItem { Value = m.ToString(), Text = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(m) }), new { @class = "afsm-month-input" })
-                        @Html.DropDownListFor(model => model.Items[0].ScanDay, Enumerable.Range(1, 31).Select(d => new SelectListItem { Value = d.ToString(), Text = d.ToString() }), new { @class = "afsm-day-input" })*@
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Items[0].IsVisible)
-                <div>
-                    @Html.EditorFor(model => model.Items[0].IsVisible, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Items[0].IsVisible)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Items[0].CopyrightInfo)
-                <div>
-                    @Html.EditorFor(model => model.Items[0].CopyrightInfo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Items[0].CopyrightInfo)
-                </div>
-            </div>
+        <div ng-show="photos.length > 0">
+            @Html.Partial("_SubmitBackPartial")
         </div>
     </div>
-
-    @*<button class="btn btn-default" id="afsm-add-item">Adicionar item</button>*@
-
-    @Html.Partial("_SubmitBackPartial")
+    
 }
 
 
@@ -82,47 +86,50 @@
 @section Scripts {
     <script type="text/javascript">
         (function (window, document) {
-            // Last index of an item.
-            var lastIndex = 0,
-                form = $('#afsm-add-picture-form');
+            var app = angular.module('pictureForm', []);
 
-            function addItem() {
-                form.append('<input type="file" name="Items[' + (++lastIndex) + '].Photo" accept="image/*" />');
-                console.log(lastIndex);
-            }
+            app.controller('FormController', function ($scope) {
+                var _this = this;
 
-            $('#afsm-add-item').click(function (e) {
-                e.preventDefault();
+                $scope.photos = [];
 
+                this.hasChosenPictures = false;
+                this.i = 20;
 
+                this.files = [];
 
-                addItem();
-            });
+                $scope.getPictures = function () {
+                    _this.files = $('#Photos')[0].files;
 
-            $('.afsm-image-upload').on('change', function (e) {
-                var $img = $($(this).data('afsm-preview')),
-                    file = e.target.files[0],
-                    reader = new FileReader();
+                    while ($scope.photos.length > 0) { $scope.photos.pop(); }
 
-                
-
-                if (!file.type.match('image.*')) {
-                    alert('Tipo de ficheiro inválido. Só se aceitam imagens.');
-                }
-
-                reader.onload = (function (readFile) {
-                    return function (fe) {
-
-                        $img.attr('src', fe.target.result);
-
-                        $img.removeClass('hidden');
+                    for (var i = 0; i < _this.files.length; i += 1) {
+                        $scope.photos.push({
+                            index: i
+                        });
                     }
-                }(file));
 
-                reader.readAsDataURL(file);
+                    loadAllImages();
 
-                return false;
+                    $scope.$apply();
+                };
+
+                function loadAllImages() {
+                    var i = 0; 
+                    for (i = 0; i < $scope.photos.length; i += 1) {
+                        (function (index) {
+                            var fr = new FileReader();
+
+                            fr.onload = function (e) {
+                                $('#photos-' + index).attr('src', e.target.result);
+                            }
+
+                            fr.readAsDataURL(_this.files[i]);
+                        }(i));
+                    }
+                }
             });
+
 
         }(window, document));
     </script>

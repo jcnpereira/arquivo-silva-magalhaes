@@ -52,9 +52,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public string CatalogCode { get; set; }
 
-        public virtual ICollection<CollectionText> CollectionTexts { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
+        public ICollection<CollectionText> CollectionTexts { get; set; }
+        public ICollection<Document> Documents { get; set; }
+        public ICollection<Author> Authors { get; set; }
     }
 
     public enum CollectionType : byte
@@ -87,5 +87,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string FieldAndContents { get; set; }
 
         public string CopyrightInfo { get; set; }
+
+        [ForeignKey("CollectionId")]
+        public Collection Collection { get; set; }
     }
 }

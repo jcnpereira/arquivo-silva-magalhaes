@@ -23,15 +23,18 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public int Size { get; set; }
 
-        public virtual ICollection<Event> EventsUsingAttachment { get; set; }
-        public virtual ICollection<NewsItem> NewsUsingAttachment { get; set; }
-        public virtual ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
+        public ICollection<Event> EventsUsingAttachment { get; set; }
+        public ICollection<NewsItem> NewsUsingAttachment { get; set; }
+        public ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
     }
 
     public class DocumentAttachmentText
     {
         [Key, Column(Order = 0)]
-        public int DocumentId { get; set; }
+        public int DocumentAttachmentId { get; set; }
+        [ForeignKey("DocumentAttachmentId")]
+        public DocumentAttachment DocumentAttachment { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 

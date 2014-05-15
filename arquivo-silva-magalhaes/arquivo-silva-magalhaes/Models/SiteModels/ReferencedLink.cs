@@ -26,7 +26,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public bool IsUsefulLink { get; set; }
 
-        public virtual ICollection<Event> EventsUsingThis { get; set; }
-        public virtual ICollection<NewsItem> NewsUsingThis { get; set; }
+        public ICollection<Event> EventsUsingThis { get; set; }
+        public ICollection<NewsItem> NewsUsingThis { get; set; }
     }
 }

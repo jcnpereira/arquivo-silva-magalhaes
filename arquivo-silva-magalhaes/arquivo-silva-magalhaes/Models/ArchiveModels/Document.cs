@@ -70,5 +70,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string FieldAndContents { get; set; }
         public string Description { get; set; }
 
+        [ForeignKey("DocumentId")]
+        public Document Document { get; set; }
     }
 }

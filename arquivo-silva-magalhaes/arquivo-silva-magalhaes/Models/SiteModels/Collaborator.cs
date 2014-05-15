@@ -21,6 +21,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public bool ContactVisible { get; set; }
         public string Contact { get; set; }
 
-        public virtual ICollection<Event> EventsAsCollaborator { get; set; }
+        public ICollection<Event> EventsAsCollaborator { get; set; }
     }
 }

@@ -29,6 +29,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Value { get; set; }
+
+        [ForeignKey("ProcessId")]
+        public Process Process { get; set; }
     }
 }

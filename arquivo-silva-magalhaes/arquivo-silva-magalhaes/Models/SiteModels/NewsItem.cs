@@ -15,8 +15,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             ReferencedNewsItems = new HashSet<NewsItem>();
             ReferencedNewsText = new HashSet<NewsText>();
             ReferencedDocuments = new HashSet<DocumentAttachment>();
-
-            HideAfterExpiry = false;
         }
 
         [Key]
@@ -38,6 +36,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         [Key, Column(Order = 0)]
         public int NewsItemId { get; set; }
+        [ForeignKey("NewsItemId")]
+        public NewsItem NewsItem { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }

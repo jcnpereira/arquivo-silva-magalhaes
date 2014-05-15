@@ -154,25 +154,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             foreach (var item in model.Items)
             {
-                var fileName = Path.GetFileName(item.Photo.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads/Specimens"), model.SpecimenId.ToString());
+                //var fileName = Path.GetFileName(item.Photo.FileName);
+                //var path = Path.Combine(Server.MapPath("~/App_Data/uploads/Specimens"), model.SpecimenId.ToString());
 
-                Directory.CreateDirectory(path);
+                //Directory.CreateDirectory(path);
 
-                photosToAdd.Add(new DigitalPhotograph
-                    {
-                        SpecimenId = model.SpecimenId,
-                        CopyrightInfo = item.CopyrightInfo,
-                        IsVisible = item.IsVisible.ToString(),
-                        StoreLocation = Path.Combine(path, fileName),
-                        Process = item.Process,
-                        ScanDate = new DateTime(item.ScanYear, item.ScanMonth, item.ScanDay)
-                    });
+                //photosToAdd.Add(new DigitalPhotograph
+                //    {
+                //        SpecimenId = model.SpecimenId,
+                //        CopyrightInfo = item.CopyrightInfo,
+                //        IsVisible = item.IsVisible,
+                //        FileName = Path.Combine(path, fileName),
+                //        Process = item.Process,
+                //        ScanDate = new DateTime(item.ScanYear, item.ScanMonth, item.ScanDay)
+                //    });
 
-                Debug.WriteLine("Path is: {0}", path);
+                //Debug.WriteLine("Path is: {0}", path);
 
 
-                item.Photo.SaveAs(Path.Combine(path, fileName));
+                //item.Photo.SaveAs(Path.Combine(path, fileName));
             }
 
             return RedirectToAction("Index");

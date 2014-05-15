@@ -52,12 +52,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         /// </summary>
         public EventType EventType { get; set; }
 
-        public virtual ICollection<Event> ReferencedEvents { get; set; }
-        public virtual ICollection<Partnership> Partnerships { get; set; }
-        public virtual ICollection<Collaborator> Collaborators { get; set; }
-        public virtual ICollection<ReferencedLink> Links { get; set; }
-        public virtual ICollection<DocumentAttachment> AttachedDocuments { get; set; }
-        public virtual ICollection<EventText> EventTexts { get; set; }
+        public ICollection<Event> ReferencedEvents { get; set; }
+        public ICollection<Partnership> Partnerships { get; set; }
+        public ICollection<Collaborator> Collaborators { get; set; }
+        public ICollection<ReferencedLink> Links { get; set; }
+        public ICollection<DocumentAttachment> AttachedDocuments { get; set; }
+        public ICollection<EventText> EventTexts { get; set; }
     }
 
     public class EventText
@@ -65,6 +65,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key, Column(Order = 0)]
         public int EventId { get; set; }
+        [ForeignKey("EventId")]
+        public Event Event { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }

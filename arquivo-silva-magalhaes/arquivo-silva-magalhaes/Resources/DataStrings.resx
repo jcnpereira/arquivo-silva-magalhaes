@@ -159,4 +159,7 @@
   <data name="Place" xml:space="preserve">
     <value>Local</value>
   </data>
+  <data name="ScanDate" xml:space="preserve">
+    <value>Data de digitalização</value>
+  </data>
 </root>

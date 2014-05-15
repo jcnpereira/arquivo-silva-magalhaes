@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public DateTime RemovalDate { get; set; }
         public bool IsVisible { get; set; }
 
-        public virtual ICollection<BannerPhotographText> BannerTexts { get; set; }
+        public ICollection<BannerPhotographText> BannerTexts { get; set; }
     }
 
     public class BannerPhotographText
@@ -30,6 +30,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key, Column(Order = 0)]
         public int BannerPhotographId { get; set; }
+        [ForeignKey("BannerPhotographId")]
+        public BannerPhotograph BannerPhotograph { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 

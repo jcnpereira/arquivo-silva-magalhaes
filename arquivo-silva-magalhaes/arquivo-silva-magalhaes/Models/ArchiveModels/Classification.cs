@@ -23,8 +23,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
-        public virtual ICollection<ClassificationText> ClassificationTexts { get; set; }
-        public virtual ICollection<Specimen> Specimens { get; set; }
+        public ICollection<ClassificationText> ClassificationTexts { get; set; }
+        public ICollection<Specimen> Specimens { get; set; }
     }
 
     /// <summary>
@@ -43,6 +43,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The classification details.
         /// </summary>
         public string Value { get; set; }
+
+        [ForeignKey("ClassificationId")]
+        public Classification Classification { get; set; }
 
     }
 }

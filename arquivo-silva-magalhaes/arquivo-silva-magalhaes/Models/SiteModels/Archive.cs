@@ -26,6 +26,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         [Key, Column(Order = 0)]
         public int ArchiveId { get; set; }
+        [ForeignKey("ArchiveId")]
+        public Archive Archive { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
@@ -45,6 +47,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string ContactDetails;
         public string Service;
 
+        [Required]
         public int ArchiveId { get; set; }
+
+        [ForeignKey("ArchiveId")]
+        public Archive Archive { get; set; }
     }
 }

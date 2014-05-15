@@ -113,5 +113,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         public string Curriculum { get; set; }
+
+        [ForeignKey("AuthorId")]
+        public Author Author { get; set; }
     }
 }

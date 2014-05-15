@@ -14,6 +14,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.SpecimenTexts = new HashSet<SpecimenText>();
             this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
             this.Classifications = new HashSet<Classification>();
+            this.Keywords = new HashSet<Keyword>();
         }
     
         [Key]
@@ -26,25 +27,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         public int DocumentId { get; set; }
+        [ForeignKey("DocumentId")]
+        public Document Document { get; set; }
 
         [Required]
         public int ProcessId { get; set; }
+        [ForeignKey("ProcessId")]
+        public Process Process { get; set; }
 
         [Required]
         public int FormatId { get; set; }
+        [ForeignKey("FormatId")]
+        public Format Format { get; set; }
 
         public virtual ICollection<Classification> Classifications { get; set; }
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
         public virtual ICollection<SpecimenText> SpecimenTexts { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
-
-        
     }
 
     public partial class SpecimenText
     {
         [Key, Column(Order = 0)]
         public int SpecimenId { get; set; }
+        [ForeignKey("SpecimenId")]
+        public Specimen Specimen { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }

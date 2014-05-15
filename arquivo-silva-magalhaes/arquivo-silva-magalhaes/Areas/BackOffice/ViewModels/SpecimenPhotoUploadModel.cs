@@ -16,9 +16,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public int SpecimenId { get; set; }
 
         public List<PhotoUploadModelItem> Items { get; set; }
+
+        public List<HttpPostedFileBase> Photos { get; set; }
     }
 
-    public class PhotoUploadModelItem :IValidatableObject
+    public class PhotoUploadModelItem : IValidatableObject
     {
         [Required]
         [Range(1, 31)]
@@ -34,14 +36,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public string Process { get; set; }
 
+        public string OriginalFileName { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         public string CopyrightInfo { get; set; }
 
         public bool IsVisible { get; set; }
 
-        [Required]
-        public HttpPostedFileBase Photo { get; set; }
+        public bool IsToConsider { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
