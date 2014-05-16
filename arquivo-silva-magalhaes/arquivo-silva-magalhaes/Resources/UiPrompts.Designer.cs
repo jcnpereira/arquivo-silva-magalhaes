@@ -77,5 +77,14 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("AddNewLanguage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar isto?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
     }
 }

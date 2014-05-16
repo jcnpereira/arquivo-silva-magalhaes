@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.DigitalPhotograph>
+
+
+@{
+    ViewBag.Title = "ListPhotos";
+}
+
+<h2>ListPhotos</h2>
+
+@Html.Partial("_PhotoListPartial")
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="afsm-deleteModalAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">@UiStrings.Attention</h4>
+            </div>
+            <div class="modal-body">
+                @UiPrompts.ConfirmDelete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@UiStrings.No</button>
+                <button type="button" class="btn btn-danger" id="afsm-doDelete">@UiStrings.Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        (function () {
+            var delButton = $('#afsm-doDelete'),
+                alertModal = $('#afsm-deleteModalAlert'),
+                url = "";
+
+            $('#afsm-doDelete').click(function () {
+                doDelete(url);
+            })
+
+            $('[data-afsm-show-modal="true"]').click(function (e) {
+                url = $(this).attr('href');
+
+                alertModal.modal('show');
+
+                return false;
+            });
+
+            function doDelete(url) {
+                // $.ajax(url);
+
+                console.log('Would delete', url);
+
+                alertModal.modal('hide');
+            }
+        }());
+    </script>
+}

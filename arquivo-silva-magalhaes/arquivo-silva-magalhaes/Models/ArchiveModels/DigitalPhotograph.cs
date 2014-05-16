@@ -11,6 +11,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public DigitalPhotograph()
         {
+            LastModified = DateTime.Now;
             this.ShowcasePhotoes = new HashSet<ShowcasePhoto>();
         }
 
@@ -33,6 +34,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public bool IsVisible { get; set; }
 
         public string Encoding { get; set; }
+
+        public DateTime LastModified { get; set; }
 
         [ForeignKey("SpecimenId")]
         public Specimen Specimen { get; set; }

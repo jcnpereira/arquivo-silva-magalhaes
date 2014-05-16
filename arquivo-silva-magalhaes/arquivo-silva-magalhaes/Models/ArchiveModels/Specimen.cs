@@ -15,6 +15,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
             this.Classifications = new HashSet<Classification>();
             this.Keywords = new HashSet<Keyword>();
+
+            
         }
     
         [Key]
@@ -34,6 +36,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int ProcessId { get; set; }
         [ForeignKey("ProcessId")]
         public Process Process { get; set; }
+
+        
 
         [Required]
         public int FormatId { get; set; }
