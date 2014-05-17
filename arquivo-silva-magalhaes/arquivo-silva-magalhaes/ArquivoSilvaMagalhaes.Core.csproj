@@ -206,7 +206,7 @@
     <Compile Include="Areas\BackOffice\ViewModels\NewsItemViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SpecimenPhotoUploadModel.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\SpecimenViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -395,6 +395,8 @@
     <Content Include="Areas\BackOffice\Views\Specimens\ListPhotos.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

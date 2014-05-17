@@ -52,6 +52,27 @@
 
     </dl>
 </div>
+
+@if (Model.DigitalPhotographs.Count() > 0)
+{
+    ViewBag.ActionToRedirect = "Details";
+    
+    foreach (var item in Model.DigitalPhotographs)
+    {
+        @Html.Partial("_PhotoListItemPartial", item)
+    }
+}
+else
+{
+    <p>Nada para ver aqui!</p>
+}
+
+<!-- Modal -->
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

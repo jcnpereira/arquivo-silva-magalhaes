@@ -49,7 +49,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Specimens/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new SpecimenCreateModel
+            {
+                AvailableDocuments = db.DocumentSet
+                .Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.CatalogCode
+                }),
+                AvailableKeywords = db.KeywordSet
+                .Select(k => new SelectListItem
+                {
+                    Value = k.Id.ToString(),
+                    Text = k.KeywordTexts.FirstOrDefault(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+                }),
+                AvailableProcesses = db.ProcessSet
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.ProcessTexts.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+                }),
+                AvailableFormats = db.FormatSet
+                .Select(f => new SelectListItem
+                {
+                    Value = f.Id.ToString(),
+                    Text = f.FormatDescription
+                }),
+                AvailableClassfications = db.ClassificationSet
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.ClassificationTexts.FirstOrDefault(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+                })
+            };
+
+            return View(model);
         }
 
         // POST: BackOffice/Specimens/Create
@@ -57,16 +91,32 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CatalogCode,AuthorCatalogationCode,HasMarksOrStamps,Indexation,Notes")] Specimen specimen)
+        public async Task<ActionResult> Create(SpecimenCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                db.SpecimenSet.Add(specimen);
+                var s = new Specimen
+                {
+                    DocumentId = model.DocumentId,
+                    ProcessId = model.ProcessId,
+                    FormatId = model.FormatId,
+
+                    Keywords = await db.KeywordSet.Where(k => model.KeywordIds.Contains(k.Id)).ToListAsync(),
+                    Classifications = await db.ClassificationSet.Where(c => model.ClassificationIds.Contains(c.Id)).ToListAsync(),
+
+                    AuthorCatalogationCode = model.AuthorCatalogationCode,
+                    CatalogCode = model.CatalogCode,
+                    HasMarksOrStamps = model.HasMarksOrStamps,
+                    Indexation = model.Indexation,
+                    Notes = model.Notes,
+                };
+
+                db.SpecimenSet.Add(s);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(specimen);
+            return View(model);
         }
 
         // GET: BackOffice/Specimens/Edit/5
@@ -236,6 +286,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             if (s == null) { return HttpNotFound(); }
 
+            ViewBag.Id = s.Id;
+
             return View(s.DigitalPhotographs.ToList());
         }
 
@@ -259,6 +311,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 CultureInfo provider = CultureInfo.InvariantCulture;
                 var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
 
+
                 // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
                 if (lastMod.CompareTo(p.LastModified) > 0)
                 {
@@ -268,12 +321,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             switch (size)
             {
-                case "Large":
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), p.Encoding);
                 case "Thumb":
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), p.Encoding);
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
+                case "Large":
                 default:
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), p.Encoding);
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
             }
         }
 
@@ -291,7 +343,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("DeletePhoto")]
-        public async Task<ActionResult> DeletePhotoConfirmed(int? id)
+        public async Task<ActionResult> DeletePhotoConfirmed(int? id, string redirectTo = "ListPhotos")
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
@@ -305,11 +357,42 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             await db.SaveChangesAsync();
 
-            return RedirectToAction("ListPhotos", new { id = p.SpecimenId });
+            return RedirectToAction(redirectTo, new { id = p.SpecimenId });
         }
 
+        public async Task<ActionResult> EditPhotoDetails(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
+            var p = await db.DigitalPhotographSet.FindAsync(id);
 
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            return View(p);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditPhotoDetails([Bind(Exclude = "FileName,OriginalFileName,Encoding,LastModified")] DigitalPhotograph photo)
+        {
+            if (ModelState.IsValid)
+            {
+                var p = await db.DigitalPhotographSet.FindAsync(photo.Id);
+
+                p.IsVisible = photo.IsVisible;
+                p.ScanDate = photo.ScanDate;
+                p.CopyrightInfo = photo.CopyrightInfo;
+                p.Process = photo.Process;
+
+                p.LastModified = DateTime.Now;
+                db.Entry(p).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("ListPhotos", new { id = photo.SpecimenId });
+            }
+
+            return View(photo);
+        }
 
         protected override void Dispose(bool disposing)
         {

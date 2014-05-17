@@ -61,6 +61,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Associar fotografias digitais.
+        /// </summary>
+        public static string AssociatePicture {
+            get {
+                return ResourceManager.GetString("AssociatePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Atenção.
         /// </summary>
         public static string Attention {
@@ -93,6 +102,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         

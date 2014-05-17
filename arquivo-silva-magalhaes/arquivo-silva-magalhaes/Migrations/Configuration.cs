@@ -19,6 +19,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
             SeedCollections(context);
             SeedDocuments(context);
             SeedProcesses(context);
+            SeedKeywords(context);
+            SeedClassifications(context);
             SeedFormats(context);
             SeedSpecimens(context);
             //  This method will be called after migrating to the latest version.
@@ -80,10 +82,22 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     AuthorId = 1,
                     CollectionId = 1,
                     CatalogationDate = DateTime.Now,
-                    CatalogCode = "a",
+                    CatalogCode = "DOC-1",
                     DocumentDate = DateTime.Now,
-                    Notes = "a",
-                    ResponsibleName = "a"
+                    Notes = "Notas 1",
+                    ResponsibleName = "Responsável Documento 1"
+                }
+            );
+
+            db.DocumentTextSet.AddOrUpdate(
+                dt => new { dt.DocumentId, dt.LanguageCode },
+                new DocumentText
+                {
+                    DocumentId = 1,
+                    LanguageCode = "pt",
+                    Description = "Descrição PT",
+                    DocumentLocation = "Localização PT",
+                    FieldAndContents = "Âmbito e Conteúdo PT"
                 }
             );
         }
@@ -92,7 +106,74 @@ namespace ArquivoSilvaMagalhaes.Migrations
         {
             db.ProcessSet.AddOrUpdate(
                 p => p.Id,
-                new Process { Id = 1 }
+                new Process { Id = 1 },
+                new Process { Id = 2 }
+            );
+
+            db.ProcessTextSet.AddOrUpdate(
+                pt => new { pt.ProcessId, pt.LanguageCode },
+                new ProcessText
+                {
+                    ProcessId = 1,
+                    LanguageCode = "pt",
+                    Value = "Processo 1 PT"
+                },
+                new ProcessText
+                {
+                    ProcessId = 2,
+                    LanguageCode = "pt",
+                    Value = "Processo 2 PT"
+                }
+            );
+        }
+
+        private void SeedKeywords(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        {
+            db.KeywordSet.AddOrUpdate(
+                k => k.Id,
+                new Keyword { Id = 1 },
+                new Keyword { Id = 2 }
+            );
+
+            db.KeywordTextSet.AddOrUpdate(
+                kt => new { kt.KeywordId, kt.LanguageCode },
+                new KeywordText
+                {
+                    KeywordId = 1,
+                    LanguageCode = "pt",
+                    Value = "Palavra-chave 1 PT"
+                },
+                new KeywordText
+                {
+                    KeywordId = 2,
+                    LanguageCode = "pt",
+                    Value = "Palavra-chave 2 PT"
+                }
+            );
+        }
+
+        private void SeedClassifications(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        {
+            db.ClassificationSet.AddOrUpdate(
+                c => c.Id,
+                new Classification { Id = 1 },
+                new Classification { Id = 2 }
+            );
+
+            db.ClassificationTextSet.AddOrUpdate(
+                ct => new { ct.ClassificationId, ct.LanguageCode },
+                new ClassificationText
+                {
+                    ClassificationId = 1,
+                    LanguageCode = "pt",
+                    Value = "Classificação 1 PT"
+                },
+                new ClassificationText
+                {
+                    ClassificationId = 2,
+                    LanguageCode = "pt",
+                    Value = "Classificação 2 PT"
+                }
             );
         }
 
@@ -100,7 +181,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
         {
             db.FormatSet.AddOrUpdate(
                 f => f.Id,
-                new Format { Id = 1, FormatDescription = "8x11" }
+                new Format { Id = 1, FormatDescription = "8x11" },
+                new Format { Id = 2, FormatDescription = "35mm" }
             );
         }
 
@@ -111,14 +193,30 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 new Specimen
                 {
                     Id = 1,
-                    AuthorCatalogationCode = "a",
-                    CatalogCode = "a",
+                    AuthorCatalogationCode = "COD-AUT 1",
+                    CatalogCode = "COD-CAT 1",
                     DocumentId = 1,
                     FormatId = 1,
                     HasMarksOrStamps = false,
-                    Indexation = "a",
-                    Notes = "a",
+                    Indexation = "INDEX 1",
+                    Notes = "Notas 1",
                     ProcessId = 1
+                }
+            );
+
+            db.SpecimenTextSet.AddOrUpdate(
+                st => new { st.SpecimenId, st.LanguageCode },
+                new SpecimenText
+                {
+                    SpecimenId = 1,
+                    LanguageCode = "pt",
+                    Description = "Descrição 1",
+                    DetailedStateDescription = "Descrição Detalhada 1",
+                    SimpleStateDescription = "Descrição Simples 1",
+                    InterventionDescription = "Intervenção 1",
+                    Publication = "Publicação 1",
+                    Title = "Título PT",
+                    Topic = "Tópico PT"
                 }
             );
         }

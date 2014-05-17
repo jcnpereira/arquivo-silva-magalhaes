@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.DisplaySidebar = true;
+}
+
+<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="utf-8" />
@@ -32,17 +36,24 @@
 
     <div class="container body-content">
         <!-- Menu à esquerda. -->
-        <div class="col-md-2">
-            <ul class="nav nav-stacked">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
-                <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
-            </ul>
-        </div>
+        @if (ViewBag.DisplaySidebar)
+        {
+            <div class="col-md-2">
+                <ul class="nav nav-stacked">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
+                    <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
+                </ul>
+            </div>
 
-        <div class="col-md-10">
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+        }
+        else
+        {
             @RenderBody()
-        </div>
+        }
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT</p>
