@@ -7,7 +7,18 @@
 
 <h2>ListPhotos</h2>
 
-@Html.Partial("_PhotoListPartial")
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("_PhotoListItemPartial", item)
+    }
+}
+else
+{
+    <p>Nada para ver aqui!</p>
+}
+
 
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -39,27 +50,22 @@
         (function () {
             var delButton = $('#afsm-doDelete'),
                 alertModal = $('#afsm-deleteModalAlert'),
-                url = "";
+                url = "",
+                correspondingForm;
 
             $('#afsm-doDelete').click(function () {
-                doDelete(url);
+                correspondingForm.submit();
             })
 
             $('[data-afsm-show-modal="true"]').click(function (e) {
                 url = $(this).attr('href');
 
+                correspondingForm = $(this).parent('form');
+
                 alertModal.modal('show');
 
                 return false;
             });
-
-            function doDelete(url) {
-                // $.ajax(url);
-
-                console.log('Would delete', url);
-
-                alertModal.modal('hide');
-            }
         }());
     </script>
 }

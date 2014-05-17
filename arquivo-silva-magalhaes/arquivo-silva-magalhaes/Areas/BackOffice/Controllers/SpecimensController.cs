@@ -215,8 +215,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 await db.SaveChangesAsync();
 
-                return RedirectToAction("Index"); 
+                return RedirectToAction("Index");
             }
+
+            if (Request.IsAjaxRequest()) return PartialView(model);
 
             return View(model);
         }
@@ -251,7 +253,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 CultureInfo provider = CultureInfo.InvariantCulture;
                 var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
-                
+
                 // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
                 if (lastMod.CompareTo(p.LastModified) > 0)
                 {
@@ -269,6 +271,39 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), p.Encoding);
             }
         }
+
+        public async Task<ActionResult> DeletePhoto(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var p = await db.DigitalPhotographSet.FindAsync(id);
+
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            return View(p);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeletePhoto")]
+        public async Task<ActionResult> DeletePhotoConfirmed(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var p = await db.DigitalPhotographSet.FindAsync(id);
+
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            db.DigitalPhotographSet.Remove(p);
+
+            // TODO: Remove all files from the disk.
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("ListPhotos", new { id = p.SpecimenId });
+        }
+
+
 
 
         protected override void Dispose(bool disposing)

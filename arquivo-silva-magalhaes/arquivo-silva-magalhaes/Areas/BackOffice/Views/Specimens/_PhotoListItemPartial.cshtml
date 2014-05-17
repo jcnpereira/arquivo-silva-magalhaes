@@ -1,0 +1,34 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.DigitalPhotograph
+<div class="row">
+    @* Picture *@
+    <div class="col-md-3">
+        <img class="img-responsive" src="@Url.Action("GetPicture", new { id=Model.Id, size = "Thumb" })" />
+    </div>
+
+    @* Details *@
+    <div class="col-md-7">
+        <div class="row">
+            <strong>@Html.DisplayNameFor(model => model.Process)</strong>
+            <span>@Html.DisplayFor(model => model.Process)</span>
+        </div>
+        <div class="row">
+            <strong>@Html.DisplayNameFor(model => model.IsVisible)</strong>
+            <span>@(Model.IsVisible ? UiStrings.Yes : UiStrings.No)</span>
+        </div>
+    </div>
+
+    @* Actions *@
+    <div class="row col-md-offset-11">
+        <form class="btn-group" method="post" action="@Url.Action("DeletePhoto", new { id = Model.Id })">
+            <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("EditPhoto", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+            @Html.AntiForgeryToken()
+            <a href="@Url.Action("DeletePhoto", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-link="">
+                <span class="glyphicon glyphicon-floppy-remove"></span>
+            </a>
+        </form>
+    </div>
+</div>
+
+<hr />
