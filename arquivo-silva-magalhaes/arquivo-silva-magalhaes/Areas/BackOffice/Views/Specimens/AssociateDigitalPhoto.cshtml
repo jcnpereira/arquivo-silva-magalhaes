@@ -46,7 +46,6 @@
 
                 <div class="form-group">
                     <label for="Items[{{photo.index}}].IsVisible">@Html.DisplayNameFor(model => model.Items[0].IsVisible)</label>
-
                     <div>
                         <input class="checkbox" type="checkbox" name="Items[{{photo.index}}].IsVisible" value="true" />
                     </div>
@@ -106,7 +105,7 @@
                     for (var i = 0; i < _this.files.length; i += 1) {
                         $scope.photos.push({
                             index: i,
-                            fileName: escape(_this.files[i].name)
+                            fileName: _this.files[i].name
                         });
                     }
 

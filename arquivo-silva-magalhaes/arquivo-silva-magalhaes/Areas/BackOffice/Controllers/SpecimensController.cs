@@ -188,6 +188,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                         },
                         Source = file.InputStream,
                         Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", newName + ".jpg"),
+                        CreateParentDirectory = true,
                         ResetSourceStream = true,
                         DisposeSourceObject = false
                     };
@@ -203,8 +204,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                     ImageBuilder.Current.Build(j);
 
+                    var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", newName + Path.GetExtension(file.FileName));
+
+                    Directory.CreateDirectory(Path.GetDirectoryName(path));
+
                     // Then, save the "Original" picture.
-                    file.SaveAs(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", newName + Path.GetExtension(file.FileName)));
+                    file.SaveAs(path);
 
                     // ...and dispose of it, freeing memory.
                     file.InputStream.Dispose();
