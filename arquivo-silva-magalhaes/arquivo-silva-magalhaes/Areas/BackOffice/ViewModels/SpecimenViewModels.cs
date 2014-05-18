@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
     public class SpecimenCreateModel
     {
+
+        public SpecimenCreateModel()
+        {
+            I18nTexts = new List<SpecimenI18NModel>
+            {
+                new SpecimenI18NModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
+            };
+        }
 
         [Required]
         public string CatalogCode { get; set; }
@@ -23,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public string Notes { get; set; }
 
         [Required]
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
         public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
 
         [Required]
@@ -43,7 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public int[] KeywordIds { get; set; }
         public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
 
-        public IEnumerable<SpecimenI18NModel> I18nTexts { get; set; }
+        public List<SpecimenI18NModel> I18nTexts { get; set; }
     }
 
 
@@ -52,14 +61,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     {
         public int SpecimenId { get; set; }
 
+        [Required]
         public string LanguageCode { get; set; }
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
 
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Topic { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string SimpleStateDescription { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string DetailedStateDescription { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string InterventionDescription { get; set; }
+
+        [Required]
         public string Publication { get; set; }
     }
 

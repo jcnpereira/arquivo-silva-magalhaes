@@ -47,16 +47,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: BackOffice/Specimens/Create
-        public ActionResult Create()
+        public ActionResult Create(int? documentId)
         {
             var model = new SpecimenCreateModel
             {
-                AvailableDocuments = db.DocumentSet
-                .Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.CatalogCode
-                }),
                 AvailableKeywords = db.KeywordSet
                 .Select(k => new SelectListItem
                 {
@@ -83,6 +77,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 })
             };
 
+            if (documentId == null)
+            {
+                model.AvailableDocuments = db.DocumentSet
+                .Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.CatalogCode
+                });
+            }
+            else
+            {
+                model.DocumentId = documentId.Value;
+            }
+
             return View(model);
         }
 
@@ -97,7 +105,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 var s = new Specimen
                 {
-                    DocumentId = model.DocumentId,
+                    DocumentId = model.DocumentId.Value,
                     ProcessId = model.ProcessId,
                     FormatId = model.FormatId,
 
@@ -108,10 +116,26 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     CatalogCode = model.CatalogCode,
                     HasMarksOrStamps = model.HasMarksOrStamps,
                     Indexation = model.Indexation,
-                    Notes = model.Notes,
+                    Notes = model.Notes
                 };
 
                 db.SpecimenSet.Add(s);
+
+                db.SpecimenTextSet.AddRange(model.I18nTexts.Select(
+                    t => new SpecimenText
+                    {
+                        LanguageCode = t.LanguageCode,
+                        Description = t.Description,
+                        DetailedStateDescription = t.DetailedStateDescription,
+                        SimpleStateDescription = t.SimpleStateDescription,
+                        InterventionDescription = t.InterventionDescription,
+                        Publication = t.Publication,
+                        SpecimenId = s.Id,
+                        Title = t.Title,
+                        Topic = t.Topic
+                    }
+                ));
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
