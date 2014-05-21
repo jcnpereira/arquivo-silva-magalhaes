@@ -18,6 +18,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
+        public string Title { get; set; }
+
         public ICollection<ArchiveText> ArchiveTexts;
         public ICollection<Contact> Contacts;
     }
@@ -35,7 +37,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string ArchiveHistory { get; set; }
 
         public string ArchiveMission { get; set; }
-    }
+   }
 
     public class Contact
     {
