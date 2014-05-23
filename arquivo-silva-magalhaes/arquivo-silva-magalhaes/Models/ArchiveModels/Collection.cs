@@ -41,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public bool HasAttachments { get; set; }
 
-        public string OrganizationCode { get; set; }
+        public string OrganizationSystem { get; set; }
 
         public string Notes { get; set; }
         public bool IsVisible { get; set; }

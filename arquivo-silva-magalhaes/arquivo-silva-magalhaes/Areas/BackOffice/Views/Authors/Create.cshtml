@@ -1,4 +1,4 @@
-﻿@model AuthorEditModel
+﻿@model AuthorViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -13,8 +13,6 @@
     @Html.AntiForgeryToken()
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    @Html.HiddenFor(model => model.LanguageCode)
 
     <div class="form-horizontal">
         <div class="form-group">
@@ -48,7 +46,6 @@
                 @Html.ValidationMessageFor(model => model.DeathDate, "", new { @class = "text-danger" })
             </div>
         </div>
-
         @Html.Partial("_AuthorI18nPartial")
     </div>
 

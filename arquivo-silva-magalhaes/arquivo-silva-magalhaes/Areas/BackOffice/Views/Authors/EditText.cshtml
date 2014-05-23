@@ -1,4 +1,4 @@
-﻿@model AuthorI18nEditModel
+﻿@model AuthorI18nViewModel
 
 @{
     ViewBag.Title = "EditText";
@@ -14,7 +14,7 @@
         <h4>AuthorText</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AuthorId)
         @Html.HiddenFor(model => model.LanguageCode)
 
         <div class="form-group">

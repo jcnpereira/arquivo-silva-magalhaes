@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public class AuthorEditModel : IValidatableObject
+    public class AuthorViewModel : IValidatableObject
     {        
         public int Id { get; set; }
 
@@ -42,25 +42,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
-        [Required]
-        public string LanguageCode { get; set; }
 
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
-        public string Nationality { get; set; }
-
-        [Required]
-        [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
-        public string Biography { get; set; }
-
-        [Required]
-        [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
-        public string Curriculum { get; set; }
-
-
-        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
+        public List<AuthorI18nViewModel> AuthorI18nTexts { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -71,15 +54,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         }
     }
 
-    public class AuthorI18nEditModel
+    public class AuthorI18nViewModel
     {
-        [Required]
         public int AuthorId { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(UiStrings), Name = "Language")]
         public string LanguageCode { get; set; }
-        
+
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
 
         [Required]
         public string Nationality { get; set; }

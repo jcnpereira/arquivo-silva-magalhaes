@@ -315,7 +315,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(s.DigitalPhotographs.ToList());
         }
 
-        [OutputCache(Location = OutputCacheLocation.Client, Duration = 60 * 60 * 24 * 7)]
+        // TODO: Permitir o download da foto original, com OU o nome original, ou um nome semântico, baseado no autor e no documento.
+
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = 3600)]
         public async Task<ActionResult> GetPicture(int? id, string size = "Large")
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
@@ -330,18 +332,32 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             // TODO?: There may be some implications with this. Need to check them better.
 
-            if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
+            if (!String.IsNullOrEmpty(Request.Headers["If-None-Match"]))
             {
-                CultureInfo provider = CultureInfo.InvariantCulture;
-                var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
+                var eTag = Request.Headers["If-None-Match"];
 
-
-                // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
-                if (lastMod.CompareTo(p.LastModified) > 0)
+                if (eTag == p.FileName)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.NotModified);
                 }
             }
+
+            Response.Cache.SetETag(p.FileName);
+
+            //if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
+            //{
+            //    CultureInfo provider = CultureInfo.InvariantCulture;
+            //    var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
+
+
+
+
+            //    // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
+            //    if (lastMod.CompareTo(p.LastModified) > 0)
+            //    {
+            //        return new HttpStatusCodeResult(HttpStatusCode.NotModified);
+            //    }
+            //}
 
             switch (size)
             {

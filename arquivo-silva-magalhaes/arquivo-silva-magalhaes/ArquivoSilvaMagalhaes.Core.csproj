@@ -397,6 +397,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_PhotoPreviewModal.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -455,6 +456,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Public\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

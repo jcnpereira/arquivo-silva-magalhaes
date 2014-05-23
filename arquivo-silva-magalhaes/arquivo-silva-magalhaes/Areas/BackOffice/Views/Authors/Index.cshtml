@@ -1,15 +1,17 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Author>
+﻿@model IEnumerable<AuthorViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-<a href="~/Areas/BackOffice/Views/Authors/Index.cshtml">~/Areas/BackOffice/Views/Authors/Index.cshtml</a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="btn-toolbar" role="toolbar">
+    <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -22,31 +24,50 @@
             @Html.DisplayNameFor(model => model.BirthDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeathDate)
+            @Html.DisplayNameFor(model => model.AuthorI18nTexts[0].Nationality)
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeathDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorI18nTexts[0].Nationality)
+            </td>
+            <td>
+                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </a>
+
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+
+                    @Html.AntiForgeryToken()
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                        <span class="glyphicon glyphicon-floppy-remove"></span>
+                    </a>
+                </form>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

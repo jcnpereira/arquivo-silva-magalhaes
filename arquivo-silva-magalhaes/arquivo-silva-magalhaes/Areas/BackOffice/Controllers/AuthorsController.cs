@@ -3,7 +3,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
-using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -20,7 +20,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index()
         {
-            return View(await db.AuthorSet.ToListAsync());
+            return View(db.AuthorSet.Select(a => new AuthorViewModel
+                {
+                    Id = a.Id,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    BirthDate = a.BirthDate,
+                    DeathDate = a.DeathDate,
+                    AuthorI18nTexts = a.AuthorTexts.Where(at => at.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                                                   .Select(at => new AuthorI18nViewModel
+                                                   {
+                                                       Biography = at.Biography,
+                                                       Curriculum = at.Curriculum,
+                                                       Nationality = at.Nationality
+                                                   }).ToList()
+                }));
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -40,15 +54,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             ViewBag.AreLanguagesMissing = db.AuthorTextSet
                                             .Where(t => t.AuthorId == author.Id).Count() < LanguageDefinitions.Languages.Count;
 
-            return View(author);
+            return View(new AuthorViewModel
+                {
+                    Id = author.Id,
+                    FirstName = author.FirstName,
+                    LastName = author.LastName,
+                    BirthDate = author.BirthDate,
+                    DeathDate = author.DeathDate,
+                    AuthorI18nTexts = author.AuthorTexts.Select(t => new AuthorI18nViewModel 
+                    { 
+                        AuthorId = author.Id, 
+                        LanguageCode = t.LanguageCode, 
+                        Nationality = t.Nationality,
+                        Curriculum = t.Curriculum,
+                        Biography = t.Biography
+                    }).ToList()
+                });
         }
 
         // GET: BackOffice/Authors/Create
         public ActionResult Create()
         {
-            var model = new AuthorEditModel
+            var model = new AuthorViewModel
             {
-                LanguageCode = LanguageDefinitions.DefaultLanguage
+                AuthorI18nTexts = new List<AuthorI18nViewModel> 
+                { 
+                    new AuthorI18nViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage } 
+                }
             };
 
             return View(model);
@@ -57,7 +89,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // POST: BackOffice/Authors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AuthorEditModel model)
+        public async Task<ActionResult> Create(AuthorViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -73,9 +105,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 new AuthorText
                 {
                     AuthorId = author.Id,
-                    Biography = model.Biography,
-                    Curriculum = model.Curriculum,
-                    Nationality = model.Nationality,
+                    Biography = model.AuthorI18nTexts[0].Biography,
+                    Curriculum = model.AuthorI18nTexts[0].Curriculum,
+                    Nationality = model.AuthorI18nTexts[0].Nationality,
 
                     // On the creation, we'll assume the default language.
                     LanguageCode = LanguageDefinitions.DefaultLanguage
@@ -102,24 +134,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(model);
         }
-
-        /// <summary>
-        /// Checks if languages are missing for a given
-        /// author.
-        /// </summary>
-        /// <param name="author">The Author which will be checked</param>
-        /// <returns>true if languages are missing, false otherwise.</returns>
-        //private static bool AreLanguagesMissing(Author author)
-        //{
-
-
-        //    // Check if we need to add more languages.
-        //    var langCodes = author.AuthorTexts
-        //                          .Select(t => t.LanguageCode)
-        //                          .ToList();
-
-        //    return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
-        //}
 
         // GET: BackOffice/Authors/AddLanguage
         public async Task<ActionResult> AddLanguage(int? AuthorId)
@@ -148,7 +162,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 // to an entity which already has all languages done.
                 if (notDoneLanguages.Count() == 0) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                var model = new AuthorEditModel
+                var model = new AuthorI18nViewModel
                 {
                     AvailableLanguages = notDoneLanguages
                                             .Select(l => new SelectListItem
@@ -164,12 +178,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return View(model);
             }
             // If there's no author, we can't add a language to it.
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
 
 
         [HttpPost]
-        public async Task<ActionResult> AddLanguage(AuthorI18nEditModel model)
+        public async Task<ActionResult> AddLanguage(AuthorI18nViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -219,17 +233,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             var authText = db.AuthorTextSet
                              .First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage && t.AuthorId == author.Id);
 
-            var model = new AuthorEditModel
+            var model = new AuthorViewModel
             {
                 Id = author.Id,
                 FirstName = author.FirstName,
                 LastName = author.LastName,
                 BirthDate = author.BirthDate,
                 DeathDate = author.DeathDate,
-                LanguageCode = LanguageDefinitions.DefaultLanguage,
-                Biography = authText.Biography,
-                Curriculum = authText.Curriculum,
-                Nationality = authText.Nationality
+                AuthorI18nTexts = new List<AuthorI18nViewModel>
+                {
+                    new AuthorI18nViewModel
+                    {
+                        LanguageCode = LanguageDefinitions.DefaultLanguage,
+                        Biography = authText.Biography,
+                        Curriculum = authText.Curriculum,
+                        Nationality = authText.Nationality
+                    }
+                }
             };
 
             return View(model);
@@ -238,11 +258,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // POST: BackOffice/Authors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(AuthorEditModel model)
+        public async Task<ActionResult> Edit(AuthorViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var author = db.AuthorSet.Find(model.Id);
+
+                if (author == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
                 author.FirstName = model.FirstName;
                 author.LastName = model.LastName;
@@ -251,9 +273,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 var text = db.AuthorTextSet.Find(author.Id, LanguageDefinitions.DefaultLanguage);
 
-                text.Biography = model.Biography;
-                text.Curriculum = model.Curriculum;
-                text.Nationality = model.Nationality;
+                text.Biography = model.AuthorI18nTexts[0].Biography;
+                text.Curriculum = model.AuthorI18nTexts[0].Curriculum;
+                text.Nationality = model.AuthorI18nTexts[0].Nationality;
 
                 db.Entry(text).State = EntityState.Modified;
                 db.Entry(author).State = EntityState.Modified;
@@ -297,14 +319,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
             }
 
-            AuthorText text = await db.AuthorTextSet.FirstAsync(t => t.AuthorId == AuthorId && t.LanguageCode == LanguageCode);
+            AuthorText text = await db.AuthorTextSet.FindAsync(AuthorId, LanguageCode);
 
             if (text == null)
             {
                 return HttpNotFound();
             }
 
-            return View(new AuthorI18nEditModel
+            return View(new AuthorI18nViewModel
                 {
                     AuthorId = text.AuthorId,
                     Biography = text.Biography,
@@ -316,11 +338,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditText(AuthorI18nEditModel textModel)
+        public async Task<ActionResult> EditText(AuthorI18nViewModel textModel)
         {
             if (ModelState.IsValid)
             {
-                var text = await db.AuthorTextSet.FindAsync(textModel.AuthorId);
+                var text = await db.AuthorTextSet.FindAsync(textModel.AuthorId, textModel.LanguageCode);
 
                 text.Nationality = textModel.Nationality;
                 text.Biography = textModel.Biography;

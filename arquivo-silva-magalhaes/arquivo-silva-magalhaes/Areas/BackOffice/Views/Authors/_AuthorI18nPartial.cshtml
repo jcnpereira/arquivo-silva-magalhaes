@@ -1,40 +1,46 @@
-﻿@model AuthorEditModel
+﻿@model AuthorViewModel
 
 @* Partial view for the form containing I18N-Able fields for an author. *@
 
+@{
+    int index = ViewBag.Index == null ? 0 : ViewBag.Index;
+}
+
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@if (Model.AvailableLanguages != null)
+@Html.HiddenFor(model => model.AuthorI18nTexts[index].LanguageCode)
+
+@if (Model.AuthorI18nTexts[index].AvailableLanguages != null)
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.LanguageCode, htmlAttributes: new { @class = "control-label" })
+        @Html.LabelFor(model => model.AuthorI18nTexts[index].LanguageCode, htmlAttributes: new { @class = "control-label" })
 
         <div>
-            @Html.DropDownListFor(model => model.LanguageCode, Model.AvailableLanguages, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.AuthorI18nTexts[index].LanguageCode, Model.AuthorI18nTexts[(int)ViewBag.Index].AvailableLanguages, new { @class = "form-control" })
         </div>
     </div>
 }
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Nationality, htmlAttributes: new { @class = "control-label" })
+    @Html.LabelFor(model => model.AuthorI18nTexts[index].Nationality, htmlAttributes: new { @class = "control-label" })
     <div>
-        @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.AuthorI18nTexts[index].Nationality, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AuthorI18nTexts[index].Nationality, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Biography, htmlAttributes: new { @class = "control-label" })
+    @Html.LabelFor(model => model.AuthorI18nTexts[index].Biography, htmlAttributes: new { @class = "control-label" })
     <div>
-        @Html.EditorFor(model => model.Biography, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Biography, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.AuthorI18nTexts[index].Biography, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AuthorI18nTexts[index].Biography, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Curriculum, htmlAttributes: new { @class = "control-label" })
+    @Html.LabelFor(model => model.AuthorI18nTexts[index].Curriculum, htmlAttributes: new { @class = "control-label" })
     <div>
-        @Html.EditorFor(model => model.Curriculum, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Curriculum, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.AuthorI18nTexts[index].Curriculum, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AuthorI18nTexts[index].Curriculum, "", new { @class = "text-danger" })
     </div>
 </div>
