@@ -196,6 +196,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Nationality = model.Nationality,
                     Biography = model.Biography,
                     Curriculum = model.Curriculum
+                    
                 };
 
                 db.AuthorTextSet.Add(text);

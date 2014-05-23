@@ -4,15 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Eventos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Place)
+           
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Coordinates)
@@ -71,11 +72,12 @@
            @Html.DisplayFor(modelItem => item.EventType)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) <br />
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) <br />
+            @Html.ActionLink("Apagar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+@Html.ActionLink("Início", "../Home")

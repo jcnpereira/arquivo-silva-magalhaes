@@ -1,9 +1,5 @@
 ﻿@model DocumentAttachmentViewModels
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>DocumentAttachmentText</h4>
@@ -42,9 +38,4 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-       
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+      

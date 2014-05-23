@@ -4,14 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Criar novo documento anexo</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.LanguageCode)
     
     <div class="form-horizontal">
-        <h4>DocumentAttachment</h4>
+ 
         <hr />
         @Html.ValidationSummary(true)
 
@@ -27,10 +29,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UriPath)
-                @Html.ValidationMessageFor(model => model.UriPath)
+                <input type="file" accept="image/*" name="UriPath" required />
             </div>
         </div>
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.Size, new { @class = "control-label col-md-2" })

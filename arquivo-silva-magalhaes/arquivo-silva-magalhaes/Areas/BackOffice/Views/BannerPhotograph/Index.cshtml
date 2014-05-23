@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Imagens Banner";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo banner", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageData)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.UriPath)
         </th>
@@ -29,6 +32,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ImageData)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.UriPath)
         </td>
         <td>
@@ -41,11 +47,12 @@
             @Html.DisplayFor(modelItem => item.IsVisible)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) <br />
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) <br />
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+@Html.ActionLink("Início", "../Home")

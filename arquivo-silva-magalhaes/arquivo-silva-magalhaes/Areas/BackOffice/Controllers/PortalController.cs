@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -23,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: /Portal/Details/5
-         public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -48,16 +49,39 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id")] Archive archive)
+        public async Task<ActionResult> Create(PortalViewModels model)
         {
             if (ModelState.IsValid)
             {
+                var archive = new Archive
+                {
+                    Title = model.Title
+                };
+
+                archive.ArchiveTexts.Add(
+               new ArchiveText
+               {
+                   LanguageCode = model.LanguageCode,
+                   ArchiveHistory = model.ArchiveHistory,
+                   ArchiveMission = model.ArchiveMission
+               });
+                
+                
+                archive.Contacts.Add(
+                new Contact
+                {
+                    Name = model.Name,
+                    Address = model.Address,
+                    Email = model.Email,
+                    ContactDetails = model.ContactDetails,
+                    Service = model.Service
+                });
                 db.ArchiveSet.Add(archive);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(archive);
+            return View(model);
         }
 
         // GET: /Portal/Edit/5
@@ -80,15 +104,29 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id")] Archive archive)
+        public async Task<ActionResult> Edit( PortalViewModels model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(archive).State = EntityState.Modified;
+                var portal = db.ArchiveSet.Find(model.Id);
+                portal.Title = model.Title;
+
+                var text = db.ArchiveTexts.Find(model.Id);
+                text.ArchiveMission = model.ArchiveMission;
+                text.ArchiveHistory = model.ArchiveHistory;
+
+                var contact = db.ArchiveContacts.Find(model.Id);
+                contact.Name = model.Name;
+                contact.Email = model.Email;
+                contact.ContactDetails = model.ContactDetails;
+                contact.Address = model.Address;
+                contact.Service = model.Service;
+                
+                db.Entry(model).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(archive);
+            return View(model);
         }
 
         // GET: /Portal/Delete/5

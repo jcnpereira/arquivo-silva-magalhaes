@@ -1,31 +1,29 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Archive
+﻿@model PortalViewModels
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create Archive</h2>
+<h2>Criar arquivo</h2>
 
-@using (Html.BeginForm("Create", "Portal", FormMethod.Post, new { @class="form-horizontal", role="form"}))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
+            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
-                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
             </div>
-        </div>    
-        <div class="col-md-offset-2 col-md-10">
-              <input type="submit" value="Create" class="btn btn-default" />
+       
         </div>
+        @Html.Partial("TextPartial")
+        @Html.Partial("ContactPartial")
     </div>
-    
-}
 
-<div>
-    @Html.ActionLink("Voltar á lista de arquivos", "Index")
-</div>
+    @Html.Partial("_SubmitBackPartial")
+}

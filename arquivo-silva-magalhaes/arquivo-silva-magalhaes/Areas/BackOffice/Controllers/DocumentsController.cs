@@ -39,27 +39,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: BackOffice/Documents/Create
-        public async Task<ActionResult> Create(int? authorId)
+        public async Task<ActionResult> Create(int? DocumentId)
         {
-            Author author = null;
+            /*  DocumentAttachmentViewModels author = null;
 
-            if (authorId != null)
-            {
-                author = await db.AuthorSet.FindAsync(authorId);
-            }
+              if (authorId != null)
+              {
+                  author = await db.AuthorSet.FindAsync(authorId);
+              }
 
-            var model = new DocumentEditViewModel();
+              var model = new DocumentEditViewModel();
 
-            if (author != null)
-            {
-                model.Authors = new SelectList(new List<Author> { author }, "Id", "Name");
-            }
-            else
-            {
-                model.Authors = new SelectList(await db.AuthorSet.ToListAsync(), "Id", "Name");
-            }
+              if (author != null)
+              {
+                  model.Size = new SelectList(new List<Author> { author }, "Id", "Name");
+              }
+              else
+              {
+                  model.Authors = new SelectList(await db.AuthorSet.ToListAsync(), "Id", "Name");
+              }*/
 
-            return View(model);
+            return View();
         }
 
         // POST: BackOffice/Documents/Create

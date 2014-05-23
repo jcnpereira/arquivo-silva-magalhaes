@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public enum EventType : byte
+    public enum EventTypeViewModels : byte
     {
         //[Description("Exposição")]
         [Display()]
@@ -23,52 +23,52 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
     public class EventEditViewModel : IValidatableObject
     {
-
+       // public List<SelectListItem> EventType;
+        [Key]
         public int Id { get; set; }
-
-
 
         [Required]
         [MaxLength(50)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "Place")]
+        [Display(ResourceType = typeof(DataStrings), Name = "Place")]
         public string Place { get; set; }
 
 
         [Required]
         [MaxLength(30)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "Coordinates")]
+        [Display(ResourceType = typeof(DataStrings), Name = "Coordinates")]
         public string Coordinates { get; set; }
 
         [Required]
         [MaxLength(30)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "VisitorInformation")]
+        [Display(ResourceType = typeof(DataStrings), Name = "VisitorInformation")]
         public string VisitorInformation { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "StartMoment")]
+        [Display(ResourceType = typeof(DataStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "EndMoment")]
+        [Display(ResourceType = typeof(DataStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
+        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
+        [Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
         public DateTime ExpiryDate { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
 
         [Required]
-        //[Display(ResourceType = typeof(EventType), Name = "EventType")]
+        [Display(ResourceType = typeof(DataStrings), Name = "EventType")]
         public EventType EventType { get; set; }
 
 
@@ -76,7 +76,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         //public Language LanguageCode { get; set; }
 
-
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -84,36 +84,40 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
             {
                 yield return new ValidationResult(ErrorStrings.EndMomentEarlierThanStartMoment);
             }
-            if (PublishDate.CompareTo(ExpiryDate) < 0)
+            if (ExpiryDate.CompareTo(PublishDate) < 0)
             {
                 yield return new ValidationResult(ErrorStrings.ExpiryDateEarlierThanPublishDate);
             }
 
 
         }
-        [Required]
+       
+      
+        [Display(ResourceType = typeof(UiStrings), Name = "Language")]
         public string LanguageCode { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Heading")]
         public string Heading { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "SpotLight")]
         public string SpotLight { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "TextContent")]
         [DataType(DataType.MultilineText)]
         public string TextContent { get; set; }
 
     }
     public class EventI18nPartialModels
     {
-        public EventI18nPartialModels()
+      /*  public EventI18nPartialModels()
         {
             LanguageCode = "pt";
-        }
-        [Required]
-        [Key, Column(Order = 0)]
+        }*/
+        [Key]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
         [Required]
         public string LanguageCode { get; set; }
         [Required]
@@ -125,11 +129,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         [DataType(DataType.MultilineText)]
         public string TextContent { get; set; }
-        [Required]
-        public virtual Event Event { get; set; }
+        
+       // [ForeignKey("EventId")]
+       // public virtual Event Event { get; set; }
 
     }
-
-
-
 }

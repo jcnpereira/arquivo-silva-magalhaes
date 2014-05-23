@@ -1,55 +1,47 @@
 ﻿@model EventEditViewModel
 
-@using (Html.BeginForm())
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@if (Model.AvailableLanguages != null)
 {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>EventText</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-    </div>
-
-
-
-   <div class="form-group">
-    @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.LanguageCode)
-        @Html.ValidationMessageFor(model => model.LanguageCode)
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Title)
-        @Html.ValidationMessageFor(model => model.Title)
-    </div>
-</div>
-
     <div class="form-group">
-    @Html.LabelFor(model => model.Heading, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Heading)
-        @Html.ValidationMessageFor(model => model.Heading)
-    </div>
-</div>
-    
-<div class="form-group">
-    @Html.LabelFor(model => model.SpotLight, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.TextContent)
-        @Html.ValidationMessageFor(model => model.TextContent)
-    </div>
-</div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.TextContent, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TextContent)
-            @Html.ValidationMessageFor(model => model.TextContent)
+        @Html.LabelFor(model => model.LanguageCode, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div>
+            @Html.DropDownListFor(model => model.LanguageCode, Model.AvailableLanguages, new { @class = "form-control col-md-2" })
         </div>
-
- </div>
-    
+    </div>
 }
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Title,htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+    </div>
+</div>
+    
+<div class="form-group">
+    @Html.LabelFor(model => model.SpotLight, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.SpotLight, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.SpotLight, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+     @Html.LabelFor(model => model.TextContent, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+            @Html.EditorFor(model => model.TextContent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TextContent, "", new { @class = "text-danger" })
+    </div>
+</div>
+    

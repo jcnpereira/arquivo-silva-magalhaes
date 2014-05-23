@@ -9,110 +9,123 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class NewItemViewModels : Controller
+    public class TechnicalDocumentController : Controller
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: /BackOffice/NewItemViewModels/
+        // GET: /BackOffice/TechnicalDocument/
         public async Task<ActionResult> Index()
         {
-            return View(await db.NewsSet.ToListAsync());
+            return View(await db.TechnicalDocuments.ToListAsync());
         }
 
-        // GET: /BackOffice/NewItemViewModels/Details/5
+        // GET: /BackOffice/TechnicalDocument/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
-            if (newsitem == null)
+            TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
+            if (technicaldocument == null)
             {
                 return HttpNotFound();
             }
-            return View(newsitem);
+            return View(technicaldocument);
         }
 
-        // GET: /BackOffice/NewItemViewModels/Create
+        // GET: /BackOffice/TechnicalDocument/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /BackOffice/NewItemViewModels/Create
+        // POST: /BackOffice/TechnicalDocument/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate")] NewsItem newsitem)
+        public async Task<ActionResult> Create(TechnicalDocument model)
         {
             if (ModelState.IsValid)
             {
-                db.NewsSet.Add(newsitem);
+                var technicaldocument = new TechnicalDocument
+                {
+                    Id = model.Id,
+                    LanguageCode = model.LanguageCode,
+                    LastModificationDate = model.LastModificationDate,
+                    Title = model.Title,
+                    UploadedDate = model.UploadedDate,
+                    UriPath = model.UriPath,
+                    DocumentType = model.DocumentType,
+                    Format = model.Format
+                };
+
+                db.TechnicalDocuments.Add(model);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(newsitem);
+            return View(model);
         }
 
-        // GET: /BackOffice/NewItemViewModels/Edit/5
+        // GET: /BackOffice/TechnicalDocument/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
-            if (newsitem == null)
+            TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
+            if (technicaldocument == null)
             {
                 return HttpNotFound();
             }
-            return View(newsitem);
+            return View(technicaldocument);
         }
 
-        // POST: /BackOffice/NewItemViewModels/Edit/5
+        // POST: /BackOffice/TechnicalDocument/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate")] NewsItem newsitem)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,UriPath,UpdateDate,LastModificationDate,Format,DocumentType,Language")] TechnicalDocument technicaldocument)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newsitem).State = EntityState.Modified;
+                db.Entry(technicaldocument).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(newsitem);
+            return View(technicaldocument);
         }
 
-        // GET: /BackOffice/NewItemViewModels/Delete/5
+        // GET: /BackOffice/TechnicalDocument/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
-            if (newsitem == null)
+            TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
+            if (technicaldocument == null)
             {
                 return HttpNotFound();
             }
-            return View(newsitem);
+            return View(technicaldocument);
         }
 
-        // POST: /BackOffice/NewItemViewModels/Delete/5
+        // POST: /BackOffice/TechnicalDocument/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
-            db.NewsSet.Remove(newsitem);
+            TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
+            db.TechnicalDocuments.Remove(technicaldocument);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

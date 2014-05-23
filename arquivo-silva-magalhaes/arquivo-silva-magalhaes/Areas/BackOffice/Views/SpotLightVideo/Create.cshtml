@@ -10,19 +10,27 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
-        
+    <h2>Criar video destaque</h2>       
         <div class="form-horizontal">
-            <h4>SpotlightVideo</h4>
+ 
             <hr />
             @Html.ValidationSummary(true)
-    
+            
             <div class="form-group">
                 @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.UriPath)
-                    @Html.ValidationMessageFor(model => model.UriPath)
                 </div>
             </div>
+            
+
+      @*      <div class="form-group">
+        @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UriPath)
+            @Html.ValidationMessageFor(model => model.UriPath)
+        </div>
+    </div> *@
     
             <div class="form-group">
                 @Html.LabelFor(model => model.PublicationDate, new { @class = "control-label col-md-2" })
@@ -50,12 +58,12 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Criar" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Voltar à lista", "Index")
     </div>

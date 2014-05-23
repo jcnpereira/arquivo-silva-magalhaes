@@ -21,13 +21,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.KeywordSet.Select(k => new KeywordViewModel
-            {
-                Id = k.Id,
-                Keyword = k.KeywordTexts
-                           .First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-            })
-                                                                                                     .ToListAsync());
+            return View(await db.KeywordSet.ToListAsync());
+                                                         
         }
 
         // GET: BackOffice/Keywords/Details/5
@@ -65,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 var k = new Keyword
                 {
-                    KeywordTexts = new List<KeywordText> { new KeywordText { LanguageCode = LanguageDefinitions.DefaultLanguage, Value = keyword.Keyword } }
+                    KeywordTexts = new List<KeywordText> { new KeywordText { LanguageCode = LanguageDefinitions.DefaultLanguage, Value = keyword.Value } }
                 };
 
                 db.KeywordSet.Add(k);
@@ -115,21 +110,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(KeywordEditModel keywordModel)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Value")] Keyword key)
         {
             if (ModelState.IsValid)
             {
-                var keyword = db.KeywordSet.Find(keywordModel.Id);
+              /*  var keyword = db.KeywordSet.Find(keywordModel.Id);
 
                 var keywordText = keyword.KeywordTexts.First(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage);
 
-                keywordText.Value = keywordModel.Keyword;
+                keywordText.Value = keywordModel.Value; */
 
-                db.Entry(keywordText).State = EntityState.Modified;
+                db.Entry(key).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(keywordModel);
+            return View(key);
         }
 
         // GET: BackOffice/Keywords/Delete/5
@@ -191,7 +186,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 kw.KeywordTexts.Add(new KeywordText
                     {
-                        Value = model.Keyword,
+                        Value = model.Value,
                         LanguageCode = model.LanguageCode
 
                     });
@@ -220,6 +215,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 {
                     Id = kw.KeywordId,
                     Keyword = kw.Value,
+                    Value = kw.Value,
                     LanguageCode = kw.LanguageCode
                 });
         }
@@ -232,7 +228,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 var kw = db.KeywordTextSet.Find(model.Id);
 
-                kw.Value = model.Keyword;
+                kw.Value = model.Value;
 
                 db.Entry(kw).State = EntityState.Modified;
                 db.SaveChanges();

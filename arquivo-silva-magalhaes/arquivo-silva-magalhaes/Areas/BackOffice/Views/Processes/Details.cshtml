@@ -4,15 +4,28 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do processo</h2>
 
 <div>
-    <h4>Process</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LanguageCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LanguageCode)
+            </dd>
+        </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
 </p>

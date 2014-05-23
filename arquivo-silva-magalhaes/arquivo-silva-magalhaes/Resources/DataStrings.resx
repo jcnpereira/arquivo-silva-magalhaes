@@ -117,17 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Morada</value>
+  </data>
+  <data name="AdministrativeAndBiographicStory" xml:space="preserve">
+    <value>História administrativa e biográfica</value>
+  </data>
+  <data name="ArchiveHistory" xml:space="preserve">
+    <value>História do arquivo</value>
+  </data>
+  <data name="ArchiveMission" xml:space="preserve">
+    <value>Missão do arquivo</value>
+  </data>
   <data name="AuthorFirstNamePrompt" xml:space="preserve">
     <value>Introduza o primeiro nome do autor</value>
   </data>
   <data name="AuthorLastNamePrompt" xml:space="preserve">
     <value>Introduza o último nome do autor</value>
   </data>
+  <data name="BannerTexts" xml:space="preserve">
+    <value>Texto do banner</value>
+  </data>
   <data name="Biography" xml:space="preserve">
     <value>Biografia</value>
   </data>
   <data name="BirthDate" xml:space="preserve">
     <value>Data de nascimento</value>
+  </data>
+  <data name="CatalogCode" xml:space="preserve">
+    <value>Código de catálogo</value>
+  </data>
+  <data name="Classification" xml:space="preserve">
+    <value>Classificação</value>
   </data>
   <data name="CollectionDimension" xml:space="preserve">
     <value>Dimensão da coleção</value>
@@ -136,19 +157,109 @@
   <data name="CollectionName" xml:space="preserve">
     <value>Nome da coleção</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Detalhes de contacto</value>
+  </data>
+  <data name="ContactVisible" xml:space="preserve">
+    <value>Contacto visível</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordenadas</value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>Informação sobre direitos de autor</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Data de criação</value>
+  </data>
   <data name="Curriculum" xml:space="preserve">
     <value>Currículo</value>
   </data>
+  <data name="DateOfCreation" xml:space="preserve">
+    <value>Data de criação</value>
+  </data>
   <data name="DeathDate" xml:space="preserve">
     <value>Data de falecimento</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Dimenção</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Tipo de documento</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EndMoment" xml:space="preserve">
+    <value>Data final</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Tipo de evento</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>Data de validade</value>
+  </data>
+  <data name="FieldAndContents" xml:space="preserve">
+    <value>Campo e conteúdo</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Primeiro nome</value>
     <comment>The author's first name.</comment>
   </data>
+  <data name="Format" xml:space="preserve">
+    <value>Formato</value>
+  </data>
+  <data name="HasAttachments" xml:space="preserve">
+    <value>Tem anexo</value>
+  </data>
+  <data name="Heading" xml:space="preserve">
+    <value>Cabeçalho</value>
+  </data>
+  <data name="HideAfterExpiry" xml:space="preserve">
+    <value>Ocultar após expirar</value>
+  </data>
+  <data name="IsPermanent" xml:space="preserve">
+    <value>É fixo</value>
+  </data>
+  <data name="IsUsefulLink" xml:space="preserve">
+    <value>É link util</value>
+  </data>
+  <data name="IsVisible" xml:space="preserve">
+    <value>É visivel</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ideoma</value>
+  </data>
+  <data name="LanguageCode" xml:space="preserve">
+    <value>Código da língua</value>
+  </data>
+  <data name="LastModificationDate" xml:space="preserve">
+    <value>Data da última modificação</value>
+  </data>
+  <data name="LastModifiedDate" xml:space="preserve">
+    <value>Data de última alteração</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Último nome</value>
     <comment>The author's last name.</comment>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Logotipo</value>
+  </data>
+  <data name="LogoLocation" xml:space="preserve">
+    <value>Localização do logotipo</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
   </data>
   <data name="Nationality" xml:space="preserve">
     <value>Nacionalidade</value>
@@ -156,10 +267,81 @@
   <data name="NoClassification" xml:space="preserve">
     <value>Sem classificação</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="OrganizationCode" xml:space="preserve">
+    <value>Codigo de organização</value>
+  </data>
+  <data name="PartnershipType" xml:space="preserve">
+    <value>Tipo de parceria</value>
+  </data>
   <data name="Place" xml:space="preserve">
     <value>Local</value>
   </data>
   <data name="ScanDate" xml:space="preserve">
     <value>Data de digitalização</value>
+  <data name="ProductionDate" xml:space="preserve">
+    <value>Data de produção</value>
+  </data>
+  <data name="Provenience" xml:space="preserve">
+    <value>Proveniência</value>
+  </data>
+  <data name="PublicationDate" xml:space="preserve">
+    <value>Data de publicação</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Data de públicação</value>
+  </data>
+  <data name="ReferencedLink" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="RemotionDate" xml:space="preserve">
+    <value>Data de remoção</value>
+  </data>
+  <data name="RemovalDate" xml:space="preserve">
+    <value>Data de remoção</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Serviço</value>
+  </data>
+  <data name="SiteLink" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="SpotLight" xml:space="preserve">
+    <value>Destaque</value>
+  </data>
+  <data name="StartMoment" xml:space="preserve">
+    <value>Data inicial</value>
+  </data>
+  <data name="Subtitle" xml:space="preserve">
+    <value>Legenda</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Cargo</value>
+  </data>
+  <data name="TextContent" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="UploadedDate" xml:space="preserve">
+    <value>Date de carregamento</value>
+  </data>
+  <data name="UriPath" xml:space="preserve">
+    <value>Caminho para imagem</value>
+  </data>
+  <data name="UriPathVideo" xml:space="preserve">
+    <value>Endereço do video</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="VisitorInformation" xml:space="preserve">
+    <value>Informação sobre visitantes</value>
   </data>
 </root>

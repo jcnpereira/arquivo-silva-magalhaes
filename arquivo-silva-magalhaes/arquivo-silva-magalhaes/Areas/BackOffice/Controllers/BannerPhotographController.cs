@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -40,7 +42,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/BannerPhotograph/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new BannerPhotographViewModels
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            };
+            return View(model);
         }
 
         // POST: /BackOffice/BannerPhotograph/Create
@@ -48,16 +54,35 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,UriPath,PublicationDate,RemovalDate,IsVisible")] BannerPhotograph bannerphotograph)
+        public async Task<ActionResult> Create(BannerPhotographViewModels model)
         {
             if (ModelState.IsValid)
             {
-                db.BannerPhotographSet.Add(bannerphotograph);
+                var banner = new BannerPhotograph
+                {
+                    Id=model.Id,
+                    ImageData=model.ImageData,
+                    UriPath=model.UriPath,
+                    //UriPath = model.UriPath.FileName,
+                    PublicationDate = model.PublicationDate,
+                    RemovalDate = model.RemovalDate,
+                    IsVisible = model.IsVisible
+                };
+                banner.SubTitle.Add(
+                    new ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph.BannerPhotographEditTexts
+                    {
+                        BannerPhotograph = banner,
+                        BannerTexts=model.BannerTexts,
+
+                        LanguageCode = LanguageDefinitions.DefaultLanguage
+                    }); 
+                    
+                db.BannerPhotographSet.Add(banner);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(bannerphotograph);
+            return View(model);
         }
 
         // GET: /BackOffice/BannerPhotograph/Edit/5
@@ -80,7 +105,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,UriPath,PublicationDate,RemovalDate,IsVisible")] BannerPhotograph bannerphotograph)
+        public async Task<ActionResult> Edit([Bind(Include="Id,ImageData,UriPath,PublicationDate,RemovalDate,IsVisible")] BannerPhotograph bannerphotograph)
         {
             if (ModelState.IsValid)
             {

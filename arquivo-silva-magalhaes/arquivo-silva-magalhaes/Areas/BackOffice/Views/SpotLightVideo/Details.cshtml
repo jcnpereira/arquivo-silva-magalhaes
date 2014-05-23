@@ -5,47 +5,44 @@
 }
 
 
-<h2>Details</h2>
+<h2>Detalhes video destaque</h2>
 <div>
-    <h4>Spot Light Video</h4>	
-            <dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.UriPath)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.UriPath)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.PublicationDate)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.PublicationDate)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.RemotionDate)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.RemotionDate)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.IsPermanent)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.IsPermanent)
-            </dd>
-    
-        </dl>
+   	
+            
+    <dl>
+        <dt>
+            <a href="@(Model.UriPath)" target="_blank">@Model.UriPath</a>
+        </dt>
+        <dt>
+
+            @Html.DisplayNameFor(model => model.PublicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RemotionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemotionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPermanent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPermanent)
+        </dd>
+
+    </dl>
     </div>
 
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+        @Html.ActionLink("Voltar à lista", "Index")
     </p>
 

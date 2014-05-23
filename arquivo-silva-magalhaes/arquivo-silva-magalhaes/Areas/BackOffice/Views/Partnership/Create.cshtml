@@ -4,15 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Criar parceria</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Partnership", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
+    
     <div class="form-horizontal">
-        <h4>Partnership</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -27,8 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Logo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Logo)
-                @Html.ValidationMessageFor(model => model.Logo)
+                <input type="file" accept="image/*" name="Logo" required />
             </div>
         </div>
 
@@ -66,16 +65,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Criar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à lista", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

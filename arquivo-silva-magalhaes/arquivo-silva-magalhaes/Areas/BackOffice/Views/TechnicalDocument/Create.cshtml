@@ -1,0 +1,86 @@
+﻿@model TechnicalDocumentViewModels
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <h2>Criar documento tecnico</h2>
+
+    <div class="form-horizontal">
+
+        <hr />
+      
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" accept="image/*" name="UriPath" required />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadedDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadedDate)
+                @Html.ValidationMessageFor(model => model.UploadedDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastModificationDate)
+                @Html.ValidationMessageFor(model => model.LastModificationDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Format, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Format)
+                @Html.ValidationMessageFor(model => model.Format)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocumentType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.DocumentType)
+                @Html.ValidationMessageFor(model => model.DocumentType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.LanguageCode)
+                @Html.ValidationMessageFor(model => model.LanguageCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Criar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Voltar à lista", "Index")
+</div>

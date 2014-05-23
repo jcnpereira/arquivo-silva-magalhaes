@@ -7,54 +7,24 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public class DocumentViewModel
-    {
-    }
+  
 
     public class DocumentEditViewModel
     {
+        [Key]
         public int Id { get; set; }
-        public int AuthorId { get; set; }
-
-        public string AuthorName { get; set; }
-        public IEnumerable<SelectListItem> Authors { get; set; }
-
+       
         [Required]
-        public string ResponsibleName { get; set; }
-
+        public string MimeFormat { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DocumentDate { get; set; }
-
+        public string UriPath { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime CatalogationDate { get; set; }
-
+        public string Size { get; set; }
         [Required]
-        public string Notes { get; set; }
-
+        public string Title { get; set; }
         [Required]
-        public string CatalogCode { get; set; }
-
-        // PORTUGUESE
-
+        public string Description { get; set; }
         [Required]
-        public string DocumentLocationPt { get; set; }
-        [DataType(DataType.MultilineText)]
-        [Required]
-        public string FieldAndContentsPt { get; set; }
-        [DataType(DataType.MultilineText)]
-        [Required]
-        public string DescriptionPt { get; set; }
-
-        // ENGLISH
-        [Required]
-        public string DocumentLocationEn { get; set; }
-        [DataType(DataType.MultilineText)]
-        [Required]
-        public string FieldAndContentsEn { get; set; }
-        [DataType(DataType.MultilineText)]
-        [Required]
-        public string DescriptionEn { get; set; }
+        public string LanguageCode { get; set; }
     }
 }
