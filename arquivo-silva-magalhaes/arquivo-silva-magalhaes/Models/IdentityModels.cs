@@ -13,5 +13,11 @@ namespace ArquivoSilvaMagalhaes.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument> TechnicalDocuments { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Contact> Contacts { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.NewsItemViewModels> NewsItemViewModels { get; set; }
     }
 }

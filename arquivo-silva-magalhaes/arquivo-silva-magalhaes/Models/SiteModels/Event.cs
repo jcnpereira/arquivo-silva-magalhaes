@@ -11,9 +11,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public enum EventType : byte
     {
-        Expo = 1,
-        School = 2,
-        Other = 100
+        Exposição = 1,
+        Escolar = 2,
+        Outro = 100
     }
 
     public class Event
@@ -36,23 +36,30 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Required]
         [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Place")]
         public string Place { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Coordinates")]
         public string Coordinates { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "VisitorInformation")]
         public string VisitorInformation { get; set; }
 
-
+        [Display(ResourceType = typeof(DataStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 
-
+        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
         public DateTime ExpiryDate { get; set; }
-
+        [Display(ResourceType = typeof(DataStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
 
         /// <summary>
         /// The type of this event.
         /// </summary>
+        /// 
+        [Display(ResourceType = typeof(DataStrings), Name = "EventType")]
         public EventType EventType { get; set; }
 
         public virtual ICollection<Event> ReferencedEvents { get; set; }
@@ -63,22 +70,36 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual ICollection<EventText> EventTexts { get; set; }
     }
 
-    public class EventText
+    public partial class EventText
     {
         public EventText()
         {
             LanguageCode = "pt";
         }
 
-        [Key, Column(Order = 0)]
+        [Key]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+        
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Heading")]
         public string Heading { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "SpotLight")]
         public string SpotLight { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "TextContent")]
         public string TextContent { get; set; }
 
+       // [Required]
+       // public int EventId { get; set; }
+
+        [Required]
         public virtual Event Event { get; set; }
 
     }

@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,31 +11,36 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
     public class NewsItemViewModels
     {
-     /*    public NewsItemViewModels()
+         public NewsItemViewModels()
         {
             Links = new HashSet<ReferencedLink>();
             ReferencedNewsItems = new HashSet<NewsItem>();
             ReferencedNewsText = new HashSet<NewsText>();
             ReferencedDocuments = new HashSet<DocumentAttachment>();
             HideAfterExpiry = false;
-        }*/
+        }
 
         [Key]
         public int Id { get; set; }
        
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
         public DateTime ExpiryDate { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "CreationDate")]
         public DateTime CreationDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 
         public virtual ICollection<ReferencedLink> Links { get; set; }
@@ -44,15 +50,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Subtitle")]
         public string Subtitle { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Heading")]
         public string Heading { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "TextContent")]
         public string TextContent { get; set; }
 
 
@@ -65,11 +76,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
             LanguageCode = "pt";
         }
 
-        [Key, Column(Order = 0)]
-        [Required]
+        [Key]
         public int Id { get; set; }
         [Required]
-        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
         [Required]
         public string Title { get; set; }

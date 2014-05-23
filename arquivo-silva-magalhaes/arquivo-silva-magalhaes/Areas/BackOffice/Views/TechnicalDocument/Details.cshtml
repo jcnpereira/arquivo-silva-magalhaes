@@ -1,0 +1,72 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes do documento</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UriPath)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UriPath)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UploadedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UploadedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastModificationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastModificationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Format)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Format)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DocumentType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DocumentType)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LanguageCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LanguageCode)
+            </dd>
+        </dl>
+
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

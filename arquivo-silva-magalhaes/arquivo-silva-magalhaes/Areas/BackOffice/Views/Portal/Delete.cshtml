@@ -5,48 +5,37 @@
 }
 
 <h2>Delete Archive</h2>
+<h3>Tem a certeza que pretende remover este arquivo?</h3>
 
-@using (Html.BeginForm("Delete", "Portal", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+<div>
 
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary()
-        <div class="form-group">
-            @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
-            @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
-            <br />
-            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-        </div>
-        <div class="col-md-offset-4 col-md-12">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
 
-          <input type="submit" name="Apagar" value="Delete" class="btn btn-default" onclick="confirmation()" />
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
 
-        </div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+        </dl>
+       @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-default" />
+        @Html.ActionLink("Voltar à lista", "Index")
     </div>
-    <script>
-        function confirmation(){
-            var x;
-            var d = document.getElementById("3");
-            var r=confirm("Tem a certeza que pretende eliminar o arquivo?");
-            if (r==true)
-            {
-                Del.value = "Delete";
-            }
-            else
-            {
-                Del.value = "Cancel";
-            }
-            
-        }
-    </script>
+        
+       }
+    </div>
 
-    
-    
-}
-
-<div>
-    @Html.ActionLink("Voltar á lista de arquivos", "Index")
-</div>
+       

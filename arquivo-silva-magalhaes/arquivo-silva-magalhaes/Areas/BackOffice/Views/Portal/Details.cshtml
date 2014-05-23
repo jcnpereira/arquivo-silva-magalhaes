@@ -4,29 +4,94 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do arquivo</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Detalhes do arquivo</h4>
-	<hr />
-    @Html.ValidationSummary()
-    <div class="from-group">
-        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
-        @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
-        <br />
-        
-        
-            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })    
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control"})
-        <br />
-        
-    </div>
+<div>
+    <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Title)
+        </dd>
     </dl>
+</div>
+<hr />
+@foreach (var text in Model.ArchiveTexts)
+    {
+    <div>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.LanguageCode)
+            </dt>
+            <dd>
+                @text.ArchiveMission
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ArchiveMission)
+            </dt>
+            <dd>
+                @text.ArchiveMission
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ArchiveHistory)
+            </dt>
+            <dd>
+                @text.ArchiveMission
+            </dd>
+        </dl>
+    </div>
+}
+<hr />
+@foreach (var contact in Model.Contacts)
+{
+    <div>
+        <br />
+        <p><br /><b>Contactos</b></p><br />
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @contact.Name
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @contact.Address
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @contact.Email
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactDetails)
+            </dt>
+            <dd>
+                @contact.ContactDetails
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Service)
+            </dt>
+            <dd>
+                @contact.Service
+            </dd>
+        </dl>
+
+    </div>
+}
+<dl class="dl-horizontal"></dl>
 <p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
     @Html.ActionLink("Voltar á lista de arquivos", "Index")
 </p>
-
-}

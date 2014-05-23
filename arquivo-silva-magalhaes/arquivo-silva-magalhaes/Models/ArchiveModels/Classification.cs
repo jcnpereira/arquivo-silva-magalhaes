@@ -40,11 +40,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 0)]
         public int Id { get; set; }
 
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
 
         /// <summary>
         /// The classification details.
         /// </summary>
+        [Display(ResourceType=typeof(DataStrings), Name = "Value")]
         public string Value { get; set; }
 
         [Required]

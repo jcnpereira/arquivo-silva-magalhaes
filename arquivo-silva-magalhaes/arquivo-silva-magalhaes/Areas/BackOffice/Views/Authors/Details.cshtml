@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do autor</h2>
 
 <div>
-    <h4>Author</h4>
     <hr />
     <dl>
         <dt>
@@ -89,11 +88,11 @@
     @if (ViewBag.AreLanguagesMissing)
     {
         
-        @Html.ActionLink("AddLanguage", "AddLanguage", new { Id = Model.Id })
+        @Html.ActionLink("Adicionar ideoma", "AddLanguage", new { Id = Model.Id })
     }
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
 </p>

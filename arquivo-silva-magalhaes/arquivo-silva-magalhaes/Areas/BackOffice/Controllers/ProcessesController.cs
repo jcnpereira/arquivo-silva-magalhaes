@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -48,16 +49,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id")] Process process)
+        public async Task<ActionResult> Create(Process model)
         {
             if (ModelState.IsValid)
             {
+                var process = new Process
+                {
+                    Name = model.Name,
+                    LanguageCode = model.LanguageCode
+                };
                 db.ProcessSet.Add(process);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(process);
+            return View(model);
         }
 
         // GET: BackOffice/Processes/Edit/5
@@ -80,7 +86,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id")] Process process)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,LanguageCode")] Process process)
         {
             if (ModelState.IsValid)
             {

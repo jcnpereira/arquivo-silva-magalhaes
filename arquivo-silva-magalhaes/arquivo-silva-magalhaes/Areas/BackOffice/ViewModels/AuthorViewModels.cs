@@ -43,6 +43,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public DateTime DeathDate { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
 
         [Required]
@@ -77,18 +78,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public int Id { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(UiStrings), Name = "Language")]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
         
-
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         [DataType(DataType.MultilineText)]
         public string Biography { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         [DataType(DataType.MultilineText)]
         public string Curriculum { get; set; }
     }

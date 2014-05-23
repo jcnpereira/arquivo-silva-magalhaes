@@ -13,7 +13,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         {
             Links = new HashSet<ReferencedLink>();
             ReferencedNewsItems = new HashSet<NewsItem>();
-            ReferencedNewsText = new HashSet<NewsText>();
+            ReferencedNewsText = new HashSet<NewsTexts>();
             ReferencedDocuments = new HashSet<DocumentAttachment>();
 
             HideAfterExpiry = false;
@@ -21,36 +21,60 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
-       
+        [Required]
         public DateTime PublishDate { get; set; }
+        [Required]
         public DateTime ExpiryDate { get; set; }
+        [Required]
         public bool HideAfterExpiry { get; set; }
+        [Required]
         public DateTime CreationDate { get; set; }
+        [Required]
         public DateTime LastModificationDate { get; set; }
+
+
+
+
+
+        [Required]
+        public string LanguageCode { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        public string Subtitle { get; set; }
+        [Required]
+        public string Heading { get; set; }
+        [Required]
+        public string TextContent { get; set; }
 
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<NewsItem> ReferencedNewsItems { get; set; }
-        public virtual ICollection<NewsText> ReferencedNewsText { get; set;}
+        public virtual ICollection<NewsTexts> ReferencedNewsText { get; set;}
         public virtual ICollection<DocumentAttachment> ReferencedDocuments { get; set; }
     }
 
-    public class NewsText
+    public class NewsTexts
     {
-        public NewsText()
+        public NewsTexts()
         {
             LanguageCode = "pt";
         }
 
-        [Key, Column(Order = 0)]
+        [Key]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+    
+        [Required]
         public string LanguageCode { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Subtitle { get; set; }
+        [Required]
         public string Heading { get; set; }
+        [Required]
         public string TextContent { get; set; }
 
-
+        
         public virtual NewsItem NewsItem { get; set; }
 
     }

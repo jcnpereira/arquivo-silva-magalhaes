@@ -1,13 +1,12 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Event
+﻿@model EventEditViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do evento</h2>
 
 <div>
-    <h4>Event</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
@@ -83,8 +82,71 @@
         </dd>
 
     </dl>
-</div>
+   
+@*
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
+
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @item.Title
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @item.Title
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </dt>
+
+                <dd>
+                    @item.Heading
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SpotLight)
+                </dt>
+
+                <dd>
+                    @item.SpotLight
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TextContent)
+                </dt>
+
+                <dd>
+                    @item.TextContent
+                </dd>
+            </dl>
+        @Html.ActionLink(@UiStrings.Edit, "EditText", new { Id = text.Id })
+
+        @*Only allow the removal of texts which are not the default language.
+        @if (text.LanguageCode != ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.DefaultLanguage)
+    {
+        @Html.ActionLink(@UiStrings.Delete, "DeleteText", new { Id = text.Id })
+    } 
+            
+    <hr /> 
+    </div>
+    
+    }
+@if (ViewBag.AreLanguagesMissing)
+{
+
+    @Html.ActionLink("Adicionar ideoma", "AddLanguage", new { Id = Model.Id })
+}
+
+</div>*@
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar à lista", "Index")
 </p>

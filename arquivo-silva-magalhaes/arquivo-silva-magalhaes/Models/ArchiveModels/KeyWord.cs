@@ -41,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.LanguageCode = "pt";
         }
 
-        [Key, Column(Order = 0)]
+        [Key]
         public int Id { get; set; }
 
         public string LanguageCode { get; set; }

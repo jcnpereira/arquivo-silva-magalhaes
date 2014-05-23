@@ -38,6 +38,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(30)]
+        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
@@ -45,11 +46,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// The date on which this author died.
         /// </summary>
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
         /// <summary>
@@ -88,6 +91,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [NotMapped]
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         public string Biography
         {
             get
@@ -102,6 +106,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [NotMapped]
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum
         {
             get
@@ -116,6 +121,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [NotMapped]
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality
         {
             get
@@ -140,25 +146,28 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Key]
         public int Id { get; set; }
-
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
 
         /// <summary>
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         /// <summary>
         /// Text containing the biography of this author.
         /// </summary>
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         public string Biography { get; set; }
 
         /// <summary>
         /// Text containing the curriculum of this author.
         /// </summary>
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
 
         [Required]

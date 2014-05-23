@@ -189,6 +189,7 @@
     <Compile Include="Areas\BackOffice\Controllers\PartnershipController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ShowcasePhotoesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
@@ -200,11 +201,13 @@
     <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\NewItemViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\NewsItemViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\PortalViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\ProcessesViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SpotLightVideoModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\TehcnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\NewsController.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\BannerPhotographText.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
@@ -389,6 +393,17 @@
     <Content Include="Areas\BackOffice\Views\Event\_EventI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\_NewsI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographI18npartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\AddLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\EditText.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\DeleteText.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\AddLanguage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\ContactPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\TextPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -447,6 +462,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Public\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

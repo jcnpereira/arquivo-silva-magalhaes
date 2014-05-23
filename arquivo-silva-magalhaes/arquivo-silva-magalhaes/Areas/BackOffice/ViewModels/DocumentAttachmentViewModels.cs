@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
@@ -38,6 +39,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public virtual ICollection<Event> EventsUsingAttachment { get; set; }
         public virtual ICollection<NewsItem> NewsUsingAttachment { get; set; }
         public virtual ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
+
     }
 
     public class DocumentI18nPartialModels
@@ -47,9 +51,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
             LanguageCode = "pt";
         }
 
-        [Key, Column(Order = 0)]
+        [Key]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
+        
         public string LanguageCode { get; set; }
 
         [Required]

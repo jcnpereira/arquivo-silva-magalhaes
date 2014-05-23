@@ -1,5 +1,6 @@
 namespace ArquivoSilvaMagalhaes.Migrations
 {
+    using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
     using ArquivoSilvaMagalhaes.Models.ArchiveModels;
     using ArquivoSilvaMagalhaes.Models.SiteModels;
     using System;
@@ -81,7 +82,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     IsVisible = true,
                     Notes = "Notas da coleção A.",
                     CatalogCode = "COLA",
-                    Type = CollectionType.Collection,
+                    Type = CollectionType.Coleção,
                     ProductionDate = DateTime.Now
                 },
                 new Collection
@@ -93,7 +94,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     IsVisible = true,
                     Notes = "Notas da coleção B.",
                     CatalogCode = "COLB",
-                    Type = CollectionType.Collection,
+                    Type = CollectionType.Coleção,
                     ProductionDate = DateTime.Now
                 },
                 new Collection
@@ -105,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     IsVisible = true,
                     Notes = "Notas do fundo A.",
                     CatalogCode = "FUNA",
-                    Type = CollectionType.Fond,
+                    Type = CollectionType.Fundo,
                     ProductionDate = DateTime.Now
                 },
                 new Collection
@@ -117,7 +118,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     IsVisible = true,
                     Notes = "Notas do fundo B.",
                     CatalogCode = "FUNB",
-                    Type = CollectionType.Fond,
+                    Type = CollectionType.Fundo,
                     ProductionDate = DateTime.Now
                 }
             );
@@ -207,7 +208,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     EndMoment= new DateTime(15,04,05), 
                     HideAfterExpiry=true, 
                     Place ="IPT",
-                    EventType=EventType.Expo, 
+                    EventType=EventType.Exposição, 
                     ExpiryDate = new DateTime(15,05,01),
                     VisitorInformation="", 
                     Coordinates="", 
@@ -237,7 +238,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
             db.SaveChanges();
         }
 
-
+/*
         protected void SeedNewsItem(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
             var news = new List<NewsItem>{
@@ -250,8 +251,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Links=null                        
                 }
                 };
-            var newsText = new List<NewsText>{
-                new NewsText{ Id=1, 
+            var newsText = new List<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.NewsText>{
+                new ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.NewsText{ Id=1, 
                     LanguageCode="1", 
                     Title="Título", 
                     Subtitle="Subtítulo", 
@@ -259,7 +260,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     NewsItem= db.NewsSet.Find(1),
                     TextContent= "Texto..."},
            
-                new NewsText{ Id=2, 
+                new ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.NewsText{ Id=2, 
                     LanguageCode="1", 
                     Title="Título", 
                     Subtitle="Subtítulo", 
@@ -268,7 +269,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     TextContent= "Texto..."}
             };
             db.SaveChanges();
-        }
+        } */
 
         protected void SeedPartnership(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
@@ -278,8 +279,8 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Contact="918888888",
                     EmailAddress="aristides@mail.com",
                     Event= db.EventSet.Find(1),
-                    Logo = "Logotides",
-                    PartnershipType= Models.SiteModels.PartnershipType.Sponsor,
+                    Logo = null,
+                    PartnershipType= Models.SiteModels.PartnershipType.Patrocinador,
                     SiteLink = "www.arist.com"}
             };
 
@@ -343,34 +344,34 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
 
 
-         protected void SeedBannerPhotograph(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+       /* protected void SeedBannerPhotograph(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
          {
              var banners = new BannerPhotograph
              {
                  Id = 1,
-                 BannerTexts = BannerPhotographText(1),
+                 BannerPhotographTexts = BannerPhotographText(1),
                  IsVisible = true,
                  PublicationDate = new DateTime(12, 01, 14),
                  RemovalDate = new DateTime(15, 01, 14),
                  UriPath = "asdasd"
              };
-         }
+         }*/
 
          
 
-         protected void SeedBannerPhotographText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+        /* protected void SeedBannerPhotographText(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
          {
              var bannerTexts = new BannerPhotographText
              {
                  Id = 1,
                  LanguageCode = "pt",
-                 Photograph = BannerPhotograph(1),
-                 Title = "PTbanner1"
+                 BannerPhotograph = BannerPhotograph(1),
+                 BannerTexts = "PTbanner1"
              };
-         }
+         }*/
+        
 
-
-        protected void SeedTechnicalDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+     /*   protected void SeedTechnicalDocuments(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
             var documents = new List<TechnicalDocument>{
                 new TechnicalDocument{ 
@@ -383,7 +384,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     UploadedDate=new DateTime(12,02,01),  
                     UriPath="C:Processos/Revelacao/prorev.pdf"}
             };
-        }
+        }*/
 
         protected void SeedSpotLightVideo(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
@@ -400,7 +401,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
             };
         }
 
-        protected void SeedArchive( ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+    /*    protected void SeedArchive( ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
             var archives = new List<Archive>{
                 new Archive{
@@ -410,10 +411,10 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 }
 
             };
-        }
+        }*/
 
 
-        protected void SeedArchiveText (ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
+       /* protected void SeedArchiveText (ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
         {
             var archivetexts = new List<ArchiveText>{
                 new ArchiveText{
@@ -424,7 +425,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     ArchiveMission="blalala..."
                 }
             };
-        }
+        }*/
 
 
         protected void SeedContact(ArquivoSilvaMagalhaes.Models.ArchiveDataContext db)
@@ -445,10 +446,10 @@ namespace ArquivoSilvaMagalhaes.Migrations
             }
 
 
-        private ICollection<ArchiveText> ArchiveText(int p)
+      /*  private ICollection<ArchiveText> ArchiveText(int p)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         private ICollection<Contact> Contact(int p)
         {
@@ -467,7 +468,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
         }
 
 
-        private ICollection<BannerPhotographText> BannerPhotographText(int p)
+        private ICollection<BannerPhotographI18nEditModel> BannerPhotographText(int p)
         {
             throw new NotImplementedException();
         }

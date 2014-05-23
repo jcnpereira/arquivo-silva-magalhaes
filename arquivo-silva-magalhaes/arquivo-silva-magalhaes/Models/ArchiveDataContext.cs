@@ -1,4 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<Format> FormatSet { get; set; }
 
         public virtual DbSet<Process> ProcessSet { get; set; }
-        public virtual DbSet<ProcessText> ProcessTextSet { get; set; }
+        
 
         public virtual DbSet<Classification> ClassificationSet { get; set; }
         public virtual DbSet<ClassificationText> ClassificationTextSet { get; set; }
@@ -55,30 +56,36 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<EventText> EventTextSet { get; set; }
 
         public virtual DbSet<NewsItem> NewsSet { get; set; }
-        public virtual DbSet<NewsText> NewsTextSet { get; set; }
+        public virtual DbSet<NewsItemViewModels> NewsTextSet { get; set; }
 
         public virtual DbSet<BannerPhotograph> BannerPhotographSet { get; set; }
-        public virtual DbSet<BannerPhotographText> BannerPhotographTextSet { get; set; }
+        public virtual DbSet<BannerPhotographI18nEditModel> BannerPhotographTextSet { get; set; }
 
         public virtual DbSet<Collaborator> CollaboratorSet { get; set; }
 
         public virtual DbSet<DocumentAttachment> DocumentAttachmentSet { get; set; }
 
         public virtual DbSet<Partnership> PartnershipSet { get; set; }
+
+        public virtual DbSet<Archive> ArchiveSet { get; set; }
         
         public virtual DbSet<ReferencedLink> ReferencedLinkSet { get; set; }
         
         public virtual DbSet<SpotlightVideo> SpotlightVideoSet { get; set; }
 
-        public virtual DbSet<TechnicalDocument> TecnhicalDocumentSet { get; set; }
+        public virtual DbSet<TechnicalDocument> TechnicalDocumentSet { get; set; }
 
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Archive> Archives { get; set; }
+       // public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Archive> Archives { get; set; }
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveText> ArchiveTexts { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Contact> ArchiveContacts { get; set; }
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.AuthorEditModel> AuthorEditViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.DocumentAttachmentText> DocumentAttachmentTexts { get; set; }
+
+        
         
     }
 }

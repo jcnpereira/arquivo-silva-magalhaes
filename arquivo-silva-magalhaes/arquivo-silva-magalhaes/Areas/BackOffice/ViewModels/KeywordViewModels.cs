@@ -6,7 +6,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     public class KeywordViewModel
     {
         public int Id { get; set; }
-        public string Keyword { get; set; }
+        public string Value { get; set; }
     }
 
     public class KeywordEditModel
@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Required]
         [DataType(DataType.Text)]
-        public string Keyword { get; set; }
+        public string Value { get; set; }
 
         [Required]
         public string LanguageCode { get; set; }

@@ -27,23 +27,35 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The type of this collection.
         /// </summary>
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Type")]
         public CollectionType Type { get; set; }
 
         /// <summary>
         /// The date on which this collection was created.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "ProductionDate")]
         public DateTime ProductionDate { get; set; }
 
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LogoLocation")]
         public string LogoLocation { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "HasAttachments")]
         public bool HasAttachments { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "OrganizationCode")]
         public string OrganizationCode { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
         public string Notes { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
 
         /// <summary>
@@ -136,9 +148,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
     public enum CollectionType : byte
     {
-        Collection = 1,
-        Fond = 2,
-        Other = 100
+        Coleção = 1,
+        Fundo = 2,
+        Outro = 100
     }
 
     public partial class CollectionText
@@ -150,16 +162,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.LanguageCode = DefaultLanguageCode;
         }
 
-        [Key, Column(Order = 0)]
+        [Key]
         public int Id { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "Provenience")]
         public string Provenience { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "AdministrariveAndBiographicStory")]
         public string AdministrativeAndBiographicStory { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "Dimension")]
         public string Dimension { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "FieldAndContents")]
         public string FieldAndContents { get; set; }
+        [Required] 
+        [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
         [Required]

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -48,16 +49,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Name,Logo,SiteLink,EmailAddress,Contact,PartnershipType")] Partnership partnership)
+        public async Task<ActionResult> Create(PartnershipEditViewModels model)
         {
             if (ModelState.IsValid)
             {
-                db.PartnershipSet.Add(partnership);
-                await db.SaveChangesAsync();
+                var partnership = new Partnership
+                {
+                    Name = model.Name,
+                    Logo =model.Logo.FileName,
+                    SiteLink = model.SiteLink,
+                    EmailAddress = model.EmailAddress,
+                    Contact = model.Contact,
+                    PartnershipType = model.PartnershipType
+                };
+                 db.PartnershipSet.Add(partnership);
+                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(partnership);
+            return View(model);
         }
 
         // GET: /BackOffice/Parthnership/Edit/5

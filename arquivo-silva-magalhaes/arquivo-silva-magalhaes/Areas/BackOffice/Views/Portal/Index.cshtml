@@ -7,20 +7,36 @@
 <h2>Arquivos</h2>
 
 <p>
-    @Html.ActionLink("Criar novo arquivo", "Create")
+    @Html.ActionLink("Criar novo", "Create")
 </p>
 
-@foreach (var archive in Model) {
-    <div>
-        <h4>@archive.Id</h4>
-        <h6>@archive.Title</h6>
-    </div>
-           
-    <tr>     
+    <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+            </tr>
+    <tr>
+
+    @foreach (var item in Model) {
+    <tr>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=archive.Id }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=archive.Id }) |
-            @Html.ActionLink("Apagar", "Delete", new { id=archive.Id }) 
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+    
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) <br />
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) <br />
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
         </td>
     </tr>
-}
+    }
+</table>
+    @Html.ActionLink("Início", "../Home")

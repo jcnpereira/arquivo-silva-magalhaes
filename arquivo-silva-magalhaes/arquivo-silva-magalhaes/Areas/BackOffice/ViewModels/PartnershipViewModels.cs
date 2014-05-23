@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,40 +10,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     public enum PartnershipType : byte
     {
         [Display ()]
-        Sponsor = 1,
-        Collaborator = 2,
-        Other = 100
+        Patrocinador = 1,
+        Colaborador = 2,
+        Outro = 100
     }
 
-    public class PartnershipEditViewModels :IValidatableObject
+    public class PartnershipEditViewModels
     {
-
-        [Required]
+        [Key]
         public int Id { get; set; }
+
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Name")]
         public string Name { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "Logo")]
+        public HttpPostedFileBase Logo { get; set; }
+
         [Required]
-        public string Logo { get; set; }
-        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "SiteLink")]
         public string SiteLink { get; set; }
+
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "EmailAddress")]
         public string EmailAddress { get; set; }
+
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Contact")]
         public string Contact { get; set; }
-        [Required]
-        public virtual ArquivoSilvaMagalhaes.Models.SiteModels.Event Event { get; set; }
-        
-        
-        [Required]
-        public PartnershipType PartnershipType { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
+        
+        
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "PartnershipType")]
+        public ArquivoSilvaMagalhaes.Models.SiteModels.PartnershipType PartnershipType { get; set; }
+
     }
-
-    
-
 }
 
