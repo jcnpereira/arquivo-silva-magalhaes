@@ -21,6 +21,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string MimeFormat { get; set; }
         public string UriPath { get; set; }
 
+        public string Title { get; set; }
+
         public int Size { get; set; }
 
         public ICollection<Event> EventsUsingAttachment { get; set; }

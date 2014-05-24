@@ -8,7 +8,7 @@
 
 <div>
     <hr />
-    <<dl class="dl-horizontal">
+    <dl class="dl-horizontal">
     <dt>
         @Html.DisplayNameFor(model => model.Value)
     </dt>
@@ -20,6 +20,6 @@
 </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit") <br />
+    @Html.ActionLink("Editar", "Edit", new { Id = Model.Id }) <br />
     @Html.ActionLink("Voltar à lista", "Index")
 </p>

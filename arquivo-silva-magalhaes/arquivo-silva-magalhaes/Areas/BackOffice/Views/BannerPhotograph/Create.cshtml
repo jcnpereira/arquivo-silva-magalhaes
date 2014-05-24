@@ -1,4 +1,4 @@
-﻿@model BannerPhotographViewModels
+﻿@model BannerPhotographViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -24,9 +24,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" accept="image/*" name="Logo" required />
+                <input type="file" accept="image/*" name="Image" required />
             </div>
         </div>
 

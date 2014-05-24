@@ -12,32 +12,30 @@ namespace ArquivoSilvaMagalhaes.Models
     {
         public ArchiveDataContext() : base("name=ArchiveDataContext") { }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {                
-        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) { base.OnModelCreating(modelBuilder); }
 
-        public virtual DbSet<Collection> CollectionSet { get; set; }
+        public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<CollectionText> CollectionTextSet { get; set; }
 
         public virtual DbSet<Document> DocumentSet { get; set; }
-        public virtual DbSet<DocumentText> DocumentTextSet { get; set; }
+        public virtual DbSet<DocumentTranslation> DocumentTextSet { get; set; }
 
         public virtual DbSet<Author> AuthorSet { get; set; }
-        public virtual DbSet<AuthorText> AuthorTextSet { get; set; }
+        public virtual DbSet<AuthorTranslation> AuthorTextSet { get; set; }
 
         public virtual DbSet<Keyword> KeywordSet { get; set; }
-        public virtual DbSet<KeywordText> KeywordTextSet { get; set; }
+        public virtual DbSet<KeywordTranslation> KeywordTextSet { get; set; }
 
         public virtual DbSet<Specimen> SpecimenSet { get; set; }
-        public virtual DbSet<SpecimenText> SpecimenTextSet { get; set; }
+        public virtual DbSet<SpecimenTranslation> SpecimenTextSet { get; set; }
 
         public virtual DbSet<Format> FormatSet { get; set; }
 
         public virtual DbSet<Process> ProcessSet { get; set; }
-        public virtual DbSet<ProcessText> ProcessTextSet { get; set; }
+        public virtual DbSet<ProcessTranslation> ProcessTextSet { get; set; }
 
         public virtual DbSet<Classification> ClassificationSet { get; set; }
-        public virtual DbSet<ClassificationText> ClassificationTextSet { get; set; }
+        public virtual DbSet<ClassificationTranslation> ClassificationTextSet { get; set; }
 
         public virtual DbSet<DigitalPhotograph> DigitalPhotographSet { get; set; }
 
@@ -74,5 +72,6 @@ namespace ArquivoSilvaMagalhaes.Models
 
         public virtual DbSet<Archive> ArchiveSet { get; set; }
         public virtual DbSet<ArchiveText> ArchiveTextSet { get; set; }
+        public virtual DbSet<Contact> ArchiveContactSet { get; set; }
     }
 }

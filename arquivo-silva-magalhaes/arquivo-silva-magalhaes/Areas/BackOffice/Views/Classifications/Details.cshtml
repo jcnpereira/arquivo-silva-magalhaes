@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Classification
+﻿@model ClassificationViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,11 +11,11 @@
     <dl class="dl-horizontal">
        
             <dt>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.Value)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Id)
+                @Html.DisplayFor(model => model.Value)
             </dd>
         </dl>
 </div>

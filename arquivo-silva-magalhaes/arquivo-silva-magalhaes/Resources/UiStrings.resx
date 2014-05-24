@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Ações</value>
+  </data>
   <data name="AssociatePicture" xml:space="preserve">
     <value>Associar fotografias digitais</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
+  <data name="GoToList" xml:space="preserve">
+    <value>Voltar para a lista</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Língua</value>
   </data>
@@ -155,6 +161,9 @@
   </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Guardar alterações</value>
+  </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Pesquisar...</value>
   </data>
   <data name="WarningEditInDefault" xml:space="preserve">
     <value>Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida.</value>

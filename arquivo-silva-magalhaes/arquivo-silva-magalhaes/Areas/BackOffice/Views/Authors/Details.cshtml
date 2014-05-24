@@ -1,10 +1,20 @@
-﻿@model AuthorViewModel
+﻿@model Author
 
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Detalhes do autor</h2>
+
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+
+    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
 
 <div>
     <hr />
@@ -42,7 +52,7 @@
         </dd>
     </dl>
 
-    @foreach (var text in Model.AuthorI18nTexts)
+    @foreach (var text in Model.Translations)
     {
         <div>
             <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
@@ -73,26 +83,7 @@
 
             </dl>
 
-            @Html.ActionLink(@UiStrings.Edit, "EditText", new { AuthorId = text.AuthorId, LanguageCode = text.LanguageCode })
-
-            @*Only allow the removal of texts which are not the default language.*@
-            @if (text.LanguageCode != ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.DefaultLanguage)
-            {
-                @Html.ActionLink(@UiStrings.Delete, "DeleteText", new { AuthorId = text.AuthorId, LanguageCode = text.LanguageCode })
-            }
-
             <hr />
         </div>
     }
-
-    @if (ViewBag.AreLanguagesMissing)
-    {
-        
-        @Html.ActionLink("Adicionar ideoma", "AddLanguage", new { Id = Model.Id })
-    }
-
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
-    @Html.ActionLink("Voltar à lista", "Index")
-</p>

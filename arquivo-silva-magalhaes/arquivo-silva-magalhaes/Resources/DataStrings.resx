@@ -145,7 +145,7 @@
     <value>Data de nascimento</value>
   </data>
   <data name="CatalogCode" xml:space="preserve">
-    <value>Código de catálogo</value>
+    <value>Código de catalogação</value>
   </data>
   <data name="Classification" xml:space="preserve">
     <value>Classificação</value>
@@ -188,7 +188,7 @@
     <value>Descrição</value>
   </data>
   <data name="Dimension" xml:space="preserve">
-    <value>Dimenção</value>
+    <value>Dimensão</value>
   </data>
   <data name="DocumentType" xml:space="preserve">
     <value>Tipo de documento</value>
@@ -206,7 +206,7 @@
     <value>Data de validade</value>
   </data>
   <data name="FieldAndContents" xml:space="preserve">
-    <value>Campo e conteúdo</value>
+    <value>Âmbito e conteúdo</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Primeiro nome</value>
@@ -216,7 +216,7 @@
     <value>Formato</value>
   </data>
   <data name="HasAttachments" xml:space="preserve">
-    <value>Tem anexo</value>
+    <value>Tem anexos</value>
   </data>
   <data name="Heading" xml:space="preserve">
     <value>Cabeçalho</value>
@@ -231,13 +231,10 @@
     <value>É link util</value>
   </data>
   <data name="IsVisible" xml:space="preserve">
-    <value>É visivel</value>
+    <value>Visível ao público</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Ideoma</value>
-  </data>
-  <data name="LanguageCode" xml:space="preserve">
-    <value>Código da língua</value>
+    <value>Idioma</value>
   </data>
   <data name="LastModificationDate" xml:space="preserve">
     <value>Data da última modificação</value>
@@ -270,8 +267,8 @@
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
   </data>
-  <data name="OrganizationCode" xml:space="preserve">
-    <value>Codigo de organização</value>
+  <data name="OrganizationSystem" xml:space="preserve">
+    <value>Sistema de organização</value>
   </data>
   <data name="PartnershipType" xml:space="preserve">
     <value>Tipo de parceria</value>
@@ -281,6 +278,7 @@
   </data>
   <data name="ScanDate" xml:space="preserve">
     <value>Data de digitalização</value>
+  </data>
   <data name="ProductionDate" xml:space="preserve">
     <value>Data de produção</value>
   </data>
@@ -295,9 +293,6 @@
   </data>
   <data name="ReferencedLink" xml:space="preserve">
     <value>Link</value>
-  </data>
-  <data name="RemotionDate" xml:space="preserve">
-    <value>Data de remoção</value>
   </data>
   <data name="RemovalDate" xml:space="preserve">
     <value>Data de remoção</value>
@@ -343,5 +338,77 @@
   </data>
   <data name="VisitorInformation" xml:space="preserve">
     <value>Informação sobre visitantes</value>
+  </data>
+  <data name="CollectionLogo" xml:space="preserve">
+    <value>Logótipo da coleção</value>
+  </data>
+  <data name="CollectionType" xml:space="preserve">
+    <value>Tipo de coleção</value>
+  </data>
+  <data name="CollectionType_Collection" xml:space="preserve">
+    <value>Coleção</value>
+  </data>
+  <data name="CollectionType_Fond" xml:space="preserve">
+    <value>Fundo</value>
+  </data>
+  <data name="CollectionType_Other" xml:space="preserve">
+    <value>Outro tipo de coleção</value>
+  </data>
+  <data name="AuthorCatalogCode" xml:space="preserve">
+    <value>Código de catalogação do autor</value>
+  </data>
+  <data name="CatalogationDate" xml:space="preserve">
+    <value>Data de catalogação</value>
+  </data>
+  <data name="DocumentDate" xml:space="preserve">
+    <value>Data do documento</value>
+  </data>
+  <data name="DocumentLocation" xml:space="preserve">
+    <value>Localização do documento</value>
+  </data>
+  <data name="HasMarksOrStamps" xml:space="preserve">
+    <value>Tem marcas ou carimbos</value>
+  </data>
+  <data name="Indexation" xml:space="preserve">
+    <value>Indexação</value>
+  </data>
+  <data name="InterventionDescription" xml:space="preserve">
+    <value>Descrição da intervenção</value>
+  </data>
+  <data name="Keyword" xml:space="preserve">
+    <value>Palavra-chave</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Processo</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publicação</value>
+  </data>
+  <data name="ResponsibleName" xml:space="preserve">
+    <value>Nome do responsável</value>
+  </data>
+  <data name="ScanProcess" xml:space="preserve">
+    <value>Processo de digitalização</value>
+  </data>
+  <data name="ShowcasePhoto_Comment" xml:space="preserve">
+    <value>Comentário</value>
+  </data>
+  <data name="ShowcasePhoto_CommenterEmail" xml:space="preserve">
+    <value>Endereço de e-mail do comentador</value>
+  </data>
+  <data name="ShowcasePhoto_CommenterName" xml:space="preserve">
+    <value>Nome do comentador</value>
+  </data>
+  <data name="ShowcasePhoto_IsEmailVisible" xml:space="preserve">
+    <value>Endereço de e-mail visível</value>
+  </data>
+  <data name="StateDetailed" xml:space="preserve">
+    <value>Descrição detalhada do estado</value>
+  </data>
+  <data name="StateSimple" xml:space="preserve">
+    <value>Descrição simples do estado</value>
+  </data>
+  <data name="Topic" xml:space="preserve">
+    <value>Tópico</value>
   </data>
 </root>

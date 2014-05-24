@@ -1,12 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -17,9 +13,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Author()
         {
-            this.AuthorTexts = new HashSet<AuthorText>();
-            this.Documents = new HashSet<Document>();
-            this.Collections = new HashSet<Collection>();
+            this.Translations = new List<AuthorTranslation>();
+            this.Documents = new List<Document>();
+            this.Collections = new List<Collection>();
         }
 
         [Key]
@@ -37,7 +33,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The last name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(30)]
+        [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
@@ -45,29 +42,32 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// The date on which this author died.
         /// </summary>
         [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
         /// <summary>
         /// Localized texts descibing the biography and other aspects of this
         /// author.
         /// </summary>
-        public virtual ICollection<AuthorText> AuthorTexts { get; set; }
+        public virtual List<AuthorTranslation> Translations { get; set; }
 
         /// <summary>
         /// Documents created by this author.
         /// </summary>
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual List<Document> Documents { get; set; }
 
         /// <summary>
         /// Collections created by this author.
         /// </summary>
-        public virtual ICollection<Collection> Collections { get; set; }
+        public virtual List<Collection> Collections { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -83,7 +83,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// <summary>
     /// Text details about this author.
     /// </summary>
-    public partial class AuthorText
+    public partial class AuthorTranslation
     {
         /// <summary>
         /// The author which is associated with this detail text.
@@ -94,24 +94,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         [Column(Order = 1)]
+        [Required]
         public string LanguageCode { get; set; }
 
         /// <summary>
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
         [Required]
+        [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         /// <summary>
         /// Text containing the biography of this author.
         /// </summary>
         [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         public string Biography { get; set; }
 
         /// <summary>
         /// Text containing the curriculum of this author.
         /// </summary>
         [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
 
         [ForeignKey("AuthorId")]

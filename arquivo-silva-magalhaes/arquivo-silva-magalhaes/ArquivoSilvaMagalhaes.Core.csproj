@@ -176,49 +176,53 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\AboutController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\AuthorsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\BannerPhotographController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ClassificationsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\CollectionsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\CollaboratorController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\DocumentAttachmentController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\EventController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\FormatsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\DocumentsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\KeywordsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\PartnershipController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ProcessesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ShowcasePhotoesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\TechnicalDocumentController.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\ClassificationViewModels.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ReferencedLinkController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SpecimensController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SpotLightVideoController.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\AuthorViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\BannerPhotographViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\CollectionViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\DocumentAttachmentViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\DocumentViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\EventViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\KeywordViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\NewsItemViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\PartnershipViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\PortalViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\ProcessesViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\ReferencedLinkModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SpecimenViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SpotLightVideoModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\TehcnicalDocumentViewModels.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AboutController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\CollaboratorController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\KeywordsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
+    <Compile Include="Migrations\201405241702271_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201405241702271_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
+    <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\DocumentViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\EventViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\KeywordViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\NewsItemViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PartnershipViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PortalViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
+    <Compile Include="Models\SiteViewModels\TehcnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\NewsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\PortalController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\NewsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\BannerPhotographText.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
@@ -309,10 +313,8 @@
     <Content Include="Areas\BackOffice\Views\Authors\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Authors\_AuthorI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
     <Content Include="Areas\BackOffice\Views\Shared\_AddLanguagePrompt.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Authors\AddLanguage.cshtml" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="Areas\BackOffice\Views\Classifications\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\Delete.cshtml" />
@@ -340,7 +342,6 @@
     <Content Include="Areas\BackOffice\Views\Specimens\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_SubmitBackPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\News\AddLanguage.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
@@ -351,12 +352,6 @@
     <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Authors\DeleteText.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Authors\EditText.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Keywords\AddLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Keywords\EditLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Keywords\DeleteLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Keywords\_KeywordI18nPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
@@ -387,27 +382,14 @@
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\_DocumentI18nPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Classifications\EditLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationI18nPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Classifications\AddLanguage.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\_EventI18nPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\News\_NewsI18nPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographI18npartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\AssociateDigitalPhoto.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\ListPhotos.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\_PhotoPreviewModal.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\AddLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\EditText.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\DeleteText.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BannerPhotograph\AddLanguage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Portal\ContactPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Portal\TextPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_PhotoPreviewModal.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Details.cshtml" />
@@ -469,7 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Areas\BackOffice\ViewModels\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
     <Folder Include="Public\Images\" />
   </ItemGroup>
@@ -484,9 +466,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405241702271_ArchiveDataContext.resx">
+      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorStrings.en.resx" />
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
