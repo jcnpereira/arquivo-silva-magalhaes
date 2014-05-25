@@ -64,12 +64,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         public int CollectionId { get; set; }
         [ForeignKey("CollectionId")]
-        public Collection Collection { get; set; }
+        public virtual Collection Collection { get; set; }
 
         [Required]
         public int AuthorId { get; set; }
         [ForeignKey("AuthorId")]
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
 
         public virtual ICollection<DocumentTranslation> Translations { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
@@ -100,6 +100,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Description { get; set; }
 
         [ForeignKey("DocumentId")]
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
     }
 }

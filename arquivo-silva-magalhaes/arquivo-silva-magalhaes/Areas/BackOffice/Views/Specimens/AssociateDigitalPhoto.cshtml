@@ -55,9 +55,7 @@
                     <label for="Items[{{photo.index}}].Process">@DataStrings.ScanDate</label>
 
                     <div class="form-inline">
-                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanYear" required="required" placeholder="yyyy" />
-                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanMonth" required="required" min="1" max="12" placeholder="MM" />
-                        <input class="form-control" type="number" name="Items[{{photo.index}}].ScanDay" required="required" min="1" max="31" placeholder="dd" />
+                        <input type="date" class="form-control" name="Items[{{photo.index}}].ScanDate" required="required" />
                     </div>
                 </div>
 

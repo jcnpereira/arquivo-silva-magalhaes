@@ -40,7 +40,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("DigitalPhotographId")]
         public DigitalPhotograph DigitalPhotograph { get; set; }
 
-        public ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
+        public virtual ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
     }
 
     public partial class ShowcasePhotoText
@@ -57,6 +57,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Comment { get; set; }
 
         [ForeignKey("ShowcasePhotoId")]
-        public ShowcasePhoto ShowcasePhoto { get; set; }
+        public virtual ShowcasePhoto ShowcasePhoto { get; set; }
     }
 }

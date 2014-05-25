@@ -9,6 +9,33 @@ using System.Web.Mvc;
 namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
 
+    public class AuthorViewModel
+    {
+        public int Id { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
+        public string LastName { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
+        public DateTime BirthDate { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
+        public DateTime DeathDate { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
+        public string Nationality { get; set; }
+
+        
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
+        public string Biography { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
+        public string Curriculum { get; set; }
+    }
+
     /// <summary>
     /// To be used in Create and Edit views.
     /// </summary>

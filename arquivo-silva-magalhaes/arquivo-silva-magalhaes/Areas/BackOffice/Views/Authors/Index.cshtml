@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Author>
+﻿@model IEnumerable<AuthorViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -37,7 +37,7 @@
                 @Html.DisplayNameFor(model => model.BirthDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Translations[0].Nationality)
+                @Html.DisplayNameFor(model => model.Nationality)
             </th>
             <th>
                 @UiStrings.Actions
@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Translations[0].Nationality)
+                @Html.DisplayFor(modelItem => item.Nationality)
             </td>
             <td>
                 <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">

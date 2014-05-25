@@ -27,6 +27,9 @@
     @* Actions *@
     <div class="row col-md-offset-11">
         <form class="btn-group" method="post" action="@Url.Action("DeletePhoto", new { id = Model.Id, redirectTo = ViewBag.ActionToRedirect })">
+            <a class="btn btn-default" title="Transferir Original" href="@Url.Action("GetPicture", new { Id = Model.Id, size = "Original" })">
+                <span class="glyphicon glyphicon-download"></span>
+            </a>
             <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("EditPhotoDetails", new { id = Model.Id })">
                 <span class="glyphicon glyphicon-edit"></span>
             </a>

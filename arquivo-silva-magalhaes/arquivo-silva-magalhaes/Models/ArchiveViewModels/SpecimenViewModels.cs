@@ -10,26 +10,93 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
-    public partial class Specimen
+    public class SpecimenEditViewModel
     {
-        [NotMapped]
-        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
-        [NotMapped]
-        public IEnumerable<SelectListItem> AvailableProcesses { get; set; }
-        [NotMapped]
-        public IEnumerable<SelectListItem> AvailableFormats { get; set; }
-        [NotMapped]
-        public IEnumerable<SelectListItem> AvailableClassfications { get; set; }
+        public int Id { get; set; }
 
-        [Required, NotMapped]
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
+        public string CatalogCode { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "AuthorCatalogCode")]
+        public string AuthorCatalogationCode { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "HasMarksOrStamps")]
+        public bool HasMarksOrStamps { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "Indexation")]
+        public string Indexation { get; set; }
+
+        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
+        public string Notes { get; set; }
+
+        [Required]
+        public int? DocumentId { get; set; }
+
+        [Required]
+        public int ProcessId { get; set; }
+
+        [Required]
+        public int FormatId { get; set; }
+
+        [Required]
         public int[] KeywordIds { get; set; }
+
+        [Required]
+        public int[] ClassificationIds { get; set; }
+
+        [Required]
+        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+        [Required]
+        public IEnumerable<SelectListItem> AvailableProcesses { get; set; }
+        [Required]
+        public IEnumerable<SelectListItem> AvailableFormats { get; set; }
+        [Required]
+        public IEnumerable<SelectListItem> AvailableClassfications { get; set; }
+        [Required]
         public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
+
+        public List<SpecimenTranslationEditViewModel> Translations { get; set; }
     }
 
 
     // TODO: Implement this!
-    public class SpecimenTranslation
+    public class SpecimenTranslationEditViewModel
     {
+        public int SpecimenId { get; set; }
+
+        [Required]
+        public string LanguageCode { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
+        public string Title { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Topic")]
+        public string Topic { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        public string Description { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "StateSimple")]
+        public string SimpleStateDescription { get; set; }
+
+        [Required, DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "StateDetailed")]
+        public string DetailedStateDescription { get; set; }
+
+        [Required, DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "InterventionDescription")]
+        public string InterventionDescription { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Publication")]
+        public string Publication { get; set; }
+
         public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
     }
 
@@ -50,17 +117,22 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
     {
         [Required]
         [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "ScanDate")]
         public DateTime ScanDate { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "ScanProcess")]
         public string Process { get; set; }
+
 
         public string OriginalFileName { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
+        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
 
         public bool IsToConsider { get; set; }

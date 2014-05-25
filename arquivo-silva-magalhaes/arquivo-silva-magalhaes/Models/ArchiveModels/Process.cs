@@ -36,6 +36,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Value { get; set; }
 
         [ForeignKey("ProcessId")]
-        public Process Process { get; set; }
+        public virtual Process Process { get; set; }
     }
 }

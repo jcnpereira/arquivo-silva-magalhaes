@@ -16,8 +16,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
             this.Classifications = new HashSet<Classification>();
             this.Keywords = new HashSet<Keyword>();
-
-            
         }
     
         [Key]
@@ -31,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(DataStrings), Name = "AuthorCatalogCode")]
         public string AuthorCatalogationCode { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "HasMarksorStamps")]
+        [Display(ResourceType = typeof(DataStrings), Name = "HasMarksOrStamps")]
         public bool HasMarksOrStamps { get; set; }
 
         [Display(ResourceType = typeof(DataStrings), Name = "Indexation")]
@@ -43,22 +41,30 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         public int DocumentId { get; set; }
         [ForeignKey("DocumentId")]
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
 
         [Required]
         public int ProcessId { get; set; }
         [ForeignKey("ProcessId")]
-        public Process Process { get; set; }
+        public virtual Process Process { get; set; }
 
         [Required]
         public int FormatId { get; set; }
         [ForeignKey("FormatId")]
-        public Format Format { get; set; }
+        public virtual Format Format { get; set; }
 
+        
         public virtual ICollection<Classification> Classifications { get; set; }
+        [Required, NotMapped]
+        public int[] ClassificationIds { get; set; }
+
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
+
         public virtual ICollection<SpecimenTranslation> Translations { get; set; }
+
         public virtual ICollection<Keyword> Keywords { get; set; }
+        [Required, NotMapped]
+        public int[] KeywordIds { get; set; }
     }
 
     public partial class SpecimenTranslation

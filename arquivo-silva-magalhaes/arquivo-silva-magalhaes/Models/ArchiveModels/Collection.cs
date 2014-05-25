@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Collection()
         {
-            this.CollectionTexts = new HashSet<CollectionText>();
+            this.Translations = new HashSet<CollectionTranslation>();
             this.Documents = new HashSet<Document>();
             this.Authors = new HashSet<Author>();
         }
@@ -73,12 +73,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
-        public ICollection<CollectionText> CollectionTexts { get; set; }
-        public ICollection<Document> Documents { get; set; }
-        public ICollection<Author> Authors { get; set; }
+        public virtual ICollection<CollectionTranslation> Translations { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
     }
 
-    public partial class CollectionText
+    public partial class CollectionTranslation
     {
         [Key]
         [Column(Order = 0)]
@@ -120,6 +120,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string CopyrightInfo { get; set; }
 
         [ForeignKey("CollectionId")]
-        public Collection Collection { get; set; }
+        public virtual Collection Collection { get; set; }
     }
 }

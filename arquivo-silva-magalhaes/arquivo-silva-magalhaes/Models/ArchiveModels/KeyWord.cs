@@ -44,6 +44,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Value { get; set; }
 
         [ForeignKey("KeywordId")]
-        public Keyword Keyword { get; set; }
+        public virtual Keyword Keyword { get; set; }
     }
 }

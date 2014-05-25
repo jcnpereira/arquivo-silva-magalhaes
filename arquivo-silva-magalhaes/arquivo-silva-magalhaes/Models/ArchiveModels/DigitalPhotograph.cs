@@ -44,8 +44,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public bool IsVisible { get; set; }
 
         [ForeignKey("SpecimenId")]
-        public Specimen Specimen { get; set; }
+        public virtual Specimen Specimen { get; set; }
 
-        public ICollection<ShowcasePhoto> ShowcasePhotoes { get; set; }
+        public virtual ICollection<ShowcasePhoto> ShowcasePhotoes { get; set; }
     }
 }

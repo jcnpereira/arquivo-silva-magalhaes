@@ -46,6 +46,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Value { get; set; }
 
         [ForeignKey("ClassificationId")]
-        public Classification Classification { get; set; }
+        public virtual Classification Classification { get; set; }
     }
 }

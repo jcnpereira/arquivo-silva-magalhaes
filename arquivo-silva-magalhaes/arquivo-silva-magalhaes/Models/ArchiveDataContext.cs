@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder) { base.OnModelCreating(modelBuilder); }
 
         public virtual DbSet<Collection> Collections { get; set; }
-        public virtual DbSet<CollectionText> CollectionTextSet { get; set; }
+        public virtual DbSet<CollectionTranslation> CollectionTextSet { get; set; }
 
         public virtual DbSet<Document> DocumentSet { get; set; }
         public virtual DbSet<DocumentTranslation> DocumentTextSet { get; set; }

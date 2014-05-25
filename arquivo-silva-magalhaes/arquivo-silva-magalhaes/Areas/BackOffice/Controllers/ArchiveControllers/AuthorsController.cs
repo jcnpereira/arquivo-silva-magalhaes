@@ -20,7 +20,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index()
         {
-            return View(await db.AuthorSet.ToListAsync());
+            return View(await db.AuthorSet
+                .Join<Author, AuthorTranslation, int, AuthorViewModel>(
+                    db.AuthorTextSet.Where(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage),
+                    a => a.Id, at => at.AuthorId,
+                    (a, at) => new AuthorViewModel
+                    {
+                        Id = a.Id,
+                        FirstName = a.FirstName,
+                        LastName = a.LastName,
+                        BirthDate = a.BirthDate,
+                        DeathDate = a.DeathDate,
+                        Nationality = at.Nationality,
+                        Biography = at.Biography,
+                        Curriculum = at.Curriculum
+                    })
+                .ToListAsync());
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -123,6 +138,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(author).State = EntityState.Modified;
+
+                foreach (var t in author.Translations)
+                {
+                    db.Entry(t).State = EntityState.Modified;
+                }
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
