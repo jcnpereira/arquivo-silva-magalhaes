@@ -34,7 +34,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The type of this collection.
         /// </summary>
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType")]
+        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType"), Required]
         public CollectionType Type { get; set; }
 
         /// <summary>
@@ -76,6 +76,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<CollectionTranslation> Translations { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
+
+        [NotMapped, Required]
+        public int[] AuthorIds { get; set; }
     }
 
     public partial class CollectionTranslation

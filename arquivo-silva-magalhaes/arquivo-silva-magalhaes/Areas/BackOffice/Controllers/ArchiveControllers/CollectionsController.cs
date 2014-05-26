@@ -9,6 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
+using ImageResizer;
+using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -38,9 +42,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: /BackOffice/Collection/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            return View(new CollectionEditViewModel
+                {
+                    AvailableAuthors = await db.AuthorSet.Select(a => new SelectListItem
+                    {
+                        Value = a.Id.ToString(),
+                        Text = a.FirstName + " " + a.LastName
+                    }).ToListAsync(),
+
+                    Translations = new List<CollectionTranslationEditViewModel>
+                    {
+                        new CollectionTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
+                    }
+                });
         }
 
         // POST: /BackOffice/Collection/Create
@@ -48,10 +64,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Type,ProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Create([Bind(Exclude = "LogoLocation")] Collection collection)
         {
             if (ModelState.IsValid)
             {
+                var newName = Guid.NewGuid().ToString() + ".jpg";
+
+                // Prepare to resize the pictures.
+                // We'll scale them proportionally to a maximum of 1024x768.
+                ImageJob j = new ImageJob
+                {
+                    Instructions = new Instructions
+                    {
+                        Width = 1024,
+                        Height = 768,
+                        Mode = FitMode.Max,
+                        Encoder = "freeimage",
+                        OutputFormat = OutputFormat.Jpeg
+                    },
+                    Source = Request.Files["Logo"].InputStream,
+                    Dest = Path.Combine(Server.MapPath("~/Public/Collections"), newName),
+                    CreateParentDirectory = true
+                };
+
+                var i = new Instructions();
+
+                collection.LogoLocation = newName;
+
                 db.Collections.Add(collection);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -116,49 +155,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
-        public ActionResult AssociateDocument(int id)
-        {
-            return View();
-        }
-
-        public ActionResult AddTranslation(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddTranslation()
-        {
-            return View();
-        }
-
-        public ActionResult EditTranslation(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditTranslation()
-        {
-            return View();
-        }
-
-        public ActionResult DeleteTranslation(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteTranslation()
-        {
-            return View();
-        }
-
-
 
         protected override void Dispose(bool disposing)
         {

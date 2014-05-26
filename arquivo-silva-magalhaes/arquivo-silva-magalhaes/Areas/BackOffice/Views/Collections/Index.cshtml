@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection>
+﻿@model IEnumerable<Collection>
 
 @{
     ViewBag.Title = "Index";
@@ -18,13 +18,10 @@
             @Html.DisplayNameFor(model => model.ProductionDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LogoLocation)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.HasAttachments)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrganizationCode)
+            @Html.DisplayNameFor(model => model.OrganizationSystem)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -47,13 +44,10 @@
             @Html.DisplayFor(modelItem => item.ProductionDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LogoLocation)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.HasAttachments)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OrganizationCode)
+            @Html.DisplayFor(modelItem => item.OrganizationSystem)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
