@@ -87,8 +87,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     CreateParentDirectory = true
                 };
 
-                var i = new Instructions();
-
                 collection.LogoLocation = newName;
 
                 db.Collections.Add(collection);

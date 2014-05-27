@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -41,27 +43,54 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: BackOffice/Documents/Create
-        public async Task<ActionResult> Create(int? DocumentId)
+        public async Task<ActionResult> Create(int? CollectionId, int? AuthorId)
         {
-            /*  DocumentAttachmentViewModels author = null;
+            var model = new DocumentEditViewModel
+            {
+                AvailableKeywords = await db.KeywordTextSet
+                    .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                    .Select(kt => new SelectListItem
+                    {
+                        Value = kt.KeywordId.ToString(),
+                        Text = kt.Value
+                    }).ToListAsync(),
 
-              if (authorId != null)
-              {
-                  author = await db.AuthorSet.FindAsync(authorId);
-              }
+                Translations = new List<DocumentTranslationEditViewModel>
+                {
+                    new DocumentTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
+                }
+            };
 
-              var model = new DocumentEditViewModel();
+            // Check for an author.
+            if (AuthorId != null && db.AuthorSet.Find(AuthorId) != null)
+            {
+                model.AuthorId = AuthorId.Value;
+            }
+            else
+            {
+                model.AvailableAuthors = await db.AuthorSet
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.Id.ToString(),
+                        Text = a.FirstName + " " + a.LastName
+                    }).ToListAsync();
+            }
+            // Check for a collection.
+            if (CollectionId != null && db.Collections.Find(CollectionId) != null)
+            {
+                model.CollectionId = CollectionId.Value;
+            }
+            else
+            {
+                model.AvailableCollections = await db.Collections
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.CatalogCode
+                    }).ToListAsync();
+            }
 
-              if (author != null)
-              {
-                  model.Size = new SelectList(new List<Author> { author }, "Id", "Name");
-              }
-              else
-              {
-                  model.Authors = new SelectList(await db.AuthorSet.ToListAsync(), "Id", "Name");
-              }*/
-
-            return View();
+            return View(model);
         }
 
         // POST: BackOffice/Documents/Create
@@ -69,10 +98,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Create(Document document)
         {
             if (ModelState.IsValid)
             {
+                document.Keywords = document.KeywordIds.Select(kid => db.KeywordSet.Find(kid)).ToList();
+
                 db.DocumentSet.Add(document);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
