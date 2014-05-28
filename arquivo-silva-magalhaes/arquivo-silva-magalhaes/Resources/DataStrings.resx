@@ -288,9 +288,6 @@
   <data name="PublicationDate" xml:space="preserve">
     <value>Data de publicação</value>
   </data>
-  <data name="PublishDate" xml:space="preserve">
-    <value>Data de públicação</value>
-  </data>
   <data name="ReferencedLink" xml:space="preserve">
     <value>Link</value>
   </data>
@@ -410,5 +407,14 @@
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Tópico</value>
+  </data>
+  <data name="Classifications" xml:space="preserve">
+    <value>Classificações</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Palavras-chave</value>
   </data>
 </root>

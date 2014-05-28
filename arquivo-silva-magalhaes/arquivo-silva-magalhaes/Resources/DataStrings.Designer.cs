@@ -178,6 +178,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Classificações.
+        /// </summary>
+        public static string Classifications {
+            get {
+                return ResourceManager.GetString("Classifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dimensão da coleção.
         /// </summary>
         public static string CollectionDimension {
@@ -336,6 +345,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string Dimension {
             get {
                 return ResourceManager.GetString("Dimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documento.
+        /// </summary>
+        public static string Document {
+            get {
+                return ResourceManager.GetString("Document", resourceCulture);
             }
         }
         
@@ -520,6 +538,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Palavras-chave.
+        /// </summary>
+        public static string Keywords {
+            get {
+                return ResourceManager.GetString("Keywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Idioma.
         /// </summary>
         public static string Language {
@@ -687,15 +714,6 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string PublicationDate {
             get {
                 return ResourceManager.GetString("PublicationDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data de públicação.
-        /// </summary>
-        public static string PublishDate {
-            get {
-                return ResourceManager.GetString("PublishDate", resourceCulture);
             }
         }
         

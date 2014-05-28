@@ -32,28 +32,37 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         public string Notes { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Document")]
         public int? DocumentId { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Process")]
         public int ProcessId { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Format")]
         public int FormatId { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Keywords")]
         public int[] KeywordIds { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Classifications")]
         public int[] ClassificationIds { get; set; }
 
         [Required]
         public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+
         [Required]
         public IEnumerable<SelectListItem> AvailableProcesses { get; set; }
+
         [Required]
         public IEnumerable<SelectListItem> AvailableFormats { get; set; }
+
         [Required]
         public IEnumerable<SelectListItem> AvailableClassfications { get; set; }
+
         [Required]
         public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
 
