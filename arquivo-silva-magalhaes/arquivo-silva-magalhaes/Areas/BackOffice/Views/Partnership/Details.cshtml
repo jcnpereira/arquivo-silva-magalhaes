@@ -1,0 +1,58 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Partnership
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes de parceria</h2>
+
+<div>
+
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartnershipType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartnershipType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

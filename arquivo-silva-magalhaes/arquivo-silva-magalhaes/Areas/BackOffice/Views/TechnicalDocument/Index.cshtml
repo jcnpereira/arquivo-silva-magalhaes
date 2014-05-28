@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Documento técnico</h2>
+
+<p>
+    @Html.ActionLink("Criar novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UriPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModificationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Format)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageCode)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UriPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModificationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Format)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageCode)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) <br />
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) <br />
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
+    }
+
+</table>
+@Html.ActionLink("Início", "../Home")

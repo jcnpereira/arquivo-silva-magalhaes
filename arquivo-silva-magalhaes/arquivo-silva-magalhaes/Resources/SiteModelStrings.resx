@@ -141,4 +141,10 @@
     <value>Atividade pedagógica</value>
     <comment>An event that's associated with a school.</comment>
   </data>
+  <data name="LangEn" xml:space="preserve">
+    <value>Inglês</value>
+  </data>
+  <data name="LangPt" xml:space="preserve">
+    <value>Português</value>
+  </data>
 </root>

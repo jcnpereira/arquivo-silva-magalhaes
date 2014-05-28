@@ -50,5 +50,6 @@ namespace ArquivoSilvaMagalhaes.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
     }
 }

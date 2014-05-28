@@ -1,0 +1,25 @@
+﻿@model Format
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes do formato</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FormatDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormatDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

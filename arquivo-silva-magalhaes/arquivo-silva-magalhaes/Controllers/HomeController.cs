@@ -1,6 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
@@ -11,6 +13,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
         
         public ActionResult Index()
         {
+            //var collections = _db.CollectionSet
+            //    .Where(c => c.IsVisible)
+            //    .ToList();
+
+            //return View(collections);
             return View();
         }
 

@@ -1,0 +1,64 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Collaborator
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Tem a certeza que pretende remover este colaborador?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Task)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> <br />
+            @Html.ActionLink("Voltar à lista", "Index")
+        </div>
+    }
+</div>

@@ -17,7 +17,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string EmailAddress { get; set; }
         public string Contact { get; set; }
 
-        public virtual Event Event { get; set; }
+        public int EventId { get; set; }
 
         public PartnershipType PartnershipType { get; set; }
     }

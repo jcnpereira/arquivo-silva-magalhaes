@@ -1,0 +1,63 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar imagem</h2>
+
+<h3>Tem a certeza que pretende eliminar esta imagem?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageData)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UriPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UriPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RemovalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemovalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVisible)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar à lista", "Index")
+        </div>
+    }
+</div>

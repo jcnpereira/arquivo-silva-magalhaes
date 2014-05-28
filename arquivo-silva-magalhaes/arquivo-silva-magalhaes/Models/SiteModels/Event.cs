@@ -26,8 +26,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<DocumentAttachment>();
             EventTexts = new HashSet<EventText>();
-
-            HideAfterExpiry = false;
         }
 
         [Key]
@@ -38,6 +36,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Place { get; set; }
         public string Coordinates { get; set; }
         public string VisitorInformation { get; set; }
+
 
         public DateTime StartMoment { get; set; }
         public DateTime EndMoment { get; set; }
@@ -53,31 +52,29 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         /// </summary>
         public EventType EventType { get; set; }
 
-        public virtual ICollection<Event> ReferencedEvents { get; set; }
-        public virtual ICollection<Partnership> Partnerships { get; set; }
-        public virtual ICollection<Collaborator> Collaborators { get; set; }
-        public virtual ICollection<ReferencedLink> Links { get; set; }
-        public virtual ICollection<DocumentAttachment> AttachedDocuments { get; set; }
-        public virtual ICollection<EventText> EventTexts { get; set; }
+        public ICollection<Event> ReferencedEvents { get; set; }
+        public ICollection<Partnership> Partnerships { get; set; }
+        public ICollection<Collaborator> Collaborators { get; set; }
+        public ICollection<ReferencedLink> Links { get; set; }
+        public ICollection<DocumentAttachment> AttachedDocuments { get; set; }
+        public ICollection<EventText> EventTexts { get; set; }
     }
 
     public class EventText
     {
-        public EventText()
-        {
-            LanguageCode = "pt";
-        }
 
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int EventId { get; set; }
+        [ForeignKey("EventId")]
+        public Event Event { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         public string Title { get; set; }
         public string Heading { get; set; }
         public string SpotLight { get; set; }
         public string TextContent { get; set; }
-
-        public virtual Event Event { get; set; }
 
     }
 }

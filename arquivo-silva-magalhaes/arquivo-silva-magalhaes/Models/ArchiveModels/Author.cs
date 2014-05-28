@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -15,9 +13,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Author()
         {
-            this.AuthorTexts = new HashSet<AuthorText>();
-            this.Documents = new HashSet<Document>();
-            this.Collections = new HashSet<Collection>();
+            this.Translations = new List<AuthorTranslation>();
+            this.Documents = new List<Document>();
+            this.Collections = new List<Collection>();
         }
 
         [Key]
@@ -28,88 +26,102 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The last name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(30)]
+        [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
+
         /// <summary>
         /// The date on which this author died.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
         /// <summary>
         /// Localized texts descibing the biography and other aspects of this
         /// author.
         /// </summary>
-        public virtual ICollection<AuthorText> AuthorTexts { get; set; }
+        public virtual List<AuthorTranslation> Translations { get; set; }
+
         /// <summary>
         /// Documents created by this author.
         /// </summary>
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual List<Document> Documents { get; set; }
+
         /// <summary>
         /// Collections created by this author.
         /// </summary>
-        public virtual ICollection<Collection> Collections { get; set; }
+        public virtual List<Collection> Collections { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // The death date cannot be earlier than the birth date.
-            if (BirthDate != null && DeathDate != null)
+            if (DeathDate.CompareTo(BirthDate) < 0)
             {
-                if (DeathDate.CompareTo(BirthDate) < 0)
-                {
-                    yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
-                }
+                yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
             }
+
         }
     }
 
     /// <summary>
     /// Text details about this author.
     /// </summary>
-    public partial class AuthorText
+    public partial class AuthorTranslation
     {
-        public AuthorText()
-        {
-            this.LanguageCode = "pt";
-        }
+        /// <summary>
+        /// The author which is associated with this detail text.
+        /// </summary>
+        [Key]
+        [Column(Order = 0)]
+        public int AuthorId { get; set; }
 
-        [Key, Column(Order = 0)]
-        public int Id { get; set; }
-        [Key, Column(Order = 1)]
+        [Key]
+        [Column(Order = 1)]
+        [Required]
         public string LanguageCode { get; set; }
 
         /// <summary>
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         /// <summary>
         /// Text containing the biography of this author.
         /// </summary>
         [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
         public string Biography { get; set; }
 
         /// <summary>
         /// Text containing the curriculum of this author.
         /// </summary>
         [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
 
-        /// <summary>
-        /// The author which is associated with this detail text.
-        /// </summary>
-        public virtual Author Author { get; set; }
+        [ForeignKey("AuthorId")]
+        public Author Author { get; set; }
     }
 }

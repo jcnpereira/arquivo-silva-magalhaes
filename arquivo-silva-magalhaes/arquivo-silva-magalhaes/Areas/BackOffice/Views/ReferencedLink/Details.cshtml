@@ -1,0 +1,65 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes do link</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            <a href="(@Model.Link)" target="_blank">@Model.Link</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsUsefulLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsUsefulLink)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

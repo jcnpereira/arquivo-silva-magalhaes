@@ -1,0 +1,56 @@
+﻿@model NewsItemViewModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes da notícia</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HideAfterExpiry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HideAfterExpiry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModificationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModificationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar á lisa de notícias", "Index")
+</p>

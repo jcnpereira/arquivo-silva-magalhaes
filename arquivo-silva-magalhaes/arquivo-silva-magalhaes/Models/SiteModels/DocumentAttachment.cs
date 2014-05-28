@@ -21,29 +21,27 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string MimeFormat { get; set; }
         public string UriPath { get; set; }
 
+        public string Title { get; set; }
+
         public int Size { get; set; }
 
-        public virtual ICollection<Event> EventsUsingAttachment { get; set; }
-        public virtual ICollection<NewsItem> NewsUsingAttachment { get; set; }
-        public virtual ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
+        public ICollection<Event> EventsUsingAttachment { get; set; }
+        public ICollection<NewsItem> NewsUsingAttachment { get; set; }
+        public ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
     }
 
     public class DocumentAttachmentText
     {
-        public DocumentAttachmentText()
-        {
-            LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int DocumentAttachmentId { get; set; }
+        [ForeignKey("DocumentAttachmentId")]
+        public DocumentAttachment DocumentAttachment { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         public string Title { get; set; }
         
         public string Description { get; set; }
-
-        public virtual DocumentAttachment DocumentAttachment { get; set; }
     }
 }

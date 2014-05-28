@@ -17,36 +17,42 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
+
+        public string Title { get; set; }
+
         public ICollection<ArchiveText> ArchiveTexts;
         public ICollection<Contact> Contacts;
     }
 
     public class ArchiveText
     {
-        public ArchiveText()
-        {
-            LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
-        public int Id { get; set; }
+        public int ArchiveId { get; set; }
+        [ForeignKey("ArchiveId")]
+        public Archive Archive { get; set; }
+
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
-        public string ArchiveHistory { get; set; }
-        public string ArchiveMission { get; set; }
 
-        public virtual Archive Archive { get; set; }
-    }
+        public string ArchiveHistory { get; set; }
+
+        public string ArchiveMission { get; set; }
+   }
 
     public class Contact
     {
         public int Id { get; set; }
+
         public string Name;
         public string Email;
         public string Address;
         public string ContactDetails;
         public string Service;
 
+        [Required]
+        public int ArchiveId { get; set; }
+
+        [ForeignKey("ArchiveId")]
         public Archive Archive { get; set; }
     }
 }

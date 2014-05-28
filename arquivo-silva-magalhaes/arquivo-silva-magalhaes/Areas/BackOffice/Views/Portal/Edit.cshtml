@@ -1,0 +1,96 @@
+﻿@model PortalViewModels
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    
+    
+    <div class="form-horizontal">
+    
+        <hr />
+        
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true)
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+            <h4>Informações</h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArchiveMission, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArchiveMission)
+                    @Html.ValidationMessageFor(model => model.ArchiveMission)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArchiveHistory, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArchiveHistory)
+                    @Html.ValidationMessageFor(model => model.ArchiveHistory)
+                </div>
+            </div>
+            <h4>Contactos</h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContactDetails, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContactDetails)
+                    @Html.ValidationMessageFor(model => model.ContactDetails)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Service, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Service)
+                    @Html.ValidationMessageFor(model => model.Service)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" name="Submeter" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        </div>
+ 
+}
+
+
+<div>
+    @Html.ActionLink("Voltar à lista de arquivos", "Index")
+</div>

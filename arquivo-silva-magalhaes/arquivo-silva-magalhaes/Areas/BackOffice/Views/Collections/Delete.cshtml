@@ -1,0 +1,88 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Tem a certeza que pretende eliminar esta coleção?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasAttachments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasAttachments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrganizationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrganizationCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatalogCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volar à lista", "Index")
+        </div>
+    }
+</div>

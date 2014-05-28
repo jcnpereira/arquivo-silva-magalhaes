@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice
         {
             context.MapRoute(
                 "BackOffice_default",
-                "BackOffice/{controller}/{action}/{id}",
+                "BackOffice/{controller}/{action}/{Id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

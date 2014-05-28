@@ -1,0 +1,61 @@
+﻿@model BannerPhotographViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Criar novo banner</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.LanguageCode)
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+     
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageData, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" accept="image/*" name="Image" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" accept="image/*" name="Image" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PublicationDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PublicationDate)
+                @Html.ValidationMessageFor(model => model.PublicationDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RemovalDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RemovalDate)
+                @Html.ValidationMessageFor(model => model.RemovalDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsVisible, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsVisible)
+                @Html.ValidationMessageFor(model => model.IsVisible)
+            </div>
+        </div>
+
+       
+       @Html.Partial("_BannerPhotographI18npartial")
+    </div>
+    @Html.Partial("_SubmitBackPartial")
+}

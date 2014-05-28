@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArquivoSilvaMagalhaes.Sandbox
@@ -10,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Sandbox
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(Thread.CurrentThread.CurrentUICulture.ToString());
 
             Console.ReadLine();
         }

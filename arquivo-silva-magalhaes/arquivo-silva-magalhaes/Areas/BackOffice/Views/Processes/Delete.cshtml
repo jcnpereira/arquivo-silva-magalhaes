@@ -1,0 +1,32 @@
+﻿@model ProcessViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar processo</h2>
+
+<h3>Tem a certeza que pertende eliminar este processo?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> <br />
+            @Html.ActionLink("Voltar à lista", "Index")
+        </div>
+    }
+</div>

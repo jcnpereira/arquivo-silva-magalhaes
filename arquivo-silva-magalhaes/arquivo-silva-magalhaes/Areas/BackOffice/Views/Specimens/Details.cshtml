@@ -1,0 +1,79 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Specimen
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Specimen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CatalogCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatalogCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorCatalogationCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasMarksOrStamps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasMarksOrStamps)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indexation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indexation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+
+@if (Model.DigitalPhotographs.Count() > 0)
+{
+    ViewBag.ActionToRedirect = "Details";
+    
+    foreach (var item in Model.DigitalPhotographs)
+    {
+        @Html.Partial("_PhotoListItemPartial", item)
+    }
+}
+else
+{
+    <p>Nada para ver aqui!</p>
+}
+
+<!-- Modal -->
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

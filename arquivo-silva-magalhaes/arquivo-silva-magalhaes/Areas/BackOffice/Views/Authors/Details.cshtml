@@ -1,0 +1,89 @@
+﻿@model Author
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes do autor</h2>
+
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+
+    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
+
+<div>
+    <hr />
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeathDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeathDate)
+        </dd>
+    </dl>
+
+    @foreach (var text in Model.Translations)
+    {
+        <div>
+            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
+
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => text.Nationality)
+                </dt>
+
+                <dd>
+                    @text.Nationality
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => text.Curriculum)
+                </dt>
+
+                <dd>
+                    @text.Curriculum
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => text.Biography)
+                </dt>
+                <dd>
+                    @text.Biography
+                </dd>
+
+            </dl>
+
+            <hr />
+        </div>
+    }
+</div>

@@ -1,0 +1,58 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Collaborator
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Task)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
+    @Html.ActionLink("Voltar à lista", "Index")
+</p>

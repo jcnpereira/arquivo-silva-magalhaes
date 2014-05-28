@@ -1,0 +1,56 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.SpotlightVideo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+    <h2>Eliminar video destaque</h2>
+
+    <h3>Tem a certeza que pretende eliminar este video destaque?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UriPath)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UriPath)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PublicationDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RemotionDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RemotionDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsPermanent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsPermanent)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-default" /> <br />
+                @Html.ActionLink("Voltar à lista", "Index")
+            </div>
+        }
+    </div>

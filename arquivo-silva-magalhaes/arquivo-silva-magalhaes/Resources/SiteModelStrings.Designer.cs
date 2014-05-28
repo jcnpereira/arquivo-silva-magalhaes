@@ -113,5 +113,23 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("EventTypeSchool", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inglês.
+        /// </summary>
+        public static string LangEn {
+            get {
+                return ResourceManager.GetString("LangEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Português.
+        /// </summary>
+        public static string LangPt {
+            get {
+                return ResourceManager.GetString("LangPt", resourceCulture);
+            }
+        }
     }
 }

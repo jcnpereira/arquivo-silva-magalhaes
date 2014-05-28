@@ -1,0 +1,40 @@
+﻿@model List<ArquivoSilvaMagalhaes.Models.ArchiveModels.DigitalPhotograph>
+
+
+@{
+    ViewBag.Title = "ListPhotos";
+}
+
+<h2>ListPhotos</h2>
+
+<div class="panel">
+    <div class="btn-toolbar">
+
+        <a class="btn btn-default" title="Adicionar fotografias" href="@Url.Action("AssociateDigitalPhoto", new { id = ViewBag.Id })">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</div>
+
+
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("_PhotoListItemPartial", item)
+    }
+}
+else
+{
+    <p>Nada para ver aqui!</p>
+}
+
+<!-- Modal -->
+
+@section Scripts {
+@Html.Partial("_DeleteConfirmModal")
+@Html.Partial("_PhotoPreviewModal")
+}
+
+

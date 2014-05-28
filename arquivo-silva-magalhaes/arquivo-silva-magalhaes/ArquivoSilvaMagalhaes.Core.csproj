@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -173,15 +176,52 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AboutController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\CollaboratorController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\KeywordsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
+    <Compile Include="Migrations\201405241702271_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201405241702271_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
+    <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\DocumentViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\EventViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\KeywordViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\NewsItemViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PartnershipViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PortalViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
+    <Compile Include="Models\SiteViewModels\TehcnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\NewsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201403291632130_ArchiveDataContext.cs" />
-    <Compile Include="Migrations\201403291632130_ArchiveDataContext.Designer.cs">
-      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -218,12 +258,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UiPrompts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UiPrompts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UiStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UiStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SiteModelStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\ImageUtilities.cs" />
+    <Compile Include="Utilitites\LanguageDefinitions.cs" />
+    <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -234,6 +287,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -242,7 +298,103 @@
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Web.config" />
     <Content Include="Areas\BackOffice\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
+    <Content Include="Areas\BackOffice\Views\Shared\_AddLanguagePrompt.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Areas\BackOffice\Views\Classifications\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_SubmitBackPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnership\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collaborator\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\AssociateDigitalPhoto.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\ListPhotos.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_PhotoPreviewModal.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -286,10 +438,21 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Public\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -302,17 +465,26 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403291632130_ArchiveDataContext.resx">
-      <DependentUpon>201403291632130_ArchiveDataContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405241702271_ArchiveDataContext.resx">
+      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorStrings.en.resx" />
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UiPrompts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UiStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SiteModelStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
