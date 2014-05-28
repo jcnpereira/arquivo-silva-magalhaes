@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Classifications
         public async Task<ActionResult> Index()
         {
-            return View(db.ClassificationSet
+            return View(db.Classifications
                 .Select(c => new ClassificationViewModel
                 {
                     Id = c.Id,
@@ -38,7 +38,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await db.ClassificationSet.FindAsync(id);
+            Classification classification = await db.Classifications.FindAsync(id);
             if (classification == null)
             {
                 return HttpNotFound();
@@ -69,7 +69,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 c.Translations.Add(classification);
 
-                db.ClassificationSet.Add(c);
+                db.Classifications.Add(c);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
@@ -86,7 +86,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Classification classification = await db.ClassificationSet.FindAsync(id);
+            Classification classification = await db.Classifications.FindAsync(id);
 
             Debug.WriteLine(classification.Translations.Count);
 
@@ -131,7 +131,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await db.ClassificationSet.FindAsync(id);
+            Classification classification = await db.Classifications.FindAsync(id);
             if (classification == null)
             {
                 return HttpNotFound();
@@ -148,8 +148,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Classification classification = await db.ClassificationSet.FindAsync(id);
-            db.ClassificationSet.Remove(classification);
+            Classification classification = await db.Classifications.FindAsync(id);
+            db.Classifications.Remove(classification);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

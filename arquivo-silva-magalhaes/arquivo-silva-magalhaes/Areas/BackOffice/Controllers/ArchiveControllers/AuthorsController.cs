@@ -20,9 +20,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index()
         {
-            return View(await db.AuthorSet
+            return View(await db.Authors
                 .Join<Author, AuthorTranslation, int, AuthorViewModel>(
-                    db.AuthorTextSet.Where(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage),
+                    db.AuthorTranslations.Where(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage),
                     a => a.Id, at => at.AuthorId,
                     (a, at) => new AuthorViewModel
                     {
@@ -46,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Author author = await db.AuthorSet.FindAsync(id);
+            Author author = await db.Authors.FindAsync(id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.AuthorSet.Add(author);
+                db.Authors.Add(author);
 
                 await db.SaveChangesAsync();
 
@@ -97,7 +97,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Author author = await db.AuthorSet.FindAsync(id);
+            Author author = await db.Authors.FindAsync(id);
 
             if (author == null)
             {
@@ -157,7 +157,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.AuthorSet.FindAsync(id);
+            Author author = await db.Authors.FindAsync(id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -170,8 +170,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Author author = await db.AuthorSet.FindAsync(id);
-            db.AuthorSet.Remove(author);
+            Author author = await db.Authors.FindAsync(id);
+            db.Authors.Remove(author);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -183,7 +183,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
             }
 
-            AuthorTranslation text = await db.AuthorTextSet.FindAsync(AuthorId, LanguageCode);
+            AuthorTranslation text = await db.AuthorTranslations.FindAsync(AuthorId, LanguageCode);
 
             if (text == null)
             {

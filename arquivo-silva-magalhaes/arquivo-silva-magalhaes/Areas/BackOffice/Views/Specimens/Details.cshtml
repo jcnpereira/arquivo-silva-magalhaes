@@ -56,7 +56,7 @@
 @if (Model.DigitalPhotographs.Count() > 0)
 {
     ViewBag.ActionToRedirect = "Details";
-    
+
     foreach (var item in Model.DigitalPhotographs)
     {
         @Html.Partial("_PhotoListItemPartial", item)
@@ -70,6 +70,7 @@ else
 <!-- Modal -->
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")
+    @Html.Partial("_PhotoPreviewModal")
 }
 
 

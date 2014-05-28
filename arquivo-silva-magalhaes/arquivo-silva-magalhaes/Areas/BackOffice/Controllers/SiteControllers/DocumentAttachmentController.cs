@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/DocumentAttachment/
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentAttachmentSet.ToListAsync());
+            return View(await db.Attachments.ToListAsync());
         }
 
         // GET: /BackOffice/DocumentAttachment/Details/5
@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentAttachment documentattachment = await db.DocumentAttachmentSet.FindAsync(id);
+            Attachment documentattachment = await db.Attachments.FindAsync(id);
             if (documentattachment == null)
             {
                 return HttpNotFound();
@@ -55,7 +55,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var documentattachment = new DocumentAttachment
+                var documentattachment = new Attachment
                 {
                     Id=model.Id,
                     UriPath = model.UriPath,
@@ -64,14 +64,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 };
 
                 documentattachment.TextUsingAttachment.Add(
-                    new DocumentAttachmentText
+                    new AttachmentTranslation
                     {
                         Title = model.Title,
                         Description = model.Description,
                         LanguageCode = LanguageDefinitions.DefaultLanguage,
                       
                     });
-                db.DocumentAttachmentSet.Add(documentattachment);
+                db.Attachments.Add(documentattachment);
                 await db.SaveChangesAsync();
 
                 if (AreLanguagesMissing( documentattachment))
@@ -90,7 +90,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         
-        private static bool AreLanguagesMissing(DocumentAttachment documentattachment)
+        private static bool AreLanguagesMissing(Attachment documentattachment)
         {
             // Check if we need to add more languages.
             var langCodes = documentattachment.TextUsingAttachment
@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             // There needs to be an author.
             if (Id != null)
             {
-                var documentattachment = await db.DocumentAttachmentSet.FindAsync(Id);
+                var documentattachment = await db.Attachments.FindAsync(Id);
 
                 if (documentattachment == null)
                 {
@@ -154,16 +154,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var documentattachmenttext = db.DocumentAttachmentSet.Find(model.Id);
+                var documentattachmenttext = db.Attachments.Find(model.Id);
 
-                var documenttext = new DocumentAttachmentText
+                var documenttext = new AttachmentTranslation
                 {
                     Title = model.Title,
                     LanguageCode = model.LanguageCode,
                     Description = model.Description
                 };
 
-                db.DocumentAttachmentTextSet.Add(documenttext);
+                db.AttachmentTranslations.Add(documenttext);
                 await db.SaveChangesAsync();
 
                 if (AreLanguagesMissing(documentattachmenttext))
@@ -189,7 +189,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentAttachment documentattachment = await db.DocumentAttachmentSet.FindAsync(id);
+            Attachment documentattachment = await db.Attachments.FindAsync(id);
             if (documentattachment == null)
             {
                 return HttpNotFound();
@@ -202,7 +202,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,MimeFormat,UriPath,Size")] DocumentAttachment documentattachment)
+        public async Task<ActionResult> Edit([Bind(Include="Id,MimeFormat,UriPath,Size")] Attachment documentattachment)
         {
             if (ModelState.IsValid)
             {
@@ -220,7 +220,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentAttachment documentattachment = await db.DocumentAttachmentSet.FindAsync(id);
+            Attachment documentattachment = await db.Attachments.FindAsync(id);
             if (documentattachment == null)
             {
                 return HttpNotFound();
@@ -233,8 +233,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            DocumentAttachment documentattachment = await db.DocumentAttachmentSet.FindAsync(id);
-            db.DocumentAttachmentSet.Remove(documentattachment);
+            Attachment documentattachment = await db.Attachments.FindAsync(id);
+            db.Attachments.Remove(documentattachment);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

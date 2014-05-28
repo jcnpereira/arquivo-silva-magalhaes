@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /News/
         public async Task<ActionResult> Index()
         {
-            return View(await db.NewsSet.ToListAsync());
+            return View(await db.NewsItems.ToListAsync());
         }
 
         // GET: /News/Details/5
@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            NewsItem newsitem = await db.NewsItems.FindAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -66,7 +66,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     PublishDate = model.PublishDate,
                 };
                 newsitem.ReferencedNewsText.Add(
-                    new NewsText
+                    new NewsItemTranslation
                     {
                         Heading = model.Heading,
                         LanguageCode = model.LanguageCode,
@@ -76,7 +76,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     });
 
 
-                db.NewsSet.Add(newsitem);
+                db.NewsItems.Add(newsitem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -91,7 +91,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            NewsItem newsitem = await db.NewsItems.FindAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -122,7 +122,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
+            NewsItem newsitem = await db.NewsItems.FindAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -135,8 +135,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            NewsItem newsitem = await db.NewsSet.FindAsync(id);
-            db.NewsSet.Remove(newsitem);
+            NewsItem newsitem = await db.NewsItems.FindAsync(id);
+            db.NewsItems.Remove(newsitem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

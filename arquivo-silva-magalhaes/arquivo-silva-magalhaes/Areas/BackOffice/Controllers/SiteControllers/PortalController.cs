@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /Portal/
         public async Task<ActionResult> Index()
         {
-            return View(await db.ArchiveSet.ToListAsync());
+            return View(await db.Archives.ToListAsync());
         }
 
         // GET: /Portal/Details/5
@@ -30,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.ArchiveSet.FindAsync(id);
+            Archive archive = await db.Archives.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 };
 
                 archive.ArchiveTexts.Add(
-               new ArchiveText
+               new ArchiveTranslations
                {
                    LanguageCode = model.LanguageCode,
                    ArchiveHistory = model.ArchiveHistory,
@@ -76,7 +76,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     ContactDetails = model.ContactDetails,
                     Service = model.Service
                 });
-                db.ArchiveSet.Add(archive);
+                db.Archives.Add(archive);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -91,7 +91,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.ArchiveSet.FindAsync(id);
+            Archive archive = await db.Archives.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -108,15 +108,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var portal = db.ArchiveSet.Find(model.Id);
+                var portal = db.Archives.Find(model.Id);
                 portal.Title = model.Title;
 
-                var text = db.ArchiveTextSet.Find(model.Id);
+                var text = db.ArchiveTranslations.Find(model.Id);
 
                 text.ArchiveMission = model.ArchiveMission;
                 text.ArchiveHistory = model.ArchiveHistory;
 
-                var contact = db.ArchiveContactSet.Find(model.Id);
+                var contact = db.ArchiveContacts.Find(model.Id);
                 contact.Name = model.Name;
                 contact.Email = model.Email;
                 contact.ContactDetails = model.ContactDetails;
@@ -137,7 +137,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.ArchiveSet.FindAsync(id);
+            Archive archive = await db.Archives.FindAsync(id);
             if (archive == null)
             {
                 return HttpNotFound();
@@ -150,8 +150,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Archive archive = await db.ArchiveSet.FindAsync(id);
-            db.ArchiveSet.Remove(archive);
+            Archive archive = await db.Archives.FindAsync(id);
+            db.Archives.Remove(archive);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

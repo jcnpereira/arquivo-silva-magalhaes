@@ -193,10 +193,6 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
-    <Compile Include="Migrations\201405241702271_ArchiveDataContext.cs" />
-    <Compile Include="Migrations\201405241702271_ArchiveDataContext.Designer.cs">
-      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
@@ -465,9 +461,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405241702271_ArchiveDataContext.resx">
-      <DependentUpon>201405241702271_ArchiveDataContext.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings.Designer.cs</LastGenOutput>

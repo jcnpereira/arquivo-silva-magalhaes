@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Parthnership/
         public async Task<ActionResult> Index()
         {
-            return View(await db.PartnershipSet.ToListAsync());
+            return View(await db.Partnerships.ToListAsync());
         }
 
         // GET: /BackOffice/Parthnership/Details/5
@@ -30,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partnership partnership = await db.PartnershipSet.FindAsync(id);
+            Partnership partnership = await db.Partnerships.FindAsync(id);
             if (partnership == null)
             {
                 return HttpNotFound();
@@ -62,7 +62,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Contact = model.Contact,
                     PartnershipType = model.PartnershipType
                 };
-                 db.PartnershipSet.Add(partnership);
+                 db.Partnerships.Add(partnership);
                  await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -77,7 +77,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partnership partnership = await db.PartnershipSet.FindAsync(id);
+            Partnership partnership = await db.Partnerships.FindAsync(id);
             if (partnership == null)
             {
                 return HttpNotFound();
@@ -108,7 +108,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Partnership partnership = await db.PartnershipSet.FindAsync(id);
+            Partnership partnership = await db.Partnerships.FindAsync(id);
             if (partnership == null)
             {
                 return HttpNotFound();
@@ -121,8 +121,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Partnership partnership = await db.PartnershipSet.FindAsync(id);
-            db.PartnershipSet.Remove(partnership);
+            Partnership partnership = await db.Partnerships.FindAsync(id);
+            db.Partnerships.Remove(partnership);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
