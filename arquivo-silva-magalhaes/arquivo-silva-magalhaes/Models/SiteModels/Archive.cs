@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +18,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
-
+        [Required]
+        [Display (ResourceType=typeof(DataStrings), Name="Title")]
         public string Title { get; set; }
 
         public ICollection<ArchiveText> ArchiveTexts;

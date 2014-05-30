@@ -7,7 +7,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães</title>
+    <style>
+        .menu {
+            font: "Trebuchet MS", Verdana, sans-serif;
+            background: #222222;
+            text-align: center;
+            font-size:14px;
+            font-family
+            border: solid;
+            color: #222222;
+            border-top: #ffffff;
+        }
+        .link{
+            color:#999999;
+            animation:both;
+        }
+    </style>
+    <title>@ViewBag.Title - Arquivo Fotográfico Silva e Magalhães </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -18,13 +34,13 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             @*<div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Arquivo Fotográfico Silva Magalhães", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>*@
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Arquivo Fotográfico Silva Magalhães", "Index", "Home", null, new { @class = "navbar-brand" })
+                </div>*@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -39,11 +55,28 @@
         @if (ViewBag.DisplaySidebar)
         {
             <div class="col-md-2">
-                <ul class="nav nav-stacked">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
-                    <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
-                </ul>
+                <div class="menu">
+                    <ul class="nav nav-stacked">
+                        <li>@Html.ActionLink("Autores", "Index", "Authors",null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Arquivos", "Index", "Portal", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Classificações", "Index", "Classifications", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Colaboradores", "Index", "Collaborator", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Coleções", "Index", "Collections", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Documentos", "Index", "Documents", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Documentos Anexo", "Index", "DocumentAttachment", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Documentos Técnicos", "Index", "TechnicalDocument", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Espécies Fotográficas", "Index", "Specimens", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Eventos", "Index", "Event", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Formatos", "Index", "Formats", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Fotograficas banner", "Index", "BannerPhotograph", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Fotografias em destaque", "Index", "ShowcasePhotoes", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Notícias", "Index", "News", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Links", "Index", "ReferencedLinks", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Palavras chave", "Index", "Keywords", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Parcerias", "Index", "Partnership", null, new { @class = "link" })</li> 
+                        <li>@Html.ActionLink("Videos destaque", "Index", "SpotLightVideo", null, new { @class = "link" })</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="col-md-10">
@@ -55,7 +88,7 @@
             @RenderBody()
         }
         <hr />
-        <footer>
+        <footer class="text-center">
             <p>&copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT</p>
         </footer>
     </div>
