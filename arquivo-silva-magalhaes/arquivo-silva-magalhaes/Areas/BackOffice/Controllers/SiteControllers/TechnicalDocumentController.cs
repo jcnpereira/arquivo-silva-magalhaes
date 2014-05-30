@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class TechnicalDocumentController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/TechnicalDocument/
         public async Task<ActionResult> Index()
