@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
             Links = new HashSet<ReferencedLink>();
             ReferencedNewsItems = new HashSet<NewsItem>();
             ReferencedNewsText = new HashSet<NewsI18nViewModel>();
-            ReferencedDocuments = new HashSet<DocumentAttachment>();
+            ReferencedDocuments = new HashSet<Attachment>();
             HideAfterExpiry = false;
         }
 
@@ -46,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<NewsItem> ReferencedNewsItems { get; set; }
         public virtual ICollection<NewsI18nViewModel> ReferencedNewsText { get; set;}
-        public virtual ICollection<DocumentAttachment> ReferencedDocuments { get; set; }
+        public virtual ICollection<Attachment> ReferencedDocuments { get; set; }
 
 
         [Required]

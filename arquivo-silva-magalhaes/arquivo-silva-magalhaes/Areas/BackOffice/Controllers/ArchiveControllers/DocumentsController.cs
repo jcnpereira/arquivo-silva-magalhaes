@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index()
         {
-            return View(await db.DocumentSet.ToListAsync());
+            return View(await db.Documents.ToListAsync());
         }
 
         // GET: BackOffice/Documents/Details/5
@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await db.DocumentSet.FindAsync(id);
+            Document document = await db.Documents.FindAsync(id);
 
             if (document == null)
             {
@@ -47,7 +47,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             var model = new DocumentEditViewModel
             {
-                AvailableKeywords = await db.KeywordTextSet
+                AvailableKeywords = await db.KeywordTranslations
                     .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
                     .Select(kt => new SelectListItem
                     {
@@ -62,13 +62,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             };
 
             // Check for an author.
-            if (AuthorId != null && db.AuthorSet.Find(AuthorId) != null)
+            if (AuthorId != null && db.Authors.Find(AuthorId) != null)
             {
                 model.AuthorId = AuthorId.Value;
             }
             else
             {
-                model.AvailableAuthors = await db.AuthorSet
+                model.AvailableAuthors = await db.Authors
                     .Select(a => new SelectListItem
                     {
                         Value = a.Id.ToString(),
@@ -102,9 +102,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                document.Keywords = document.KeywordIds.Select(kid => db.KeywordSet.Find(kid)).ToList();
+                document.Keywords = document.KeywordIds.Select(kid => db.Keywords.Find(kid)).ToList();
 
-                db.DocumentSet.Add(document);
+                db.Documents.Add(document);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -119,7 +119,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
+            Document document = await db.Documents.FindAsync(id);
             if (document == null)
             {
                 return HttpNotFound();
@@ -150,7 +150,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.DocumentSet.FindAsync(id);
+            Document document = await db.Documents.FindAsync(id);
             if (document == null)
             {
                 return HttpNotFound();
@@ -163,8 +163,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.DocumentSet.FindAsync(id);
-            db.DocumentSet.Remove(document);
+            Document document = await db.Documents.FindAsync(id);
+            db.Documents.Remove(document);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

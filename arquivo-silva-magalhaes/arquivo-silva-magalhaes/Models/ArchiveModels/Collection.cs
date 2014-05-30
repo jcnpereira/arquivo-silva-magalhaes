@@ -77,7 +77,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
 
-        [NotMapped, Required]
+        [NotMapped]
         public int[] AuthorIds { get; set; }
     }
 

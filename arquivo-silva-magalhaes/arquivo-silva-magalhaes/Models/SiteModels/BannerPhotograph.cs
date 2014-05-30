@@ -7,11 +7,11 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
-    public class BannerPhotograph
+    public class Banner
     {
-        public BannerPhotograph()
+        public Banner()
         {
-            BannerTexts = new HashSet<BannerPhotographText>();
+            BannerTexts = new HashSet<BannerTranslation>();
         }
 
         [Key]
@@ -22,16 +22,16 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public DateTime RemovalDate { get; set; }
         public bool IsVisible { get; set; }
 
-        public ICollection<BannerPhotographText> BannerTexts { get; set; }
+        public ICollection<BannerTranslation> BannerTexts { get; set; }
     }
 
-    public class BannerPhotographText
+    public class BannerTranslation
     {
 
         [Key, Column(Order = 0)]
         public int BannerPhotographId { get; set; }
         [ForeignKey("BannerPhotographId")]
-        public BannerPhotograph BannerPhotograph { get; set; }
+        public Banner BannerPhotograph { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }

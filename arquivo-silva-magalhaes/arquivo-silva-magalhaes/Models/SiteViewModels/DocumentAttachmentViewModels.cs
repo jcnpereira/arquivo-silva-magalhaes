@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         {
             EventsUsingAttachment = new HashSet<Event>();
             NewsUsingAttachment = new HashSet<NewsItem>();
-            TextUsingAttachment = new HashSet<DocumentAttachmentText>();
+            TextUsingAttachment = new HashSet<AttachmentTranslation>();
         }
 
         [Key]
@@ -38,7 +38,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         public virtual ICollection<Event> EventsUsingAttachment { get; set; }
         public virtual ICollection<NewsItem> NewsUsingAttachment { get; set; }
-        public virtual ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
+        public virtual ICollection<AttachmentTranslation> TextUsingAttachment { get; set; }
 
         public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
 
@@ -62,6 +62,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Required]
-        public virtual DocumentAttachment DocumentAttachment { get; set; }
+        public virtual Attachment DocumentAttachment { get; set; }
     }
 }
