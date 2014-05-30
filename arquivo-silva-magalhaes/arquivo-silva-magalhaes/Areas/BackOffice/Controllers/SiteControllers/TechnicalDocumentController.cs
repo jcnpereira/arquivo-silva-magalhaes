@@ -61,7 +61,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     UploadedDate = model.UploadedDate,
                     UriPath = model.UriPath,
                     DocumentType = model.DocumentType,
-                    Format = model.Format
+                    Format = model.Format,
+                    Language=model.Language
                 };
 
                 db.TechnicalDocuments.Add(model);

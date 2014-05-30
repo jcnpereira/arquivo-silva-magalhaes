@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.BannerPhotograph
+﻿@model ArquivoSilvaMagalhaes.Models.SiteViewModels.PhotographViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -16,6 +16,12 @@
 
         <dd>
             @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UriPath)

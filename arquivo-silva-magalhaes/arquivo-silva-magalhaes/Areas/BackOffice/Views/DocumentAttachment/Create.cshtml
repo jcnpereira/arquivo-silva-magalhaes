@@ -1,4 +1,4 @@
-﻿@model DocumentAttachmentViewModels
+﻿@model ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.DocumentAttachmentViewModels
 
 @{
     ViewBag.Title = "Create";
@@ -10,7 +10,8 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.LanguageCode)
+   
+    @* @Html.HiddenFor(model => model.LanguageCode) *@
     
     <div class="form-horizontal">
  
@@ -43,7 +44,7 @@
         </div>
 
         
-        @Html.Partial("_DocumentI18nPartial")
+       @* @Html.Partial("_DocumentI18nPartial")*@
     </div>
     
     

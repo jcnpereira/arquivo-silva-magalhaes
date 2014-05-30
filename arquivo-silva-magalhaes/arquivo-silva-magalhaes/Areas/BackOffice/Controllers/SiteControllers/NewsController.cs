@@ -11,6 +11,7 @@ using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Models.SiteViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -36,7 +37,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AreLanguagesMissing = newsitem.ReferencedNewsText.Count <= LanguageDefinitions.Languages.Count;
+        //    ViewBag.AreLanguagesMissing = newsitem.ReferencedNewsText.Count <= LanguageDefinitions.Languages.Count;
             return View(newsitem);
         }
 
@@ -104,7 +105,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate")] NewsItem newsitem)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate,Title,Heading,LanguageCode,Subtitle,TextContent")] NewsItemViewModels newsitem)
         {
             if (ModelState.IsValid)
             {

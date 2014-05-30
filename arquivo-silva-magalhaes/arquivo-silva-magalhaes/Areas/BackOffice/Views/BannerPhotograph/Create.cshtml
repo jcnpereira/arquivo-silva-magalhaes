@@ -1,15 +1,14 @@
-﻿@model BannerPhotographViewModel
+﻿@model PhotographViewModel
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Criar novo banner</h2>
+<h2>Criar novo</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.LanguageCode)
     
     <div class="form-horizontal">
         <hr />
@@ -17,7 +16,7 @@
 
      
         <div class="form-group">
-            @Html.LabelFor(model => model.ImageData, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" accept="image/*" name="Image" required />
             </div>
@@ -55,7 +54,7 @@
         </div>
 
        
-       @Html.Partial("_BannerPhotographI18npartial")
+     @*  @Html.Partial("_BannerPhotographI18npartial") *@
     </div>
     @Html.Partial("_SubmitBackPartial")
 }

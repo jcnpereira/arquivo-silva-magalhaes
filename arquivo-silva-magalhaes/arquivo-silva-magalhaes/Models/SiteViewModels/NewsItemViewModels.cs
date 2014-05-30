@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
+namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
 {
     public class NewsItemViewModels
     {
@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
        
         [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
+        [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
         public DateTime PublishDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -50,7 +50,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
+        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
         public string LanguageCode { get; set; }
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "Title")]

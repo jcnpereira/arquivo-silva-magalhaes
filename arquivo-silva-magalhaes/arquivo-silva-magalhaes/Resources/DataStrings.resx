@@ -417,4 +417,13 @@
   <data name="Keywords" xml:space="preserve">
     <value>Palavras-chave</value>
   </data>
+  <data name="RemotionDate" xml:space="preserve">
+    <value>Data de remoção</value>
+  </data>
+  <data name="LanguageCode" xml:space="preserve">
+    <value>Código de Idioma</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Data de publicação</value>
+  </data>
 </root>

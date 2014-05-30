@@ -21,6 +21,6 @@ namespace ArquivoSilvaMagalhaes.Models
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.Contact> Contacts { get; set; }
 
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.NewsItemViewModels> NewsItemViewModels { get; set; }
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteViewModels.NewsItemViewModels> NewsItemViewModels { get; set; }
     }
 }
