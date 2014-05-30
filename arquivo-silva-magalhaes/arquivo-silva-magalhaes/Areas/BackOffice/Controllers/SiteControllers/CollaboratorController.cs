@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Collaborator/
         public async Task<ActionResult> Index()
         {
-            return View(await db.CollaboratorSet.ToListAsync());
+            return View(await db.Collaborators.ToListAsync());
         }
 
         // GET: /BackOffice/Collaborator/Details/5
@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collaborator collaborator = await db.CollaboratorSet.FindAsync(id);
+            Collaborator collaborator = await db.Collaborators.FindAsync(id);
             if (collaborator == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CollaboratorSet.Add(collaborator);
+                db.Collaborators.Add(collaborator);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collaborator collaborator = await db.CollaboratorSet.FindAsync(id);
+            Collaborator collaborator = await db.Collaborators.FindAsync(id);
             if (collaborator == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collaborator collaborator = await db.CollaboratorSet.FindAsync(id);
+            Collaborator collaborator = await db.Collaborators.FindAsync(id);
             if (collaborator == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Collaborator collaborator = await db.CollaboratorSet.FindAsync(id);
-            db.CollaboratorSet.Remove(collaborator);
+            Collaborator collaborator = await db.Collaborators.FindAsync(id);
+            db.Collaborators.Remove(collaborator);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

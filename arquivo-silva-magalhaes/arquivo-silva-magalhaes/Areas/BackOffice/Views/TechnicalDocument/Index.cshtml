@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
+﻿@model IEnumerable<TechnicalDocument>
 
 @{
     ViewBag.Title = "Index";
@@ -15,16 +15,10 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UriPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UploadedDate)
+            @Html.DisplayNameFor(model => model.UploadDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastModificationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Format)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DocumentType)
@@ -41,16 +35,10 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UriPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UploadedDate)
+                @Html.DisplayFor(modelItem => item.UploadDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastModificationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Format)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DocumentType)
