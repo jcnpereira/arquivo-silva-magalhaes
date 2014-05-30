@@ -63,13 +63,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Title = model.Title,
                     UploadDate = DateTime.Now,
                     FileName = fileName,
-                    DocumentType = model.DocumentType,
+                    DocumentType = model.DocumentType.Value,
                     Format = model.UploadedFile.ContentType,
                     FileSize = model.UploadedFile.ContentLength,
                     Language=model.Language
                 };
 
-                model.UploadedFile.SaveAs(Server.MapPath("~/Public/Documents/") + fileName);
+                var dir = Server.MapPath("~/Public/Documents/");
+
+                Directory.CreateDirectory(dir);
+
+                model.UploadedFile.SaveAs(dir + fileName);
 
                 db.TechnicalDocuments.Add(technicaldocument);
 
