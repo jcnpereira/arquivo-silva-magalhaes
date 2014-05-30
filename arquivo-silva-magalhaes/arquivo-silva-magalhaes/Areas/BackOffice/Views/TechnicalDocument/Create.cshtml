@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.TechnicalDocumentViewModels
+﻿@model TechnicalDocumentEditViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -14,7 +14,7 @@
     <div class="form-horizontal">
 
         <hr />
-      
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -25,34 +25,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UriPath, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UploadedFile, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" accept="image/*" name="UriPath" required />
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UploadedDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UploadedDate)
-                @Html.ValidationMessageFor(model => model.UploadedDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModificationDate)
-                @Html.ValidationMessageFor(model => model.LastModificationDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Format, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Format)
-                @Html.ValidationMessageFor(model => model.Format)
+                <input type="file" name="UploadedFile" required />
             </div>
         </div>
 
