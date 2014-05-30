@@ -7,13 +7,13 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
-    public class DocumentAttachment
+    public class Attachment
     {
-        public DocumentAttachment()
+        public Attachment()
         {
             EventsUsingAttachment = new HashSet<Event>();
             NewsUsingAttachment = new HashSet<NewsItem>();
-            TextUsingAttachment = new HashSet<DocumentAttachmentText>();
+            TextUsingAttachment = new HashSet<AttachmentTranslation>();
         }
 
         [Key]
@@ -27,15 +27,15 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public ICollection<Event> EventsUsingAttachment { get; set; }
         public ICollection<NewsItem> NewsUsingAttachment { get; set; }
-        public ICollection<DocumentAttachmentText> TextUsingAttachment { get; set; }
+        public ICollection<AttachmentTranslation> TextUsingAttachment { get; set; }
     }
 
-    public class DocumentAttachmentText
+    public class AttachmentTranslation
     {
         [Key, Column(Order = 0)]
         public int DocumentAttachmentId { get; set; }
         [ForeignKey("DocumentAttachmentId")]
-        public DocumentAttachment DocumentAttachment { get; set; }
+        public Attachment DocumentAttachment { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }

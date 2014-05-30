@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/SpotLightVideo/
         public async Task<ActionResult> Index()
         {
-            return View(await db.SpotlightVideoSet.ToListAsync());
+            return View(await db.SpotlightVideos.ToListAsync());
         }
 
         // GET: /BackOffice/SpotLightVideo/Details/5
@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SpotlightVideo spotlightvideo = await db.SpotlightVideoSet.FindAsync(id);
+            SpotlightVideo spotlightvideo = await db.SpotlightVideos.FindAsync(id);
             if (spotlightvideo == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     RemotionDate = model.RemotionDate,
                     UriPath = model.UriPath
                 };
-                db.SpotlightVideoSet.Add(video);
+                db.SpotlightVideos.Add(video);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -74,7 +74,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SpotlightVideo spotlightvideo = await db.SpotlightVideoSet.FindAsync(id);
+            SpotlightVideo spotlightvideo = await db.SpotlightVideos.FindAsync(id);
             if (spotlightvideo == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SpotlightVideo spotlightvideo = await db.SpotlightVideoSet.FindAsync(id);
+            SpotlightVideo spotlightvideo = await db.SpotlightVideos.FindAsync(id);
             if (spotlightvideo == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            SpotlightVideo spotlightvideo = await db.SpotlightVideoSet.FindAsync(id);
-            db.SpotlightVideoSet.Remove(spotlightvideo);
+            SpotlightVideo spotlightvideo = await db.SpotlightVideos.FindAsync(id);
+            db.SpotlightVideos.Remove(spotlightvideo);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

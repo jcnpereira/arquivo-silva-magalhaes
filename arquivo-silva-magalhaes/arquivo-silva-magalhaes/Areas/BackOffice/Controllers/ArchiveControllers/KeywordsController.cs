@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index()
         {
-            return View(await db.KeywordSet
+            return View(await db.Keywords
                 .Select(k => new KeywordViewModel
                 {
                     Id = k.Id,
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Keyword k = await db.KeywordSet.FindAsync(id);
+            Keyword k = await db.Keywords.FindAsync(id);
             if (k == null)
             {
                 return HttpNotFound();
@@ -73,7 +73,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 k.Translations.Add(keyword);
 
-                db.KeywordSet.Add(k);
+                db.Keywords.Add(k);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
@@ -93,7 +93,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            Keyword keyword = await db.Keywords.FindAsync(id);
             if (keyword == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Keyword keyword = await db.KeywordSet.FindAsync(id);
+            Keyword keyword = await db.Keywords.FindAsync(id);
             if (keyword == null)
             {
                 return HttpNotFound();
@@ -152,8 +152,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Keyword keyword = await db.KeywordSet.FindAsync(id);
-            db.KeywordSet.Remove(keyword);
+            Keyword keyword = await db.Keywords.FindAsync(id);
+            db.Keywords.Remove(keyword);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

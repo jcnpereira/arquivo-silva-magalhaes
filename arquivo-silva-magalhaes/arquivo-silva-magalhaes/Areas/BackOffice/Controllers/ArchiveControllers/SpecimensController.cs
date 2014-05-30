@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Specimens
         public async Task<ActionResult> Index()
         {
-            return View(await db.SpecimenSet.ToListAsync());
+            return View(await db.Specimens.ToListAsync());
         }
 
         // GET: BackOffice/Specimens/Details/5
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            Specimen specimen = await db.Specimens.FindAsync(id);
             if (specimen == null)
             {
                 return HttpNotFound();
@@ -51,25 +51,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             var model = new SpecimenEditViewModel
             {
-                AvailableKeywords = db.KeywordSet
+                AvailableKeywords = db.Keywords
                 .Select(k => new SelectListItem
                 {
                     Value = k.Id.ToString(),
                     Text = k.Translations.FirstOrDefault(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
                 }),
-                AvailableProcesses = db.ProcessSet
+                AvailableProcesses = db.Processes
                 .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
                     Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
                 }),
-                AvailableFormats = db.FormatSet
+                AvailableFormats = db.Formats
                 .Select(f => new SelectListItem
                 {
                     Value = f.Id.ToString(),
                     Text = f.FormatDescription
                 }),
-                AvailableClassfications = db.ClassificationSet
+                AvailableClassfications = db.Classifications
                 .Select(c => new SelectListItem
                 {
                     Value = c.Id.ToString(),
@@ -98,7 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             if (documentId == null)
             {
-                model.AvailableDocuments = db.DocumentSet
+                model.AvailableDocuments = db.Documents
                 .Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
@@ -128,14 +128,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 specimen.Keywords = specimen.KeywordIds
-                    .Select(kid => db.KeywordSet.Find(kid))
+                    .Select(kid => db.Keywords.Find(kid))
                     .ToList();
 
                 specimen.Classifications = specimen.ClassificationIds
-                    .Select(cid => db.ClassificationSet.Find(cid))
+                    .Select(cid => db.Classifications.Find(cid))
                     .ToList();
 
-                db.SpecimenSet.Add(specimen);
+                db.Specimens.Add(specimen);
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -178,7 +178,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            Specimen specimen = await db.Specimens.FindAsync(id);
             if (specimen == null)
             {
                 return HttpNotFound();
@@ -240,7 +240,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.SpecimenSet.FindAsync(id);
+            Specimen specimen = await db.Specimens.FindAsync(id);
             if (specimen == null)
             {
                 return HttpNotFound();
@@ -253,8 +253,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Specimen specimen = await db.SpecimenSet.FindAsync(id);
-            db.SpecimenSet.Remove(specimen);
+            Specimen specimen = await db.Specimens.FindAsync(id);
+            db.Specimens.Remove(specimen);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -270,7 +270,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var specimen = await db.SpecimenSet.FindAsync(id);
+            var specimen = await db.Specimens.FindAsync(id);
 
             if (specimen == null) { return HttpNotFound(); }
 
@@ -315,7 +315,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     {
                         Instructions = new Instructions
                         {
-                            Width = 1024,
+                            Width = 1024, // TODO To define later.
                             Height = 768,
                             Mode = FitMode.Max
                         },
@@ -330,8 +330,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                     // Re-use the object, but change the dimensions to
                     // the "Thumb" size.
-                    j.Instructions.Width = 500;
-                    j.Instructions.Height = 300;
+                    j.Instructions.Width = 200;
+                    j.Instructions.Height = 200;
                     j.DisposeSourceObject = false;
                     j.Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", newName + ".jpg");
 
@@ -349,7 +349,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 }
 
                 // Save the data to the db.
-                db.DigitalPhotographSet.AddRange(photosToAdd);
+                db.DigitalPhotographs.AddRange(photosToAdd);
 
                 await db.SaveChangesAsync();
 
@@ -365,7 +365,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var s = await db.SpecimenSet.FindAsync(id);
+            var s = await db.Specimens.FindAsync(id);
 
             if (s == null) { return HttpNotFound(); }
 
@@ -381,7 +381,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographSet.FindAsync(id);
+            var p = await db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return HttpNotFound(); }
 
@@ -443,7 +443,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographSet.FindAsync(id);
+            var p = await db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
@@ -457,11 +457,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographSet.FindAsync(id);
+            var p = await db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
-            db.DigitalPhotographSet.Remove(p);
+            db.DigitalPhotographs.Remove(p);
 
             // TODO: Remove all files from the disk.
 
@@ -474,7 +474,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographSet.FindAsync(id);
+            var p = await db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
@@ -487,7 +487,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var p = await db.DigitalPhotographSet.FindAsync(photo.Id);
+                var p = await db.DigitalPhotographs.FindAsync(photo.Id);
 
                 p.IsVisible = photo.IsVisible;
                 p.ScanDate = photo.ScanDate;

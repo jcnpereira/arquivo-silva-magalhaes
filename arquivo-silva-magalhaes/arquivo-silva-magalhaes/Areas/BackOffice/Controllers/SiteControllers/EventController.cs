@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Event
         public async Task<ActionResult> Index()
         {
-            return View(await db.EventSet.ToListAsync());
+            return View(await db.Events.ToListAsync());
         }
 
         // GET: BackOffice/Event/Details/5
@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event events = await db.EventSet.FindAsync(id);
+            Event events = await db.Events.FindAsync(id);
             if (events == null)
             {
                 return HttpNotFound();
@@ -75,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 };
 
                 events.EventTexts.Add(
-                new EventText
+                new EventTranslation
                 {
                     EventId = model.Id,
                     LanguageCode = LanguageDefinitions.DefaultLanguage,
@@ -86,7 +86,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 });
 
-                db.EventSet.Add(events);
+                db.Events.Add(events);
                 await db.SaveChangesAsync();
 
                 if (AreLanguagesMissing(events))
@@ -126,7 +126,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             // There needs to be an event.
             if (Id != null)
             {
-                var events = await db.EventSet.FindAsync(Id);
+                var events = await db.Events.FindAsync(Id);
 
                 if (events == null)
                 {
@@ -174,9 +174,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var events = db.EventSet.Find(model.Id);
+                var events = db.Events.Find(model.Id);
 
-                var text = new EventText
+                var text = new EventTranslation
                 {
                     EventId = model.Id,
                     LanguageCode = model.LanguageCode,
@@ -187,7 +187,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 };
 
-                db.EventTextSet.Add(text);
+                db.EventTranslations.Add(text);
                 await db.SaveChangesAsync();
 
                 if (AreLanguagesMissing(events))
@@ -210,7 +210,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Event events = await db.EventSet.FindAsync(id);
+            Event events = await db.Events.FindAsync(id);
 
             if (events == null)
             {
@@ -249,7 +249,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             if (ModelState.IsValid)
             {
-                var events = db.EventSet.Find(model.Id);
+                var events = db.Events.Find(model.Id);
 
                 events.Place = model.Place;
                 events.Coordinates = model.Coordinates;
@@ -284,7 +284,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event events = await db.EventSet.FindAsync(id);
+            Event events = await db.Events.FindAsync(id);
             if (events == null)
             {
                 return HttpNotFound();
@@ -297,8 +297,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Event events = await db.EventSet.FindAsync(id);
-            db.EventSet.Remove(events);
+            Event events = await db.Events.FindAsync(id);
+            db.Events.Remove(events);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -310,7 +310,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
             }
 
-            EventText text = await db.EventTextSet.FindAsync(id);
+            EventTranslation text = await db.EventTranslations.FindAsync(id);
 
             if (text == null)
             {
@@ -335,12 +335,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var text = await db.EventTextSet.FindAsync(textModel.Id);
+                var text = await db.EventTranslations.FindAsync(textModel.Id);
 
 
                 // HACK: For some reason, if I don't specify the event,
                 // validation fails.
-                text.Event = db.EventSet.Find(text.Event.Id);
+                text.Event = db.Events.Find(text.Event.Id);
                 text.EventId = textModel.Id;
                 text.Title = textModel.Title;
                 text.Heading = textModel.Heading;
@@ -366,7 +366,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventText text = await db.EventTextSet.FindAsync(id);
+            EventTranslation text = await db.EventTranslations.FindAsync(id);
 
             if (text == null)
             {
@@ -386,7 +386,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteText(int id)
         {
-            EventText text = await db.EventTextSet.FindAsync(id);
+            EventTranslation text = await db.EventTranslations.FindAsync(id);
 
             int eventId = text.Event.Id;
 
@@ -396,7 +396,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.CannotDeleteDefaultLang);
             }
 
-            db.EventTextSet.Remove(text);
+            db.EventTranslations.Remove(text);
 
             await db.SaveChangesAsync();
 
@@ -411,12 +411,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var text = await db.EventTextSet.FindAsync(textModel.Id);
+                var text = await db.EventTranslations.FindAsync(textModel.Id);
 
 
                 // HACK: For some reason, if I don't specify the event,
                 // validation fails.
-                text.Event = db.EventSet.Find(text.Event.Id);
+                text.Event = db.Events.Find(text.Event.Id);
 
                 text.EventId = textModel.Id;
                 text.LanguageCode = textModel.LanguageCode;

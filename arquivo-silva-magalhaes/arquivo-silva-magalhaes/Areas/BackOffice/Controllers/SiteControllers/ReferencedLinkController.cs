@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/ReferencedLink/
         public async Task<ActionResult> Index()
         {
-            return View(await db.ReferencedLinkSet.ToListAsync());
+            return View(await db.ReferencedLinks.ToListAsync());
         }
 
         // GET: /BackOffice/ReferencedLink/Details/5
@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinkSet.FindAsync(id);
+            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ReferencedLinkSet.Add(referencedlink);
+                db.ReferencedLinks.Add(referencedlink);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinkSet.FindAsync(id);
+            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinkSet.FindAsync(id);
+            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ReferencedLink referencedlink = await db.ReferencedLinkSet.FindAsync(id);
-            db.ReferencedLinkSet.Remove(referencedlink);
+            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
+            db.ReferencedLinks.Remove(referencedlink);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

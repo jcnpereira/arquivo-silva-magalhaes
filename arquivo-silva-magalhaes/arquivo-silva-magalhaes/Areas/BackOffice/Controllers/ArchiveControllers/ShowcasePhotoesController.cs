@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/ShowcasePhotoes
         public async Task<ActionResult> Index()
         {
-            var showcasePhotoSet = db.ShowcasePhotoSet.Include(s => s.DigitalPhotograph);
+            var showcasePhotoSet = db.ShowcasePhotoes.Include(s => s.DigitalPhotograph);
             return View(await showcasePhotoSet.ToListAsync());
         }
 
@@ -30,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoSet.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -41,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/ShowcasePhotoes/Create
         public ActionResult Create()
         {
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographSet, "Id", "ScanDate");
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate");
             return View();
         }
 
@@ -54,12 +54,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ShowcasePhotoSet.Add(showcasePhoto);
+                db.ShowcasePhotoes.Add(showcasePhoto);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographSet, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
             return View(showcasePhoto);
         }
 
@@ -70,12 +70,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoSet.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographSet, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
             return View(showcasePhoto);
         }
 
@@ -92,7 +92,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographSet, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
             return View(showcasePhoto);
         }
 
@@ -103,7 +103,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoSet.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -116,8 +116,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoSet.FindAsync(id);
-            db.ShowcasePhotoSet.Remove(showcasePhoto);
+            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
+            db.ShowcasePhotoes.Remove(showcasePhoto);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

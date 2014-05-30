@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Processes
         public async Task<ActionResult> Index()
         {
-            return View(await db.ProcessSet
+            return View(await db.Processes
                 .Select(p => new ProcessViewModel
                 {
                     Id = p.Id,
@@ -38,7 +38,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process p = await db.ProcessSet.FindAsync(id);
+            Process p = await db.Processes.FindAsync(id);
             if (p == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 var process = new Process();
 
                 process.Translations.Add(translation);
-                db.ProcessSet.Add(process);
+                db.Processes.Add(process);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -90,7 +90,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process process = await db.ProcessSet.FindAsync(id);
+            Process process = await db.Processes.FindAsync(id);
             if (process == null)
             {
                 return HttpNotFound();
@@ -130,7 +130,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process p = await db.ProcessSet.FindAsync(id);
+            Process p = await db.Processes.FindAsync(id);
             if (p == null)
             {
                 return HttpNotFound();
@@ -147,8 +147,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Process process = await db.ProcessSet.FindAsync(id);
-            db.ProcessSet.Remove(process);
+            Process process = await db.Processes.FindAsync(id);
+            db.Processes.Remove(process);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

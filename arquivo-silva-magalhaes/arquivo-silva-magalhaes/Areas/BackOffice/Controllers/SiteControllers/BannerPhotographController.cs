@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/BannerPhotograph/
         public async Task<ActionResult> Index()
         {
-            return View(await db.BannerPhotographSet.ToListAsync());
+            return View(await db.Banners.ToListAsync());
         }
 
         // GET: /BackOffice/BannerPhotograph/Details/5
@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BannerPhotograph bannerphotograph = await db.BannerPhotographSet.FindAsync(id);
+            Banner bannerphotograph = await db.Banners.FindAsync(id);
             if (bannerphotograph == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 model.Image.SaveAs(Path.Combine(path, fileName));
 
-                var banner = new BannerPhotograph
+                var banner = new Banner
                 {
                     UriPath = Path.Combine("Public/BannerPhotographs", fileName),
                     PublicationDate = model.PublicationDate,
@@ -80,14 +80,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 };
 
                 banner.BannerTexts.Add(
-                    new BannerPhotographText
+                    new BannerTranslation
                     {
                         BannerPhotographId = banner.Id,
                         LanguageCode = LanguageDefinitions.DefaultLanguage,
                         Title = model.I18nTexts[0].Title
                     });
 
-                db.BannerPhotographSet.Add(banner);
+                db.Banners.Add(banner);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -102,7 +102,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BannerPhotograph bannerphotograph = await db.BannerPhotographSet.FindAsync(id);
+            Banner bannerphotograph = await db.Banners.FindAsync(id);
             if (bannerphotograph == null)
             {
                 return HttpNotFound();
@@ -115,7 +115,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ImageData,UriPath,PublicationDate,RemovalDate,IsVisible")] BannerPhotograph bannerphotograph)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ImageData,UriPath,PublicationDate,RemovalDate,IsVisible")] Banner bannerphotograph)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BannerPhotograph bannerphotograph = await db.BannerPhotographSet.FindAsync(id);
+            Banner bannerphotograph = await db.Banners.FindAsync(id);
             if (bannerphotograph == null)
             {
                 return HttpNotFound();
@@ -146,8 +146,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            BannerPhotograph bannerphotograph = await db.BannerPhotographSet.FindAsync(id);
-            db.BannerPhotographSet.Remove(bannerphotograph);
+            Banner bannerphotograph = await db.Banners.FindAsync(id);
+            db.Banners.Remove(bannerphotograph);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

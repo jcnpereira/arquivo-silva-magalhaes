@@ -13,8 +13,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         {
             Links = new HashSet<ReferencedLink>();
             ReferencedNewsItems = new HashSet<NewsItem>();
-            ReferencedNewsText = new HashSet<NewsText>();
-            ReferencedDocuments = new HashSet<DocumentAttachment>();
+            ReferencedNewsText = new HashSet<NewsItemTranslation>();
+            ReferencedDocuments = new HashSet<Attachment>();
         }
 
         [Key]
@@ -32,11 +32,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public virtual ICollection<ReferencedLink> Links { get; set; }
         public virtual ICollection<NewsItem> ReferencedNewsItems { get; set; }
-        public virtual ICollection<NewsText> ReferencedNewsText { get; set;}
-        public virtual ICollection<DocumentAttachment> ReferencedDocuments { get; set; }
+        public virtual ICollection<NewsItemTranslation> ReferencedNewsText { get; set;}
+        public virtual ICollection<Attachment> ReferencedDocuments { get; set; }
     }
 
-    public class NewsText
+    public class NewsItemTranslation
     {
         [Key, Column(Order = 0)]
         public int NewsItemId { get; set; }

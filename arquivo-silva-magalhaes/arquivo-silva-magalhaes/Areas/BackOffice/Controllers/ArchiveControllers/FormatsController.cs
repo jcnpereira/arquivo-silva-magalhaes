@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Formats
         public async Task<ActionResult> Index()
         {
-            return View(await db.FormatSet.ToListAsync());
+            return View(await db.Formats.ToListAsync());
         }
 
         // GET: BackOffice/Formats/Details/5
@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.FormatSet.FindAsync(id);
+            Format format = await db.Formats.FindAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.FormatSet.Add(format);
+                db.Formats.Add(format);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.FormatSet.FindAsync(id);
+            Format format = await db.Formats.FindAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.FormatSet.FindAsync(id);
+            Format format = await db.Formats.FindAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Format format = await db.FormatSet.FindAsync(id);
-            db.FormatSet.Remove(format);
+            Format format = await db.Formats.FindAsync(id);
+            db.Formats.Remove(format);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

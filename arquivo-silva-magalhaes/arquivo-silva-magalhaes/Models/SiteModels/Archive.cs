@@ -12,7 +12,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public Archive()
         {
-            ArchiveTexts = new HashSet<ArchiveText>();
+            ArchiveTexts = new HashSet<ArchiveTranslations>();
             Contacts = new HashSet<Contact>();
         }
 
@@ -22,11 +22,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display (ResourceType=typeof(DataStrings), Name="Title")]
         public string Title { get; set; }
 
-        public ICollection<ArchiveText> ArchiveTexts;
+        public ICollection<ArchiveTranslations> ArchiveTexts;
         public ICollection<Contact> Contacts;
     }
 
-    public class ArchiveText
+    public class ArchiveTranslations
     {
         [Key, Column(Order = 0)]
         public int ArchiveId { get; set; }

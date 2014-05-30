@@ -55,7 +55,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         
         public virtual ICollection<Classification> Classifications { get; set; }
-        [Required, NotMapped]
+        [NotMapped]
         public int[] ClassificationIds { get; set; }
 
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
@@ -63,7 +63,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<SpecimenTranslation> Translations { get; set; }
 
         public virtual ICollection<Keyword> Keywords { get; set; }
-        [Required, NotMapped]
+        [NotMapped]
         public int[] KeywordIds { get; set; }
     }
 

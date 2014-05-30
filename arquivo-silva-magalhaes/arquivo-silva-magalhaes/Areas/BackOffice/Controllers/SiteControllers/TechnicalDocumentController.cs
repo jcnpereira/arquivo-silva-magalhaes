@@ -10,12 +10,14 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Models.SiteViewModels;
+using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class TechnicalDocumentController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/TechnicalDocument/
         public async Task<ActionResult> Index()
@@ -49,24 +51,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(TechnicalDocument model)
+        public async Task<ActionResult> Create(TechnicalDocumentEditViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.UploadedFile.FileName);
+
                 var technicaldocument = new TechnicalDocument
                 {
-                    Id = model.Id,
-                    LastModificationDate = model.LastModificationDate,
+                    LastModificationDate = DateTime.Now,
                     Title = model.Title,
-                    UploadedDate = model.UploadedDate,
-                    UriPath = model.UriPath,
-                    DocumentType = model.DocumentType,
-                    Format = model.Format,
+                    UploadDate = DateTime.Now,
+                    FileName = fileName,
+                    DocumentType = model.DocumentType.Value,
+                    Format = model.UploadedFile.ContentType,
+                    FileSize = model.UploadedFile.ContentLength,
                     Language=model.Language
                 };
 
-                db.TechnicalDocuments.Add(model);
+                var dir = Server.MapPath("~/Public/Documents/");
+
+                Directory.CreateDirectory(dir);
+
+                model.UploadedFile.SaveAs(dir + fileName);
+
+                db.TechnicalDocuments.Add(technicaldocument);
+
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
 

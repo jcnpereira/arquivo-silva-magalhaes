@@ -24,8 +24,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
             Partnerships = new HashSet<Partnership>();
             Collaborators = new HashSet<Collaborator>();
             Links = new HashSet<ReferencedLink>();
-            AttachedDocuments = new HashSet<DocumentAttachment>();
-            EventTexts = new HashSet<EventText>();
+            AttachedDocuments = new HashSet<Attachment>();
+            EventTexts = new HashSet<EventTranslation>();
         }
 
         [Key]
@@ -56,11 +56,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public ICollection<Partnership> Partnerships { get; set; }
         public ICollection<Collaborator> Collaborators { get; set; }
         public ICollection<ReferencedLink> Links { get; set; }
-        public ICollection<DocumentAttachment> AttachedDocuments { get; set; }
-        public ICollection<EventText> EventTexts { get; set; }
+        public ICollection<Attachment> AttachedDocuments { get; set; }
+        public ICollection<EventTranslation> EventTexts { get; set; }
     }
 
-    public class EventText
+    public class EventTranslation
     {
 
         [Key, Column(Order = 0)]

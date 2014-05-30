@@ -46,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             return View(new CollectionEditViewModel
                 {
-                    AvailableAuthors = await db.AuthorSet.Select(a => new SelectListItem
+                    AvailableAuthors = await db.Authors.Select(a => new SelectListItem
                     {
                         Value = a.Id.ToString(),
                         Text = a.FirstName + " " + a.LastName
