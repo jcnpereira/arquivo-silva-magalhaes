@@ -385,6 +385,42 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string DocumentType_Image {
+            get {
+                return ResourceManager.GetString("DocumentType_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outro.
+        /// </summary>
+        public static string DocumentType_Other {
+            get {
+                return ResourceManager.GetString("DocumentType_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Texto.
+        /// </summary>
+        public static string DocumentType_Text {
+            get {
+                return ResourceManager.GetString("DocumentType_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vídeo.
+        /// </summary>
+        public static string DocumentType_Video {
+            get {
+                return ResourceManager.GetString("DocumentType_Video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string EmailAddress {
@@ -435,6 +471,24 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nome do ficheiro.
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tamanho do ficheiro.
+        /// </summary>
+        public static string FileSize {
+            get {
+                return ResourceManager.GetString("FileSize", resourceCulture);
             }
         }
         
@@ -907,6 +961,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tipo de documento.
+        /// </summary>
+        public static string TechnicalDocument_DocumentType {
+            get {
+                return ResourceManager.GetString("TechnicalDocument_DocumentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Texto.
         /// </summary>
         public static string TextContent {
@@ -939,6 +1002,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data de upload.
+        /// </summary>
+        public static string UploadDate {
+            get {
+                return ResourceManager.GetString("UploadDate", resourceCulture);
             }
         }
         

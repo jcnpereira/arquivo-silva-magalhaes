@@ -426,4 +426,31 @@
   <data name="PublishDate" xml:space="preserve">
     <value>Data de publicação</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>Ficheiro a guardar</value>
+  </data>
+  <data name="DocumentType_Image" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
+  <data name="DocumentType_Other" xml:space="preserve">
+    <value>Outro</value>
+  </data>
+  <data name="DocumentType_Text" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="DocumentType_Video" xml:space="preserve">
+    <value>Vídeo</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Nome do ficheiro</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Tamanho do ficheiro</value>
+  </data>
+  <data name="TechnicalDocument_DocumentType" xml:space="preserve">
+    <value>Tipo de documento</value>
+  </data>
+  <data name="UploadDate" xml:space="preserve">
+    <value>Data de upload</value>
+  </data>
 </root>
