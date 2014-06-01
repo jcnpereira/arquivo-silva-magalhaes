@@ -12,8 +12,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public Archive()
         {
-            ArchiveTexts = new HashSet<ArchiveTranslations>();
-            Contacts = new HashSet<Contact>();
+            this.ArchiveTranslations = new List<ArchiveTranslations>();
+            this.Contact= new List<Contact>();
+        //    ArchiveTexts = new HashSet<ArchiveTranslations>();
+        //    Contacts = new HashSet<Contact>();
         }
 
         [Key]
@@ -22,8 +24,40 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display (ResourceType=typeof(DataStrings), Name="Title")]
         public string Title { get; set; }
 
-        public ICollection<ArchiveTranslations> ArchiveTexts;
-        public ICollection<Contact> Contacts;
+        [Required]
+        [Display(ResourceType=typeof(DataStrings),Name="LanguageCode")]
+        public string LanguageCode { get; set;}
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "ArchiveMission")]
+        public string ArchiveMission { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "ArchiveHistory")]
+        public string ArchiveHistory { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Name")]
+        public string Name { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Address")]
+        public string Address { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "ContactDetails")]
+        public string ContactDetails { get; set;}
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Service")]
+        public string Service { get; set; }
+        /// <summary>
+        /// Localized texts descibing the mission and the history of this
+        /// archive.
+        /// </summary>
+        public virtual List<ArchiveTranslations> ArchiveTranslations { get; set; }
+        /// <summary>
+        ///  Archive address and contact's
+        /// </summary>
+        public virtual List<Contact> Contact { get; set; }
+     //   public ICollection<ArchiveTranslations> ArchiveTexts;
+    //    public ICollection<Contact> Contacts;
     }
 
     public class ArchiveTranslations
@@ -35,9 +69,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
-
+        [Required]
         public string ArchiveHistory { get; set; }
-
+        [Required]
         public string ArchiveMission { get; set; }
    }
 

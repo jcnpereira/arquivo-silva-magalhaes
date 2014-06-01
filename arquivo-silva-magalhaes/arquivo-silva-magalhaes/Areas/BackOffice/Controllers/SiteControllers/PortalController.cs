@@ -55,10 +55,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 var archive = new Archive
                 {
-                    Title = model.Title
+                    Title = model.Title,
+                    LanguageCode = model.LanguageCode,
+                    ArchiveMission=model.ArchiveMission,
+                    ArchiveHistory=model.ArchiveHistory,
+                    Name=model.Name,
+                    Address=model.Address,
+                    Email=model.Email,
+                    ContactDetails=model.ContactDetails,
+                    Service=model.Service
                 };
 
-                archive.ArchiveTexts.Add(
+                archive.ArchiveTranslations.Add(
                new ArchiveTranslations
                {
                    LanguageCode = model.LanguageCode,
@@ -67,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                });
                 
                 
-                archive.Contacts.Add(
+                archive.Contact.Add(
                 new Contact
                 {
                     Name = model.Name,
