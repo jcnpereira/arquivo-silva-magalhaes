@@ -1,4 +1,4 @@
-﻿@model EventEditViewModel
+﻿@model ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.EventEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -13,14 +13,14 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @Html.HiddenFor(model => model.LanguageCode)
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Place,  new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Place, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
@@ -44,9 +44,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartMoment, htmlAttributes: new { @class = "control-label col-md-2", @Value = Model.StartMoment.ToString("dd-mm-yyyy") })
+            @Html.LabelFor(model => model.StartMoment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartMoment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.StartMoment, new { htmlAttributes = new { @class = "form-control", @Value = Model.StartMoment.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.StartMoment, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndMoment, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EndMoment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EndMoment, new { htmlAttributes = new { @class = "form-control", @Value = Model.EndMoment.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.EndMoment, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PublishDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.PublishDate.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,7 +70,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ExpiryDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.ExpiryDate.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -91,16 +91,52 @@
             </div>
         </div>
 
-    </div>
-    
-    @Html.Partial("_EventI18nPartial")
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-inline">
-    <div class="form-group">
-        <input type="submit" value="@UiStrings.Done" class="btn btn-default" />
-        @Html.ActionLink(UiStrings.Cancel, "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Heading, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SpotLight, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SpotLight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SpotLight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextContent, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TextContent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TextContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LanguageCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LanguageCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="submit" value="@UiStrings.Done" class="btn btn-default" />
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
+            </div>
+        </div>
     </div>
-</div>
 }
 
-   
+

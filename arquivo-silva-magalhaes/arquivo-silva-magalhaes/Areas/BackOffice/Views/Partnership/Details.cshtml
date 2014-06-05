@@ -5,7 +5,15 @@
 }
 
 <h2>Detalhes de parceria</h2>
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
 
+    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
 <div>
 
 	<hr />

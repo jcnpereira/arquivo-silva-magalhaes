@@ -1,4 +1,4 @@
-﻿@model ReferencedLinkModels
+﻿@model ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ReferencedLinkModels
 
 @{
     ViewBag.Title = "Create";
@@ -70,7 +70,4 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Voltar à lista", "Index")
-</div>
+@Html.Partial("_SubmitBackPartial")

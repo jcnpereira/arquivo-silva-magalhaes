@@ -1,4 +1,4 @@
-﻿@model EventEditViewModel
+﻿@model Event
 
 @{
     ViewBag.Title = "Details";
@@ -6,8 +6,18 @@
 
 <h2>Detalhes do evento</h2>
 
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+
+    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
+
 <div>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Place)
@@ -72,81 +82,50 @@
         <dd>
             @Html.DisplayFor(model => model.HideAfterExpiry)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EventType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EventType)
-        </dd>
-
     </dl>
-   
-@*
-    @foreach (var item in Model)
-    {
+
+    @foreach (var t in Model.EventTexts)
+        {
+        
         <div>
-            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
+            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(t.LanguageCode)</h4>
 
             <dl>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.DisplayNameFor(model => t.Title)
                 </dt>
-
                 <dd>
-                    @item.Title
+                    @t.Title
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
 
+                <dt>
+                    @Html.DisplayNameFor(model => t.Heading)
+                </dt>
                 <dd>
-                    @item.Title
+                    @t.Heading
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Heading)
-                </dt>
 
+                <dt>
+                    @Html.DisplayNameFor(model => t.SpotLight)
+                </dt>
                 <dd>
-                    @item.Heading
+                    @t.SpotLight
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SpotLight)
-                </dt>
 
+                <dt>
+                    @Html.DisplayNameFor(model => t.TextContent)
+                </dt>
                 <dd>
-                    @item.SpotLight
+                    @t.TextContent
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.TextContent)
-                </dt>
 
+                <dt>
+                    @Html.DisplayNameFor(model => t.LanguageCode)
+                </dt>
                 <dd>
-                    @item.TextContent
+                    @t.LanguageCode
                 </dd>
             </dl>
-        @Html.ActionLink(@UiStrings.Edit, "EditText", new { Id = text.Id })
-
-        @*Only allow the removal of texts which are not the default language.
-        @if (text.LanguageCode != ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.DefaultLanguage)
-    {
-        @Html.ActionLink(@UiStrings.Delete, "DeleteText", new { Id = text.Id })
-    } 
-            
-    <hr /> 
-    </div>
-    
+           </div>    
     }
-@if (ViewBag.AreLanguagesMissing)
-{
-
-    @Html.ActionLink("Adicionar ideoma", "AddLanguage", new { Id = Model.Id })
-}
-
-</div>*@
-
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Voltar à lista", "Index")
-</p>
+    </div>

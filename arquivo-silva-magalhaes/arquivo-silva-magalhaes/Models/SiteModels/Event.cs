@@ -11,21 +11,21 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public enum EventType : byte
     {
-        Expo = 1,
-        School = 2,
-        Other = 100
+        Exposição = 1,
+        Escolar = 2,
+        Outro = 100
     }
 
     public class Event
     {
         public Event()
         {
+            this.EventTexts = new List<EventTranslation>();
             ReferencedEvents = new HashSet<Event>();
             Partnerships = new HashSet<Partnership>();
             Collaborators = new HashSet<Collaborator>();
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<Attachment>();
-            EventTexts = new HashSet<EventTranslation>();
         }
 
         [Key]
@@ -57,10 +57,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public ICollection<Collaborator> Collaborators { get; set; }
         public ICollection<ReferencedLink> Links { get; set; }
         public ICollection<Attachment> AttachedDocuments { get; set; }
-        public ICollection<EventTranslation> EventTexts { get; set; }
+
+        public virtual List<EventTranslation> EventTexts { get; set; }
+       
     }
 
-    public class EventTranslation
+    public partial class EventTranslation
     {
 
         [Key, Column(Order = 0)]

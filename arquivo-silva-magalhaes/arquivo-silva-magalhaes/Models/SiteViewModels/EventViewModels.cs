@@ -16,9 +16,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     {
         //[Description("Exposição")]
         [Display()]
-        Expo = 1,
-        School = 2,
-        Other = 100
+        Exposição = 1,
+        Escolar = 2,
+        Outro = 100
     }
 
     public class EventEditViewModel : IValidatableObject

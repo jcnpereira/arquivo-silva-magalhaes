@@ -82,8 +82,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Title = model.Title,
                     Heading = model.Heading,
                     SpotLight = model.SpotLight,
-                    TextContent = model.TextContent,
-
+                    TextContent = model.TextContent
                 });
 
                 db.Events.Add(events);

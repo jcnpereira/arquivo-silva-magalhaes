@@ -23,9 +23,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Collection()
         {
-            this.Translations = new HashSet<CollectionTranslation>();
-            this.Documents = new HashSet<Document>();
-            this.Authors = new HashSet<Author>();
+            this.Translations = new List<CollectionTranslation>();
+            this.Documents = new List<Document>();
+            this.Authors = new List<Author>();
         }
 
         [Key]
@@ -73,9 +73,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
-        public virtual ICollection<CollectionTranslation> Translations { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
+        public virtual List<CollectionTranslation> Translations { get; set; }
+        public virtual List<Document> Documents { get; set; }
+        public virtual List<Author> Authors { get; set; }
 
         [NotMapped]
         public int[] AuthorIds { get; set; }
