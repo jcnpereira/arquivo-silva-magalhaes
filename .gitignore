@@ -4,6 +4,7 @@
 # App_Data folder and 3rd party scripts.
 App_Data/
 Scripts/Vendor/
+Public/
 
 # User-specific files
 *.suo
