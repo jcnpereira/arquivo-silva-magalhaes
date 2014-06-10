@@ -29,6 +29,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
+        [Display(ResourceType = typeof(DataStrings),Name ="LogoLocation")]
         public string LogoLocation { get; set; }
 
         [Display(ResourceType = typeof(DataStrings), Name = "HasAttachments")]

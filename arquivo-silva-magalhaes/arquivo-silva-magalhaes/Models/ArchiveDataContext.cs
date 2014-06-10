@@ -57,7 +57,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<BannerTranslation> BannerTranslations { get; set; }
 
-        public virtual DbSet<Collaborator> CollaboratorSet { get; set; }
+        public virtual DbSet<Collaborator> Collaborators { get; set; }
 
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<AttachmentTranslation> AttachmentTranslations { get; set; }

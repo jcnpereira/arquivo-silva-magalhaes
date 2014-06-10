@@ -1,82 +1,135 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection
+﻿@model Collection
 
-@{
-    ViewBag.Title = "Details";
-}
+    @{
+        ViewBag.Title = "Details";
+    }
 
-<h2>Detalhes da coleção</h2>
+    <h2>Detalhes da coleção</h2>
+    <div class="btn-toolbar btn-group" role="toolbar">
+        <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
 
-<div>
+        <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+            <span class="glyphicon glyphicon-floppy-remove"></span>
+        </a>
+    </div>
+    <div>
 
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductionDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductionDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductionDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProductionDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LogoLocation)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LogoLocation)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LogoLocation)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LogoLocation)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HasAttachments)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.HasAttachments)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HasAttachments)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.HasAttachments)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrganizationSystem)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationSystem)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrganizationSystem)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationSystem)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsVisible)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsVisible)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsVisible)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsVisible)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CatalogCode)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CatalogCode)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CatalogCode)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Voltar à lista", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.CatalogCode)
+            </dd>
+        </dl>
+        @foreach (var t in Model.Translations)
+        {
+            <div>
+                <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(t.LanguageCode)</h4>
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.Title)
+                    </dt>
+                    <dd>
+                        @t.Title
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.Description)
+                    </dt>
+                    <dd>
+                        @t.Description
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.Provenience)
+                    </dt>
+                    <dd>
+                        @t.Provenience
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.AdministrativeAndBiographicStory)
+                    </dt>
+                    <dd>
+                        @t.AdministrativeAndBiographicStory
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.FieldAndContents)
+                    </dt>
+                    <dd>
+                        @t.FieldAndContents
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => t.Dimension)
+                    </dt>
+                    <dd>
+                        @t.Dimension
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => t.CopyrightInfo)
+                </dt>
+                <dd>
+                    @t.CopyrightInfo
+                </dd>
+            </dl>
+        </div>
+        }
+    </div>

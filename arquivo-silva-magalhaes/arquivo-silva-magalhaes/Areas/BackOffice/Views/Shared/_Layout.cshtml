@@ -12,15 +12,15 @@
             font: "Trebuchet MS", Verdana, sans-serif;
             background: #222222;
             text-align: center;
-            font-size:14px;
-            font-family
+            font-size: 14px;
             border: solid;
             color: #222222;
             border-top: #ffffff;
         }
-        .link{
-            color:#999999;
-            animation:both;
+
+        .link {
+            color: #999999;
+            animation: both;
         }
     </style>
     <title>@ViewBag.Title - Arquivo Fotográfico Silva e Magalhães </title>
@@ -41,15 +41,15 @@
                     </button>
                     @Html.ActionLink("Arquivo Fotográfico Silva Magalhães", "Index", "Home", null, new { @class = "navbar-brand" })
                 </div>*@
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="col-sm-push-11">@Html.ActionLink("Home", "Index", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
-
     <div class="container body-content">
         <!-- Menu à esquerda. -->
         @if (ViewBag.DisplaySidebar)
@@ -57,8 +57,8 @@
             <div class="col-md-2">
                 <div class="menu">
                     <ul class="nav nav-stacked">
-                        <li>@Html.ActionLink("Autores", "Index", "Authors",null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Arquivos", "Index", "Portal", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Autores", "Index", "Authors", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Classificações", "Index", "Classifications", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Colaboradores", "Index", "Collaborator", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Coleções", "Index", "Collections", null, new { @class = "link" })</li>
@@ -68,13 +68,13 @@
                         <li>@Html.ActionLink("Espécies Fotográficas", "Index", "Specimens", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Eventos", "Index", "Event", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Formatos", "Index", "Formats", null, new { @class = "link" })</li>
-                        <li>@Html.ActionLink("Fotograficas banner", "Index", "BannerPhotograph", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Fotografias banner", "Index", "BannerPhotograph", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Fotografias em destaque", "Index", "ShowcasePhotoes", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Notícias", "Index", "News", null, new { @class = "link" })</li>
-                        <li>@Html.ActionLink("Links", "Index", "ReferencedLinks", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Links", "Index", "ReferencedLink", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Palavras chave", "Index", "Keywords", null, new { @class = "link" })</li>
-                        <li>@Html.ActionLink("Parcerias", "Index", "Partnership", null, new { @class = "link" })</li> 
-                        <li>@Html.ActionLink("Videos destaque", "Index", "SpotLightVideo", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Parcerias", "Index", "Partnership", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Vídeos destaque", "Index", "SpotLightVideo", null, new { @class = "link" })</li>
                     </ul>
                 </div>
             </div>

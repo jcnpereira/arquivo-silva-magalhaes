@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Archive
+﻿@model Archive
 
 @{
     ViewBag.Title = "Details";
@@ -6,9 +6,19 @@
 
 <h2>Detalhes do arquivo</h2>
 
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+
+    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
+
 <div>
     <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Id)
         </dt>
@@ -19,12 +29,60 @@
             @Html.DisplayNameFor(model => model.Title)
         </dt>
         <dd>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LanguageCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArchiveMission)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArchiveMission)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArchiveHistory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArchiveHistory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Service)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Service)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactDetails)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
         </dd>
     </dl>
 </div>
-<hr />
-@foreach (var text in Model.ArchiveTexts)
+@*<hr />
+@foreach (var text in Model.ArchiveTranslations)
     {
     <div>
         <dl>
@@ -32,7 +90,7 @@
                 @Html.DisplayNameFor(model => model.LanguageCode)
             </dt>
             <dd>
-                @text.ArchiveMission
+                @text.LanguageCode
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.ArchiveMission)
@@ -44,54 +102,49 @@
                 @Html.DisplayNameFor(model => model.ArchiveHistory)
             </dt>
             <dd>
-                @text.ArchiveMission
+                @text.ArchiveHistory
             </dd>
         </dl>
     </div>
 }
 <hr />
-@foreach (var contact in Model.Contacts)
-{
-    <div>
-        <br />
-        <p><br /><b>Contactos</b></p><br />
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @contact.Name
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-            <dd>
-                @contact.Address
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd>
-                @contact.Email
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactDetails)
-            </dt>
-            <dd>
-                @contact.ContactDetails
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Service)
-            </dt>
-            <dd>
-                @contact.Service
-            </dd>
-        </dl>
+@foreach (var contact in Model.Contact)
+    {
+        <div>
+            <br />
+            <p><br /><b>Contactos</b></p><br />
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @contact.Name
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd>
+                    @contact.Address
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @contact.Email
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactDetails)
+                </dt>
+                <dd>
+                    @contact.ContactDetails
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Service)
+                </dt>
+                <dd>
+                    @contact.Service
+                </dd>
+            </dl>
 
-    </div>
-}
-<dl class="dl-horizontal"></dl>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
-    @Html.ActionLink("Voltar á lista de arquivos", "Index")
-</p>
+        </div>
+    }*@

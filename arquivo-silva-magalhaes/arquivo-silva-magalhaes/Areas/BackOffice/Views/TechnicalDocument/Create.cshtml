@@ -12,10 +12,7 @@
     <h2>Criar documento tecnico</h2>
 
     <div class="form-horizontal">
-
         <hr />
-
-
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DocumentType, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.DocumentType, new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.DocumentType, "Escolha um...",  new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DocumentType)
             </div>
         </div>
@@ -56,6 +53,4 @@
 
 }
 
-<div>
-    @Html.ActionLink("Voltar à lista", "Index")
-</div>
+@Html.Partial("_SubmitBackPartial")
