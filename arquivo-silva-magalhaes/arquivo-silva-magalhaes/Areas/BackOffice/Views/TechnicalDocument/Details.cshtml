@@ -11,7 +11,11 @@
         <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
 
-    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
         <span class="glyphicon glyphicon-floppy-remove"></span>
     </a>
 </div>
@@ -19,63 +23,70 @@
     <hr />
     <dl class="dl-horizontal">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UriPath)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.UriPath)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.UploadedDate)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileSize)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.UploadedDate)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FileSize)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastModificationDate)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadDate)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastModificationDate)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.UploadDate)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Format)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModificationDate)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Format)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.DocumentType)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastModificationDate)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.DocumentType)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.LanguageCode)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Format)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LanguageCode)
-            </dd>
-        </dl>
+        <dd>
+            @Html.DisplayFor(model => model.Format)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+    </dl>
 
 </div>
 
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
-    @Html.ActionLink("Voltar à lista", "Index")
-</p>
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

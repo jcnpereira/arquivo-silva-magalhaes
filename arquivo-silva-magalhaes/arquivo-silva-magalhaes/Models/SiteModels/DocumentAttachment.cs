@@ -22,7 +22,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string UriPath { get; set; }
 
         public string Title { get; set; }
-
+        public string Description{get; set;}
+        public string LanguageCode { get; set; }
         public int Size { get; set; }
 
         public ICollection<Event> EventsUsingAttachment { get; set; }

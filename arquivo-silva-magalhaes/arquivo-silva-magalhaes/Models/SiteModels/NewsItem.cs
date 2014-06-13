@@ -53,6 +53,5 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Heading { get; set; }
         [Required]
         public string TextContent { get; set; }
-
     }
 }

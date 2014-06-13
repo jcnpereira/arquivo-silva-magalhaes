@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.DocumentAttachmentViewModels
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Attachment
 
 @{
     ViewBag.Title = "Details";
@@ -10,7 +10,11 @@
         <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
 
-    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
         <span class="glyphicon glyphicon-floppy-remove"></span>
     </a>
 </div>
@@ -41,9 +45,31 @@
             @Html.DisplayFor(model => model.Size)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

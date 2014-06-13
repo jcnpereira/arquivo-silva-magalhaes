@@ -4,7 +4,7 @@
     var userId = User.Identity.GetUserId();
     var manager = new UserManager<ArquivoSilvaMagalhaes.Models.ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ArquivoSilvaMagalhaes.Models.ApplicationUser>(new ArquivoSilvaMagalhaes.Models.ApplicationDbContext()));
        
-    var currentUser = manager.FindById(userId);
+    //var currentUser = manager.FindById(userId);
     
     manager.Dispose();
     

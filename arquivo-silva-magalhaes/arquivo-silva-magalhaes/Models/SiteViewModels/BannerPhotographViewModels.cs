@@ -34,6 +34,8 @@ namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
+        public string LanguageCode { get; set; }
+        public string Title { get; set; }
 
         public List<PhotographI18nViewModel> I18nTexts { get; set; }
     }

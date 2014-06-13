@@ -28,9 +28,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType=typeof(DataStrings),Name="LanguageCode")]
         public string LanguageCode { get; set;}
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "ArchiveMission")]
         public string ArchiveMission { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "ArchiveHistory")]
         public string ArchiveHistory { get; set; }
         [Required]
@@ -39,9 +41,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Required]
         public string Email { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "Address")]
         public string Address { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "ContactDetails")]
         public string ContactDetails { get; set;}
         [Required]

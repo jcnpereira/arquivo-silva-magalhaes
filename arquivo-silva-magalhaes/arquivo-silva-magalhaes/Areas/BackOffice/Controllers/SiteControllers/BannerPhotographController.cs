@@ -63,29 +63,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 // TODO: Talvez redimensionar?
-                var path = Server.MapPath("~/Public/BannerPhotographs");
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Image.FileName);
-
-                Directory.CreateDirectory(path);
-
-                model.Image.SaveAs(Path.Combine(path, fileName));
+                //var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Image.FileName);
 
                 var banner = new Banner
                 {
-                    UriPath = Path.Combine("Public/BannerPhotographs", fileName),
+                   // UriPath = Path.Combine("Public/BannerPhotographs", fileName),
+                    UriPath=model.UriPath,
+                    
                     PublicationDate = model.PublicationDate,
                     RemovalDate = model.RemovalDate,
                     IsVisible = model.IsVisible
                 };
 
-                banner.BannerTexts.Add(
-                    new BannerTranslation
-                    {
-                        BannerPhotographId = banner.Id,
-                        LanguageCode = LanguageDefinitions.DefaultLanguage,
-                        Title = model.I18nTexts[0].Title
-                    });
+                //banner.BannerTexts.Add(
+                //    new BannerTranslation
+                //    {
+                //        BannerPhotographId = banner.Id,
+                //        LanguageCode = LanguageDefinitions.DefaultLanguage,
+                //        Title = model.I18nTexts[0].Title
+                //    });
 
                 db.Banners.Add(banner);
                 await db.SaveChangesAsync();

@@ -17,15 +17,15 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string EmailAddress { get; set; }
         public string Contact { get; set; }
 
-        public int EventId { get; set; }
+       // public int EventId { get; set; }
 
         public PartnershipType PartnershipType { get; set; }
     }
 
     public enum PartnershipType : byte
     {
-        Sponsor = 1,
-        Collaborator = 2,
-        Other = 100
+        Patrocinador = 1,
+        Colaborador = 2,
+        Outro = 100
     }
 }

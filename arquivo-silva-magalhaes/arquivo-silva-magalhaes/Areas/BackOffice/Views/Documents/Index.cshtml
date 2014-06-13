@@ -17,25 +17,26 @@
     </a>
 </div>
 <table class="table table-striped table-houver">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ResponsibleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DocumentDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CatalogationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CatalogCode)
-        </th>
-        <th></th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponsibleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatalogationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatalogCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>

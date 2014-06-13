@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         {
             this.EventTexts = new List<EventTranslation>();
             ReferencedEvents = new HashSet<Event>();
-            Partnerships = new HashSet<Partnership>();
+            this.Partnerships = new List<Partnership>();
             Collaborators = new HashSet<Collaborator>();
             Links = new HashSet<ReferencedLink>();
             AttachedDocuments = new HashSet<Attachment>();
@@ -53,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public EventType EventType { get; set; }
 
         public ICollection<Event> ReferencedEvents { get; set; }
-        public ICollection<Partnership> Partnerships { get; set; }
+        public List<Partnership> Partnerships { get; set; }
         public ICollection<Collaborator> Collaborators { get; set; }
         public ICollection<ReferencedLink> Links { get; set; }
         public ICollection<Attachment> AttachedDocuments { get; set; }

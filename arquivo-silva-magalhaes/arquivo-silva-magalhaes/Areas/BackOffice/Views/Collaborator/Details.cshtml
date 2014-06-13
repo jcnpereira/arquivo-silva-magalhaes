@@ -10,12 +10,16 @@
         <span class="glyphicon glyphicon-arrow-left"></span>
     </a>
 
-    <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })">
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
         <span class="glyphicon glyphicon-floppy-remove"></span>
     </a>
 </div>
 <div>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -59,7 +63,6 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <br />
-    @Html.ActionLink("Voltar à lista", "Index")
-</p>
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

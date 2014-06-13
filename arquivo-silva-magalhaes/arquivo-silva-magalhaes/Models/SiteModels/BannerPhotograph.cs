@@ -16,11 +16,13 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
-
+       
         public string UriPath { get; set; }
         public DateTime PublicationDate { get; set; }
         public DateTime RemovalDate { get; set; }
         public bool IsVisible { get; set; }
+        public string LanguageCode { get; set; }
+        public string Title { get; set; }
 
         public ICollection<BannerTranslation> BannerTexts { get; set; }
     }
@@ -37,6 +39,5 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string LanguageCode { get; set; }
 
         public string Title { get; set; }
-        public string Description;
     }
 }

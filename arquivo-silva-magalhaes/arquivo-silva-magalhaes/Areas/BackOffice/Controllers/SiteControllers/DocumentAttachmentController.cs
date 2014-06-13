@@ -12,6 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System.Globalization;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -55,32 +56,37 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+
                 var documentattachment = new Attachment
                 {
                     Id=model.Id,
                     UriPath = model.UriPath,
                     MimeFormat = model.MimeFormat,
-                    Size = model.Size
+                    Size = model.Size,
+                    Title=model.Title,
+                    LanguageCode=model.LanguageCode,
+                    Description=model.Description
                 };
 
-                documentattachment.TextUsingAttachment.Add(
-                    new AttachmentTranslation
-                    {
-                        Title = model.Title,
-                        Description = model.Description,
-                        LanguageCode = LanguageDefinitions.DefaultLanguage,
+                //documentattachment.TextUsingAttachment.Add(
+                //    new AttachmentTranslation
+                //    {
+                //        Title = model.Title,
+                //        Description = model.Description,
+                //        LanguageCode = LanguageDefinitions.DefaultLanguage,
                       
-                    });
+                //    });
                 db.Attachments.Add(documentattachment);
                 await db.SaveChangesAsync();
 
-                if (AreLanguagesMissing( documentattachment))
-                {
-                    // There are languages which may be added.
-                    // Ask the used if he/she wants to any.
-                    ViewBag.Id = documentattachment.Id;
-                    return View("_AddLanguagePrompt");
-                }
+                //if (AreLanguagesMissing( documentattachment))
+                //{
+                //    // There are languages which may be added.
+                //    // Ask the used if he/she wants to any.
+                //    ViewBag.Id = documentattachment.Id;
+                //    return View("_AddLanguagePrompt");
+                //}
 
 
                 return RedirectToAction("Index");

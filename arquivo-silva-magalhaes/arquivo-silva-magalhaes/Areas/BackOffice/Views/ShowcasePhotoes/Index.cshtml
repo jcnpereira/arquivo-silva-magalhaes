@@ -15,25 +15,26 @@
     </a>
 </div>
 <table class="table table-striped table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DigitalPhotograph.ScanDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommenterName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommenterEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsEmailVisible)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VisibleSince)
-        </th>
-        <th></th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DigitalPhotograph.ScanDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommenterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommenterEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEmailVisible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisibleSince)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>

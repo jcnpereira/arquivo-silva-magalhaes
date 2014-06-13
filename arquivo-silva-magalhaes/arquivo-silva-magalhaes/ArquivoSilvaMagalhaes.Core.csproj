@@ -505,7 +505,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
-    <Folder Include="Public\Images\" />
+    <Folder Include="Public\Images\App_LocalResources\" />
     <Folder Include="Resources\bin\bin\en\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,7 +25,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Required]
         public string MimeFormat { get; set; }
         [Required]
-        public string UriPath { get; set; }
+        public String UriPath { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase Logo { get; set; }
         [Required]
         public int Size { get; set; }
 
@@ -53,15 +56,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Key]
         public int Id { get; set; }
-        
+
         public string LanguageCode { get; set; }
 
-        [Required]
         public string Title { get; set; }
-        [Required]
+
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        [Required]
+
         public virtual Attachment DocumentAttachment { get; set; }
     }
 }

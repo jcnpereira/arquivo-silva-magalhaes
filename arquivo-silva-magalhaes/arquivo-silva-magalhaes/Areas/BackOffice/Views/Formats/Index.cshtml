@@ -15,12 +15,13 @@
     </a>
 </div>
 <table class="table table-striped table-houver">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FormatDescription)
-        </th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FormatDescription)
+            </th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>

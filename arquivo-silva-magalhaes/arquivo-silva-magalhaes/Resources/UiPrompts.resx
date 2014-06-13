@@ -124,6 +124,6 @@
     <value>Deseja adicionar os conteúdos numa nova linguagem?</value>
   </data>
   <data name="ConfirmDelete" xml:space="preserve">
-    <value>Tem a certeza que pretende eliminar isto?</value>
+    <value>Tem a certeza que pretende eliminar este registo?</value>
   </data>
 </root>
