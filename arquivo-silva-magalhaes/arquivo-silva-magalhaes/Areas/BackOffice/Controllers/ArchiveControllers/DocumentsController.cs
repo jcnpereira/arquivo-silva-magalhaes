@@ -47,13 +47,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             var model = new DocumentEditViewModel
             {
-                AvailableKeywords = await db.KeywordTranslations
-                    .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                    .Select(kt => new SelectListItem
-                    {
-                        Value = kt.KeywordId.ToString(),
-                        Text = kt.Value
-                    }).ToListAsync(),
+                //AvailableKeywords = await db.KeywordTranslations
+                //    .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                //    .Select(kt => new SelectListItem
+                //    {
+                //        Value = kt.KeywordId.ToString(),
+                //        Text = kt.Value
+                //    }).ToListAsync(),
 
                 Translations = new List<DocumentTranslationEditViewModel>
                 {

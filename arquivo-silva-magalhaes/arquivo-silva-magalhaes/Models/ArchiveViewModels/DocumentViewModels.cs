@@ -66,10 +66,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
 
         
-        [Required]
-        public int[] KeywordIds { get; set; }
-        [Required]
-        public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
+        //[Required]
+        //public int[] KeywordIds { get; set; }
+        //[Required]
+        //public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
 
         public List<DocumentTranslationEditViewModel> Translations { get; set; }
     }

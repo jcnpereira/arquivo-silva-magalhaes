@@ -117,7 +117,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Type,ProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Type,InitialProductionDate,EndProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
         {
             if (ModelState.IsValid)
             {

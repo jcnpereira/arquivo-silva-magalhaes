@@ -145,7 +145,7 @@
     <value>Data de nascimento</value>
   </data>
   <data name="CatalogCode" xml:space="preserve">
-    <value>Código de catalogação</value>
+    <value>Código de coleção</value>
   </data>
   <data name="Classification" xml:space="preserve">
     <value>Classificação</value>
@@ -216,7 +216,7 @@
     <value>Formato</value>
   </data>
   <data name="HasAttachments" xml:space="preserve">
-    <value>Tem anexos</value>
+    <value>Documentos relacionados</value>
   </data>
   <data name="Heading" xml:space="preserve">
     <value>Cabeçalho</value>
@@ -268,7 +268,7 @@
     <value>Notas</value>
   </data>
   <data name="OrganizationSystem" xml:space="preserve">
-    <value>Sistema de organização</value>
+    <value>Organização original</value>
   </data>
   <data name="PartnershipType" xml:space="preserve">
     <value>Tipo de parceria</value>
@@ -352,7 +352,7 @@
     <value>Outro tipo de coleção</value>
   </data>
   <data name="AuthorCatalogCode" xml:space="preserve">
-    <value>Código de catalogação do autor</value>
+    <value>Número original</value>
   </data>
   <data name="CatalogationDate" xml:space="preserve">
     <value>Data de catalogação</value>
@@ -400,13 +400,13 @@
     <value>Endereço de e-mail visível</value>
   </data>
   <data name="StateDetailed" xml:space="preserve">
-    <value>Descrição detalhada do estado</value>
+    <value>Descrição estado conservação</value>
   </data>
   <data name="StateSimple" xml:space="preserve">
-    <value>Descrição simples do estado</value>
+    <value>Avaliação estado conservação</value>
   </data>
   <data name="Topic" xml:space="preserve">
-    <value>Tópico</value>
+    <value>Assunto</value>
   </data>
   <data name="Classifications" xml:space="preserve">
     <value>Classificações</value>
@@ -452,5 +452,20 @@
   </data>
   <data name="UploadDate" xml:space="preserve">
     <value>Data de upload</value>
+  </data>
+  <data name="AttachmentsDescriptions" xml:space="preserve">
+    <value>Descrição de anexos</value>
+  </data>
+  <data name="AvailableAuthors" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="AvailableCollections" xml:space="preserve">
+    <value>Coleção</value>
+  </data>
+  <data name="EndProductionDate" xml:space="preserve">
+    <value>Data Final Produção</value>
+  </data>
+  <data name="InitialProductionDate" xml:space="preserve">
+    <value>Data Inicial Produção</value>
   </data>
 </root>

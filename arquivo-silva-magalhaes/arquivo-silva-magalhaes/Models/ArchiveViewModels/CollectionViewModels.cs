@@ -14,6 +14,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         public int Id { get; set; }
 
         /// <summary>
+        /// The name of this collection.
+        /// </summary>
+        [Display(ResourceType = typeof(DataStrings), Name = "Name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// The type of this collection.
         /// </summary>
         [Display(ResourceType = typeof(DataStrings), Name = "CollectionType"), Required]
@@ -23,24 +29,40 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         /// The date on which this collection was created.
         /// </summary>
         [Required, DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ProductionDate")]
-        public DateTime ProductionDate { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "InitialProductionDate")]
+        public DateTime InitialProductionDate { get; set; }
+
+        /// <summary>
+        /// The date on which this collection was created.
+        /// </summary>
+        [Required, DataType(DataType.Date)]
+        [Display(ResourceType = typeof(DataStrings), Name = "EndProductionDate")]
+        public DateTime EndProductionDate { get; set; }
 
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
         [Display(ResourceType = typeof(DataStrings),Name ="LogoLocation")]
         public string LogoLocation { get; set; }
-
+        
+        /// <summary>
+        /// If the documents has attachments.
+        /// </summary>
         [Display(ResourceType = typeof(DataStrings), Name = "HasAttachments")]
         public bool HasAttachments { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Descriptions of attachments.
+        /// </summary>
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "AttachmentsDescriptions")]
+        public string AttachmentsDescriptions { get; set; }
+
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "OrganizationSystem")]
         public string OrganizationSystem { get; set; }
 
-        [Required]
+        
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
         public string Notes { get; set; }
@@ -60,7 +82,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         [NotMapped]
         public int[] AuthorIds { get; set; }
 
-        [Required]
+        
         [Display(Name = "Autores desta coleção")]
         public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
 

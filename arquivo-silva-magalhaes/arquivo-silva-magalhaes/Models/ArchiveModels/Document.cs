@@ -11,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public Document()
         {
             this.Translations = new HashSet<DocumentTranslation>();
-            this.Keywords = new HashSet<Keyword>();
+           // this.Keywords = new HashSet<Keyword>();
             this.Specimens = new HashSet<Specimen>();
         }
 

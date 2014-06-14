@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control-md-2" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control-md-2" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control-md-2" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DeathDate, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DeathDate, new { htmlAttributes = new { @class = "form-control-md-2" } })
                 @Html.ValidationMessageFor(model => model.DeathDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Translations[0].Nationality, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.Translations[0].Nationality, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Translations[0].Nationality, new { htmlAttributes = new { @class = "form-control-md-2" } })
                 @Html.ValidationMessageFor(model => model.Translations[0].Nationality, "", new { @class = "text-danger" })
             </div>
         </div>

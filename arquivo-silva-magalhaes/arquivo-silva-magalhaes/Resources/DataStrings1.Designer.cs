@@ -97,7 +97,16 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código de catalogação do autor.
+        ///   Looks up a localized string similar to Descrição de anexos.
+        /// </summary>
+        public static string AttachmentsDescriptions {
+            get {
+                return ResourceManager.GetString("AttachmentsDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Número original.
         /// </summary>
         public static string AuthorCatalogCode {
             get {
@@ -120,6 +129,24 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string AuthorLastNamePrompt {
             get {
                 return ResourceManager.GetString("AuthorLastNamePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autor.
+        /// </summary>
+        public static string AvailableAuthors {
+            get {
+                return ResourceManager.GetString("AvailableAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coleção.
+        /// </summary>
+        public static string AvailableCollections {
+            get {
+                return ResourceManager.GetString("AvailableCollections", resourceCulture);
             }
         }
         
@@ -160,7 +187,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código de catalogação.
+        ///   Looks up a localized string similar to Código de coleção.
         /// </summary>
         public static string CatalogCode {
             get {
@@ -439,6 +466,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Final Produção.
+        /// </summary>
+        public static string EndProductionDate {
+            get {
+                return ResourceManager.GetString("EndProductionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo de evento.
         /// </summary>
         public static string EventType {
@@ -511,7 +547,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem anexos.
+        ///   Looks up a localized string similar to Documentos relacionados.
         /// </summary>
         public static string HasAttachments {
             get {
@@ -552,6 +588,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string Indexation {
             get {
                 return ResourceManager.GetString("Indexation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Inicial Produção.
+        /// </summary>
+        public static string InitialProductionDate {
+            get {
+                return ResourceManager.GetString("InitialProductionDate", resourceCulture);
             }
         }
         
@@ -718,7 +763,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sistema de organização.
+        ///   Looks up a localized string similar to Organização original.
         /// </summary>
         public static string OrganizationSystem {
             get {
@@ -925,7 +970,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descrição detalhada do estado.
+        ///   Looks up a localized string similar to Descrição estado conservação.
         /// </summary>
         public static string StateDetailed {
             get {
@@ -934,7 +979,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descrição simples do estado.
+        ///   Looks up a localized string similar to Avaliação estado conservação.
         /// </summary>
         public static string StateSimple {
             get {
@@ -988,7 +1033,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tópico.
+        ///   Looks up a localized string similar to Assunto.
         /// </summary>
         public static string Topic {
             get {

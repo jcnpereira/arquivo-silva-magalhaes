@@ -16,19 +16,44 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CatalogCode, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CatalogCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EnumDropDownListFor(model => model.Type, "Escolha um...", new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.Type, "Escolha um...", new { @class = "form-control-md-2" })
                 @Html.ValidationMessageFor(model => model.Type)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductionDate,htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.InitialProductionDate,htmlAttributes: new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.ProductionDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.ProductionDate.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.ProductionDate)
+                @Html.EditorFor(model => model.InitialProductionDate, new { htmlAttributes = new { @class = "form-control-md-2", @Value = Model.InitialProductionDate.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.InitialProductionDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndProductionDate, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.EndProductionDate, new { htmlAttributes = new { @class = "form-control-md-2", @Value = Model.EndProductionDate.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.EndProductionDate)
             </div>
         </div>
 
@@ -45,6 +70,14 @@
             <div>
                 @Html.EditorFor(model => model.HasAttachments, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.HasAttachments)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AttachmentsDescriptions, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.AttachmentsDescriptions, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AttachmentsDescriptions)
             </div>
         </div>
 
@@ -69,14 +102,6 @@
             <div>
                 @Html.EditorFor(model => model.IsVisible, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IsVisible)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CatalogCode, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CatalogCode)
             </div>
         </div>
     </div>
