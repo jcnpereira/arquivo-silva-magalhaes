@@ -109,7 +109,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(collection);
+
+            var t = collection.Translations.First(text => text.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+            var model = new CollectionEditViewModel
+            {
+                Id = collection.Id,
+                
+                Name = collection.Name,
+                AttachmentsDescriptions = collection.AttachmentsDescriptions,
+                CatalogCode = collection.CatalogCode,
+                EndProductionDate = collection.EndProductionDate,
+                HasAttachments = collection.HasAttachments,
+                InitialProductionDate = collection.InitialProductionDate,
+                IsVisible = collection.IsVisible,
+                LogoLocation = collection.LogoLocation,
+                Notes = collection.Notes,
+                OrganizationSystem = collection.OrganizationSystem,
+                Type = collection.Type,
+
+                Translations = new List<CollectionTranslationEditViewModel>{
+                   new CollectionTranslationEditViewModel{
+                       CollectionId=collection.Id,
+                       LanguageCode=t.LanguageCode,
+                       Title=t.Title,
+                       Description=t.Description,
+                       Provenience=t.Provenience,
+                       AdministrativeAndBiographicStory=t.AdministrativeAndBiographicStory,
+                       FieldAndContents=t.FieldAndContents,
+                       Dimension=t.Dimension,
+                       CopyrightInfo=t.CopyrightInfo,
+
+                   }
+                }
+            };
+            return View(model);
         }
 
         // POST: /BackOffice/Collection/Edit/5
@@ -117,11 +151,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Type,InitialProductionDate,EndProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Type,InitialProductionDate,EndProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(collection).State = EntityState.Modified;
+                foreach (var t in collection.Translations)
+                {
+                    db.Entry(t).State = EntityState.Modified;
+                }
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

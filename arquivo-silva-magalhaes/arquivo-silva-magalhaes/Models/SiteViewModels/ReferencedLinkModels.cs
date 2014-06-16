@@ -23,6 +23,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         public string Link { get; set; }
         
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
         

@@ -74,10 +74,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual ICollection<DocumentTranslation> Translations { get; set; }
 
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        [NotMapped]
+        [Required]
         public int[] KeywordIds { get; set; }
-
+        [ForeignKey("KeywordIds")]
+        public virtual ICollection<Keyword> Keywords { get; set; }
+        
+        
         public virtual ICollection<Specimen> Specimens { get; set; }
     }
 

@@ -40,15 +40,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
-        [Required]
-        [DataType(DataType.Date)]
+       // [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// The date on which this author died.
         /// </summary>
-     
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }

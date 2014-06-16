@@ -11,7 +11,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ReferencedLink</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -28,14 +27,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Link)
                 @Html.ValidationMessageFor(model => model.Link)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
 
@@ -64,10 +55,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Criar" class="btn btn-default" />
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" } )
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-md-2" } })
+                @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
     </div>
+    @Html.Partial("_SubmitBackPartial")
 }
-@Html.Partial("_SubmitBackPartial")
+

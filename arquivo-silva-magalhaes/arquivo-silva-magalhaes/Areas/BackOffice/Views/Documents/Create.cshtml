@@ -56,7 +56,23 @@
             @Html.HiddenFor(model => model.CollectionId)
         }
 
-       
+        @if (Model.AvailableKeywords != null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.AvailableCollections, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.CollectionId, Model.AvailableCollections, new { @class = "form-control-md-2" })
+                    @Html.ValidationMessageFor(model => model.AvailableCollections)
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.CollectionId)
+        }
+
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.CatalogCode, new { @class = "control-label col-md-2" })
@@ -126,6 +142,8 @@
                 @Html.ValidationMessageFor(model => model.CatalogationDate)
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

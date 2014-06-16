@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -94,11 +95,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
-        public string CatalogCode { get; set; }
+        public  string CatalogCode { get; set; }
 
         public virtual List<CollectionTranslation> Translations { get; set; }
         public virtual List<Document> Documents { get; set; }
         public virtual List<Author> Authors { get; set; }
+
+        [Display(Name = "Autores desta coleção")]
+        public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
 
         [NotMapped]
         public int[] AuthorIds { get; set; }

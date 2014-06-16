@@ -20,13 +20,13 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.MimeFormat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UriPath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
+                @Html.DisplayNameFor(model => model.LanguageCode)
             </th>
             <th></th>
         </tr>
@@ -36,13 +36,13 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.MimeFormat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UriPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
+                @Html.DisplayFor(modelItem => item.LanguageCode)
             </td>
             <td>
                 <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">

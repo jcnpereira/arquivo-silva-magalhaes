@@ -25,17 +25,17 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.PublicationDate, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PublicationDate,htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PublicationDate)
+                    @Html.EditorFor(model => model.PublicationDate, new {htmlAttributes=new { @Value = Model.PublicationDate.ToString("yyyy-MM-dd")}})
                     @Html.ValidationMessageFor(model => model.PublicationDate)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.RemotionDate, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.RemotionDate,htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.RemotionDate)
+                    @Html.EditorFor(model => model.RemotionDate, new{htmlAttributes=new{ @Value = Model.RemotionDate.ToString("yyyy-MM-dd")}})
                     @Html.ValidationMessageFor(model => model.RemotionDate)
                 </div>
             </div>
@@ -48,15 +48,12 @@
                 </div>
             </div>
     
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Guardar" class="btn btn-default" />
                 </div>
-            </div>
+            </div>*@
         </div>
+        @Html.Partial("_SubmitBackPartial")
     }
-    
-    <div>
-        @Html.ActionLink("Voltar à lista", "Index")
-    </div>
 

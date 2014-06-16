@@ -468,4 +468,10 @@
   <data name="InitialProductionDate" xml:space="preserve">
     <value>Data Inicial Produção</value>
   </data>
+  <data name="MimeFormat" xml:space="preserve">
+    <value>Formato do ficheiro</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
 </root>

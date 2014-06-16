@@ -25,6 +25,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(DataStrings), Name = "ReferencedLink")]
         public string Link { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
         [Required]

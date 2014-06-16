@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,12 +19,19 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
+        [Display(Name="Formato do ficheiro")]
         public string MimeFormat { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "UriPath")]
         public string UriPath { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description{get; set;}
+        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
         public string LanguageCode { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Size")]
         public int Size { get; set; }
 
         public ICollection<Event> EventsUsingAttachment { get; set; }

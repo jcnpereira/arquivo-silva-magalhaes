@@ -727,6 +727,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formato do ficheiro.
+        /// </summary>
+        public static string MimeFormat {
+            get {
+                return ResourceManager.GetString("MimeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome.
         /// </summary>
         public static string Name {
@@ -948,6 +957,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string SiteLink {
             get {
                 return ResourceManager.GetString("SiteLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tamanho.
+        /// </summary>
+        public static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
             }
         }
         

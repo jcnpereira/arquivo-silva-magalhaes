@@ -21,26 +21,31 @@
 <div>
 	<hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MimeFormat)
-        </dt>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
         <dd>
-            @Html.DisplayFor(model => model.MimeFormat)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.UriPath)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UriPath)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.MimeFormat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MimeFormat)
+        </dd>
+        
+        <dt>
             @Html.DisplayNameFor(model => model.Size)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Size)
         </dd>
@@ -48,23 +53,13 @@
         <dt>
             @Html.DisplayNameFor(model => model.LanguageCode)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.LanguageCode)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>

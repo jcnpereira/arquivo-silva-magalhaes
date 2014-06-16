@@ -22,21 +22,26 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Key]
         [Required]
         public int Id { get; set; }
-        [Required]
+        [Display(ResourceType = typeof(DataStrings))]
         public string MimeFormat { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "UriPath")]
         public String UriPath { get; set; }
         [NotMapped]
+        [Display(ResourceType = typeof(DataStrings), Name = "Logo")]
         public HttpPostedFileBase Logo { get; set; }
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Size")]
         public int Size { get; set; }
-
+        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
         public string LanguageCode { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
-        [Required]
+        
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
 
         public virtual ICollection<Event> EventsUsingAttachment { get; set; }
@@ -56,12 +61,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Key]
         public int Id { get; set; }
-
+        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
         public string LanguageCode { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
 
         public virtual Attachment DocumentAttachment { get; set; }

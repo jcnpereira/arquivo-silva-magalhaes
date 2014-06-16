@@ -63,7 +63,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
-        [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
@@ -71,7 +70,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         /// <summary>
         /// The date on which this author died.
         /// </summary>
-        [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }

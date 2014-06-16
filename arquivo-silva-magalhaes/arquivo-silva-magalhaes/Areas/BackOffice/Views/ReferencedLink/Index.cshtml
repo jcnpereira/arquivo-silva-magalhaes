@@ -23,19 +23,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Link)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfCreation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModifiedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsUsefulLink)
-            </th>
-            <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)
@@ -46,18 +33,6 @@
             </td>
             <td>
                 <a href="@(item.Link)" target="_blank">@item.Link</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfCreation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsUsefulLink)
             </td>
             <td>
                 <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">

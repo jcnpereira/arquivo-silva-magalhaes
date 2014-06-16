@@ -90,7 +90,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "CollectionLogo")]
         public HttpPostedFileBase Logo { get; set; }
 
-        public List<CollectionTranslationEditViewModel> Translations { get; set; }
+        public virtual List<CollectionTranslationEditViewModel> Translations { get; set; }
     }
 
     public partial class CollectionTranslationEditViewModel
@@ -131,6 +131,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
+      
         [Required, NotMapped]
         [Display(ResourceType = typeof(DataStrings), Name = "Language")]
         public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
