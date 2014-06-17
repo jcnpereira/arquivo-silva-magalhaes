@@ -50,6 +50,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include="Id,Title,Link,Description,DateOfCreation,LastModifiedDate,IsUsefulLink")] ReferencedLink referencedlink)
         {
+
+            //var link = new ReferencedLink
+            //{
+            //    Id=referencedlink.Id,
+            //    Title=referencedlink.Title,
+            //    Link=referencedlink.Link,
+            //    DateOfCreation=DateTime.Now,
+            //    LastModifiedDate = DateTime.Now,
+            //    IsUsefulLink=referencedlink.IsUsefulLink
+            //};
             if (ModelState.IsValid)
             {
                 db.ReferencedLinks.Add(referencedlink);

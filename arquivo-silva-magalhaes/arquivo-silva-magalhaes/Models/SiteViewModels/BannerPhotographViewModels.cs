@@ -14,13 +14,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
     {
         [Key]
         public int Id { get; set; }
-
+        [Display(Name = "Imagem")]
+        public HttpPostedFileBase Image { get; set; }
         [Display(ResourceType = typeof(DataStrings), Name = "UriPath")]
         public string UriPath { get; set; }
-
-        [Display(Name = "Photo:")]
-        public HttpPostedFileBase Image { get; set; }
-
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
         [DataType(DataType.Date)]

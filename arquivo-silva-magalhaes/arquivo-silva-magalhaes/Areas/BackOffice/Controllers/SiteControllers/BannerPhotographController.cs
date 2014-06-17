@@ -71,7 +71,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 {
                    // UriPath = Path.Combine("Public/BannerPhotographs", fileName),
                     UriPath=model.UriPath,
-                    
                     PublicationDate = model.PublicationDate,
                     RemovalDate = model.RemovalDate,
                     IsVisible = model.IsVisible

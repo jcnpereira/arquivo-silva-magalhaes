@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
-       
+        public string Image { get; set; }
         public string UriPath { get; set; }
         public DateTime PublicationDate { get; set; }
         public DateTime RemovalDate { get; set; }
