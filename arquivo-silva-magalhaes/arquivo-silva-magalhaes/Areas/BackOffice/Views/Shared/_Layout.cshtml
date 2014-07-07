@@ -41,15 +41,15 @@
                     </button>
                     @Html.ActionLink("Arquivo Fotográfico Silva Magalhães", "Index", "Home", null, new { @class = "navbar-brand" })
                 </div>*@
-            
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="col-sm-push-12">@Html.ActionLink("Início", "Index", "Home")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="col-sm-push-12">@Html.ActionLink("Início", "Index", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
+    </div>
     <div class="container body-content">
         <!-- Menu à esquerda. -->
         @if (ViewBag.DisplaySidebar)
@@ -65,11 +65,11 @@
                         <li>@Html.ActionLink("Documentos", "Index", "Documents", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Documentos Anexo", "Index", "DocumentAttachment", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Documentos Técnicos", "Index", "TechnicalDocument", null, new { @class = "link" })</li>
+                        <li>@Html.ActionLink("Espécies Fotográficas", "Index", "Specimens", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Eventos", "Index", "Event", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Formatos", "Index", "Formats", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Fotografias banner", "Index", "BannerPhotograph", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Fotografias em destaque", "Index", "ShowcasePhotoes", null, new { @class = "link" })</li>
-                        <li>@Html.ActionLink("Imagens", "Index", "Specimens", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Notícias", "Index", "News", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Links", "Index", "ReferencedLink", null, new { @class = "link" })</li>
                         <li>@Html.ActionLink("Palavras chave", "Index", "Keywords", null, new { @class = "link" })</li>

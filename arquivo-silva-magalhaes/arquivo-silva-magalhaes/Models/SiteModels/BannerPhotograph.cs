@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,12 +17,19 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Key]
         public int Id { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Image")]
         public string Image { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "UriPath")]
         public string UriPath { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
         public DateTime PublicationDate { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "RemovalDate")]
         public DateTime RemovalDate { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
         public string LanguageCode { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
 
         public ICollection<BannerTranslation> BannerTexts { get; set; }

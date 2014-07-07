@@ -33,23 +33,29 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Required]
         [MaxLength(50)]
+        [Display(ResourceType = typeof(DataStrings), Name = "Place")]
         public string Place { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "Coordinates")]
         public string Coordinates { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "VisitorInformation")]
         public string VisitorInformation { get; set; }
 
-
+        [Display(ResourceType = typeof(DataStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 
-
+        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
+        [Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
         public DateTime ExpiryDate { get; set; }
-
+        [Display(ResourceType = typeof(DataStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
 
         /// <summary>
         /// The type of this event.
         /// </summary>
+        [Display(ResourceType = typeof(DataStrings), Name = "EventType")]
         public EventType EventType { get; set; }
 
         public ICollection<Event> ReferencedEvents { get; set; }
