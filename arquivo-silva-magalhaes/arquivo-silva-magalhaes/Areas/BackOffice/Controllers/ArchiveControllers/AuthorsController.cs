@@ -5,7 +5,6 @@ using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -107,27 +106,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             var t = author.Translations
                 .First(text => text.LanguageCode == LanguageDefinitions.DefaultLanguage);
 
-            var model = new AuthorEditViewModel
-            {
-                Id = author.Id,
-                FirstName = author.FirstName,
-                LastName = author.LastName,
-                BirthDate = author.BirthDate,
-                DeathDate = author.DeathDate,
-                Translations = new List<AuthorTranslationEditViewModel>
-                {
-                    new AuthorTranslationEditViewModel
-                    {
-                        AuthorId = author.Id,
-                        LanguageCode = t.LanguageCode,
-                        Biography = t.Biography,
-                        Curriculum = t.Curriculum,
-                        Nationality = t.Nationality
-                    }
-                }
-            };
-
-            return View(model);
+            return View(new AuthorEditViewModel(author));
         }
 
         // POST: BackOffice/Authors/Edit/5
