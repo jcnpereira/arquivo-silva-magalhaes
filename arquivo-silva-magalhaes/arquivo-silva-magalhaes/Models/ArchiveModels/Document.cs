@@ -11,8 +11,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public Document()
         {
             this.Translations = new HashSet<DocumentTranslation>();
-           // this.Keywords = new HashSet<Keyword>();
-            this.Specimens = new HashSet<Specimen>();
+            this.Images = new HashSet<Image>();
         }
 
         [Key]
@@ -74,13 +73,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual ICollection<DocumentTranslation> Translations { get; set; }
 
-        [Required]
-        public int[] KeywordIds { get; set; }
-        [ForeignKey("KeywordIds")]
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        
-        
-        public virtual ICollection<Specimen> Specimens { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
     }
 
     public partial class DocumentTranslation

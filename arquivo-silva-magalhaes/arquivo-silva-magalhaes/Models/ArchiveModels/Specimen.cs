@@ -8,14 +8,23 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
+    public enum SpecimenState : byte
+    {
+        Poor = 1,
+        Mediocre = 2,
+        Fair = 3,
+        Good = 4,
+        VeryGood = 5
+    }
+
     public partial class Specimen
     {
         public Specimen()
         {
             this.Translations = new HashSet<SpecimenTranslation>();
             this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
-            this.Classifications = new HashSet<Classification>();
-            this.Keywords = new HashSet<Keyword>();
+
+            State = SpecimenState.Fair;
         }
     
         [Key]
@@ -38,6 +47,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
         public string Notes { get; set; }
 
+        public SpecimenState State { get; set; }
+
+        [Required]
+        public string ReferenceCode { get; set; }
+
         [Required]
         public int DocumentId { get; set; }
         [ForeignKey("DocumentId")]
@@ -53,18 +67,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("FormatId")]
         public virtual Format Format { get; set; }
 
-        
-        public virtual ICollection<Classification> Classifications { get; set; }
-        [NotMapped]
-        public int[] ClassificationIds { get; set; }
+        [ForeignKey("ClassificationId")]
+        public Classification Classification { get; set; }
+        public int ClassficiationId { get; set; }
+
+
 
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
 
         public virtual ICollection<SpecimenTranslation> Translations { get; set; }
 
-        public virtual ICollection<Keyword> Keywords { get; set; }
-        [NotMapped]
-        public int[] KeywordIds { get; set; }
+
     }
 
     public partial class SpecimenTranslation
@@ -88,10 +101,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "Description")]
         public string Description { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "StateSimple")]
-        public string SimpleStateDescription { get; set; }
 
         [Required, DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "StateDetailed")]
