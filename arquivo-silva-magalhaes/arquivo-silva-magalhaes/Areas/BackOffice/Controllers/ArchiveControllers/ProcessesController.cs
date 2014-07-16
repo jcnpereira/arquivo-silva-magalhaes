@@ -15,7 +15,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class ProcessesController : Controller
+    public class ProcessesController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

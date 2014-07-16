@@ -12,7 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class SpotLightVideoController : Controller
+    public class SpotLightVideoController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

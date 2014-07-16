@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class AboutController : Controller
+    public class AboutController : BackOfficeController
     {
         // GET: BackOffice/About
         public ActionResult Index()

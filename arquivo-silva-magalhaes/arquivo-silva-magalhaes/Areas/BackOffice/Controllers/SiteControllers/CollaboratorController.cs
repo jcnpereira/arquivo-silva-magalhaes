@@ -12,7 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class CollaboratorController : Controller
+    public class CollaboratorController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

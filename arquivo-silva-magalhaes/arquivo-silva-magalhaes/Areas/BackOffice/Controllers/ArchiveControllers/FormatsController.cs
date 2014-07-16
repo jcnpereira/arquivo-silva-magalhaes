@@ -12,7 +12,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class FormatsController : Controller
+    public class FormatsController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

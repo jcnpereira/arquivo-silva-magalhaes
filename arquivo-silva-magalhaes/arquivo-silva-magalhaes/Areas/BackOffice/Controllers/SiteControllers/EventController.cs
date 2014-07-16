@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class EventController : Controller
+    public class EventController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

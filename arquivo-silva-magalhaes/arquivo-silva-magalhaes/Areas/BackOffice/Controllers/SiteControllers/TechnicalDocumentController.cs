@@ -15,7 +15,7 @@ using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class TechnicalDocumentController : Controller
+    public class TechnicalDocumentController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

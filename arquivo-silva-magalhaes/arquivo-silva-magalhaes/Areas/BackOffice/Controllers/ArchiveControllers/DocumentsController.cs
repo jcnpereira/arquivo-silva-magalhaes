@@ -15,7 +15,7 @@ using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class DocumentsController : Controller
+    public class DocumentsController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

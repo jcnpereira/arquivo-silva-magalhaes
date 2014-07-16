@@ -22,7 +22,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class SpecimensController : Controller
+    public class SpecimensController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

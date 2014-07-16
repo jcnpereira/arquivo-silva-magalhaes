@@ -7,12 +7,11 @@ using System.Web.Mvc;
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     /// <summary>
-    /// Controller-base para forçar a autenticação de todas
-    /// as requests ao back-office.
+    /// Base controller to force authorization on all requests.
     /// </summary>
     [Authorize]
     public class BackOfficeController : Controller
     {
-        // Sem Actions.
+        // No actions.
     }
 }

@@ -13,7 +13,7 @@ using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class PartnershipController : Controller
+    public class PartnershipController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

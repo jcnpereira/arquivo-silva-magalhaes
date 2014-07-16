@@ -15,7 +15,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class KeywordsController : Controller
+    public class KeywordsController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

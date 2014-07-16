@@ -12,7 +12,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class ShowcasePhotoesController : Controller
+    public class ShowcasePhotoesController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

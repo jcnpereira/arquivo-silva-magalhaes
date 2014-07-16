@@ -12,7 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class ReferencedLinkController : Controller
+    public class ReferencedLinkController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

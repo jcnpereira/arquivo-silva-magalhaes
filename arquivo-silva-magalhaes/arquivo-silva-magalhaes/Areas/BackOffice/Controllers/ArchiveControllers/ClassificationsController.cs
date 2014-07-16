@@ -16,19 +16,16 @@ using System.Diagnostics;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class ClassificationsController : Controller
+    public class ClassificationsController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Classifications
         public async Task<ActionResult> Index()
         {
-            return View(db.Classifications
-                .Select(c => new ClassificationViewModel
-                {
-                    Id = c.Id,
-                    Value = c.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                }).ToList());
+            return View(await db.Classifications
+                .Select(c => new ClassificationViewModel(c))
+                .ToListAsync());
         }
 
         // GET: BackOffice/Classifications/Details/5
@@ -38,7 +35,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await db.Classifications.FindAsync(id);
+
+            var classification = await db.Classifications.FindAsync(id);
+
             if (classification == null)
             {
                 return HttpNotFound();
