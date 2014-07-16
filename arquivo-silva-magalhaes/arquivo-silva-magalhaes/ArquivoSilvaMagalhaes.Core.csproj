@@ -366,7 +366,6 @@
     <Content Include="Areas\BackOffice\Views\Authors\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
     <Content Include="Areas\BackOffice\Views\Shared\_AddLanguagePrompt.cshtml" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="Areas\BackOffice\Views\Classifications\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\Details.cshtml" />

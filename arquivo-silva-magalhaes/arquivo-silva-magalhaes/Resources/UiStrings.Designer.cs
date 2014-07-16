@@ -88,6 +88,51 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iniciar sessão.
+        /// </summary>
+        public static string Auth__Login {
+            get {
+                return ResourceManager.GetString("Auth__Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminar sessão.
+        /// </summary>
+        public static string Auth__LogOff {
+            get {
+                return ResourceManager.GetString("Auth__LogOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gerir conta.
+        /// </summary>
+        public static string Auth__Manage {
+            get {
+                return ResourceManager.GetString("Auth__Manage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registar.
+        /// </summary>
+        public static string Auth__Register {
+            get {
+                return ResourceManager.GetString("Auth__Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bem vindo, {0}!.
+        /// </summary>
+        public static string Auth__WelcomeMsg {
+            get {
+                return ResourceManager.GetString("Auth__WelcomeMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelar.
         /// </summary>
         public static string Cancel {
@@ -201,6 +246,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static string SearchPlaceholder {
             get {
                 return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nome.
+        /// </summary>
+        public static string User__RealName {
+            get {
+                return ResourceManager.GetString("User__RealName", resourceCulture);
             }
         }
         

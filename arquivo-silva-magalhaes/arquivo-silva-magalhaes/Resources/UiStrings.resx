@@ -126,6 +126,21 @@
   <data name="Attention" xml:space="preserve">
     <value>Atenção</value>
   </data>
+  <data name="Auth__Login" xml:space="preserve">
+    <value>Iniciar sessão</value>
+  </data>
+  <data name="Auth__LogOff" xml:space="preserve">
+    <value>Terminar sessão</value>
+  </data>
+  <data name="Auth__Manage" xml:space="preserve">
+    <value>Gerir conta</value>
+  </data>
+  <data name="Auth__Register" xml:space="preserve">
+    <value>Registar</value>
+  </data>
+  <data name="Auth__WelcomeMsg" xml:space="preserve">
+    <value>Bem vindo, {0}!</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -164,6 +179,9 @@
   </data>
   <data name="SearchPlaceholder" xml:space="preserve">
     <value>Pesquisar...</value>
+  </data>
+  <data name="User__RealName" xml:space="preserve">
+    <value>Nome</value>
   </data>
   <data name="WarningEditInDefault" xml:space="preserve">
     <value>Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida.</value>

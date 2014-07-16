@@ -4,11 +4,27 @@
     var userId = User.Identity.GetUserId();
     var manager = new UserManager<ArquivoSilvaMagalhaes.Models.ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ArquivoSilvaMagalhaes.Models.ApplicationUser>(new ArquivoSilvaMagalhaes.Models.ApplicationDbContext()));
        
-    //var currentUser = manager.FindById(userId);
+    var currentUser = manager.FindById(userId);
     
     manager.Dispose();
     
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    <form method="post" action="/Account/LogOff" id="logoutForm" class="navbar-right">
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/Account/Manage" title="@UiStrings.Auth__Manage">@String.Format(UiStrings.Auth__WelcomeMsg, currentUser.RealName)</a>
+
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            </li>
+            <li>
+                @*<a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@
+                <button class="nav navbar-nav navbar-btn" type="submit">@UiStrings.Auth__LogOff</button>
+            </li>
+        </ul>
+    </form>
+    
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         
         @Html.AntiForgeryToken()
@@ -19,12 +35,16 @@
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
-    }
+    }*@
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a href="/Account/Register" id="registerLink">@UiStrings.Auth__Register</a></li>
+        <li><a href="/Account/Register" id="loginLink">@UiStrings.Auth__Login</a></li>
+
+
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
     </ul>
 }
