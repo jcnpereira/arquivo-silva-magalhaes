@@ -27,9 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nationality)
             </th>
-            @*<th>
+            <th>
                 @UiStrings.Actions
-            </th>*@
+            </th>
         </tr>
     </thead>
 
@@ -60,11 +60,15 @@
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>
+
+                @Html.ActionLink(@DataStrings.Collection__Collections, "Index", "Collections", new { authorId = item.Id }, null)
             </td>
         </tr>
     }
 
 </table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { pageNumber = page }))
 
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")

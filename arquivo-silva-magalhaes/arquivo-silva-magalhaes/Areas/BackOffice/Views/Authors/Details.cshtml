@@ -1,4 +1,4 @@
-﻿@model Author
+﻿@model AuthorViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -22,7 +22,7 @@
 
 <div>
     <hr />
-    <dl>
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -54,38 +54,33 @@
         <dd>
             @Html.DisplayFor(model => model.DeathDate)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Curriculum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Curriculum)
+        </dd>
     </dl>
 
-    @foreach (var text in Model.Translations)
-    {
-        <div>
-            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(text.LanguageCode)</h4>
 
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(model => text.Nationality)
-                </dt>
-                <dd>
-                    @text.Nationality
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => text.Curriculum)
-                </dt>
-                <dd>
-                    @text.Curriculum
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => text.Biography)
-                </dt>
-                <dd>
-                    @text.Biography
-                </dd>
-            </dl>
-            <hr />
-        </div>
-    }
 </div>
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")

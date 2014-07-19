@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -17,24 +18,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Authors
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Authors
-                .Join<Author, AuthorTranslation, int, AuthorViewModel>(
-                    db.AuthorTranslations.Where(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage),
-                    a => a.Id, at => at.AuthorId,
-                    (a, at) => new AuthorViewModel
-                    {
-                        Id = a.Id,
-                        FirstName = a.FirstName,
-                        LastName = a.LastName,
-                        BirthDate = a.BirthDate,
-                        DeathDate = a.DeathDate,
-                        Nationality = at.Nationality,
-                        Biography = at.Biography,
-                        Curriculum = at.Curriculum
-                    })
-                .ToListAsync());
+            return View(db.Authors
+                .ToList()
+                .Select(a => new AuthorViewModel(a))
+                .ToPagedList(pageNumber, 10)); // TODO Allow configs for page size.
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -45,7 +34,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Author author = await db.Authors.FindAsync(id);
+            var author = await db.Authors.FindAsync(id);
+
             if (author == null)
             {
                 return HttpNotFound();
@@ -53,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             ViewBag.AreLanguagesMissing = author.Translations.Count < LanguageDefinitions.Languages.Count;
 
-            return View(author);
+            return View(new AuthorViewModel(author));
         }
 
         // GET: BackOffice/Authors/Create

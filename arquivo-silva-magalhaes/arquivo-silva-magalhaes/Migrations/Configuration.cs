@@ -17,17 +17,17 @@ namespace ArquivoSilvaMagalhaes.Migrations
         protected override void Seed(ArquivoSilvaMagalhaes.Models.ArchiveDataContext context)
         {
             SeedAuthors(context);
-            SeedCollections(context);
-            SeedDocuments(context);
-            SeedProcesses(context);
-            SeedKeywords(context);
-            SeedClassifications(context);
-            SeedFormats(context);
-            SeedSpecimens(context);
-            SeedAttachments(context);
-            SeedBanners(context);
-            SeedTechnicalDocuments(context);
-            SeedDigitalPhotographs(context);
+            //SeedCollections(context);
+            //SeedDocuments(context);
+            //SeedProcesses(context);
+            //SeedKeywords(context);
+            //SeedClassifications(context);
+            //SeedFormats(context);
+            //SeedSpecimens(context);
+            //SeedAttachments(context);
+            //SeedBanners(context);
+            //SeedTechnicalDocuments(context);
+            //SeedDigitalPhotographs(context);
         }
 
         private void SeedDigitalPhotographs(Models.ArchiveDataContext db)

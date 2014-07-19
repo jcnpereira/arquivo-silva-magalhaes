@@ -69,7 +69,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [ForeignKey("ClassificationId")]
         public Classification Classification { get; set; }
-        public int ClassficiationId { get; set; }
+        public int ClassificationId { get; set; }
 
 
 

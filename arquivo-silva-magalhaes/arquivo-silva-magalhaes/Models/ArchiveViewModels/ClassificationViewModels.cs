@@ -33,6 +33,21 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
     public class ClassificationEditViewModel
     {
+        public ClassificationEditViewModel()
+        {
+
+        }
+
+        public ClassificationEditViewModel(
+            Classification c, 
+            string languageCode = LanguageDefinitions.DefaultLanguage,
+            IEnumerable<string> availableLanguages = null)
+        {
+            availableLanguages = availableLanguages ?? new List<string>();
+
+            Id = c.Id;
+        }
+
         public int Id { get; set; }
 
         public int ClassificationId { get; set; }

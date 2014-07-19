@@ -13,6 +13,29 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
     public class AuthorViewModel
     {
+        public AuthorViewModel()
+        {
+
+        }
+
+        public AuthorViewModel(Author a) : this(a, LanguageDefinitions.DefaultLanguage) { }
+
+        public AuthorViewModel(Author a, string languageCode)
+        {
+            Id = a.Id;
+            FirstName = a.FirstName;
+            LastName = a.LastName;
+
+            BirthDate = a.BirthDate;
+            DeathDate = a.DeathDate;
+
+            var t = a.Translations.Find(at => at.LanguageCode == languageCode && at.AuthorId == Id);
+
+            Biography = t.Biography;
+            Curriculum = t.Curriculum;
+            Nationality = t.Nationality;
+        }
+
         public int Id { get; set; }
 
         [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
@@ -21,9 +44,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
         public DateTime DeathDate { get; set; }
 
@@ -69,19 +94,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
             BirthDate = a.BirthDate;
             DeathDate = a.DeathDate;
 
-            Translations = a.Translations.Select(t => new AuthorTranslationEditViewModel
-                {
-                    AuthorId = a.Id,
-                    LanguageCode = t.LanguageCode,
-                    Nationality = t.Nationality,
-                    Curriculum = t.Curriculum,
-                    Biography = t.Biography,
-                    AvailableLanguages = availableLanguages.Select(l => new SelectListItem
-                    {
-                        Text = l, // TODO: Get localized text.
-                        Value = l
-                    }).ToList()
-                }).ToList();
+            Translations = a.Translations.Select(t => new AuthorTranslationEditViewModel(t)).ToList();
         }
 
         public int Id { get; set; }
@@ -137,6 +150,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
     /// </summary>
     public class AuthorTranslationEditViewModel
     {
+        public AuthorTranslationEditViewModel()
+        {
+
+        }
+
+        public AuthorTranslationEditViewModel(
+            AuthorTranslation at, 
+            string languageCode = null, 
+            IEnumerable<string> availableLanguages = null)
+        {
+            availableLanguages = availableLanguages ?? new List<string>();
+
+            AuthorId = at.AuthorId;
+            LanguageCode = at.LanguageCode ?? languageCode ?? LanguageDefinitions.DefaultLanguage;
+            AvailableLanguages = availableLanguages.Select(al => new SelectListItem
+                {
+                    Text = al,
+                    Value = al
+                }).ToList();
+
+            Biography = at.Biography;
+            Curriculum = at.Curriculum;
+            Nationality = at.Nationality;
+        }
+
 
         public int AuthorId { get; set; }
 

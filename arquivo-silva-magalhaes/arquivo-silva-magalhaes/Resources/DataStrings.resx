@@ -474,4 +474,16 @@
   <data name="Size" xml:space="preserve">
     <value>Tamanho</value>
   </data>
+  <data name="Image__ProductionDate" xml:space="preserve">
+    <value>Data de produção da imagem</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Coleção</value>
+  </data>
+  <data name="Collection__Collections" xml:space="preserve">
+    <value>Coleções</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>
