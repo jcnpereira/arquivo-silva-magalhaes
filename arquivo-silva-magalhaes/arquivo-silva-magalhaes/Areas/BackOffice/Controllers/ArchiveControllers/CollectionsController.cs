@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/Collection/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? authorId)
         {
             return View(await db.Collections.ToListAsync());
         }

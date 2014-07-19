@@ -42,6 +42,8 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<ShowcasePhoto> ShowcasePhotoes { get; set; }
         public virtual DbSet<ShowcasePhotoText> ShowcasePhotoTranslations { get; set; }
 
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<ImageTranslation> ImageTranslations { get; set; }
 
         // Site-related tables.
 

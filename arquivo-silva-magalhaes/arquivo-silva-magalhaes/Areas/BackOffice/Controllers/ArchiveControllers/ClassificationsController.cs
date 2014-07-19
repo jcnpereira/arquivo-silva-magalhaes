@@ -42,11 +42,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new ClassificationViewModel
-            {
-                Id = classification.Id,
-                Value = classification.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-            });
+            return View(new ClassificationViewModel(classification));
         }
 
         // GET: BackOffice/Classifications/Create

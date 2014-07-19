@@ -127,14 +127,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                specimen.Keywords = specimen.KeywordIds
-                    .Select(kid => db.Keywords.Find(kid))
-                    .ToList();
-
-                specimen.Classifications = specimen.ClassificationIds
-                    .Select(cid => db.Classifications.Find(cid))
-                    .ToList();
-
                 db.Specimens.Add(specimen);
 
                 await db.SaveChangesAsync();
@@ -162,7 +154,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                             Title = t.Title,
                             Topic = t.Topic,
                             Description = t.Description,
-                            SimpleStateDescription = t.SimpleStateDescription,
                             DetailedStateDescription = t.DetailedStateDescription,
                             InterventionDescription = t.InterventionDescription,
                             Publication = t.Publication
@@ -197,8 +188,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     DocumentId = specimen.DocumentId,
                     FormatId = specimen.FormatId,
                     ProcessId = specimen.ProcessId,
-                    KeywordIds = specimen.Keywords.Select(k => k.Id).ToArray(),
-                    ClassificationIds = specimen.Classifications.Select(k => k.Id).ToArray(),
                     Translations = new List<SpecimenTranslationEditViewModel>
                     {
                         new SpecimenTranslationEditViewModel
@@ -208,7 +197,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                             Title = t.Title,
                             Topic = t.Topic,
                             Description = t.Description,
-                            SimpleStateDescription = t.SimpleStateDescription,
                             DetailedStateDescription = t.DetailedStateDescription,
                             InterventionDescription = t.InterventionDescription,
                             Publication = t.Publication

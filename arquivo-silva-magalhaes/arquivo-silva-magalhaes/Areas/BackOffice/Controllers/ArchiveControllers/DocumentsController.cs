@@ -102,7 +102,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                document.Keywords = document.KeywordIds.Select(kid => db.Keywords.Find(kid)).ToList();
 
                 db.Documents.Add(document);
                 await db.SaveChangesAsync();
