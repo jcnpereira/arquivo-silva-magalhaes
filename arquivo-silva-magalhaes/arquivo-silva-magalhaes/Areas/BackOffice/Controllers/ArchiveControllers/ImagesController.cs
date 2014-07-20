@@ -15,9 +15,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ImagesController : BackOfficeController
     {
-
-
-
         ArchiveDataContext _db = new ArchiveDataContext();
 
 
@@ -69,7 +66,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.Image__UnknownDocument);
             }
 
-            PopulateDropDownLists();
+            PopulateDropDownLists(documentId: documentId);
 
             return View();
         }
@@ -81,7 +78,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public ActionResult Create(Image image, int[] keywordIds)
         {
             // Test for conflicts in the image's code.
-            if (_db.Images.Select(i => i.ImageCode).Contains(image.ImageCode))
+            if (_db.Images.Any(i => i.ImageCode == image.ImageCode))
             {
                 ModelState.AddModelError(String.Empty, ErrorStrings.Image__CodeAlreadyExists);
                 PopulateDropDownLists(keywordIds: keywordIds);
