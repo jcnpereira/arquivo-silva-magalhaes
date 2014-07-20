@@ -26,21 +26,21 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string ImageCode { get; set; }
 
         [ForeignKey("DocumentId")]
         public Document Document { get; set; }
         public int DocumentId { get; set; }
 
-        public virtual IEnumerable<Keyword> Keywords { get; set; }
-        public virtual IEnumerable<Specimen> Specimens { get; set; }
+        public virtual ICollection<Keyword> Keywords { get; set; }
+        public virtual ICollection<Specimen> Specimens { get; set; }
 
         public int? DigitalPhotographId { get; set; }
         [ForeignKey("DigitalPhotographId")]
-        public DigitalPhotograph DigitalPhotograph { get; set; }
+        public virtual DigitalPhotograph DigitalPhotograph { get; set; }
 
-        public virtual IEnumerable<ImageTranslation> Translations { get; set; }
+        public virtual ICollection<ImageTranslation> Translations { get; set; }
     }
 
     public class ImageTranslation

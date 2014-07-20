@@ -213,6 +213,8 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
     <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="Models\Repositories\IRepository.cs" />
     <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
     <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
@@ -410,6 +412,8 @@
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Images\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

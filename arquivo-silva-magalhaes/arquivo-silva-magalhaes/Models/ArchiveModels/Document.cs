@@ -17,6 +17,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
+        public string Title { get; set; }
+
         /// <summary>
         /// The name of the person that is responsible for this collection.
         /// </summary>
@@ -74,6 +76,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<DocumentTranslation> Translations { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
+
+        
     }
 
     public partial class DocumentTranslation

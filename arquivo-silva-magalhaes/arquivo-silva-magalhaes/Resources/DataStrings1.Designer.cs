@@ -610,6 +610,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Título.
+        /// </summary>
+        public static string Image__Title {
+            get {
+                return ResourceManager.GetString("Image__Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indexação.
         /// </summary>
         public static string Indexation {

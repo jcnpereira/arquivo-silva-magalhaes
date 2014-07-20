@@ -97,6 +97,24 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O código de imagem especificado já existe. Por favor, escolha outro..
+        /// </summary>
+        public static string Image__CodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("Image__CodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foi impossível encontrar o documento solicitado..
+        /// </summary>
+        public static string Image__UnknownDocument {
+            get {
+                return ResourceManager.GetString("Image__UnknownDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data inválida..
         /// </summary>
         public static string InvalidDate {

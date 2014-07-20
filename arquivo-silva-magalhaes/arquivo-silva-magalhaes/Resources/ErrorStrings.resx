@@ -129,6 +129,12 @@
   <data name="ExpiryDateEarlierThanPublishDate" xml:space="preserve">
     <value>A data de expiração não pode ser anterior à data de criação.</value>
   </data>
+  <data name="Image__CodeAlreadyExists" xml:space="preserve">
+    <value>O código de imagem especificado já existe. Por favor, escolha outro.</value>
+  </data>
+  <data name="Image__UnknownDocument" xml:space="preserve">
+    <value>Foi impossível encontrar o documento solicitado.</value>
+  </data>
   <data name="InvalidDate" xml:space="preserve">
     <value>Data inválida.</value>
   </data>

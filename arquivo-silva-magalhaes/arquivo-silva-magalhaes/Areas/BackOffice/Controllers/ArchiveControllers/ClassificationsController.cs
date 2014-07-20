@@ -13,19 +13,24 @@ using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using System.Diagnostics;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class ClassificationsController : BackOfficeController
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Classifications
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(
+            int pageNumber = 1,
+            string query = null, 
+            string orderByColumn = null)
         {
-            return View(await db.Classifications
+            return View((await _db.Classifications
+                .ToListAsync())
                 .Select(c => new ClassificationViewModel(c))
-                .ToListAsync());
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Classifications/Details/5
@@ -36,19 +41,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var classification = await db.Classifications.FindAsync(id);
+            var classification = await _db.Classifications.FindAsync(id);
 
             if (classification == null)
             {
                 return HttpNotFound();
             }
+
             return View(new ClassificationViewModel(classification));
         }
 
         // GET: BackOffice/Classifications/Create
-        public ActionResult Create()
+        public ActionResult Create(string languageCode = LanguageDefinitions.DefaultLanguage)
         {
-            return View(new ClassificationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage });
+            return View(new ClassificationEditViewModel { LanguageCode = languageCode });
         }
 
         // POST: BackOffice/Classifications/Create
@@ -64,8 +70,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 c.Translations.Add(classification);
 
-                db.Classifications.Add(c);
-                await db.SaveChangesAsync();
+                _db.Classifications.Add(c);
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -81,7 +87,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Classification classification = await db.Classifications.FindAsync(id);
+            Classification classification = await _db.Classifications.FindAsync(id);
 
             Debug.WriteLine(classification.Translations.Count);
 
@@ -107,8 +113,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(classification).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(classification).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(new ClassificationEditViewModel
@@ -126,7 +132,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await db.Classifications.FindAsync(id);
+            Classification classification = await _db.Classifications.FindAsync(id);
             if (classification == null)
             {
                 return HttpNotFound();
@@ -143,9 +149,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Classification classification = await db.Classifications.FindAsync(id);
-            db.Classifications.Remove(classification);
-            await db.SaveChangesAsync();
+            Classification classification = await _db.Classifications.FindAsync(id);
+            _db.Classifications.Remove(classification);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -153,7 +159,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

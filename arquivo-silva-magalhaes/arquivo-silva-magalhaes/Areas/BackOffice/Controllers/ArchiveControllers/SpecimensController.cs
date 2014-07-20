@@ -143,7 +143,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     HasMarksOrStamps = specimen.HasMarksOrStamps,
                     Indexation = specimen.Indexation,
                     Notes = specimen.Notes,
-                    DocumentId = specimen.DocumentId,
                     ProcessId = specimen.ProcessId,
                     Translations = new List<SpecimenTranslationEditViewModel>
                     {
@@ -185,7 +184,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     HasMarksOrStamps = specimen.HasMarksOrStamps,
                     Indexation = specimen.Indexation,
                     Notes = specimen.Notes,
-                    DocumentId = specimen.DocumentId,
                     FormatId = specimen.FormatId,
                     ProcessId = specimen.ProcessId,
                     Translations = new List<SpecimenTranslationEditViewModel>
@@ -376,10 +374,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (size == "Original")
             {
                 var specimen = p.Specimen;
-                var document = specimen.Document;
-                var author = document.Author;
 
-                var fileName = String.Format("{0} {1}-{2}-{3}", author.FirstName, author.LastName, document.CatalogCode, specimen.CatalogCode) + Path.GetExtension(p.FileName);
+                var fileName = p.OriginalFileName;
 
                 return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
             }

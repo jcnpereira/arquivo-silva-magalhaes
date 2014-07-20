@@ -53,9 +53,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string ReferenceCode { get; set; }
 
         [Required]
-        public int DocumentId { get; set; }
-        [ForeignKey("DocumentId")]
-        public virtual Document Document { get; set; }
+        public int ImageId { get; set; }
+        [ForeignKey("ImageId")]
+        public virtual Image Image { get; set; }
 
         [Required]
         public int ProcessId { get; set; }
@@ -70,8 +70,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("ClassificationId")]
         public Classification Classification { get; set; }
         public int ClassificationId { get; set; }
-
-
 
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
 

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Image>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </th>
+        <th>
+            @DataStrings.Image__Title
+        </th>
+
+        <th>
+            @UiStrings.Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    // var t = item.Translations.FirstOrDefault(it => it.LanguageCode == ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.DefaultLanguage);
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductionDate)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { pageNumberr = page }))
