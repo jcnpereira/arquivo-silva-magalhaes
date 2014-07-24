@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.CatalogCode)
+                    @Html.DisplayNameFor(model => model.ReferenceCode)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
@@ -27,11 +27,12 @@
                     @Html.DisplayNameFor(model => model.HasMarksOrStamps)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Indexation)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Notes)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+
                 <th></th>
             </tr>
         </thead>
@@ -39,7 +40,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CatalogCode)
+                    @Html.DisplayFor(modelItem => item.ReferenceCode)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AuthorCatalogationCode)
@@ -48,11 +49,13 @@
                     @Html.DisplayFor(modelItem => item.HasMarksOrStamps)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Indexation)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Notes)
                 </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.State, "EnumDisplayFor")
+                </td>
+
                 <td>
                     <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
                         <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">

@@ -124,11 +124,29 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O logótipo tem que ser um ficheiro de imagem..
+        /// </summary>
+        public static string Logo__MustBeImage {
+            get {
+                return ResourceManager.GetString("Logo__MustBeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tem que especificar qual é o conteúdo que pretende modificar ou eliminar..
         /// </summary>
         public static string MustSpecifyContent {
             get {
                 return ResourceManager.GetString("MustSpecifyContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foi impossível encontrar a imagem solicitada..
+        /// </summary>
+        public static string Specimen__UnknownImage {
+            get {
+                return ResourceManager.GetString("Specimen__UnknownImage", resourceCulture);
             }
         }
     }

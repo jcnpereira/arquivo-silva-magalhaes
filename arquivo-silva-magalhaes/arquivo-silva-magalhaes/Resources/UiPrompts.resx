@@ -123,6 +123,9 @@
   <data name="AddNewLanguage" xml:space="preserve">
     <value>Deseja adicionar os conteúdos numa nova linguagem?</value>
   </data>
+  <data name="ChooseOne" xml:space="preserve">
+    <value>Escolha um...</value>
+  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este registo?</value>
   </data>

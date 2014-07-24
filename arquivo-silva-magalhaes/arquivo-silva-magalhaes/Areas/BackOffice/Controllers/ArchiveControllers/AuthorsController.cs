@@ -18,11 +18,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Authors
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
         {
             return View(db.Authors
-                .ToList()
-                .Select(a => new AuthorViewModel(a))
+                .Include(a => a.Translations)
+                .OrderBy(a => a.Id)
                 .ToPagedList(pageNumber, 10)); // TODO Allow configs for page size.
         }
 
@@ -41,20 +41,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.AreLanguagesMissing = author.Translations.Count < LanguageDefinitions.Languages.Count;
-
-            return View(new AuthorViewModel(author));
+            return View(author);
         }
 
         // GET: BackOffice/Authors/Create
         public ActionResult Create()
         {
+            var author = new Author();
+
+            author.Translations.Add(new AuthorTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
             var model = new AuthorEditViewModel
             {
-                Translations = new List<AuthorTranslationEditViewModel> 
-                { 
-                    new AuthorTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage } 
-                }
+                Author = author
             };
 
             return View(model);
@@ -68,10 +70,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 db.Authors.Add(author);
-
                 await db.SaveChangesAsync();
 
-                // We don't need more languages. Redirect to the list.
                 return RedirectToAction("Index");
             }
 
@@ -93,10 +93,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            var t = author.Translations
-                .First(text => text.LanguageCode == LanguageDefinitions.DefaultLanguage);
-
-            return View(new AuthorEditViewModel(author));
+            return View(new AuthorEditViewModel
+                {
+                    Author = author
+                });
         }
 
         // POST: BackOffice/Authors/Edit/5
@@ -108,6 +108,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 db.Entry(author).State = EntityState.Modified;
 
+                // Update each translation.
                 foreach (var t in author.Translations)
                 {
                     db.Entry(t).State = EntityState.Modified;
@@ -116,7 +117,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(author);
+
+            return View(new AuthorEditViewModel
+                {
+                    Author = author
+                });
         }
 
         // GET: BackOffice/Authors/Delete/5
@@ -143,23 +148,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.Authors.Remove(author);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        public async Task<ActionResult> EditText(int? AuthorId, string LanguageCode)
-        {
-            if (AuthorId == null || LanguageCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.MustSpecifyContent);
-            }
-
-            AuthorTranslation text = await db.AuthorTranslations.FindAsync(AuthorId, LanguageCode);
-
-            if (text == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(text);
         }
 
         protected override void Dispose(bool disposing)

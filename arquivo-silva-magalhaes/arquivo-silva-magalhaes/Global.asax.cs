@@ -1,6 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.App_Start;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,5 +22,21 @@ namespace ArquivoSilvaMagalhaes
             // Map AutoMapper mappings.
             MapperConfig.RegisterMappings();
         }
+
+        //protected void Application_AcquireRequestState()
+        //{
+        //    var routes = RouteTable.Routes;
+
+        //    var httpContext = Request.RequestContext.HttpContext;
+        //    if (httpContext == null) return;
+
+        //    var routeData = routes.GetRouteData(httpContext);
+
+        //    var language = routeData.Values["language"] as string;
+        //    var cultureInfo = new CultureInfo(language);
+
+        //    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+        //    System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+        //}
     }
 }

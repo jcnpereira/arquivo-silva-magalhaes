@@ -10,14 +10,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
     public enum SpecimenState : byte
     {
+        [Display(ResourceType = typeof(DataStrings), Name = "SpecimenState__Poor")]
         Poor = 1,
+        [Display(Name = "Mediocre")]
         Mediocre = 2,
+        [Display(Name = "Satisfatório")]
         Fair = 3,
+        [Display(Name = "Bom")]
         Good = 4,
+        [Display(Name = "Muito Bom")]
         VeryGood = 5
     }
 
-    public partial class Specimen
+    public class Specimen
     {
         public Specimen()
         {
@@ -30,26 +35,22 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
-        public string CatalogCode { get; set; }
-
-        [Required]
+        // [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "AuthorCatalogCode")]
         public string AuthorCatalogationCode { get; set; }
 
         [Display(ResourceType = typeof(DataStrings), Name = "HasMarksOrStamps")]
         public bool HasMarksOrStamps { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "Indexation")]
-        public string Indexation { get; set; }
-
         [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
         public string Notes { get; set; }
 
-        public SpecimenState State { get; set; }
+        [Required]
+        public SpecimenState? State { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
+        [MaxLength(100)]
         public string ReferenceCode { get; set; }
 
         [Required]
@@ -67,25 +68,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("FormatId")]
         public virtual Format Format { get; set; }
 
-        [ForeignKey("ClassificationId")]
-        public Classification Classification { get; set; }
-        public int ClassificationId { get; set; }
-
         public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
 
         public virtual ICollection<SpecimenTranslation> Translations { get; set; }
-
-
     }
 
-    public partial class SpecimenTranslation
+    public class SpecimenTranslation
     {
         [Key, Column(Order = 0)]
         public int SpecimenId { get; set; }
         [ForeignKey("SpecimenId")]
         public Specimen Specimen { get; set; }
 
-        [Key, Column(Order = 1), Required]
+        [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
         [Required]

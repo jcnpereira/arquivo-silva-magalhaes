@@ -138,7 +138,13 @@
   <data name="InvalidDate" xml:space="preserve">
     <value>Data inválida.</value>
   </data>
+  <data name="Logo__MustBeImage" xml:space="preserve">
+    <value>O logótipo tem que ser um ficheiro de imagem.</value>
+  </data>
   <data name="MustSpecifyContent" xml:space="preserve">
     <value>Tem que especificar qual é o conteúdo que pretende modificar ou eliminar.</value>
+  </data>
+  <data name="Specimen__UnknownImage" xml:space="preserve">
+    <value>Foi impossível encontrar a imagem solicitada.</value>
   </data>
 </root>

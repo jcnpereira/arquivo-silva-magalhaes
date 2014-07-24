@@ -8,11 +8,11 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public partial class ShowcasePhoto
+    public class ShowcasePhoto
     {
         public ShowcasePhoto()
         {
-            this.ShowcasePhotoTexts = new HashSet<ShowcasePhotoText>();
+            this.Translations = new HashSet<ShowcasePhotoTranslation>();
         }
 
         [Key]
@@ -40,10 +40,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("DigitalPhotographId")]
         public DigitalPhotograph DigitalPhotograph { get; set; }
 
-        public virtual ICollection<ShowcasePhotoText> ShowcasePhotoTexts { get; set; }
+        public virtual ICollection<ShowcasePhotoTranslation> Translations { get; set; }
     }
 
-    public partial class ShowcasePhotoText
+    public class ShowcasePhotoTranslation
     {
         [Key, Column(Order = 0)]
         public int ShowcasePhotoId { get; set; }

@@ -22,18 +22,18 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
         public AuthorViewModel(Author a, string languageCode)
         {
-            Id = a.Id;
-            FirstName = a.FirstName;
-            LastName = a.LastName;
+            //Id = a.Id;
+            //FirstName = a.FirstName;
+            //LastName = a.LastName;
 
-            BirthDate = a.BirthDate;
-            DeathDate = a.DeathDate;
+            //BirthDate = a.BirthDate;
+            //DeathDate = a.DeathDate;
 
-            var t = a.Translations.Find(at => at.LanguageCode == languageCode && at.AuthorId == Id);
+            //// var t = a.Translations.Find(at => at.LanguageCode == languageCode && at.AuthorId == Id);
 
-            Biography = t.Biography;
-            Curriculum = t.Curriculum;
-            Nationality = t.Nationality;
+            //Biography = t.Biography;
+            //Curriculum = t.Curriculum;
+            //Nationality = t.Nationality;
         }
 
         public int Id { get; set; }
@@ -66,83 +66,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
     /// <summary>
     /// To be used in Create and Edit views.
     /// </summary>
-    public class AuthorEditViewModel : IValidatableObject
+    public class AuthorEditViewModel
     {
-
-        public AuthorEditViewModel()
-        {
-
-        }
-
-        /// <summary>
-        /// Creates a view model from the data of an author.
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="languageCode"></param>
-        /// <param name="availableLanguages"></param>
-        public AuthorEditViewModel(
-            Author a, 
-            string languageCode = LanguageDefinitions.DefaultLanguage, 
-            IEnumerable<string> availableLanguages = null)
-        {
-            availableLanguages = availableLanguages ?? new List<string>();
-
-            Id = a.Id;
-            FirstName = a.FirstName;
-            LastName = a.LastName;
-
-            BirthDate = a.BirthDate;
-            DeathDate = a.DeathDate;
-
-            Translations = a.Translations.Select(t => new AuthorTranslationEditViewModel(t)).ToList();
-        }
-
-        public int Id { get; set; }
-
-        /// <summary>
-        /// The first name(s) of this author.
-        /// </summary>
-        [Required]
-        [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// The last name(s) of this author.
-        /// </summary>
-        [Required]
-        [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
-        public string LastName { get; set; }
-
-        /// <summary>
-        /// The date on which this author was born.
-        /// </summary>
-        [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
-        public DateTime BirthDate { get; set; }
-
-        /// <summary>
-        /// The date on which this author died.
-        /// </summary>
-        [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
-        public DateTime DeathDate { get; set; }
-
-        /// <summary>
-        /// Localized texts descibing the biography and other aspects of this
-        /// author.
-        /// </summary>
-        public virtual List<AuthorTranslationEditViewModel> Translations { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            // The death date cannot be earlier than the birth date.
-            if (DeathDate.CompareTo(BirthDate) < 0)
-            {
-                yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
-            }
-        }
+        public Author Author { get; set; }
     }
 
     /// <summary>

@@ -28,11 +28,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
     public partial class KeywordTranslation
     {
-        public KeywordTranslation()
-        {
-            this.LanguageCode = "pt";
-        }
-
         [Key, Column(Order = 0)]
         public int KeywordId { get; set; }
 

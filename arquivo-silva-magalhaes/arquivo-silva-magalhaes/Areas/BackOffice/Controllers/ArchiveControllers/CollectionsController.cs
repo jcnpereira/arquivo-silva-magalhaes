@@ -13,6 +13,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ImageResizer;
 using System.IO;
+using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -44,19 +45,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Collection/Create
         public async Task<ActionResult> Create()
         {
-            return View(new CollectionEditViewModel
-                {
-                    AvailableAuthors = await db.Authors.Select(a => new SelectListItem
-                    {
-                        Value = a.Id.ToString(),
-                        Text = a.FirstName + " " + a.LastName
-                    }).ToListAsync(),
+            var model = new CollectionEditViewModel();
 
-                    Translations = new List<CollectionTranslationEditViewModel>
-                    {
-                        new CollectionTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
-                    }
+            var c = new Collection();
+            c.LogoLocation = "dummy";
+            c.Translations.Add(new CollectionTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
                 });
+            
+            return View(await GenerateViewModel(c));
         }
 
         // POST: /BackOffice/Collection/Create
@@ -64,8 +62,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Exclude = "LogoLocation")] Collection collection)
+        public async Task<ActionResult> Create(
+            Collection collection, 
+            HttpPostedFileBase Logo,
+            int[] AuthorIds)
         {
+            // Server-side check for an image.
+            if (!Logo.ContentType.ToLower().StartsWith("image/"))
+            {
+                ModelState.AddModelError("Logo", ErrorStrings.Logo__MustBeImage);
+                Logo.InputStream.Dispose();
+            }
+            
             if (ModelState.IsValid)
             {
                 var newName = Guid.NewGuid().ToString() + ".jpg";
@@ -82,19 +90,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                         Encoder = "freeimage",
                         OutputFormat = OutputFormat.Jpeg
                     },
-                    Source = Request.Files["Logo"].InputStream,
+                    Source = Logo.InputStream,
                     Dest = Path.Combine(Server.MapPath("~/Public/Collections"), newName),
                     CreateParentDirectory = true
                 };
 
                 collection.LogoLocation = newName;
 
+                var authors = db.Authors.Where(a => AuthorIds.Contains(a.Id));
+
+                collection.Authors = authors.ToList();
+
                 db.Collections.Add(collection);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(collection);
+            return View(await GenerateViewModel(collection));
         }
 
         // GET: /BackOffice/Collection/Edit/5
@@ -104,45 +116,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await db.Collections.FindAsync(id);
+            Collection collection = db.Collections.Find(id);
             if (collection == null)
             {
                 return HttpNotFound();
             }
 
-            var t = collection.Translations.First(text => text.LanguageCode == LanguageDefinitions.DefaultLanguage);
+            var model = await GenerateViewModel(collection);
 
-            var model = new CollectionEditViewModel
-            {
-                Id = collection.Id,
-                
-                Name = collection.Name,
-                AttachmentsDescriptions = collection.AttachmentsDescriptions,
-                CatalogCode = collection.CatalogCode,
-                EndProductionDate = collection.EndProductionDate,
-                HasAttachments = collection.HasAttachments,
-                InitialProductionDate = collection.InitialProductionDate,
-                IsVisible = collection.IsVisible,
-                LogoLocation = collection.LogoLocation,
-                Notes = collection.Notes,
-                OrganizationSystem = collection.OrganizationSystem,
-                Type = collection.Type,
-
-                Translations = new List<CollectionTranslationEditViewModel>{
-                   new CollectionTranslationEditViewModel{
-                       CollectionId=collection.Id,
-                       LanguageCode=t.LanguageCode,
-                       Title=t.Title,
-                       Description=t.Description,
-                       Provenience=t.Provenience,
-                       AdministrativeAndBiographicStory=t.AdministrativeAndBiographicStory,
-                       FieldAndContents=t.FieldAndContents,
-                       Dimension=t.Dimension,
-                       CopyrightInfo=t.CopyrightInfo,
-
-                   }
-                }
-            };
             return View(model);
         }
 
@@ -151,19 +132,30 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Type,InitialProductionDate,EndProductionDate,LogoLocation,HasAttachments,OrganizationSystem,Notes,IsVisible,CatalogCode")] Collection collection)
+        public async Task<ActionResult> Edit(Collection collection, int[] AuthorIds)
         {
             if (ModelState.IsValid)
             {
+                // "Force-load" the collection and the authors.
+                db.Collections.Attach(collection);
+                db.Entry(collection).Collection(c => c.Authors).Load();
+                // The forced-loading was required so that the author list can be updated.
+                var authors = db.Authors.Where(a => AuthorIds.Contains(a.Id)).ToList();
+                collection.Authors = authors;
+
                 db.Entry(collection).State = EntityState.Modified;
+
                 foreach (var t in collection.Translations)
                 {
                     db.Entry(t).State = EntityState.Modified;
                 }
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
-            return View(collection);
+
+
+            return View(await GenerateViewModel(collection));
         }
 
         // GET: /BackOffice/Collection/Delete/5
@@ -190,6 +182,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.Collections.Remove(collection);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private async Task<CollectionEditViewModel> GenerateViewModel(Collection c)
+        {
+            var vm = new CollectionEditViewModel();
+
+            vm.Collection = c;
+
+            var authorIds = c.Authors.Select(a => a.Id).ToList();
+
+            vm.AvailableAuthors = db.Authors.Select(a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.LastName + ", " + a.FirstName,
+                    Selected = authorIds.Contains(a.Id)
+                })
+                .ToList();
+
+            return vm;
         }
 
         protected override void Dispose(bool disposing)

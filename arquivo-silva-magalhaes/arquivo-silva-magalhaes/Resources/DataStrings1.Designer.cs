@@ -1006,6 +1006,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mau.
+        /// </summary>
+        public static string SpecimenState__Poor {
+            get {
+                return ResourceManager.GetString("SpecimenState__Poor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Destaque.
         /// </summary>
         public static string SpotLight {

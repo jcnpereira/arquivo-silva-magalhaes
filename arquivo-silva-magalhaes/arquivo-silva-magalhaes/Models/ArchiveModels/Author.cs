@@ -13,9 +13,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Author()
         {
-            this.Translations = new List<AuthorTranslation>();
-            this.Documents = new List<Document>();
-            this.Collections = new List<Collection>();
+            this.Translations = new HashSet<AuthorTranslation>();
+            this.Documents = new HashSet<Document>();
+            this.Collections = new HashSet<Collection>();
         }
 
         [Key]
@@ -40,7 +40,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
-       // [DataType(DataType.Date)]
+        [DataType(DataType.Date)]
+        [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
@@ -49,28 +50,30 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
-        public DateTime DeathDate { get; set; }
+        public DateTime? DeathDate { get; set; }
 
         /// <summary>
         /// Localized texts descibing the biography and other aspects of this
         /// author.
         /// </summary>
-        public virtual List<AuthorTranslation> Translations { get; set; }
+        public virtual ICollection<AuthorTranslation> Translations { get; set; }
 
         /// <summary>
         /// Documents created by this author.
         /// </summary>
-        public virtual List<Document> Documents { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
 
         /// <summary>
         /// Collections created by this author.
         /// </summary>
-        public virtual List<Collection> Collections { get; set; }
+        public virtual ICollection<Collection> Collections { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+
+
             // The death date cannot be earlier than the birth date.
-            if (DeathDate.CompareTo(BirthDate) < 0)
+            if (false)
             {
                 yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
             }
@@ -120,6 +123,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Curriculum { get; set; }
 
         [ForeignKey("AuthorId")]
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
     }
 }

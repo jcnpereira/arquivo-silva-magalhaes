@@ -489,4 +489,7 @@
   <data name="Image__Title" xml:space="preserve">
     <value>Título</value>
   </data>
+  <data name="SpecimenState__Poor" xml:space="preserve">
+    <value>Mau</value>
+  </data>
 </root>

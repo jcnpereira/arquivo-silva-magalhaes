@@ -1,15 +1,18 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Resources;
+using System.Threading;
 using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public class Image
+    public class Image : TranslateableEntity<ImageTranslation>
     {
         public Image()
         {
@@ -30,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string ImageCode { get; set; }
 
         [ForeignKey("DocumentId")]
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
         public int DocumentId { get; set; }
 
         public virtual ICollection<Keyword> Keywords { get; set; }
@@ -40,25 +43,43 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("DigitalPhotographId")]
         public virtual DigitalPhotograph DigitalPhotograph { get; set; }
 
-        public virtual ICollection<ImageTranslation> Translations { get; set; }
+        // public new ICollection<ImageTranslation> Translations { get; set; }
+
+        [Required]
+        [NotMapped]
+        public string Title
+        {
+            get
+            {
+                return GetTranslatedValueOrDefault("Title");
+            }
+
+            set
+            {
+                SetTranslatedValue("Title", value);
+            }
+        }
+
+        //public virtual ICollection<ImageTranslation> Translations { get; set; }
     }
 
-    public class ImageTranslation
+    public class ImageTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int ImageId { get; set; }
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         public string Title { get; set; }
-        [Required]
+
+        //[Required]
         public string Subject { get; set; }
-
+        
         public string Publication { get; set; }
-
+        //[Required]
         public string Location { get; set; }
-
+        //[Required]
         public string Description { get; set; }
 
         [ForeignKey("ImageId")]

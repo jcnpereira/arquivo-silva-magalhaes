@@ -1,6 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
@@ -20,13 +21,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// <summary>
     /// Defines a collection.
     /// </summary>
-    public partial class Collection
+    public class Collection
     {
         public Collection()
         {
-            this.Translations = new List<CollectionTranslation>();
-            this.Documents = new List<Document>();
-            this.Authors = new List<Author>();
+            this.Translations = new HashSet<CollectionTranslation>();
+            this.Documents = new HashSet<Document>();
+            this.Authors = new HashSet<Author>();
         }
 
         [Key]
@@ -42,11 +43,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The type of this collection.
         /// </summary>
         [Display(ResourceType = typeof(DataStrings), Name = "CollectionType"), Required]
-        public CollectionType Type { get; set; }
+        public CollectionType? Type { get; set; }
 
         /// <summary>
         /// The date on which this collection was created.
         /// </summary>
+        [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "InitialProductionDate")]
         public DateTime InitialProductionDate { get; set; }
@@ -56,11 +58,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "EndProductionDate")]
-        public DateTime EndProductionDate { get; set; }
+        public DateTime? EndProductionDate { get; set; }
 
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
+        [Required]
         public string LogoLocation { get; set; }
 
         /// <summary>
@@ -76,36 +79,28 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(DataStrings), Name = "AttachmentsDescriptions")]
         public string AttachmentsDescriptions { get; set; }
 
-
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "OrganizationSystem")]
         public string OrganizationSystem { get; set; }
 
-        
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
         public string Notes { get; set; }
 
         [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
-        public  bool IsVisible { get; set; }
+        public bool IsVisible { get; set; }
 
         /// <summary>
         /// Code used by the archive to physically catalog this
         /// collection.
         /// </summary>
-        [Required]
+        [Required, MaxLength(100), Index(IsUnique = true)]
         [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
-        public  string CatalogCode { get; set; }
+        public string CatalogCode { get; set; }
 
-        public virtual List<CollectionTranslation> Translations { get; set; }
-        public virtual List<Document> Documents { get; set; }
-        public virtual List<Author> Authors { get; set; }
-
-        [Display(Name = "Autores desta coleção")]
-        public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
-
-        [NotMapped]
-        public int[] AuthorIds { get; set; }
+        public virtual ICollection<CollectionTranslation> Translations { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
     }
 
     public partial class CollectionTranslation

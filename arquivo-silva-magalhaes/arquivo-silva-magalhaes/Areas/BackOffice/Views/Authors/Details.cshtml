@@ -1,7 +1,8 @@
-﻿@model AuthorViewModel
+﻿@model Author
 
 @{
     ViewBag.Title = "Details";
+    var translations = Model.Translations.ToList();
 }
 
 <h2>Detalhes do autor</h2>
@@ -55,29 +56,32 @@
             @Html.DisplayFor(model => model.DeathDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </dt>
+        @foreach (var t in translations)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => t.Nationality)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nationality)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => t.Nationality)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => t.Biography)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => t.Biography)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => t.Curriculum)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Curriculum)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => t.Curriculum)
+            </dd>
+        }
     </dl>
 
 

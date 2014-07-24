@@ -1,4 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
@@ -12,47 +13,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
     public class SpecimenEditViewModel
     {
-        public int Id { get; set; }
-
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
-        public string CatalogCode { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "AuthorCatalogCode")]
-        public string AuthorCatalogationCode { get; set; }
-
-        [Display(ResourceType = typeof(DataStrings), Name = "HasMarksOrStamps")]
-        public bool HasMarksOrStamps { get; set; }
-
-        [Display(ResourceType = typeof(DataStrings), Name = "Indexation")]
-        public string Indexation { get; set; }
-
-        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
-        public string Notes { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Document")]
-        public int? DocumentId { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Process")]
-        public int ProcessId { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Format")]
-        public int FormatId { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Keywords")]
-        public int[] KeywordIds { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Classifications")]
-        public int[] ClassificationIds { get; set; }
-
-        [Required]
-        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+        public IEnumerable<SelectListItem> AvailableImages { get; set; }
 
         [Required]
         public IEnumerable<SelectListItem> AvailableProcesses { get; set; }
@@ -60,13 +22,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         [Required]
         public IEnumerable<SelectListItem> AvailableFormats { get; set; }
 
-        [Required]
-        public IEnumerable<SelectListItem> AvailableClassfications { get; set; }
-
-        [Required]
-        public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
-
-        public List<SpecimenTranslationEditViewModel> Translations { get; set; }
+        public IEnumerable<string> AvailableLanguages { get; set; }
     }
 
 

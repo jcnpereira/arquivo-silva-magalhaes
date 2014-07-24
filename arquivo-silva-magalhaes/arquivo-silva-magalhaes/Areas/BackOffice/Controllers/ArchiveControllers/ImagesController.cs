@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using PagedList;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
+using System.Data.Entity;
+using System.Diagnostics;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -17,15 +19,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         ArchiveDataContext _db = new ArchiveDataContext();
 
-
-
         // GET: BackOffice/Image
         public ActionResult Index(
             int pageNumber = 1,
             int documentId = 0,
             string query = "")
         {
-            IEnumerable<Image> images;
+            IQueryable<Image> images;
 
             if (documentId > 0)
             {
@@ -40,9 +40,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 images = _db.Images;
             }
 
-            var model = images
-                .OrderBy(i => i.Id)
-                .ToPagedList(pageNumber, 10);
+            var model = (from i in images
+                         join it in _db.ImageTranslations on i.Id equals it.ImageId
+                         where it.LanguageCode == LanguageDefinitions.DefaultLanguage && it.Title.StartsWith("S")
+                         select i)
+                        .ToPagedList(pageNumber, 10);
+
+
+            //var model = images
+            //    // .Where(i => i.Title.StartsWith("S"))
+            //    .OrderBy(i => i.Id)
+            //    .ToList()
+            //    .Where(i => i.Title.StartsWith("S"))
+            //    .ToPagedList(pageNumber, 10);
 
             return View(model);
         }
@@ -61,17 +71,37 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         public ActionResult Create(int? documentId)
         {
-            if (documentId != null && _db.Documents.Find(documentId) == null)
+            // Check for an existing document. If there is
+            // a document available, no drop-down lists are
+            // created. If an id was supplied and no document
+            // exists with such id, an exception is raised.
+            if (documentId != null)
+            {   
+                var document = _db.Documents.Find(documentId);
+
+                if (document == null)
+                {
+                    return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest, 
+                        ErrorStrings.Image__UnknownDocument
+                    );
+                }
+                else
+                {
+                    PopulateDropDownLists(documentId: documentId);
+                    return View(new Image
+                        {
+                            DocumentId = documentId.Value
+                        });
+                }
+            }
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.Image__UnknownDocument);
+                PopulateDropDownLists(documentId: documentId);
+                return View();
             }
 
-            PopulateDropDownLists(documentId: documentId);
-
-            return View();
         }
-
-        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -96,22 +126,57 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     image.Keywords.Add(kw);
                 }
 
-                _db.Images.Add(image);
+                // image.Title = "Título, em português.";
 
-                _db.SaveChanges();
+                try
+                {
+                    _db.Images.Add(image);
+                    _db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
 
                 return RedirectToAction("Index");
             }
 
+            PopulateDropDownLists(documentId: image.DocumentId, keywordIds: keywordIds);
+
             return View(image);
+        }
+
+        
+
+        public ActionResult Edit(int? imageId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Image i)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(i).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
+
+            return View(i);
         }
 
         /// <summary>
         /// Algorithm by @jcnpereira. Implementation by @afecarvalho.
         /// </summary>
         /// <returns></returns>
-        private string GenerateNewImageCode()
+        private string GenerateNewImageCode(Image i)
         {
+            if (i == null)
+            {
+                return "";
+            }
+
             string lastImageCode = _db.Images.Last().ImageCode;
             int codeNumeric;
 
@@ -164,6 +229,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 })
                 .ToList();
         }
+
+        
 
 
         protected override void Dispose(bool disposing)

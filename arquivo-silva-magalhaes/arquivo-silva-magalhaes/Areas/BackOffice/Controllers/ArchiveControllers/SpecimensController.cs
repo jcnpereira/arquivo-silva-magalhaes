@@ -19,17 +19,18 @@ using ImageResizer;
 using System.Web.UI;
 using System.Globalization;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
+using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class SpecimensController : BackOfficeController
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Specimens
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? imageId)
         {
-            return View(await db.Specimens.ToListAsync());
+            return View(await _db.Specimens.ToListAsync());
         }
 
         // GET: BackOffice/Specimens/Details/5
@@ -39,7 +40,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.Specimens.FindAsync(id);
+            Specimen specimen = await _db.Specimens.FindAsync(id);
             if (specimen == null)
             {
                 return HttpNotFound();
@@ -47,73 +48,81 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(specimen);
         }
 
-        private SpecimenEditViewModel CreateViewModel(Specimen specimen = null)
+        private SpecimenEditViewModel PopulateDropDownLists(Specimen specimen)
         {
-            var model = new SpecimenEditViewModel
-            {
-                AvailableKeywords = db.Keywords
-                .Select(k => new SelectListItem
+            var model = new SpecimenEditViewModel();
+
+            model.AvailableImages = _db.Images
+                .Select(i => new SelectListItem
                 {
-                    Value = k.Id.ToString(),
-                    Text = k.Translations.FirstOrDefault(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                }),
-                AvailableProcesses = db.Processes
+                    Value = i.Id.ToString(),
+                    Text = i.ImageCode,
+                    Selected = specimen.ImageId == i.Id
+                })
+                .ToList();
+
+            model.AvailableProcesses = _db.Processes
                 .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
-                    Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                }),
-                AvailableFormats = db.Formats
+                    Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value,
+                    Selected = specimen.ProcessId == p.Id
+                })
+                .ToList();
+
+
+            model.AvailableFormats = _db.Formats
                 .Select(f => new SelectListItem
                 {
                     Value = f.Id.ToString(),
-                    Text = f.FormatDescription
-                }),
-                AvailableClassfications = db.Classifications
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.Translations.FirstOrDefault(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
+                    Text = f.FormatDescription,
+                    Selected = specimen.FormatId == f.Id
                 })
-            };
+                .ToList();
 
-            if (specimen != null)
-            {
-                model.AuthorCatalogationCode = specimen.AuthorCatalogationCode;
-                model.CatalogCode = specimen.CatalogCode;
-                model.FormatId = specimen.FormatId;
-                model.HasMarksOrStamps = specimen.HasMarksOrStamps;
-                model.Indexation = specimen.Indexation;
-                model.Notes = specimen.Notes;
-                model.ProcessId = specimen.ProcessId;
-            }
+            model.AvailableLanguages = specimen.Translations
+                .Where(t => !LanguageDefinitions.Languages.Contains(t.LanguageCode))
+                .Select(t => t.LanguageCode)
+                .ToList();
 
             return model;
         }
 
         // GET: BackOffice/Specimens/Create
-        public ActionResult Create(int? documentId)
+        public ActionResult Create(int? imageId)
         {
-            var model = CreateViewModel();
+            var s = new Specimen();
 
-            if (documentId == null)
+            if (imageId != null)
             {
-                model.AvailableDocuments = db.Documents
-                .Select(d => new SelectListItem
+                var image = _db.Images.Find(imageId);
+
+                if (image != null)
                 {
-                    Value = d.Id.ToString(),
-                    Text = d.CatalogCode
-                });
-            }
-            else
-            {
-                model.DocumentId = documentId.Value;
+                    s.ImageId = image.Id;
+                    
+                    var doc = image.Document;
+                    var collection = doc.Collection;
+
+                    s.ReferenceCode = 
+                        String.Format("{0}/{1}/{2}-", 
+                                      doc.CatalogCode, 
+                                      collection.CatalogCode, 
+                                      image.ImageCode
+                        );
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.Specimen__UnknownImage);
+                }
             }
 
-            model.Translations = new List<SpecimenTranslationEditViewModel>
-            {
-                new SpecimenTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
-            };
+            s.Translations.Add(new SpecimenTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
 
             return View(model);
         }
@@ -123,42 +132,46 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Specimen specimen)
+        public async Task<ActionResult> Create(Specimen s)
         {
             if (ModelState.IsValid)
             {
-                db.Specimens.Add(specimen);
+                _db.Specimens.Add(s);
 
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            var t = specimen.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
 
-            return View(new SpecimenEditViewModel
-                {
-                    Id = specimen.Id,
-                    CatalogCode = specimen.CatalogCode,
-                    AuthorCatalogationCode = specimen.AuthorCatalogationCode,
-                    HasMarksOrStamps = specimen.HasMarksOrStamps,
-                    Indexation = specimen.Indexation,
-                    Notes = specimen.Notes,
-                    ProcessId = specimen.ProcessId,
-                    Translations = new List<SpecimenTranslationEditViewModel>
-                    {
-                        new SpecimenTranslationEditViewModel
-                        {
-                            SpecimenId = specimen.Id,
-                            LanguageCode = t.LanguageCode,
-                            Title = t.Title,
-                            Topic = t.Topic,
-                            Description = t.Description,
-                            DetailedStateDescription = t.DetailedStateDescription,
-                            InterventionDescription = t.InterventionDescription,
-                            Publication = t.Publication
-                        }
-                    }
-                });
+            return View(model);
+
+            //var t = s.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+            //return View(new SpecimenEditViewModel
+            //    {
+            //        Id = s.Id,
+            //        CatalogCode = s.CatalogCode,
+            //        AuthorCatalogationCode = s.AuthorCatalogationCode,
+            //        HasMarksOrStamps = s.HasMarksOrStamps,
+            //        Indexation = s.Indexation,
+            //        Notes = s.Notes,
+            //        ProcessId = s.ProcessId,
+            //        Translations = new List<SpecimenTranslationEditViewModel>
+            //        {
+            //            new SpecimenTranslationEditViewModel
+            //            {
+            //                SpecimenId = s.Id,
+            //                LanguageCode = t.LanguageCode,
+            //                Title = t.Title,
+            //                Topic = t.Topic,
+            //                Description = t.Description,
+            //                DetailedStateDescription = t.DetailedStateDescription,
+            //                InterventionDescription = t.InterventionDescription,
+            //                Publication = t.Publication
+            //            }
+            //        }
+            //    });
         }
 
         // GET: BackOffice/Specimens/Edit/5
@@ -168,39 +181,42 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.Specimens.FindAsync(id);
-            if (specimen == null)
+            Specimen s = await _db.Specimens.FindAsync(id);
+            if (s == null)
             {
                 return HttpNotFound();
             }
 
-            var t = specimen.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
+            return View(model);
 
-            return View(new SpecimenEditViewModel
-                {
-                    Id = specimen.Id,
-                    CatalogCode = specimen.CatalogCode,
-                    AuthorCatalogationCode = specimen.AuthorCatalogationCode,
-                    HasMarksOrStamps = specimen.HasMarksOrStamps,
-                    Indexation = specimen.Indexation,
-                    Notes = specimen.Notes,
-                    FormatId = specimen.FormatId,
-                    ProcessId = specimen.ProcessId,
-                    Translations = new List<SpecimenTranslationEditViewModel>
-                    {
-                        new SpecimenTranslationEditViewModel
-                        {
-                            SpecimenId = specimen.Id,
-                            LanguageCode = t.LanguageCode,
-                            Title = t.Title,
-                            Topic = t.Topic,
-                            Description = t.Description,
-                            DetailedStateDescription = t.DetailedStateDescription,
-                            InterventionDescription = t.InterventionDescription,
-                            Publication = t.Publication
-                        }
-                    }
-                });
+            //var t = s.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
+
+            //return View(new SpecimenEditViewModel
+            //    {
+            //        Id = s.Id,
+            //        CatalogCode = s.CatalogCode,
+            //        AuthorCatalogationCode = s.AuthorCatalogationCode,
+            //        HasMarksOrStamps = s.HasMarksOrStamps,
+            //        Indexation = s.Indexation,
+            //        Notes = s.Notes,
+            //        FormatId = s.FormatId,
+            //        ProcessId = s.ProcessId,
+            //        Translations = new List<SpecimenTranslationEditViewModel>
+            //        {
+            //            new SpecimenTranslationEditViewModel
+            //            {
+            //                SpecimenId = s.Id,
+            //                LanguageCode = t.LanguageCode,
+            //                Title = t.Title,
+            //                Topic = t.Topic,
+            //                Description = t.Description,
+            //                DetailedStateDescription = t.DetailedStateDescription,
+            //                InterventionDescription = t.InterventionDescription,
+            //                Publication = t.Publication
+            //            }
+            //        }
+            //    });
         }
 
         // POST: BackOffice/Specimens/Edit/5
@@ -208,15 +224,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Specimen specimen)
+        public async Task<ActionResult> Edit(Specimen s)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(specimen).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(s).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(specimen);
+
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
+            return View(model);
+
+            //return View(specimen);
         }
 
         // GET: BackOffice/Specimens/Delete/5
@@ -226,7 +246,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen specimen = await db.Specimens.FindAsync(id);
+            Specimen specimen = await _db.Specimens.FindAsync(id);
             if (specimen == null)
             {
                 return HttpNotFound();
@@ -239,9 +259,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Specimen specimen = await db.Specimens.FindAsync(id);
-            db.Specimens.Remove(specimen);
-            await db.SaveChangesAsync();
+            Specimen specimen = await _db.Specimens.FindAsync(id);
+            _db.Specimens.Remove(specimen);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -256,7 +276,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var specimen = await db.Specimens.FindAsync(id);
+            var specimen = await _db.Specimens.FindAsync(id);
 
             if (specimen == null) { return HttpNotFound(); }
 
@@ -335,9 +355,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 }
 
                 // Save the data to the db.
-                db.DigitalPhotographs.AddRange(photosToAdd);
+                _db.DigitalPhotographs.AddRange(photosToAdd);
 
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -351,7 +371,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var s = await db.Specimens.FindAsync(id);
+            var s = await _db.Specimens.FindAsync(id);
 
             if (s == null) { return HttpNotFound(); }
 
@@ -367,7 +387,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographs.FindAsync(id);
+            var p = await _db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return HttpNotFound(); }
 
@@ -379,7 +399,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
             }
-                 
+
             // Caching. Basically, we check if the browser has cached the picture (present if "If-Modified-Since" is in the headers).
             // If so, we check if the image was modified since then, and we'll return it.
             // From http://weblogs.asp.net/jeff/archive/2009/07/01/304-your-images-from-a-database.aspx
@@ -427,7 +447,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographs.FindAsync(id);
+            var p = await _db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
@@ -441,15 +461,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographs.FindAsync(id);
+            var p = await _db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
-            db.DigitalPhotographs.Remove(p);
+            _db.DigitalPhotographs.Remove(p);
 
             // TODO: Remove all files from the disk.
 
-            await db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
 
             return RedirectToAction(redirectTo, new { id = p.SpecimenId });
         }
@@ -458,7 +478,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await db.DigitalPhotographs.FindAsync(id);
+            var p = await _db.DigitalPhotographs.FindAsync(id);
 
             if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
 
@@ -471,7 +491,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var p = await db.DigitalPhotographs.FindAsync(photo.Id);
+                var p = await _db.DigitalPhotographs.FindAsync(photo.Id);
 
                 p.IsVisible = photo.IsVisible;
                 p.ScanDate = photo.ScanDate;
@@ -479,8 +499,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 p.Process = photo.Process;
 
                 p.LastModified = DateTime.Now;
-                db.Entry(p).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(p).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("ListPhotos", new { id = photo.SpecimenId });
             }
@@ -492,7 +512,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

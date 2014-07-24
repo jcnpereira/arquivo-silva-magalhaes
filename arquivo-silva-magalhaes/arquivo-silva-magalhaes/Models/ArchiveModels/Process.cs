@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public partial class Process
+    public class Process
     {
         public Process()
         {
@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<Specimen> Specimens { get; set; }
     }
 
-    public partial class ProcessTranslation
+    public class ProcessTranslation
     {
         [Key, Column(Order = 0)]
         public int ProcessId { get; set; }

@@ -40,7 +40,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<DigitalPhotograph> DigitalPhotographs { get; set; }
 
         public virtual DbSet<ShowcasePhoto> ShowcasePhotoes { get; set; }
-        public virtual DbSet<ShowcasePhotoText> ShowcasePhotoTranslations { get; set; }
+        public virtual DbSet<ShowcasePhotoTranslation> ShowcasePhotoTranslations { get; set; }
 
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<ImageTranslation> ImageTranslations { get; set; }

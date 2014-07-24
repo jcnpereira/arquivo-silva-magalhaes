@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -58,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// physically catalog this document.
         /// </summary>
         [Required]
-        [MaxLength(200)]
+        [MaxLength(200), Index(IsUnique = true)]
         [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
@@ -77,7 +79,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual ICollection<Image> Images { get; set; }
 
-        
     }
 
     public partial class DocumentTranslation
