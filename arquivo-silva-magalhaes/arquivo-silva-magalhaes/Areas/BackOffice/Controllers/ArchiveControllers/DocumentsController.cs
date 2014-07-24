@@ -45,50 +45,26 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Documents/Create
         public async Task<ActionResult> Create(int? CollectionId, int? AuthorId)
         {
-            var model = new DocumentEditViewModel
-            {
-                //AvailableKeywords = await db.KeywordTranslations
-                //    .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                //    .Select(kt => new SelectListItem
-                //    {
-                //        Value = kt.KeywordId.ToString(),
-                //        Text = kt.Value
-                //    }).ToListAsync(),
+            var doc = new Document();
 
-                Translations = new List<DocumentTranslationEditViewModel>
-                {
-                    new DocumentTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
-                }
-            };
+            doc.Translations.Add(new DocumentTranslation
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            });
 
             // Check for an author.
             if (AuthorId != null && db.Authors.Find(AuthorId) != null)
             {
-                model.AuthorId = AuthorId.Value;
+                doc.AuthorId = AuthorId.Value;
             }
-            else
-            {
-                model.AvailableAuthors = await db.Authors
-                    .Select(a => new SelectListItem
-                    {
-                        Value = a.Id.ToString(),
-                        Text = a.FirstName + " " + a.LastName
-                    }).ToListAsync();
-            }
+
             // Check for a collection.
             if (CollectionId != null && db.Collections.Find(CollectionId) != null)
             {
-                model.CollectionId = CollectionId.Value;
+                doc.CollectionId = CollectionId.Value;
             }
-            else
-            {
-                model.AvailableCollections = await db.Collections
-                    .Select(c => new SelectListItem
-                    {
-                        Value = c.Id.ToString(),
-                        Text = c.CatalogCode
-                    }).ToListAsync();
-            }
+
+            var model = GenerateViewModel(doc);
 
             return View(model);
         }
@@ -123,7 +99,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(GenerateViewModel(document));
         }
 
         // POST: BackOffice/Documents/Edit/5
@@ -166,6 +142,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.Documents.Remove(document);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private DocumentEditViewModel GenerateViewModel(Document d)
+        {
+            var model = new DocumentEditViewModel();
+            model.Document = d;
+
+            model.AvailableAuthors = db.Authors.Select(a => new SelectListItem
+                {
+                    Text = a.LastName + ", " + a.FirstName,
+                    Value = a.Id.ToString(),
+                    Selected = d.AuthorId == a.Id
+                })
+                .ToList();
+
+            var query = from c in db.Collections
+                        join ct in db.CollectionTranslations on c.Id equals ct.CollectionId
+                        where ct.LanguageCode == LanguageDefinitions.DefaultLanguage
+                        select new SelectListItem
+                        {
+                            Selected = d.CollectionId == c.Id,
+                            Value = c.Id.ToString(),
+                            Text = c.CatalogCode + " - " + ct.Title
+                        };
+
+            model.AvailableCollections = query.ToList();
+
+            return model;
         }
 
         protected override void Dispose(bool disposing)
