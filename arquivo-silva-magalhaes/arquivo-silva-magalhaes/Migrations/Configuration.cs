@@ -3,19 +3,23 @@ namespace ArquivoSilvaMagalhaes.Migrations
     using ArquivoSilvaMagalhaes.Models.ArchiveModels;
     using ArquivoSilvaMagalhaes.Models.SiteModels;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ArquivoSilvaMagalhaes.Models.ArchiveDataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+
+
         }
 
         protected override void Seed(ArquivoSilvaMagalhaes.Models.ArchiveDataContext context)
         {
+            // TODO
+            // context.Database.ExecuteSqlCommand("CREATE TRIGGER ....");
+
+
             SeedAuthors(context);
             //SeedCollections(context);
             //SeedDocuments(context);

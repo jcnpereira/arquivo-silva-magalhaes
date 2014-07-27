@@ -1,7 +1,11 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Document
+﻿@model DocumentEditViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
+    var document = new
+    {
+        Translations = Model.Document.Translations.ToList()
+    };
 }
 
 <h2>Editar documento</h2>
@@ -9,51 +13,98 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Document.Id)
 
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ResponsibleName, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.AvailableAuthors, new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.ResponsibleName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ResponsibleName, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Document.AuthorId, Model.AvailableAuthors, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Document.AuthorId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentDate, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.AvailableCollections, new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.DocumentDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.DocumentDate.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.DocumentDate, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Document.CollectionId, Model.AvailableCollections, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Document.CollectionId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CatalogationDate, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.Document.CatalogCode, new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.CatalogationDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.CatalogationDate.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.CatalogationDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Document.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Document.CatalogCode)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.Document.DocumentDate, new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Document.DocumentDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.Document.DocumentDate.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.Document.DocumentDate)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CatalogCode, htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.Document.Notes, new { @class = "control-label" })
             <div>
-                @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CatalogCode, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Document.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Document.Notes)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Document.ResponsibleName, new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.Document.ResponsibleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Document.ResponsibleName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Document.CatalogationDate, new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.Document.CatalogationDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.Document.CatalogationDate.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.Document.CatalogationDate)
+            </div>
+        </div>
+
+        @for (var i = 0; i < document.Translations.Count; i++)
+        {
+            @Html.HiddenFor(model => document.Translations[i].DocumentId)
+            @Html.HiddenFor(model => document.Translations[i].LanguageCode)
+
+            <div class="form-group">
+                @Html.LabelFor(model => document.Translations[i].Description, new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => document.Translations[i].Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => document.Translations[i].Description)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => document.Translations[i].DocumentLocation, new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => document.Translations[i].DocumentLocation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => document.Translations[i].DocumentLocation)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => document.Translations[i].FieldAndContents, new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => document.Translations[i].FieldAndContents, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => document.Translations[i].FieldAndContents)
+                </div>
+            </div>
+        }
+
+        @Html.Partial("_SubmitBackPartial")
     </div>
-    @Html.Partial("_SubmitbackPartial")
 }

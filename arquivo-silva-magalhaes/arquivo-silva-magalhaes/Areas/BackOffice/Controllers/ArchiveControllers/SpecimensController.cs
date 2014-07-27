@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using System.Diagnostics;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
-using System.IO;
-using System.Drawing;
-using ArquivoSilvaMagalhaes.Utilitites;
-using System.Drawing.Imaging;
-using ImageResizer;
-using System.Web.UI;
-using System.Globalization;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Utilitites;
+using ImageResizer;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.UI;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -30,6 +23,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Specimens
         public async Task<ActionResult> Index(int? imageId)
         {
+            if (_db.Images.Any(i => i.Id == imageId))
+            {
+                return View(await _db.Specimens
+                    .Where(s => s.ImageId == imageId)
+                    .ToListAsync());
+            }
+
             return View(await _db.Specimens.ToListAsync());
         }
 
@@ -48,66 +48,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(specimen);
         }
 
-        private SpecimenEditViewModel PopulateDropDownLists(Specimen specimen)
-        {
-            var model = new SpecimenEditViewModel();
-
-            model.AvailableImages = _db.Images
-                .Select(i => new SelectListItem
-                {
-                    Value = i.Id.ToString(),
-                    Text = i.ImageCode,
-                    Selected = specimen.ImageId == i.Id
-                })
-                .ToList();
-
-            model.AvailableProcesses = _db.Processes
-                .Select(p => new SelectListItem
-                {
-                    Value = p.Id.ToString(),
-                    Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value,
-                    Selected = specimen.ProcessId == p.Id
-                })
-                .ToList();
-
-
-            model.AvailableFormats = _db.Formats
-                .Select(f => new SelectListItem
-                {
-                    Value = f.Id.ToString(),
-                    Text = f.FormatDescription,
-                    Selected = specimen.FormatId == f.Id
-                })
-                .ToList();
-
-            model.AvailableLanguages = specimen.Translations
-                .Where(t => !LanguageDefinitions.Languages.Contains(t.LanguageCode))
-                .Select(t => t.LanguageCode)
-                .ToList();
-
-            return model;
-        }
-
         // GET: BackOffice/Specimens/Create
-        public ActionResult Create(int? imageId)
+        public async Task<ActionResult> Create(
+            int imageId = 0)
         {
             var s = new Specimen();
 
-            if (imageId != null)
+            if (imageId > 0)
             {
-                var image = _db.Images.Find(imageId);
+                var image = await _db.Images.FindAsync(imageId);
 
                 if (image != null)
                 {
                     s.ImageId = image.Id;
-                    
+
                     var doc = image.Document;
                     var collection = doc.Collection;
 
-                    s.ReferenceCode = 
-                        String.Format("{0}/{1}/{2}-", 
-                                      doc.CatalogCode, 
-                                      collection.CatalogCode, 
+                    s.ReferenceCode =
+                        String.Format("{0}/{1}/{2}-",
+                                      doc.CatalogCode,
+                                      collection.CatalogCode,
                                       image.ImageCode
                         );
                 }
@@ -122,13 +83,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     LanguageCode = LanguageDefinitions.DefaultLanguage
                 });
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
-
-            return View(model);
+            return View(GenerateViewModel(s));
         }
 
         // POST: BackOffice/Specimens/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -142,36 +101,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
-
-            return View(model);
-
-            //var t = s.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
-
-            //return View(new SpecimenEditViewModel
-            //    {
-            //        Id = s.Id,
-            //        CatalogCode = s.CatalogCode,
-            //        AuthorCatalogationCode = s.AuthorCatalogationCode,
-            //        HasMarksOrStamps = s.HasMarksOrStamps,
-            //        Indexation = s.Indexation,
-            //        Notes = s.Notes,
-            //        ProcessId = s.ProcessId,
-            //        Translations = new List<SpecimenTranslationEditViewModel>
-            //        {
-            //            new SpecimenTranslationEditViewModel
-            //            {
-            //                SpecimenId = s.Id,
-            //                LanguageCode = t.LanguageCode,
-            //                Title = t.Title,
-            //                Topic = t.Topic,
-            //                Description = t.Description,
-            //                DetailedStateDescription = t.DetailedStateDescription,
-            //                InterventionDescription = t.InterventionDescription,
-            //                Publication = t.Publication
-            //            }
-            //        }
-            //    });
+            return View(GenerateViewModel(s));
         }
 
         // GET: BackOffice/Specimens/Edit/5
@@ -187,40 +117,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, GenerateViewModel(s));
             return View(model);
-
-            //var t = s.Translations.First(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
-
-            //return View(new SpecimenEditViewModel
-            //    {
-            //        Id = s.Id,
-            //        CatalogCode = s.CatalogCode,
-            //        AuthorCatalogationCode = s.AuthorCatalogationCode,
-            //        HasMarksOrStamps = s.HasMarksOrStamps,
-            //        Indexation = s.Indexation,
-            //        Notes = s.Notes,
-            //        FormatId = s.FormatId,
-            //        ProcessId = s.ProcessId,
-            //        Translations = new List<SpecimenTranslationEditViewModel>
-            //        {
-            //            new SpecimenTranslationEditViewModel
-            //            {
-            //                SpecimenId = s.Id,
-            //                LanguageCode = t.LanguageCode,
-            //                Title = t.Title,
-            //                Topic = t.Topic,
-            //                Description = t.Description,
-            //                DetailedStateDescription = t.DetailedStateDescription,
-            //                InterventionDescription = t.InterventionDescription,
-            //                Publication = t.Publication
-            //            }
-            //        }
-            //    });
         }
 
         // POST: BackOffice/Specimens/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -233,10 +135,44 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, PopulateDropDownLists(s));
+            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, GenerateViewModel(s));
             return View(model);
 
             //return View(specimen);
+        }
+
+        public async Task<ActionResult> EditPhotoDetails(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var p = await _db.DigitalPhotographs.FindAsync(id);
+
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            return View(p);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditPhotoDetails([Bind(Exclude = "FileName,OriginalFileName,Encoding,LastModified")] DigitalPhotograph photo)
+        {
+            if (ModelState.IsValid)
+            {
+                var p = await _db.DigitalPhotographs.FindAsync(photo.Id);
+
+                p.IsVisible = photo.IsVisible;
+                p.ScanDate = photo.ScanDate;
+                p.CopyrightInfo = photo.CopyrightInfo;
+                p.Process = photo.Process;
+
+                p.LastModified = DateTime.Now;
+                _db.Entry(p).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("ListPhotos", new { id = photo.SpecimenId });
+            }
+
+            return View(photo);
         }
 
         // GET: BackOffice/Specimens/Delete/5
@@ -265,7 +201,153 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> DeletePhoto(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
+            var p = await _db.DigitalPhotographs.FindAsync(id);
+
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            return View(p);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeletePhoto")]
+        public async Task<ActionResult> DeletePhotoConfirmed(int? id, string redirectTo = "ListPhotos")
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var p = await _db.DigitalPhotographs.FindAsync(id);
+
+            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+
+            _db.DigitalPhotographs.Remove(p);
+
+            // TODO: Remove all files from the disk.
+
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(redirectTo, new { id = p.SpecimenId });
+        }
+
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = 3600)]
+        public async Task<ActionResult> GetPicture(int? id, string size = "Large")
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var p = await _db.DigitalPhotographs.FindAsync(id);
+
+            if (p == null) { return HttpNotFound(); }
+
+            if (size == "Original")
+            {
+                var specimen = p.Specimen;
+
+                var fileName = p.OriginalFileName;
+
+                return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
+            }
+
+            // Caching. Basically, we check if the browser has cached the picture (present if "If-Modified-Since" is in the headers).
+            // If so, we check if the image was modified since then, and we'll return it.
+            // From http://weblogs.asp.net/jeff/archive/2009/07/01/304-your-images-from-a-database.aspx
+
+            // TODO?: There may be some implications with this. Need to check them better.
+
+            if (!String.IsNullOrEmpty(Request.Headers["If-None-Match"]))
+            {
+                var eTag = Request.Headers["If-None-Match"];
+
+                if (eTag == p.FileName)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotModified);
+                }
+            }
+
+            Response.Cache.SetETag(p.FileName);
+
+            //if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
+            //{
+            //    CultureInfo provider = CultureInfo.InvariantCulture;
+            //    var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
+
+            //    // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
+            //    if (lastMod.CompareTo(p.LastModified) > 0)
+            //    {
+            //        return new HttpStatusCodeResult(HttpStatusCode.NotModified);
+            //    }
+            //}
+
+            switch (size)
+            {
+                case "Thumb":
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
+
+                case "Large":
+                default:
+                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
+            }
+        }
+
+        public async Task<ActionResult> ListPhotos(int? id)
+        {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            var s = await _db.Specimens.FindAsync(id);
+
+            if (s == null) { return HttpNotFound(); }
+
+            ViewBag.Id = s.Id;
+
+            return View(s.DigitalPhotographs.ToList());
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private SpecimenEditViewModel GenerateViewModel(Specimen specimen)
+        {
+            var model = new SpecimenEditViewModel();
+
+            model.AvailableImages = _db.Images
+                .Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.ImageCode,
+                    Selected = specimen.ImageId == i.Id
+                })
+                .ToList();
+
+            model.AvailableProcesses = _db.Processes
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value,
+                    Selected = specimen.ProcessId == p.Id
+                })
+                .ToList();
+
+            model.AvailableFormats = _db.Formats
+                .Select(f => new SelectListItem
+                {
+                    Value = f.Id.ToString(),
+                    Text = f.FormatDescription,
+                    Selected = specimen.FormatId == f.Id
+                })
+                .ToList();
+
+            model.Specimen = specimen;
+
+            return model;
+        }
 
         /// <summary>
         /// To associate a digital photo with a specimen.
@@ -282,7 +364,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             return View(new SpecimenPhotoUploadModel { SpecimenId = id.Value });
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -365,156 +446,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (Request.IsAjaxRequest()) return PartialView(model);
 
             return View(model);
-        }
-
-        public async Task<ActionResult> ListPhotos(int? id)
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var s = await _db.Specimens.FindAsync(id);
-
-            if (s == null) { return HttpNotFound(); }
-
-            ViewBag.Id = s.Id;
-
-            return View(s.DigitalPhotographs.ToList());
-        }
-
-        // TODO: Permitir o download da foto original, com OU o nome original, ou um nome semântico, baseado no autor e no documento.
-
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = 3600)]
-        public async Task<ActionResult> GetPicture(int? id, string size = "Large")
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var p = await _db.DigitalPhotographs.FindAsync(id);
-
-            if (p == null) { return HttpNotFound(); }
-
-            if (size == "Original")
-            {
-                var specimen = p.Specimen;
-
-                var fileName = p.OriginalFileName;
-
-                return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
-            }
-
-            // Caching. Basically, we check if the browser has cached the picture (present if "If-Modified-Since" is in the headers).
-            // If so, we check if the image was modified since then, and we'll return it.
-            // From http://weblogs.asp.net/jeff/archive/2009/07/01/304-your-images-from-a-database.aspx
-
-            // TODO?: There may be some implications with this. Need to check them better.
-
-            if (!String.IsNullOrEmpty(Request.Headers["If-None-Match"]))
-            {
-                var eTag = Request.Headers["If-None-Match"];
-
-                if (eTag == p.FileName)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.NotModified);
-                }
-            }
-
-            Response.Cache.SetETag(p.FileName);
-
-            //if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
-            //{
-            //    CultureInfo provider = CultureInfo.InvariantCulture;
-            //    var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
-
-
-
-
-            //    // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
-            //    if (lastMod.CompareTo(p.LastModified) > 0)
-            //    {
-            //        return new HttpStatusCodeResult(HttpStatusCode.NotModified);
-            //    }
-            //}
-
-            switch (size)
-            {
-                case "Thumb":
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
-                case "Large":
-                default:
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
-            }
-        }
-
-        public async Task<ActionResult> DeletePhoto(int? id)
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var p = await _db.DigitalPhotographs.FindAsync(id);
-
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
-
-            return View(p);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("DeletePhoto")]
-        public async Task<ActionResult> DeletePhotoConfirmed(int? id, string redirectTo = "ListPhotos")
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var p = await _db.DigitalPhotographs.FindAsync(id);
-
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
-
-            _db.DigitalPhotographs.Remove(p);
-
-            // TODO: Remove all files from the disk.
-
-            await _db.SaveChangesAsync();
-
-            return RedirectToAction(redirectTo, new { id = p.SpecimenId });
-        }
-
-        public async Task<ActionResult> EditPhotoDetails(int? id)
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var p = await _db.DigitalPhotographs.FindAsync(id);
-
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
-
-            return View(p);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditPhotoDetails([Bind(Exclude = "FileName,OriginalFileName,Encoding,LastModified")] DigitalPhotograph photo)
-        {
-            if (ModelState.IsValid)
-            {
-                var p = await _db.DigitalPhotographs.FindAsync(photo.Id);
-
-                p.IsVisible = photo.IsVisible;
-                p.ScanDate = photo.ScanDate;
-                p.CopyrightInfo = photo.CopyrightInfo;
-                p.Process = photo.Process;
-
-                p.LastModified = DateTime.Now;
-                _db.Entry(p).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
-
-                return RedirectToAction("ListPhotos", new { id = photo.SpecimenId });
-            }
-
-            return View(photo);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

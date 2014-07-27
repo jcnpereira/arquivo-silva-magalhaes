@@ -20,6 +20,16 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
     }
 
+    public class ImageEditViewModel
+    {
+        public Image Image { get; set; }
+
+        [Required]
+        public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
+        [Required]
+        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+    }
+
     public class ImageCreateModel
     {
         [Display(ResourceType = typeof(DataStrings), Name = "Image__ProductionDate")]

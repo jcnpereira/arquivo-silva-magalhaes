@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -66,19 +64,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         public int CollectionId { get; set; }
+
         [ForeignKey("CollectionId")]
         public virtual Collection Collection { get; set; }
-        
 
         [Required]
         public int AuthorId { get; set; }
+
         [ForeignKey("AuthorId")]
         public virtual Author Author { get; set; }
 
         public virtual ICollection<DocumentTranslation> Translations { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
-
     }
 
     public partial class DocumentTranslation
