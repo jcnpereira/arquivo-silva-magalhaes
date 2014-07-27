@@ -17,6 +17,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         /// <summary>

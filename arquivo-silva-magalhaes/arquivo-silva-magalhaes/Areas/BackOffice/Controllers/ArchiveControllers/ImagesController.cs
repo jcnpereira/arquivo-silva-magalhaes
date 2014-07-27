@@ -36,6 +36,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             var model = (from i in images
                          join it in _db.ImageTranslations on i.Id equals it.ImageId
                          where it.LanguageCode == LanguageDefinitions.DefaultLanguage
+                         orderby i.Id ascending
                          select i)
                         .ToPagedList(pageNumber, 10);
 

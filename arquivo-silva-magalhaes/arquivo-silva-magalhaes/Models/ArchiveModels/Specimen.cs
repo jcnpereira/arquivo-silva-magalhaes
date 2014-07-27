@@ -83,13 +83,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
-        public string Title { get; set; }
+        //[Required]
+        //[Display(ResourceType = typeof(DataStrings), Name = "Title")]
+        //public string Title { get; set; }
 
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Topic")]
-        public string Topic { get; set; }
+        //[Required]
+        //[Display(ResourceType = typeof(DataStrings), Name = "Topic")]
+        //public string Topic { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "Description")]

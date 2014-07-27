@@ -12,7 +12,7 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public class Image : TranslateableEntity<ImageTranslation>
+    public class Image// : TranslateableEntity<ImageTranslation>
     {
         public Image()
         {
@@ -45,30 +45,30 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         // public new ICollection<ImageTranslation> Translations { get; set; }
 
-        [Required]
-        [NotMapped]
-        public string Title
-        {
-            get
-            {
-                return GetTranslatedValueOrDefault("Title");
-            }
+        //[Required]
+        //[NotMapped]
+        //public string Title
+        //{
+        //    get
+        //    {
+        //        return GetTranslatedValueOrDefault("Title");
+        //    }
 
-            set
-            {
-                SetTranslatedValue("Title", value);
-            }
-        }
+        //    set
+        //    {
+        //        SetTranslatedValue("Title", value);
+        //    }
+        //}
 
-        //public virtual ICollection<ImageTranslation> Translations { get; set; }
+        public virtual ICollection<ImageTranslation> Translations { get; set; }
     }
 
-    public class ImageTranslation : EntityTranslation
+    public class ImageTranslation// : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int ImageId { get; set; }
         [Key, Column(Order = 1)]
-        public override string LanguageCode { get; set; }
+        public string LanguageCode { get; set; }
 
         [Required]
         public string Title { get; set; }

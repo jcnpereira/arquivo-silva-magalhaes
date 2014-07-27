@@ -53,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "User name ou palavra-passe errada.");
                 }
             }
 

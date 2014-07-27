@@ -91,17 +91,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Specimen s)
+        public async Task<ActionResult> Create(Specimen specimen)
         {
             if (ModelState.IsValid)
             {
-                _db.Specimens.Add(s);
+                _db.Specimens.Add(specimen);
 
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(s));
+            return View(GenerateViewModel(specimen));
         }
 
         // GET: BackOffice/Specimens/Edit/5
