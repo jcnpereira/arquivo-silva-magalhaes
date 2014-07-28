@@ -81,6 +81,8 @@
 
     </table>
 
+    @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p, imageId = ViewBag.imageId }))
+
     @section Scripts {
         @Html.Partial("_DeleteConfirmModal")
     }

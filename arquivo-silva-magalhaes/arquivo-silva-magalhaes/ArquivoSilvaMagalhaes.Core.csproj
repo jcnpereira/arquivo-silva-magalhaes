@@ -189,6 +189,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
+    <Compile Include="App_Start\MembershipConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
@@ -213,6 +214,10 @@
     <Compile Include="Migrations\201407222040212_ApplicationDbContext.cs" />
     <Compile Include="Migrations\201407222040212_ApplicationDbContext.Designer.cs">
       <DependentUpon>201407222040212_ApplicationDbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407281429260_ArchiveDataContext.cs" />
+    <Compile Include="Migrations\201407281429260_ArchiveDataContext.Designer.cs">
+      <DependentUpon>201407281429260_ArchiveDataContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ArchiveModels\Image.cs" />
     <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
@@ -297,6 +302,7 @@
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
+    <Compile Include="Utilitites\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -423,6 +429,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\EnumDisplayFor.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\DateDisplayFor.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\Delete.cshtml" />
+    <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -450,7 +458,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -497,6 +507,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407222040212_ApplicationDbContext.resx">
       <DependentUpon>201407222040212_ApplicationDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407281429260_ArchiveDataContext.resx">
+      <DependentUpon>201407281429260_ArchiveDataContext.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

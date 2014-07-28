@@ -8,6 +8,7 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
@@ -133,6 +134,32 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             return View(i);
+        }
+
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var image = await _db.Images.FindAsync(id);
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+            return View(image);
+        }
+
+        // POST: /BackOffice/Collection/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            Image image = await _db.Images.FindAsync(id);
+
+            _db.Images.Remove(image);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
     /// <summary>
     /// Base controller to force authorization on all requests.
     /// </summary>
-    [Authorize]
+    [Authorize(Roles = "admins")]
     public class BackOfficeController : Controller
     {
         // No actions.

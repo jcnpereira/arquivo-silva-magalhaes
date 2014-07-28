@@ -16,6 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.Translations = new HashSet<KeywordTranslation>();
             this.Documents = new HashSet<Document>();
             this.Specimens = new HashSet<Specimen>();
+            this.Images = new List<Image>();
         }
 
         [Key]
@@ -24,6 +25,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual ICollection<KeywordTranslation> Translations { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Specimen> Specimens { get; set; }
+        public virtual IList<Image> Images { get; set; }
     }
 
     public partial class KeywordTranslation

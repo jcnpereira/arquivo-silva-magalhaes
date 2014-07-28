@@ -4,6 +4,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ImageResizer;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,16 +22,30 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Specimens
-        public async Task<ActionResult> Index(int? imageId)
+        public async Task<ActionResult> Index(int? imageId, int pageNumber = 1)
         {
-            if (_db.Images.Any(i => i.Id == imageId))
+            if (imageId.HasValue)
             {
-                return View(await _db.Specimens
-                    .Where(s => s.ImageId == imageId)
-                    .ToListAsync());
+                if (_db.Specimens.Any(i => i.ImageId == imageId))
+                {
+                    ViewBag.imageId = imageId.Value;
+
+                    return View(_db.Specimens
+                        .Include(s => s.Translations)
+                        .Where(s => s.ImageId == imageId)
+                        .OrderBy(s => s.Id)
+                        .ToPagedList(pageNumber, 10));
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                }
             }
 
-            return View(await _db.Specimens.ToListAsync());
+            return View(_db.Specimens
+                .Include(s => s.Translations)
+                .OrderBy(s => s.Id)
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Specimens/Details/5
@@ -49,8 +64,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: BackOffice/Specimens/Create
-        public async Task<ActionResult> Create(
-            int imageId = 0)
+        public async Task<ActionResult> Create(int imageId = 0)
         {
             var s = new Specimen();
 
@@ -111,14 +125,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Specimen s = await _db.Specimens.FindAsync(id);
-            if (s == null)
+            Specimen specimen = await _db.Specimens.FindAsync(id);
+            if (specimen == null)
             {
                 return HttpNotFound();
             }
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, GenerateViewModel(s));
-            return View(model);
+            return View(GenerateViewModel(specimen));
         }
 
         // POST: BackOffice/Specimens/Edit/5
@@ -126,19 +139,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Specimen s)
+        public async Task<ActionResult> Edit(Specimen specimen)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(s).State = EntityState.Modified;
+                _db.Entry(specimen).State = EntityState.Modified;
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            var model = new Tuple<Specimen, SpecimenEditViewModel>(s, GenerateViewModel(s));
-            return View(model);
-
-            //return View(specimen);
+            return View(GenerateViewModel(specimen));
         }
 
         public async Task<ActionResult> EditPhotoDetails(int? id)

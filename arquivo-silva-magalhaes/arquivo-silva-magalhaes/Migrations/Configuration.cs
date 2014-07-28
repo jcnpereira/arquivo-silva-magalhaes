@@ -11,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
         {
             AutomaticMigrationsEnabled = true;
 
-
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ArquivoSilvaMagalhaes.Models.ArchiveDataContext context)

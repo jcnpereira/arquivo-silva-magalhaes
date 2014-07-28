@@ -10,6 +10,11 @@ namespace ArquivoSilvaMagalhaes.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Image>()
+            //    .HasMany(i => i.Keywords)
+            //    .WithRequired(i => i.)
+
+
             base.OnModelCreating(modelBuilder);
         }
 

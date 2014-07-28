@@ -13,9 +13,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Author()
         {
-            this.Translations = new HashSet<AuthorTranslation>();
-            this.Documents = new HashSet<Document>();
-            this.Collections = new HashSet<Collection>();
+            this.Translations = new List<AuthorTranslation>();
+            this.Documents = new List<Document>();
+            this.Collections = new List<Collection>();
         }
 
         [Key]
@@ -56,17 +56,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// Localized texts descibing the biography and other aspects of this
         /// author.
         /// </summary>
-        public virtual ICollection<AuthorTranslation> Translations { get; set; }
+        public virtual IList<AuthorTranslation> Translations { get; set; }
 
         /// <summary>
         /// Documents created by this author.
         /// </summary>
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual IList<Document> Documents { get; set; }
 
         /// <summary>
         /// Collections created by this author.
         /// </summary>
-        public virtual ICollection<Collection> Collections { get; set; }
+        public virtual IList<Collection> Collections { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

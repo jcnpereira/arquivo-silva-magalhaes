@@ -175,6 +175,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Collection collection = await db.Collections.FindAsync(id);
+
             db.Collections.Remove(collection);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

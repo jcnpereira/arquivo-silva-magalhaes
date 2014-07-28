@@ -1,8 +1,12 @@
 ﻿using ArquivoSilvaMagalhaes.App_Start;
+using ArquivoSilvaMagalhaes.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -12,6 +16,7 @@ namespace ArquivoSilvaMagalhaes
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+    
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -20,7 +25,9 @@ namespace ArquivoSilvaMagalhaes
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Map AutoMapper mappings.
-            MapperConfig.RegisterMappings();
+            // MapperConfig.RegisterMappings();
+
+            MembershipConfig.SeedMembership();
         }
 
         //protected void Application_AcquireRequestState()
@@ -38,5 +45,8 @@ namespace ArquivoSilvaMagalhaes
         //    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
         //    System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
         //}
+
+        
+
     }
 }
