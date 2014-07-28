@@ -1,55 +1,138 @@
-﻿@*@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection>*@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>AFSM</title>
 
-@{
-    ViewBag.Title = "Home Page";
-}
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<p>@ViewBag.Blah</p>
+    <script type="text/javascript" src="./scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="./flex-slider/jquery.flexslider-min.js"></script>
+    <script src="scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <script src="scripts/jquery.tipsy.js" type="text/javascript"></script>
+    <script src="scripts/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./scripts/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery.smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="./scripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="./scripts/setup.js"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+</head>
+<body>
+    <div id="wrap">
+        <!-- wrapper -->
+        <div id="sidebar">
+            <!-- the  sidebar -->
+            <!-- logo -->
+            <a href="#" id="logo"> <img src="../images/logo.png" alt="" /></a>
+            <a href="#" id="logo"> <img src="../images/cmt.png" alt="" /></a>
+            <!-- navigation menu -->
+            <ul id="navigation">
+                <li><a href="#index" class="active">IN&#205;CIO</a></li>
+                <li><a href="Destaque">DESTAQUE</a></li>
+                <li><a href="Acervo">ACERVO</a></li>
+                <li><a href="Pesquisa">PESQUISA</a></li>
+                <li><a href="Noticias">NOT&#205;CIAS</a></li>
+                <li><a href="Eventos">EVENTOS</a></li>
+                <li><a href="Historia">HIST&#211;RIA</a></li>
+                <li><a href="Documentos">DOCUMENTOS T&#201;CNICOS</a></li>
+                @*<li><a href="Loja">LOJA</a></li>*@
+                <li><a href="Contactos">CONTACTOS</a></li>
+                <li><a href="Links">LINKS &#218;TEIS</a></li>
+                <li><a href="Projetos">PROJETOS E PARCERIAS</a></li>
+            </ul>
+        </div>
+        <div id="container">
+            <!-- page container -->
+            <div class="page" id="">
+                <!-- page home -->
+                <div class="page_content">
+                    @*<div class="gf-slider">*@
 
+                    @*<ul class="slides">*@
+                    @*<li>*@
+                    <img src="../images/01.jpg" alt="" />
+                    @*<p class="flex-caption"> Texto exemplo AFSM 1</p>*@
+                    @*</li>*@
+                    @*<li>
+                            <img src="../images/02.jpg" alt="" />
+                            <p class="flex-caption"> Texto exemplo AFSM 2</p>
+                        </li>
+                        <li>
+                            <img src="../images/03.jpg" alt="" />
+                            <p class="flex-caption"> Texto exemplo AFSM 3</p>
+                        </li>*@
+                    @*</ul>*@
+                    @*</div>*@
+                    <div class="space"> </div>
+                    <div class="clear"> </div>
+                    <!-- lateral direita -->
+                    <div class="one_half first">
+                        <div class="column_content">
+                            <h4> NotÍcias</h4>
+                            <a href="Noticias">
+                                <img src="../images/coded-with-love.png" class="left no_border" alt="" style="margin-top: 10px;
+                                margin-right: 10px" />
+                            </a>
+                            <p>
+                                <small>
+                                    Todas as novidades sobre coleções, fotos, projetos e exposições.
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="one_half last">
+                        <div class="column_content">
+                            <h4> Eventos</h4>
+                            <a href="Eventos">
+                                <img src="../images/responsive.png" class="left no_border" alt="" style="margin-top: 10px;
+                                margin-right: 10px" />
+                            </a>
+                            <p>
+                                <small>
+                                    Exposições, atividades, eventos pedagógicos, workshops, entre outros...
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="space"> </div>
+                    <div class="one_half first">
+                        <div class="column_content">
+                            <h4> Acervo</h4>
+                            <a href="Acervo">
+                                <img src="../images/for-pencil.png" class="left no_border" alt="" style="margin-top: 10px;
+                                margin-right: 10px" />
+                            </a>
+                            <p>
+                                <small>
+                                    Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="one_half last">
+                        <div class="column_content">
+                            <h4> Destaque</h4>
+                            <a href="Destaque">
+                                <img src="../images/customizable.png" class="left no_border" alt="" style="margin-top: 10px;
+                                margin-right: 10px" />
+                            </a>
+                            <p>
+                                <small>
+                                    Fotografias em destaque com comentário de Carlos Rodante Veloso.
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="space"> </div>
 
-<!-- Test of listing collections -->
+                    <div class="clear"> </div>
+                </div>
+            </div>
 
-@*@foreach (var collection in Model)
-{
-    <div>
-        <h4>@collection.Title</h4>
-        <p>@collection.AdministrativeAndBiographicStory</p>
-        <p>@collection.CopyrightInfo</p>
-        <p>@collection.Description</p>
-        <p>@collection.Dimension</p>
-        <p>@collection.FieldAndContents</p>
-        <p>@collection.HasAttachments</p>
-        <p>@collection.Notes</p>
-
-        <hr />
+            <div class="footer">
+                <p> &copy; 2014 AFSM</p>
+            </div>
+        </div>
     </div>
-}*@
-
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</body>
+</html>

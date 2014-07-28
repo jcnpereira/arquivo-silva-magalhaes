@@ -1,23 +1,69 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : Controller
     {
-        ArchiveDataContext _db = new ArchiveDataContext();
-        
         public ActionResult Index()
         {
-            //var collections = _db.CollectionSet
-            //    .Where(c => c.IsVisible)
-            //    .ToList();
+            return View();
+        }
+        public ActionResult Contactos()
+        {
+            return View();
+        }
 
-            //return View(collections);
+        public ActionResult Acervo()
+        {
+            return View();
+        }
+
+        public ActionResult Destaque()
+        {
+            return View();
+        }
+
+        public ActionResult Documentos()
+        {
+            return View();
+        }
+
+        public ActionResult Eventos()
+        {
+            return View();
+        }
+
+        public ActionResult Historia()
+        {
+            return View();
+        }
+
+        public ActionResult Links()
+        {
+            return View();
+        }
+
+        public ActionResult Loja()
+        {
+            return View();
+        }
+
+        public ActionResult Noticias()
+        {
+            return View();
+        }
+
+        public ActionResult Pesquisa()
+        {
+            return View();
+        }
+
+        public ActionResult Projetos()
+        {
             return View();
         }
 
@@ -33,16 +79,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-
-            base.Dispose(disposing);
         }
     }
 }
