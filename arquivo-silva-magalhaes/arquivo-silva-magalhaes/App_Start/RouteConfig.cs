@@ -15,9 +15,11 @@ namespace ArquivoSilvaMagalhaes
 
             routes.MapRoute(
                 name: "Default",
+                //url: "{lang}/{controller}/{action}/{Id}",
                 url: "{controller}/{action}/{Id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "ArquivoSilvaMagalhaes.Controllers" }
+                defaults: new { lang = "pt-PT", controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ArquivoSilvaMagalhaes.Controllers" }//,
+                //constraints: new { lang = "[a-zA-Z]{2}(-[a-zA-Z])?"}
             );
         }
     }

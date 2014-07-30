@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Web.Routing;
 
 namespace ArquivoSilvaMagalhaes.Utilitites
 {
@@ -22,6 +23,24 @@ namespace ArquivoSilvaMagalhaes.Utilitites
             "pt", 
             "en"
         };
+
+        /// <summary>
+        /// Sets the current thread's culture for localization purposes.
+        /// The order for setting the thread's language is as follows:
+        /// 1. The value of the "lang" cookie.
+        /// 2. 
+        /// parameter on 
+        /// </summary>
+        /// <param name="routeData"></param>
+        public static void SetThreadLanguage(RouteData routeData, HttpCookie langCookie = null)
+        {
+            var lang = routeData.Values["lang"] as string ?? "pt";
+
+            if (Thread.CurrentThread.CurrentUICulture.Name != lang)
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            }
+        }
 
 
 

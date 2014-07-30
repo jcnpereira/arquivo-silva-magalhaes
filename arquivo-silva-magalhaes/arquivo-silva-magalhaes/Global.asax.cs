@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes
 
         //    var routeData = routes.GetRouteData(httpContext);
 
-        //    var language = routeData.Values["language"] as string;
+        //    var language = routeData.Values["lang"] as string;
         //    var cultureInfo = new CultureInfo(language);
 
         //    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;

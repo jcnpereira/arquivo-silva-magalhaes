@@ -71,7 +71,7 @@
                     </li>
 
                     <li class="navbar-link">
-                        <a href="/">Front-office</a>
+                        @Html.ActionLink("Front-Office", "Index", "Home", new { Area = "" }, null)
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
