@@ -21,7 +21,7 @@
     <div class="form-horizontal" data-ng-controller="FormController as form">
 
         <div class="form-group">
-            <input type="file" name="Photos" id="Photos" accept="image/*" multiple onchange="angular.element(this).scope().getPictures()" required />
+            @Html.FileUploadFor(model => model.Photos, "image/*", multiple: true, htmlAttributes: new { @class = "form-control-static", onchange = "angular.element(this).scope().getPictures()" })
         </div>
 
         <div data-ng-repeat="photo in photos">
@@ -29,8 +29,7 @@
             <input type="hidden" name="Items[{{photo.index}}].OriginalFileName" value="{{photo.fileName}}" />
 
             <div class="col-md-3">
-                <img class="img-responsive" id="photos-{{photo.index}}" />
-
+                <img class="img-responsive img-thumbnail" id="photos-{{photo.index}}" style="max-height: 250px" />
                 <label class="control-label" for="Items[{{photo.index}}].IsToConsider">@Html.DisplayNameFor(model => model.Items[0].IsToConsider)</label>
                 <input class="checkbox" type="checkbox" checked="checked" name="Items[{{photo.index}}].IsToConsider" value="true" />
             </div>
@@ -91,7 +90,7 @@
                 $scope.photos = [];
 
                 this.hasChosenPictures = false;
-                this.i = 20;
+                this.i = 0;
 
                 this.files = [];
 

@@ -12,6 +12,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -20,9 +21,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/Collection/
-        public async Task<ActionResult> Index(int? authorId)
+        public async Task<ActionResult> Index(int? authorId, int pageNumber = 1)
         {
-            return View(await db.Collections.ToListAsync());
+            return View((await db.Collections
+                .ToListAsync()).ToPagedList(pageNumber, 10));
         }
 
         // GET: /BackOffice/Collection/Details/5

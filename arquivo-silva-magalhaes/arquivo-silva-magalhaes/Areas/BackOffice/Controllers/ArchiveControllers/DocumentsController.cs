@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -15,9 +16,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Documents
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await _db.Documents.ToListAsync());
+            return View(await Task.Run(() => _db.Documents.OrderBy(d => d.Id).ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Documents/Details/5
@@ -59,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 doc.AuthorId = authorId.Value;
             }
 
-            var model = GenerateViewModel(doc);
+            var model = await GenerateViewModel(doc);
 
             return View(model);
         }
@@ -78,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            return View(await GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Edit/5
@@ -93,7 +94,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(GenerateViewModel(document));
+            return View(await GenerateViewModel(document));
         }
 
         // POST: BackOffice/Documents/Edit/5
@@ -115,7 +116,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(GenerateViewModel(document));
+            return View(await GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Delete/5
@@ -144,18 +145,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        private DocumentEditViewModel GenerateViewModel(Document d)
+        private async Task<DocumentEditViewModel> GenerateViewModel(Document d)
         {
             var model = new DocumentEditViewModel();
             model.Document = d;
 
-            model.AvailableAuthors = _db.Authors.Select(a => new SelectListItem
+            model.AvailableAuthors = await _db.Authors.Select(a => new SelectListItem
                 {
                     Text = a.LastName + ", " + a.FirstName,
                     Value = a.Id.ToString(),
                     Selected = d.AuthorId == a.Id
                 })
-                .ToList();
+                .ToListAsync();
 
             var query = from c in _db.Collections
                         join ct in _db.CollectionTranslations on c.Id equals ct.CollectionId
@@ -167,7 +168,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                             Text = c.CatalogCode + " - " + ct.Title
                         };
 
-            model.AvailableCollections = query.ToList();
+            model.AvailableCollections = await query.ToListAsync();
 
             return model;
         }

@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,15 +13,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Process()
         {
-            this.Translations = new HashSet<ProcessTranslation>();
-            this.Specimens = new HashSet<Specimen>();
+            this.Translations = new List<ProcessTranslation>();
+            this.Specimens = new List<Specimen>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        public virtual ICollection<ProcessTranslation> Translations { get; set; }
-        public virtual ICollection<Specimen> Specimens { get; set; }
+        public virtual IList<ProcessTranslation> Translations { get; set; }
+        public virtual IList<Specimen> Specimens { get; set; }
     }
 
     public class ProcessTranslation
@@ -32,7 +33,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Process")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
+        [Display(ResourceType = typeof(ProcessStrings), Name = "Value")]
         public string Value { get; set; }
 
         [ForeignKey("ProcessId")]

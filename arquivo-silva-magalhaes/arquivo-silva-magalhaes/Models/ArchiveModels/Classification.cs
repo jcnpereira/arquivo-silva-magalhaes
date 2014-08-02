@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +17,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Classification()
         {
-            this.Translations = new HashSet<ClassificationTranslation>();
-            this.Specimens = new HashSet<Specimen>();
+            this.Translations = new List<ClassificationTranslation>();
+            this.Specimens = new List<Specimen>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        public virtual HashSet<ClassificationTranslation> Translations { get; set; }
-        public virtual HashSet<Specimen> Specimens { get; set; }
+        public virtual IList<ClassificationTranslation> Translations { get; set; }
+        public virtual IList<Specimen> Specimens { get; set; }
     }
 
     /// <summary>
@@ -42,7 +43,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The classification details.
         /// </summary>
-        [Required, Display(ResourceType = typeof(DataStrings), Name = "Classification")]
+        [Required] 
+        [Index(IsUnique = true)]
+        [MaxLength(80)]
+        [Display(ResourceType = typeof(ClassificationStrings), Name = "Classification")]
         public string Value { get; set; }
 
         [ForeignKey("ClassificationId")]

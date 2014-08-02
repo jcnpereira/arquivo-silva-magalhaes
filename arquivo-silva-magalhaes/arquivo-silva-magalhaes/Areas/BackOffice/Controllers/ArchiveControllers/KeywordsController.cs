@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -15,15 +16,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Keywords
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Keywords
-                .Select(k => new KeywordViewModel
-                {
-                    Id = k.Id,
-                    Value = k.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                })
-                .ToListAsync());
+            return View(await Task.Run(() => db.KeywordTranslations
+                .OrderBy(k => k.KeywordId)
+                .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Keywords/Details/5
@@ -48,7 +45,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords/Create
         public ActionResult Create()
         {
-            var model = new KeywordEditViewModel
+            var model = new KeywordTranslation
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             };
@@ -73,31 +70,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(new KeywordEditViewModel
-                {
-                    Value = keyword.Value,
-                    LanguageCode = keyword.LanguageCode
-                });
+            return View(keyword);
         }
 
         // GET: BackOffice/Keywords/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? id, string languageCode = LanguageDefinitions.DefaultLanguage)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Keyword keyword = await db.Keywords.FindAsync(id);
+            KeywordTranslation keyword = await db.KeywordTranslations.FindAsync(id, languageCode);
             if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(new KeywordEditViewModel
-                {
-                    KeywordId = keyword.Id,
-                    LanguageCode = LanguageDefinitions.DefaultLanguage,
-                    Value = keyword.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                });
+            return View(keyword);
         }
 
         // POST: BackOffice/Keywords/Edit/5
@@ -113,12 +101,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(new KeywordEditViewModel
-                {
-                    KeywordId = key.KeywordId,
-                    Value = key.Value,
-                    LanguageCode = key.LanguageCode
-                });
+            return View(key);
         }
 
         // GET: BackOffice/Keywords/Delete/5

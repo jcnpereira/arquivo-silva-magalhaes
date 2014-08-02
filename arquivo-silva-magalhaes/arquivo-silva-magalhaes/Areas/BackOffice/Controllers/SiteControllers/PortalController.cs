@@ -167,7 +167,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 await db.SaveChangesAsync(); 
                return RedirectToAction("Index");
      //       }
-            return View(model);
         }
 
         // GET: /Portal/Delete/5

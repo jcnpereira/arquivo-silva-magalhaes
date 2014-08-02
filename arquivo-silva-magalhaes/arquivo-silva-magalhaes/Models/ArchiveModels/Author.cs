@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,31 +26,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The first name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "FirstName")]
+        [MaxLength(60)]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "FirstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The last name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "LastName")]
+        [MaxLength(60)]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "LastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// The date on which this author was born.
         /// </summary>
-        [DataType(DataType.Date)]
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "BirthDate")]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "BirthDate")]
         public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// The date on which this author died.
         /// </summary>
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "DeathDate")]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "DeathDate")]
         public DateTime? DeathDate { get; set; }
 
         /// <summary>
@@ -70,14 +71,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-
-
-            // The death date cannot be earlier than the birth date.
-            if (false)
+            if (DeathDate.HasValue)
             {
-                yield return new ValidationResult(ErrorStrings.DeathDateEarlierThanBirthDate);
+                if (DeathDate.Value.CompareTo(BirthDate) < 0)
+                {
+                    yield return new ValidationResult(AuthorStrings.ValidationError_Dates);
+                }
             }
-
         }
     }
 
@@ -103,7 +103,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Nationality")]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Biography")]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "Biography")]
         public string Biography { get; set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Curriculum")]
+        [Display(ResourceType = typeof(AuthorStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }
 
         [ForeignKey("AuthorId")]

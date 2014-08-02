@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -17,9 +18,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Formats
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Formats.ToListAsync());
+            return View(
+                await Task.Run(() => db.Formats.OrderBy(f => f.Id).ToPagedList(pageNumber, 10))
+            );
         }
 
         // GET: BackOffice/Formats/Details/5

@@ -121,6 +121,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -195,7 +196,6 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AboutController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
@@ -226,6 +226,8 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
     <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
+    <Compile Include="Models\KeywordRepository.cs" />
     <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
     <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
@@ -282,6 +284,61 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ClassificationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassificationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\CollectionStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DigitalPhotographStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\FormatStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormatStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ImageStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\KeywordStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeywordStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ProcessStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ShowcasePhotoStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\SpecimenStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpecimenStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\UiPrompts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -499,9 +556,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +577,50 @@
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ClassificationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClassificationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\CollectionStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CollectionStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DigitalPhotographStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DigitalPhotographStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocumentStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\FormatStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormatStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ImageStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\KeywordStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>KeywordStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ProcessStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ShowcasePhotoStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShowcasePhotoStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\SpecimenStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

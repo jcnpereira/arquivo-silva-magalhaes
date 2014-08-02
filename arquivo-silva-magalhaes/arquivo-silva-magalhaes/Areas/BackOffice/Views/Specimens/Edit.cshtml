@@ -124,15 +124,6 @@
                     @Html.ValidationMessageFor(model => specimen.Translations[i].InterventionDescription, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => specimen.Translations[i].Publication, new { @class = "col-md-2 control-label" })
-
-                <div class="col-md-8">
-                    @Html.TextAreaFor(model => specimen.Translations[i].Publication, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => specimen.Translations[i].Publication, "", new { @class = "text-danger" })
-                </div>
-            </div>
         }
 
         <button type="submit" class="btn btn-default col-md-offset-2">Terminar</button>

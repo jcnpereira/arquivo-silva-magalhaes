@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,15 +11,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
     public enum SpecimenState : byte
     {
-        [Display(ResourceType = typeof(DataStrings), Name = "SpecimenState__Poor")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State_1")]
         Poor = 1,
-        [Display(Name = "Mediocre")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State_2")]
         Mediocre = 2,
-        [Display(Name = "Satisfatório")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State_3")]
         Fair = 3,
-        [Display(Name = "Bom")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State_4")]
         Good = 4,
-        [Display(Name = "Muito Bom")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State_5")]
         VeryGood = 5
     }
 
@@ -26,8 +27,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Specimen()
         {
-            this.Translations = new HashSet<SpecimenTranslation>();
-            this.DigitalPhotographs = new HashSet<DigitalPhotograph>();
+            this.Translations = new List<SpecimenTranslation>();
+            this.DigitalPhotographs = new List<DigitalPhotograph>();
 
             State = SpecimenState.Fair;
         }
@@ -35,22 +36,23 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
-        // [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "AuthorCatalogCode")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "AuthorCatalogationCode")]
         public string AuthorCatalogationCode { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "HasMarksOrStamps")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "HasMarksOrStamps")]
         public bool HasMarksOrStamps { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Notes")]
         public string Notes { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "State")]
         public SpecimenState? State { get; set; }
 
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(100)]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "ReferenceCode")]
         public string ReferenceCode { get; set; }
 
         [Required]
@@ -68,9 +70,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("FormatId")]
         public virtual Format Format { get; set; }
 
-        public virtual ICollection<DigitalPhotograph> DigitalPhotographs { get; set; }
+        public virtual IList<DigitalPhotograph> DigitalPhotographs { get; set; }
 
-        public virtual ICollection<SpecimenTranslation> Translations { get; set; }
+        public virtual IList<SpecimenTranslation> Translations { get; set; }
     }
 
     public class SpecimenTranslation
@@ -83,28 +85,16 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
-        //[Required]
-        //[Display(ResourceType = typeof(DataStrings), Name = "Title")]
-        //public string Title { get; set; }
-
-        //[Required]
-        //[Display(ResourceType = typeof(DataStrings), Name = "Topic")]
-        //public string Topic { get; set; }
-
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Description")]
         public string Description { get; set; }
 
         [Required, DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "StateDetailed")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "DetailedStateDescription")]
         public string DetailedStateDescription { get; set; }
 
         [Required, DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "InterventionDescription")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "InterventionDescription")]
         public string InterventionDescription { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Publication")]
-        public string Publication { get; set; }
     }
 }

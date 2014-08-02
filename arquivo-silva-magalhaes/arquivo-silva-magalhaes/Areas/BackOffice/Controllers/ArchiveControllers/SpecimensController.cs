@@ -30,11 +30,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 {
                     ViewBag.imageId = imageId.Value;
 
-                    return View(_db.Specimens
+                    return View(await Task.Run(() => _db.Specimens
                         .Include(s => s.Translations)
                         .Where(s => s.ImageId == imageId)
                         .OrderBy(s => s.Id)
-                        .ToPagedList(pageNumber, 10));
+                        .ToPagedList(pageNumber, 10)));
                 }
                 else
                 {

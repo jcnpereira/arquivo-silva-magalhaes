@@ -1,11 +1,10 @@
 ﻿@model Author
 
 @{
-    ViewBag.Title = "Details";
-    var translations = Model.Translations.ToList();
+    ViewBag.Title = String.Format(AuthorStrings.DetailsTitleFormat, Model.FirstName + " " + Model.LastName);
 }
 
-<h2>Detalhes do autor</h2>
+<h2>@String.Format(AuthorStrings.DetailsTitleFormat, Model.FirstName + " " + Model.LastName)</h2>
 
 <div class="btn-toolbar btn-group" role="toolbar">
     <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
@@ -23,66 +22,86 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+
+    <div class="container">
+        <h4>
             @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        </h4>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.FirstName)
-        </dd>
+        </p>
 
-        <dt>
+        <h4>
             @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+        </h4>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.LastName)
-        </dd>
+        </p>
 
-        <dt>
+        <h4>
             @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
+        </h4>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.BirthDate)
-        </dd>
+        </p>
 
-        <dt>
+        <h4>
             @Html.DisplayNameFor(model => model.DeathDate)
-        </dt>
+        </h4>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.DeathDate)
-        </dd>
+        </p>
 
-        @foreach (var t in translations)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => t.Nationality)
-            </dt>
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Translations.Count(); i++)
+            {
+                var langCode = Model.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@langCode</a>
+                </li>
+            }
+        </ul>
+        <div class="tab-content">
 
-            <dd>
-                @Html.DisplayFor(model => t.Nationality)
-            </dd>
+            @foreach (var t in Model.Translations)
+            {
+                var langCode = t.LanguageCode;
 
-            <dt>
-                @Html.DisplayNameFor(model => t.Biography)
-            </dt>
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+                    <h4>
+                        @Html.DisplayNameFor(model => t.Nationality)
+                    </h4>
 
-            <dd>
-                @Html.DisplayMultilineFor(model => t.Biography)
-            </dd>
+                    <p>
+                        @Html.DisplayFor(model => t.Nationality)
+                    </p>
 
-            <dt>
-                @Html.DisplayNameFor(model => t.Curriculum)
-            </dt>
+                    <h4>
+                        @Html.DisplayNameFor(model => t.Biography)
+                    </h4>
 
-            <dd>
-                @Html.DisplayMultilineFor(model => t.Curriculum)
-            </dd>
-        }
-    </dl>
+                    <p>
+                        @Html.DisplayMultilineFor(model => t.Biography)
+                    </p>
+
+                    <h4>
+                        @Html.DisplayNameFor(model => t.Curriculum)
+                    </h4>
+
+                    <p>
+                        @Html.DisplayMultilineFor(model => t.Curriculum)
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
 
 
 </div>

@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,14 +11,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Document()
         {
-            this.Translations = new HashSet<DocumentTranslation>();
-            this.Images = new HashSet<Image>();
+            this.Translations = new List<DocumentTranslation>();
+            this.Images = new List<Image>();
         }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -25,33 +27,31 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(100)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ResponsibleName")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "ResponsibleName")]
         public string ResponsibleName { get; set; }
 
         /// <summary>
         /// The date on which this document was made.
         /// </summary>
-        [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "DocumentDate")]
-        public DateTime DocumentDate { get; set; }
+        [Display(ResourceType = typeof(DocumentStrings), Name = "DocumentDate")]
+        public DateTime? DocumentDate { get; set; }
 
         /// <summary>
         /// The date on which this document was catalogued.
         /// </summary>
         /// [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "CatalogationDate")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogationDate")]
         public DateTime CatalogationDate { get; set; }
 
         /// <summary>
         /// Notes issued by the people in the archive about
         /// this document.
         /// </summary>
-        [Required]
         [DataType(DataType.MultilineText)]
         [MaxLength(1000)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Notes")]
         public string Notes { get; set; }
 
         /// <summary>
@@ -60,24 +60,22 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [MaxLength(200), Index(IsUnique = true)]
-        [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
-        [Required]
         public int CollectionId { get; set; }
 
         [ForeignKey("CollectionId")]
         public virtual Collection Collection { get; set; }
 
-        [Required]
         public int AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual Author Author { get; set; }
 
-        public virtual ICollection<DocumentTranslation> Translations { get; set; }
+        public virtual IList<DocumentTranslation> Translations { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual IList<Image> Images { get; set; }
     }
 
     public partial class DocumentTranslation
@@ -90,17 +88,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "DocumentLocation")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "DocumentLocation")]
         public string DocumentLocation { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "FieldAndContents")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "FieldAndContents")]
         public string FieldAndContents { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Description")]
         public string Description { get; set; }
 
         [ForeignKey("DocumentId")]

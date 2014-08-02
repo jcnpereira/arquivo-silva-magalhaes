@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,11 +11,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
     public enum CollectionType : byte
     {
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType_Collection")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Type_Collection")]
         Collection = 1,
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType_Fond")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Type_Fond")]
         Fond = 2,
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType_Other")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Type_Other")]
         Other = 255
     }
 
@@ -25,24 +26,18 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Collection()
         {
-            this.Translations = new HashSet<CollectionTranslation>();
-            this.Documents = new HashSet<Document>();
-            this.Authors = new HashSet<Author>();
+            this.Translations = new List<CollectionTranslation>();
+            this.Documents = new List<Document>();
+            this.Authors = new List<Author>();
         }
 
         [Key]
         public int Id { get; set; }
 
         /// <summary>
-        /// The name of this collection.
-        /// </summary>
-        [Display(ResourceType = typeof(DataStrings), Name = "Name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// The type of this collection.
         /// </summary>
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionType"), Required]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Type"), Required]
         public CollectionType? Type { get; set; }
 
         /// <summary>
@@ -50,14 +45,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "InitialProductionDate")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "InitialProductionDate")]
         public DateTime InitialProductionDate { get; set; }
 
         /// <summary>
         /// The date on which this collection was created.
         /// </summary>
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "EndProductionDate")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "EndProductionDate")]
         public DateTime? EndProductionDate { get; set; }
 
         /// <summary>
@@ -69,25 +64,25 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// If the collection has attachments.
         /// </summary>
-        [Display(ResourceType = typeof(DataStrings), Name = "HasAttachments")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "HasAttachments")]
         public bool HasAttachments { get; set; }
 
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "AttachmentsDescriptions")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "AttachmentDescription")]
         public string AttachmentsDescriptions { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "OrganizationSystem")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "OrganizationSystem")]
         public string OrganizationSystem { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Notes")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Notes")]
         public string Notes { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
 
         /// <summary>
@@ -95,12 +90,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// collection.
         /// </summary>
         [Required, MaxLength(100), Index(IsUnique = true)]
-        [Display(ResourceType = typeof(DataStrings), Name = "CatalogCode")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
-        public virtual ICollection<CollectionTranslation> Translations { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
+        public virtual IList<CollectionTranslation> Translations { get; set; }
+        public virtual IList<Document> Documents { get; set; }
+        public virtual IList<Author> Authors { get; set; }
     }
 
     public partial class CollectionTranslation
@@ -114,32 +109,32 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Title")]
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Description")]
         public string Description { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Provenience")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Provenience")]
         public string Provenience { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "AdministrativeAndBiographicStory")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "AdministrativeAndBiographicStory")]
         public string AdministrativeAndBiographicStory { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Dimension")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Dimension")]
         public string Dimension { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "FieldAndContents")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "FieldAndContents")]
         public string FieldAndContents { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
         [ForeignKey("CollectionId")]

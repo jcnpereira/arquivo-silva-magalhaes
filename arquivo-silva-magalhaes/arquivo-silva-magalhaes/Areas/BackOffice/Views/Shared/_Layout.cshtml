@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Arquivo Fotográfico Silva e Magalhães </title>
+    <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -82,7 +82,11 @@
         @RenderBody()
         <hr />
         <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT</p>
+            <p>
+                <a href="@Url.Action("About", "Home")">
+                    &copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT
+                </a>
+            </p>
         </footer>
     </div>
 
