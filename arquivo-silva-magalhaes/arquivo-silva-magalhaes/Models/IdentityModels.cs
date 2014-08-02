@@ -16,5 +16,9 @@ namespace ArquivoSilvaMagalhaes.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink> ReferencedLinks { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ReferencedLinkModels> ReferencedLinkModels { get; set; }
     }
 }

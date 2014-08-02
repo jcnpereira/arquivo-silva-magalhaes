@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,14 +11,19 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : Controller
     {
+        private ArchiveDataContext db = new ArchiveDataContext();
+
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult Contactos()
         {
             return View();
         }
+
 
         public ActionResult Acervo()
         {
@@ -44,7 +52,27 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         public ActionResult Links()
         {
-            return View();
+            
+            //var links = db.ReferencedLinks.ToList();
+            
+            return View(db.ReferencedLinks);
+
+            //var links = from l in db.ReferencedLinks
+            //            select new ReferencedLink
+            //         {
+            //             Id=l.Id,
+            //             Title = l.Title,
+            //             Link = l.Link,
+            //             DateOfCreation=l.DateOfCreation,
+            //             LastModifiedDate=l.LastModifiedDate,
+            //             Description=l.Description,
+            //             IsUsefulLink=l.IsUsefulLink,
+            //             EventsUsingThis=l.EventsUsingThis,
+            //             NewsUsingThis=l.NewsUsingThis
+            //         };
+
+            //return View(links);
+            //return View();
         }
 
         public ActionResult Loja()
@@ -67,18 +95,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
