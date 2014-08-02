@@ -158,15 +158,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 })
                 .ToListAsync();
 
-            var query = from c in _db.Collections
-                        join ct in _db.CollectionTranslations on c.Id equals ct.CollectionId
-                        where ct.LanguageCode == LanguageDefinitions.DefaultLanguage
-                        select new SelectListItem
-                        {
-                            Selected = d.CollectionId == c.Id,
-                            Value = c.Id.ToString(),
-                            Text = c.CatalogCode + " - " + ct.Title
-                        };
+            var query = _db.Collections
+                .Join(_db.CollectionTranslations, (c) => c.Id, (ct) => ct.CollectionId, (c, ct) => new SelectListItem 
+                {
+                    Selected = d.CollectionId == c.Id,
+                    Value = c.Id.ToString(),
+                    Text = c.CatalogCode + " - " + ct.Title
+                });
 
             model.AvailableCollections = await query.ToListAsync();
 

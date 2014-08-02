@@ -12,6 +12,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -20,15 +21,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: BackOffice/Processes
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Processes
+            return View(await Task.Run(() => db.Processes
+                .OrderBy(p => p.Id)
                 .Select(p => new ProcessViewModel
                 {
                     Id = p.Id,
                     Value = p.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
                 })
-                .ToListAsync());
+                .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Processes/Details/5

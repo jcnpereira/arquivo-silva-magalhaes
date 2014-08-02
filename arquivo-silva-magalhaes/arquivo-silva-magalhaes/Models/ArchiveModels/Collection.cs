@@ -58,7 +58,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
-        [Required]
+        //[Required]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "LogoLocation")]
+        [DataType(DataType.ImageUrl)]
         public string LogoLocation { get; set; }
 
         /// <summary>
@@ -93,8 +95,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(CollectionStrings), Name = "CatalogCode")]
         public string CatalogCode { get; set; }
 
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Translations")]
         public virtual IList<CollectionTranslation> Translations { get; set; }
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Documents")]
         public virtual IList<Document> Documents { get; set; }
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Authors")]
         public virtual IList<Author> Authors { get; set; }
     }
 

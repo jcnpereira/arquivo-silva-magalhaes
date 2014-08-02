@@ -195,6 +195,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
@@ -355,7 +356,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ValidationErrorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
@@ -551,6 +558,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Areas\BackOffice\Views\Users\" />
     <Folder Include="Public\DocumentsAttachment\" />
     <Folder Include="Public\Images\App_LocalResources\" />
   </ItemGroup>
@@ -633,6 +641,10 @@
     <EmbeddedResource Include="Resources\SiteModelStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationErrorStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

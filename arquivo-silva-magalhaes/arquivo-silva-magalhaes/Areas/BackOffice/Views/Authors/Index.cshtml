@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<Author>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = AuthorStrings.EntityNamePlural;
 }
 
-<h2>Autores</h2>
+<h2>@AuthorStrings.EntityNamePlural</h2>
 
 <div class="btn-toolbar" role="toolbar">
     <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-arrow-left"></span>
+        <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
     </a>
     <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-plus"></span> @UiStrings.New
     </a>
 </div>
 
@@ -19,7 +19,7 @@
     <thead>
         <tr>
             <th>
-                @DataStrings.Name
+                @AuthorStrings.Name
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Nationality)
@@ -50,12 +50,14 @@
                     </a>
 
                     @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@AuthorStrings.DeleteWarningMessage">
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>
-
-                @Html.ActionLink(@DataStrings.Collection__Collections, "Index", "Collections", new { authorId = item.Id }, null)
+                &nbsp;
+                @Html.ActionLink(DataStrings.Collection__Collections, "Index", "Collections", new { authorId = item.Id }, null)
+                &nbsp;
+                @Html.ActionLink(DocumentStrings.EntityNamePlural, "Index", "Documents", new { authorId = item.Id }, null)
             </td>
         </tr>
     }

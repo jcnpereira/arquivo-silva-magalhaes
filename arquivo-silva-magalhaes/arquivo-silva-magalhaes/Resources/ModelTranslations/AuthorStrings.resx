@@ -123,14 +123,26 @@
   <data name="BirthDate" xml:space="preserve">
     <value>Data de nascimento</value>
   </data>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar autor</value>
+  </data>
   <data name="Curriculum" xml:space="preserve">
     <value>Currículo</value>
   </data>
   <data name="DeathDate" xml:space="preserve">
     <value>Data de falecimento</value>
   </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar autor {0}</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este autor? Todos os itens relacionados a este também serão eliminados!</value>
+  </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Detalhes do autor {0}</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar autor {0}</value>
   </data>
   <data name="EntityName" xml:space="preserve">
     <value>Autor</value>

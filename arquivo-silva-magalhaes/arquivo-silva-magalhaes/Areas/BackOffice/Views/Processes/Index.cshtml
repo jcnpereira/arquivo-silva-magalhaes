@@ -51,6 +51,8 @@
     }
 
 </table>
+
+@Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")
 }

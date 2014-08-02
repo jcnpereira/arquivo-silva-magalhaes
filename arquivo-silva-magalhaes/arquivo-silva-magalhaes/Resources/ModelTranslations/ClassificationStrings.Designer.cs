@@ -61,6 +61,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Classificação.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Classificações.
+        /// </summary>
+        public static string EntityNamePlural {
+            get {
+                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esta classificação já existe..
         /// </summary>
         public static string ValError_AlreadyExists {

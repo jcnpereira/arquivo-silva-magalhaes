@@ -64,23 +64,42 @@ namespace ArquivoSilvaMagalhaes.Utilitites
             return MvcHtmlString.Create(result);
         }
 
-        public static MvcHtmlString FileUploadFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string acceptedFileType = "*", bool multiple = false, object htmlAttributes = null)
+        public static MvcHtmlString FileUploadFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
         {
             var name = ExpressionHelper.GetExpressionText(expression);
             var builder = new TagBuilder("input");
             builder.Attributes["type"] = "file";
-            builder.Attributes["accept"] = acceptedFileType;
             builder.Attributes["name"] = name;
-            if (multiple)
+
+            var type = typeof(TModel);
+
+            var prop = type.GetProperty(name);
+            var required = prop.GetCustomAttributes(typeof(RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
+            var display = prop.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
+
+
+            if (required != null)
             {
-                builder.Attributes["multiple"] = "multiple";
+                if (HtmlHelper.UnobtrusiveJavaScriptEnabled)
+                {
+                    builder.Attributes["data-val"] = "true";
+
+                    builder.Attributes["data-val-required"] = 
+                        required.FormatErrorMessage(display != null ? display.GetName() : name);
+                }
+                else
+                {
+                    builder.Attributes["required"] = "";
+                }
             }
 
             if (htmlAttributes != null)
             {
-                foreach (var property in htmlAttributes.GetType().GetProperties())
+                var attributes = HtmlHelper.ObjectToDictionary(htmlAttributes);
+
+                foreach (var key in attributes.Keys)
                 {
-                    builder.Attributes[property.Name] = property.GetValue(htmlAttributes).ToString();
+                    builder.Attributes[key] = attributes[key].ToString();
                 }
             }
 

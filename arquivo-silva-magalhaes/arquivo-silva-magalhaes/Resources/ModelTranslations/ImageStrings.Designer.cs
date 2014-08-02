@@ -70,6 +70,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagens.
+        /// </summary>
+        public static string EntityNamePlural {
+            get {
+                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Código de referência.
         /// </summary>
         public static string ImageCode {

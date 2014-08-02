@@ -120,6 +120,12 @@
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Imagens</value>
+  </data>
   <data name="ImageCode" xml:space="preserve">
     <value>Código de referência</value>
   </data>

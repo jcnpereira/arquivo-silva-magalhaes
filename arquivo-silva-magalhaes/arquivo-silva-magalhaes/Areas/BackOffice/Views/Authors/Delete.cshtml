@@ -1,56 +1,97 @@
 ﻿@model Author
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = String.Format(AuthorStrings.DeleteTitleFormat, Model.FirstName + " " + Model.LastName);
 }
 
-<h2>Remover autor</h2>
+<h2>@String.Format(AuthorStrings.DeleteTitleFormat, Model.FirstName + " " + Model.LastName)</h2>
 
-<h3>Tem a certeza que pretende apagar este autor?</h3>
-<div>
+<div class="alert alert-danger" role="alert">@String.Format(AuthorStrings.DeleteWarningMessage, Model.FirstName + " " + Model.LastName)</div>
 
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+<div class="container">
+    <h4>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.FirstName)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.LastName)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.LastName)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeathDate)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.BirthDate)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.DeathDate)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.DeathDate)
+    </h4>
 
-    </dl>
+    <p>
+        @Html.DisplayFor(model => model.DeathDate)
+    </p>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.Translations.Count(); i++)
+        {
+            var langCode = Model.Translations[i].LanguageCode;
+            <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                <a href="#@langCode"
+                   role="tab"
+                   data-toggle="tab">@langCode</a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content">
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar à lista", "Index")
-        </div>
-    }
+        @foreach (var t in Model.Translations)
+        {
+            var langCode = t.LanguageCode;
+
+            <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                 id="@langCode">
+                <h4>
+                    @Html.DisplayNameFor(model => t.Nationality)
+                </h4>
+
+                <p>
+                    @Html.DisplayFor(model => t.Nationality)
+                </p>
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Biography)
+                </h4>
+
+                <p>
+                    @Html.DisplayMultilineFor(model => t.Biography)
+                </p>
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Curriculum)
+                </h4>
+
+                <p>
+                    @Html.DisplayMultilineFor(model => t.Curriculum)
+                </p>
+            </div>
+        }
+    </div>
 </div>
+
+<form method="post" action="@Url.Action("Delete")">
+    @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">@UiStrings.Delete</button>
+        @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-default" })
+</form>
+

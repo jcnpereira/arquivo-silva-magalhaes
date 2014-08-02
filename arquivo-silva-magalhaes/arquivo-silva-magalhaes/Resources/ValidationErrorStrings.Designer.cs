@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
+namespace ArquivoSilvaMagalhaes.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class FormatStrings {
+    internal class ValidationErrorStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal FormatStrings() {
+        internal ValidationErrorStrings() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ModelTranslations.FormatStrings", typeof(FormatStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ValidationErrorStrings", typeof(ValidationErrorStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,29 +61,11 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formato.
+        ///   Looks up a localized string similar to O ficheiro do campo {0} tem que ser do tipo {1}..
         /// </summary>
-        public static string EntityName {
+        internal static string InvalidFileType {
             get {
-                return ResourceManager.GetString("EntityName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Formatos.
-        /// </summary>
-        public static string EntityNamePlural {
-            get {
-                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Formato.
-        /// </summary>
-        public static string Format {
-            get {
-                return ResourceManager.GetString("Format", resourceCulture);
+                return ResourceManager.GetString("InvalidFileType", resourceCulture);
             }
         }
     }

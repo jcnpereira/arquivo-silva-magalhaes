@@ -1,11 +1,11 @@
 ﻿@model AuthorEditViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = AuthorStrings.CreateTitleFormat;
     
 }
 
-<h2>Editar autor</h2>
+<h2>@AuthorStrings.CreateTitleFormat</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,32 +17,32 @@
 
     <div class="form-horizontal">
         <div class="form-group">
-            @Html.LabelFor(model => model.Author.FirstName, htmlAttributes: new { @class = "control-label" })
-            <div>
+            @Html.LabelFor(model => model.Author.FirstName, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.Author.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Author.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Author.LastName, htmlAttributes: new { @class = "control-label" })
-            <div>
+            @Html.LabelFor(model => model.Author.LastName, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.Author.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Author.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Author.BirthDate, htmlAttributes: new { @class = "control-label" })
-            <div>
+            @Html.LabelFor(model => model.Author.BirthDate, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.Author.BirthDate, new { htmlAttributes = new { @class = "form-control" }})
                 @Html.ValidationMessageFor(model => model.Author.BirthDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Author.DeathDate, htmlAttributes: new { @class = "control-label" })
-            <div>
+            @Html.LabelFor(model => model.Author.DeathDate, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
                 @Html.EditorFor(model => model.Author.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Author.DeathDate, "", new { @class = "text-danger" })
             </div>
@@ -57,30 +57,36 @@
             @Html.HiddenFor(model => model.Author.Translations[i].LanguageCode)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Nationality, htmlAttributes: new { @class = "control-label" })
-                <div>
+                @Html.LabelFor(model => model.Author.Translations[i].Nationality, htmlAttributes: new { @class = "control-label col-sm-2" })
+                <div class="col-sm-10">
                     @Html.EditorFor(model => model.Author.Translations[i].Nationality, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Author.Translations[i].Nationality, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Biography, htmlAttributes: new { @class = "control-label" })
-                <div>
+                @Html.LabelFor(model => model.Author.Translations[i].Biography, htmlAttributes: new { @class = "control-label col-sm-2" })
+                <div class="col-sm-10">
                     @Html.EditorFor(model => model.Author.Translations[i].Biography, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Author.Translations[i].Biography, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Curriculum, htmlAttributes: new { @class = "control-label" })
-                <div>
+                @Html.LabelFor(model => model.Author.Translations[i].Curriculum, htmlAttributes: new { @class = "control-label col-sm-2" })
+                <div class="col-sm-10">
                     @Html.EditorFor(model => model.Author.Translations[i].Curriculum, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Author.Translations[i].Curriculum, "", new { @class = "text-danger" })
                 </div>
             </div>
         }
-    </div>
 
-    @Html.Partial("_SubmitBackPartial")
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">@UiStrings.Create</button>
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+    
 }

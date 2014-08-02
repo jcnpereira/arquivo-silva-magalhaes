@@ -21,7 +21,7 @@
     <div class="form-horizontal" data-ng-controller="FormController as form">
 
         <div class="form-group">
-            @Html.FileUploadFor(model => model.Photos, "image/*", multiple: true, htmlAttributes: new { @class = "form-control-static", onchange = "angular.element(this).scope().getPictures()" })
+            @Html.FileUploadFor(model => model.Photos, htmlAttributes: new { @class = "form-control-static", onchange = "angular.element(this).scope().getPictures()", accept = "image/*" })
         </div>
 
         <div data-ng-repeat="photo in photos">

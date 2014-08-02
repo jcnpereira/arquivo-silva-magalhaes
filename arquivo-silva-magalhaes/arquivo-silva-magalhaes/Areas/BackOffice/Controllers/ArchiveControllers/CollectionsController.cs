@@ -21,10 +21,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/Collection/
-        public async Task<ActionResult> Index(int? authorId, int pageNumber = 1)
+        public async Task<ActionResult> Index(int authorId = 0, int pageNumber = 1)
         {
-            return View((await db.Collections
-                .ToListAsync()).ToPagedList(pageNumber, 10));
+            var query = db.Collections
+                .Include(c => c.Translations);
+
+            if (authorId > 0)
+            {
+                var author = await db.Authors.FindAsync(authorId);
+
+                if (author != null)
+                {
+                    query = query.Where(c => c.Authors.Any(a => a.Id == authorId));
+                }
+            }
+
+            return View(await Task.Run(() => 
+                query
+                    .OrderBy(c => c.Id)
+                    .ToPagedList(pageNumber, 10)));
         }
 
         // GET: /BackOffice/Collection/Details/5
@@ -94,6 +109,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Dest = Path.Combine(Server.MapPath("~/Public/Collections"), newName),
                     CreateParentDirectory = true
                 };
+
+                ImageBuilder.Current.Build(j);
 
                 collection.LogoLocation = newName;
 

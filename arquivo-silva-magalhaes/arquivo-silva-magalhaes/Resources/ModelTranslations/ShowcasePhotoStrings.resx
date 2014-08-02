@@ -126,6 +126,12 @@
   <data name="CommenterName" xml:space="preserve">
     <value>Nome do comentador</value>
   </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Fotografia em destaque</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Fotografias em destaque</value>
+  </data>
   <data name="IsEmailVisible" xml:space="preserve">
     <value>Endereço de e-mail visível ao público</value>
   </data>

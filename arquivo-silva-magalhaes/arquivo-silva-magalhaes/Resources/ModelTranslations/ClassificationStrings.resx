@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EntityName" xml:space="preserve">
+    <value>Classificação</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Classificações</value>
+  </data>
   <data name="ValError_AlreadyExists" xml:space="preserve">
     <value>Esta classificação já existe.</value>
   </data>

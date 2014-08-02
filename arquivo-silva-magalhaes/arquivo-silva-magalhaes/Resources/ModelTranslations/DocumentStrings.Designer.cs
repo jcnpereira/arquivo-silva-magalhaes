@@ -106,6 +106,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Documento.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documentos.
+        /// </summary>
+        public static string EntityNamePlural {
+            get {
+                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Âmbito e Conteúdo.
         /// </summary>
         public static string FieldAndContents {

@@ -123,20 +123,47 @@
   <data name="AttachmentDescription" xml:space="preserve">
     <value>Descrição de anexos</value>
   </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Autores desta coleção</value>
+  </data>
   <data name="CatalogCode" xml:space="preserve">
     <value>Código de referência</value>
   </data>
   <data name="CopyrightInfo" xml:space="preserve">
     <value>Informações sobre direitos de autor</value>
   </data>
+  <data name="CreateTitle" xml:space="preserve">
+    <value>Adicionar coleção</value>
+  </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar coleção {0}</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta coleção? Todos os documentos (e elementos associados a estes) serão eliminados!</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da coleção {0}</value>
   </data>
   <data name="Dimension" xml:space="preserve">
     <value>Dimensão</value>
   </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documentos desta coleção</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar coleção {0}</value>
+  </data>
   <data name="EndProductionDate" xml:space="preserve">
     <value>Data de fim de produção</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Coleção</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Coleções</value>
   </data>
   <data name="FieldAndContents" xml:space="preserve">
     <value>Âmbito e conteúdo</value>
@@ -164,6 +191,9 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Título da coleção</value>
+  </data>
+  <data name="Translations" xml:space="preserve">
+    <value>Traduções desta coleção</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Tipo de coleção</value>

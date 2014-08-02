@@ -117,40 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CatalogationDate" xml:space="preserve">
-    <value>Data de catalogação</value>
-  </data>
-  <data name="CatalogCode" xml:space="preserve">
-    <value>Código de referência</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Descrição</value>
-  </data>
-  <data name="DocumentDate" xml:space="preserve">
-    <value>Data do documento</value>
-  </data>
-  <data name="DocumentLocation" xml:space="preserve">
-    <value>Localização do documento</value>
-  </data>
-  <data name="FieldAndContents" xml:space="preserve">
-    <value>Âmbito e Conteúdo</value>
-  </data>
-  <data name="Notes" xml:space="preserve">
-    <value>Notas</value>
-  </data>
-  <data name="ResponsibleName" xml:space="preserve">
-    <value>Nome do responsável</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Título do documento</value>
-  </data>
-  <data name="UnknownDocumentDate" xml:space="preserve">
-    <value>Data desconhecida</value>
-  </data>
-  <data name="EntityName" xml:space="preserve">
-    <value>Documento</value>
-  </data>
-  <data name="EntityNamePlural" xml:space="preserve">
-    <value>Documentos</value>
+  <data name="InvalidFileType" xml:space="preserve">
+    <value>O ficheiro do campo {0} tem que ser do tipo {1}.</value>
   </data>
 </root>

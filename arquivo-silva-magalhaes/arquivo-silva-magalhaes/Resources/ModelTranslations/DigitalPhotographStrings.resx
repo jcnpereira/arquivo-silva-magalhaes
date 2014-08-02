@@ -120,6 +120,12 @@
   <data name="CopyrightInfo" xml:space="preserve">
     <value>Informações sobre direitos de autor</value>
   </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Fotografia digital</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Fotografias digitais</value>
+  </data>
   <data name="IsVisible" xml:space="preserve">
     <value>Visível ao público</value>
   </data>
