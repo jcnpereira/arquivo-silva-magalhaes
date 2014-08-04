@@ -70,6 +70,33 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar espécie fotográfica.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar espécie fotográfica.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta espécie fotográfica?.
+        /// </summary>
+        public static string DeleteWarning {
+            get {
+                return ResourceManager.GetString("DeleteWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Description {
@@ -84,6 +111,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string DetailedStateDescription {
             get {
                 return ResourceManager.GetString("DetailedStateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar espécie fotográfica.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
             }
         }
         
@@ -106,11 +142,29 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formato.
+        /// </summary>
+        public static string Format {
+            get {
+                return ResourceManager.GetString("Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tem marcas ou carimbos.
         /// </summary>
         public static string HasMarksOrStamps {
             get {
                 return ResourceManager.GetString("HasMarksOrStamps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
@@ -129,6 +183,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string Notes {
             get {
                 return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processo fotográfico.
+        /// </summary>
+        public static string Process {
+            get {
+                return ResourceManager.GetString("Process", resourceCulture);
             }
         }
         

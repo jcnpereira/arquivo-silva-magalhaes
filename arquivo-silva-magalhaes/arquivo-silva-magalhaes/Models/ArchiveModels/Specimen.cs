@@ -56,16 +56,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string ReferenceCode { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Image")]
         public int ImageId { get; set; }
         [ForeignKey("ImageId")]
         public virtual Image Image { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Process")]
         public int ProcessId { get; set; }
         [ForeignKey("ProcessId")]
         public virtual Process Process { get; set; }
 
         [Required]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Format")]
         public int FormatId { get; set; }
         [ForeignKey("FormatId")]
         public virtual Format Format { get; set; }

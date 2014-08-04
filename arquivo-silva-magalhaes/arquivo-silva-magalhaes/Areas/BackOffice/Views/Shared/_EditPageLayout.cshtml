@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+@RenderBody()
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bootstrap-date-picker")
+    <script type="text/javascript" src="~/Scripts/locales/bootstrap-datepicker.@(System.Threading.Thread.CurrentThread.CurrentUICulture.Name).js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    
+}

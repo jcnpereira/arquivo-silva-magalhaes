@@ -118,22 +118,47 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(GenerateViewModel(image));
         }
 
-        public ActionResult Edit(int? imageId)
+        public async Task<ActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var image = await _db.Images.FindAsync(id);
+
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(GenerateViewModel(image));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Image i)
+        public async Task<ActionResult> Edit(Image image, int[] keywordIds)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(i).State = EntityState.Modified;
-                _db.SaveChanges();
+                // "Force-load" the collection and the authors.
+                _db.Images.Attach(image);
+                _db.Entry(image).Collection(i => i.Keywords).Load();
+                // The forced-loading was required so that the author list can be updated.
+                image.Keywords = _db.Keywords.Where(k => keywordIds.Contains(k.Id)).ToList();
+
+                _db.Entry(image).State = EntityState.Modified;
+
+                foreach (var t in image.Translations)
+                {
+                    _db.Entry(t).State = EntityState.Modified;
+                }
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
             }
 
-            return View(i);
+            return View(GenerateViewModel(image));
         }
 
         public async Task<ActionResult> Delete(int? id)

@@ -35,7 +35,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string ImageCode { get; set; }
 
         [ForeignKey("DocumentId")]
+        [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public virtual Document Document { get; set; }
+        [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public int DocumentId { get; set; }
 
         public int? DigitalPhotographId { get; set; }
@@ -43,6 +45,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual DigitalPhotograph DigitalPhotograph { get; set; }
 
         public virtual IList<ImageTranslation> Translations { get; set; }
+        [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
         public virtual IList<Keyword> Keywords { get; set; }
         public virtual IList<Specimen> Specimens { get; set; }
     }

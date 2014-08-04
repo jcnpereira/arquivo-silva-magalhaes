@@ -75,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(author);
+            return View(new AuthorEditViewModel { Author = author });
         }
 
         // GET: BackOffice/Authors/Edit/5

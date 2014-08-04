@@ -61,6 +61,51 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar classificação.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar classificação.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta classificação? Todas as imagens associadas a esta (e, por consequência, espécies) também serão eliminadas!.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes da classificação.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar classificação.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Classificação.
         /// </summary>
         public static string EntityName {

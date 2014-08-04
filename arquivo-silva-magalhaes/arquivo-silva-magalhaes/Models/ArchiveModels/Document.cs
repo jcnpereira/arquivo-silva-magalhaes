@@ -83,6 +83,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 0)]
         public int DocumentId { get; set; }
 
+        [Display(ResourceType = typeof(UiStrings), Name = "Language")]
         [Key, Column(Order = 1), Required]
         public string LanguageCode { get; set; }
 

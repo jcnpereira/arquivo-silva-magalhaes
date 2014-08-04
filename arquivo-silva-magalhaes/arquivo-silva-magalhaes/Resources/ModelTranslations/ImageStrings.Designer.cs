@@ -61,11 +61,38 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar imagem.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documento desta imagem.
+        /// </summary>
+        public static string Document {
+            get {
+                return ResourceManager.GetString("Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar imagem.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
             }
         }
         
@@ -93,6 +120,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string ImageCode {
             get {
                 return ResourceManager.GetString("ImageCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indexações desta imagem.
+        /// </summary>
+        public static string Keywords {
+            get {
+                return ResourceManager.GetString("Keywords", resourceCulture);
             }
         }
         

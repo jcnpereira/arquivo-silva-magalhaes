@@ -25,11 +25,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             return View(await Task.Run(() => db.Processes
                 .OrderBy(p => p.Id)
-                .Select(p => new ProcessViewModel
-                {
-                    Id = p.Id,
-                    Value = p.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                })
                 .ToPagedList(pageNumber, 10)));
         }
 
@@ -45,20 +40,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new ProcessViewModel
-            {
-                Id = p.Id,
-                Value = p.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-            });
+            return View(p);
         }
 
         // GET: BackOffice/Processes/Create
         public ActionResult Create()
         {
-            return View(new ProcessEditViewModel
+            var model = new Process();
+            model.Translations.Add(new ProcessTranslation
                 {
                     LanguageCode = LanguageDefinitions.DefaultLanguage
                 });
+
+            return View(model);
         }
 
         // POST: BackOffice/Processes/Create
@@ -66,23 +60,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ProcessTranslation translation)
+        public async Task<ActionResult> Create(Process process)
         {
             if (ModelState.IsValid)
             {
-                var process = new Process();
-
-                process.Translations.Add(translation);
                 db.Processes.Add(process);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(new ProcessEditViewModel
-                {
-                    LanguageCode = translation.LanguageCode,
-                    Value = translation.Value
-                });
+            return View(process);
         }
 
         // GET: BackOffice/Processes/Edit/5
@@ -93,16 +80,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Process process = await db.Processes.FindAsync(id);
+            
             if (process == null)
             {
                 return HttpNotFound();
             }
-            return View(new ProcessEditViewModel
-                {
-                    ProcessId = process.Id,
-                    LanguageCode = LanguageDefinitions.DefaultLanguage,
-                    Value = process.Translations.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                });
+            process.Translations = process.Translations.ToList();
+            return View(process);
         }
 
         // POST: BackOffice/Processes/Edit/5
@@ -110,19 +94,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ProcessTranslation translation)
+        public async Task<ActionResult> Edit(Process process)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(translation).State = EntityState.Modified;
+                foreach (var translation in process.Translations)
+                {
+                    db.Entry(translation).State = EntityState.Modified; 
+                }
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(new ProcessEditViewModel
-            {
-                LanguageCode = translation.LanguageCode,
-                Value = translation.Value
-            });
+            return View(process);
         }
 
         // GET: BackOffice/Processes/Delete/5
@@ -133,15 +116,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Process p = await db.Processes.FindAsync(id);
+            
             if (p == null)
             {
                 return HttpNotFound();
             }
-            return View(new ProcessViewModel
-            {
-                Id = p.Id,
-                Value = p.Translations.First(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-            });
+            p.Translations = p.Translations.ToList();
+            return View(p);
         }
 
         // POST: BackOffice/Processes/Delete/5

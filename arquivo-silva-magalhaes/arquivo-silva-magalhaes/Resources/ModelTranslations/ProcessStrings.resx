@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar processo</value>
+  </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar processo</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este processo? Todas as espécies associadas a este serão eliminadas!</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar processo</value>
+  </data>
   <data name="EntityName" xml:space="preserve">
     <value>Processo</value>
   </data>

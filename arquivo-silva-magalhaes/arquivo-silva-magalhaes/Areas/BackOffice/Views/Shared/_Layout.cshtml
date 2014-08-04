@@ -8,6 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
 
     @RenderSection("headscripts", required: false)
+
+    <link rel="stylesheet" href="~/Content/datepicker3.css" />
 </head>
 <body>
     @* Nav bar. *@
@@ -92,7 +94,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -120,4 +120,7 @@
   <data name="InvalidFileType" xml:space="preserve">
     <value>O ficheiro do campo {0} tem que ser do tipo {1}.</value>
   </data>
+  <data name="MustChooseAtLeastOne" xml:space="preserve">
+    <value>Tem que escolher pelo menos um item da lista.</value>
+  </data>
 </root>

@@ -68,5 +68,14 @@ namespace ArquivoSilvaMagalhaes.Resources {
                 return ResourceManager.GetString("InvalidFileType", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem que escolher pelo menos um item da lista..
+        /// </summary>
+        internal static string MustChooseAtLeastOne {
+            get {
+                return ResourceManager.GetString("MustChooseAtLeastOne", resourceCulture);
+            }
+        }
     }
 }

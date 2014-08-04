@@ -19,6 +19,5 @@ namespace ArquivoSilvaMagalhaes.Models
     {
         public ApplicationDbContext() : base("DefaultConnection") { }
 
-
     }
 }

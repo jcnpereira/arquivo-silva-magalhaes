@@ -61,6 +61,42 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar formato.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar formato.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este formato? Todas as espécies associadas a este também serão eliminadas!.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar formato.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Formato.
         /// </summary>
         public static string EntityName {

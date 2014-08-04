@@ -1,17 +1,9 @@
 ﻿@model SpecimenEditViewModel
 
 @{
-    ViewBag.Title = "Adicionar Espécie Fotográfica";
-
-    var specimen = new
-    {
-        Translations = Model.Specimen.Translations.ToList()
-    };
+    ViewBag.Title = SpecimenStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>Adicionar Espécie Fotográfica</h2>
-
-<hr />
 
 @using (Html.BeginForm())
 {
@@ -21,112 +13,43 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.AuthorCatalogationCode, new { @class = "col-md-2 control-label" })
+        @Html.PartialFor(model => model.Specimen, "_SpecimenMainFields")
 
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.Specimen.AuthorCatalogationCode, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.AuthorCatalogationCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.Partial("_SpecimenDropDownLists")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.ReferenceCode, new { @class = "col-md-2 control-label" })
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Specimen.Translations.Count(); i++)
+            {
+                var langCode = Model.Specimen.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
 
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.Specimen.ReferenceCode, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.ReferenceCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+            @for (var i = 0; i < Model.Specimen.Translations.Count; i++)
+            {
+                var langCode = Model.Specimen.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.HasMarksOrStamps, new { @class = "col-md-2 control-label" })
+                    @Html.PartialFor(model => model.Specimen.Translations[i], "_SpecimenTranslateableFields")
 
-            <div class="col-md-8">
-                @Html.CheckBoxFor(model => model.Specimen.HasMarksOrStamps, new { @class = "checkbox" })
-                @Html.ValidationMessageFor(model => model.Specimen.HasMarksOrStamps, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.State, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-8">
-                @Html.EnumDropDownListFor(model => model.Specimen.State, UiPrompts.ChooseOne, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.State, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.FormatId, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-8">
-                @Html.DropDownListFor(model => model.Specimen.FormatId, Model.AvailableFormats, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.FormatId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.ProcessId, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-8">
-                @Html.DropDownListFor(model => model.Specimen.ProcessId, Model.AvailableProcesses, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.ProcessId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.ImageId, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-8">
-                @Html.DropDownListFor(model => model.Specimen.ImageId, Model.AvailableImages, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.ImageId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Specimen.Notes, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-8">
-                @Html.TextAreaFor(model => model.Specimen.Notes, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Specimen.Notes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @for (var i = 0; i < specimen.Translations.Count; i++)
-        {
-            @Html.HiddenFor(model => specimen.Translations[i].LanguageCode)
-            @Html.HiddenFor(model => specimen.Translations[i].SpecimenId)
-
-            <div class="form-group">
-                @Html.LabelFor(model => specimen.Translations[i].Description, new { @class = "col-md-2 control-label" })
-
-                <div class="col-md-8">
-                    @Html.TextAreaFor(model => specimen.Translations[i].Description, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => specimen.Translations[i].Description, "", new { @class = "text-danger" })
                 </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => specimen.Translations[i].DetailedStateDescription, new { @class = "col-md-2 control-label" })
-
-                <div class="col-md-8">
-                    @Html.TextAreaFor(model => specimen.Translations[i].DetailedStateDescription, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => specimen.Translations[i].DetailedStateDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => specimen.Translations[i].InterventionDescription, new { @class = "col-md-2 control-label" })
-
-                <div class="col-md-8">
-                    @Html.TextAreaFor(model => specimen.Translations[i].InterventionDescription, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => specimen.Translations[i].InterventionDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        }
-
-        <button type="submit" class="btn btn-default col-md-offset-2">Terminar</button>
     </div>
-
 }

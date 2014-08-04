@@ -3,10 +3,8 @@
 @{
     var ptTrans = Model.Collection.Translations.FirstOrDefault(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage);
     ViewBag.Title = String.Format(CollectionStrings.EditTitleFormat, ptTrans != null ? ptTrans.Title : "");
-
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Edit", "Collections", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -15,7 +13,6 @@
     @Html.HiddenFor(model => model.Collection.Id)
 
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
@@ -37,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Collection.InitialProductionDate, htmlAttributes: new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.InitialProductionDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.Collection.InitialProductionDate.ToString("yyyy-MM-dd") } })
+                @Html.DatePickerFor(model => model.Collection.InitialProductionDate, new { @class = "form-control", placeholder = "aaaa-mm-dd" })
                 @Html.ValidationMessageFor(model => model.Collection.InitialProductionDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -45,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Collection.EndProductionDate, htmlAttributes: new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.EndProductionDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.Collection.EndProductionDate.HasValue ? Model.Collection.EndProductionDate.Value.ToString("yyyy-MM-dd") : "" } })
+                @Html.DatePickerFor(model => model.Collection.EndProductionDate, new { @class = "form-control", placeholder = "aaaa-mm-dd" })
                 @Html.ValidationMessageFor(model => model.Collection.EndProductionDate, "", new { @class = "text-danger" })
             </div>
         </div>

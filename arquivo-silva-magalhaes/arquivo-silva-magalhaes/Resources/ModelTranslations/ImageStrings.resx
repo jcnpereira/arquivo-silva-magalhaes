@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar imagem</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Documento desta imagem</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar imagem</value>
   </data>
   <data name="EntityName" xml:space="preserve">
     <value>Imagem</value>
@@ -128,6 +137,9 @@
   </data>
   <data name="ImageCode" xml:space="preserve">
     <value>Código de referência</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Indexações desta imagem</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Localização</value>

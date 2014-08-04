@@ -2,10 +2,9 @@
 
 @{
     ViewBag.Title = AuthorStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
     
 }
-
-<h2>@AuthorStrings.CreateTitleFormat</h2>
 
 @using (Html.BeginForm())
 {
@@ -16,70 +15,10 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-horizontal">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Author.FirstName, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Author.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Author.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
+        @Html.PartialFor(model => model.Author, "_AuthorMainFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Author.LastName, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Author.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Author.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Author.BirthDate, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Author.BirthDate, new { htmlAttributes = new { @class = "form-control" }})
-                @Html.ValidationMessageFor(model => model.Author.BirthDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Author.DeathDate, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Author.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Author.DeathDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @for (int i = 0; i < Model.Author.Translations.Count(); i++)
-        {
-
-
-            @Html.HiddenFor(model => model.Author.Translations[i].AuthorId)
-
-            @Html.HiddenFor(model => model.Author.Translations[i].LanguageCode)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Nationality, htmlAttributes: new { @class = "control-label col-sm-2" })
-                <div class="col-sm-10">
-                    @Html.EditorFor(model => model.Author.Translations[i].Nationality, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Author.Translations[i].Nationality, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Biography, htmlAttributes: new { @class = "control-label col-sm-2" })
-                <div class="col-sm-10">
-                    @Html.EditorFor(model => model.Author.Translations[i].Biography, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Author.Translations[i].Biography, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Author.Translations[i].Curriculum, htmlAttributes: new { @class = "control-label col-sm-2" })
-                <div class="col-sm-10">
-                    @Html.EditorFor(model => model.Author.Translations[i].Curriculum, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Author.Translations[i].Curriculum, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        }
+        @Html.PartialFor(model => model.Author.Translations[0], "_AuthorTranslateableFields")
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -12,14 +14,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: BackOffice/Users
-        public ActionResult Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            //var model = _db.Users
-            //    .OrderBy(u => u.Id)
-            //    .Select(u => new )
+            var model = await Task.Run(() => _db.Users
+                .OrderBy(u => u.Id)
+                .ToPagedList(pageNumber, 10));
 
 
-            return View();
+            return View(model);
         }
 
         // GET: BackOffice/Users/Details/5

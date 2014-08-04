@@ -61,6 +61,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autor deste documento.
+        /// </summary>
+        public static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de catalogação.
         /// </summary>
         public static string CatalogationDate {
@@ -75,6 +84,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string CatalogCode {
             get {
                 return ResourceManager.GetString("CatalogCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coleção deste documento.
+        /// </summary>
+        public static string Collection {
+            get {
+                return ResourceManager.GetString("Collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Criar documento.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
             }
         }
         
@@ -102,6 +129,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string DocumentLocation {
             get {
                 return ResourceManager.GetString("DocumentLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar documento.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
             }
         }
         

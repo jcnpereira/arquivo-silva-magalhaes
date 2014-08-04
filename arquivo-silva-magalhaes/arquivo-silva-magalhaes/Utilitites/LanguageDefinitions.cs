@@ -42,7 +42,10 @@ namespace ArquivoSilvaMagalhaes.Utilitites
             }
         }
 
-
+        public static string GetLanguage(string languageCode)
+        {
+            return LanguageNames.ResourceManager.GetString(languageCode);
+        }
 
         //public static string GetLanguageNameForCurrentLanguage(string languageCode)
         //{

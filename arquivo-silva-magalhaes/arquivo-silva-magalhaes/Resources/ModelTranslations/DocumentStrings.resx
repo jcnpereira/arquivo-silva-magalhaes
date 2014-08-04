@@ -153,4 +153,16 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Documentos</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor deste documento</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Coleção deste documento</value>
+  </data>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar documento</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar documento</value>
+  </data>
 </root>

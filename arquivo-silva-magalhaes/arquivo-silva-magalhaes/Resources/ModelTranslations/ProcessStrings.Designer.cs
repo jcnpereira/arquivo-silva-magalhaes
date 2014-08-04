@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ProcessStrings {
+    public class ProcessStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ModelTranslations.ProcessStrings", typeof(ProcessStrings).Assembly);
@@ -51,7 +51,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,45 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar processo.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar processo.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este processo? Todas as espécies associadas a este serão eliminadas!.
+        /// </summary>
+        public static string DeleteWarning {
+            get {
+                return ResourceManager.GetString("DeleteWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar processo.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processo.
         /// </summary>
-        internal static string EntityName {
+        public static string EntityName {
             get {
                 return ResourceManager.GetString("EntityName", resourceCulture);
             }
@@ -72,7 +108,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         /// <summary>
         ///   Looks up a localized string similar to Processos.
         /// </summary>
-        internal static string EntityNamePlural {
+        public static string EntityNamePlural {
             get {
                 return ResourceManager.GetString("EntityNamePlural", resourceCulture);
             }
@@ -81,7 +117,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         /// <summary>
         ///   Looks up a localized string similar to Processo.
         /// </summary>
-        internal static string Value {
+        public static string Value {
             get {
                 return ResourceManager.GetString("Value", resourceCulture);
             }

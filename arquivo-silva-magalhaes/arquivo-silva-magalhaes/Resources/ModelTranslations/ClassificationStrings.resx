@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar classificação</value>
+  </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar classificação</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta classificação? Todas as imagens associadas a esta (e, por consequência, espécies) também serão eliminadas!</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da classificação</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar classificação</value>
+  </data>
   <data name="EntityName" xml:space="preserve">
     <value>Classificação</value>
   </data>

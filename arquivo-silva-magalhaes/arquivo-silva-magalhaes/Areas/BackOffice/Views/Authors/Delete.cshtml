@@ -87,11 +87,13 @@
             </div>
         }
     </div>
-</div>
 
-<form method="post" action="@Url.Action("Delete")">
-    @Html.AntiForgeryToken()
+    <form method="post" action="@Url.Action("Delete")">
+        @Html.AntiForgeryToken()
         <button type="submit" class="btn btn-danger">@UiStrings.Delete</button>
         @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-default" })
-</form>
+    </form>
+</div>
+
+
 

@@ -144,6 +144,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 _db.Entry(specimen).State = EntityState.Modified;
+
+                foreach (var t in specimen.Translations)
+                {
+                    _db.Entry(t).State = EntityState.Modified;
+                }
+
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

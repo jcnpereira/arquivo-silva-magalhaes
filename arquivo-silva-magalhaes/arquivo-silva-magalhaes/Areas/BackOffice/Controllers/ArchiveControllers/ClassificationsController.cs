@@ -43,18 +43,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             var classification = await _db.Classifications.FindAsync(id);
 
+            classification.Translations = classification.Translations.ToList();
+
             if (classification == null)
             {
                 return HttpNotFound();
             }
 
-            return View(new ClassificationViewModel(classification));
+            return View(classification);
         }
 
         // GET: BackOffice/Classifications/Create
-        public ActionResult Create(string languageCode = LanguageDefinitions.DefaultLanguage)
+        public ActionResult Create()
         {
-            return View(new ClassificationEditViewModel { LanguageCode = languageCode });
+            return View(new ClassificationTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage });
         }
 
         // POST: BackOffice/Classifications/Create
@@ -96,12 +98,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
 
-            return View(new ClassificationEditViewModel
-                {
-                    ClassificationId = classification.Id,
-                    LanguageCode = LanguageDefinitions.DefaultLanguage,
-                    Value = classification.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                });
+            return View(classification);
         }
 
         // POST: BackOffice/Classifications/Edit/5
@@ -109,20 +106,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ClassificationTranslation classification)
+        public async Task<ActionResult> Edit(Classification classification)
         {
             if (ModelState.IsValid)
             {
                 _db.Entry(classification).State = EntityState.Modified;
+
+                foreach (var t in classification.Translations)
+                {
+                    _db.Entry(t).State = EntityState.Modified;
+                }
+
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(new ClassificationEditViewModel
-                {
-                    ClassificationId = classification.ClassificationId,
-                    Value = classification.Value,
-                    LanguageCode = classification.Value
-                });
+            return View(classification);
         }
 
         // GET: BackOffice/Classifications/Delete/5
@@ -133,15 +131,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Classification classification = await _db.Classifications.FindAsync(id);
+            classification.Translations = classification.Translations.ToList();
+
             if (classification == null)
             {
                 return HttpNotFound();
             }
-            return View(new ClassificationViewModel
-                {
-                    Id = classification.Id,
-                    Value = classification.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage).Value
-                });
+            return View(classification);
         }
 
         // POST: BackOffice/Classifications/Delete/5

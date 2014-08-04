@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using PagedList;
+using System.Collections.Generic;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -168,7 +169,55 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             model.AvailableCollections = await query.ToListAsync();
 
+            
+
             return model;
+        }
+
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doc = await _db.Documents.FindAsync(id);
+
+            if (doc == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new DocumentTranslation
+            {
+                DocumentId = doc.Id
+            };
+
+            ViewBag.AvailableLanguages = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "pt", Text = "português"},
+                new SelectListItem { Value = "en", Text = "inglês"},
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(DocumentTranslation translation)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.DocumentTranslations.Add(translation);
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(new DocumentEditViewModel
+                {
+                    Document = translation.Document
+                });
         }
 
         protected override void Dispose(bool disposing)

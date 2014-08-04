@@ -46,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Required] 
         [Index(IsUnique = true)]
         [MaxLength(80)]
-        [Display(ResourceType = typeof(ClassificationStrings), Name = "Classification")]
+        [Display(ResourceType = typeof(ClassificationStrings), Name = "Value")]
         public string Value { get; set; }
 
         [ForeignKey("ClassificationId")]

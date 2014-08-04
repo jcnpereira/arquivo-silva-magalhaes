@@ -120,11 +120,23 @@
   <data name="AuthorCatalogationCode" xml:space="preserve">
     <value>Código original</value>
   </data>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar espécie fotográfica</value>
+  </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar espécie fotográfica</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta espécie fotográfica?</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
   <data name="DetailedStateDescription" xml:space="preserve">
     <value>Descrição do estado de conservação</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar espécie fotográfica</value>
   </data>
   <data name="EntityName" xml:space="preserve">
     <value>Espécie fotográfica</value>
@@ -132,14 +144,23 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Espécies fotográficas</value>
   </data>
+  <data name="Format" xml:space="preserve">
+    <value>Formato</value>
+  </data>
   <data name="HasMarksOrStamps" xml:space="preserve">
     <value>Tem marcas ou carimbos</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Imagem</value>
   </data>
   <data name="InterventionDescription" xml:space="preserve">
     <value>Descrição da intervenção</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Processo fotográfico</value>
   </data>
   <data name="ReferenceCode" xml:space="preserve">
     <value>Código de referência</value>
