@@ -89,10 +89,6 @@ namespace ArquivoSilvaMagalhaes.Utilitites
                     builder.Attributes["data-val-required"] =
                         required.FormatErrorMessage(display != null ? display.GetName() : name);
                 }
-                else
-                {
-                    builder.Attributes["required"] = "";
-                }
             }
 
             if (htmlAttributes != null)

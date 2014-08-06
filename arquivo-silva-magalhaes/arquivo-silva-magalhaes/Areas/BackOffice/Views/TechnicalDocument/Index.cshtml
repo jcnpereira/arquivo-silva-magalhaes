@@ -1,19 +1,11 @@
 ﻿@model IEnumerable<TechnicalDocument>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = TechnicalDocumentStrings.EntityNamePlural;
+
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
 
-<h2>Documento técnico</h2>
-
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
-    <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</div>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -25,12 +17,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastModificationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DocumentType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language)
             </th>
         </tr>
     </thead>
@@ -45,12 +31,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastModificationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
             </td>
 
             <td>
@@ -73,6 +53,3 @@
 
     }
 </table>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}

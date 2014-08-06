@@ -1,5 +1,9 @@
 ﻿@model Event
 
+@Html.DisplayFor(model => model.Translations[0].TextContent)
+
+@*@model Event
+
 @{
     ViewBag.Title = "Details";
     
@@ -137,4 +141,4 @@
 
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")
-}
+}*@

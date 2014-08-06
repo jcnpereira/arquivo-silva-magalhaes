@@ -12,6 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -20,9 +21,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /News/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.NewsItems.ToListAsync());
+            return View(await Task.Run(() => 
+                db.NewsItemTranslations
+                  .Include(nt => nt.NewsItem)
+                  .Where(nt => nt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                  .OrderByDescending(nt => nt.NewsItem.CreationDate)
+                  .ToPagedList(pageNumber, 10)));
         }
 
         // GET: /News/Details/5
@@ -44,7 +50,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /News/Create
         public ActionResult Create()
         {
-            return View();
+            var item = new NewsItem();
+
+            item.Translations.Add(new NewsItemTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+            return View(GenerateViewModel(item));
         }
 
         // POST: /News/Create
@@ -52,37 +65,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(NewsItemViewModels model)
+        public async Task<ActionResult> Create(NewsItem newsItem)
         {
             if (ModelState.IsValid)
             {
-                var newsitem = new NewsItem
-                {
-                    Id = model.Id,
-                    CreationDate = model.CreationDate,
-                    ExpiryDate = model.ExpiryDate,
-                    HideAfterExpiry = model.HideAfterExpiry,
-                    LastModificationDate = model.LastModificationDate,
-                    Links = model.Links,
-                    PublishDate = model.PublishDate,
-                };
-                newsitem.ReferencedNewsText.Add(
-                    new NewsItemTranslation
-                    {
-                        Heading = model.Heading,
-                        LanguageCode = model.LanguageCode,
-                        Subtitle = model.Subtitle,
-                        TextContent = model.TextContent,
-                        Title = model.Title
-                    });
-
-
-                db.NewsItems.Add(newsitem);
+                db.NewsItems.Add(newsItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(GenerateViewModel(newsItem));
         }
 
         // GET: /News/Edit/5
@@ -97,7 +89,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(newsitem);
+            return View(GenerateViewModel(newsitem));
         }
 
         // POST: /News/Edit/5
@@ -105,15 +97,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PublishDate,ExpiryDate,HideAfterExpiry,CreationDate,LastModificationDate,Title,Heading,LanguageCode,Subtitle,TextContent")] NewsItemViewModels newsitem)
+        public async Task<ActionResult> Edit(NewsItem newsitem)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(newsitem).State = EntityState.Modified;
+
+                foreach (var t in newsitem.Translations)
+                {
+                    db.Entry(t).State = EntityState.Modified;
+                }
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(newsitem);
+            return View(GenerateViewModel(newsitem));
         }
 
         // GET: /News/Delete/5
@@ -140,6 +138,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.NewsItems.Remove(newsitem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+
+        private NewsItemViewModel GenerateViewModel(NewsItem item)
+        {
+            var model = new NewsItemViewModel
+            {
+                NewsItem = item
+            };
+
+            return model;
         }
 
         protected override void Dispose(bool disposing)

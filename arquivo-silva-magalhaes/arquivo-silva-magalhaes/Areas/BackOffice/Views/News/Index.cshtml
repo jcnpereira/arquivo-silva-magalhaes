@@ -1,79 +1,57 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItem>
+﻿@model IEnumerable<NewsItemTranslation>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = NewsItemStrings.EntityNamePlural;
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
 
-<h2>Notícias</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsItem.PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsItem.HideAfterExpiry)
+                </th>
+                <th>
+                    @UiStrings.Actions
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsItem.PublishDate)
+                </td>
+                <td>
+                    @(item.NewsItem.HideAfterExpiry ? UiStrings.Yes : UiStrings.No)
+                </td>
+                <td>
+                    <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.NewsItemId })">
+                        <a href="@Url.Action("Details", new { id = item.NewsItemId })" class="btn btn-default" title="@UiStrings.Details">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
 
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
-    <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
+                        <a href="@Url.Action("Edit", new { id = item.NewsItemId })" class="btn btn-default" title="@UiStrings.Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                        @Html.AntiForgeryToken()
+                        <a href="@Url.Action("Delete", new { id = item.NewsItemId })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                            <span class="glyphicon glyphicon-floppy-remove"></span>
+                        </a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
 </div>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpiryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HideAfterExpiry)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModificationDate)
-            </th>
-            <th>
-
-            </th>
-        </tr>
-    </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpiryDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HideAfterExpiry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModificationDate)
-            </td>
-            <td>
-                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
-                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                    </a>
-
-                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-
-                    @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-                        <span class="glyphicon glyphicon-floppy-remove"></span>
-                    </a>
-                </form>
-            </td>
-        </tr>
-    }
-</table>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}

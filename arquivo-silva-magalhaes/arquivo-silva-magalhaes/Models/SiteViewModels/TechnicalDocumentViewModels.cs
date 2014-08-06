@@ -10,24 +10,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
 {
     public class TechnicalDocumentEditViewModel
     {
-        
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
-        public string Title { get; set; }
+        public TechnicalDocument TechnicalDocument { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "File")]
         public HttpPostedFileBase UploadedFile { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "DocumentType")]
-        public DocumentType? DocumentType { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
-        public String Language { get; set; }
     }
 }

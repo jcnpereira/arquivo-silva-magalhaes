@@ -1,100 +1,22 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteViewModels.NewsItemViewModels
+﻿@model NewsItemViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = NewsItemStrings.CreateTitleFormat;
 
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>Criar nova notícia</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishDate)
-                @Html.ValidationMessageFor(model => model.PublishDate)
-            </div>
-        </div>
+        @Html.PartialFor(model => model.NewsItem.Translations[0], "_NewsItemTranslateableFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ExpiryDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpiryDate)
-                @Html.ValidationMessageFor(model => model.ExpiryDate)
-            </div>
-        </div>
+        @Html.PartialFor(model => model.NewsItem, "_NewsItemMainFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HideAfterExpiry, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HideAfterExpiry)
-                @Html.ValidationMessageFor(model => model.HideAfterExpiry)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreationDate)
-                @Html.ValidationMessageFor(model => model.CreationDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModificationDate)
-                @Html.ValidationMessageFor(model => model.LastModificationDate)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LanguageCode)
-                @Html.ValidationMessageFor(model => model.LanguageCode)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subtitle, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subtitle)
-                @Html.ValidationMessageFor(model => model.Subtitle)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Heading, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Heading)
-                    @Html.ValidationMessageFor(model => model.Heading)
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TextContent, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TextContent)
-                @Html.ValidationMessageFor(model => model.TextContent)
-            </div>
-        </div>
-        
-        
-     
-
-     @*  @Html.Partial("_NewsI18nPartial")*@
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
-     @Html.Partial("_SubmitBackPartial")
 }

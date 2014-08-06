@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
@@ -203,7 +206,7 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\CollaboratorController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\IndexListViewModels.cs" />
     <Compile Include="Migrations\201407222040212_ApplicationDbContext.cs" />
     <Compile Include="Migrations\201407222040212_ApplicationDbContext.Designer.cs">
       <DependentUpon>201407222040212_ApplicationDbContext.cs</DependentUpon>
@@ -316,6 +320,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ModelTranslations\EventStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ModelTranslations\FormatStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -331,10 +340,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KeywordStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ModelTranslations\NewsItemStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsItemStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ModelTranslations\ProcessStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProcessStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ReferencedLinkStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ShowcasePhotoStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -345,6 +364,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SpecimenStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\TechnicalDocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TechnicalDocumentStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\UiPrompts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -368,6 +392,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
+    <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
@@ -440,11 +465,11 @@
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
@@ -516,6 +541,15 @@
     <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenTranslateableFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenDropDownLists.cshtml" />
     <Content Include="Areas\BackOffice\Views\Users\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Home\About.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_IndexPageActions.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\_TechnicalDocumentMainFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -584,6 +618,14 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\quill\examples\advanced.html" />
+    <Content Include="Scripts\quill\examples\index.html" />
+    <Content Include="Scripts\quill\examples\scripts\advanced.js" />
+    <Content Include="Scripts\quill\examples\styles\advanced.css" />
+    <Content Include="Scripts\quill\examples\styles\style.css" />
+    <Content Include="Scripts\quill\quill.js" />
+    <Content Include="Scripts\quill\quill.min.js" />
+    <Content Include="Scripts\quill\quill.snow.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -683,6 +725,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\EventStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\FormatStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FormatStrings.Designer.cs</LastGenOutput>
@@ -695,9 +741,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>KeywordStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\NewsItemStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewsItemStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\ProcessStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProcessStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ReferencedLinkStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReferencedLinkStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\ShowcasePhotoStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -706,6 +760,10 @@
     <EmbeddedResource Include="Resources\ModelTranslations\SpecimenStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\TechnicalDocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TechnicalDocumentStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -198,4 +198,7 @@
   <data name="UnknownDate" xml:space="preserve">
     <value>Data desconhecida ou inexistente</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
 </root>
