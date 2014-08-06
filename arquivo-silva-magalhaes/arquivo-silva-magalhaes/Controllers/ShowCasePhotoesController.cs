@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: /ShowCasePhotoes/
         public async Task<ActionResult> Index()
         {
-            var showcasephotoes = db.ShowcasePhotoes.Include(s => s.DigitalPhotograph);
+            var showcasephotoes = db.ShowcasePhotoes.Include(s => s.Image);
             return View(await showcasephotoes.ToListAsync());
         }
 
@@ -59,7 +59,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
             return View(showcasephoto);
         }
 
@@ -75,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
             return View(showcasephoto);
         }
 
@@ -92,7 +92,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.DigitalPhotographId);
+            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
             return View(showcasephoto);
         }
 

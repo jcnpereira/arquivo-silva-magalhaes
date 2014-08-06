@@ -1,10 +1,6 @@
 ﻿
-@{
-    ViewBag.Title = "Pesquisa";
-}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <title>AFSM</title>
@@ -21,7 +17,6 @@
     <script type="text/javascript" src="../scripts/waypoints.min.js"></script>
     <script type="text/javascript" src="../scripts/setup.js"></script>
 
-
 </head>
 <body>
     <div id="wrap">
@@ -35,8 +30,8 @@
             <ul id="navigation">
                 <li><a href="Index">IN&#205;CIO</a></li>
                 <li><a href="Destaque">DESTAQUE DO M&#202;S</a></li>
-                <li><a href="Acervo">ACERVO</a></li>
-                <li><a href="#Pesquisa" class="active">PESQUISA</a></li>
+                <li><a href="#Acervo" class="active">ACERVO</a></li>
+                <li><a href="Pesquisa">PESQUISA</a></li>
                 <li><a href="Noticias">NOT&#205;CIAS</a></li>
                 <li><a href="Eventos">EVENTOS</a></li>
                 <li><a href="Historia">HIST&#211;RIA</a></li>
@@ -49,66 +44,31 @@
         </div>
         <div id="container">
             <!-- page container -->
+
+
             <div class="page" id="">
-                <!-- page home -->
+                <!-- page Acervo -->
+                
                 <div class="page_content">
-
-
-                    <!-- lateral direita -->
-                    <div class="">
-                        <div class="column_content">
-                            <h3 class="page_title">Pesquisa</h3>
-                            @*<img src="../images/pesquisa.png" class="left no_border" alt="" style="margin-top: 10px;
-                                margin-right: 10px" />*@
-                            <div class="space"> </div>
-                            <div class="clear"> </div>
-
-                        </div>
-                        <p> <small>Aqui aparecem os resultados em links ou uma grelha por exemplo.</small></p>
+                    <h3 class="page_title"> Acervo</h3>
+                    <p> Cada foto deverá corresponder à capa de uma coleção que estará ligada a uma página do mesmo género para vizualizar as fotos e as
+                    respetivas descrições.</p>
+                    <ul id="works_filter">
+                        <li><a href="#" data-filter="*" class="selected">Show All</a></li>
+                        <li><a href="#" data-filter=".css">CSS</a></li>
+                        <li><a href="#" data-filter=".html_php">HTML / PHP</a></li>
+                        <li><a href="#" data-filter=".js">JavaScript</a></li>
+                    </ul>
+                    <div class="clear"> </div>
+                    <div id="works">
+                        <!-- works -->
+                        <a rel="prettyPhoto[gallery]" href="../images/photos/01.jpg"> <img class="work js" src="../images/photos/01.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/03.jpg"> <img class="work css" src="../images/photos/03.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/04.jpg"> <img class="work html_php" src="../images/photos/04.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/05.jpg"> <img class="work html_php" src="../images/photos/05.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/06.jpg"> <img class="work css" src="../images/photos/06.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/07.jpg"> <img class="work js" src="../images/photos/07.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/08.jpg"> <img class="work html_php" src="../images/photos/08.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/09.jpg"> <img class="work js" src="../images/photos/09.jpg" alt="" /> </a><a rel="prettyPhoto[gallery]" href="../images/photos/10.jpg"> <img class="work html_php" src="../images/photos/10.jpg" alt="" /> </a>
                     </div>
-
-                    <div class="space"> </div>
-
-
-                    <div class="space"> </div>
-
-
                     <div class="clear"> </div>
                 </div>
             </div>
 
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
+
 
             <div class="footer">
                 <p> &copy; 2014 AFSM</p>
@@ -119,3 +79,4 @@
     @*<a class="gotop" href="#top">Top</a>*@
 </body>
 </html>
+
