@@ -30,12 +30,14 @@ namespace ArquivoSilvaMagalhaes
                         "~/Scripts/angular.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Styles/Bootstrap/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/customcss").Include(
+                      "~/Content/Styles/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/datepicker-bootstrap").Include(
-                        "~/Content/datepicker3.css"));
-            
+                        "~/Content/Styles/DatePicker/datepicker3.css"));
+
         }
     }
 }

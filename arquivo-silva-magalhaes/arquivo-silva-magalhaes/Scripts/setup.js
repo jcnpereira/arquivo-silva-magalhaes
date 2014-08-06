@@ -6,9 +6,9 @@ $(window).load(function () {
 $(document).ready(function () {
     //Initialize PrettyPhoto here
     $("a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'normal', theme: 'facebook', slideshow: 3000, autoplay_slideshow: false, social_tools: false 	});
-	
-	//Remove this line if you want to naviagate to url on each client box click
-	$('#clients.grid a').click(function(){return false;});
+    
+    //Remove this line if you want to naviagate to url on each client box click
+    $('#clients.grid a').click(function(){return false;});
     //Initialize jQuery knob here
     $(".knob").knob();
     //Initialie tipsy here

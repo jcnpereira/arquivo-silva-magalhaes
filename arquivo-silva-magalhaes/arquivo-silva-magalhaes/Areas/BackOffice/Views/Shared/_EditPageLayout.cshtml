@@ -2,6 +2,10 @@
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
 }
 
+@section headscripts {
+    @Styles.Render("~/Content/datepicker-bootstrap")
+}
+
 <h2>@ViewBag.Title</h2>
 
 <hr />
