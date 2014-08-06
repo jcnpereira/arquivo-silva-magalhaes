@@ -13,6 +13,9 @@ using ArquivoSilvaMagalhaes.Utilitites;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using System.IO;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
+using System.ComponentModel.DataAnnotations;
+using ImageResizer;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -21,9 +24,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/BannerPhotograph/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Banners.ToListAsync());
+            return View(await Task.Run(() => 
+                db.BannerTranslations
+                  .Include(bt => bt.BannerPhotograph)
+                  .Where(bt => bt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                  .OrderBy(bt => bt.BannerPhotographId)
+                  .ToPagedList(pageNumber, 10)));
         }
 
         // GET: /BackOffice/BannerPhotograph/Details/5
@@ -44,14 +52,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/BannerPhotograph/Create
         public ActionResult Create()
         {
-            var model = new PhotographViewModel
-            {
-                I18nTexts = new List<PhotographI18nViewModel>
+            var banner = new Banner();
+            banner.Translations.Add(new BannerTranslation
                 {
-                    new PhotographI18nViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
-                }
-            };
-            return View(model);
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+            return View(GenerateViewModel(banner));
         }
 
         // POST: /BackOffice/BannerPhotograph/Create
@@ -59,37 +65,42 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PhotographViewModel model)
+        public async Task<ActionResult> Create(Banner banner, HttpPostedFileBase image)
         {
+            if (image == null)
+            {
+                ModelState.AddModelError("Image", "");
+            }
+
             if (ModelState.IsValid)
             {
-               
-                // TODO: Talvez redimensionar?
-                //var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Image.FileName);
+                var newName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(image.FileName);
 
-                var banner = new Banner
+                ImageJob j = new ImageJob
                 {
-                   // UriPath = Path.Combine("Public/BannerPhotographs", fileName),
-                    UriPath=model.UriPath,
-                    PublicationDate = model.PublicationDate,
-                    RemovalDate = model.RemovalDate,
-                    IsVisible = model.IsVisible
+                    Instructions = new Instructions
+                    {
+                        Width = 1024,
+                        Height = 500,
+                        Mode = FitMode.Crop,
+                        Encoder = "freeimage",
+                        OutputFormat = OutputFormat.Jpeg
+                    },
+                    Source = image.InputStream,
+                    Dest = Path.Combine(Server.MapPath("~/Public/Banners"), newName),
+                    CreateParentDirectory = true
                 };
 
-                //banner.BannerTexts.Add(
-                //    new BannerTranslation
-                //    {
-                //        BannerPhotographId = banner.Id,
-                //        LanguageCode = LanguageDefinitions.DefaultLanguage,
-                //        Title = model.I18nTexts[0].Title
-                //    });
+                ImageBuilder.Current.Build(j);
+
+                banner.UriPath = newName;
 
                 db.Banners.Add(banner);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(GenerateViewModel(banner));
         }
 
         // GET: /BackOffice/BannerPhotograph/Edit/5
@@ -104,7 +115,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(bannerphotograph);
+            return View(GenerateViewModel(bannerphotograph));
         }
 
         // POST: /BackOffice/BannerPhotograph/Edit/5
@@ -112,15 +123,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ImageData,UriPath,PublicationDate,RemovalDate,IsVisible")] Banner bannerphotograph)
+        public async Task<ActionResult> Edit(Banner banner)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bannerphotograph).State = EntityState.Modified;
+                db.Entry(banner).State = EntityState.Modified;
+                db.Entry(banner).Property(b => b.UriPath).IsModified = false;
+
+                foreach (var item in banner.Translations)
+                {
+                    db.Entry(item).State = EntityState.Modified;
+                }
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(bannerphotograph);
+            return View(GenerateViewModel(banner));
         }
 
         // GET: /BackOffice/BannerPhotograph/Delete/5
@@ -147,6 +165,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.Banners.Remove(bannerphotograph);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private BannerPhotographEditViewModel GenerateViewModel(Banner banner)
+        {
+            var model = new BannerPhotographEditViewModel
+            {
+                Banner = banner
+            };
+            return model;
         }
 
         protected override void Dispose(bool disposing)

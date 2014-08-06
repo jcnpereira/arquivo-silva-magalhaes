@@ -1,68 +1,31 @@
-﻿@model PhotographViewModel
+﻿@model BannerPhotographEditViewModel
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
-<h2>Criar novo</h2>
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "BannerPhotograph", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true)
 
+        @Html.PartialFor(model => model.Banner, "_BannerPhotographMainFields")
+
+        @Html.PartialFor(model => model.Banner.Translations[0], "_BannerPhotographTranslateableFields")
 
         <div class="form-group">
             @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
-            <div>
-                <input type="file" accept="image/*" name="@Html.NameFor(model => model.Image)" required />
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.Image, new { @class = "form-control-static", accept = "image/*" })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublicationDate, new { @class = "control-label col-md-2" })
-            <div>
-                @Html.EditorFor(model => model.PublicationDate)
-                @Html.ValidationMessageFor(model => model.PublicationDate)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RemovalDate, new { @class = "control-label col-md-2" })
-            <div>
-                @Html.EditorFor(model => model.RemovalDate)
-                @Html.ValidationMessageFor(model => model.RemovalDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsVisible, new { @class = "control-label col-md-2" })
-            <div>
-                @Html.EditorFor(model => model.IsVisible)
-                @Html.ValidationMessageFor(model => model.IsVisible)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
-            <div>
-                @Html.EditorFor(model => model.LanguageCode)
-                @Html.ValidationMessageFor(model => model.LanguageCode)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div>
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-        </div>
-       
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
-    @Html.Partial("_SubmitBackPartial")
+
 }

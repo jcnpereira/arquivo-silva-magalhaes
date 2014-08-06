@@ -22,14 +22,14 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ShowcasePhotoStrings {
+    public class BannerStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ShowcasePhotoStrings() {
+        internal BannerStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ModelTranslations.ShowcasePhotoStrings", typeof(ShowcasePhotoStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ModelTranslations.BannerStrings", typeof(BannerStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,34 +61,16 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comentário.
+        ///   Looks up a localized string similar to Legenda.
         /// </summary>
-        public static string Comment {
+        public static string Caption {
             get {
-                return ResourceManager.GetString("Comment", resourceCulture);
+                return ResourceManager.GetString("Caption", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endereço de e-mail do comentador.
-        /// </summary>
-        public static string CommenterEmail {
-            get {
-                return ResourceManager.GetString("CommenterEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nome do comentador.
-        /// </summary>
-        public static string CommenterName {
-            get {
-                return ResourceManager.GetString("CommenterName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Criar fotografia em destaque.
+        ///   Looks up a localized string similar to Criar fotografia banner.
         /// </summary>
         public static string CreateTitleFormat {
             get {
@@ -97,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eliminar fotografia em destaque.
+        ///   Looks up a localized string similar to Eliminar fotografia banner.
         /// </summary>
         public static string DeleteTitleFormat {
             get {
@@ -106,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editar fotografia em destaque.
+        ///   Looks up a localized string similar to Editar fotografia banner.
         /// </summary>
         public static string EditTitleFormat {
             get {
@@ -115,7 +97,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fotografia em destaque.
+        ///   Looks up a localized string similar to Fotografia banner.
         /// </summary>
         public static string EntityName {
             get {
@@ -124,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fotografias em destaque.
+        ///   Looks up a localized string similar to Fotografias banner.
         /// </summary>
         public static string EntityNamePlural {
             get {
@@ -133,20 +115,11 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endereço de e-mail visível ao público.
+        ///   Looks up a localized string similar to Imagem.
         /// </summary>
-        public static string IsEmailVisible {
+        public static string Image {
             get {
-                return ResourceManager.GetString("IsEmailVisible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data de publicação.
-        /// </summary>
-        public static string VisibleSince {
-            get {
-                return ResourceManager.GetString("VisibleSince", resourceCulture);
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
     }

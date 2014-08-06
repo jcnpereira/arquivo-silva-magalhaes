@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -29,17 +30,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string CommenterEmail { get; set; }
 
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "IsEmailVisible")]
-        public string IsEmailVisible { get; set; }
+        public bool IsEmailVisible { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "VisibleSince")]
         public DateTime VisibleSince { get; set; }
 
-        public int DigitalPhotographId { get; set; }
+        public int ImageId { get; set; }
 
-        [ForeignKey("DigitalPhotographId")]
-        public DigitalPhotograph DigitalPhotograph { get; set; }
+        [ForeignKey("ImageId")]
+        public Image Image { get; set; }
 
         public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
     }
@@ -53,7 +54,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         [Required]
-        [DataType(DataType.MultilineText)]
+        [AllowHtml]
+        [DataType(DataType.Html)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Comment")]
         public string Comment { get; set; }
 

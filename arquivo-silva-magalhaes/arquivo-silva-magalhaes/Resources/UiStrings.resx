@@ -201,4 +201,10 @@
   <data name="About" xml:space="preserve">
     <value>Acerca de</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Pré-visualização</value>
+  </data>
 </root>

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.SiteViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -19,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/ShowcasePhotoes
         public async Task<ActionResult> Index()
         {
-            var showcasePhotoSet = _db.ShowcasePhotoes.Include(s => s.DigitalPhotograph);
+            var showcasePhotoSet = _db.ShowcasePhotoes.Include(s => s.Image);
             return View(await showcasePhotoSet.ToListAsync());
         }
 
@@ -41,8 +43,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/ShowcasePhotoes/Create
         public ActionResult Create()
         {
-            ViewBag.DigitalPhotographId = new SelectList(_db.DigitalPhotographs, "Id", "ScanDate");
-            return View();
+            var photo = new ShowcasePhoto();
+            photo.Translations.Add(new ShowcasePhotoTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+            return View(GenerateViewModel(photo));
         }
 
         // POST: BackOffice/ShowcasePhotoes/Create
@@ -50,7 +57,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasePhoto)
+        public async Task<ActionResult> Create(ShowcasePhoto showcasePhoto)
         {
             if (ModelState.IsValid)
             {
@@ -59,8 +66,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DigitalPhotographId = new SelectList(_db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // GET: BackOffice/ShowcasePhotoes/Edit/5
@@ -75,8 +81,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DigitalPhotographId = new SelectList(_db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // POST: BackOffice/ShowcasePhotoes/Edit/5
@@ -84,16 +89,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasePhoto)
+        public async Task<ActionResult> Edit(ShowcasePhoto showcasePhoto)
         {
             if (ModelState.IsValid)
             {
                 _db.Entry(showcasePhoto).State = EntityState.Modified;
+
+                foreach (var item in showcasePhoto.Translations)
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.DigitalPhotographId = new SelectList(_db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // GET: BackOffice/ShowcasePhotoes/Delete/5
@@ -120,6 +130,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             _db.ShowcasePhotoes.Remove(showcasePhoto);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private ShowcasePhotoEditViewModel GenerateViewModel(ShowcasePhoto photo)
+        {
+            var model = new ShowcasePhotoEditViewModel
+            {
+                ShowcasePhoto = photo
+            };
+
+            model.AvailableImages = _db.ImageTranslations.Select(d => new SelectListItem
+                {
+                    Value = d.ImageId.ToString(),
+                    Text = d.Title
+                });
+
+            return model;
         }
 
         protected override void Dispose(bool disposing)

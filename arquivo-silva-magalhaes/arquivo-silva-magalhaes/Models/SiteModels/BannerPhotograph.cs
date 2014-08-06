@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,27 +13,16 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public Banner()
         {
-            BannerTexts = new HashSet<BannerTranslation>();
+            Translations = new List<BannerTranslation>();
         }
 
         [Key]
         public int Id { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "Image")]
-        public string Image { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "UriPath")]
-        public string UriPath { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
-        public DateTime PublicationDate { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "RemovalDate")]
-        public DateTime RemovalDate { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
-        public bool IsVisible { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "LanguageCode")]
-        public string LanguageCode { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
-        public string Title { get; set; }
 
-        public ICollection<BannerTranslation> BannerTexts { get; set; }
+        [Display(ResourceType = typeof(BannerStrings), Name = "Image")]
+        public string UriPath { get; set; }
+
+        public virtual IList<BannerTranslation> Translations { get; set; }
     }
 
     public class BannerTranslation
@@ -41,11 +31,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 0)]
         public int BannerPhotographId { get; set; }
         [ForeignKey("BannerPhotographId")]
-        public Banner BannerPhotograph { get; set; }
+        public virtual Banner BannerPhotograph { get; set; }
 
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
-        public string Title { get; set; }
+        [Display(ResourceType = typeof(BannerStrings), Name = "Caption")]
+        public string Caption { get; set; }
     }
 }

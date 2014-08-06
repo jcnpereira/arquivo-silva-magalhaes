@@ -245,6 +245,7 @@
     <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
     <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
     <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Models\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -299,6 +300,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\BannerStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BannerStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ClassificationStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -550,6 +556,11 @@
     <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkMainFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_IndexPageActions.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\_TechnicalDocumentMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographTranslateableFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -708,6 +719,10 @@
     <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\BannerStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BannerStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\ClassificationStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

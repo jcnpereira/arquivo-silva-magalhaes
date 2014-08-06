@@ -1,0 +1,12 @@
+﻿@model BannerTranslation
+
+@Html.HiddenFor(model => model.BannerPhotographId)
+@Html.HiddenFor(model => model.LanguageCode)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Caption, new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.TextAreaFor(model => model.Caption, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+    </div>
+</div>

@@ -72,6 +72,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 technicalDocument.FileName = fileName;
                 technicalDocument.Format = uploadedFile.ContentType;
                 technicalDocument.FileSize = uploadedFile.ContentLength;
+                
 
                 db.TechnicalDocuments.Add(technicalDocument);
 
@@ -103,12 +104,24 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Exclude = "UploadDate")] TechnicalDocument technicaldocument)
+        public async Task<ActionResult> Edit(
+            TechnicalDocument technicaldocument,
+            HttpPostedFileBase uploadedFile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(technicaldocument).State = EntityState.Modified;
-                db.Entry(technicaldocument).Property(td => td.UploadDate).IsModified = false;
+                var doc = await db.TechnicalDocuments.FindAsync(technicaldocument.Id);
+         
+                if (uploadedFile != null)
+                {
+                    var fileName = doc.FileName;
+                    uploadedFile.SaveAs(Server.MapPath("~/Public/TechnicalDocuments/") + fileName);
+                    doc.Format = uploadedFile.ContentType;
+                    doc.FileSize = uploadedFile.ContentLength;
+                }
+                doc.Title = technicaldocument.Title;
+                doc.LastModificationDate = DateTime.Now;
+                db.Entry(doc).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

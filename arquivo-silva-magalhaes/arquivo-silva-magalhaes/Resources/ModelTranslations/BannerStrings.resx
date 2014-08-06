@@ -117,34 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Comment" xml:space="preserve">
-    <value>Comentário</value>
-  </data>
-  <data name="CommenterEmail" xml:space="preserve">
-    <value>Endereço de e-mail do comentador</value>
-  </data>
-  <data name="CommenterName" xml:space="preserve">
-    <value>Nome do comentador</value>
+  <data name="Caption" xml:space="preserve">
+    <value>Legenda</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
-    <value>Criar fotografia em destaque</value>
+    <value>Criar fotografia banner</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Eliminar fotografia em destaque</value>
+    <value>Eliminar fotografia banner</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar fotografia em destaque</value>
+    <value>Editar fotografia banner</value>
   </data>
   <data name="EntityName" xml:space="preserve">
-    <value>Fotografia em destaque</value>
+    <value>Fotografia banner</value>
   </data>
   <data name="EntityNamePlural" xml:space="preserve">
-    <value>Fotografias em destaque</value>
+    <value>Fotografias banner</value>
   </data>
-  <data name="IsEmailVisible" xml:space="preserve">
-    <value>Endereço de e-mail visível ao público</value>
-  </data>
-  <data name="VisibleSince" xml:space="preserve">
-    <value>Data de publicação</value>
+  <data name="Image" xml:space="preserve">
+    <value>Imagem</value>
   </data>
 </root>

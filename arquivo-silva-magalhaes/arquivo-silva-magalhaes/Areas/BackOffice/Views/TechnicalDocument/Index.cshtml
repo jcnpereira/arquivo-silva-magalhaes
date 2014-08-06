@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastModificationDate)
             </th>
+            <th>
+                @UiStrings.Actions
+            </th>
         </tr>
     </thead>
     @foreach (var item in Model)
@@ -37,6 +40,10 @@
                 <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
                     <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">
                         <span class="glyphicon glyphicon-info-sign"></span>
+                    </a>
+
+                    <a class="btn btn-default" title="@UiStrings.Download" target="_blank" href="@Url.Content("~/Public/TechnicalDocuments/" + item.FileName)">
+                        <span class="glyphicon glyphicon-download"></span>
                     </a>
 
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
