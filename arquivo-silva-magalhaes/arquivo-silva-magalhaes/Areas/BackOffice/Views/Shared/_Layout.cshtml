@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Arquivo Fotográfico Silva e Magalhães </title>
+    <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães </title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/customcss")
     @Scripts.Render("~/bundles/modernizr")
 
     @RenderSection("headscripts", required: false)
@@ -20,8 +21,8 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="/BackOffice" class="navbar-brand" title="Arquivo Fotográfico Silva Magalhães">
-                    <img style="max-height: 30px; margin-top: -5px" src="~/Public/Images/logo.png" />
+                <a href="@Url.Action("Index", "Home", new { Area = "BackOffice" })" class="navbar-brand" title="Arquivo Fotográfico Silva Magalhães">
+                    <img style="max-height: 30px; margin-top: -5px" src="~/Content/Images/logo.png" />
                 </a>
             </div>
 
@@ -41,13 +42,14 @@
                             <li>@Html.ActionLink("Formatos", "Index", "Formats")</li>
                             <li>@Html.ActionLink("Indexações", "Index", "Keywords")</li>
                             <li>@Html.ActionLink("Classificações", "Index", "Classifications")</li>
+                            <li>@Html.ActionLink("Processos", "Index", "Processes")</li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portal <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Eventos", "Index", "Event")</li>
+                            <li>@Html.ActionLink("Eventos", "Index", "Events")</li>
                             <li>@Html.ActionLink("Notícias", "Index", "News")</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Links", "Index", "ReferencedLink")</li>
@@ -70,7 +72,7 @@
                     </li>
 
                     <li class="navbar-link">
-                        <a href="/">Front-office</a>
+                        @Html.ActionLink("Front-Office", "Index", "Home", new { Area = "" }, null)
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -81,13 +83,16 @@
         @RenderBody()
         <hr />
         <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT</p>
+            <p>
+                <a href="@Url.Action("About", "Home")">
+                    &copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT
+                </a>
+            </p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>
 </html>

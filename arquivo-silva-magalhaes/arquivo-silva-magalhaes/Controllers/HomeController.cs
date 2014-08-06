@@ -1,48 +1,100 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : Controller
     {
-        ArchiveDataContext _db = new ArchiveDataContext();
-        
+        private ArchiveDataContext db = new ArchiveDataContext();
+
+
         public ActionResult Index()
         {
-            //var collections = _db.CollectionSet
-            //    .Where(c => c.IsVisible)
-            //    .ToList();
-
-            //return View(collections);
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Contactos()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
+        public ActionResult Acervo()
+        {
             return View();
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Destaque()
         {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-
-            base.Dispose(disposing);
+            return View();
         }
+
+        public ActionResult Documentos()
+        {
+            return View();
+        }
+
+        public ActionResult Eventos()
+        {
+            return View();
+        }
+
+        public ActionResult Historia()
+        {
+            return View();
+        }
+
+        public ActionResult Links()
+        {
+            
+            //var links = db.ReferencedLinks.ToList();
+            
+            return View(db.ReferencedLinks);
+
+            //var links = from l in db.ReferencedLinks
+            //            select new ReferencedLink
+            //         {
+            //             Id=l.Id,
+            //             Title = l.Title,
+            //             Link = l.Link,
+            //             DateOfCreation=l.DateOfCreation,
+            //             LastModifiedDate=l.LastModifiedDate,
+            //             Description=l.Description,
+            //             IsUsefulLink=l.IsUsefulLink,
+            //             EventsUsingThis=l.EventsUsingThis,
+            //             NewsUsingThis=l.NewsUsingThis
+            //         };
+
+            //return View(links);
+            //return View();
+        }
+
+        public ActionResult Loja()
+        {
+            return View();
+        }
+
+        public ActionResult Noticias()
+        {
+            return View();
+        }
+
+        public ActionResult Pesquisa()
+        {
+            return View();
+        }
+
+        public ActionResult Projetos()
+        {
+            return View();
+        }
+
+
     }
 }

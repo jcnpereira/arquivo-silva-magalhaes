@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
@@ -11,29 +13,40 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public NewsItem()
         {
-            Links = new HashSet<ReferencedLink>();
-            ReferencedNewsItems = new HashSet<NewsItem>();
-            ReferencedNewsText = new HashSet<NewsItemTranslation>();
-            ReferencedDocuments = new HashSet<Attachment>();
+            Links = new List<ReferencedLink>();
+            Translations = new List<NewsItemTranslation>();
+            Attachments = new List<Attachment>();
+
+            CreationDate = DateTime.Now;
+            LastModificationDate = DateTime.Now;
         }
 
         [Key]
         public int Id { get; set; }
+
         [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
+
+        
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "ExpiryDate")]
+        public DateTime? ExpiryDate { get; set; }
+
         [Required]
-        public DateTime ExpiryDate { get; set; }
-        [Required]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
-        [Required]
-        public DateTime CreationDate { get; set; }
-        [Required]
+        
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "CreationDate")]
+        public DateTime? CreationDate { get; set; }
+
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 
-        public virtual ICollection<ReferencedLink> Links { get; set; }
-        public virtual ICollection<NewsItem> ReferencedNewsItems { get; set; }
-        public virtual ICollection<NewsItemTranslation> ReferencedNewsText { get; set;}
-        public virtual ICollection<Attachment> ReferencedDocuments { get; set; }
+        public virtual IList<ReferencedLink> Links { get; set; }
+        public virtual IList<NewsItemTranslation> Translations { get; set;}
+        public virtual IList<Attachment> Attachments { get; set; }
     }
 
     public class NewsItemTranslation
@@ -42,16 +55,22 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int NewsItemId { get; set; }
         [ForeignKey("NewsItemId")]
         public NewsItem NewsItem { get; set; }
-
+        [Required]
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
+
         [Required]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "Title")]
         public string Title { get; set; }
+
         [Required]
-        public string Subtitle { get; set; }
-        [Required]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "Heading")]
         public string Heading { get; set; }
+
         [Required]
+        [AllowHtml]
+        [DataType(DataType.Html)]
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "TextContent")]
         public string TextContent { get; set; }
     }
 }

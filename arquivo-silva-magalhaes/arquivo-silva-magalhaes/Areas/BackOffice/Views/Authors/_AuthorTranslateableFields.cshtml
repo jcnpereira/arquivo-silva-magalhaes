@@ -1,0 +1,42 @@
+﻿@model AuthorTranslation
+
+@Html.HiddenFor(model => model.AuthorId)
+
+@if (ViewBag.AvailableLanguages == null)
+{
+    @Html.HiddenFor(model => model.LanguageCode)
+}
+else
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.LanguageCode, ViewBag.AvailableLanguages as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LanguageCode)
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Nationality, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Biography, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.Biography, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Biography, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Curriculum, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.Curriculum, new { htmlAttributes = new { rows = 5, @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Curriculum, "", new { @class = "text-danger" })
+    </div>
+</div>

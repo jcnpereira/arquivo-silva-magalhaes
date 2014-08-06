@@ -1,134 +1,55 @@
-﻿@*@model Tuple<Specimen, SpecimenEditViewModel>
+﻿@model SpecimenEditViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = SpecimenStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>Create</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    @Html.HiddenFor(model => model.Item1.Id)
+    @Html.HiddenFor(model => model.Specimen.Id)
 
     <div class="form-horizontal">
-        <h4>Specimen</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @for (var i = 0; i < Model.Item1.Translations.Count; i++)
-        {
-            @Html.HiddenFor(model => model.Item1.Translations[i].LanguageCode)
-            @Html.HiddenFor(model => model.Item1.Translations[i].SpecimenId)
+        @Html.PartialFor(model => model.Specimen, "_SpecimenMainFields")
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].Title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].Title, "", new { @class = "text-danger" })
+        @Html.Partial("_SpecimenDropDownLists")
+
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Specimen.Translations.Count(); i++)
+            {
+                var langCode = Model.Specimen.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+            @for (var i = 0; i < Model.Specimen.Translations.Count; i++)
+            {
+                var langCode = Model.Specimen.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+
+                    @Html.PartialFor(model => model.Specimen.Translations[i], "_SpecimenTranslateableFields")
+
                 </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].Topic, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].Topic, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].Topic, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].SimpleStateDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].SimpleStateDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].SimpleStateDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].DetailedStateDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].DetailedStateDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].DetailedStateDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].InterventionDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].InterventionDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].InterventionDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Item1.Translations[i].Publication, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Item1.Translations[i].Publication, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Item1.Translations[i].Publication, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        }
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.ReferenceCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CatalogCode, "", new { @class = "text-danger" })
-            </div>
+            }
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AuthorCatalogationCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AuthorCatalogationCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AuthorCatalogationCode, "", new { @class = "text-danger" })
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HasMarksOrStamps, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.HasMarksOrStamps)
-                    @Html.ValidationMessageFor(model => model.HasMarksOrStamps, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Indexation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Indexation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Indexation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@

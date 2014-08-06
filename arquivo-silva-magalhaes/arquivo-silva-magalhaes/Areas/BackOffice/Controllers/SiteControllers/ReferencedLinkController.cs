@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -17,9 +18,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/ReferencedLink/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.ReferencedLinks.ToListAsync());
+            return View(await Task.Run(() => 
+                db.ReferencedLinks
+                  .OrderBy(l => l.Id)
+                  .ToPagedList(pageNumber, 10)));
         }
 
         // GET: /BackOffice/ReferencedLink/Details/5
@@ -40,7 +44,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/ReferencedLink/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ReferencedLink());
         }
 
         // POST: /BackOffice/ReferencedLink/Create
@@ -48,18 +52,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Title,Link,Description,DateOfCreation,LastModifiedDate,IsUsefulLink")] ReferencedLink referencedlink)
+        public async Task<ActionResult> Create(ReferencedLink referencedlink)
         {
-
-            //var link = new ReferencedLink
-            //{
-            //    Id=referencedlink.Id,
-            //    Title=referencedlink.Title,
-            //    Link=referencedlink.Link,
-            //    DateOfCreation=DateTime.Now,
-            //    LastModifiedDate = DateTime.Now,
-            //    IsUsefulLink=referencedlink.IsUsefulLink
-            //};
             if (ModelState.IsValid)
             {
                 db.ReferencedLinks.Add(referencedlink);
@@ -90,7 +84,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Title,Link,Description,DateOfCreation,LastModifiedDate,IsUsefulLink")] ReferencedLink referencedlink)
+        public async Task<ActionResult> Edit(ReferencedLink referencedlink)
         {
             if (ModelState.IsValid)
             {

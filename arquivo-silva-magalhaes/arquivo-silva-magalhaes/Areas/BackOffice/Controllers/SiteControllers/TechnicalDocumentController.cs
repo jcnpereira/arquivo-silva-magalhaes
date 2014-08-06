@@ -12,6 +12,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
 using System.IO;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -20,9 +21,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/TechnicalDocument/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.TechnicalDocuments.ToListAsync());
+            return View(await Task.Run(() =>
+                db.TechnicalDocuments
+                  .OrderBy(td => td.Id)
+                  .ToPagedList(pageNumber = 1, 10)));
         }
 
         // GET: /BackOffice/TechnicalDocument/Details/5
@@ -43,7 +47,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/TechnicalDocument/Create
         public ActionResult Create()
         {
-            return View();
+            return View(GenerateViewModel(new TechnicalDocument()));
         }
 
         // POST: /BackOffice/TechnicalDocument/Create
@@ -51,38 +55,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(TechnicalDocumentEditViewModel model)
+        public async Task<ActionResult> Create(TechnicalDocument technicalDocument, HttpPostedFileBase uploadedFile)
         {
             if (ModelState.IsValid)
             {
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.UploadedFile.FileName);
+                technicalDocument.UploadDate = DateTime.Now;
 
-                var technicaldocument = new TechnicalDocument
-                {
-                    LastModificationDate = DateTime.Now,
-                    Title = model.Title,
-                    UploadDate = DateTime.Now,
-                    FileName = fileName,
-                    DocumentType = model.DocumentType.Value,
-                    Format = model.UploadedFile.ContentType,
-                    FileSize = model.UploadedFile.ContentLength,
-                    Language=model.Language
-                };
+                var fileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(uploadedFile.FileName);
 
-                var dir = Server.MapPath("~/Public/Documents/");
+                var dir = Server.MapPath("~/Public/TechnicalDocuments/");
 
                 Directory.CreateDirectory(dir);
 
-                model.UploadedFile.SaveAs(dir + fileName);
+                uploadedFile.SaveAs(dir + fileName);
 
-                db.TechnicalDocuments.Add(technicaldocument);
+                technicalDocument.FileName = fileName;
+                technicalDocument.Format = uploadedFile.ContentType;
+                technicalDocument.FileSize = uploadedFile.ContentLength;
+                
+
+                db.TechnicalDocuments.Add(technicalDocument);
 
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(technicalDocument);
         }
 
         // GET: /BackOffice/TechnicalDocument/Edit/5
@@ -97,7 +96,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return HttpNotFound();
             }
-            return View(technicaldocument);
+            return View(GenerateViewModel(technicaldocument));
         }
 
         // POST: /BackOffice/TechnicalDocument/Edit/5
@@ -105,15 +104,28 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,UriPath,UpdateDate,LastModificationDate,Format,DocumentType,Language")] TechnicalDocument technicaldocument)
+        public async Task<ActionResult> Edit(
+            TechnicalDocument technicaldocument,
+            HttpPostedFileBase uploadedFile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(technicaldocument).State = EntityState.Modified;
+                var doc = await db.TechnicalDocuments.FindAsync(technicaldocument.Id);
+         
+                if (uploadedFile != null)
+                {
+                    var fileName = doc.FileName;
+                    uploadedFile.SaveAs(Server.MapPath("~/Public/TechnicalDocuments/") + fileName);
+                    doc.Format = uploadedFile.ContentType;
+                    doc.FileSize = uploadedFile.ContentLength;
+                }
+                doc.Title = technicaldocument.Title;
+                doc.LastModificationDate = DateTime.Now;
+                db.Entry(doc).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(technicaldocument);
+            return View(GenerateViewModel(technicaldocument));
         }
 
         // GET: /BackOffice/TechnicalDocument/Delete/5
@@ -140,6 +152,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             db.TechnicalDocuments.Remove(technicaldocument);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private TechnicalDocumentEditViewModel GenerateViewModel(TechnicalDocument document)
+        {
+            var model = new TechnicalDocumentEditViewModel
+            {
+                TechnicalDocument = document
+            };
+            return model;
         }
 
         protected override void Dispose(bool disposing)

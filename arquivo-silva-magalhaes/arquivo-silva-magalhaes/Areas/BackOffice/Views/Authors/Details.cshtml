@@ -1,90 +1,110 @@
 ﻿@model Author
 
 @{
-    ViewBag.Title = "Details";
-    var translations = Model.Translations.ToList();
+    ViewBag.Title = String.Format(AuthorStrings.DetailsTitleFormat, Model.FirstName + " " + Model.LastName);
 }
 
-<h2>Detalhes do autor</h2>
+<h2>@String.Format(AuthorStrings.DetailsTitleFormat, Model.FirstName + " " + Model.LastName)</h2>
 
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
+<div class="btn-toolbar" role="toolbar">
 
-    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-        <span class="glyphicon glyphicon-edit"></span>
-    </a>
+    <div class="btn-group">
+        <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+            <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+        </a>
+    </div>
 
-    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-        <span class="glyphicon glyphicon-floppy-remove"></span>
-    </a>
+    <div class="btn-group">
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+            <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
+        </a>
+
+        <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@AuthorStrings.DeleteWarningMessage">
+            <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+        </a>
+    </div>
 </div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+<hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+<div class="container">
+    <h4>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.FirstName)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.LastName)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.LastName)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DeathDate)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.BirthDate)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.DeathDate)
-        </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.DeathDate)
+    </h4>
 
-        @foreach (var t in translations)
+    <p>
+        @Html.DisplayFor(model => model.DeathDate)
+    </p>
+
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.Translations.Count(); i++)
         {
-            <dt>
-                @Html.DisplayNameFor(model => t.Nationality)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => t.Nationality)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => t.Biography)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => t.Biography)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => t.Curriculum)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => t.Curriculum)
-            </dd>
+            var langCode = Model.Translations[i].LanguageCode;
+            <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                <a href="#@langCode"
+                   role="tab"
+                   data-toggle="tab">@langCode</a>
+            </li>
         }
-    </dl>
+    </ul>
+    <div class="tab-content">
 
+        @foreach (var t in Model.Translations)
+        {
+            var langCode = t.LanguageCode;
 
+            <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                 id="@langCode">
+                <h4>
+                    @Html.DisplayNameFor(model => t.Nationality)
+                </h4>
+
+                <p>
+                    @Html.DisplayFor(model => t.Nationality)
+                </p>
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Biography)
+                </h4>
+
+                <p>
+                    @Html.DisplayMultilineFor(model => t.Biography)
+                </p>
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Curriculum)
+                </h4>
+
+                <p>
+                    @Html.DisplayMultilineFor(model => t.Curriculum)
+                </p>
+            </div>
+        }
+    </div>
 </div>
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")

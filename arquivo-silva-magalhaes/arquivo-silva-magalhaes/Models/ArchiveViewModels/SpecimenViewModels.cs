@@ -13,6 +13,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
     public class SpecimenEditViewModel
     {
+        public Specimen Specimen { get; set; }
+
         [Required]
         public IEnumerable<SelectListItem> AvailableImages { get; set; }
 
@@ -21,48 +23,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
         [Required]
         public IEnumerable<SelectListItem> AvailableFormats { get; set; }
-
-        public IEnumerable<string> AvailableLanguages { get; set; }
-    }
-
-
-    // TODO: Implement this!
-    public class SpecimenTranslationEditViewModel
-    {
-        public int SpecimenId { get; set; }
-
-        [Required]
-        public string LanguageCode { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Title")]
-        public string Title { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Topic")]
-        public string Topic { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
-        public string Description { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "StateSimple")]
-        public string SimpleStateDescription { get; set; }
-
-        [Required, DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "StateDetailed")]
-        public string DetailedStateDescription { get; set; }
-
-        [Required, DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "InterventionDescription")]
-        public string InterventionDescription { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Publication")]
-        public string Publication { get; set; }
-
-        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
     }
 
     public class SpecimenPhotoUploadModel

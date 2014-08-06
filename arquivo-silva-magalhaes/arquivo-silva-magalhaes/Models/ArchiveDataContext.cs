@@ -1,10 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models
 {
@@ -12,7 +8,15 @@ namespace ArquivoSilvaMagalhaes.Models
     {
         public ArchiveDataContext() : base("name=ArchiveDataContext") { }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) { base.OnModelCreating(modelBuilder); }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Image>()
+            //    .HasMany(i => i.Keywords)
+            //    .WithRequired(i => i.)
+
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<CollectionTranslation> CollectionTranslations { get; set; }
@@ -65,9 +69,9 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<AttachmentTranslation> AttachmentTranslations { get; set; }
 
         public virtual DbSet<Partnership> Partnerships { get; set; }
-        
+
         public virtual DbSet<ReferencedLink> ReferencedLinks { get; set; }
-        
+
         public virtual DbSet<SpotlightVideo> SpotlightVideos { get; set; }
 
         public virtual DbSet<TechnicalDocument> TechnicalDocuments { get; set; }

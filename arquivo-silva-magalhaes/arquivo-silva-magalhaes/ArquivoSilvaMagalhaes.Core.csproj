@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
@@ -121,6 +124,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -189,19 +193,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
+    <Compile Include="App_Start\MembershipConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AboutController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\CollaboratorController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
@@ -210,10 +215,15 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
-    <Compile Include="Migrations\201407222040212_ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201407222040212_ApplicationDbContext.Designer.cs">
-      <DependentUpon>201407222040212_ApplicationDbContext.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\ArchivesController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PartnershipsController.cs" />
+    <Compile Include="Controllers\ReferencedLinksController.cs" />
+    <Compile Include="Controllers\ShowCasePhotoesController.cs" />
+    <Compile Include="Controllers\TechnicalDocumentsController.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\IndexListViewModels.cs" />
     <Compile Include="Models\ArchiveModels\Image.cs" />
     <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
@@ -221,6 +231,9 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
     <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
+    <Compile Include="Models\KeywordRepository.cs" />
     <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
     <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
@@ -233,6 +246,7 @@
     <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
     <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
     <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Models\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -256,7 +270,6 @@
     <Compile Include="Models\ArchiveModels\Format.cs" />
     <Compile Include="Models\ArchiveModels\Process.cs" />
     <Compile Include="Models\ArchiveModels\Specimen.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SiteModels\DocumentAttachment.cs" />
     <Compile Include="Models\SiteModels\Collaborator.cs" />
     <Compile Include="Models\SiteModels\Event.cs" />
@@ -267,6 +280,9 @@
     <Compile Include="Models\SiteModels\TechnicalDocument.cs" />
     <Compile Include="Models\SiteModels\SpotlightVideo.cs" />
     <Compile Include="Models\TranslateableEntity.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DataStrings1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -277,6 +293,91 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\LanguageNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanguageNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\BannerStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BannerStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ClassificationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassificationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\CollectionStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DigitalPhotographStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\EventStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\FormatStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormatStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ImageStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\KeywordStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeywordStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\NewsItemStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsItemStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ProcessStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ReferencedLinkStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ShowcasePhotoStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\SpecimenStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpecimenStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\TechnicalDocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TechnicalDocumentStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\UiPrompts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -293,22 +394,145 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ValidationErrorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
+    <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
+    <Compile Include="Utilitites\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\PagedList.css" />
+    <Content Include="App_Data\Uploads\Specimens\Large\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
+    <Content Include="App_Data\Uploads\Specimens\Original\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
+    <Content Include="App_Data\Uploads\Specimens\Thumb\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
+    <Content Include="Content\Fonts\ostrich-black-webfont.svg" />
+    <Content Include="Content\Fonts\ostrich-bold-webfont.svg" />
+    <Content Include="Content\Fonts\ostrich-dashed-webfont.svg" />
+    <Content Include="Content\Fonts\ostrich-light-webfont.svg" />
+    <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
+    <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\media-queries.css" />
+    <Content Include="Content\UiControls\prettyPhoto.css" />
+    <Content Include="Content\Images\silva-magalhaes.jpg" />
+    <Content Include="Content\Styles\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\tipsy.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Styles\DatePicker\datepicker3.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\UiControls\flex-slider\flexslider.css" />
+    <Content Include="Content\UiControls\flex-slider\jquery.flexslider-min.js" />
+    <Content Include="Content\UiControls\flex-slider\theme\arrows.png" />
+    <Content Include="Content\UiControls\flex-slider\theme\bg_control_nav.png" />
+    <Content Include="Content\UiControls\flex-slider\theme\bg_direction_nav.png" />
+    <Content Include="Content\UiControls\flex-slider\theme\blocks.png" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Public\Images\logo.png" />
+    <Content Include="images\01.jpg" />
+    <Content Include="images\02.jpg" />
+    <Content Include="images\03.jpg" />
+    <Content Include="images\artigo.png" />
+    <Content Include="images\atividade.jpg" />
+    <Content Include="images\banner.jpg" />
+    <Content Include="images\carousel-left-arrow.png" />
+    <Content Include="images\carousel-right-arrow.png" />
+    <Content Include="images\clients\AE.png" />
+    <Content Include="images\clients\Altoids.png" />
+    <Content Include="images\clients\Facebook.png" />
+    <Content Include="images\clients\GE.png" />
+    <Content Include="images\clients\Glad.png" />
+    <Content Include="images\clients\Jameson.png" />
+    <Content Include="images\clients\Juicy-Fruit.png" />
+    <Content Include="images\clients\Microsoft.png" />
+    <Content Include="images\clients\Nike.png" />
+    <Content Include="images\clients\orbitlogo.png" />
+    <Content Include="images\clients\Skittles.png" />
+    <Content Include="images\clients\Smuin.png" />
+    <Content Include="images\clients\Westfield.png" />
+    <Content Include="images\clients\Zynga.png" />
+    <Content Include="images\cmt.png" />
+    <Content Include="images\coded-with-love - Cópia.png" />
+    <Content Include="images\coded-with-love.png" />
+    <Content Include="images\colecao.png" />
+    <Content Include="images\contact_us.jpg" />
+    <Content Include="images\customizable.png" />
+    <Content Include="images\destaque.jpg" />
+    <Content Include="images\documentos.png" />
+    <Content Include="images\evento.jpg" />
+    <Content Include="images\exposicao.jpg" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\for-pencil.png" />
+    <Content Include="images\ico-arrow.gif" />
+    <Content Include="images\image-gallery.png" />
+    <Content Include="images\jquery-code.png" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\logo - Cópia.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\noticias.jpg" />
+    <Content Include="images\pesquisa.png" />
+    <Content Include="images\photos\01.jpg" />
+    <Content Include="images\photos\02.jpg" />
+    <Content Include="images\photos\03.jpg" />
+    <Content Include="images\photos\04.jpg" />
+    <Content Include="images\photos\05.jpg" />
+    <Content Include="images\photos\06.jpg" />
+    <Content Include="images\photos\07.jpg" />
+    <Content Include="images\photos\08.jpg" />
+    <Content Include="images\photos\09.jpg" />
+    <Content Include="images\photos\10.jpg" />
+    <Content Include="images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\dark_square\contentPattern.png" />
+    <Content Include="images\prettyPhoto\dark_square\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="images\prettyPhoto\default\loader.gif" />
+    <Content Include="images\prettyPhoto\default\sprite.png" />
+    <Content Include="images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\light_rounded\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\light_square\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\light_square\loader.gif" />
+    <Content Include="images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="images\projeto.png" />
+    <Content Include="images\responsive.png" />
+    <Content Include="images\sending.gif" />
+    <Content Include="images\twitter.png" />
+    <Content Include="images\workshop.jpg" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -364,11 +588,11 @@
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
@@ -416,17 +640,66 @@
     <Content Include="Areas\BackOffice\Views\Images\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Images\Edit.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\EnumDisplayFor.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\DateDisplayFor.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_EditPageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_IndexPageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_AuthorMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_AuthorTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_TranslationEditTabs.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Home\About.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_IndexPageActions.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\_TechnicalDocumentMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographTranslateableFields.cshtml" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.css.map" />
+    <Content Include="Content\Fonts\ostrich-black-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-black-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-black-webfont.woff" />
+    <Content Include="Content\Fonts\ostrich-bold-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-bold-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-bold-webfont.woff" />
+    <Content Include="Content\Fonts\ostrich-dashed-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-dashed-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-dashed-webfont.woff" />
+    <Content Include="Content\Fonts\ostrich-light-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-light-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-light-webfont.woff" />
+    <Content Include="Content\Fonts\ostrich-regular-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-regular-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-regular-webfont.woff" />
+    <Content Include="Content\Fonts\ostrich-rounded-webfont.eot" />
+    <Content Include="Content\Fonts\ostrich-rounded-webfont.ttf" />
+    <Content Include="Content\Fonts\ostrich-rounded-webfont.woff" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -436,12 +709,168 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-PT.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ua.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\quill\examples\advanced.html" />
+    <Content Include="Scripts\quill\examples\index.html" />
+    <Content Include="Scripts\quill\examples\scripts\advanced.js" />
+    <Content Include="Scripts\quill\examples\styles\advanced.css" />
+    <Content Include="Scripts\quill\examples\styles\style.css" />
+    <Content Include="Scripts\quill\quill.js" />
+    <Content Include="Scripts\quill\quill.min.js" />
+    <Content Include="Scripts\quill\quill.snow.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\setup.js" />
+    <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\images\01.jpg" />
+    <Content Include="Views\Home\images\02.jpg" />
+    <Content Include="Views\Home\images\03.jpg" />
+    <Content Include="Views\Home\images\artigo.png" />
+    <Content Include="Views\Home\images\atividade.jpg" />
+    <Content Include="Views\Home\images\banner.jpg" />
+    <Content Include="Views\Home\images\carousel-left-arrow.png" />
+    <Content Include="Views\Home\images\carousel-right-arrow.png" />
+    <Content Include="Views\Home\images\clients\AE.png" />
+    <Content Include="Views\Home\images\clients\Altoids.png" />
+    <Content Include="Views\Home\images\clients\Facebook.png" />
+    <Content Include="Views\Home\images\clients\GE.png" />
+    <Content Include="Views\Home\images\clients\Glad.png" />
+    <Content Include="Views\Home\images\clients\Jameson.png" />
+    <Content Include="Views\Home\images\clients\Juicy-Fruit.png" />
+    <Content Include="Views\Home\images\clients\Microsoft.png" />
+    <Content Include="Views\Home\images\clients\Nike.png" />
+    <Content Include="Views\Home\images\clients\orbitlogo.png" />
+    <Content Include="Views\Home\images\clients\Skittles.png" />
+    <Content Include="Views\Home\images\clients\Smuin.png" />
+    <Content Include="Views\Home\images\clients\Westfield.png" />
+    <Content Include="Views\Home\images\clients\Zynga.png" />
+    <Content Include="Views\Home\images\cmt.png" />
+    <Content Include="Views\Home\images\coded-with-love - Cópia.png" />
+    <Content Include="Views\Home\images\coded-with-love.png" />
+    <Content Include="Views\Home\images\colecao.png" />
+    <Content Include="Views\Home\images\contact_us.jpg" />
+    <Content Include="Views\Home\images\customizable.png" />
+    <Content Include="Views\Home\images\destaque.jpg" />
+    <Content Include="Views\Home\images\documentos.png" />
+    <Content Include="Views\Home\images\evento.jpg" />
+    <Content Include="Views\Home\images\exposicao.jpg" />
+    <Content Include="Views\Home\images\facebook.png" />
+    <Content Include="Views\Home\images\for-pencil.png" />
+    <Content Include="Views\Home\images\ico-arrow.gif" />
+    <Content Include="Views\Home\images\image-gallery.png" />
+    <Content Include="Views\Home\images\jquery-code.png" />
+    <Content Include="Views\Home\images\linkedin.png" />
+    <Content Include="Views\Home\images\logo - Cópia.png" />
+    <Content Include="Views\Home\images\logo.png" />
+    <Content Include="Views\Home\images\noticias.jpg" />
+    <Content Include="Views\Home\images\pesquisa.png" />
+    <Content Include="Views\Home\images\photos\01.jpg" />
+    <Content Include="Views\Home\images\photos\02.jpg" />
+    <Content Include="Views\Home\images\photos\03.jpg" />
+    <Content Include="Views\Home\images\photos\04.jpg" />
+    <Content Include="Views\Home\images\photos\05.jpg" />
+    <Content Include="Views\Home\images\photos\06.jpg" />
+    <Content Include="Views\Home\images\photos\07.jpg" />
+    <Content Include="Views\Home\images\photos\08.jpg" />
+    <Content Include="Views\Home\images\photos\09.jpg" />
+    <Content Include="Views\Home\images\photos\10.jpg" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\contentPattern.png" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\default_thumbnail.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\default\sprite.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="Views\Home\images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_rounded\default_thumbnail.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="Views\Home\images\prettyPhoto\light_square\default_thumbnail.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\light_square\loader.gif" />
+    <Content Include="Views\Home\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Views\Home\images\projeto.png" />
+    <Content Include="Views\Home\images\responsive.png" />
+    <Content Include="Views\Home\images\sending.gif" />
+    <Content Include="Views\Home\images\twitter.png" />
+    <Content Include="Views\Home\images\workshop.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -449,14 +878,13 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -466,7 +894,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Details.cshtml" />
@@ -477,25 +904,34 @@
     <Content Include="Areas\BackOffice\Views\News\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
+    <Content Include="Views\Home\Historia.cshtml" />
+    <Content Include="Views\Home\Links.cshtml" />
+    <Content Include="Views\Home\Loja.cshtml" />
+    <Content Include="Views\Home\Pesquisa.cshtml" />
+    <Content Include="Views\Archives\Index.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Partnerships\Index.cshtml" />
+    <Content Include="Views\ReferencedLinks\Index.cshtml" />
+    <Content Include="Views\ShowCasePhotoes\Index.cshtml" />
+    <Content Include="Views\TechnicalDocuments\Index.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
-    <Folder Include="Public\DocumentsAttachment\" />
-    <Folder Include="Public\Images\App_LocalResources\" />
+    <Folder Include="fonts\" />
+    <Folder Include="Public\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407222040212_ApplicationDbContext.resx">
-      <DependentUpon>201407222040212_ApplicationDbContext.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -505,6 +941,74 @@
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LanguageNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LanguageNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\BannerStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BannerStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ClassificationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClassificationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\CollectionStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CollectionStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DigitalPhotographStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DigitalPhotographStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocumentStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\EventStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\FormatStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormatStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ImageStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\KeywordStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>KeywordStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\NewsItemStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewsItemStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ProcessStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ReferencedLinkStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReferencedLinkStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ShowcasePhotoStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShowcasePhotoStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\SpecimenStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\TechnicalDocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TechnicalDocumentStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -517,6 +1021,10 @@
     <EmbeddedResource Include="Resources\SiteModelStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationErrorStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

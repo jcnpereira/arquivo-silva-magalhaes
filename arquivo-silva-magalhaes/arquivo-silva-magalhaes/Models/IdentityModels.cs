@@ -10,11 +10,14 @@ namespace ArquivoSilvaMagalhaes.Models
         public string PictureUrl { get; set; }
     }
 
+    class ApplicationConfig
+    {
+        public int MaxImageWidth { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
+        public ApplicationDbContext() : base("DefaultConnection") { }
+
     }
 }

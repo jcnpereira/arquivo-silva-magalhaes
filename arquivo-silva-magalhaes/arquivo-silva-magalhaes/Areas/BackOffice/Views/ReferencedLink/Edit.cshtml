@@ -1,67 +1,18 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink
+﻿@model ReferencedLink
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = ReferencedLinkStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>Editar Link</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-
-        <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Link)
-                @Html.ValidationMessageFor(model => model.Link)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateOfCreation, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfCreation, new { htmlAttributes = new { @class = "form-control col-md-2", @Value = Model.DateOfCreation.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.DateOfCreation)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastModifiedDate,htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModifiedDate, new {htmlAttributes=new{@class="form-control", @Value = Model.LastModifiedDate.ToString("yyyy-MM-dd")}})
-                @Html.ValidationMessageFor(model => model.LastModifiedDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsUsefulLink, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IsUsefulLink )
-                @Html.ValidationMessageFor(model => model.IsUsefulLink)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control col-md-2" } })
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-        </div>
+        
+        @Html.Partial("_ReferencedLinkMainFields")
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
-    @Html.Partial("_SubmitBackPartial")
+    
 }

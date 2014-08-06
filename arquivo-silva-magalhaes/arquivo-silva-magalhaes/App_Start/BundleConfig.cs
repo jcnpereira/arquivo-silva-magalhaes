@@ -11,6 +11,9 @@ namespace ArquivoSilvaMagalhaes
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-date-picker").Include(
+                        "~/Scripts/bootstrap-datepicker.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -27,10 +30,14 @@ namespace ArquivoSilvaMagalhaes
                         "~/Scripts/angular.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Styles/Bootstrap/bootstrap.css"));
 
-            
+            bundles.Add(new StyleBundle("~/Content/customcss").Include(
+                      "~/Content/Styles/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datepicker-bootstrap").Include(
+                        "~/Content/Styles/DatePicker/datepicker3.css"));
+
         }
     }
 }

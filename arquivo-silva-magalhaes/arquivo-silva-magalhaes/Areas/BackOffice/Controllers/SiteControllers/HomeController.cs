@@ -14,5 +14,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             return View();
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
 	}
 }

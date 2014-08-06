@@ -1,7 +1,8 @@
 ﻿@model TechnicalDocumentEditViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = TechnicalDocumentStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
 
@@ -9,47 +10,20 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <h2>Criar documento tecnico</h2>
 
     <div class="form-horizontal">
-        <hr />
+
+        @Html.PartialFor(model => model.TechnicalDocument, "_TechnicalDocumentMainFields")
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title)
+            @Html.LabelFor(model => model.UploadedFile, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.UploadedFile, new { @class = "form-control-static" })
+                @Html.ValidationMessageFor(model => model.UploadedFile, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UploadedFile, new { @class = "control-label" })
-            <div>
-                <input type="file" class="form-control" name="@Html.NameFor(model => model.UploadedFile)" required />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DocumentType, new { @class = "control-label" })
-            <div>
-                @Html.EnumDropDownListFor(model => model.DocumentType, "Escolha um...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DocumentType)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Language, new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Language)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Criar" class="btn btn-default" />
-            </div>
-        </div>
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
-    @Html.Partial("_SubmitBackPartial")
 }
 

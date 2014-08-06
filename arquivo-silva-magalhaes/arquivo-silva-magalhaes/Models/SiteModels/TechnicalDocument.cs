@@ -21,6 +21,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
     public class TechnicalDocument
     {
+        public TechnicalDocument()
+        {
+            LastModificationDate = DateTime.Now;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -28,29 +33,16 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(DataStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "FileName")]
         public string FileName { get; set; }
 
-        [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "UploadDate")]
         public DateTime UploadDate { get; set; }
 
-        [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 
-        [Required]
         public String Format { get; set; }
-
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "TechnicalDocument_DocumentType")]
-        public DocumentType DocumentType { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Language")]
-        public string Language { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "FileSize")]

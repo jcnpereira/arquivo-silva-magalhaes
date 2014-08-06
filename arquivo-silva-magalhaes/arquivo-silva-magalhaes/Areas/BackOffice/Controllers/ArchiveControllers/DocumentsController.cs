@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using PagedList;
+using System.Collections.Generic;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class DocumentsController : BackOfficeController
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Documents
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Documents.ToListAsync());
+            return View(await Task.Run(() => _db.Documents.OrderBy(d => d.Id).ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Documents/Details/5
@@ -33,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await db.Documents.FindAsync(id);
+            Document document = await _db.Documents.FindAsync(id);
 
             if (document == null)
             {
@@ -43,58 +40,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         }
 
         // GET: BackOffice/Documents/Create
-        public async Task<ActionResult> Create(int? CollectionId, int? AuthorId)
+        public async Task<ActionResult> Create(int? collectionId, int? authorId)
         {
-            var model = new DocumentEditViewModel
-            {
-                //AvailableKeywords = await db.KeywordTranslations
-                //    .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                //    .Select(kt => new SelectListItem
-                //    {
-                //        Value = kt.KeywordId.ToString(),
-                //        Text = kt.Value
-                //    }).ToListAsync(),
+            var doc = new Document();
 
-                Translations = new List<DocumentTranslationEditViewModel>
-                {
-                    new DocumentTranslationEditViewModel { LanguageCode = LanguageDefinitions.DefaultLanguage }
-                }
-            };
+            doc.Translations.Add(new DocumentTranslation
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            });
+
+            // Check for a collection.
+            if (collectionId != null && _db.Collections.Find(collectionId) != null)
+            {
+                doc.CollectionId = collectionId.Value;
+            }
 
             // Check for an author.
-            if (AuthorId != null && db.Authors.Find(AuthorId) != null)
+            if (authorId != null && _db.Authors.Find(authorId) != null)
             {
-                model.AuthorId = AuthorId.Value;
+                doc.AuthorId = authorId.Value;
             }
-            else
-            {
-                model.AvailableAuthors = await db.Authors
-                    .Select(a => new SelectListItem
-                    {
-                        Value = a.Id.ToString(),
-                        Text = a.FirstName + " " + a.LastName
-                    }).ToListAsync();
-            }
-            // Check for a collection.
-            if (CollectionId != null && db.Collections.Find(CollectionId) != null)
-            {
-                model.CollectionId = CollectionId.Value;
-            }
-            else
-            {
-                model.AvailableCollections = await db.Collections
-                    .Select(c => new SelectListItem
-                    {
-                        Value = c.Id.ToString(),
-                        Text = c.CatalogCode
-                    }).ToListAsync();
-            }
+
+            var model = await GenerateViewModel(doc);
 
             return View(model);
         }
 
         // POST: BackOffice/Documents/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,13 +75,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                db.Documents.Add(document);
-                await db.SaveChangesAsync();
+                _db.Documents.Add(document);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(document);
+            return View(await GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Edit/5
@@ -118,28 +90,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.Documents.FindAsync(id);
+            Document document = await _db.Documents.FindAsync(id);
             if (document == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(await GenerateViewModel(document));
         }
 
         // POST: BackOffice/Documents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ResponsibleName,DocumentDate,CatalogationDate,Notes,CatalogCode")] Document document)
+        public async Task<ActionResult> Edit(Document document)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(document).State = EntityState.Modified;
+
+                foreach (var t in document.Translations)
+                {
+                    _db.Entry(t).State = EntityState.Modified;
+                }
+
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            return View(await GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Delete/5
@@ -149,7 +127,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await db.Documents.FindAsync(id);
+            Document document = await _db.Documents.FindAsync(id);
             if (document == null)
             {
                 return HttpNotFound();
@@ -162,17 +140,91 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await db.Documents.FindAsync(id);
-            db.Documents.Remove(document);
-            await db.SaveChangesAsync();
+            Document document = await _db.Documents.FindAsync(id);
+            _db.Documents.Remove(document);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        private async Task<DocumentEditViewModel> GenerateViewModel(Document d)
+        {
+            var model = new DocumentEditViewModel();
+            model.Document = d;
+
+            model.AvailableAuthors = await _db.Authors.Select(a => new SelectListItem
+                {
+                    Text = a.LastName + ", " + a.FirstName,
+                    Value = a.Id.ToString(),
+                    Selected = d.AuthorId == a.Id
+                })
+                .ToListAsync();
+
+            var query = _db.Collections
+                .Join(_db.CollectionTranslations, (c) => c.Id, (ct) => ct.CollectionId, (c, ct) => new SelectListItem 
+                {
+                    Selected = d.CollectionId == c.Id,
+                    Value = c.Id.ToString(),
+                    Text = c.CatalogCode + " - " + ct.Title
+                });
+
+            model.AvailableCollections = await query.ToListAsync();
+
+            
+
+            return model;
+        }
+
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doc = await _db.Documents.FindAsync(id);
+
+            if (doc == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new DocumentTranslation
+            {
+                DocumentId = doc.Id
+            };
+
+            ViewBag.AvailableLanguages = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "pt", Text = "português"},
+                new SelectListItem { Value = "en", Text = "inglês"},
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(DocumentTranslation translation)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.DocumentTranslations.Add(translation);
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(new DocumentEditViewModel
+                {
+                    Document = translation.Document
+                });
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
