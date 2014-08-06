@@ -1,0 +1,35 @@
+﻿@model ShowcasePhoto
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CommenterName, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.CommenterName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.CommenterName, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CommenterEmail, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.CommenterEmail, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.CommenterEmail, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IsEmailVisible, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.CheckBoxFor(model => model.IsEmailVisible, new { @class = "checkbox" })
+        @Html.ValidationMessageFor(model => model.IsEmailVisible, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.VisibleSince, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.DatePickerFor(model => model.VisibleSince, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.VisibleSince, "", new { @class = "text-danger" })
+    </div>
+</div>

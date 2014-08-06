@@ -1,24 +1,18 @@
 ﻿@model IEnumerable<Format>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = FormatStrings.EntityNamePlural;
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
-
-<h2>Formatos</h2>
-
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
-    <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</div>
-<table class="table table-striped table-houver">
+<table class="table table-striped table-hover table-responsive">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FormatDescription)
+            </th>
+
+            <th>
+                @UiStrings.Actions
             </th>
         </tr>
     </thead>
@@ -47,6 +41,3 @@
         </tr>
     }
 </table>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}

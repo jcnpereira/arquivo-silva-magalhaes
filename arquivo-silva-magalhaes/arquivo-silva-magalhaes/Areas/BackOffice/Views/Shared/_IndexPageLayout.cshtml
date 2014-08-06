@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="btn-toolbar" role="toolbar">
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+                <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+            </a>
+            <a class="btn btn-primary" title="@UiStrings.Create" href="@Url.Action("Create")">
+                <span class="glyphicon glyphicon-plus"></span> @UiStrings.New
+            </a>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="panel-footer">
+        <div class="text-center">
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

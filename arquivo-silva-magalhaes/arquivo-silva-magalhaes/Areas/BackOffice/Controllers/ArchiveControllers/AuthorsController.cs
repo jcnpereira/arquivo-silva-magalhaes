@@ -20,10 +20,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
         {
-            return View(db.Authors
+            return View(await Task.Run(() => db.Authors
                 .Include(a => a.Translations)
                 .OrderBy(a => a.Id)
-                .ToPagedList(pageNumber, 10)); // TODO Allow configs for page size.
+                .ToPagedList(pageNumber, 10))); // TODO Allow configs for page size.
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -75,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(author);
+            return View(new AuthorEditViewModel { Author = author });
         }
 
         // GET: BackOffice/Authors/Edit/5

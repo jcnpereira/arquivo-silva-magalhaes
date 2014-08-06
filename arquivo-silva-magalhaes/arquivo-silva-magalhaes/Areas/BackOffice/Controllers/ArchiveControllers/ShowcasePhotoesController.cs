@@ -9,17 +9,19 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.SiteViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     public class ShowcasePhotoesController : BackOfficeController
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/ShowcasePhotoes
         public async Task<ActionResult> Index()
         {
-            var showcasePhotoSet = db.ShowcasePhotoes.Include(s => s.DigitalPhotograph);
+            var showcasePhotoSet = _db.ShowcasePhotoes.Include(s => s.Image);
             return View(await showcasePhotoSet.ToListAsync());
         }
 
@@ -30,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await _db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -41,8 +43,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/ShowcasePhotoes/Create
         public ActionResult Create()
         {
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate");
-            return View();
+            var photo = new ShowcasePhoto();
+            photo.Translations.Add(new ShowcasePhotoTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+            return View(GenerateViewModel(photo));
         }
 
         // POST: BackOffice/ShowcasePhotoes/Create
@@ -50,17 +57,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasePhoto)
+        public async Task<ActionResult> Create(ShowcasePhoto showcasePhoto)
         {
             if (ModelState.IsValid)
             {
-                db.ShowcasePhotoes.Add(showcasePhoto);
-                await db.SaveChangesAsync();
+                _db.ShowcasePhotoes.Add(showcasePhoto);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // GET: BackOffice/ShowcasePhotoes/Edit/5
@@ -70,13 +76,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await _db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // POST: BackOffice/ShowcasePhotoes/Edit/5
@@ -84,16 +89,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasePhoto)
+        public async Task<ActionResult> Edit(ShowcasePhoto showcasePhoto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(showcasePhoto).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(showcasePhoto).State = EntityState.Modified;
+
+                foreach (var item in showcasePhoto.Translations)
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "ScanDate", showcasePhoto.DigitalPhotographId);
-            return View(showcasePhoto);
+            return View(GenerateViewModel(showcasePhoto));
         }
 
         // GET: BackOffice/ShowcasePhotoes/Delete/5
@@ -103,7 +113,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
+            ShowcasePhoto showcasePhoto = await _db.ShowcasePhotoes.FindAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -116,53 +126,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ShowcasePhoto showcasePhoto = await db.ShowcasePhotoes.FindAsync(id);
-            db.ShowcasePhotoes.Remove(showcasePhoto);
-            await db.SaveChangesAsync();
+            ShowcasePhoto showcasePhoto = await _db.ShowcasePhotoes.FindAsync(id);
+            _db.ShowcasePhotoes.Remove(showcasePhoto);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        public ActionResult AddTranslation()
+        private ShowcasePhotoEditViewModel GenerateViewModel(ShowcasePhoto photo)
         {
-            return View();
-        }
+            var model = new ShowcasePhotoEditViewModel
+            {
+                ShowcasePhoto = photo
+            };
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddTranslation(Object model)
-        {
-            return View();
-        }
+            model.AvailableImages = _db.ImageTranslations.Select(d => new SelectListItem
+                {
+                    Value = d.ImageId.ToString(),
+                    Text = d.Title
+                });
 
-        public ActionResult EditTranslation()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditTranslation(Object model)
-        {
-            return View();
-        }
-
-        public ActionResult DeleteTranslation()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteTranslation(Object model)
-        {
-            return View();
+            return model;
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

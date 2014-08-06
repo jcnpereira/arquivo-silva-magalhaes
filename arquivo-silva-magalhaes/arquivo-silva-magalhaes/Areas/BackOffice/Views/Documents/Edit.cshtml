@@ -1,59 +1,54 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Document
+﻿@model DocumentEditViewModel
 
 @{
-    ViewBag.Title = "Edit";
-}
+    ViewBag.Title = DocumentStrings.EditTitleFormat;
 
-<h2>Editar documento</h2>
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Document.Id)
 
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ResponsibleName, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.ResponsibleName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ResponsibleName, "", new { @class = "text-danger" })
-            </div>
+        @Html.PartialFor(model => model.Document, "_DocumentMainFields")
+
+        @Html.Partial("_DocumentDropDownLists")
+
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Document.Translations.Count(); i++)
+            {
+                var langCode = Model.Document.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+            @for (var i = 0; i < Model.Document.Translations.Count; i++)
+            {
+                var langCode = Model.Document.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+
+                    @Html.PartialFor(model => model.Document.Translations[i], "_DocumentTranslateableFields")
+                </div>
+            }
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentDate, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.DocumentDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.DocumentDate.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.DocumentDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CatalogationDate, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.CatalogationDate, new { htmlAttributes = new { @class = "form-control", @Value = Model.CatalogationDate.ToString("yyyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.CatalogationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CatalogCode, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CatalogCode, "", new { @class = "text-danger" })
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>
-    @Html.Partial("_SubmitbackPartial")
 }

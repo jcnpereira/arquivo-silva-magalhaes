@@ -1,65 +1,26 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
+﻿@model ShowcasePhotoEditViewModel
 
 @{
-    ViewBag.Title = "Create";
-}
+    ViewBag.Title = ShowcasePhotoStrings.CreateTitleFormat;
 
-<h2>Create</h2>
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+    
+}
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ShowcasePhoto</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommenterName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommenterName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CommenterName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
+        @Html.PartialFor(model => model.ShowcasePhoto, "_ShowcasePhotoMainFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommenterEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommenterEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CommenterEmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.Partial("_ShowcasePhotoDropDownLists")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsEmailVisible, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IsEmailVisible, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IsEmailVisible, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.PartialFor(model => model.ShowcasePhoto.Translations[0], "_ShowcasePhotoTranslateableFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VisibleSince, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VisibleSince, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VisibleSince, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DigitalPhotographId, "DigitalPhotographId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DigitalPhotographId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DigitalPhotographId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 }
 
-@Html.Partial("_SubmitBackPartial")

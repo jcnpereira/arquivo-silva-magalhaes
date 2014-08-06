@@ -35,7 +35,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DocumentDate)
+            @if (Model.DocumentDate != null)
+            {
+                @Html.DisplayFor(model => model.DocumentDate)
+            }
+            else
+            {
+                @DocumentStrings.UnknownDocumentDate
+            }
         </dd>
 
         <dt>

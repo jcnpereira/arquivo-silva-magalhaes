@@ -1,104 +1,48 @@
-﻿
-
-
-
-
-
-@model ArquivoSilvaMagalhaes.Models.SiteViewModels.NewsItemViewModels
+﻿@model NewsItemViewModel
 
 @{
-    ViewBag.Title = "Edit";
-}
+    ViewBag.Title = NewsItemStrings.EditTitleFormat;
 
-<h2>Criar nova notícia</h2>
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishDate)
-                @Html.ValidationMessageFor(model => model.PublishDate)
-            </div>
-        </div>
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.NewsItem.Translations.Count(); i++)
+            {
+                var langCode = Model.NewsItem.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ExpiryDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpiryDate)
-                @Html.ValidationMessageFor(model => model.ExpiryDate)
-            </div>
-        </div>
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+            @for (var i = 0; i < Model.NewsItem.Translations.Count; i++)
+            {
+                var langCode = Model.NewsItem.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HideAfterExpiry, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HideAfterExpiry)
-                @Html.ValidationMessageFor(model => model.HideAfterExpiry)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreationDate)
-                @Html.ValidationMessageFor(model => model.CreationDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModificationDate)
-                @Html.ValidationMessageFor(model => model.LastModificationDate)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LanguageCode)
-                @Html.ValidationMessageFor(model => model.LanguageCode)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subtitle, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subtitle)
-                @Html.ValidationMessageFor(model => model.Subtitle)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Heading, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Heading)
-                    @Html.ValidationMessageFor(model => model.Heading)
+                    @Html.PartialFor(model => model.NewsItem.Translations[i], "_NewsItemTranslateableFields")
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TextContent, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TextContent)
-                @Html.ValidationMessageFor(model => model.TextContent)
-            </div>
+            }
         </div>
 
+        <hr />
 
+        @Html.PartialFor(model => model.NewsItem, "_NewsItemMainFields")
 
-
-        @*  @Html.Partial("_NewsI18nPartial")*@
+        @Html.Partial("_SubmitBackPartial", UiStrings.Done)
     </div>
-    @Html.Partial("_SubmitBackPartial")
 }

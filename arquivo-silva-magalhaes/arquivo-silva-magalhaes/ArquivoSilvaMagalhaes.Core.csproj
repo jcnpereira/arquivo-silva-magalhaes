@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
@@ -121,6 +124,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -189,19 +193,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
+    <Compile Include="App_Start\MembershipConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AboutController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\CollaboratorController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
@@ -218,6 +223,7 @@
     <Compile Include="Controllers\ReferencedLinksController.cs" />
     <Compile Include="Controllers\ShowCasePhotoesController.cs" />
     <Compile Include="Controllers\TechnicalDocumentsController.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\IndexListViewModels.cs" />
     <Compile Include="Models\ArchiveModels\Image.cs" />
     <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
@@ -226,6 +232,8 @@
     <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
+    <Compile Include="Models\KeywordRepository.cs" />
     <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
     <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
@@ -238,6 +246,7 @@
     <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
     <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
     <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Models\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -285,6 +294,91 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\LanguageNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanguageNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\BannerStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BannerStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ClassificationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassificationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\CollectionStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DigitalPhotographStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\DocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\EventStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\FormatStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormatStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ImageStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\KeywordStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeywordStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\NewsItemStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewsItemStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ProcessStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ReferencedLinkStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ShowcasePhotoStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\SpecimenStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpecimenStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\TechnicalDocumentStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TechnicalDocumentStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UiPrompts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -300,10 +394,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SiteModelStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ValidationErrorStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
+    <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
+    <Compile Include="Utilitites\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnexosImagens\Attachments\Imagem_1.jpg" />
@@ -491,6 +593,12 @@
     <Content Include="Content\prettyPhoto.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tipsy.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker3.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="flex-slider\flexslider.css" />
     <Content Include="flex-slider\jquery.flexslider-min.js" />
@@ -657,11 +765,11 @@
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Event\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
@@ -713,13 +821,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\EnumDisplayFor.cshtml" />
-    <Content Include="images\clients\Thumbs.db" />
-    <Content Include="images\photos\Thumbs.db" />
-    <Content Include="images\prettyPhoto\dark_rounded\Thumbs.db" />
-    <Content Include="images\prettyPhoto\dark_square\Thumbs.db" />
-    <Content Include="images\prettyPhoto\light_rounded\Thumbs.db" />
-    <Content Include="images\prettyPhoto\light_square\Thumbs.db" />
-    <Content Include="images\Thumbs.db" />
     <Content Include="AnexosImagens\Attachments\Documento_10.pdf" />
     <Content Include="AnexosImagens\Attachments\Documento_12.pdf" />
     <Content Include="AnexosImagens\Attachments\Documento_14.pdf" />
@@ -783,8 +884,41 @@
     <Content Include="fonts\ostrich-rounded-webfont.eot" />
     <Content Include="fonts\ostrich-rounded-webfont.ttf" />
     <Content Include="fonts\ostrich-rounded-webfont.woff" />
-    <Content Include="flex-slider\theme\Thumbs.db" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\DateDisplayFor.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_EditPageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_IndexPageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_AuthorMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_AuthorTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_DocumentDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_TranslationEditTabs.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ImageTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_SpecimenDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Home\About.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_IndexPageActions.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\_TechnicalDocumentMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoDropDownLists.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographTranslateableFields.cshtml" />
+    <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -804,8 +938,66 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-PT.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ua.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\quill\examples\advanced.html" />
+    <Content Include="Scripts\quill\examples\index.html" />
+    <Content Include="Scripts\quill\examples\scripts\advanced.js" />
+    <Content Include="Scripts\quill\examples\styles\advanced.css" />
+    <Content Include="Scripts\quill\examples\styles\style.css" />
+    <Content Include="Scripts\quill\quill.js" />
+    <Content Include="Scripts\quill\quill.min.js" />
+    <Content Include="Scripts\quill\quill.snow.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -915,7 +1107,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -944,13 +1138,6 @@
     <Content Include="Views\Home\Links.cshtml" />
     <Content Include="Views\Home\Loja.cshtml" />
     <Content Include="Views\Home\Pesquisa.cshtml" />
-    <Content Include="Views\Home\images\clients\Thumbs.db" />
-    <Content Include="Views\Home\images\photos\Thumbs.db" />
-    <Content Include="Views\Home\images\prettyPhoto\dark_rounded\Thumbs.db" />
-    <Content Include="Views\Home\images\prettyPhoto\dark_square\Thumbs.db" />
-    <Content Include="Views\Home\images\prettyPhoto\light_rounded\Thumbs.db" />
-    <Content Include="Views\Home\images\prettyPhoto\light_square\Thumbs.db" />
-    <Content Include="Views\Home\images\Thumbs.db" />
     <Content Include="Views\Archives\Index.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
@@ -959,6 +1146,7 @@
     <Content Include="Views\ReferencedLinks\Index.cshtml" />
     <Content Include="Views\ShowCasePhotoes\Index.cshtml" />
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="anexos\news-magazine\images\demo\" />
@@ -971,9 +1159,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -987,6 +1175,74 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LanguageNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LanguageNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\BannerStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BannerStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ClassificationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClassificationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\CollectionStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CollectionStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DigitalPhotographStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DigitalPhotographStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\DocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocumentStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\EventStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\FormatStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormatStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ImageStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\KeywordStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>KeywordStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\NewsItemStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewsItemStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ProcessStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ReferencedLinkStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReferencedLinkStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ShowcasePhotoStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShowcasePhotoStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\SpecimenStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\TechnicalDocumentStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TechnicalDocumentStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
@@ -998,6 +1254,10 @@
     <EmbeddedResource Include="Resources\SiteModelStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationErrorStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

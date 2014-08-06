@@ -1,7 +1,9 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,7 +21,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        [Index(IsUnique = true)]
+        [Display(ResourceType = typeof(FormatStrings), Name = "Format")]
         public string FormatDescription { get; set; }
 
         public virtual ICollection<Specimen> Specimens { get; set; }

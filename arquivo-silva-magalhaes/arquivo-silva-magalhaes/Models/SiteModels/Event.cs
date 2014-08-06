@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,26 +7,31 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public enum EventType : byte
     {
-        Exposição = 1,
-        Escolar = 2,
-        Outro = 100
+        [Display(ResourceType = typeof(EventStrings), Name = "EventType_Expo")]
+        Expo = 1,
+        [Display(ResourceType = typeof(EventStrings), Name = "EventType_School")]
+        School = 2,
+        [Display(ResourceType = typeof(EventStrings), Name = "EventType_Workshop")]
+        Workshop = 3,
+        [Display(ResourceType = typeof(EventStrings), Name = "EventType_Other")]
+        Other = 100
     }
 
     public class Event
     {
         public Event()
         {
-            this.EventTexts = new List<EventTranslation>();
-            ReferencedEvents = new HashSet<Event>();
-            this.Partnerships = new List<Partnership>();
-            Collaborators = new HashSet<Collaborator>();
-            Links = new HashSet<ReferencedLink>();
-            AttachedDocuments = new HashSet<Attachment>();
+            Translations = new List<EventTranslation>();
+            Partnerships = new List<Partnership>();
+            Collaborators = new List<Collaborator>();
+            Links = new List<ReferencedLink>();
+            AttachedDocuments = new List<Attachment>();
         }
 
         [Key]
@@ -33,38 +39,51 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Required]
         [MaxLength(50)]
-        [Display(ResourceType = typeof(DataStrings), Name = "Place")]
+        [Display(ResourceType = typeof(EventStrings), Name = "Place")]
         public string Place { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "Coordinates")]
+
+        [Display(ResourceType = typeof(EventStrings), Name = "Coordinates")]
         public string Coordinates { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "VisitorInformation")]
+
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(EventStrings), Name = "VisitorInformation")]
         public string VisitorInformation { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "StartMoment")]
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(EventStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "EndMoment")]
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(EventStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "PublishDate")]
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(EventStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "ExpiryDate")]
-        public DateTime ExpiryDate { get; set; }
-        [Display(ResourceType = typeof(DataStrings), Name = "HideAfterExpiry")]
+
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(EventStrings), Name = "ExpiryDate")]
+        public DateTime? ExpiryDate { get; set; }
+
+        [Display(ResourceType = typeof(EventStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
 
         /// <summary>
         /// The type of this event.
         /// </summary>
-        [Display(ResourceType = typeof(DataStrings), Name = "EventType")]
-        public EventType EventType { get; set; }
+        [Required]
+        [Display(ResourceType = typeof(EventStrings), Name = "EventType")]
+        public EventType? EventType { get; set; }
 
-        public ICollection<Event> ReferencedEvents { get; set; }
-        public List<Partnership> Partnerships { get; set; }
-        public ICollection<Collaborator> Collaborators { get; set; }
-        public ICollection<ReferencedLink> Links { get; set; }
-        public ICollection<Attachment> AttachedDocuments { get; set; }
-
-        public virtual List<EventTranslation> EventTexts { get; set; }
+        //public virtual IList<Event> ReferencedEvents { get; set; }
+        public virtual IList<Partnership> Partnerships { get; set; }
+        public virtual IList<Collaborator> Collaborators { get; set; }
+        public virtual IList<ReferencedLink> Links { get; set; }
+        public virtual IList<Attachment> AttachedDocuments { get; set; }
+        public virtual IList<EventTranslation> Translations { get; set; }
        
     }
 
@@ -79,9 +98,19 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 1)]
         public string LanguageCode { get; set; }
 
+        [Required]
+        [Display(ResourceType = typeof(EventStrings), Name = "Title")]
         public string Title { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }
-        public string SpotLight { get; set; }
+
+        [Required]
+        [DataType(DataType.Html)]
+        [AllowHtml]
+        [Display(ResourceType = typeof(EventStrings), Name = "TextContent")]
         public string TextContent { get; set; }
 
     }

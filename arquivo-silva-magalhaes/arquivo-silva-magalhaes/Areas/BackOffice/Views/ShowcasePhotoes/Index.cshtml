@@ -18,9 +18,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DigitalPhotograph.ScanDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CommenterName)
             </th>
             <th>
@@ -38,9 +35,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DigitalPhotograph.ScanDate)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CommenterName)
             </td>

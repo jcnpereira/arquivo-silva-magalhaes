@@ -1,10 +1,12 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -12,35 +14,35 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public ShowcasePhoto()
         {
-            this.Translations = new HashSet<ShowcasePhotoTranslation>();
+            this.Translations = new List<ShowcasePhotoTranslation>();
         }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "ShowcasePhoto_CommenterName")]
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterName")]
         public string CommenterName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ShowcasePhoto_CommenterEmail")]
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterEmail")]
         public string CommenterEmail { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "ShowcasePhoto_IsEmailVisible")]
-        public string IsEmailVisible { get; set; }
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "IsEmailVisible")]
+        public bool IsEmailVisible { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "VisibleSince")]
         public DateTime VisibleSince { get; set; }
 
-        public int DigitalPhotographId { get; set; }
+        public int ImageId { get; set; }
 
-        [ForeignKey("DigitalPhotographId")]
-        public DigitalPhotograph DigitalPhotograph { get; set; }
+        [ForeignKey("ImageId")]
+        public Image Image { get; set; }
 
-        public virtual ICollection<ShowcasePhotoTranslation> Translations { get; set; }
+        public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
     }
 
     public class ShowcasePhotoTranslation
@@ -52,8 +54,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         [Required]
-        [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ShowcasePhoto_Comment")]
+        [AllowHtml]
+        [DataType(DataType.Html)]
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Comment")]
         public string Comment { get; set; }
 
         [ForeignKey("ShowcasePhotoId")]

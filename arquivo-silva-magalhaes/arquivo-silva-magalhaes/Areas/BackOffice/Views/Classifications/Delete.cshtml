@@ -1,33 +1,49 @@
-﻿@model ClassificationViewModel
+﻿@model Classification
 
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = ClassificationStrings.DeleteTitleFormat;
 }
 
-<h2>Eliminar classificação</h2>
+<h2>@ViewBag.Title</h2>
 
-<h3>Tem a certeza que pretende eliminar esta classificação?</h3>
-<div>
-    <h4>Classification</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Value)
-        </dt>
+<div class="alert alert-danger" role="alert">@ClassificationStrings.DeleteWarningMessage</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Value)
-        </dd>
-    </dl>
-
-        @using (Html.BeginForm())
+<div class="container">
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.Translations.Count(); i++)
         {
-            @Html.AntiForgeryToken()
+            var langCode = Model.Translations[i].LanguageCode;
+            <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                <a href="#@langCode"
+                   role="tab"
+                   data-toggle="tab">@langCode</a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content">
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Voltar à lista", "Index")
+        @foreach (var t in Model.Translations)
+        {
+            var langCode = t.LanguageCode;
+
+            <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                 id="@langCode">
+                <h4>
+                    @Html.DisplayNameFor(model => t.Value)
+                </h4>
+
+                <p>
+                    @Html.DisplayFor(model => t.Value)
+                </p>
             </div>
         }
+    </div>
+
+    <form method="post" action="@Url.Action("Delete")">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">@UiStrings.Delete</button>
+        @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-default" })
+    </form>
 </div>
+

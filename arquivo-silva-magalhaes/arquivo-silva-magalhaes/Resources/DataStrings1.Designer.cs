@@ -155,7 +155,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         /// </summary>
         public static string BannerTexts {
             get {
-                return ResourceManager.GetString("BannerTexts", resourceCulture);
+                return ResourceManager.GetString("Translations", resourceCulture);
             }
         }
         

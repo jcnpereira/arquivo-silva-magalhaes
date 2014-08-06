@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     {
         public Keyword()
         {
-            this.Translations = new HashSet<KeywordTranslation>();
-            this.Documents = new HashSet<Document>();
-            this.Specimens = new HashSet<Specimen>();
+            this.Translations = new List<KeywordTranslation>();
+            this.Documents = new List<Document>();
+            this.Images = new List<Image>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        public virtual ICollection<KeywordTranslation> Translations { get; set; }
-        public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Specimen> Specimens { get; set; }
+        public virtual IList<KeywordTranslation> Translations { get; set; }
+        public virtual IList<Document> Documents { get; set; }
+        public virtual IList<Image> Images { get; set; }
     }
 
     public partial class KeywordTranslation
@@ -35,7 +36,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LanguageCode { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "Keyword")]
+        [MaxLength(50), Index(IsUnique = true)]
+        [Display(ResourceType = typeof(KeywordStrings), Name = "Value")]
         public string Value { get; set; }
 
         [ForeignKey("KeywordId")]

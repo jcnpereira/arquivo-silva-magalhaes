@@ -1,166 +1,188 @@
 ﻿@model Collection
 
-    @{
-        ViewBag.Title = "Details";
-    }
+@{
+    var ptTrans = Model.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+    ViewBag.Title = String.Format(CollectionStrings.DetailsTitleFormat, ptTrans.Title);
+}
 
-    <h2>Detalhes da coleção</h2>
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
+<h2>@ViewBag.Title</h2>
 
-    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-        <span class="glyphicon glyphicon-edit"></span>
-    </a>
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+            <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+        </a>
+    </div>
 
-    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-        <span class="glyphicon glyphicon-floppy-remove"></span>
-    </a>
+    <div class="btn-group">
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+            <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
+        </a>
+
+        <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@CollectionStrings.DeleteWarningMessage">
+            <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+        </a>
+    </div>
 </div>
-    <div>
 
-        <hr />
-        <dl class="dl-horizontal">
+<hr />
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CatalogCode)
-            </dt>
+<div class="container">
 
-            <dd>
-                @Html.DisplayFor(model => model.CatalogCode)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
+    <h4>
+        @Html.DisplayNameFor(model => model.CatalogCode)
+    </h4>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+    <p>
+        @Html.DisplayFor(model => model.CatalogCode)
+    </p>
+    <h4>
+        @Html.DisplayNameFor(model => model.Type)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
+    <p>
+        @Html.EnumDisplayFor(model => model.Type)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.InitialProductionDate)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.InitialProductionDate)
-            </dt>
+    <p>
+        @Html.DisplayFor(model => model.InitialProductionDate)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.InitialProductionDate)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.EndProductionDate)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.EndProductionDate)
-            </dt>
+    <p>
+        @if (Model.EndProductionDate != null)
+        {
+            @Html.DisplayFor(model => model.EndProductionDate)
+        }
+        else
+        {
+            @UiStrings.UnknownDate
+        }
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.EndProductionDate)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.LogoLocation)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LogoLocation)
-            </dt>
+    <p>
+        <img src="~/Public/Collections/@Model.LogoLocation" class="img-responsive img-thumbnail" style="max-width: 500px; max-height: 300px" />
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.LogoLocation)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.HasAttachments)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.HasAttachments)
-            </dt>
+    <p>
+        @(Model.HasAttachments ? UiStrings.Yes : UiStrings.No)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.HasAttachments)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
-            </dt>
+    <p>
+        @Html.DisplayFor(model => model.AttachmentsDescriptions)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.AttachmentsDescriptions)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.OrganizationSystem)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.OrganizationSystem)
-            </dt>
+    <p>
+        @Html.DisplayFor(model => model.OrganizationSystem)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.OrganizationSystem)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.Notes)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Notes)
-            </dt>
+    <p>
+        @Html.DisplayFor(model => model.Notes)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.Notes)
-            </dd>
+    <h4>
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IsVisible)
-            </dt>
+    <p>
+        @(Model.IsVisible ? UiStrings.Yes : UiStrings.No)
+    </p>
 
-            <dd>
-                @Html.DisplayFor(model => model.IsVisible)
-            </dd>
-        </dl>
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.Translations.Count(); i++)
+        {
+            var langCode = Model.Translations[i].LanguageCode;
+            <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                <a href="#@langCode"
+                   role="tab"
+                   data-toggle="tab">@LanguageDefinitions.GetLanguageName(langCode)</a>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content">
+
         @foreach (var t in Model.Translations)
         {
-            <div>
-                <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(t.LanguageCode)</h4>
-                <dl>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.Title)
-                    </dt>
-                    <dd>
-                        @t.Title
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.Description)
-                    </dt>
-                    <dd>
-                        @t.Description
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.Provenience)
-                    </dt>
-                    <dd>
-                        @t.Provenience
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.AdministrativeAndBiographicStory)
-                    </dt>
-                    <dd>
-                        @t.AdministrativeAndBiographicStory
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.FieldAndContents)
-                    </dt>
-                    <dd>
-                        @t.FieldAndContents
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => t.Dimension)
-                    </dt>
-                    <dd>
-                        @t.Dimension
-                </dd>
-                <dt>
+            var langCode = t.LanguageCode;
+
+            <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                 id="@langCode">
+
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Title)
+                </h4>
+                <p>
+                    @t.Title
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Description)
+                </h4>
+                <p>
+                    @t.Description
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Provenience)
+                </h4>
+                <p>
+                    @t.Provenience
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.AdministrativeAndBiographicStory)
+                </h4>
+                <p>
+                    @t.AdministrativeAndBiographicStory
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.FieldAndContents)
+                </h4>
+                <p>
+                    @t.FieldAndContents
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Dimension)
+                </h4>
+                <p>
+                    @t.Dimension
+                </p>
+                <h4>
                     @Html.DisplayNameFor(model => t.CopyrightInfo)
-                </dt>
-                <dd>
+                </h4>
+                <p>
                     @t.CopyrightInfo
-                </dd>
-            </dl>
-        </div>
+                </p>
+            </div>
         }
     </div>
+</div>
 
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")

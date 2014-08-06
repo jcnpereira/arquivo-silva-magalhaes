@@ -7,7 +7,7 @@
                 <h4 class="modal-title" id="myModalLabel">@UiStrings.Attention</h4>
             </div>
             <div class="modal-body">
-                @UiPrompts.ConfirmDelete
+                <span id="afsm-delete-modal-warning-message"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@UiStrings.No</button>
@@ -24,16 +24,21 @@
         var delButton = $('#afsm-doDelete'),
             alertModal = $('#afsm-deleteModalAlert'),
             url = "",
-            correspondingForm;
+            correspondingForm,
+            message;
 
         $('#afsm-doDelete').click(function () {
             correspondingForm.submit();
         })
 
         $('[data-afsm-show-modal="true"]').click(function (e) {
-            url = $(this).attr('href');
+            var $element = $(this);
+            url = $element.attr('href');
+            message = $element.data('afsm-delete-warning') || '@UiPrompts.ConfirmDelete';
 
             correspondingForm = $(this).parent('form');
+
+            $('#afsm-delete-modal-warning-message').text(message);
 
             alertModal.modal('show');
 

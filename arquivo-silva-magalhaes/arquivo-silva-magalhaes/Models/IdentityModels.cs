@@ -10,15 +10,14 @@ namespace ArquivoSilvaMagalhaes.Models
         public string PictureUrl { get; set; }
     }
 
+    class ApplicationConfig
+    {
+        public int MaxImageWidth { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
+        public ApplicationDbContext() : base("DefaultConnection") { }
 
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink> ReferencedLinks { get; set; }
-
-        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ReferencedLinkModels> ReferencedLinkModels { get; set; }
     }
 }

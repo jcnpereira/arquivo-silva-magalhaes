@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice
 {
@@ -14,6 +15,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            //context.MapRoute(
+            //    "BackOffice_default",
+            //    "BackOffice/{lang}/{controller}/{action}/{Id}",
+            //    defaults: new { /*lang = "pt-PT",*/ controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    constraints: new { lang = "[a-zA-Z]{2}-[a-zA-Z]" }
+            //);
+
             context.MapRoute(
                 "BackOffice_default",
                 "BackOffice/{controller}/{action}/{Id}",

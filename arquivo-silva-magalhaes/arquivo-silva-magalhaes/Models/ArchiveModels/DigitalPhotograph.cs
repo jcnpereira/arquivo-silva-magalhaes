@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public DigitalPhotograph()
         {
             LastModified = DateTime.Now;
-            ShowcasePhotoes = new HashSet<ShowcasePhoto>();
+            ShowcasePhotoes = new List<ShowcasePhoto>();
         }
 
         [Key]
@@ -24,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ScanDate")]
+        [Display(ResourceType = typeof(DigitalPhotographStrings), Name = "ScanDate")]
         public DateTime ScanDate { get; set; }
 
         public string FileName { get; set; }
@@ -33,19 +34,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public DateTime LastModified { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "ScanProcess")]
+        [Display(ResourceType = typeof(DigitalPhotographStrings), Name = "ScanProcess")]
         public string Process { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
+        [Display(ResourceType = typeof(DigitalPhotographStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
-        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
+        [Display(ResourceType = typeof(DigitalPhotographStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
 
         [ForeignKey("SpecimenId")]
         public virtual Specimen Specimen { get; set; }
 
-        public virtual ICollection<ShowcasePhoto> ShowcasePhotoes { get; set; }
+        public virtual IList<ShowcasePhoto> ShowcasePhotoes { get; set; }
     }
 }
