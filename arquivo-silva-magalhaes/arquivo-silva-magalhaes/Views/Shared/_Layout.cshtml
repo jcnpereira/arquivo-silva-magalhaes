@@ -7,6 +7,19 @@
     @Styles.Render("~/ContentFront/css")
     @Scripts.Render("~/bundles/modernizr")
 
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <script type="text/javascript" src="../scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../flex-slider/jquery.flexslider-min.js"></script>
+    <script src="../scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <script src="../scripts/jquery.tipsy.js" type="text/javascript"></script>
+    <script src="../scripts/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../scripts/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery.smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="../scripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="../scripts/setup.js"></script>
+
     <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/media-queries.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/flexslider.css")" rel="stylesheet" type="text/css" />
@@ -15,7 +28,32 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 </head>
 <body>
-   
+    <div id="wrap">
+        <div id="sidebar">
+            <!-- the  sidebar -->
+            <!-- logo -->
+            <a href="#" id="logo"> <img src="../images/logo.png" alt="" /></a>
+            <a href="#" id="logo"> <img src="../images/cmt.png" alt="" /></a>
+            <!-- navigation menu -->
+            <ul id="navigation">
+                <li><a href="../Home/Index">IN&#205;CIO</a></li>
+                <li><a href="../ShowCasePhotoes">DESTAQUE</a></li>
+                <li><a href="../Archives">ACERVO</a></li>
+                <li><a href="../Home/Pesquisa">PESQUISA</a></li>
+                <li><a href="../News">NOT&#205;CIAS</a></li>
+                <li><a href="../Events">EVENTOS</a></li>
+                <li><a href="../Home/Historia">HIST&#211;RIA</a></li>
+                <li><a href="../TechnicalDocuments">DOCUMENTOS T&#201;CNICOS</a></li>
+                @*<li><a href="Loja">LOJA</a></li>*@
+                <li><a href="../Contacts">CONTACTOS</a></li>
+                <li><a href="../ReferencedLinks">LINKS &#218;TEIS</a></li>
+                <li><a href="../Partnerships">PROJETOS E PARCERIAS</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
     <div class="container body-content">
         @RenderBody()
     </div>
