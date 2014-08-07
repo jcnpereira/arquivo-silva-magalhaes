@@ -408,9 +408,6 @@
     <Compile Include="Utilitites\ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Uploads\Specimens\Large\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
-    <Content Include="App_Data\Uploads\Specimens\Original\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
-    <Content Include="App_Data\Uploads\Specimens\Thumb\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
     <Content Include="Content\Fonts\ostrich-black-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-bold-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-dashed-webfont.svg" />
@@ -696,6 +693,9 @@
     <Content Include="Content\Fonts\ostrich-rounded-webfont.ttf" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.woff" />
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Areas\BackOffice\Views\Collections\_CollectionMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\_CollectionTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\_CollectionDropDownLists.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -919,6 +919,7 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
     <Folder Include="fonts\" />

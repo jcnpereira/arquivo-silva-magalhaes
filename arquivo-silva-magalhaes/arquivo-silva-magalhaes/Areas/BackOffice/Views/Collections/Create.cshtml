@@ -8,153 +8,15 @@
 @using (Html.BeginForm("Create", "Collections", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Collection.Id)
-
-    @Html.HiddenFor(model => model.Collection.Translations[0].LanguageCode)
-    @Html.HiddenFor(model => model.Collection.Translations[0].CollectionId)
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].Title, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.PartialFor(model => model.Collection.Translations[0], "_CollectionTranslateableFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Authors, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.ListBoxFor(model => model.AuthorIds, Model.AvailableAuthors, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AuthorIds, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.PartialFor(model => model.Collection, "_CollectionMainFields")
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Type, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EnumDropDownListFor(model => model.Collection.Type, @UiPrompts.ChooseOne, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Collection.Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.InitialProductionDate, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @*@Html.EditorFor(model => model.Collection.InitialProductionDate, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DatePickerFor(model => model.Collection.InitialProductionDate, new { @class = "form-control", placeholder = "aaaa-mm-dd" })
-                @*<input type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" placeholder="aaaa-mm-dd" />*@
-
-                @Html.ValidationMessageFor(model => model.Collection.InitialProductionDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.EndProductionDate, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @*@Html.EditorFor(model => model.Collection.EndProductionDate, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DatePickerFor(model => model.Collection.EndProductionDate, new { @class = "form-control", placeholder = "aaaa-mm-dd" })
-                @Html.ValidationMessageFor(model => model.Collection.EndProductionDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.HasAttachments, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.HasAttachments, new { htmlAttributes = new { @class = "checkbox" } })
-                @Html.ValidationMessageFor(model => model.Collection.HasAttachments, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.AttachmentsDescriptions, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.AttachmentsDescriptions, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.AttachmentsDescriptions, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.OrganizationSystem, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.OrganizationSystem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.OrganizationSystem, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Notes, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Notes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.IsVisible, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.IsVisible, new { htmlAttributes = new { @class = "checkbox" } })
-                @Html.ValidationMessageFor(model => model.Collection.IsVisible, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.CatalogCode, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.CatalogCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].Description, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].Provenience, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].Provenience, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].Provenience, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].AdministrativeAndBiographicStory, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].AdministrativeAndBiographicStory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].AdministrativeAndBiographicStory, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].FieldAndContents, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].FieldAndContents, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].FieldAndContents, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].Dimension, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].Dimension, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].Dimension, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Collection.Translations[0].CopyrightInfo, htmlAttributes: new { @class = "control-label col-sm-2" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.Collection.Translations[0].CopyrightInfo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Collection.Translations[0].CopyrightInfo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.Partial("_CollectionDropDownLists")
 
         <div class="form-group">
             @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-sm-2" })
@@ -164,11 +26,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">@UiStrings.Create</button>
-                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
-            </div>
-        </div>
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 }

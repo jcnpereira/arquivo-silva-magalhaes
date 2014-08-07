@@ -2,10 +2,8 @@
 
 @{
     ViewBag.Title = ClassificationStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
-
-<h2>@ViewBag.Title</h2>
-<hr />
 
 @using (Html.BeginForm()) 
 {
@@ -24,11 +22,6 @@
             </div>
         </div>
         
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">@UiStrings.Create</button>
-                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
-            </div>
-        </div>
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 }

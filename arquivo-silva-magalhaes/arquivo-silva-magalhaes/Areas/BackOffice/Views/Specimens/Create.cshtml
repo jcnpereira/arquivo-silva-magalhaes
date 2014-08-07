@@ -18,11 +18,6 @@
 
         @Html.PartialFor(model => model.Specimen.Translations[0], "_SpecimenTranslateableFields")
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">@UiStrings.Create</button>
-                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
-            </div>
-        </div>
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 }
