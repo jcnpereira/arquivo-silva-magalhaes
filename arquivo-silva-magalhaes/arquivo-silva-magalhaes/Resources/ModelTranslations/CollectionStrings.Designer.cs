@@ -70,6 +70,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z).
+        /// </summary>
+        public static string AlphanumericCode {
+            get {
+                return ResourceManager.GetString("AlphanumericCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição de anexos.
         /// </summary>
         public static string AttachmentDescription {

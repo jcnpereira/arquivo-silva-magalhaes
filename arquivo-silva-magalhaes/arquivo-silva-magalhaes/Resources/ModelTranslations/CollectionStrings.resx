@@ -120,6 +120,9 @@
   <data name="AdministrativeAndBiographicStory" xml:space="preserve">
     <value>História administrativa e biográfica</value>
   </data>
+  <data name="AlphanumericCode" xml:space="preserve">
+    <value>O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z)</value>
+  </data>
   <data name="AttachmentDescription" xml:space="preserve">
     <value>Descrição de anexos</value>
   </data>

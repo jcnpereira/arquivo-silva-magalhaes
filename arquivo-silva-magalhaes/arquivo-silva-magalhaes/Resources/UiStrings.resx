@@ -207,4 +207,7 @@
   <data name="Preview" xml:space="preserve">
     <value>Pré-visualização</value>
   </data>
+  <data name="Suggest" xml:space="preserve">
+    <value>Sugerir</value>
+  </data>
 </root>

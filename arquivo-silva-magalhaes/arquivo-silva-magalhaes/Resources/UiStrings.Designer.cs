@@ -295,6 +295,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sugerir.
+        /// </summary>
+        public static string Suggest {
+            get {
+                return ResourceManager.GetString("Suggest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data desconhecida ou inexistente.
         /// </summary>
         public static string UnknownDate {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using PagedList;
 using System.Collections.Generic;
+using System;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -222,6 +223,46 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 {
                     Document = translation.Document
                 });
+        }
+
+        
+        public async Task<ActionResult> SuggestCode(int? collectionId)
+        {
+            if (collectionId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var c = await _db.Collections.FindAsync(collectionId);
+
+            if (c == null)
+            {
+                return HttpNotFound();
+            }
+
+            var collectionCode = c.CatalogCode;
+
+            var docCodes = c.Documents.Select(d => d.CatalogCode).ToArray();
+
+            Array.Sort(docCodes, new AlphaNumericComparator());
+
+            var lastCode = docCodes.LastOrDefault();
+            var lastCodeNumeric = 1;
+            var suggestedCode = collectionCode + "-";
+
+            if (lastCode == null)
+            {
+                suggestedCode = suggestedCode + "1";
+            }
+            else if (int.TryParse(lastCode, out lastCodeNumeric)) // number.
+            {
+                suggestedCode = suggestedCode + (lastCodeNumeric + 1).ToString();
+            }
+            else
+            {
+                suggestedCode = suggestedCode + (docCodes.Count() + 1).ToString();
+            }
+
+            return Json(suggestedCode, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

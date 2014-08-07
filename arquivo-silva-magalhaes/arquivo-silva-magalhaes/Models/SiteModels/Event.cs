@@ -50,12 +50,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string VisitorInformation { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [Display(ResourceType = typeof(EventStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [Display(ResourceType = typeof(EventStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 

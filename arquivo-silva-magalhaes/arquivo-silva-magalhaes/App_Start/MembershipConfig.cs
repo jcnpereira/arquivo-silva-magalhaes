@@ -21,7 +21,11 @@ namespace ArquivoSilvaMagalhaes.App_Start
                 new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
             var password = "kDBMFkp80ZbQ";
-            var roleName = "admins";
+
+            var adminRole = new IdentityRole("admins");
+            var siteRole = new IdentityRole("sitemanagers");
+            var archiveRole = new IdentityRole("archivemanagers");
+
             var userName = "Admin";
 
             var user = new ApplicationUser
@@ -29,20 +33,17 @@ namespace ArquivoSilvaMagalhaes.App_Start
                 UserName = userName
             };
 
-            var role = new IdentityRole
-            {
-                Name = roleName
-            };
-
             var userCreateResult = userManager.Create(user, password);
-            var roleCreateResult = roleManager.Create(role);
+            roleManager.Create(adminRole);
+            roleManager.Create(siteRole);
+            roleManager.Create(archiveRole);
 
             if (!userCreateResult.Succeeded)
             {
                 user = userManager.FindByName(userName);
             }
 
-            userManager.AddToRole(user.Id, roleName);
+            userManager.AddToRole(user.Id, adminRole.Name);
         }
     }
 }

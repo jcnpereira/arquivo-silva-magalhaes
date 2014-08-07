@@ -400,6 +400,7 @@
       <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilitites\AlphaNumericComparator.cs" />
     <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
     <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />

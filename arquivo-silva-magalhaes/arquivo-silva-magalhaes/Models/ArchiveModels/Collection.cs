@@ -93,6 +93,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         [Required, MaxLength(100), Index(IsUnique = true)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "CatalogCode")]
+        [RegularExpression("^[0-9A-Za-z]+$", ErrorMessageResourceType = typeof(CollectionStrings), ErrorMessageResourceName = "AlphanumericCode")]
         public string CatalogCode { get; set; }
 
         [Display(ResourceType = typeof(CollectionStrings), Name = "Translations")]

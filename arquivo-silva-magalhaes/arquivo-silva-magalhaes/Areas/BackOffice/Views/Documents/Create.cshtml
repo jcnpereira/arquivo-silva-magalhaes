@@ -27,3 +27,31 @@
     </div>
 }
 
+@section AdditionalScripts {
+    <script async>
+        (function () {
+            $('[data-afsm-suggest=true]').click(function ($event) {
+                var $e = $($event.target);
+
+                var src = $('#' + $e.data('afsm-src'));
+                var url = $e.data('afsm-url');
+                var forElement = $('#' + $e.data('afsm-for'));
+
+                if (src.val() == '') {
+                    src.focus();
+                    alert('Escolha primeiro uma coleção.');
+                } else {
+                    $.ajax(url.replace('xx', src.val()))
+                     .done(function (data) {
+                         forElement.val(data);
+                     })
+                     .fail(function (err) {
+                         console.error(err);
+                         alert('Erro!!');
+                     });
+                }
+            });
+        }());
+    </script>
+}
+
