@@ -27,10 +27,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             string query = null, 
             string orderByColumn = null)
         {
-            return View((await _db.Classifications
-                .ToListAsync())
-                .Select(c => new ClassificationViewModel(c))
-                .ToPagedList(pageNumber, 10));
+            return View(await Task.Run(() =>
+                _db.ClassificationTranslations
+                   .Where(c => c.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                   .OrderBy(c => c.ClassificationId)
+                   .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Classifications/Details/5

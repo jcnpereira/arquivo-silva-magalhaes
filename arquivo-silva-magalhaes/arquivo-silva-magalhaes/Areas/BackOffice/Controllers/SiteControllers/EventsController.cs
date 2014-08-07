@@ -167,15 +167,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 var model = new EventEditViewModel();
                 model.Event = e;
 
-                model.AvailableLinks = db.ReferencedLinks
-                    .Select(rl => new SelectListItem
-                    {
-                        Text = rl.Title,
-                        Value = rl.Id.ToString(),
-                        Selected = e.Links.Contains(rl)
-                    })
-                    .ToList();
-
                 return model;
         }
 

@@ -12,7 +12,9 @@ namespace ArquivoSilvaMagalhaes
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-date-picker").Include(
-                        "~/Scripts/bootstrap-datepicker.js"));
+                //"~/Scripts/bootstrap-datepicker.js"));
+                        "~/Scripts/bs-datepicker/moment.js",
+                        "~/Scripts/bs-datepicker/bootstrap-datetimepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -36,8 +38,7 @@ namespace ArquivoSilvaMagalhaes
                       "~/Content/Styles/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/datepicker-bootstrap").Include(
-                        "~/Content/Styles/DatePicker/datepicker3.css"));
-
+                        "~/Content/Styles/DatePicker/bootstrap-datetimepicker.css"));
         }
     }
 }

@@ -110,12 +110,12 @@ namespace ArquivoSilvaMagalhaes.Utilitites
         {
             var builder = new TagBuilder("input");
             builder.Attributes["type"] = "text";
-            builder.Attributes["data-provide"] = "datepicker";
+            builder.Attributes["data-provide"] = "datetimepicker";
 
-            builder.Attributes["data-date-format"] = "yyyy-mm-dd";
-            builder.Attributes["data-date-start-date"] = "1753-1-1";
-            builder.Attributes["placeholder"] = "yyyy-mm-dd";
+            builder.Attributes["data-date-mindate"] = "1753-1-1";
+            
             builder.Attributes["data-date-language"] = Thread.CurrentThread.CurrentUICulture.Name;
+            builder.Attributes["data-date-minutestepping"] = "10";
 
             var name = ExpressionHelper.GetExpressionText(expression);
 
@@ -143,6 +143,31 @@ namespace ArquivoSilvaMagalhaes.Utilitites
             //var prop = type.GetProperty(name);
             var required = prop.GetCustomAttributes(typeof(RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
             var display = prop.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
+            var dataType = prop.GetCustomAttributes(typeof(DataTypeAttribute), false).FirstOrDefault() as DataTypeAttribute;
+
+            if (dataType != null)
+            {
+                var dType = dataType.DataType;
+                switch (dType)
+                {
+                    case DataType.Date:
+                        builder.Attributes["placeholder"] = "yyyy-mm-dd";
+                        builder.Attributes["data-date-format"] = "YYYY-MM-DD";
+                        builder.Attributes["data-date-picktime"] = "false";
+                        break;
+
+                    case DataType.DateTime:
+                    default:
+                        builder.Attributes["placeholder"] = "yyyy-mm-dd HH:mm";
+                        builder.Attributes["data-date-format"] = "YYYY-MM-DD HH:mm";
+                        break;
+                }
+            }
+            else
+            {
+                builder.Attributes["placeholder"] = "yyyy-mm-dd HH:mm";
+                builder.Attributes["data-date-format"] = "YYYY-MM-DD HH:mm";
+            }
 
             var value = metadata.Model;
 
@@ -161,7 +186,18 @@ namespace ArquivoSilvaMagalhaes.Utilitites
                         }
                         else
                         {
-                            builder.Attributes["value"] = ((DateTime)value).ToString("yyyy-MM-dd");
+                            var dType = dataType.DataType;
+                            switch (dType)
+                            {
+                                case DataType.Date:
+                                    builder.Attributes["value"] = ((DateTime)value).ToString("yyyy-MM-dd");
+                                    break;
+
+                                case DataType.DateTime:
+                                default:
+                                    builder.Attributes["value"] = ((DateTime)value).ToString("yyyy-MM-dd HH:mm");
+                                    break;
+                            }
                         }
                     }
                 }

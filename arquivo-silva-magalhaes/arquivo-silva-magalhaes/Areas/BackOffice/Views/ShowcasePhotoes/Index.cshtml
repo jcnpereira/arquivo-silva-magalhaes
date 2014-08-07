@@ -1,19 +1,10 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto>
+﻿@model IEnumerable<ShowcasePhoto>
 
 @{
     ViewBag.Title = "Index";
+
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
-
-<h2>Fotografias destaque</h2>
-
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
-    <a class="btn btn-default" title="@UiStrings.Create" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</div>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -29,7 +20,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.VisibleSince)
             </th>
-            <th></th>
+            <th>
+                @UiStrings.Actions
+            </th>
         </tr>
     </thead>
     @foreach (var item in Model)
@@ -42,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.CommenterEmail)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsEmailVisible)
+                @(item.IsEmailVisible ? UiStrings.Yes : UiStrings.No)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VisibleSince)
@@ -66,6 +59,3 @@
         </tr>
     }
 </table>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}

@@ -11,6 +11,7 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -19,10 +20,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/ShowcasePhotoes
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            var showcasePhotoSet = _db.ShowcasePhotoes.Include(s => s.Image);
-            return View(await showcasePhotoSet.ToListAsync());
+            return View(await Task.Run(() => 
+                _db.ShowcasePhotoes
+                   .OrderBy(s => s.Id)
+                   .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/ShowcasePhotoes/Details/5

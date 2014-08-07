@@ -24,6 +24,8 @@ namespace ArquivoSilvaMagalhaes
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // BundleTable.EnableOptimizations = true;
+
             // Map AutoMapper mappings.
             // MapperConfig.RegisterMappings();
 

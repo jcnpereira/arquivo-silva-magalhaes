@@ -415,6 +415,9 @@
     <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bs-datepicker\moment.js" />
+    <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
     <Content Include="Content\Styles\media-queries.css" />
     <Content Include="Content\Styles\UiControls\prettyPhoto.css" />
     <Content Include="Content\Images\silva-magalhaes.jpg" />
@@ -425,7 +428,6 @@
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
-    <Content Include="Content\Styles\DatePicker\datepicker3.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Styles\UiControls\flex-slider\flexslider.css" />
     <Content Include="Content\Styles\UiControls\flex-slider\jquery.flexslider-min.js" />
@@ -697,7 +699,6 @@
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionTranslateableFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionDropDownLists.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -922,6 +923,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Content\Scripts\" />
     <Folder Include="fonts\" />
     <Folder Include="Public\" />
   </ItemGroup>

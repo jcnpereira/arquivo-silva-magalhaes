@@ -6,6 +6,9 @@
     <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães </title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/customcss")
+
+    @RenderSection("additionalstyles", required: false)
+
     @Scripts.Render("~/bundles/modernizr")
 
     @RenderSection("headscripts", required: false)

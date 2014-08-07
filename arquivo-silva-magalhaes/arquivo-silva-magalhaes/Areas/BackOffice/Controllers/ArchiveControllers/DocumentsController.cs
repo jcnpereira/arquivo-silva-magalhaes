@@ -19,7 +19,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => _db.Documents.OrderBy(d => d.Id).ToPagedList(pageNumber, 10)));
+            return View(await Task.Run(() => 
+                _db.Documents
+                   .OrderBy(d => d.Id)
+                   .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/Documents/Details/5
@@ -31,6 +34,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             }
 
             Document document = await _db.Documents.FindAsync(id);
+            document.Translations = document.Translations.ToList();
 
             if (document == null)
             {

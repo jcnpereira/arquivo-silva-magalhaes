@@ -18,30 +18,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Image
-        public ActionResult Index(
+        public async Task<ActionResult> Index(
             int pageNumber = 1,
-            int documentId = 0,
-            string query = "")
+            int documentId = 0)
         {
-            IQueryable<Image> images;
+            var query = _db.ImageTranslations.Include(it => it.Image);
 
-            if (documentId > 0)
+            if (await _db.Documents.FindAsync(documentId) != null)
             {
-                images = _db.Images.Where(i => i.DocumentId == documentId);
-            }
-            else
-            {
-                images = _db.Images;
+                query = query.Where(i => i.Image.DocumentId == documentId);
             }
 
-            var model = (from i in images
-                         join it in _db.ImageTranslations on i.Id equals it.ImageId
-                         where it.LanguageCode == LanguageDefinitions.DefaultLanguage
-                         orderby i.Id ascending
-                         select i)
-                        .ToPagedList(pageNumber, 10);
-
-            return View(model);
+            return View(await Task.Run(() => 
+                query.OrderBy(i => i.ImageId)
+                     .ToPagedList(pageNumber, 10)));
         }
 
         public ActionResult Details(int id)

@@ -24,10 +24,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
     public class EventEditViewModel
     {
         public Event Event { get; set; }
-
-        public IEnumerable<SelectListItem> AvailableLinks { get; set; }
-        public int[] LinkIds { get; set; }
     }
+
     public class EventI18nPartialModels
     {
       /*  public EventI18nPartialModels()

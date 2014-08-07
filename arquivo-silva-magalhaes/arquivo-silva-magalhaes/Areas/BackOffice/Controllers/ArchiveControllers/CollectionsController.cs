@@ -23,8 +23,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: /BackOffice/Collection/
         public async Task<ActionResult> Index(int authorId = 0, int pageNumber = 1)
         {
-            var query = db.Collections
-                .Include(c => c.Translations);
+            var query = db.CollectionTranslations
+                .Include(c => c.Collection);
 
             if (authorId > 0)
             {
@@ -32,13 +32,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
                 if (author != null)
                 {
-                    query = query.Where(c => c.Authors.Any(a => a.Id == authorId));
+                    query = query.Where(c => c.Collection.Authors.Any(a => a.Id == authorId));
                 }
             }
 
             return View(await Task.Run(() => 
                 query
-                    .OrderBy(c => c.Id)
+                    .OrderBy(c => c.CollectionId)
                     .ToPagedList(pageNumber, 10)));
         }
 

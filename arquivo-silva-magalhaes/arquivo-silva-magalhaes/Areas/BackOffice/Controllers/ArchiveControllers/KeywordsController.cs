@@ -18,9 +18,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => db.Keywords
-                .Include(k => k.Translations)
-                .OrderBy(k => k.Id)
+            return View(await Task.Run(() => db.KeywordTranslations
+                .Where(k => k.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                .OrderBy(k => k.KeywordId)
                 .ToPagedList(pageNumber, 10)));
         }
 

@@ -21,7 +21,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
         {
             return View(await Task.Run(() => db.Authors
-                .Include(a => a.Translations)
                 .OrderBy(a => a.Id)
                 .ToPagedList(pageNumber, 10))); // TODO Allow configs for page size.
         }
@@ -35,6 +34,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             }
 
             var author = await db.Authors.FindAsync(id);
+            author.Translations = author.Translations.ToList();
 
             if (author == null)
             {
