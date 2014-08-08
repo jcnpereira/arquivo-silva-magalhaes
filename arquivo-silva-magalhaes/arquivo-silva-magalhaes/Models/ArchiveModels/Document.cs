@@ -40,7 +40,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The date on which this document was catalogued.
         /// </summary>
-        /// [Required]
+        [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogationDate")]
         public DateTime CatalogationDate { get; set; }
