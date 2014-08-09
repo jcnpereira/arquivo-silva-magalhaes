@@ -83,7 +83,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             int[] AuthorIds)
         {
             // Server-side check for an image.
-            if (Logo == null || !Logo.ContentType.ToLower().StartsWith("image/"))
+            if (Logo != null && !Logo.ContentType.ToLower().StartsWith("image/"))
             {
                 ModelState.AddModelError("Logo", ErrorStrings.Logo__MustBeImage);
                 Logo.InputStream.Dispose();

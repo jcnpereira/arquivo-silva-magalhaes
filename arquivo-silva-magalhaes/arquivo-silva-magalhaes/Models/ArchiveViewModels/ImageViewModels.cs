@@ -17,8 +17,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
     {
         public Image Image { get; set; }
 
-        public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
-        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+        public List<SelectListItem> AvailableKeywords { get; set; }
+        public List<SelectListItem> AvailableDocuments { get; set; }
     }
 
     public class ImageEditViewModel
@@ -27,11 +27,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
         [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
-        public IEnumerable<SelectListItem> AvailableKeywords { get; set; }
+        public List<SelectListItem> AvailableKeywords { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
-        public IEnumerable<SelectListItem> AvailableDocuments { get; set; }
+        public List<SelectListItem> AvailableDocuments { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] KeywordIds { get; set; }

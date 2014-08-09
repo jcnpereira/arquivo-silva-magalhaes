@@ -231,6 +231,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
     <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
     <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="Models\CodeGenerator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IGenericRepository.cs" />
     <Compile Include="Models\KeywordRepository.cs" />
@@ -416,6 +417,11 @@
     <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Scripts\BackOffice\code-suggestions.js" />
+    <Content Include="Scripts\BackOffice\modal-dialog.js" />
+    <Content Include="Scripts\BackOffice\modal-dialog.min.js">
+      <DependentUpon>modal-dialog.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bs-datepicker\moment.js" />
     <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
@@ -710,6 +716,9 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
+      <DependentUpon>modal-dialog.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -929,7 +938,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
-    <Folder Include="Content\Scripts\" />
     <Folder Include="fonts\" />
     <Folder Include="Public\" />
   </ItemGroup>
@@ -1032,7 +1040,7 @@
       <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ValidationErrorStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

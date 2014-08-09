@@ -32,7 +32,7 @@
     @Html.LabelFor(model => model.Specimen.ImageId, new { @class = "col-sm-2 control-label" })
 
     <div class="col-sm-10">
-        @Html.DropDownListFor(model => model.Specimen.ImageId, Model.AvailableImages, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Specimen.ImageId, Model.AvailableImages, new { @class = "form-control", data_afsm_target = "#" + Html.IdFor(model => model.Specimen.ReferenceCode), data_afsm_clear = "true" })
         @Html.ValidationMessageFor(model => model.Specimen.ImageId, "", new { @class = "text-danger" })
     </div>
 </div>

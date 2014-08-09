@@ -13,7 +13,7 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public class Image
+    public class Image : IValidatableObject
     {
         public Image()
         {
@@ -30,7 +30,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(50)]
+        [MaxLength(100)]
+        [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(ImageStrings), ErrorMessageResourceName = "CodeFormat")]
         [Display(ResourceType = typeof(ImageStrings), Name = "ImageCode")]
         public string ImageCode { get; set; }
 
@@ -48,6 +49,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
         public virtual IList<Keyword> Keywords { get; set; }
         public virtual IList<Specimen> Specimens { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            using (var _db = new ArchiveDataContext())
+            {
+                if (_db.Images.Any(i => i.ImageCode == this.ImageCode && i.Id != this.Id))
+                {
+                    yield return new ValidationResult(ImageStrings.CodeAlreadyExists, new string[] { "ImageCode" });
+                }
+            }
+        }
     }
 
     public class ImageTranslation

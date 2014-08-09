@@ -213,4 +213,7 @@
   <data name="AddTranslation" xml:space="preserve">
     <value>Adicionar tradução</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
 </root>

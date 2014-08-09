@@ -61,6 +61,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Já existe uma imagem com esse código de referência. Escolha outro..
+        /// </summary>
+        public static string CodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("CodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O código da imagem tem que seguir o seguinte formato:  Coleção-Documento-Imagem (Ex: ASM-001-002 ou PAS-1-20).
+        /// </summary>
+        public static string CodeFormat {
+            get {
+                return ResourceManager.GetString("CodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Criar imagem.
         /// </summary>
         public static string CreateTitleFormat {
@@ -138,6 +156,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem que primeiro escolher um documento..
+        /// </summary>
+        public static string MustChooseDocument {
+            get {
+                return ResourceManager.GetString("MustChooseDocument", resourceCulture);
             }
         }
         

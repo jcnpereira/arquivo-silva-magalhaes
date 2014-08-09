@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CodeAlreadyExists" xml:space="preserve">
+    <value>Já existe uma imagem com esse código de referência. Escolha outro.</value>
+  </data>
+  <data name="CodeFormat" xml:space="preserve">
+    <value>O código da imagem tem que seguir o seguinte formato:  Coleção-Documento-Imagem (Ex: ASM-001-002 ou PAS-1-20)</value>
+  </data>
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Criar imagem</value>
   </data>
@@ -143,6 +149,9 @@
   </data>
   <data name="Location" xml:space="preserve">
     <value>Localização</value>
+  </data>
+  <data name="MustChooseDocument" xml:space="preserve">
+    <value>Tem que primeiro escolher um documento.</value>
   </data>
   <data name="ProductionDate" xml:space="preserve">
     <value>Data de produção</value>

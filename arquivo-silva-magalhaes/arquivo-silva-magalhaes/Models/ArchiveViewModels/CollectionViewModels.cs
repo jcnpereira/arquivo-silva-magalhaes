@@ -1,5 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,15 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
     {
         public Collection Collection { get; set; }
 
-        [Display(Name = "Autores desta coleção")]
+        [Display(ResourceType = typeof(ImageStrings), Name = "Authors")]
         public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
 
         //[ContentType(ContentType = "image/*", ErrorMessage = "A")]
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionLogo"), Required]
+        [Display(ResourceType = typeof(DataStrings), Name = "CollectionLogo")]
         public HttpPostedFileBase Logo { get; set; }
 
-        [Required]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "Authors")]
+        [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] AuthorIds { get; set; }
     }
 }

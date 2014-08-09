@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public partial class Document
+    public partial class Document : IValidatableObject
     {
         public Document()
         {
@@ -40,7 +42,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The date on which this document was catalogued.
         /// </summary>
-        /// [Required]
+        [Required]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogationDate")]
         public DateTime CatalogationDate { get; set; }
@@ -59,8 +61,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// physically catalog this document.
         /// </summary>
         [Required]
-        [MaxLength(200), Index(IsUnique = true)]
+        [MaxLength(200)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogCode")]
+        [Index(IsUnique = true)]
+        [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(DocumentStrings), ErrorMessageResourceName = "CodeFormat")]
         public string CatalogCode { get; set; }
 
         public int CollectionId { get; set; }
@@ -76,6 +80,18 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<DocumentTranslation> Translations { get; set; }
 
         public virtual IList<Image> Images { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            // Allows a more "friendly" error message.
+            using (var db = new ArchiveDataContext())
+            {
+                if (db.Documents.Any(d => d.CatalogCode == this.CatalogCode && d.Id != this.Id))
+                {
+                    yield return new ValidationResult(DocumentStrings.CodeAlreadyExists, new string[] { "CatalogCode" });
+                }
+            }
+        }
     }
 
     public partial class DocumentTranslation

@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArchivalCodeFormat" xml:space="preserve">
+    <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
+  </data>
+  <data name="ArchivalReferenceCode" xml:space="preserve">
+    <value>Cota</value>
+  </data>
   <data name="AuthorCatalogationCode" xml:space="preserve">
     <value>Código original</value>
+  </data>
+  <data name="CodeAlreadyExists" xml:space="preserve">
+    <value>Já existe uma espécie com esse código de referência. Escolha outro.</value>
+  </data>
+  <data name="CodeFormat" xml:space="preserve">
+    <value>O código de referência tem que respeitar o formato Coleção-Documento-Imagem-Espécie. A cota é inserida num campo à parte, e não são permitidos acentos ou caracteres especiais.</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Criar espécie fotográfica</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="InterventionDescription" xml:space="preserve">
     <value>Descrição da intervenção</value>
+  </data>
+  <data name="MustChooseImage" xml:space="preserve">
+    <value>Tem que escolher primeiro uma imagem.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>

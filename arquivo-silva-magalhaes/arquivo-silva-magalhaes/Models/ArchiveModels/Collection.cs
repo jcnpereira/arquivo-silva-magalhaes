@@ -64,12 +64,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string LogoLocation { get; set; }
 
         /// <summary>
-        /// If the collection has attachments.
-        /// </summary>
-        [Display(ResourceType = typeof(CollectionStrings), Name = "HasAttachments")]
-        public bool HasAttachments { get; set; }
-
-        /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
         [DataType(DataType.MultilineText)]

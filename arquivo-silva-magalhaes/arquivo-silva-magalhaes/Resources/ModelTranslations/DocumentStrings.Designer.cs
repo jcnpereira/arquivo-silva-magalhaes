@@ -88,6 +88,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Já existe um documento com este código de referência. Escolha outro..
+        /// </summary>
+        public static string CodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("CodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O formato do código do documento tem que respeitar o seguinte formato: Coleção-Documento (Ex: ASM-1 ou PAS-002).
+        /// </summary>
+        public static string CodeFormat {
+            get {
+                return ResourceManager.GetString("CodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coleção deste documento.
         /// </summary>
         public static string Collection {
@@ -165,6 +183,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string FieldAndContents {
             get {
                 return ResourceManager.GetString("FieldAndContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem que primeiro escolher uma coleção..
+        /// </summary>
+        public static string MustChooseCollection {
+            get {
+                return ResourceManager.GetString("MustChooseCollection", resourceCulture);
             }
         }
         

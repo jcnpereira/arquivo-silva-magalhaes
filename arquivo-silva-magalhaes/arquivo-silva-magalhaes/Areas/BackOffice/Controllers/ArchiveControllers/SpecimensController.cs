@@ -79,12 +79,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     var doc = image.Document;
                     var collection = doc.Collection;
 
-                    s.ReferenceCode =
-                        String.Format("{0}/{1}/{2}-",
-                                      doc.CatalogCode,
-                                      collection.CatalogCode,
-                                      image.ImageCode
-                        );
+                    s.ReferenceCode = CodeGenerator.SuggestSpecimenCode(imageId);
                 }
                 else
                 {
@@ -486,6 +481,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             if (Request.IsAjaxRequest()) return PartialView(model);
 
             return View(model);
+        }
+
+        public async Task<ActionResult> SuggestCode(int? imageId)
+        {
+            if (imageId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var i = await _db.Images.FindAsync(imageId);
+
+            if (i == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(CodeGenerator.SuggestSpecimenCode(i.Id), JsonRequestBehavior.AllowGet);
         }
     }
 }

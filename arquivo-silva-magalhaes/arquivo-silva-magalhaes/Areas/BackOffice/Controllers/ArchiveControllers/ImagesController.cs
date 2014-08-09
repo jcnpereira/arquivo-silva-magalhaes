@@ -5,6 +5,7 @@ using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -72,6 +73,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 }
                 else
                 {
+                    image.ImageCode = CodeGenerator.SuggestImageCode(documentId.Value);
                     image.DocumentId = document.Id;
                 }
             }
@@ -83,12 +85,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Image image, int[] keywordIds)
         {
-            // Test for conflicts in the image's code.
-            if (_db.Images.Any(i => i.ImageCode == image.ImageCode))
-            {
-                ModelState.AddModelError(String.Empty, ErrorStrings.Image__CodeAlreadyExists);
-            }
-
             if (ModelState.IsValid)
             {
                 keywordIds = keywordIds ?? new int[] { };
@@ -177,30 +173,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// Algorithm by @jcnpereira. Implementation by @afecarvalho.
-        /// </summary>
-        /// <returns></returns>
-        private string GenerateNewImageCode(Image i)
+        public async Task<ActionResult> SuggestCode(int? documentId)
         {
-            if (i == null)
+            if (documentId == null)
             {
-                return "";
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var d = await _db.Documents.FindAsync(documentId);
+
+            if (d == null)
+            {
+                return HttpNotFound();
             }
 
-            string lastImageCode = _db.Images.Last().ImageCode;
-            int codeNumeric;
-
-            if (int.TryParse(lastImageCode, out codeNumeric))
-            {
-                // Number.
-                return (codeNumeric + 1).ToString();
-            }
-            else
-            {
-            }
-
-            return null;
+            return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -214,13 +200,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             var model = new ImageEditViewModel();
             model.Image = image;
 
-            model.AvailableDocuments = _db.Documents.Select(d => new SelectListItem
+            model.AvailableDocuments = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = UiPrompts.ChooseOne,
+                    Value = String.Empty,
+                    Selected = true
+                }
+            };
+
+            model.AvailableDocuments.AddRange(_db.Documents.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
-                    Text = d.Title,
+                    Text = d.CatalogCode + " - " + d.Title,
                     Selected = d.Id == image.DocumentId
-                })
-                .ToList();
+                }));
 
             var keywordIds = image.Keywords.Select(k => k.Id).ToList();
 

@@ -19,10 +19,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Documents
-        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0)
+        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
         {
             var query = _db.Documents
-                           .Include(dt => dt.Author);
+                           .Include(dt => dt.Author)
+                           .Include(dt => dt.Collection);
 
             if (authorId > 0)
             {
@@ -46,7 +47,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             Document document = await _db.Documents.FindAsync(id);
             document.Translations = document.Translations.ToList();
 
-            ViewBag.TranslationsAvailable = 
+            ViewBag.TranslationsAvailable =
                 document.Translations.Count < LanguageDefinitions.Languages.Count;
 
             if (document == null)
@@ -69,6 +70,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             // Check for a collection.
             if (collectionId != null && _db.Collections.Find(collectionId) != null)
             {
+                doc.CatalogCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
                 doc.CollectionId = collectionId.Value;
             }
 
@@ -94,6 +96,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             {
                 _db.Documents.Add(document);
                 await _db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
 
@@ -231,12 +234,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             };
 
             ViewBag.AvailableLanguages =
-                LanguageDefinitions.Languages.Where(t => !translations.Contains(t))
-                            .Select(t => new SelectListItem
-                            {
-                                Value = t,
-                                Text = LanguageDefinitions.GetLanguage(t)
-                            }).ToList();
+                LanguageDefinitions.Languages
+                                   .Where(t => !translations.Contains(t))
+                                   .Select(t => new SelectListItem
+                                   {
+                                       Value = t,
+                                       Text = LanguageDefinitions.GetLanguage(t)
+                                   })
+                                   .ToList();
 
             return View(model);
         }

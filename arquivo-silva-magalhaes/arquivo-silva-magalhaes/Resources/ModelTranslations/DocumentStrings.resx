@@ -165,4 +165,13 @@
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar documento</value>
   </data>
+  <data name="CodeAlreadyExists" xml:space="preserve">
+    <value>Já existe um documento com este código de referência. Escolha outro.</value>
+  </data>
+  <data name="CodeFormat" xml:space="preserve">
+    <value>O formato do código do documento tem que respeitar o seguinte formato: Coleção-Documento (Ex: ASM-1 ou PAS-002)</value>
+  </data>
+  <data name="MustChooseCollection" xml:space="preserve">
+    <value>Tem que primeiro escolher uma coleção.</value>
+  </data>
 </root>

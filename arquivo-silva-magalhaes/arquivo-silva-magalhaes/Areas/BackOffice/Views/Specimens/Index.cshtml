@@ -30,7 +30,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ReferenceCode)
+                @String.Format("{0}/{1}", item.ReferenceCode, item.ArchivalReferenceCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AuthorCatalogationCode)

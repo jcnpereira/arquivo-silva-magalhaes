@@ -61,11 +61,47 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A cota deve apenas conter números e letras. Não são permitidos acentos..
+        /// </summary>
+        public static string ArchivalCodeFormat {
+            get {
+                return ResourceManager.GetString("ArchivalCodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cota.
+        /// </summary>
+        public static string ArchivalReferenceCode {
+            get {
+                return ResourceManager.GetString("ArchivalReferenceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Código original.
         /// </summary>
         public static string AuthorCatalogationCode {
             get {
                 return ResourceManager.GetString("AuthorCatalogationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Já existe uma espécie com esse código de referência. Escolha outro..
+        /// </summary>
+        public static string CodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("CodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O código de referência tem que respeitar o formato Coleção-Documento-Imagem-Espécie. A cota é inserida num campo à parte, e não são permitidos acentos ou caracteres especiais..
+        /// </summary>
+        public static string CodeFormat {
+            get {
+                return ResourceManager.GetString("CodeFormat", resourceCulture);
             }
         }
         
@@ -174,6 +210,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string InterventionDescription {
             get {
                 return ResourceManager.GetString("InterventionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem que escolher primeiro uma imagem..
+        /// </summary>
+        public static string MustChooseImage {
+            get {
+                return ResourceManager.GetString("MustChooseImage", resourceCulture);
             }
         }
         

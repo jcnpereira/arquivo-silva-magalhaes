@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         VeryGood = 5
     }
 
-    public class Specimen
+    public class Specimen : IValidatableObject
     {
         public Specimen()
         {
@@ -51,7 +51,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Index(IsUnique = true)]
         [MaxLength(100)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "ReferenceCode")]
+        [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "CodeFormat")]
         public string ReferenceCode { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "ArchivalReferenceCode")]
+        [RegularExpression("^[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "ArchivalCodeFormat")]
+        public string ArchivalReferenceCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Image")]
@@ -74,6 +81,17 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<DigitalPhotograph> DigitalPhotographs { get; set; }
 
         public virtual IList<SpecimenTranslation> Translations { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            using (var _db = new ArchiveDataContext())
+            {
+                if (_db.Specimens.Any(i => i.ReferenceCode == this.ReferenceCode && i.Id != this.Id))
+                {
+                    yield return new ValidationResult(SpecimenStrings.CodeAlreadyExists, new string[] { "ReferenceCode" });
+                }
+            }
+        }
     }
 
     public class SpecimenTranslation
