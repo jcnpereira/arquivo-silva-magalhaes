@@ -79,6 +79,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adicionar tradução.
+        /// </summary>
+        public static string AddTranslation {
+            get {
+                return ResourceManager.GetString("AddTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Associar fotografias digitais.
         /// </summary>
         public static string AssociatePicture {

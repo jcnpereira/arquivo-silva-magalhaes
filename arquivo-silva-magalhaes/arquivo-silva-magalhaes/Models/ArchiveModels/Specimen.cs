@@ -29,8 +29,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         {
             this.Translations = new List<SpecimenTranslation>();
             this.DigitalPhotographs = new List<DigitalPhotograph>();
-
-            State = SpecimenState.Fair;
         }
     
         [Key]

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using PagedList;
+using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -43,6 +44,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Formats/Create
         public ActionResult Create()
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_FormatFields");
+            }
+
             return View();
         }
 
@@ -51,12 +57,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,FormatDescription")] Format format)
+        public async Task<ActionResult> Create([Bind(Exclude = "Id")]Format format)
         {
             if (ModelState.IsValid)
             {
                 db.Formats.Add(format);
                 await db.SaveChangesAsync();
+
+                if (Request.IsAjaxRequest())
+                {
+                    var result = new List<object>();
+                    result.Add(new
+                    {
+                        value = "",
+                        text = UiPrompts.ChooseOne
+                    });
+
+                    result.AddRange(
+                        db.Formats
+                          .OrderBy(f => f.Id)
+                          .Select(f => new
+                          {
+                              value = f.Id.ToString(),
+                              text = f.FormatDescription
+                          }));
+
+                    return Json(result);
+                }
+
                 return RedirectToAction("Index");
             }
 

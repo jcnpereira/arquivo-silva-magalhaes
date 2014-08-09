@@ -13,16 +13,21 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
     public class SpecimenEditViewModel
     {
+        public SpecimenEditViewModel()
+        {
+            AvailableImages = new List<SelectListItem>();
+
+            AvailableProcesses = new List<SelectListItem>();
+            AvailableFormats = new List<SelectListItem>();
+        }
+
         public Specimen Specimen { get; set; }
 
-        [Required]
-        public IEnumerable<SelectListItem> AvailableImages { get; set; }
+        public List<SelectListItem> AvailableImages { get; set; }
 
-        [Required]
-        public IEnumerable<SelectListItem> AvailableProcesses { get; set; }
+        public List<SelectListItem> AvailableProcesses { get; set; }
 
-        [Required]
-        public IEnumerable<SelectListItem> AvailableFormats { get; set; }
+        public List<SelectListItem> AvailableFormats { get; set; }
     }
 
     public class SpecimenPhotoUploadModel

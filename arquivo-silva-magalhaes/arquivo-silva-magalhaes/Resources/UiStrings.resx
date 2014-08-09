@@ -210,4 +210,7 @@
   <data name="Suggest" xml:space="preserve">
     <value>Sugerir</value>
   </data>
+  <data name="AddTranslation" xml:space="preserve">
+    <value>Adicionar tradução</value>
+  </data>
 </root>

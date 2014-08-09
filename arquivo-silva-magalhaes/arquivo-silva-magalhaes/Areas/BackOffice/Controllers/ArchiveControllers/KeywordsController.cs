@@ -49,30 +49,52 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // GET: BackOffice/Keywords/Create
         public ActionResult Create()
         {
-            var model = new Keyword();
-
-            model.Translations.Add(new KeywordTranslation
+            var model = new KeywordTranslation
                 {
                     LanguageCode = LanguageDefinitions.DefaultLanguage
-                });
+                };
 
-            return View(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_KeywordFields", model);
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         // POST: BackOffice/Keywords/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Keyword keyword)
+        public async Task<ActionResult> Create(KeywordTranslation kt)
         {
             if (ModelState.IsValid)
             {
+                var keyword = new Keyword();
+                keyword.Translations.Add(kt);
+
                 db.Keywords.Add(keyword);
                 await db.SaveChangesAsync();
+
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(await db.KeywordTranslations
+                                  .Where(ktr => ktr.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                                  .OrderBy(ktr => ktr.KeywordId)
+                                  .Select(ktr => new
+                                  {
+                                      value = ktr.KeywordId.ToString(),
+                                      text = ktr.Value
+                                  })
+                                  .ToListAsync());
+                }
 
                 return RedirectToAction("Index");
             }
 
-            return View(keyword);
+            return View(kt);
         }
 
         // GET: BackOffice/Keywords/Edit/5

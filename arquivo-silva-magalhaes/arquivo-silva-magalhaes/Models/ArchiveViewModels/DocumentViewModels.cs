@@ -14,10 +14,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
         public Document Document { get; set; }
 
         [Display(ResourceType = typeof(DocumentStrings), Name = "Author")]
-        public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
+        public IList<SelectListItem> AvailableAuthors { get; set; }
         [Display(ResourceType = typeof(DocumentStrings), Name = "Collection")]
-        public IEnumerable<SelectListItem> AvailableCollections { get; set; }
+        public IList<SelectListItem> AvailableCollections { get; set; }
 
-        public IEnumerable<SelectListItem> AvailableLanguages { get; set; }
+        public IList<SelectListItem> AvailableLanguages { get; set; }
     }
 }

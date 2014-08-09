@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using PagedList;
 using System.Collections.Generic;
 using System;
+using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -18,10 +19,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Documents
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0)
         {
-            return View(await Task.Run(() => 
-                _db.Documents
+            var query = _db.Documents
+                           .Include(dt => dt.Author);
+
+            if (authorId > 0)
+            {
+                query = query.Where(d => d.AuthorId == authorId);
+            }
+
+            return View(await Task.Run(() =>
+                query
                    .OrderBy(d => d.Id)
                    .ToPagedList(pageNumber, 10)));
         }
@@ -36,6 +45,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             Document document = await _db.Documents.FindAsync(id);
             document.Translations = document.Translations.ToList();
+
+            ViewBag.TranslationsAvailable = 
+                document.Translations.Count < LanguageDefinitions.Languages.Count;
 
             if (document == null)
             {
@@ -164,8 +176,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 })
                 .ToListAsync();
 
+            model.AvailableAuthors.Insert(0, new SelectListItem
+                {
+                    Text = UiPrompts.ChooseOne,
+                    Value = String.Empty,
+                    Selected = true
+                });
+
             var query = _db.Collections
-                .Join(_db.CollectionTranslations, (c) => c.Id, (ct) => ct.CollectionId, (c, ct) => new SelectListItem 
+                .Join(_db.CollectionTranslations, (c) => c.Id, (ct) => ct.CollectionId, (c, ct) => new SelectListItem
                 {
                     Selected = d.CollectionId == c.Id,
                     Value = c.Id.ToString(),
@@ -174,7 +193,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 
             model.AvailableCollections = await query.ToListAsync();
 
-            
+            model.AvailableCollections.Insert(0, new SelectListItem
+            {
+                Text = UiPrompts.ChooseOne,
+                Value = String.Empty,
+                Selected = true
+            });
 
             return model;
         }
@@ -192,16 +216,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
 
+            var translations = doc.Translations
+                                  .Select(dt => dt.LanguageCode)
+                                  .ToList();
+
+            if (translations.Count() == LanguageDefinitions.Languages.Count)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var model = new DocumentTranslation
             {
                 DocumentId = doc.Id
             };
 
-            ViewBag.AvailableLanguages = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "pt", Text = "português"},
-                new SelectListItem { Value = "en", Text = "inglês"},
-            };
+            ViewBag.AvailableLanguages =
+                LanguageDefinitions.Languages.Where(t => !translations.Contains(t))
+                            .Select(t => new SelectListItem
+                            {
+                                Value = t,
+                                Text = LanguageDefinitions.GetLanguage(t)
+                            }).ToList();
 
             return View(model);
         }
@@ -225,7 +260,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 });
         }
 
-        
         public async Task<ActionResult> SuggestCode(int? collectionId)
         {
             if (collectionId == null)

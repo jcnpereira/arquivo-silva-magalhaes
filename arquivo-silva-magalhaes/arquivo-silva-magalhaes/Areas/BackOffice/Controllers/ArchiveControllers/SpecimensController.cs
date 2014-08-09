@@ -333,32 +333,56 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         {
             var model = new SpecimenEditViewModel();
 
-            model.AvailableImages = _db.Images
-                .Select(i => new SelectListItem
+            model.AvailableImages.Add(new SelectListItem
                 {
-                    Value = i.Id.ToString(),
-                    Text = i.ImageCode,
-                    Selected = specimen.ImageId == i.Id
-                })
-                .ToList();
+                    Value = "",
+                    Text = UiPrompts.ChooseOne,
+                    Selected = true
+                });
 
-            model.AvailableProcesses = _db.Processes
-                .Select(p => new SelectListItem
+            model.AvailableImages.AddRange(
+                _db.Images
+                   .OrderBy(i => i.Id)
+                   .Select(i => new SelectListItem
+                   {
+                       Value = i.Id.ToString(),
+                       Text = i.ImageCode,
+                       Selected = specimen.ImageId == i.Id
+                   }));
+
+            model.AvailableProcesses.Add(new SelectListItem
+            {
+                Value = "",
+                Text = UiPrompts.ChooseOne,
+                Selected = true
+            });
+
+            model.AvailableProcesses.AddRange(
+                _db.ProcessTranslations
+                   .Where(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                   .OrderBy(pt => pt.ProcessId)
+                   .Select(pt => new SelectListItem
                 {
-                    Value = p.Id.ToString(),
-                    Text = p.Translations.FirstOrDefault(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage).Value,
-                    Selected = specimen.ProcessId == p.Id
-                })
-                .ToList();
+                    Value = pt.ProcessId.ToString(),
+                    Text = pt.Value,
+                    Selected = specimen.ProcessId == pt.ProcessId
+                }));
 
-            model.AvailableFormats = _db.Formats
+            model.AvailableFormats.Add(new SelectListItem
+            {
+                Value = "",
+                Text = UiPrompts.ChooseOne,
+                Selected = true
+            });
+
+            model.AvailableFormats.AddRange(_db.Formats
+                .OrderBy(f => f.Id)
                 .Select(f => new SelectListItem
                 {
                     Value = f.Id.ToString(),
                     Text = f.FormatDescription,
                     Selected = specimen.FormatId == f.Id
-                })
-                .ToList();
+                }));
 
             model.Specimen = specimen;
 

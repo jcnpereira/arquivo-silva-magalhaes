@@ -112,6 +112,5 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [AllowHtml]
         [Display(ResourceType = typeof(EventStrings), Name = "TextContent")]
         public string TextContent { get; set; }
-
     }
 }
