@@ -4,163 +4,63 @@
     ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-@*<head>
-    <meta charset="UTF-8">
-    <title>AFSM</title>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <script type="text/javascript" src="./scripts/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="./flex-slider/jquery.flexslider-min.js"></script>
-    <script src="scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
-    <script src="scripts/jquery.tipsy.js" type="text/javascript"></script>
-    <script src="scripts/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript" src="./scripts/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="./scripts/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="./scripts/waypoints.min.js"></script>
-    <script type="text/javascript" src="./scripts/setup.js"></script>
-
-
-</head>*@
-<body>
-    <div id="wrap">
-        <!-- wrapper -->
-        @*<div id="sidebar">
-            <!-- the  sidebar -->
-            <!-- logo -->
-            <a href="#" id="logo"> <img src="../images/logo.png" alt="" /></a>
-            <a href="#" id="logo"> <img src="../images/cmt.png" alt="" /></a>
-            <!-- navigation menu -->
-            <ul id="navigation">
-                <li><a href="../Home/Index">IN&#205;CIO</a></li>
-                <li><a href="../ShowCasePhotoes">DESTAQUE</a></li>
-                <li><a href="../Archives">ACERVO</a></li>
-                <li><a href="../Home/Pesquisa">PESQUISA</a></li>
-                <li><a href="../News">NOT&#205;CIAS</a></li>
-                <li><a href="../Events">EVENTOS</a></li>
-                <li><a href="../Home/Historia">HIST&#211;RIA</a></li>
-                <li><a href="#Documentos" class="active">DOCUMENTOS T&#201;CNICOS</a></li>
-                @*<li><a href="Loja">LOJA</a></li>*@
-                @*<li><a href="../Contacts">CONTACTOS</a></li>
-                <li><a href="../ReferencedLinks">LINKS &#218;TEIS</a></li>
-                <li><a href="../Partnerships">PROJETOS E PARCERIAS</a></li>
-            </ul>
-        </div>*@
-        <div id="container">
-            <!-- page container -->
-            <div class="page" id="">
-                <!-- page home -->
-                <div class="page_content">
-
-
-                    <!-- lateral direita -->
-                    <div class="">
-                        <div class="column_content">
-                            <h3 class="page_title">Documentos Técnicos</h3>
-                            <img src="../images/documentos.png" class="left no_border" alt="" style="margin-top: 10px;
+<div class="column_content">
+    <h3 class="page_title">Documentos Técnicos</h3>
+    <img src="../images/documentos.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
-                            <div class="space"> </div>
-                            <div class="clear"> </div>
 
-                        </div>
+    <table class="table">
+        <tr>
+            <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
 
-                        <table class="table">
-                            <tr>
-                                @*<th>
-                                        @Html.DisplayNameFor(model => model.Title)
-                                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Format)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DocumentType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Language)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileSize)
+                </th>
+            <th></th>
+        </tr>
 
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Format)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DocumentType)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Language)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FileSize)
-                                    </th>*@
-                                <th></th>
-                            </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="font-size:large">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Format)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentType)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileSize)
+                </td>
+                <td></td>
+                <td></td>
 
-                            @foreach (var item in Model)
-                            {
-                                <tr style="font-size:large">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Format)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DocumentType)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Language)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.FileSize)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
+            </tr>
+        }
 
-                                </tr>
-                            }
-
-                        </table>
-                    </div>
-
-                    <div class="space"> </div>
-
-
-                    <div class="space"> </div>
-
-
-                    <div class="clear"> </div>
-                </div>
-            </div>
-
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-            <div class="space"> </div>
-            <div class="clear"> </div>
-
-            <div class="footer">
-                <p> &copy; 2014 AFSM</p>
-
-            </div>
-        </div>
-    </div>
-    @*<a class="gotop" href="#top">Top</a>*@
-</body>
-</html>
+    </table>
+</div>

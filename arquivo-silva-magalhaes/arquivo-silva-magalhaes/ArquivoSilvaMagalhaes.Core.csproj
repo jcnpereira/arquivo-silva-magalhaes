@@ -487,6 +487,13 @@
     <Content Include="App_Data\Uploads\Specimens\Large\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
     <Content Include="App_Data\Uploads\Specimens\Original\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
     <Content Include="App_Data\Uploads\Specimens\Thumb\4a3c7e44-b2a9-4d6f-9825-d4caf7208139.jpg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\ostrich-black-webfont.svg" />
+    <Content Include="Content\fonts\ostrich-bold-webfont.svg" />
+    <Content Include="Content\fonts\ostrich-dashed-webfont.svg" />
+    <Content Include="Content\fonts\ostrich-light-webfont.svg" />
+    <Content Include="Content\fonts\ostrich-regular-webfont.svg" />
+    <Content Include="Content\fonts\ostrich-rounded-webfont.svg" />
     <Content Include="Content\media-queries.css" />
     <Content Include="Content\prettyPhoto.css" />
     <Content Include="Content\style.css" />
@@ -784,6 +791,27 @@
     <Content Include="fonts\ostrich-rounded-webfont.ttf" />
     <Content Include="fonts\ostrich-rounded-webfont.woff" />
     <Content Include="flex-slider\theme\Thumbs.db" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\ostrich-black-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-black-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-black-webfont.woff" />
+    <Content Include="Content\fonts\ostrich-bold-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-bold-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-bold-webfont.woff" />
+    <Content Include="Content\fonts\ostrich-dashed-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-dashed-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-dashed-webfont.woff" />
+    <Content Include="Content\fonts\ostrich-light-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-light-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-light-webfont.woff" />
+    <Content Include="Content\fonts\ostrich-regular-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-regular-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-regular-webfont.woff" />
+    <Content Include="Content\fonts\ostrich-rounded-webfont.eot" />
+    <Content Include="Content\fonts\ostrich-rounded-webfont.ttf" />
+    <Content Include="Content\fonts\ostrich-rounded-webfont.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -940,10 +968,8 @@
     <Content Include="Areas\BackOffice\Views\News\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
-    <Content Include="Views\Home\Historia.cshtml" />
-    <Content Include="Views\Home\Links.cshtml" />
-    <Content Include="Views\Home\Loja.cshtml" />
-    <Content Include="Views\Home\Pesquisa.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\images\clients\Thumbs.db" />
     <Content Include="Views\Home\images\photos\Thumbs.db" />
     <Content Include="Views\Home\images\prettyPhoto\dark_rounded\Thumbs.db" />
@@ -959,6 +985,7 @@
     <Content Include="Views\ReferencedLinks\Index.cshtml" />
     <Content Include="Views\ShowCasePhotoes\Index.cshtml" />
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="anexos\news-magazine\images\demo\" />
