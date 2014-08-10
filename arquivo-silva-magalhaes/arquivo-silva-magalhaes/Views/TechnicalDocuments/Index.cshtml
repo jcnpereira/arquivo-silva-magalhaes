@@ -1,64 +1,26 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
 
-@{
-    ViewBag.Title = "Index";
-}
 
 <div class="column_content">
     <h3 class="page_title">Documentos Técnicos</h3>
-    <img src="../images/documentos.png" class="left no_border" alt="" style="margin-top: 10px;
-                                margin-right: 10px" />
 
     <table class="table">
-        <tr>
-            <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Format)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DocumentType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Language)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FileSize)
-                </th>
-            <th></th>
-        </tr>
 
         @foreach (var item in Model)
         {
-            <tr style="font-size:large">
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-                <td></td>
-                <td></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Format)
                 </td>
-                <td></td>
-                <td></td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DocumentType)
-                </td>
-                <td></td>
-                <td></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Language)
                 </td>
-                <td></td>
-                <td></td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FileSize)
+                    <a href="~/AnexosImagens/TechnicalDocuments/@Html.DisplayFor(modelItem => item.FileName)" target="_blank">ver</a>
                 </td>
-                <td></td>
-                <td></td>
-
             </tr>
         }
 

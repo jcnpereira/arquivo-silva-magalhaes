@@ -540,6 +540,7 @@
     <Content Include="images\coded-with-love.png" />
     <Content Include="images\colecao.png" />
     <Content Include="images\contact_us.jpg" />
+    <Content Include="images\continente.jpg" />
     <Content Include="images\customizable.png" />
     <Content Include="images\destaque.jpg" />
     <Content Include="images\documentos.png" />
@@ -549,10 +550,13 @@
     <Content Include="images\for-pencil.png" />
     <Content Include="images\ico-arrow.gif" />
     <Content Include="images\image-gallery.png" />
+    <Content Include="images\ipt.jpg" />
     <Content Include="images\jquery-code.png" />
     <Content Include="images\linkedin.png" />
     <Content Include="images\logo - Cópia.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logo_abt.jpg" />
+    <Content Include="images\logo_cml.jpg" />
     <Content Include="images\noticias.jpg" />
     <Content Include="images\pesquisa.png" />
     <Content Include="images\photos\01.jpg" />
@@ -606,6 +610,7 @@
     <Content Include="images\projeto.png" />
     <Content Include="images\responsive.png" />
     <Content Include="images\sending.gif" />
+    <Content Include="images\tomar_logo.jpg" />
     <Content Include="images\twitter.png" />
     <Content Include="images\workshop.jpg" />
     <Content Include="Public\Images\logo.png" />

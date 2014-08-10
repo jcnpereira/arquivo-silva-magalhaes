@@ -142,7 +142,7 @@ div#container {
 div.page {
 	margin-bottom:5px solid #dbdbdb;
 	margin-bottom:0;
-	padding-top:20px
+	padding-top:10px
 }
 div.page_content {
 	padding:25px 0 40px 25px
@@ -150,7 +150,7 @@ div.page_content {
 div#container h3.page_title {
 	font-family: 'Arial ';
     text-align:center;
-	margin-left:25px;
+	margin-left:0px;
 	font-size:35px;
 	color:#000;
 	border-bottom:0px solid #000;
@@ -406,7 +406,7 @@ blockquote {
 }
 div.page img {
 	padding:5px;
-	border:1px solid #73aaca;
+	border:0px solid #73aaca;
 	max-width:94%
 }
 a#logo:hover, a.facebook:hover, a.twitter:hover, a.linkedin:hover, a.dribbble:hover, div.image_gallery img:hover {
@@ -643,7 +643,7 @@ ul.sublist li a:hover {
   width: 100%;
   max-width: 100%;
   margin-top:40px;
-  margin-bottom: 200px;
+  margin-bottom: 40px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,

@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Partnership>
 
-@{
-    ViewBag.Title = "Index";
-}
-
 <div class="column_content">
     <h3 class="page_title">Projetos e Parcerias</h3>
 </div>
@@ -11,16 +7,9 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td></td>
-            <td></td>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.Logo)" />
-            </td>
-            <td>
-            <td>
+            <td align="center">
+               <b> @Html.DisplayFor(modelItem => item.Name)</b><br />
+                <img height="150" src="~/images/@Html.DisplayFor(modelItem => item.Logo)" alt="Logotipo associado à pareceria."/><br />
                 <a href="@Html.DisplayFor(modelItem => item.SiteLink)" target="_blank">Visitar Site</a>
             </td>
         </tr>
