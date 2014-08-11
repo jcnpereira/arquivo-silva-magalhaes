@@ -7,112 +7,112 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Models;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class EventsController : Controller
+    public class ReferencedLinksViewController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: /Events/
+        // GET: /ReferencedLinksView/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Events.ToListAsync());
+            return View(await db.ReferencedLinkModels.ToListAsync());
         }
 
-        // GET: /Events/Details/5
+        // GET: /ReferencedLinksView/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
-            if (@event == null)
+            ReferencedLinkModels referencedlinkmodels = await db.ReferencedLinkModels.FindAsync(id);
+            if (referencedlinkmodels == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(referencedlinkmodels);
         }
 
-        // GET: /Events/Create
+        // GET: /ReferencedLinksView/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Events/Create
+        // POST: /ReferencedLinksView/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Place,Coordinates,VisitorInformation,StartMoment,EndMoment,PublishDate,ExpiryDate,HideAfterExpiry,EventType")] Event @event)
+        public async Task<ActionResult> Create([Bind(Include="Id,Title,Link,Description,DateOfCreation,LastModifiedDate,IsUsefulLink")] ReferencedLinkModels referencedlinkmodels)
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
+                db.ReferencedLinkModels.Add(referencedlinkmodels);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(@event);
+            return View(referencedlinkmodels);
         }
 
-        // GET: /Events/Edit/5
+        // GET: /ReferencedLinksView/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
-            if (@event == null)
+            ReferencedLinkModels referencedlinkmodels = await db.ReferencedLinkModels.FindAsync(id);
+            if (referencedlinkmodels == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(referencedlinkmodels);
         }
 
-        // POST: /Events/Edit/5
+        // POST: /ReferencedLinksView/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Place,Coordinates,VisitorInformation,StartMoment,EndMoment,PublishDate,ExpiryDate,HideAfterExpiry,EventType")] Event @event)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Title,Link,Description,DateOfCreation,LastModifiedDate,IsUsefulLink")] ReferencedLinkModels referencedlinkmodels)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
+                db.Entry(referencedlinkmodels).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(@event);
+            return View(referencedlinkmodels);
         }
 
-        // GET: /Events/Delete/5
+        // GET: /ReferencedLinksView/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
-            if (@event == null)
+            ReferencedLinkModels referencedlinkmodels = await db.ReferencedLinkModels.FindAsync(id);
+            if (referencedlinkmodels == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(referencedlinkmodels);
         }
 
-        // POST: /Events/Delete/5
+        // POST: /ReferencedLinksView/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Event @event = await db.Events.FindAsync(id);
-            db.Events.Remove(@event);
+            ReferencedLinkModels referencedlinkmodels = await db.ReferencedLinkModels.FindAsync(id);
+            db.ReferencedLinkModels.Remove(referencedlinkmodels);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -212,10 +212,11 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Controllers\ArchivesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
-    <Compile Include="Controllers\EventsController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\EventsViewController.cs" />
+    <Compile Include="Controllers\NewsViewController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\ReferencedLinksController.cs" />
+    <Compile Include="Controllers\ReferencedLinksViewController.cs" />
     <Compile Include="Controllers\ShowCasePhotoesController.cs" />
     <Compile Include="Controllers\TechnicalDocumentsController.cs" />
     <Compile Include="Models\ArchiveModels\Image.cs" />
@@ -984,13 +985,15 @@
     <Content Include="Views\Home\images\Thumbs.db" />
     <Content Include="Views\Archives\Index.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Partnerships\Index.cshtml" />
     <Content Include="Views\ReferencedLinks\Index.cshtml" />
     <Content Include="Views\ShowCasePhotoes\Index.cshtml" />
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\EventsView\Details.cshtml" />
+    <Content Include="Views\EventsView\Index.cshtml" />
+    <Content Include="Views\NewsView\Details.cshtml" />
+    <Content Include="Views\NewsView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="anexos\news-magazine\images\demo\" />

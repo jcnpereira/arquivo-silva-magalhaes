@@ -9,8 +9,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                <td align="left">
+                    <a href="~/AnexosImagens/TechnicalDocuments/@Html.DisplayFor(modelItem => item.FileName)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Format)
@@ -18,9 +18,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Language)
                 </td>
-                <td>
-                    <a href="~/AnexosImagens/TechnicalDocuments/@Html.DisplayFor(modelItem => item.FileName)" target="_blank">ver</a>
+                <td align="right">
+                   @Html.DisplayFor(modelItem => item.LastModificationDate.Day) / @Html.DisplayFor(modelItem => item.LastModificationDate.Month) / @Html.DisplayFor(modelItem => item.LastModificationDate.Year)
                 </td>
+               
             </tr>
         }
 

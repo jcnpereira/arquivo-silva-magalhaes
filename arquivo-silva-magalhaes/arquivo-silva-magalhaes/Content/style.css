@@ -558,8 +558,6 @@ ul.sublist li a:hover {
 }
 /* CLIENTS */
 
-
-
 #clients li:hover .original_img,  .ie7 #clients li:hover a img, .ie8 #clients li:hover a img {
 	opacity: 1;
 	-ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -644,6 +642,7 @@ ul.sublist li a:hover {
   max-width: 100%;
   margin-top:40px;
   margin-bottom: 40px;
+  text-align:left;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -659,6 +658,11 @@ ul.sublist li a:hover {
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #dddddd;
+}
+tr:hover{
+    /*background-color:#dbdbdb;
+    border-color:#dbdbdb;*/
+   
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -681,6 +685,7 @@ ul.sublist li a:hover {
 .table-condensed > tbody > tr > td,
 .table-condensed > tfoot > tr > td {
   padding: 5px;
+
 }
 .table-bordered {
   border: 1px solid #dddddd;
@@ -824,7 +829,6 @@ table th[class*="col-"] {
 @media screen and (max-width: 767px) {
   .table-responsive {
     width: 100%;
-
     margin-bottom: 15px;
     overflow-y: hidden;
     overflow-x: auto;

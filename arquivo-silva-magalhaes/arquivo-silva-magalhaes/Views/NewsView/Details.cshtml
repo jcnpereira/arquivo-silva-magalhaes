@@ -1,0 +1,20 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteViewModels.NewsItemViewModels
+
+<div>
+    <dl class="dl-horizontal" style="text-align:justify">
+        <dd>
+            <h1>@Html.DisplayFor(model => model.Title)</h1>
+            <h3>@Html.DisplayFor(model => model.Subtitle)</h3>
+            <h5>@Html.DisplayFor(model => model.Heading)</h5>
+        </dd>
+        <dd>
+            <br />@Html.DisplayFor(model => model.TextContent)
+        </dd>
+        <dd>
+           <br /> @Html.DisplayFor(model => model.PublishDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>
