@@ -1,0 +1,5 @@
+﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Banner
+<li>
+    <img src="@Url.Content(Model.UriPath)" />
+    <p class="flex-caption">@Html.DisplayFor(modelitem => Model.Title)</p>
+</li>

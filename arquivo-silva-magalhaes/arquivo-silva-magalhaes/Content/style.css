@@ -148,11 +148,11 @@ div.page_content {
 	padding:25px 0 40px 25px
 }
 div#container h3.page_title {
-	font-family: 'Arial ';
+	font-family: Arial ;
     text-align:center;
 	margin-left:0px;
 	font-size:35px;
-	color:#000;
+	color:#101010;
 	border-bottom:0px solid #000;
 	text-shadow:1px 1px 2px #185477;
 	line-height:2;
@@ -296,13 +296,13 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
 	color:#1d1d1d
 }
-h4.blue {
+/*h4.blue {
 	font-family: 'OstrichSansBlack';
 	color: #0D4667;
 	text-shadow: 1px 1px 0px #84BBDB;
 	font-size: 28px;
 	margin-top:20px;
-}
+}*/
 .one_half {
 	float:left;
 	width:50%
@@ -342,12 +342,12 @@ h4.blue {
 .column_content p {
 	margin-left:68px;
 }
-.column_content h4 {
+/*.column_content h4 {
 	font-family: 'OstrichSansBlack';
 	color:#000000;
 	text-shadow:0px 0px 0px #000000;
 	font-size:28px;
-}
+}*/
 .first {
 	clear:left
 }
@@ -375,8 +375,8 @@ a:link, a:visited {
 	text-decoration:underline
 }
 a:hover{
-    color:#B2D1FF
-    /*color:#789CFF*/
+    /*color:#B2D1FF*/
+    color:#789C88
 }
 input, textarea, button {
 	background:url(./images/bg/15.png);

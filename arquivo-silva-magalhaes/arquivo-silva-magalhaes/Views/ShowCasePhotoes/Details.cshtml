@@ -1,0 +1,24 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
+
+<h1>Informações</h1>
+
+<div>
+    <h3>@Html.DisplayFor(model => model.DigitalPhotograph)</h3>
+    <hr />
+</div>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.CommenterName):</b>
+            @Html.DisplayFor(model => model.CommenterName)
+        </dt>
+        <dt>
+            <b> @Html.DisplayNameFor(model => model.CommenterEmail):</b>
+            @Html.DisplayFor(model => model.CommenterEmail)
+        </dt>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>
+

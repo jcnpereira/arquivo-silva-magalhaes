@@ -1,18 +1,41 @@
-﻿
-<style>
-    .video {
-        width: 100%;
-        min-height: 400px;
-        position: relative;
-    }
-</style>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
 
 <div class="page_content">
-    <iframe class="video" align="top" src="//www.youtube.com/embed/bFs0zJ9jQ-k" frameborder="0" allowfullscreen></iframe>
+    <link href="@Url.Content("~/Content/media-queries.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/flexslider.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/prettyPhoto.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/tipsy.css")" rel="stylesheet" type="text/css" />
+
+    @*<div class="gf-slider">
+  
+        <ul class="slides">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("_Banner", Model);
+            }
+        </ul>
+    </div>*@
+    <div class="gf-slider">
+        <!-- slider -->
+        <ul class="slides">
+            <li>
+                <img src="~/images/01.jpg" alt="" />
+                <p class="flex-caption"> Texto exemplo AFSM 1</p>
+            </li>
+            <li>
+                <img src="~/images/02.jpg" alt="" />
+                <p class="flex-caption"> Texto exemplo AFSM 2</p>
+            </li>
+            <li>
+                <img src="~/images/03.jpg" alt="" />
+                <p class="flex-caption"> Texto exemplo AFSM 3</p>
+            </li>
+        </ul>
+    </div>
     <div class="one_half first">
         <div class="column_content">
             <h4> Notícias</h4>
-            <a href="../News">
+            <a href="../NewsView">
                 <img src="../images/coded-with-love.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
             </a>
@@ -26,7 +49,7 @@
     <div class="one_half last">
         <div class="column_content">
             <h4> Eventos</h4>
-            <a href="../Events">
+            <a href="../EventsView">
                 <img src="../images/responsive.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
             </a>
@@ -67,6 +90,5 @@
         </div>
     </div>
     <div class="space"> </div>
-
     <div class="clear"> </div>
 </div>

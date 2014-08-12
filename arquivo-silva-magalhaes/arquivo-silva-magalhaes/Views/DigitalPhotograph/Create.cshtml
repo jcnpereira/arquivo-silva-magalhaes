@@ -1,0 +1,100 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.DigitalPhotograph
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DigitalPhotograph</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SpecimenId, "SpecimenId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SpecimenId", String.Empty)
+                @Html.ValidationMessageFor(model => model.SpecimenId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScanDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScanDate)
+                @Html.ValidationMessageFor(model => model.ScanDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FileName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FileName)
+                @Html.ValidationMessageFor(model => model.FileName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OriginalFileName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OriginalFileName)
+                @Html.ValidationMessageFor(model => model.OriginalFileName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MimeType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MimeType)
+                @Html.ValidationMessageFor(model => model.MimeType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastModified, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastModified)
+                @Html.ValidationMessageFor(model => model.LastModified)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Process, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Process)
+                @Html.ValidationMessageFor(model => model.Process)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CopyrightInfo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CopyrightInfo)
+                @Html.ValidationMessageFor(model => model.CopyrightInfo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsVisible, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsVisible)
+                @Html.ValidationMessageFor(model => model.IsVisible)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

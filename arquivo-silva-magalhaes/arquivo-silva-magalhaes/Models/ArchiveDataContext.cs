@@ -82,5 +82,9 @@ namespace ArquivoSilvaMagalhaes.Models
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ReferencedLinkModels> ReferencedLinkModels { get; set; }
 
         public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.SiteViewModels.NewsItemViewModels> NewsItemViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.ArchiveViewModels.ProcessViewModel> ProcessViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.ArchiveViewModels.KeywordEditViewModel> KeywordEditViewModels { get; set; }
     }
 }

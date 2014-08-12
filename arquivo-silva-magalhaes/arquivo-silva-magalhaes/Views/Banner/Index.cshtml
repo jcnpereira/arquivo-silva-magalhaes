@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
+
+<link href="@Url.Content("~/Content/media-queries.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/flexslider.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/prettyPhoto.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/tipsy.css")" rel="stylesheet" type="text/css" />
+
+<div class="gf-slider">
+    <!-- slider -->
+    <ul class="slides">
+        @foreach (var item in Model) { 
+            @Html.Partial("_Banner", item)
+        }
+    </ul>
+</div>
+
