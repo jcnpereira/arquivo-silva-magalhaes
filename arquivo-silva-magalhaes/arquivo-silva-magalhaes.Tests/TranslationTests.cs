@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading;
-using System.Globalization;
-using System.Diagnostics;
-using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Utilitites;
-using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace ArquivoSilvaMagalhaes.Tests
 {

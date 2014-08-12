@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
-    using System;
-    
-    
+namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -97,6 +97,24 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notas.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardar.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de digitalização.
         /// </summary>
         public static string ScanDate {
@@ -111,6 +129,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string ScanProcess {
             get {
                 return ResourceManager.GetString("ScanProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carregar fotografias digitais.
+        /// </summary>
+        public static string UploadTitleFormat {
+            get {
+                return ResourceManager.GetString("UploadTitleFormat", resourceCulture);
             }
         }
     }

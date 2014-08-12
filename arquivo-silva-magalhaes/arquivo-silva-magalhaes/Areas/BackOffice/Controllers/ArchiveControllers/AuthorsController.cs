@@ -1,15 +1,13 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
-using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
-using System.Collections.Generic;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -123,6 +121,77 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                     Author = author
                 });
         }
+
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var author = await db.Authors.FindAsync(id);
+
+            if (author == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (author.Translations.Count == LanguageDefinitions.Languages.Count)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                author.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(new AuthorTranslation
+                {
+                    AuthorId = author.Id
+                });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(AuthorTranslation translation)
+        {
+            var author = await db.Authors.FindAsync(translation.AuthorId);
+
+            if (author == null || author.Translations.Any(t => t.LanguageCode == translation.LanguageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                author.Translations.Add(translation);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                author.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(translation);
+        }
+
+        public async Task<ActionResult> AddTranslation(int? id, string languageCode)
+        {
+            if (id == null || languageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var translation = await db.AuthorTranslations.FindAsync(id, languageCode);
+
+            if (translation == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(translation);
+        }
+
 
         // GET: BackOffice/Authors/Delete/5
         public async Task<ActionResult> Delete(int? id)

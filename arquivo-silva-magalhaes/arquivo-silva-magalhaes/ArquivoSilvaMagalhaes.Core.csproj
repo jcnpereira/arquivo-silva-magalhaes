@@ -63,6 +63,9 @@
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer.Mvc">
+      <HintPath>..\packages\ImageResizer.Mvc.3.4.3\lib\ImageResizer.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -197,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DigitalPhotographsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
     <Compile Include="Controllers\ArchivesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -224,32 +229,9 @@
     <Compile Include="Controllers\ShowCasePhotoesController.cs" />
     <Compile Include="Controllers\TechnicalDocumentsController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\IndexListViewModels.cs" />
-    <Compile Include="Models\ArchiveModels\Image.cs" />
-    <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
-    <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
-    <Compile Include="Models\CodeGenerator.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IGenericRepository.cs" />
-    <Compile Include="Models\KeywordRepository.cs" />
-    <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\DocumentViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\EventViewModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\KeywordViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\NewsItemViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\PartnershipViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\PortalViewModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
-    <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
-    <Compile Include="Models\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
-    <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
-    <Compile Include="Models\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\NewsController.cs" />
@@ -261,148 +243,172 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArchiveDataContext.cs" />
     <Compile Include="Models\ArchiveModels\Author.cs" />
-    <Compile Include="Models\SiteModels\BannerPhotograph.cs" />
-    <Compile Include="Models\ArchiveModels\ShowcasePhoto.cs" />
-    <Compile Include="Models\ArchiveModels\DigitalPhotograph.cs" />
     <Compile Include="Models\ArchiveModels\Classification.cs" />
     <Compile Include="Models\ArchiveModels\Collection.cs" />
+    <Compile Include="Models\ArchiveModels\DigitalPhotograph.cs" />
     <Compile Include="Models\ArchiveModels\Document.cs" />
-    <Compile Include="Models\ArchiveModels\Keyword.cs" />
     <Compile Include="Models\ArchiveModels\Format.cs" />
+    <Compile Include="Models\ArchiveModels\Image.cs" />
+    <Compile Include="Models\ArchiveModels\KeyWord.cs" />
     <Compile Include="Models\ArchiveModels\Process.cs" />
+    <Compile Include="Models\ArchiveModels\ShowcasePhoto.cs" />
     <Compile Include="Models\ArchiveModels\Specimen.cs" />
-    <Compile Include="Models\SiteModels\DocumentAttachment.cs" />
+    <Compile Include="Models\ArchiveViewModels\AuthorViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ClassificationViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\CollectionViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\DocumentViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\KeywordViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\ProcessesViewModels.cs" />
+    <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="Models\CodeGenerator.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
+    <Compile Include="Models\KeywordRepository.cs" />
+    <Compile Include="Models\SiteModels\Archive.cs" />
+    <Compile Include="Models\SiteModels\BannerPhotograph.cs" />
     <Compile Include="Models\SiteModels\Collaborator.cs" />
+    <Compile Include="Models\SiteModels\DocumentAttachment.cs" />
     <Compile Include="Models\SiteModels\Event.cs" />
     <Compile Include="Models\SiteModels\NewsItem.cs" />
     <Compile Include="Models\SiteModels\Partnership.cs" />
-    <Compile Include="Models\SiteModels\Archive.cs" />
     <Compile Include="Models\SiteModels\ReferencedLink.cs" />
-    <Compile Include="Models\SiteModels\TechnicalDocument.cs" />
     <Compile Include="Models\SiteModels\SpotlightVideo.cs" />
+    <Compile Include="Models\SiteModels\TechnicalDocument.cs" />
+    <Compile Include="Models\SiteViewModels\BannerPhotographViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\DocumentAttachmentViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\EventViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\NewsItemViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PartnershipViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\PortalViewModels.cs" />
+    <Compile Include="Models\SiteViewModels\ReferencedLinkModels.cs" />
+    <Compile Include="Models\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
+    <Compile Include="Models\SiteViewModels\SpotLightVideoModels.cs" />
+    <Compile Include="Models\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Models\TranslateableEntity.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\DataStrings1.Designer.cs">
+      <DependentUpon>DataStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ErrorStrings.Designer.cs">
+      <DependentUpon>ErrorStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\LanguageNames.Designer.cs">
+      <DependentUpon>LanguageNames.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LanguageNames.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
+      <DependentUpon>AuthorStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthorStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\BannerStrings.Designer.cs">
+      <DependentUpon>BannerStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BannerStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ClassificationStrings.Designer.cs">
+      <DependentUpon>ClassificationStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClassificationStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\CollectionStrings.Designer.cs">
+      <DependentUpon>CollectionStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CollectionStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\DigitalPhotographStrings.Designer.cs">
+      <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\DocumentStrings.Designer.cs">
+      <DependentUpon>DocumentStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DocumentStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\EventStrings.Designer.cs">
+      <DependentUpon>EventStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\FormatStrings.Designer.cs">
+      <DependentUpon>FormatStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FormatStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ImageStrings.Designer.cs">
+      <DependentUpon>ImageStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ImageStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\KeywordStrings.Designer.cs">
+      <DependentUpon>KeywordStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KeywordStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\NewsItemStrings.Designer.cs">
+      <DependentUpon>NewsItemStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewsItemStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ProcessStrings.Designer.cs">
+      <DependentUpon>ProcessStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProcessStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ReferencedLinkStrings.Designer.cs">
+      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\ShowcasePhotoStrings.Designer.cs">
+      <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\SpecimenStrings.Designer.cs">
+      <DependentUpon>SpecimenStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SpecimenStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\TechnicalDocumentStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>TechnicalDocumentStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\UiPrompts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>UiPrompts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\UiStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UiStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\SiteModelStrings.Designer.cs">
+      <DependentUpon>SiteModelStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SiteModelStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UiPrompts.Designer.cs">
+      <DependentUpon>UiPrompts.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\UiStrings.Designer.cs">
+      <DependentUpon>UiStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\ValidationErrorStrings.Designer.cs">
+      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilitites\AlphaNumericComparator.cs" />
     <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
+    <Compile Include="Utilitites\FileUploadHelper.cs" />
     <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
@@ -710,6 +716,14 @@
     <Content Include="Areas\BackOffice\Views\Keywords\_KeywordFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Processes\_ProcessFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Formats\_FormatFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\_DigitalPhotographFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\PostUpload.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -939,6 +953,7 @@
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
     <Folder Include="fonts\" />
+    <Folder Include="Private\" />
     <Folder Include="Public\" />
   </ItemGroup>
   <ItemGroup>
@@ -951,8 +966,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>DataStrings1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorStrings.en.resx" />
     <EmbeddedResource Include="Resources\ErrorStrings.resx">
@@ -1027,6 +1042,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TechnicalDocumentStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SiteModelStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
@@ -1034,10 +1053,6 @@
     <EmbeddedResource Include="Resources\UiStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SiteModelStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ValidationErrorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

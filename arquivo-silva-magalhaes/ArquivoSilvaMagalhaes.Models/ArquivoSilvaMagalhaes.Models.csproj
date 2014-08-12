@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64CAF0C8-35F6-4770-BC2B-087DF65762DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArquivoSilvaMagalhaes.Models</RootNamespace>
+    <AssemblyName>ArquivoSilvaMagalhaes.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountViewModels.cs" />
+    <Compile Include="ArchiveDataContext.cs" />
+    <Compile Include="ArchiveModels\Author.cs" />
+    <Compile Include="ArchiveModels\Classification.cs" />
+    <Compile Include="ArchiveModels\Collection.cs" />
+    <Compile Include="ArchiveModels\DigitalPhotograph.cs" />
+    <Compile Include="ArchiveModels\Document.cs" />
+    <Compile Include="ArchiveModels\Format.cs" />
+    <Compile Include="ArchiveModels\Image.cs" />
+    <Compile Include="ArchiveModels\KeyWord.cs" />
+    <Compile Include="ArchiveModels\Process.cs" />
+    <Compile Include="ArchiveModels\ShowcasePhoto.cs" />
+    <Compile Include="ArchiveModels\Specimen.cs" />
+    <Compile Include="ArchiveViewModels\AuthorViewModels.cs" />
+    <Compile Include="ArchiveViewModels\ClassificationViewModels.cs" />
+    <Compile Include="ArchiveViewModels\CollectionViewModels.cs" />
+    <Compile Include="ArchiveViewModels\DocumentViewModels.cs" />
+    <Compile Include="ArchiveViewModels\ImageViewModels.cs" />
+    <Compile Include="ArchiveViewModels\KeywordViewModels.cs" />
+    <Compile Include="ArchiveViewModels\ProcessesViewModels.cs" />
+    <Compile Include="ArchiveViewModels\SpecimenViewModels.cs" />
+    <Compile Include="CodeGenerator.cs" />
+    <Compile Include="IdentityModels.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="KeywordRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteModels\Archive.cs" />
+    <Compile Include="SiteModels\BannerPhotograph.cs" />
+    <Compile Include="SiteModels\Collaborator.cs" />
+    <Compile Include="SiteModels\DocumentAttachment.cs" />
+    <Compile Include="SiteModels\Event.cs" />
+    <Compile Include="SiteModels\NewsItem.cs" />
+    <Compile Include="SiteModels\Partnership.cs" />
+    <Compile Include="SiteModels\ReferencedLink.cs" />
+    <Compile Include="SiteModels\SpotlightVideo.cs" />
+    <Compile Include="SiteModels\TechnicalDocument.cs" />
+    <Compile Include="SiteViewModels\BannerPhotographViewModels.cs" />
+    <Compile Include="SiteViewModels\DocumentAttachmentViewModels.cs" />
+    <Compile Include="SiteViewModels\EventViewModels.cs" />
+    <Compile Include="SiteViewModels\NewsItemViewModels.cs" />
+    <Compile Include="SiteViewModels\PartnershipViewModels.cs" />
+    <Compile Include="SiteViewModels\PortalViewModels.cs" />
+    <Compile Include="SiteViewModels\ReferencedLinkModels.cs" />
+    <Compile Include="SiteViewModels\ShowcasePhotoEditViewModel.cs" />
+    <Compile Include="SiteViewModels\SpotLightVideoModels.cs" />
+    <Compile Include="SiteViewModels\TechnicalDocumentViewModels.cs" />
+    <Compile Include="TranslateableEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArquivoSilvaMagalhaes.Resources\ArquivoSilvaMagalhaes.Resources.csproj">
+      <Project>{1379e75a-d1e5-498d-8b53-12d511d9ed2d}</Project>
+      <Name>ArquivoSilvaMagalhaes.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,13 +1,11 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
+using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Utilitites
 {
@@ -55,6 +53,16 @@ namespace ArquivoSilvaMagalhaes.Utilitites
         public static string GetLanguageName(string languageCode)
         {
             return CultureInfo.GetCultureInfo(languageCode).NativeName;
+        }
+
+        public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(params string[] languages)
+        {
+            return Languages.Where(l => !languages.Contains(l)).Select(l => new SelectListItem
+                {
+                    Value = l,
+                    Text = GetLanguage(l)
+                })
+                .ToList();
         }
     }
 }

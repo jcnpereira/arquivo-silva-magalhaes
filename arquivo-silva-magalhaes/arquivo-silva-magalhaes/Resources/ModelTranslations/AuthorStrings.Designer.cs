@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eliminar autor {0}.
+        ///   Looks up a localized string similar to Eliminar autor.
         /// </summary>
         public static string DeleteTitleFormat {
             get {
@@ -124,7 +124,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detalhes do autor {0}.
+        ///   Looks up a localized string similar to Detalhes do autor.
         /// </summary>
         public static string DetailsTitleFormat {
             get {
@@ -133,7 +133,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editar autor {0}.
+        ///   Looks up a localized string similar to Editar autor.
         /// </summary>
         public static string EditTitleFormat {
             get {
@@ -160,7 +160,7 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autor {0}.
+        ///   Looks up a localized string similar to Autor.
         /// </summary>
         public static string EntityTitleFormat {
             get {

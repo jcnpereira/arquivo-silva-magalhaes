@@ -1,9 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
-using System.Collections.Generic;
+﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Web.Mvc;
 namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {
     public class KeywordViewModel

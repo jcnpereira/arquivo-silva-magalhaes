@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -75,10 +74,17 @@ namespace ArquivoSilvaMagalhaes.Utilitites
 
             var type = typeof(TModel);
 
+            
+
             var prop = type.GetProperty(name);
             var required = prop.GetCustomAttributes(typeof(RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
             var display = prop.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() as DisplayAttribute;
 
+
+            if (prop.PropertyType.GetInterfaces().Contains(typeof(IEnumerable)))
+            {
+                builder.Attributes["multiple"] = "multiple";
+            }
 
             if (required != null)
             {
@@ -97,7 +103,7 @@ namespace ArquivoSilvaMagalhaes.Utilitites
 
                 foreach (var key in attributes.Keys)
                 {
-                    builder.Attributes[key] = attributes[key].ToString();
+                    builder.Attributes[key.Replace('_', '-')] = attributes[key].ToString();
                 }
             }
 

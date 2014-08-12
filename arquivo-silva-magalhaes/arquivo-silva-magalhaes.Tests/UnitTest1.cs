@@ -1,6 +1,5 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Utilitites;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Tests
 {

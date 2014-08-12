@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Utilitites;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
-using System.IO;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
-using System.ComponentModel.DataAnnotations;
+using ArquivoSilvaMagalhaes.Utilitites;
 using ImageResizer;
 using PagedList;
+using System;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {

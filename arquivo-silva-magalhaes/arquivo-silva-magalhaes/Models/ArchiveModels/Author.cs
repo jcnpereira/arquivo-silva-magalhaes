@@ -1,5 +1,4 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
+﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

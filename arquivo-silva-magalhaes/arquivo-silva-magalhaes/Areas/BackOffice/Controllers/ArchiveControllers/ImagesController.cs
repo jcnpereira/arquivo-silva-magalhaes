@@ -210,7 +210,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 }
             };
 
-            model.AvailableDocuments.AddRange(_db.Documents.Select(d => new SelectListItem
+            model.AvailableDocuments.AddRange(
+                _db.Documents
+                .OrderBy(d => d.Id)
+                .Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
                     Text = d.CatalogCode + " - " + d.Title,
@@ -219,11 +222,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             var keywordIds = image.Keywords.Select(k => k.Id).ToList();
 
-            model.AvailableKeywords = _db.KeywordTranslations.Select(d => new SelectListItem
+            model.AvailableKeywords = _db.KeywordTranslations
+                .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                .OrderBy(kt => kt.KeywordId)
+                .Select(kt => new SelectListItem
                 {
-                    Value = d.KeywordId.ToString(),
-                    Text = d.Value,
-                    Selected = keywordIds.Contains(d.KeywordId)
+                    Value = kt.KeywordId.ToString(),
+                    Text = kt.Value,
+                    Selected = keywordIds.Contains(kt.KeywordId)
                 })
                 .ToList();
 

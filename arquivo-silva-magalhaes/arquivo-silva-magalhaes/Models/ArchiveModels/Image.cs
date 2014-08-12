@@ -1,15 +1,9 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
-using ArquivoSilvaMagalhaes.Utilitites;
+﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Resources;
-using System.Threading;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -35,15 +29,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "ImageCode")]
         public string ImageCode { get; set; }
 
+        public string ImageUrl { get; set; }
+
         [ForeignKey("DocumentId")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public virtual Document Document { get; set; }
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public int DocumentId { get; set; }
-
-        public int? DigitalPhotographId { get; set; }
-        [ForeignKey("DigitalPhotographId")]
-        public virtual DigitalPhotograph DigitalPhotograph { get; set; }
 
         public virtual IList<ImageTranslation> Translations { get; set; }
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]

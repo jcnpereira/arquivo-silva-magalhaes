@@ -129,10 +129,19 @@
   <data name="IsVisible" xml:space="preserve">
     <value>Visível ao público</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
   <data name="ScanDate" xml:space="preserve">
     <value>Data de digitalização</value>
   </data>
   <data name="ScanProcess" xml:space="preserve">
     <value>Processo de digitalização</value>
+  </data>
+  <data name="UploadTitleFormat" xml:space="preserve">
+    <value>Carregar fotografias digitais</value>
   </data>
 </root>

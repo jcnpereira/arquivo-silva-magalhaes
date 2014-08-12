@@ -1,11 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
-using ArquivoSilvaMagalhaes.Utilitites;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
 using System.Web.Mvc;
 

@@ -1,19 +1,14 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Utilitites;
+using PagedList;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
-using ArquivoSilvaMagalhaes.Utilitites;
-using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
-using PagedList;
-using ArquivoSilvaMagalhaes.Resources;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {

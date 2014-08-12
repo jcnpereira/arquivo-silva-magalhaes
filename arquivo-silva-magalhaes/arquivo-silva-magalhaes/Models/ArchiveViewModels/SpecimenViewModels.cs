@@ -1,11 +1,9 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,14 +30,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
     public class SpecimenPhotoUploadModel
     {
-
-        public int Id { get; set; }
-
         [Required]
         public int SpecimenId { get; set; }
 
-        public List<PhotoUploadModelItem> Items { get; set; }
-
+        [Required]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Photos")]
         public List<HttpPostedFileBase> Photos { get; set; }
     }
 

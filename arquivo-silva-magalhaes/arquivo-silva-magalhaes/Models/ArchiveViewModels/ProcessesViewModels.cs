@@ -1,5 +1,4 @@
 ﻿using ArquivoSilvaMagalhaes.Resources;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 {

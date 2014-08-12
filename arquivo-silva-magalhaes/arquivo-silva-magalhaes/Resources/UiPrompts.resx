@@ -129,4 +129,7 @@
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este registo?</value>
   </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Por favor, aguarde...</value>
+  </data>
 </root>

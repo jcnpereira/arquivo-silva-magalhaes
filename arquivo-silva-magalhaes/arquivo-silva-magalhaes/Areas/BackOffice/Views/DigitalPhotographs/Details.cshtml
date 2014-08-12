@@ -1,0 +1,98 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.DigitalPhotograph
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DigitalPhotograph</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Specimen.AuthorCatalogationCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Specimen.AuthorCatalogationCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ScanDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ScanDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FileName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FileName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OriginalFileName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OriginalFileName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MimeType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MimeType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LastModified)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastModified)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Process)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Process)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CopyrightInfo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CopyrightInfo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsVisible)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsVisible)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

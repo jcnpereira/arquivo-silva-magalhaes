@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-
+﻿
 namespace ArquivoSilvaMagalhaes.App_Start
 {
     public class MapperConfig

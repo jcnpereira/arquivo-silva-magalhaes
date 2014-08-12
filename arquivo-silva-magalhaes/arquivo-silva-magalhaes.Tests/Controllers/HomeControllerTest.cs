@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using ArquivoSilvaMagalhaes.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ArquivoSilvaMagalhaes;
-using ArquivoSilvaMagalhaes.Controllers;
+using System.Web.Mvc;
 
 
 namespace ArquivoSilvaMagalhaes.Tests.Controllers

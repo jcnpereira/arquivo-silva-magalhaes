@@ -1,5 +1,4 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ArquivoSilvaMagalhaes.Models
 {

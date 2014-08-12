@@ -1,10 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Resources;
-using System;
-using System.Collections.Generic;
+﻿using ArquivoSilvaMagalhaes.Resources;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {

@@ -1,6 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace ArquivoSilvaMagalhaes.Models

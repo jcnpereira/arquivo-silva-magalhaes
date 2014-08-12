@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -67,11 +66,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(DocumentStrings), ErrorMessageResourceName = "CodeFormat")]
         public string CatalogCode { get; set; }
 
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Collection")]
         public int CollectionId { get; set; }
 
         [ForeignKey("CollectionId")]
         public virtual Collection Collection { get; set; }
 
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Author")]
         public int AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]

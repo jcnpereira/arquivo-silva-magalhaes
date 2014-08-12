@@ -4,6 +4,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
 using ImageResizer;
+using PagedList;
 using System;
 using System.Data.Entity;
 using System.IO;
@@ -12,7 +13,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {

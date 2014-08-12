@@ -3,17 +3,12 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.Utilitites;
-using ImageResizer;
 using PagedList;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
@@ -43,9 +38,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             }
 
             return View(_db.Specimens
-                .Include(s => s.Translations)
-                .OrderBy(s => s.Id)
-                .ToPagedList(pageNumber, 10));
+                           .Include(s => s.Translations)
+                           .OrderBy(s => s.Id)
+                           .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Specimens/Details/5
@@ -152,40 +147,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(GenerateViewModel(specimen));
         }
 
-        public async Task<ActionResult> EditPhotoDetails(int? id)
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var p = await _db.DigitalPhotographs.FindAsync(id);
-
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
-
-            return View(p);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditPhotoDetails([Bind(Exclude = "FileName,OriginalFileName,Encoding,LastModified")] DigitalPhotograph photo)
-        {
-            if (ModelState.IsValid)
-            {
-                var p = await _db.DigitalPhotographs.FindAsync(photo.Id);
-
-                p.IsVisible = photo.IsVisible;
-                p.ScanDate = photo.ScanDate;
-                p.CopyrightInfo = photo.CopyrightInfo;
-                p.Process = photo.Process;
-
-                p.LastModified = DateTime.Now;
-                _db.Entry(p).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
-
-                return RedirectToAction("ListPhotos", new { id = photo.SpecimenId });
-            }
-
-            return View(photo);
-        }
-
         // GET: BackOffice/Specimens/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
@@ -212,95 +173,64 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> DeletePhoto(int? id)
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+        //[OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = 3600)]
+        //public async Task<ActionResult> GetPicture(int? id, string size = "Large")
+        //{
+        //    if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
-            var p = await _db.DigitalPhotographs.FindAsync(id);
+        //    var p = await _db.DigitalPhotographs.FindAsync(id);
 
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+        //    if (p == null) { return HttpNotFound(); }
 
-            return View(p);
-        }
+        //    if (size == "Original")
+        //    {
+        //        var specimen = p.Specimen;
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("DeletePhoto")]
-        public async Task<ActionResult> DeletePhotoConfirmed(int? id, string redirectTo = "ListPhotos")
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+        //        var fileName = p.OriginalFileName;
 
-            var p = await _db.DigitalPhotographs.FindAsync(id);
+        //        return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
+        //    }
 
-            if (p == null) { return new HttpStatusCodeResult(HttpStatusCode.NotFound); }
+        //    // Caching. Basically, we check if the browser has cached the picture (present if "If-Modified-Since" is in the headers).
+        //    // If so, we check if the image was modified since then, and we'll return it.
+        //    // From http://weblogs.asp.net/jeff/archive/2009/07/01/304-your-images-from-a-database.aspx
 
-            _db.DigitalPhotographs.Remove(p);
+        //    // TODO?: There may be some implications with this. Need to check them better.
 
-            // TODO: Remove all files from the disk.
+        //    if (!String.IsNullOrEmpty(Request.Headers["If-None-Match"]))
+        //    {
+        //        var eTag = Request.Headers["If-None-Match"];
 
-            await _db.SaveChangesAsync();
+        //        if (eTag == p.FileName)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.NotModified);
+        //        }
+        //    }
 
-            return RedirectToAction(redirectTo, new { id = p.SpecimenId });
-        }
+        //    Response.Cache.SetETag(p.FileName);
 
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = 3600)]
-        public async Task<ActionResult> GetPicture(int? id, string size = "Large")
-        {
-            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+        //    //if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
+        //    //{
+        //    //    CultureInfo provider = CultureInfo.InvariantCulture;
+        //    //    var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
 
-            var p = await _db.DigitalPhotographs.FindAsync(id);
+        //    //    // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
+        //    //    if (lastMod.CompareTo(p.LastModified) > 0)
+        //    //    {
+        //    //        return new HttpStatusCodeResult(HttpStatusCode.NotModified);
+        //    //    }
+        //    //}
 
-            if (p == null) { return HttpNotFound(); }
+        //    switch (size)
+        //    {
+        //        case "Thumb":
+        //            return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
 
-            if (size == "Original")
-            {
-                var specimen = p.Specimen;
-
-                var fileName = p.OriginalFileName;
-
-                return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", p.FileName), p.MimeType, fileName);
-            }
-
-            // Caching. Basically, we check if the browser has cached the picture (present if "If-Modified-Since" is in the headers).
-            // If so, we check if the image was modified since then, and we'll return it.
-            // From http://weblogs.asp.net/jeff/archive/2009/07/01/304-your-images-from-a-database.aspx
-
-            // TODO?: There may be some implications with this. Need to check them better.
-
-            if (!String.IsNullOrEmpty(Request.Headers["If-None-Match"]))
-            {
-                var eTag = Request.Headers["If-None-Match"];
-
-                if (eTag == p.FileName)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.NotModified);
-                }
-            }
-
-            Response.Cache.SetETag(p.FileName);
-
-            //if (!String.IsNullOrEmpty(Request.Headers["If-Modified-Since"]))
-            //{
-            //    CultureInfo provider = CultureInfo.InvariantCulture;
-            //    var lastMod = DateTime.ParseExact(Request.Headers["If-Modified-Since"], "r", provider).ToLocalTime();
-
-            //    // if (lastMod == p.LastModified.AddMilliseconds(-p.LastModified.Millisecond))
-            //    if (lastMod.CompareTo(p.LastModified) > 0)
-            //    {
-            //        return new HttpStatusCodeResult(HttpStatusCode.NotModified);
-            //    }
-            //}
-
-            switch (size)
-            {
-                case "Thumb":
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
-
-                case "Large":
-                default:
-                    return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
-            }
-        }
+        //        case "Large":
+        //        default:
+        //            return File(Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", Path.GetFileNameWithoutExtension(p.FileName) + ".jpg"), "image/jpeg");
+        //    }
+        //}
 
         public async Task<ActionResult> ListPhotos(int? id)
         {
@@ -400,88 +330,88 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(new SpecimenPhotoUploadModel { SpecimenId = id.Value });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AssociateDigitalPhoto(SpecimenPhotoUploadModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var photosToAdd = new List<DigitalPhotograph>();
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AssociateDigitalPhoto(SpecimenPhotoUploadModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var photosToAdd = new List<DigitalPhotograph>();
 
-                foreach (var item in model.Items.Where(i => i.IsToConsider))
-                {
-                    // Get the file for this photo item. I'm only doing this to be sure that
-                    // they match.
-                    var file = model.Photos.First(p => p.FileName == item.OriginalFileName);
+        //        foreach (var item in model.Items.Where(i => i.IsToConsider))
+        //        {
+        //            // Get the file for this photo item. I'm only doing this to be sure that
+        //            // they match.
+        //            var file = model.Photos.First(p => p.FileName == item.OriginalFileName);
 
-                    // Use a Guid as the new file name. It's safer and very unlikely
-                    // to generate conflicts.
-                    var newName = Guid.NewGuid().ToString();
+        //            // Use a Guid as the new file name. It's safer and very unlikely
+        //            // to generate conflicts.
+        //            var newName = Guid.NewGuid().ToString();
 
-                    photosToAdd.Add(new DigitalPhotograph
-                    {
-                        SpecimenId = model.SpecimenId,
-                        CopyrightInfo = item.CopyrightInfo,
-                        ScanDate = item.ScanDate,
-                        Process = item.Process,
-                        OriginalFileName = item.OriginalFileName,
-                        IsVisible = item.IsVisible,
-                        FileName = newName + Path.GetExtension(file.FileName),
-                        MimeType = file.ContentType
-                    });
+        //            photosToAdd.Add(new DigitalPhotograph
+        //            {
+        //                SpecimenId = model.SpecimenId,
+        //                CopyrightInfo = item.CopyrightInfo,
+        //                ScanDate = item.ScanDate,
+        //                Process = item.Process,
+        //                OriginalFileName = item.OriginalFileName,
+        //                IsVisible = item.IsVisible,
+        //                FileName = newName + Path.GetExtension(file.FileName),
+        //                MimeType = file.ContentType
+        //            });
 
-                    // Prepare to resize the pictures.
-                    // We'll scale them proportionally to a maximum of 1024x768.
-                    // We also can't dispose of the source image just yet.
-                    ImageJob j = new ImageJob
-                    {
-                        Instructions = new Instructions
-                        {
-                            Width = 1024, // TODO To define later.
-                            Height = 768,
-                            Mode = FitMode.Max
-                        },
-                        Source = file.InputStream,
-                        Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", newName + ".jpg"),
-                        CreateParentDirectory = true,
-                        ResetSourceStream = true,
-                        DisposeSourceObject = false
-                    };
-                    // Save the "Large" image.
-                    ImageBuilder.Current.Build(j);
+        //            // Prepare to resize the pictures.
+        //            // We'll scale them proportionally to a maximum of 1024x768.
+        //            // We also can't dispose of the source image just yet.
+        //            ImageJob j = new ImageJob
+        //            {
+        //                Instructions = new Instructions
+        //                {
+        //                    Width = 1024, // TODO To define later.
+        //                    Height = 768,
+        //                    Mode = FitMode.Max
+        //                },
+        //                Source = file.InputStream,
+        //                Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Large", newName + ".jpg"),
+        //                CreateParentDirectory = true,
+        //                ResetSourceStream = true,
+        //                DisposeSourceObject = false
+        //            };
+        //            // Save the "Large" image.
+        //            ImageBuilder.Current.Build(j);
 
-                    // Re-use the object, but change the dimensions to
-                    // the "Thumb" size.
-                    j.Instructions.Width = 200;
-                    j.Instructions.Height = 200;
-                    j.DisposeSourceObject = false;
-                    j.Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", newName + ".jpg");
+        //            // Re-use the object, but change the dimensions to
+        //            // the "Thumb" size.
+        //            j.Instructions.Width = 200;
+        //            j.Instructions.Height = 200;
+        //            j.DisposeSourceObject = false;
+        //            j.Dest = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Thumb", newName + ".jpg");
 
-                    ImageBuilder.Current.Build(j);
+        //            ImageBuilder.Current.Build(j);
 
-                    var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", newName + Path.GetExtension(file.FileName));
+        //            var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/Specimens"), "Original", newName + Path.GetExtension(file.FileName));
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(path));
+        //            Directory.CreateDirectory(Path.GetDirectoryName(path));
 
-                    // Then, save the "Original" picture.
-                    file.SaveAs(path);
+        //            // Then, save the "Original" picture.
+        //            file.SaveAs(path);
 
-                    // ...and dispose of it, freeing memory.
-                    file.InputStream.Dispose();
-                }
+        //            // ...and dispose of it, freeing memory.
+        //            file.InputStream.Dispose();
+        //        }
 
-                // Save the data to the db.
-                _db.DigitalPhotographs.AddRange(photosToAdd);
+        //        // Save the data to the db.
+        //        _db.DigitalPhotographs.AddRange(photosToAdd);
 
-                await _db.SaveChangesAsync();
+        //        await _db.SaveChangesAsync();
 
-                return RedirectToAction("Index");
-            }
+        //        return RedirectToAction("Index");
+        //    }
 
-            if (Request.IsAjaxRequest()) return PartialView(model);
+        //    if (Request.IsAjaxRequest()) return PartialView(model);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         public async Task<ActionResult> SuggestCode(int? imageId)
         {

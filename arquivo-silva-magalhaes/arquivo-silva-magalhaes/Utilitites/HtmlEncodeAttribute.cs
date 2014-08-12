@@ -1,11 +1,7 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using HtmlAgilityPack;
 using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Utilitites

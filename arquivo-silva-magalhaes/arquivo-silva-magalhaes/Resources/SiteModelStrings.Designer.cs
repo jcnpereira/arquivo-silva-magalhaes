@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources {
-    using System;
-    
-    
+namespace ArquivoSilvaMagalhaes.Resources
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

@@ -1,4 +1,4 @@
-﻿{
+﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,22 +9,28 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="btn-toolbar" role="toolbar">
-            <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-                <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
-            </a>
-
             <div class="btn-group">
-                <a class="btn btn-primary" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
+                <a class="btn btn-primary" href="@Url.Action("Index")">
+                    <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+                </a>
+            </div>
+
+            <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = Model.Id })">
+                @Html.AntiForgeryToken()
+
+                <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = Model.Id })">
                     <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
                 </a>
 
-                <a class="btn btn-primary" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })">
-                    <span class="glyphicon glyphicon-edit"></span> @UiStrings.Delete
+                <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@UiPrompts.ConfirmDelete">
+                    <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
                 </a>
-            </div>
+            </form>
+
+            @RenderSection("ExtraActions", required: false)
         </div>
 
-        @RenderSection("ExtraActions", required: false)
+        
     </div>
 
     <div class="panel-body">
@@ -35,3 +41,9 @@
 @section Scripts {
     @Html.Partial("_DeleteConfirmModal")
 }
+
+<style>
+    .dl-horizontal dd, .dl-horizontal dt {
+        line-height: 27px;
+    }
+</style>

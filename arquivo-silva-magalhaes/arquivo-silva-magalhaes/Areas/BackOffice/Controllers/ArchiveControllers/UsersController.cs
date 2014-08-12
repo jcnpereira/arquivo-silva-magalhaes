@@ -1,11 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using System;
-using System.Collections.Generic;
+using PagedList;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {

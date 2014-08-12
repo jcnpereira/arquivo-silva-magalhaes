@@ -1,10 +1,4 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers

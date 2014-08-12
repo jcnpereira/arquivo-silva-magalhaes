@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
-    using System;
-    
-    
+namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -228,6 +228,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
         public static string Notes {
             get {
                 return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fotografias digitais.
+        /// </summary>
+        public static string Photos {
+            get {
+                return ResourceManager.GetString("Photos", resourceCulture);
             }
         }
         
