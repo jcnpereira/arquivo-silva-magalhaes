@@ -55,6 +55,10 @@ namespace ArquivoSilvaMagalhaes
             bundles.Add(new StyleBundle("~/Content/FrontOffice/Styles").Include(
                 "~/Content/Styles/frontoffice/*.css"));
 
+            bundles.Add(new StyleBundle("~/Content/frontoffice-styles").Include(
+                "~/Content/Styles/frontoffice/bootstrap/bootstrap.css",
+                "~/Content/Styles/frontoffice/main.css"));
+
             bundles.Add(new ScriptBundle("~/Scripts/frontoffice").Include(
                 "~/Scripts/frontoffice/*.js"));
         }

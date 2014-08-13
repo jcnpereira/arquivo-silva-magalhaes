@@ -225,6 +225,7 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DigitalPhotographController.cs" />
     <Compile Include="Controllers\EventsViewController.cs" />
+    <Compile Include="Controllers\FrontOfficeController.cs" />
     <Compile Include="Controllers\NewsViewController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\ReferencedLinksController.cs" />
@@ -308,6 +309,11 @@
       <DependentUpon>LanguageNames.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\LayoutStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LayoutStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
       <DependentUpon>AuthorStrings.resx</DependentUpon>
@@ -418,6 +424,8 @@
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
     <Compile Include="Utilitites\ViewExtensions.cs" />
+    <Compile Include="ViewModels\CollectionViewModels.cs" />
+    <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\ostrich-black-webfont.svg" />
@@ -427,6 +435,24 @@
     <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.min.css">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\BackOffice\code-suggestions.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js">
@@ -739,6 +765,88 @@
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\_DigitalPhotographFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\PostUpload.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\AddTranslation.cshtml" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\.csscomb.json" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\.csslintrc" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\alerts.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\badges.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\button-groups.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\buttons.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\carousel.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\close.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\code.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\component-animations.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\dropdowns.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\forms.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\grid.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\input-groups.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\jumbotron.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\labels.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\list-group.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\media.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\forms.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\grid.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\image.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\labels.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\panels.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\resize.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\size.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\modals.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\navbar.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\navs.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\normalize.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\pager.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\pagination.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\panels.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\popovers.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\print.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\progress-bars.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\responsive-embed.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\scaffolding.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\tables.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\theme.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\thumbnails.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\tooltip.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\type.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\utilities.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\wells.less" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.css.map">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.less" />
+    <Content Include="Content\Styles\frontoffice\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />
@@ -973,7 +1081,7 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -1010,28 +1118,16 @@
     <Content Include="Views\NewsView\Index.cshtml" />
     <Content Include="Views\Banner\Index.cshtml" />
     <Content Include="Views\Shared\_Banner.cshtml" />
-    <Content Include="Views\DigitalPhotograph\Create.cshtml" />
-    <Content Include="Views\DigitalPhotograph\Delete.cshtml" />
-    <Content Include="Views\DigitalPhotograph\Details.cshtml" />
-    <Content Include="Views\DigitalPhotograph\Edit.cshtml" />
     <Content Include="Views\DigitalPhotograph\Index.cshtml" />
     <Content Include="Views\SpecimensView\Create.cshtml" />
     <Content Include="Views\SpecimensView\Delete.cshtml" />
     <Content Include="Views\SpecimensView\Details.cshtml" />
     <Content Include="Views\SpecimensView\Edit.cshtml" />
     <Content Include="Views\SpecimensView\Index.cshtml" />
-    <Content Include="Views\ProcessView\Create.cshtml" />
-    <Content Include="Views\ProcessView\Delete.cshtml" />
-    <Content Include="Views\ProcessView\Details.cshtml" />
-    <Content Include="Views\ProcessView\Edit.cshtml" />
-    <Content Include="Views\ProcessView\Index.cshtml" />
-    <Content Include="Views\Format\Create.cshtml" />
-    <Content Include="Views\Format\Delete.cshtml" />
-    <Content Include="Views\Format\Details.cshtml" />
-    <Content Include="Views\Format\Edit.cshtml" />
-    <Content Include="Views\Format\Index.cshtml" />
     <Content Include="Views\ShowCasePhotoes\Details.cshtml" />
     <Content Include="Views\Partnerships\Details.cshtml" />
+    <Content Include="Views\Home\Collections.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1039,6 +1135,7 @@
     <Folder Include="Areas\BackOffice\Views\About\" />
     <Folder Include="Private\" />
     <Folder Include="Public\" />
+    <Folder Include="Views\FrontOffice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1061,6 +1158,11 @@
     <EmbeddedResource Include="Resources\LanguageNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LanguageNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LayoutStrings.en.resx" />
+    <EmbeddedResource Include="Resources\LayoutStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LayoutStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1150,9 +1252,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <!-- <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-      <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-    </Target> -->
   <!-- <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <ItemGroup>
       <ExtraWebConfigs Include="$(BaseIntermediateOutputPath)\**\web.config" />

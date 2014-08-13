@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     @*<img src="@Html.DisplayFor(modelItem => item.DigitalPhotograph.FileName)"><br />*@
-                    <img src="~/images/@Url.Content(item.DigitalPhotograph.FileName)" /><br />
+                    <img src="~/images/@Url.Content(item.Image.ImageUrl)" /><br />
                     @Html.ActionLink("Informações", "Details", new { id = item.Id })
                 </td>
             </tr>

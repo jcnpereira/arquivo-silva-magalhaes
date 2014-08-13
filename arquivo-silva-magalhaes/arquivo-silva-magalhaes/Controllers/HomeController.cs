@@ -1,9 +1,13 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using System.Web.Mvc;
+using System.Linq;
+using System.Data.Entity;
+using System.Threading;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : FrontOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
@@ -28,5 +32,20 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
+
+        public ActionResult Collections()
+        {
+            var model = db.Collections
+                .Where(c => c.IsVisible)
+                .Include(c => c.Translations)
+                .ToList()
+                .Select(c => new CollectionViewModel(c))
+                .ToList();
+
+
+
+
+            return View(model);
+        }
     }
 }

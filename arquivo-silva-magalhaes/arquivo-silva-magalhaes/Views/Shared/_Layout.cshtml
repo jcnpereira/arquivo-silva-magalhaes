@@ -3,63 +3,46 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFSM</title>
+    <title>
+        @ViewBag.Title @(ViewBag.Title != null ? "| " : "")Arquivo Fotográfico Silva Magalhães
+    </title>
     @Scripts.Render("~/bundles/modernizr")
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    @Styles.Render("~/Content/FrontOffice/Styles")
+    @Styles.Render("~/Content/frontoffice-styles")
 </head>
 <body>
-    <div id="wrap">
-        <div id="sidebar">
-            <!-- the  sidebar -->
-            <!-- logo -->
-            <a href="#" id="logo"> <img src="~/images/logo.png" alt="" /></a>
-            <a href="#" id="logo"> <img src="~/images/cmt.png" alt="" /></a>
-            <!-- navigation menu -->
-            <ul id="navigation">
-                <li><a href="~/Home/Index">IN&#205;CIO</a></li>
-                <li><a href="~/ShowCasePhotoes">DESTAQUE</a></li>
-                <li><a href="~/Archives">ACERVO</a></li>
-                <li><a href="~/Home/Search">PESQUISA</a></li>
-                <li><a href="~/NewsView">NOT&#205;CIAS</a></li>
-                <li><a href="~/EventsView">EVENTOS</a></li>
-                <li><a href="~/Home/History">HIST&#211;RIA</a></li>
-                <li><a href="~/TechnicalDocuments">DOCUMENTOS T&#201;CNICOS</a></li>
-                @*<li><a href="Loja">LOJA</a></li>*@
-                <li><a href="~/Contacts">CONTACTOS</a></li>
-                <li><a href="~/ReferencedLinks">LINKS &#218;TEIS</a></li>
-                <li><a href="~/Partnerships">PROJETOS E PARCERIAS</a></li>
-            </ul>
-        </div>
-        <div class="container body-content">
-            <div id="wrap">
-                <div id="container">
-                    <div class="page" id="">
-                        <div class="page_content">
-                            @RenderBody()
-                            <footer class="footer" style="text-align:center">
-                                <p> &copy; 2014 AFSM</p>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
+
+    <div id="afsm-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    </div>
+
+
+    <div id="afsm-page-container" class="container-fluid">
+        <div class="row">
+            <div id="afsm-sidebar" class="col-sm-3 col-md-2">
+                <ul class="nav nav-stacked">
+                    <li>Olá</li>
+                </ul>
+            </div>
+
+
+            <div id="afsm-page-content" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                @RenderBody()
             </div>
         </div>
-        @*</div>*@
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 
-    @*<script type="text/javascript" src="~/flex-slider/jquery.flexslider-min.js"></script>
-    <script src="~/scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
-    <script src="~/scripts/jquery.tipsy.js" type="text/javascript"></script>
-    <script src="~/scripts/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript" src="~/scripts/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="~/scripts/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="~/scripts/waypoints.min.js"></script>
-    <script type="text/javascript" src="~/scripts/setup.js"></script>*@
+
+        
+
+
+    </div>
+
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
     @Scripts.Render("~/Scripts/frontoffice")
 

@@ -1,6 +1,10 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
+﻿mundo
+
+@*@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
 
 <div class="page_content">
+
+    @System.Threading.Thread.CurrentThread.CurrentUICulture.Name
 
     @*<div class="gf-slider">
   
@@ -10,7 +14,7 @@
                 @Html.Partial("_Banner", Model);
             }
         </ul>
-    </div>*@
+    </div>
     <div class="gf-slider">
         <!-- slider -->
         <ul class="slides">
@@ -87,4 +91,4 @@
     </div>
     <div class="space"> </div>
     <div class="clear"> </div>
-</div>
+</div>*@

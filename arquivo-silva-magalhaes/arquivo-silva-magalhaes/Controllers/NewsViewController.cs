@@ -19,7 +19,7 @@
 //        // GET: /NewsView/
 //        public async Task<ActionResult> Index()
 //        {
-//            return View(await db.NewsItemViewModels.ToListAsync());
+//            return View(await db.NewsItems.ToListAsync());
 //        }
 
 //        // GET: /NewsView/Details/5
@@ -29,7 +29,7 @@
 //            {
 //                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 //            }
-//            NewsItemViewModels newsitemviewmodels = await db.NewsItemViewModels.FindAsync(id);
+//            NewsItemViewModels newsitemviewmodels = await db.NewsItems.FindAsync(id);
 //            if (newsitemviewmodels == null)
 //            {
 //                return HttpNotFound();
