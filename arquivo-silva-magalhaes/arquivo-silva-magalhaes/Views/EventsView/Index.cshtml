@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.EventEditViewModel>
+
+<div class="column_content">
+    <h3 class="page_title">Eventos</h3>
+
+    <table class="table">
+
+        @foreach (var item in Model)
+        {
+            if (item.HideAfterExpiry != true || item.ExpiryDate > DateTime.Today)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Heading)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpotLight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Place)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventType)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Informações", "Details", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

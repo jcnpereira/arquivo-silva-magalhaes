@@ -36,8 +36,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "Contact")]
         public string Contact { get; set; }
 
-        
-        
         [Required]
         [Display(ResourceType = typeof(DataStrings), Name = "PartnershipType")]
         public ArquivoSilvaMagalhaes.Models.SiteModels.PartnershipType PartnershipType { get; set; }

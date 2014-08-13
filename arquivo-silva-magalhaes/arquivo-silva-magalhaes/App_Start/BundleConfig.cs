@@ -38,8 +38,6 @@ namespace ArquivoSilvaMagalhaes
                        "~/Scripts/BackOffice/code-suggestions.js"));
 
 
-
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Styles/Bootstrap/bootstrap.css"));
 
@@ -48,6 +46,17 @@ namespace ArquivoSilvaMagalhaes
 
             bundles.Add(new StyleBundle("~/Content/datepicker-bootstrap").Include(
                         "~/Content/Styles/DatePicker/bootstrap-datetimepicker.css"));
+
+            RegisterFrontOfficeBundles(bundles);
+        }
+
+        private static void RegisterFrontOfficeBundles(BundleCollection bundles)
+        {
+            bundles.Add(new StyleBundle("~/Content/FrontOffice/Styles").Include(
+                "~/Content/Styles/frontoffice/*.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/frontoffice").Include(
+                "~/Scripts/frontoffice/*.js"));
         }
     }
 }

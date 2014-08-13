@@ -4,125 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AFSM</title>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <script type="text/javascript" src="./scripts/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="./flex-slider/jquery.flexslider-min.js"></script>
-    <script src="scripts/jquery.prettyPhoto.js" type="text/javascript"></script>
-    <script src="scripts/jquery.tipsy.js" type="text/javascript"></script>
-    <script src="scripts/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript" src="./scripts/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="./scripts/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="./scripts/waypoints.min.js"></script>
-    <script type="text/javascript" src="./scripts/setup.js"></script>
-
-
-</head>
-<body>
-    <div id="wrap">
-        <!-- wrapper -->
-        <div id="sidebar">
-            <!-- the  sidebar -->
-            <!-- logo -->
-            <a href="#" id="logo"> <img src="../images/logo.png" alt="" /></a>
-            <a href="#" id="logo"> <img src="../images/cmt.png" alt="" /></a>
-            <!-- navigation menu -->
-            <ul id="navigation">
-                <li><a href="../Home/Index">IN&#205;CIO</a></li>
-                <li><a href="../ShowCasePhotoes">DESTAQUE</a></li>
-                <li><a href="../Archives">ACERVO</a></li>
-                <li><a href="../Home/Pesquisa">PESQUISA</a></li>
-                <li><a href="../News">NOT&#205;CIAS</a></li>
-                <li><a href="../Events">EVENTOS</a></li>
-                <li><a href="../Home/Historia">HIST&#211;RIA</a></li>
-                <li><a href="../TechnicalDocuments">DOCUMENTOS T&#201;CNICOS</a></li>
-                @*<li><a href="Loja">LOJA</a></li>*@
-                <li><a href="../Contacts">CONTACTOS</a></li>
-                <li><a href="#Links" class="active">LINKS &#218;TEIS</a></li>
-                <li><a href="../Partnerships">PROJETOS E PARCERIAS</a></li>
-            </ul>
-        </div>
-        <div id="container">
-            <!-- page container -->
-            <div class="page" id="">
-                <!-- page home -->
-                <div class="page_content">
-
-
-                    <!-- lateral direita -->
-                    <div class="">
-                        <div class="column_content">
-                            <h3 class="page_title">Links &#218;teis</h3>
-                            <sql:query db="arquivo-silva-magalhaes-data.mdf" sql="Select * form referencedLinks"> </sql:query>
-
-                            <div class="space"> </div>
-                            <div class="clear"> </div>
-
-                        </div>
-
-                        <table class="table">
-                            @*<tr>
-                                    <th>
-                                            @Html.DisplayNameFor(model => model.Title)
-                                        </th>
-                                        <th></th><th></th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Link)
-                                        </th>
-                                        <th></th><th></th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Description)
-                                        </th>
-
-                                <th></th>
-                                </tr>*@
-
-                            @foreach (var item in Model)
-                            {
-                                <tr style="font-size: large">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Description)
-                                    </td>
-
-                                </tr>
-                            }
-
-                        </table>
-
-
-                        <div class="space"> </div>
-
-
-                        <div class="space"> </div>
-
-
-                        <div class="clear"> </div>
-                    </div>
-                </div>
-
-                <div class="footer">
-                    <p> &copy; 2014 AFSM</p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    @*<a class="gotop" href="#top">Top</a>*@
-</body>
-</html>
+<div class="column_content">
+    <h3 class="page_title">Links &#218;teis</h3>
+</div>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+</table>
