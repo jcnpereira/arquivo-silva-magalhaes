@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources
-{
-
-
+namespace ArquivoSilvaMagalhaes.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LanguageNames {
+    public class LanguageNames {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.LanguageNames", typeof(LanguageNames).Assembly);
@@ -51,7 +51,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         /// <summary>
         ///   Looks up a localized string similar to Inglês.
         /// </summary>
-        internal static string en {
+        public static string en {
             get {
                 return ResourceManager.GetString("en", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         /// <summary>
         ///   Looks up a localized string similar to Português.
         /// </summary>
-        internal static string pt {
+        public static string pt {
             get {
                 return ResourceManager.GetString("pt", resourceCulture);
             }

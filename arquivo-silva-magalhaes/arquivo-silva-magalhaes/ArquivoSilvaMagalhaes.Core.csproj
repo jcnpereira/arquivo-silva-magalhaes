@@ -655,9 +655,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\01.jpg" />
-    <Content Include="images\02.jpg" />
-    <Content Include="images\03.jpg" />
+    <Content Include="Content\Images\temp\01.jpg" />
+    <Content Include="Content\Images\temp\02.jpg" />
+    <Content Include="Content\Images\temp\03.jpg" />
     <Content Include="images\artigo.png" />
     <Content Include="images\atividade.jpg" />
     <Content Include="images\banner.jpg" />
@@ -1009,9 +1009,6 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.css.map">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
-      <DependentUpon>variables.css</DependentUpon>
-    </Content>
     <Content Include="Content\Styles\frontoffice\main.less" />
     <Content Include="Content\Styles\frontoffice\main.css.map">
       <DependentUpon>main.css</DependentUpon>
@@ -1062,6 +1059,9 @@
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_8.pdf" />
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_9.pdf" />
     <Content Include="Areas\BackOffice\Views\Authors\DeleteTranslation.cshtml" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />
@@ -1374,7 +1374,7 @@
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LanguageNames.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LanguageNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LayoutStrings.en.resx" />
