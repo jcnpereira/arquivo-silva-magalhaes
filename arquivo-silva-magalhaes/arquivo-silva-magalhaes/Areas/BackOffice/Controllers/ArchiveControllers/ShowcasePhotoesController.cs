@@ -9,9 +9,9 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ShowcasePhotoesController : BackOfficeController
+    public class ShowcasePhotoesController : ArchiveController
     {
         private ArchiveDataContext _db = new ArchiveDataContext();
 

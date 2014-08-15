@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ArchiveController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DigitalPhotographsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
@@ -424,6 +425,7 @@
     <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
+    <Compile Include="Utilitites\MembershipUtils.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
     <Compile Include="Utilitites\ViewExtensions.cs" />
     <Compile Include="ViewModels\CollectionViewModels.cs" />
@@ -1348,6 +1350,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
+    <Folder Include="Areas\BackOffice\Views\Archive\" />
     <Folder Include="Private\" />
     <Folder Include="Public\" />
     <Folder Include="Views\FrontOffice\" />

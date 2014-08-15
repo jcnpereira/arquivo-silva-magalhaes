@@ -15,7 +15,7 @@
 
     @Scripts.Render("~/bundles/modernizr")
 
-    
+
 </head>
 <body>
 
@@ -32,7 +32,7 @@
                     <img style="max-height: 30px; margin-top: -5px" src="~/Content/Images/logo.png" />
                 </a>
 
-                <a href="//www.cm-tomar.pt" target="_blank"  class="navbar-brand" title="Câmara Municipal de Tomar">
+                <a href="//www.cm-tomar.pt" target="_blank" class="navbar-brand" title="Câmara Municipal de Tomar">
                     <img style="max-height: 30px; margin-top: -5px" src="~/images/cmt.png" />
                 </a>
             </div>
@@ -104,8 +104,8 @@
                         <a href="//www.cm-tomar.pt" target="_blank" title="@LayoutStrings.Council"> <img src="~/images/cmt.png" alt="" /></a>
                     </li>
 
-                    </ul>
-                <ul class="nav">
+                </ul>
+                <ul class="nav nav-stacked">
                     <li>
                         <a href="@Url.Action("Index", "ShowcasePhotoes")">
                             @LayoutStrings.Showcase
@@ -126,6 +126,7 @@
             </div>
 
             <div id="afsm-page-content" style="height: 100%">
+
                 @RenderBody()
 
                 <hr />
@@ -141,7 +142,7 @@
         </div>
     </div>
 
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
