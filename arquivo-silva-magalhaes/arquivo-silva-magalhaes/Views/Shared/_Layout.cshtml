@@ -32,7 +32,7 @@
                     <img style="max-height: 30px; margin-top: -5px" src="~/Content/Images/logo.png" />
                 </a>
 
-                <a href="//www.cm-tomar.pt" class="navbar-brand" title="Câmara Municipal de Tomar">
+                <a href="//www.cm-tomar.pt" target="_blank"  class="navbar-brand" title="Câmara Municipal de Tomar">
                     <img style="max-height: 30px; margin-top: -5px" src="~/images/cmt.png" />
                 </a>
             </div>
@@ -101,7 +101,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="//www.cm-tomar.pt"> <img src="~/images/cmt.png" alt="" /></a>
+                        <a href="//www.cm-tomar.pt" target="_blank" title="@LayoutStrings.Council"> <img src="~/images/cmt.png" alt="" /></a>
                     </li>
 
                     </ul>
@@ -111,8 +111,9 @@
                             @LayoutStrings.Showcase
                         </a>
                     </li>
-                    <li>@Html.ActionLink(LayoutStrings.Contents, "Collections", "Home")</li>
-                    <li><a href="~/Home/Search">PESQUISA</a></li>
+                    @*<li>@Html.ActionLink(LayoutStrings.Contents, "Collections", "Home")</li>*@
+                    <li><a href="~/Collections">ACERVO</a></li>
+                    <li><a href="~/Search">PESQUISA</a></li>
                     <li><a href="~/NewsView">NOT&#205;CIAS</a></li>
                     <li><a href="~/EventsView">EVENTOS</a></li>
                     <li><a href="~/Home/History">HIST&#211;RIA</a></li>
@@ -145,7 +146,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    @Scripts.Render("~/Scripts/frontoffice")
+    @*@Scripts.Render("~/Scripts/frontoffice")*@
 
 </body>
 </html>

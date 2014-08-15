@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.EventEditViewModel>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Event>
 
 <div class="column_content">
     <h3 class="page_title">Eventos</h3>
@@ -11,19 +11,19 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Heading)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SpotLight)
+                        @Html.DisplayFor(modelItem => item.EventType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Place)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EventType)
+                        @Html.DisplayFor(modelItem => item.Coordinates)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartMoment.Date.Day) / @Html.DisplayFor(modelItem => item.StartMoment.Date.Month) / @Html.DisplayFor(modelItem => item.StartMoment.Date.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndMoment.Date.Day) / @Html.DisplayFor(modelItem => item.EndMoment.Date.Month) / @Html.DisplayFor(modelItem => item.EndMoment.Date.Year)
                     </td>
                     <td>
                         @Html.ActionLink("Informações", "Details", new { id = item.Id })
@@ -32,4 +32,4 @@
             }
         }
     </table>
-</div>*@
+</div>

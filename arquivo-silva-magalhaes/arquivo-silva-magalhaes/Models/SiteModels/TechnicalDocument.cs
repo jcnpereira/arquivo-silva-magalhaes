@@ -33,9 +33,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(DataStrings), Name = "FileName")]
         public string FileName { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "UploadDate")]
         public DateTime UploadDate { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(ResourceType = typeof(DataStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 

@@ -15,7 +15,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+                <a href=@Url.Content(item.Link) target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

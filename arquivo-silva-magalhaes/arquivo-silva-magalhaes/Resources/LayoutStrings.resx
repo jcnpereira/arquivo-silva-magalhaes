@@ -120,6 +120,9 @@
   <data name="Contents" xml:space="preserve">
     <value>Acervo</value>
   </data>
+  <data name="Council" xml:space="preserve">
+    <value>Câmara Municipal de Tomar</value>
+  </data>
   <data name="Index" xml:space="preserve">
     <value>Início</value>
   </data>

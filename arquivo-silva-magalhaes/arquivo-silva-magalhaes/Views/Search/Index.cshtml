@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
+
+<h2>Pesquisa</h2>
+<hr />
+
+<form method="get">
+    <div>
+        <div class="form-group">
+
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                </span>
+
+                <input type="search" placeholder="@UiStrings.SearchPlaceholder" name="SearchTerm" class="form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr style="visibility: hidden" />
+
+
+
+
+
+
+
+
+<ul class="media-list">
+    @foreach (var item in Model)
+    {
+
+        <li class="media">
+            @*<a class="pull-left" href="~/Public/TechnicalDocuments/@doc.Title" target="_blank">*@
+            <img class="media-object afsm-media-object" src="..." alt="...">
+
+            <div class="media-body">
+                <a href="~/Collections/Details/@item.CollectionId">
+                    <h4 class="media-heading">@item.Title</h4>
+                </a>
+                <h5>@item.Provenience</h5>
+                <p>
+                    @Html.DisplayFor(model => item.Description)
+                </p>
+            </div>
+        </li>
+
+
+
+        @*<h4> @Html.DisplayFor(modelItem => item.)</h4>
+
+            <img src="@Html.DisplayFor(modelItem => item.Logo)"/>
+
+            <a> @Html.DisplayFor(modelItem => item.SiteLink)</a>
+
+            <p> @Html.DisplayFor(modelItem => item.EmailAddress)</p>
+
+            <p> @Html.DisplayFor(modelItem => item.Contact)</p>
+
+            <p> @Html.DisplayFor(modelItem => item.PartnershipType)</p>*@
+
+    }
+</ul>

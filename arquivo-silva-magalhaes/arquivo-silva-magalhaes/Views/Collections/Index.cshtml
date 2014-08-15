@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InitialProductionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndProductionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationSystem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InitialProductionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndProductionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LogoLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttachmentsDescriptions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrganizationSystem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVisible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogCode)
+        </td>
+      <td>@Html.ActionLink("Details", "Details", new { id = item.Id })</td>
+    </tr>
+}
+
+</table>
