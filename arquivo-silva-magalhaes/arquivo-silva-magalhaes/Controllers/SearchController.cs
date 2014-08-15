@@ -17,7 +17,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             var model =
                 from c in db.CollectionTranslations
                     orderby c.Title
-                    where searchTerm==null || c.Title.Contains(searchTerm) || c.Provenience.Contains(searchTerm) || c.Description.Contains(searchTerm)
+                    where  (c.Title.Contains(searchTerm) || c.Provenience.Contains(searchTerm) || c.Description.Contains(searchTerm))
                     select c;
             return View(model);
         }

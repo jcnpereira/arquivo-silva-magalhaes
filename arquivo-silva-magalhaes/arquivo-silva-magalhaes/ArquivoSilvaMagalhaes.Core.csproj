@@ -230,7 +230,6 @@
     <Compile Include="Controllers\NewsViewController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\ReferencedLinksController.cs" />
-    <Compile Include="Controllers\ReferencedLinksViewController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShowCasePhotoesController.cs" />
     <Compile Include="Controllers\SpecimensViewController.cs" />
@@ -426,8 +425,9 @@
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\ValidateOnlyIncomingValuesAttribute.cs" />
     <Compile Include="Utilitites\ViewExtensions.cs" />
-    <Compile Include="ViewModels\CollectionViewModels.cs" />
+    <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
+    <Compile Include="ViewModels\ReferencedLinksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnexosImagens\Attachments\Imagem_1.jpg" />
