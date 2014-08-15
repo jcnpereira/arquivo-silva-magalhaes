@@ -3,6 +3,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Utilitites;
 using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -175,21 +176,45 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
             return View(translation);
         }
 
-        public async Task<ActionResult> AddTranslation(int? id, string languageCode)
+        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
         {
-            if (id == null || languageCode == LanguageDefinitions.DefaultLanguage)
+            if (id == null || String.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var translation = await db.AuthorTranslations.FindAsync(id, languageCode);
+            var tr = await db.AuthorTranslations.FindAsync(id, languageCode);
 
-            if (translation == null)
+            if (tr == null)
             {
                 return HttpNotFound();
             }
 
-            return View(translation);
+            return View(tr);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
+        {
+            if (id == null || String.IsNullOrEmpty(languageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.AuthorTranslations.FindAsync(id, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.AuthorTranslations.Remove(tr);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
 

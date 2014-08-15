@@ -15,14 +15,14 @@
                 </a>
             </div>
 
-            <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = Model.Id })">
+            <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = ViewBag.Id })">
                 @Html.AntiForgeryToken()
 
-                <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = Model.Id })">
+                <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
                     <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
                 </a>
 
-                <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = Model.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@UiPrompts.ConfirmDelete">
+                <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@UiPrompts.ConfirmDelete">
                     <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
                 </a>
             </form>

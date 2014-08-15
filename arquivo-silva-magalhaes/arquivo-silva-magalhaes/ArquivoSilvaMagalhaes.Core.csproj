@@ -1059,6 +1059,7 @@
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_7.pdf" />
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_8.pdf" />
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_9.pdf" />
+    <Content Include="Areas\BackOffice\Views\Authors\DeleteTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />
