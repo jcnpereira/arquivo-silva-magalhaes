@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class CollectionsController : BackOfficeController
+    public class CollectionsController : ArchiveController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

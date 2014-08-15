@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
 
 <div id="afsm-carousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -11,18 +11,29 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="..." alt="...">
+            <div class="afsm-banner-item-container">
+                <img src="~/AnexosImagens/Banners/Banner_1.jpg" alt="...">
+            </div>
             <div class="carousel-caption">
-                ...
+                Olá, mundo!!
             </div>
         </div>
         <div class="item">
-            <img src="..." alt="...">
+            <div class="afsm-banner-item-container">
+                <img src="~/AnexosImagens/Banners/Banner_2.jpg" alt="..." height="400">
+            </div>
             <div class="carousel-caption">
-                ...
+                Olá, mundo!!
             </div>
         </div>
-        ...
+        <div class="item">
+            <div class="afsm-banner-item-container">
+                <img src="~/AnexosImagens/Banners/Banner_3.jpg" alt="..." height="400">
+            </div>
+            <div class="carousel-caption">
+                Olá, mundo!!
+            </div>
+        </div>
     </div>
 
     <!-- Controls -->
@@ -34,103 +45,56 @@
     </a>
 </div>
 
+<div class="row">
 
-@*<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>*@
-
-
-
-@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Banner>
-
-<div class="page_content">
-
-    @System.Threading.Thread.CurrentThread.CurrentUICulture.Name
-
-    @*<div class="gf-slider">
-
-            <ul class="slides">
-                @foreach (var item in Model)
-                {
-                    @Html.Partial("_Banner", Model);
-                }
-            </ul>
-        </div>
-        <div class="gf-slider">
-            <!-- slider -->
-            <ul class="slides">
-                <li>
-                    <img src="~/images/01.jpg" alt="" />
-                    <p class="flex-caption"> Texto exemplo AFSM 1</p>
-                </li>
-                <li>
-                    <img src="~/images/02.jpg" alt="" />
-                    <p class="flex-caption"> Texto exemplo AFSM 2</p>
-                </li>
-                <li>
-                    <img src="~/images/03.jpg" alt="" />
-                    <p class="flex-caption"> Texto exemplo AFSM 3</p>
-                </li>
-            </ul>
-        </div>*@
-    <div class="one_half first">
-        <div class="col-md-3">
-            <h4> Notícias</h4>
-            <a href="../NewsView">
-                <img src="../images/news.png" class="left no_border" alt="" style="margin-top: 10px;
+    <div class="col-md-3">
+        <h4> Notícias</h4>
+        <a href="../NewsView">
+            <img src="../images/news.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Todas as novidades sobre coleções, fotos, projetos e exposições.
-                </small>
-            </p>
-        </div>
+        </a>
+        <p>
+            <small>
+                Todas as novidades sobre coleções, fotos, projetos e exposições.
+            </small>
+        </p>
     </div>
-    <div class="one_half last">
-        <div class="col-md-3">
-            <h4> Eventos</h4>
-            <a href="../EventsView">
-                <img src="../images/events.png" class="left no_border" alt="" style="margin-top: 10px;
+    <div class="col-md-3">
+        <h4> Eventos</h4>
+        <a href="../EventsView">
+            <img src="../images/events.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Exposições, atividades, eventos pedagógicos, workshops, entre outros...
-                </small>
-            </p>
-        </div>
+        </a>
+        <p>
+            <small>
+                Exposições, atividades, eventos pedagógicos, workshops, entre outros...
+            </small>
+        </p>
     </div>
     @*<div class="space"> </div>*@
-    <div class="one_half first">
-        <div class="col-md-3">
-            <h4> Acervo</h4>
-            <a href="../Archives">
-                <img src="../images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
+    <div class="col-md-3">
+        <h4> Acervo</h4>
+        <a href="../Archives">
+            <img src="../images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
-                </small>
-            </p>
-        </div>
+        </a>
+        <p>
+            <small>
+                Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
+            </small>
+        </p>
     </div>
-    <div class="one_half last">
-        <div class="col-md-3">
-            <h4> Destaque</h4>
-            <a href="../ShowCasePhotoes">
-                <img src="../images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
+    <div class="col-md-3">
+        <h4> Destaque</h4>
+        <a href="../ShowCasePhotoes">
+            <img src="../images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
                                 margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Fotografias em destaque com comentário de Carlos Rodante Veloso.
-                </small>
-            </p>
-                
-            </div>
-        </div>
+        </a>
+        <p>
+            <small>
+                Fotografias em destaque com comentário de Carlos Rodante Veloso.
+            </small>
+        </p>
+
     </div>
+</div>

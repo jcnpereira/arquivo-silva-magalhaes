@@ -1,4 +1,6 @@
-﻿html, body {
+﻿@import "bootstrap/bootstrap.less";
+
+html, body {
     height: 100%;
 }
 
@@ -6,7 +8,6 @@ body {
     padding-top: 50px;
     padding-bottom: 0;
     background-color: #c0c0c0;
-    font-family: 'Merriweather', serif;
 }
 
 #afsm-navbar {
@@ -19,6 +20,17 @@ body {
     }
 }
 
+.afsm-banner-item-container {
+    overflow: hidden;
+    height: 100%;
+
+    img {
+        max-height: 100%;
+        min-width: 100%;
+    }
+
+}
+
 #afsm-sidebar {
     display: none;
 }
@@ -29,7 +41,7 @@ body {
 }
 
 #afsm-carousel {
-    height: 300px;
+    height: 250px;
     margin: -20px;
 
     margin: -20px -20px 20px -20px;
@@ -55,16 +67,15 @@ body {
         top: 0;
         bottom: 0;
         /*right: 25%;*/
-        background-color: #222222;
+        background-color: @navbar-inverse-bg;
         z-index: 9999;
         display: block;
         overflow-x: hidden;
         overflow-y: auto;
         width: 200px;
-
-
+        
         .nav {
-            font-family: 'Oswald', sans-serif;
+            font-family: @font-family-sidebar;
             text-transform: uppercase;
             margin-top: 20px;
             margin-left: -15px;
@@ -73,6 +84,9 @@ body {
             li {
                 a {
                     color: white;
+                }
+                a:hover {
+                    background-color: @navbar-inverse-link-active-bg;
                 }
             }
         }

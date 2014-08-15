@@ -1,6 +1,7 @@
 ﻿@model Author
 
 @{
+    ViewBag.Id = Model.Id;
     ViewBag.Title = AuthorStrings.DetailsTitleFormat;
     Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
 
@@ -105,7 +106,7 @@
 
             @if (langCode != LanguageDefinitions.DefaultLanguage)
             {
-                <a href="@Url.Action("RemoveTranslation", new { id = Model.Id, languageCode = langCode })">
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
                     Remover tradução
                 </a>
             }

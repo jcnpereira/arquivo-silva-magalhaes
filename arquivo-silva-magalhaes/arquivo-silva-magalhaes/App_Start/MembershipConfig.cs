@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Utilitites;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,9 +19,10 @@ namespace ArquivoSilvaMagalhaes.App_Start
 
             var password = "kDBMFkp80ZbQ";
 
-            var adminRole = new IdentityRole("admins");
-            var siteRole = new IdentityRole("sitemanagers");
-            var archiveRole = new IdentityRole("archivemanagers");
+            var adminRole = new IdentityRole(MembershipUtils.AdminRoleName);
+            var siteRole = new IdentityRole(MembershipUtils.PortalRoleName);
+            var archiveRole = new IdentityRole(MembershipUtils.ArchiveRoleName);
+            var contentRole = new IdentityRole(MembershipUtils.ContentRoleName);
 
             var userName = "Admin";
 
@@ -33,6 +35,7 @@ namespace ArquivoSilvaMagalhaes.App_Start
             roleManager.Create(adminRole);
             roleManager.Create(siteRole);
             roleManager.Create(archiveRole);
+            roleManager.Create(contentRole);
 
             if (!userCreateResult.Succeeded)
             {
