@@ -620,12 +620,21 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\code-suggestions.js" />
+    <Content Include="Scripts\BackOffice\code-suggestions.min.js">
+      <DependentUpon>code-suggestions.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\BackOffice\gmaps.js" />
+    <Content Include="Scripts\BackOffice\gmaps.min.js">
+      <DependentUpon>gmaps.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js">
       <DependentUpon>modal-dialog.js</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\quill-config.js" />
+    <Content Include="Scripts\BackOffice\quill-config.min.js">
+      <DependentUpon>quill-config.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bs-datepicker\moment.js" />
     <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
@@ -1115,6 +1124,15 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
       <DependentUpon>modal-dialog.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\quill-config.min.js.map">
+      <DependentUpon>quill-config.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\gmaps.min.js.map">
+      <DependentUpon>gmaps.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\code-suggestions.min.js.map">
+      <DependentUpon>code-suggestions.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

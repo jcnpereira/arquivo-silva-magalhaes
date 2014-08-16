@@ -147,6 +147,9 @@
   <data name="Showcase" xml:space="preserve">
     <value>Destaque</value>
   </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>Portal do Arquivo Fotográfico Silva Magalhães. O acervo deste Arquivo é constituído por diversos fundos e coleções de diversos fotógrafos e colecionadores do séc. XIX.</value>
+  </data>
   <data name="SiteName" xml:space="preserve">
     <value>Arquivo Fotográfico Silva Magalhães</value>
   </data>

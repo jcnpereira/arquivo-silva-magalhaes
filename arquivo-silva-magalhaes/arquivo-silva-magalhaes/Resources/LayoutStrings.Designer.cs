@@ -151,6 +151,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Portal do Arquivo Fotográfico Silva Magalhães. O acervo deste Arquivo é constituído por diversos fundos e coleções de diversos fotógrafos e colecionadores do séc. XIX..
+        /// </summary>
+        public static string SiteDescription {
+            get {
+                return ResourceManager.GetString("SiteDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arquivo Fotográfico Silva Magalhães.
         /// </summary>
         public static string SiteName {
