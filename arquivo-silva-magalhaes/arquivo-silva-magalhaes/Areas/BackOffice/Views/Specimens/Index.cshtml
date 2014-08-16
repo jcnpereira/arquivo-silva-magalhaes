@@ -54,7 +54,7 @@
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
-                    <a href="@Url.Action("AssociateDigitalPhoto", new { id = item.Id })" class="btn btn-default" title="@UiStrings.AssociatePicture">
+                    <a href="@Url.Action("Create", "DigitalPhotographs", new { specimenId = item.Id })" class="btn btn-default" title="@UiStrings.AssociatePicture">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                     </a>
 

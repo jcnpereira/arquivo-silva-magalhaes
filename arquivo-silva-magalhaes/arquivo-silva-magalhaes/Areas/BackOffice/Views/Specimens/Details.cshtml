@@ -1,77 +1,71 @@
 ﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Specimen
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = SpecimenStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+    ViewBag.Id = Model.Id;
 }
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.ReferenceCode)
+    </dt>
 
-<h2>Detalhes da espécie</h2>
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
+    <dd>
+        @Html.DisplayFor(model => model.ReferenceCode)
+    </dd>
 
-    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-        <span class="glyphicon glyphicon-edit"></span>
-    </a>
+    <dt>
+        @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
+    </dt>
 
-    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-        <span class="glyphicon glyphicon-floppy-remove"></span>
-    </a>
-</div>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ReferenceCode)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.AuthorCatalogationCode)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReferenceCode)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.HasMarksOrStamps)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.HasMarksOrStamps, "YesNoDisplayFor")
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AuthorCatalogationCode)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Notes)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HasMarksOrStamps)
-        </dt>
+    <dd>
+        @Html.DisplayMultilineFor(model => model.Notes)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HasMarksOrStamps)
-        </dd>
+</dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-
-    </dl>
-</div>
+<hr />
 
 @if (Model.DigitalPhotographs.Count() > 0)
 {
-    ViewBag.ActionToRedirect = "Details";
 
     foreach (var item in Model.DigitalPhotographs)
     {
-        @Html.Partial("_PhotoListItemPartial", item)
+        <div class="media">
+            <a class="pull-left" href="@Url.Action("Details", "DigitalPhotographs", new { id = item.Id })">
+                <img class="media-object img-thumbnail" style="max-width: 128px; max-height: 128px" src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">@Html.DisplayFor(model => item.FileName)</h4>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => item.ScanDate)</dt>
+                    <dd>@Html.DisplayFor(model => item.ScanDate)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => item.Notes)</dt>
+                    <dd>@Html.DisplayMultilineFor(model => item.Notes)</dd>
+                </dl>
+            </div>
+        </div>
     }
+
 }
 else
 {
-    <p>Nada para ver aqui!</p>
-}
-
-<!-- Modal -->
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-    @Html.Partial("_PhotoPreviewModal")
+    <p>(@SpecimenStrings.NoDigitalPhotographs)</p>
 }

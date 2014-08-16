@@ -844,8 +844,6 @@
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\AssociateDigitalPhoto.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\ListPhotos.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
@@ -1061,6 +1059,8 @@
       <DependentUpon>variables.css</DependentUpon>
     </Content>
     <Content Include="Areas\BackOffice\Views\Shared\_QuillToolbarFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_DeletePageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\YesNoDisplayFor.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />

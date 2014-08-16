@@ -51,10 +51,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Specimen specimen = await _db.Specimens.FindAsync(id);
+
+            
+
             if (specimen == null)
             {
                 return HttpNotFound();
             }
+
+            specimen.DigitalPhotographs = specimen.DigitalPhotographs.ToList();
+
             return View(specimen);
         }
 

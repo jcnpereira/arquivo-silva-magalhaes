@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
-{
-
-
+namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -151,6 +151,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detalhes da espécie fotográfica.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editar espécie fotográfica.
         /// </summary>
         public static string EditTitleFormat {
@@ -219,6 +228,15 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
         public static string MustChooseImage {
             get {
                 return ResourceManager.GetString("MustChooseImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sem fotografias digitais..
+        /// </summary>
+        public static string NoDigitalPhotographs {
+            get {
+                return ResourceManager.GetString("NoDigitalPhotographs", resourceCulture);
             }
         }
         

@@ -216,4 +216,10 @@
   <data name="Close" xml:space="preserve">
     <value>Fechar</value>
   </data>
+  <data name="DeleteTranslation" xml:space="preserve">
+    <value>Eliminar Tradução</value>
+  </data>
+  <data name="DeleteTranslationWarning" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta tradução?</value>
+  </data>
 </root>
