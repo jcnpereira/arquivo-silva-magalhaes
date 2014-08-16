@@ -216,7 +216,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\KeywordsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
@@ -818,11 +818,11 @@
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Details.cshtml" />
