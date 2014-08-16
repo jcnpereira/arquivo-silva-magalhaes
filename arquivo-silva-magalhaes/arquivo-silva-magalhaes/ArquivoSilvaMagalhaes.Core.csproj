@@ -270,8 +270,6 @@
     <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
     <Compile Include="Models\CodeGenerator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IGenericRepository.cs" />
-    <Compile Include="Models\KeywordRepository.cs" />
     <Compile Include="Models\SiteModels\Archive.cs" />
     <Compile Include="Models\SiteModels\BannerPhotograph.cs" />
     <Compile Include="Models\SiteModels\Collaborator.cs" />
@@ -429,7 +427,6 @@
     <Compile Include="Utilitites\ViewExtensions.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
-    <Compile Include="ViewModels\ReferencedLinksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnexosImagens\Attachments\Imagem_1.jpg" />
@@ -627,6 +624,7 @@
     <Content Include="Scripts\BackOffice\modal-dialog.min.js">
       <DependentUpon>modal-dialog.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\BackOffice\quill-config.js" />
     <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bs-datepicker\moment.js" />
     <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
@@ -1062,6 +1060,7 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
       <DependentUpon>variables.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BackOffice\Views\Shared\_QuillToolbarFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />
@@ -1347,6 +1346,7 @@
     <Content Include="Views\Collections\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />

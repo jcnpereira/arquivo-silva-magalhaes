@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
+using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
     }
 
-    public class ShowcasePhotoTranslation
+    public class ShowcasePhotoTranslation : IValidatableObject
     {
         [Key, Column(Order = 0)]
         public int ShowcasePhotoId { get; set; }
@@ -58,5 +59,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [ForeignKey("ShowcasePhotoId")]
         public virtual ShowcasePhoto ShowcasePhoto { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            // Sanitize the html.
+            Comment = HtmlEncoder.Encode(Comment, forbiddenTags: "script");
+
+            return new List<ValidationResult>();
+        }
     }
 }

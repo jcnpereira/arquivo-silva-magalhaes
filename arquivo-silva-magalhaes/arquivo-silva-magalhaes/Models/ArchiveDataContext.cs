@@ -1,5 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
+using System.Collections;
 using System.Data.Entity;
 
 namespace ArquivoSilvaMagalhaes.Models
@@ -10,11 +11,6 @@ namespace ArquivoSilvaMagalhaes.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Image>()
-            //    .HasMany(i => i.Keywords)
-            //    .WithRequired(i => i.)
-
-
             base.OnModelCreating(modelBuilder);
         }
 
@@ -49,11 +45,10 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<ImageTranslation> ImageTranslations { get; set; }
 
-        // Site-related tables.
+        ///////////////////////////////////////////////////////////////////////
+        // Site-related tables.                                              //
+        ///////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Events of this archive.
-        /// </summary>
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventTranslation> EventTranslations { get; set; }
 

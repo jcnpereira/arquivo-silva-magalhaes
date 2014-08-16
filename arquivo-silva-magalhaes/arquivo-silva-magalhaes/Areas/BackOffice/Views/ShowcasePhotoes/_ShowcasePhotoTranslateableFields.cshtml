@@ -3,10 +3,36 @@
 @Html.HiddenFor(model => model.ShowcasePhotoId)
 @Html.HiddenFor(model => model.LanguageCode)
 
-<div class="form-group">
+@*<div class="form-group">
     @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-sm-2" })
     <div class="col-sm-10">
         @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+    </div>
+</div>*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Comment, new { @class = "control-label col-sm-2" })
+
+    <div class="col-sm-10">
+        <div class="afsm-quill panel panel-default"
+             data-afsm-toolbar="#@Html.IdFor(model => model.Comment)-toolbar"
+             data-afsm-editor="#@Html.IdFor(model => model.Comment)-editor"
+             data-afsm-target="#@Html.IdFor(model => model.Comment)">
+
+            <div id="@Html.IdFor(model => model.Comment)-toolbar"
+                 class="panel-heading" style="padding: 5px">
+
+                @Html.Partial("_QuillToolbarFields")
+
+            </div>
+
+            <div id="@Html.IdFor(model => model.Comment)-editor"
+                 class="panel-body" style="padding: 0">
+                @Html.Raw(Model.Comment)
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Comment, new { @class = "form-control hidden" })
         @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
     </div>
 </div>
