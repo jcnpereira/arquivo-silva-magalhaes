@@ -620,6 +620,7 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\code-suggestions.js" />
+    <Content Include="Scripts\BackOffice\gmaps.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js">
       <DependentUpon>modal-dialog.js</DependentUpon>

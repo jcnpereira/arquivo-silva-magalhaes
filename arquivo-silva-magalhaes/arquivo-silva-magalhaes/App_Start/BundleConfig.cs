@@ -43,6 +43,9 @@ namespace ArquivoSilvaMagalhaes
                 "~/Scripts/backoffice/quill-config.js"));
 
 
+            bundles.Add(new ScriptBundle("~/Scripts/backoffice/gmaps").Include(
+                "~/Scripts/backoffice/gmaps.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Styles/Bootstrap/bootstrap.css"));
 
