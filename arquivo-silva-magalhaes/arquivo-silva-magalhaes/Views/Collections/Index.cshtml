@@ -8,19 +8,23 @@
 <hr />
 
 
-<ul class="media-list">
 @foreach (var col in Model)
 {
     @*<li class="media">*@
 
     @*<li class="col-md-3 col-md-offset-0">*@
-        <li class="media-body col-md-3">
-            <a href="~/Collections/Details/@col.Id">
-                <h4 class="media-heading">@col.Type</h4>
-                <img src="~/Public/Collections/@col.LogoLocation">
-            </a>
-        @*</li>*@
-    </li>
+    <div class="media">
+        <a class="pull-left" href="~/Collections/Details/@col.Id">
+            <img class="media-object" style="width:96px; height: 96px" src="~/Public/Collections/@col.LogoLocation">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="~/Collections/Details/@col.Id">
+                    @Html.DisplayFor(modelItem => col.Translations[0].Title)
+                </a>
+            </h4>
+        </div>
+    </div>
+    @*</li>*@
     @*</li>*@
 }
-</ul>
