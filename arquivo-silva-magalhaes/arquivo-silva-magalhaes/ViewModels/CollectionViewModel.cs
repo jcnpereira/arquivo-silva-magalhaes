@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Data.Entity;
 using ArquivoSilvaMagalhaes.Utilitites;
+using System.ComponentModel.DataAnnotations;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
@@ -23,6 +24,12 @@ namespace ArquivoSilvaMagalhaes.ViewModels
 
             this.Collection = c;
             Translation = translation;
+            var Title =Translation.Title;
+            var Provenience = Translation.Provenience;
+            var Description = Translation.Description;
+            var Dimension = Translation.Dimension;
+            var Authors = Collection.Authors;
+            var Type = Collection.Type;
         }
 
         public Collection Collection { get; set; }

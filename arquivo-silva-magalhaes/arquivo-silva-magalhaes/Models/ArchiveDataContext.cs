@@ -80,5 +80,9 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<ArchiveTranslations> ArchiveTranslations { get; set; }
 
         public virtual DbSet<Contact> ArchiveContacts { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.ViewModels.CollectionViewModel> CollectionViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ArquivoSilvaMagalhaes.Models.ArchiveViewModels.AuthorViewModel> AuthorViewModels { get; set; }
     }
 }

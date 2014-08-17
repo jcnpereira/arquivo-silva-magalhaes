@@ -7,6 +7,7 @@ namespace ArquivoSilvaMagalhaes.ViewModels
 {
     public class FrontOfficeViewModel
     {
+        public int Id { get; set; }
         public string LocalizationWarningMsg { get; set; }
     }
 }

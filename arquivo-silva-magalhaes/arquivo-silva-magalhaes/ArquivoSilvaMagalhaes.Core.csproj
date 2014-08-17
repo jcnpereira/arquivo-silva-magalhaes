@@ -226,6 +226,7 @@
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DigitalPhotographController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventsViewController.cs" />
     <Compile Include="Controllers\FrontOfficeController.cs" />
     <Compile Include="Controllers\NewsViewController.cs" />
@@ -429,7 +430,6 @@
     <Compile Include="Utilitites\ViewExtensions.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
-    <Compile Include="ViewModels\ReferencedLinksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnexosImagens\Attachments\Imagem_1.jpg" />
@@ -1345,6 +1345,19 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Collections\Details.cshtml" />
     <Content Include="Views\Collections\Index.cshtml" />
+    <Content Include="Views\EventsView\_EventContent.cshtml" />
+    <Content Include="Views\TesteViewModels\Create.cshtml" />
+    <Content Include="Views\TesteViewModels\Delete.cshtml" />
+    <Content Include="Views\TesteViewModels\Details.cshtml" />
+    <Content Include="Views\TesteViewModels\Edit.cshtml" />
+    <Content Include="Views\TesteViewModels\Index.cshtml" />
+    <Content Include="Views\AuthorViewModels\Create.cshtml" />
+    <Content Include="Views\AuthorViewModels\Delete.cshtml" />
+    <Content Include="Views\AuthorViewModels\Details.cshtml" />
+    <Content Include="Views\AuthorViewModels\Edit.cshtml" />
+    <Content Include="Views\AuthorViewModels\Index.cshtml" />
+    <Content Include="Views\Events\Event.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
