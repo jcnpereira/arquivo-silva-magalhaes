@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Threading;
 using ArquivoSilvaMagalhaes.ViewModels;
+using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -30,6 +31,20 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public ActionResult Search()
         {
             return View();
+        }
+
+        public ActionResult SetLanguage(string lang, string returnUrl)
+        {
+            Response.SetCookie(new HttpCookie("lang", lang));
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
 

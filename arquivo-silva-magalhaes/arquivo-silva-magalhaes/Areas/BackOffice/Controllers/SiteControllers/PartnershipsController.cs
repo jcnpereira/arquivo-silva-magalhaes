@@ -5,17 +5,21 @@ using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Linq;
+using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
-    public class PartnershipController : BackOfficeController
+    public class PartnershipsController : BackOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/Parthnership/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await db.Partnerships.ToListAsync());
+            return View(await Task.Run(() => db.Partnerships
+                .OrderBy(p => p.Id)
+                .ToPagedList(pageNumber, 10)));
         }
 
         // GET: /BackOffice/Parthnership/Details/5
@@ -51,14 +55,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
                 var partnership = new Partnership
                 {
                     Name = model.Name,
-                    Logo =model.Logo.FileName,
+                    Logo = model.Logo.FileName,
                     SiteLink = model.SiteLink,
                     EmailAddress = model.EmailAddress,
                     Contact = model.Contact,
                     PartnershipType = model.PartnershipType
                 };
-                 db.Partnerships.Add(partnership);
-                 await db.SaveChangesAsync();
+                db.Partnerships.Add(partnership);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -85,7 +89,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Name,Logo,SiteLink,EmailAddress,Contact,PartnershipType")] Partnership partnership)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Logo,SiteLink,EmailAddress,Contact,PartnershipType")] Partnership partnership)
         {
             if (ModelState.IsValid)
             {

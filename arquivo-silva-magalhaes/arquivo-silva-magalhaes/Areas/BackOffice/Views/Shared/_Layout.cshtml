@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/customcss")
@@ -14,6 +14,7 @@
     @RenderSection("headscripts", required: false)
 
 
+    <meta name="description" content="@LayoutStrings.SiteDescription" />
 </head>
 <body>
     @* Nav bar. *@
@@ -69,6 +70,7 @@
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("Links", "Index", "ReferencedLink")</li>
                                 <li>@Html.ActionLink("Documentos Técnicos", "Index", "TechnicalDocument")</li>
+                                <li>@Html.ActionLink("Parcerias", "Index", "Partnerships")</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("Fotografias em destaque", "Index", "ShowcasePhotoes")</li>
                                 <li>@Html.ActionLink("Vídeos destaque", "Index", "SpotLightVideo")</li>

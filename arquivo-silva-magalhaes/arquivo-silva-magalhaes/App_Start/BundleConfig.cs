@@ -37,6 +37,14 @@ namespace ArquivoSilvaMagalhaes
                        "~/Scripts/BackOffice/modal-dialog.js",
                        "~/Scripts/BackOffice/code-suggestions.js"));
 
+            // Quill bundle for rich text editors.
+            bundles.Add(new ScriptBundle("~/Scripts/backoffice/quill").Include(
+                "~/Scripts/quill/quill.js",
+                "~/Scripts/backoffice/quill-config.js"));
+
+
+            bundles.Add(new ScriptBundle("~/Scripts/backoffice/gmaps").Include(
+                "~/Scripts/backoffice/gmaps.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Styles/Bootstrap/bootstrap.css"));

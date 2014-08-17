@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources
-{
-
-
+namespace ArquivoSilvaMagalhaes.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -192,6 +192,24 @@ namespace ArquivoSilvaMagalhaes.Resources
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar Tradução.
+        /// </summary>
+        public static string DeleteTranslation {
+            get {
+                return ResourceManager.GetString("DeleteTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta tradução?.
+        /// </summary>
+        public static string DeleteTranslationWarning {
+            get {
+                return ResourceManager.GetString("DeleteTranslationWarning", resourceCulture);
             }
         }
         

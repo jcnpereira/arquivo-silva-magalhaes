@@ -23,9 +23,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             var digitalPhotographs = db.DigitalPhotographs.Include(d => d.Specimen);
-            return View(digitalPhotographs
+            return View(await Task.Run(() =>
+                digitalPhotographs
                 .OrderBy(dp => dp.SpecimenId)
-                .ToPagedList(pageNumber, 10));
+                .ToPagedList(pageNumber, 10)));
         }
 
         // GET: BackOffice/DigitalPhotographs/Details/5

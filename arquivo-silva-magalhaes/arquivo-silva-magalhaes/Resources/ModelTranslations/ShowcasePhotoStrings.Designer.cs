@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
-{
-
-
+namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -133,11 +133,29 @@ namespace ArquivoSilvaMagalhaes.Resources.ModelTranslations
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço de e-mail visível ao público.
         /// </summary>
         public static string IsEmailVisible {
             get {
                 return ResourceManager.GetString("IsEmailVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Título.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

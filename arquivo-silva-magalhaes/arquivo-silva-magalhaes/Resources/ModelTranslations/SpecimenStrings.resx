@@ -147,6 +147,9 @@
   <data name="DetailedStateDescription" xml:space="preserve">
     <value>Descrição do estado de conservação</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da espécie fotográfica</value>
+  </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar espécie fotográfica</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="MustChooseImage" xml:space="preserve">
     <value>Tem que escolher primeiro uma imagem.</value>
+  </data>
+  <data name="NoDigitalPhotographs" xml:space="preserve">
+    <value>Sem fotografias digitais.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>

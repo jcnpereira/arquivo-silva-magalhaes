@@ -1,4 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Resources.ModelTranslations;
+using ArquivoSilvaMagalhaes.Utilitites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -80,10 +81,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual IList<ReferencedLink> Links { get; set; }
         public virtual IList<Attachment> AttachedDocuments { get; set; }
         public virtual IList<EventTranslation> Translations { get; set; }
-       
     }
 
-    public partial class EventTranslation
+    public partial class EventTranslation : IValidatableObject
     {
 
         [Key, Column(Order = 0)]
@@ -108,5 +108,13 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [AllowHtml]
         [Display(ResourceType = typeof(EventStrings), Name = "TextContent")]
         public string TextContent { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            // Sanitize the html.
+            TextContent = HtmlEncoder.Encode(TextContent, forbiddenTags: "script");
+
+            return new List<ValidationResult>();
+        }
     }
 }

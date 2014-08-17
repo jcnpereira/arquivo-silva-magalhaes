@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-danger" role="alert">
+    @ViewBag.AlertMsg
+</div>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @RenderBody()
+    
+    <div class="input-group">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-check"></span> @UiStrings.Yes
+            </button>
+
+            <a href="@Url.Action("Index")" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove"></span> @UiStrings.No
+            </a>
+        </div>
+    </div>
+}

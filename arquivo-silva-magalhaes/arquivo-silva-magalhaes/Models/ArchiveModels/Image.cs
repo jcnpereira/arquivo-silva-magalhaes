@@ -14,6 +14,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             Keywords = new List<Keyword>();
             Specimens = new List<Specimen>();
             Translations = new List<ImageTranslation>();
+            ShowcasePhotos = new List<ShowcasePhoto>();
         }
 
         public int Id { get; set; }
@@ -41,6 +42,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
         public virtual IList<Keyword> Keywords { get; set; }
         public virtual IList<Specimen> Specimens { get; set; }
+
+        public virtual IList<ShowcasePhoto> ShowcasePhotos { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

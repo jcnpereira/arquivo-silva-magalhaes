@@ -216,7 +216,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\KeywordsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
@@ -271,8 +271,6 @@
     <Compile Include="Models\ArchiveViewModels\SpecimenViewModels.cs" />
     <Compile Include="Models\CodeGenerator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IGenericRepository.cs" />
-    <Compile Include="Models\KeywordRepository.cs" />
     <Compile Include="Models\SiteModels\Archive.cs" />
     <Compile Include="Models\SiteModels\BannerPhotograph.cs" />
     <Compile Include="Models\SiteModels\Collaborator.cs" />
@@ -623,9 +621,20 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\code-suggestions.js" />
+    <Content Include="Scripts\BackOffice\code-suggestions.min.js">
+      <DependentUpon>code-suggestions.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\gmaps.js" />
+    <Content Include="Scripts\BackOffice\gmaps.min.js">
+      <DependentUpon>gmaps.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js">
       <DependentUpon>modal-dialog.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\quill-config.js" />
+    <Content Include="Scripts\BackOffice\quill-config.min.js">
+      <DependentUpon>quill-config.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bs-datepicker\moment.js" />
@@ -655,9 +664,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\01.jpg" />
-    <Content Include="images\02.jpg" />
-    <Content Include="images\03.jpg" />
+    <Content Include="Content\Images\temp\01.jpg" />
+    <Content Include="Content\Images\temp\02.jpg" />
+    <Content Include="Content\Images\temp\03.jpg" />
     <Content Include="images\artigo.png" />
     <Content Include="images\atividade.jpg" />
     <Content Include="images\banner.jpg" />
@@ -820,11 +829,11 @@
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnership\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collaborator\Details.cshtml" />
@@ -846,8 +855,6 @@
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\AssociateDigitalPhoto.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\ListPhotos.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
@@ -1009,9 +1016,6 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.css.map">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
-      <DependentUpon>variables.css</DependentUpon>
-    </Content>
     <Content Include="Content\Styles\frontoffice\main.less" />
     <Content Include="Content\Styles\frontoffice\main.css.map">
       <DependentUpon>main.css</DependentUpon>
@@ -1062,6 +1066,12 @@
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_8.pdf" />
     <Content Include="AnexosImagens\TechnicalDocuments\Doc_9.pdf" />
     <Content Include="Areas\BackOffice\Views\Authors\DeleteTranslation.cshtml" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\BackOffice\Views\Shared\_QuillToolbarFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_DeletePageLayout.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\YesNoDisplayFor.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="fonts\ostrich-black-webfont.eot" />
     <Content Include="fonts\ostrich-black-webfont.ttf" />
@@ -1115,6 +1125,15 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
       <DependentUpon>modal-dialog.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\quill-config.min.js.map">
+      <DependentUpon>quill-config.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\gmaps.min.js.map">
+      <DependentUpon>gmaps.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\code-suggestions.min.js.map">
+      <DependentUpon>code-suggestions.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1360,6 +1379,7 @@
     <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\About\" />
@@ -1387,7 +1407,7 @@
       <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LanguageNames.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LanguageNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LayoutStrings.en.resx" />
