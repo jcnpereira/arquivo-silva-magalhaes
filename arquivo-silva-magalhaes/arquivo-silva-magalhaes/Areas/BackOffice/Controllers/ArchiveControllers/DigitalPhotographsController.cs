@@ -19,31 +19,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: BackOffice/DigitalPhotographs
-        public async Task<ActionResult> Index(int pageNumber = 1)
-        {
-            var digitalPhotographs = db.DigitalPhotographs.Include(d => d.Specimen);
-            return View(await Task.Run(() =>
-                digitalPhotographs
-                .OrderBy(dp => dp.SpecimenId)
-                .ToPagedList(pageNumber, 10)));
-        }
-
-        // GET: BackOffice/DigitalPhotographs/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographs.FindAsync(id);
-            if (digitalPhotograph == null)
-            {
-                return HttpNotFound();
-            }
-            return View(digitalPhotograph);
-        }
-
         // GET: BackOffice/DigitalPhotographs/Create
         public ActionResult Create(int? specimenId)
         {

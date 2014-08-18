@@ -33,12 +33,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             var author = await db.Authors.FindAsync(id);
-            author.Translations = author.Translations.ToList();
+            
 
             if (author == null)
             {
                 return HttpNotFound();
             }
+
+            author.Translations = author.Translations.ToList();
 
             return View(author);
         }
