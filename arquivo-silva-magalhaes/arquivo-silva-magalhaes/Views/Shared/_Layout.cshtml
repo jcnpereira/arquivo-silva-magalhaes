@@ -35,17 +35,16 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
-                    <li class="divider"></li>
-                    <li>@Html.ActionLink("Coleções", "Index", "Collections")</li>
-                    <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
-                    <li>@Html.ActionLink("Imagens", "Index", "Images")</li>
-                    <li>@Html.ActionLink("Espécies Fotográficas", "Index", "Specimens")</li>
-                    <li class="divider"></li>
-                    <li>@Html.ActionLink("Formatos", "Index", "Formats")</li>
-                    <li>@Html.ActionLink("Indexações", "Index", "Keywords")</li>
-                    <li>@Html.ActionLink("Classificações", "Index", "Classifications")</li>
-                    <li>@Html.ActionLink("Processos", "Index", "Processes")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotoes", null, null)</li>
+                    <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
+                    <li>@Html.ActionLink(LayoutStrings.News, "Index", "News")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
+                    <li>@Html.ActionLink(LayoutStrings.History, "History", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.TechicalDocuments, "Index", "TechnicalDocuments")</li>
+                    <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "UsefulLinks", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Partnerships, "Partnerships", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -73,6 +72,7 @@
                     </li>
                 </ul>
                 <ul class="nav nav-stacked">
+<<<<<<< HEAD
                     <li>
                         <a href="@Url.Action("Index", "ShowcasePhotoes")">
                             @LayoutStrings.Showcase
@@ -91,6 +91,9 @@
                     <li><a href="~/Partnerships">PROJETOS E PARCERIAS</a></li>
                 </ul>
                     @*<li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotoes", null, null)</li>
+=======
+                    <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotoes", null, null)</li>
+>>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
                     <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
                     <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
                     <li>@Html.ActionLink(LayoutStrings.News, "Index", "News")</li>
@@ -100,7 +103,11 @@
                     <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "UsefulLinks", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.Partnerships, "Partnerships", "Home")</li>
+<<<<<<< HEAD
                 </ul>*@                
+=======
+                </ul> 
+>>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
             </div>
 
             <div id="afsm-page-content" style="height: 100%">

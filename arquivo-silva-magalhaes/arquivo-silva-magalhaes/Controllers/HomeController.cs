@@ -47,6 +47,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
         }
 
+        public ActionResult Contacts()
+        {
+            return View();
+        }
+
+        public ActionResult Links()
+        {
+            return View();
+        }
+
 
         public ActionResult Collections()
         {

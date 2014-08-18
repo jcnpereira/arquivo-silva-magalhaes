@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class ShowCasePhotoesController : Controller
+    public class ShowcasePhotosController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
