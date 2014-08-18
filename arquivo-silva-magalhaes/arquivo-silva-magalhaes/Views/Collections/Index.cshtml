@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Collection>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
 
 @{
     ViewBag.Title = "Index";
@@ -7,17 +7,15 @@
 <h2>Acervo</h2>
 <hr />
 
-
 <ul class="media-list">
 @foreach (var col in Model)
 {
     @*<li class="media">*@
-
     @*<li class="col-md-3 col-md-offset-0">*@
         <li class="media-body col-md-3">
-            <a href="~/Collections/Details/@col.Id">
-                <h4 class="media-heading">@col.Type</h4>
-                <img src="~/Public/Collections/@col.LogoLocation">
+            <a href="~/Documents/Index">
+                <h4 class="media-heading">@col.Title</h4>
+                <img src="~/Public/Collections/@col.Collection.LogoLocation">
             </a>
         @*</li>*@
     </li>

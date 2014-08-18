@@ -1,29 +1,25 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhotoTranslation>
 
-@{
-    ViewBag.Title = "Index";
-}
-<div class="page_content">
-
-    <div class="column_content">
-        <h3 class="page_title">Fotografia em destaque</h3>
-        @*<img src="../images/destaque.jpg" class="left no_border" alt="" style="margin-top: 10px;
-            margin-right: 10px" />*@
-        <div class="space"> </div>
-        <div class="clear"> </div>
-
-    </div>
-    <table class="table">
+    @*<div class="column_content">*@
+    <h2 class="page_title">Fotografia em destaque</h2>
+    <hr />
+    @*<img src="../images/destaque.jpg" class="left no_border" alt="" style="margin-top: 10px;
+        margin-right: 10px" />*@
+    <div class="space"> </div>
+    <div class="clear"> </div>
+    
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @*<img src="@Html.DisplayFor(modelItem => item.DigitalPhotograph.FileName)"><br />*@
-                    <img src="~/images/@Url.Content(item.Image.ImageUrl)" /><br />
-                    @Html.ActionLink("Informações", "Details", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
-</div>
 
+            <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <img src="@Html.DisplayFor(modelItem => item.ShowcasePhoto.Image)"/>
+                    @Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.Specimens)
+                    @Html.DisplayFor(modelItem => item.Comment)
+                  
+                    @*<img src=~/images/@Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ImageUrl)>;*@
+                    @*<img src="@Html.DisplayFor(modelItem => item.DigitalPhotograph.FileName)"><br />*@
+                    @*<img src="~/images/@Url.Content(item.ShowcasePhoto.Image)" /><br />*@
+                    @Html.ActionLink("Informações", "Details", new { id = item.ShowcasePhoto.Id })
+            
+        }
+ 

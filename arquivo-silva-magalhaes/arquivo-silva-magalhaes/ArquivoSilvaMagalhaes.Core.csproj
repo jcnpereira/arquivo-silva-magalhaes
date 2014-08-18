@@ -226,10 +226,11 @@
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DigitalPhotographController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventsViewController.cs" />
     <Compile Include="Controllers\FrontOfficeController.cs" />
-    <Compile Include="Controllers\NewsViewController.cs" />
+    <Compile Include="Controllers\NewsItemsController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\ReferencedLinksController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -1348,8 +1349,6 @@
     <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\EventsView\Details.cshtml" />
     <Content Include="Views\EventsView\Index.cshtml" />
-    <Content Include="Views\NewsView\Details.cshtml" />
-    <Content Include="Views\NewsView\Index.cshtml" />
     <Content Include="Views\Banner\Index.cshtml" />
     <Content Include="Views\Shared\_Banner.cshtml" />
     <Content Include="Views\DigitalPhotograph\Index.cshtml" />
@@ -1377,6 +1376,13 @@
     <Content Include="Views\AuthorViewModels\Index.cshtml" />
     <Content Include="Views\Events\Event.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Documents\Create.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
+    <Content Include="Views\Documents\Details.cshtml" />
+    <Content Include="Views\Documents\Edit.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\NewsItems\Details.cshtml" />
+    <Content Include="Views\NewsItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

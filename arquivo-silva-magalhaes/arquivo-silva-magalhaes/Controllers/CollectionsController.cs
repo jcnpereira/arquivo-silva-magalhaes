@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
+using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -17,19 +18,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        //public ActionResult Indexx()
-        //{
-        //    Collection collection = new Collection();
-        //    List<CollectionTranslation> translations = collection.Translations.ToList();
-        //    return View(translations);
-        //}
-
         // GET: Collections
         public async Task<ActionResult> Index()
         {
-
-            return View(await db.Collections.ToListAsync());
+            return View(await Task.Run(() => db.CollectionTranslations
+           .Include(col => col.Collection)
+           .Where(col => col.LanguageCode == LanguageDefinitions.DefaultLanguage)
+           .OrderBy(col => col.Collection.EndProductionDate)));
+            //return View(await db.Collections.ToListAsync());
         }
+
 
 
         // GET: Collections/Details/5
