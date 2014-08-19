@@ -16,12 +16,26 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             var model =
                 from c in db.CollectionTranslations
-                    orderby c.Title
-                    where  (c.Title.Contains(searchTerm) || c.Provenience.Contains(searchTerm) || c.Description.Contains(searchTerm))
-                    select c;
+                orderby c.Title
+                where (c.Title.Contains(searchTerm) || c.Provenience.Contains(searchTerm) || c.Description.Contains(searchTerm))
+                select c;
             return View(model);
         }
-    }
-    
 
+
+        public ActionResult SetLanguage(string lang, string returnUrl)
+        {
+            Response.SetCookie(new HttpCookie("lang", lang));
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+    }
 }

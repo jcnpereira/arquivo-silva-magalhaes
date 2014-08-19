@@ -8,32 +8,18 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class TechnicalDocumentsController : Controller
-    {
+    public class ContactsController : Controller
+    {        
+
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: /TechnicalDocuments/
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.TechnicalDocuments.ToListAsync());
-        }
-
-        // GET: /TechnicalDocuments/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
-            if (technicaldocument == null)
-            {
-                return HttpNotFound();
-            }
-            return View(technicaldocument);
+            return View();
         }
 
 
+        //Language
         public ActionResult SetLanguage(string lang, string returnUrl)
         {
             Response.SetCookie(new HttpCookie("lang", lang));
@@ -48,84 +34,108 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
         }
 
+        // GET: /Contacts/
+        //public async Task<ActionResult> Index()
+        //{
+        //    var archivecontacts = db.ArchiveContacts.Include(c => c.Archive);
+        //    return View(await archivecontacts.ToListAsync());
+        //}
 
+        // GET: /Contacts/Details/5
+        //public async Task<ActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Contact contact = await db.ArchiveContacts.FindAsync(id);
+        //    if (contact == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(contact);
+        //}
 
-        // GET: /TechnicalDocuments/Create
+        //// GET: /Contacts/Create
         //public ActionResult Create()
         //{
+        //    ViewBag.ArchiveId = new SelectList(db.Archives, "Id", "Title");
         //    return View();
         //}
 
-        //// POST: /TechnicalDocuments/Create
+        //// POST: /Contacts/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include="Id,Title,FileName,UploadDate,LastModificationDate,Format,DocumentType,Language,FileSize")] TechnicalDocument technicaldocument)
+        //public async Task<ActionResult> Create([Bind(Include="Id,ArchiveId")] Contact contact)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.TechnicalDocuments.Add(technicaldocument);
+        //        db.ArchiveContacts.Add(contact);
         //        await db.SaveChangesAsync();
         //        return RedirectToAction("Index");
         //    }
 
-        //    return View(technicaldocument);
+        //    ViewBag.ArchiveId = new SelectList(db.Archives, "Id", "Title", contact.ArchiveId);
+        //    return View(contact);
         //}
 
-        //// GET: /TechnicalDocuments/Edit/5
+        //// GET: /Contacts/Edit/5
         //public async Task<ActionResult> Edit(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
-        //    if (technicaldocument == null)
+        //    Contact contact = await db.ArchiveContacts.FindAsync(id);
+        //    if (contact == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(technicaldocument);
+        //    ViewBag.ArchiveId = new SelectList(db.Archives, "Id", "Title", contact.ArchiveId);
+        //    return View(contact);
         //}
 
-        //// POST: /TechnicalDocuments/Edit/5
+        //// POST: /Contacts/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include="Id,Title,FileName,UploadDate,LastModificationDate,Format,DocumentType,Language,FileSize")] TechnicalDocument technicaldocument)
+        //public async Task<ActionResult> Edit([Bind(Include="Id,ArchiveId")] Contact contact)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.Entry(technicaldocument).State = EntityState.Modified;
+        //        db.Entry(contact).State = EntityState.Modified;
         //        await db.SaveChangesAsync();
         //        return RedirectToAction("Index");
         //    }
-        //    return View(technicaldocument);
+        //    ViewBag.ArchiveId = new SelectList(db.Archives, "Id", "Title", contact.ArchiveId);
+        //    return View(contact);
         //}
 
-        //// GET: /TechnicalDocuments/Delete/5
+        //// GET: /Contacts/Delete/5
         //public async Task<ActionResult> Delete(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
-        //    if (technicaldocument == null)
+        //    Contact contact = await db.ArchiveContacts.FindAsync(id);
+        //    if (contact == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(technicaldocument);
+        //    return View(contact);
         //}
 
-        //// POST: /TechnicalDocuments/Delete/5
+        //// POST: /Contacts/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public async Task<ActionResult> DeleteConfirmed(int id)
         //{
-        //    TechnicalDocument technicaldocument = await db.TechnicalDocuments.FindAsync(id);
-        //    db.TechnicalDocuments.Remove(technicaldocument);
+        //    Contact contact = await db.ArchiveContacts.FindAsync(id);
+        //    db.ArchiveContacts.Remove(contact);
         //    await db.SaveChangesAsync();
         //    return RedirectToAction("Index");
         //}

@@ -17,6 +17,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
+
+        public ActionResult SetLanguage(string lang, string returnUrl)
+        {
+            Response.SetCookie(new HttpCookie("lang", lang));
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
         // GET: Documents
         public async Task<ActionResult> Index()
         {

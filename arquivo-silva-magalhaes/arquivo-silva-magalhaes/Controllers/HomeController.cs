@@ -67,9 +67,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Select(c => new CollectionViewModel(c))
                 .ToList();
 
-
-
-
             return View(model);
         }
     }
