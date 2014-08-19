@@ -14,8 +14,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: /ShowCasePhotoes/
         public async Task<ActionResult> Index()
         {
-            var showcasephotoes = db.ShowcasePhotoes.Include(s => s.Image);
-            return View(await showcasephotoes.ToListAsync());
+            var showcasephotoestranslation = db.ShowcasePhotoTranslations;
+                //.Include(s => s.Image);
+            return View(await showcasephotoestranslation.ToListAsync());
         }
 
         // GET: /ShowCasePhotoes/Details/5

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.DocumentTranslation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Documentos</h2>
+<hr />
+
+<ul class="media-list">
+    @foreach (var doc in Model)
+    {
+        <li class="media">
+
+        @*<li class="col-md-3 col-md-offset-0">
+        <li class="media-body col-md-3">*@
+            <a class="pull-left" href="~/Collections/Details/@doc.DocumentId">
+                <h4 class="media-heading">@doc.Document.Title</h4>
+                <h5>@doc.Description"</h5>
+            </a>
+        @*</li>
+        </li>*@
+        </li>
+    }
+</ul>

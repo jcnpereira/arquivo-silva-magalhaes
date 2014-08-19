@@ -117,10 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>Collections</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="Index" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Partnerships" xml:space="preserve">
+    <value>Partnership</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="Showcase" xml:space="preserve">
     <value>Showcase</value>
+  </data>
+  <data name="TechnicalDocuments" xml:space="preserve">
+    <value>Technical Documents</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful Links</value>
   </data>
 </root>
