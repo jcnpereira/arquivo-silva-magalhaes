@@ -48,7 +48,7 @@
     foreach (var item in Model.DigitalPhotographs)
     {
         <div class="media">
-            <a class="pull-left" href="@Url.Action("Details", "DigitalPhotographs", new { id = item.Id })">
+            <a class="pull-left" href="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "large" })">
                 <img class="media-object img-thumbnail" style="max-width: 128px; max-height: 128px" src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })" />
             </a>
             <div class="media-body">

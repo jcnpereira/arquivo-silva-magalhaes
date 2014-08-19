@@ -1,7 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Models.SiteViewModels;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using ImageResizer;
 using PagedList;
 using System;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Data.Entity;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace ArquivoSilvaMagalhaes.ViewModels

@@ -48,25 +48,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PartnershipEditViewModels model)
+        public async Task<ActionResult> Create(Partnership partnership)
         {
             if (ModelState.IsValid)
             {
-                var partnership = new Partnership
-                {
-                    Name = model.Name,
-                    Logo = model.Logo.FileName,
-                    SiteLink = model.SiteLink,
-                    EmailAddress = model.EmailAddress,
-                    Contact = model.Contact,
-                    PartnershipType = model.PartnershipType
-                };
                 db.Partnerships.Add(partnership);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(partnership);
         }
 
         // GET: /BackOffice/Parthnership/Edit/5

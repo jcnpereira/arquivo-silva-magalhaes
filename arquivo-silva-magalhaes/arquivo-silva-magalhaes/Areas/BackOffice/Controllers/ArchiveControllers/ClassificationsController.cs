@@ -1,6 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using System;
 using System.Data.Entity;

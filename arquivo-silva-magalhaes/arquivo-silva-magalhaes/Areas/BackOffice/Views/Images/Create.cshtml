@@ -19,6 +19,14 @@
 
         @Html.PartialFor(model => model.Image.Translations[0], "_ImageTranslateableFields")
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUpload, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.ImageUpload, new { @class = "form-control-static" })
+                @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 }

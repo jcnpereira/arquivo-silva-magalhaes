@@ -2,7 +2,7 @@
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using System;
 using System.Data.Entity;

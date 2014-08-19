@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
@@ -33,6 +34,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
 
         [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] KeywordIds { get; set; }
+
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 
     public class ImageCreateModel

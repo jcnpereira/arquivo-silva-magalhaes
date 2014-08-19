@@ -1,5 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

@@ -2,7 +2,7 @@
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Resources;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;
@@ -17,29 +17,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ArchiveDataContext _db = new ArchiveDataContext();
 
         // GET: BackOffice/Specimens
-        public async Task<ActionResult> Index(int? imageId, int pageNumber = 1)
+        public ActionResult Index(int? imageId, int pageNumber = 1)
         {
             if (imageId.HasValue)
             {
-                if (_db.Specimens.Any(i => i.ImageId == imageId))
-                {
-                    ViewBag.imageId = imageId.Value;
-
-                    return View(await Task.Run(() => _db.Specimens
-                        .Include(s => s.Translations)
-                        .Where(s => s.ImageId == imageId)
-                        .OrderBy(s => s.Id)
-                        .ToPagedList(pageNumber, 10)));
-                }
-                else
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-                }
+                return View(_db.Specimens
+                           .Where(s => s.ImageId == imageId)
+                           .OrderBy(s => new { s.ImageId, s.Id })
+                           .ToPagedList(pageNumber, 10));
             }
 
             return View(_db.Specimens
-                           .Include(s => s.Translations)
-                           .OrderBy(s => s.Id)
+                           .OrderBy(s => new { s.ImageId, s.Id })
                            .ToPagedList(pageNumber, 10));
         }
 

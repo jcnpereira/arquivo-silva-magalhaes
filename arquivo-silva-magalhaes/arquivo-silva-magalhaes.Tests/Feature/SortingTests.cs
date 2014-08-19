@@ -1,4 +1,4 @@
-﻿using ArquivoSilvaMagalhaes.Utilitites;
+﻿using ArquivoSilvaMagalhaes.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;

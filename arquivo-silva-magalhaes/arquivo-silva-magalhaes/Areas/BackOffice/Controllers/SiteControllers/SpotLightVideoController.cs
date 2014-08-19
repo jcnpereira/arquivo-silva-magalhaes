@@ -43,23 +43,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( SpotlightVideo model)
+        public async Task<ActionResult> Create( SpotlightVideo spotlightVideo)
         {
             if (ModelState.IsValid)
             {
-                var video = new SpotlightVideo
-                {
-                    Id = model.Id,
-                    IsPermanent = model.IsPermanent,
-                    PublicationDate = model.PublicationDate,
-                    RemotionDate = model.RemotionDate,
-                    UriPath = model.UriPath
-                };
-                db.SpotlightVideos.Add(video);
+                db.SpotlightVideos.Add(spotlightVideo);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(spotlightVideo);
         }
 
         // GET: /BackOffice/SpotLightVideo/Edit/5

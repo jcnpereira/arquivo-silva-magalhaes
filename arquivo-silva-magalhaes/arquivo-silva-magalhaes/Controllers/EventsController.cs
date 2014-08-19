@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {

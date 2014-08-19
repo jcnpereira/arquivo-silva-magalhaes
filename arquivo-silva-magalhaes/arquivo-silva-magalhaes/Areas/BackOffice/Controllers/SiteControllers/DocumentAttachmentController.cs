@@ -1,7 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -47,138 +47,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( DocumentAttachmentViewModels model)
+        public async Task<ActionResult> Create(Attachment model)
         {
             if (ModelState.IsValid)
             {
-                
-
-                var documentattachment = new Attachment
-                {
-                    Id=model.Id,
-                    UriPath = model.UriPath,
-                    MimeFormat = model.MimeFormat,
-                    Size = model.Size,
-                    Title=model.Title,
-                    LanguageCode=model.LanguageCode,
-                    Description=model.Description
-                };
-
-                //documentattachment.TextUsingAttachment.Add(
-                //    new AttachmentTranslation
-                //    {
-                //        Title = model.Title,
-                //        Description = model.Description,
-                //        LanguageCode = LanguageDefinitions.DefaultLanguage,
-                      
-                //    });
-                db.Attachments.Add(documentattachment);
+                db.Attachments.Add(model);
                 await db.SaveChangesAsync();
-
-                //if (AreLanguagesMissing( documentattachment))
-                //{
-                //    // There are languages which may be added.
-                //    // Ask the used if he/she wants to any.
-                //    ViewBag.Id = documentattachment.Id;
-                //    return View("_AddLanguagePrompt");
-                //}
-
 
                 return RedirectToAction("Index");
             }
 
             return View(model);
         }
-
-        
-        private static bool AreLanguagesMissing(Attachment documentattachment)
-        {
-            // Check if we need to add more languages.
-            var langCodes = documentattachment.TextUsingAttachment
-                                  .Select(t => t.LanguageCode)
-                                  .ToList();
-
-            return LanguageDefinitions.Languages.Where(l => !langCodes.Contains(l)).Count() > 0;
-        }
-
-        // GET: BackOffice/Authors/AddLanguage
-        public async Task<ActionResult> AddLanguage(int? Id)
-        {
-            // There needs to be an author.
-            if (Id != null)
-            {
-                var documentattachment = await db.Attachments.FindAsync(Id);
-
-                if (documentattachment == null)
-                {
-                    return HttpNotFound();
-                }
-
-                var langCodes = documentattachment.TextUsingAttachment
-                                      .Select(t => t.LanguageCode)
-                                      .ToList();
-
-                // First, we'll check which languages we already have in the DB,
-                // we'll remove any which already exist.
-                var notDoneLanguages = LanguageDefinitions.Languages
-                                                          .Where(l => !langCodes.Contains(l));
-
-                // This should stop naughty attempts at adding a language
-                // to an entity which already has all languages done.
-                if (notDoneLanguages.Count() == 0) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-                var model = new DocumentAttachmentViewModels
-                {
-                    AvailableLanguages = notDoneLanguages
-                                            .Select(l => new SelectListItem
-                                            {
-                                                // Get the localized language name.
-                                                Text = CultureInfo.GetCultureInfo(l).NativeName,
-                                                // Text = LanguageDefinitions.GetLanguageNameForCurrentLanguage(l),
-                                                Value = l
-                                            })
-                                            .ToList()
-                };
-
-                return View(model);
-            }
-            else
-            {
-                // If there's no author, we can't add a language to it.
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-        }
-
-
-        [HttpPost]
-        public async Task<ActionResult> AddLanguage(DocumentI18nPartialModels model)
-        {
-            if (ModelState.IsValid)
-            {
-                var documentattachmenttext = db.Attachments.Find(model.Id);
-
-                var documenttext = new AttachmentTranslation
-                {
-                    Title = model.Title,
-                    LanguageCode = model.LanguageCode,
-                    Description = model.Description
-                };
-
-                db.AttachmentTranslations.Add(documenttext);
-                await db.SaveChangesAsync();
-
-                if (AreLanguagesMissing(documentattachmenttext))
-                {
-                    ViewBag.Id = documentattachmenttext.Id;
-                    return View("_AddLanguagePrompt");
-                }
-
-                return RedirectToAction("Index");
-            }
-
-            return View(model);
-        }
-
 
 
 

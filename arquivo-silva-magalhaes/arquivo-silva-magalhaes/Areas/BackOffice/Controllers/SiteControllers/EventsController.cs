@@ -1,7 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Utilitites;
+using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;
