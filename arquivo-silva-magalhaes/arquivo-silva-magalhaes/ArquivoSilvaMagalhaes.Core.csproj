@@ -222,18 +222,10 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
-<<<<<<< HEAD
-    <Compile Include="Controllers\ContactsController.cs" />
-    <Compile Include="Controllers\DigitalPhotographController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
-=======
->>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FrontOfficeController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\NewsItemsController.cs" />
-=======
->>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShowcasePhotosController.cs" />
@@ -1245,14 +1237,11 @@
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\EventsView\Details.cshtml" />
     <Content Include="Views\EventsView\Index.cshtml" />
     <Content Include="Views\Banner\Index.cshtml" />
-=======
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
->>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
     <Content Include="Views\Shared\_Banner.cshtml" />
     <Content Include="Views\DigitalPhotograph\Index.cshtml" />
     <Content Include="Views\ShowcasePhotos\Details.cshtml" />
@@ -1265,7 +1254,6 @@
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Events\Event.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Documents\Create.cshtml" />
     <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\Details.cshtml" />
@@ -1273,9 +1261,7 @@
     <Content Include="Views\Documents\Index.cshtml" />
     <Content Include="Views\NewsItems\Details.cshtml" />
     <Content Include="Views\NewsItems\Index.cshtml" />
-=======
     <Content Include="Views\Home\Contacts.cshtml" />
->>>>>>> 5190027861ef5c540ff7e60b1dd4a3fc0f8c8a47
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
