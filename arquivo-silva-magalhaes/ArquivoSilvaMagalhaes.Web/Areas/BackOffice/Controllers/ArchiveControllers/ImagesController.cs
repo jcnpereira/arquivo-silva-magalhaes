@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -83,25 +84,36 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Image image, int[] keywordIds)
+        public ActionResult Create(ImageEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                keywordIds = keywordIds ?? new int[] { };
+                if (model.ImageUpload != null)
+                {
+                    var fileName = Guid.NewGuid().ToString() + "_" + Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                    var path = Server.MapPath("~/Public/Images/");
+                    Directory.CreateDirectory(path);
+                    FileUploadHelper.GenerateVersions(model.ImageUpload.InputStream, path + fileName);
+
+                    model.Image.ImageUrl = fileName;
+                }
+
+                var keywordIds = model.KeywordIds ?? new int[] { };
 
                 var keywords = _db.Keywords.Where(kw => keywordIds.Contains(kw.Id));
 
                 foreach (var kw in keywords)
                 {
-                    image.Keywords.Add(kw);
+                    model.Image.Keywords.Add(kw);
                 }
-                _db.Images.Add(image);
+
+                _db.Images.Add(model.Image);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(image));
+            return View(model);
         }
 
         public async Task<ActionResult> Edit(int? id)

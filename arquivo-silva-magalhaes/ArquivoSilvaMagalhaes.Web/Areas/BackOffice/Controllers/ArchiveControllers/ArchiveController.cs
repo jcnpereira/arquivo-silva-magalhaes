@@ -11,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     /// Used to restrict access to the admins and
     /// archive managers.
     /// </summary>
-    [Authorize(Roles = "archivemanagers,admins")]
+    [Authorize(Roles = "archivemanagers,admins,contentmanagers")]
     public class ArchiveController : BackOfficeController
     {
     }

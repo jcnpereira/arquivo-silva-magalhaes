@@ -221,6 +221,12 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SiteController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\Translations\UserViewModelStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserViewModelStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BackOffice\ViewModels\UserViewModels.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -244,7 +250,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ArchiveDataContext_Configuration.cs" />
+    <Compile Include="Migrations\ApplicationDbContext_Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\AuthorViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\ClassificationViewModels.cs" />
@@ -694,6 +701,8 @@
     <Content Include="Areas\BackOffice\Views\Shared\_QuillToolbarFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeletePageLayout.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\YesNoDisplayFor.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\Create.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -888,6 +897,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Areas\BackOffice\ViewModels\Translations\UserViewModelStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserViewModelStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DataStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DataStrings1.Designer.cs</LastGenOutput>

@@ -6,7 +6,7 @@
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageUpload, new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
-                @Html.FileUploadFor(model => model.ImageUpload, new { @class = "form-control-static" })
+                @Html.FileUploadFor(model => model.ImageUpload, new { @class = "form-control-static", accept = "image/*" })
                 @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
             </div>
         </div>

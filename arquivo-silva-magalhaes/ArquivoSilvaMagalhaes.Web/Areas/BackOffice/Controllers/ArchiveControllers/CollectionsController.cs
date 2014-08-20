@@ -95,24 +95,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 // Prepare to resize the pictures.
                 // We'll scale them proportionally to a maximum of 1024x768.
-                ImageJob j = new ImageJob
+                if (Logo != null)
                 {
-                    Instructions = new Instructions
-                    {
-                        Width = 1024,
-                        Height = 768,
-                        Mode = FitMode.Max,
-                        Encoder = "freeimage",
-                        OutputFormat = OutputFormat.Jpeg
-                    },
-                    Source = Logo.InputStream,
-                    Dest = Path.Combine(Server.MapPath("~/Public/Collections"), newName),
-                    CreateParentDirectory = true
-                };
+                    ImageJob j = new ImageJob
+                            {
+                                Instructions = new Instructions
+                                {
+                                    Width = 1024,
+                                    Height = 768,
+                                    Mode = FitMode.Max,
+                                    Encoder = "freeimage",
+                                    OutputFormat = OutputFormat.Jpeg
+                                },
+                                Source = Logo.InputStream,
+                                Dest = Path.Combine(Server.MapPath("~/Public/Collections"), newName),
+                                CreateParentDirectory = true
+                            };
 
-                ImageBuilder.Current.Build(j);
+                    ImageBuilder.Current.Build(j);
 
-                collection.LogoLocation = newName;
+                    collection.LogoLocation = newName; 
+                }
 
                 var authors = db.Authors.Where(a => AuthorIds.Contains(a.Id));
 

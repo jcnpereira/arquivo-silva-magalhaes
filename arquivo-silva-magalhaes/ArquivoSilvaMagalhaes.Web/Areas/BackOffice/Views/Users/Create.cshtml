@@ -1,0 +1,68 @@
+﻿@model UserRegistrationModel
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.RealName, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.RealName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RealName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailAddress, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.PasswordFor(model => model.EmailAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.EnumDropDownListFor(model => model.Role, UiPrompts.ChooseOne, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.Picture, new { @class = "form-control-static", accept = "image/*" })
+                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
+    </div>
+}
