@@ -11,15 +11,15 @@
     @foreach (var doc in Model)
     {
         <li class="media">
-
         @*<li class="col-md-3 col-md-offset-0">
         <li class="media-body col-md-3">*@
-            <a class="pull-left" href="~/Collections/Details/@doc.DocumentId">
+            <a class="pull-left" href="~/Images/Index/@doc.DocumentId">
                 <h4 class="media-heading">@doc.Document.Title</h4>
-                <h5>@doc.Description"</h5>
             </a>
-        @*</li>
-        </li>*@
+                <h5>@doc.Description</h5>
+            <p>
+                @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
+            </p>
         </li>
     }
 </ul>

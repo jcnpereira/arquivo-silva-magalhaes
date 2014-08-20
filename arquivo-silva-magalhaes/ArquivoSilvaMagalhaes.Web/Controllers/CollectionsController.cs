@@ -19,8 +19,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         
-
-
         // GET: Collections
         public async Task<ActionResult> Index()
         {
@@ -31,11 +29,25 @@ namespace ArquivoSilvaMagalhaes.Controllers
                             .Select(col => new CollectionViewModel(col)));
         }
 
+        public async Task<ActionResult> Docs(int? id)
+        {
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Collection collection = await db.Collections.FindAsync(id);
+            if (collection == null)
+            {
+                return HttpNotFound();
+            }
+            return View(collection);
+        }
 
         // GET: Collections/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

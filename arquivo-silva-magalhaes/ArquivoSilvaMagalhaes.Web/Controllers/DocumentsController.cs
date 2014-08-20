@@ -17,43 +17,22 @@ namespace ArquivoSilvaMagalhaes.Controllers
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-
-        public ActionResult SetLanguage(string lang, string returnUrl)
-        {
-            Response.SetCookie(new HttpCookie("lang", lang));
-
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
         // GET: Documents
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? id)
         {
-           //var documents = db.Documents.Include(d => d.Author).Include(d => d.Collection);
-
-
-            //var model = from d in db.DocumentTranslations
-            //            join c in db.CollectionTranslations on d.Document.CollectionId equals c.Collection.Id
-            //            select new DocumentTranslation{
-            //                Description =c.Description
-            //            };
-
-            //return View(model);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             Collection col = new Collection();
 
             return View(await Task.Run(() => db.DocumentTranslations
           .Include(doc => doc.Document)
-          //.Where(doc => doc.Document.CollectionId == col.Id)
+          .Where(doc => doc.Document.CollectionId == id)
           .Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Document.DocumentDate)));
-          //return View(await documents.ToListAsync());
+          
         }
 
         // GET: Documents/Details/5

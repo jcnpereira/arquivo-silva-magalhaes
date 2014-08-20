@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Imagens</h2>
+<hr />
+<ul>
+    @foreach (var img in Model)
+    {
+        <li>
+            @Html.DisplayFor(modelItem => img.Title)
+        </li>
+        <li>
+            <img src=@img.Image.ImageUrl>
+        </li>
+        <li>
+            @Html.ActionLink("Informações", "Details", new { id = img.Image.Id })
+        </li>
+    }
+
+</ul>
