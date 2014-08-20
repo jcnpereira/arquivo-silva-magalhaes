@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationControllers
 {
-    public class UsersController : Controller
+    public class UsersController : BackOfficeController
     {
         ApplicationDbContext _db = new ApplicationDbContext();
 

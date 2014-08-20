@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Linq;
 using PagedList;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class PartnershipsController : BackOfficeController
     {

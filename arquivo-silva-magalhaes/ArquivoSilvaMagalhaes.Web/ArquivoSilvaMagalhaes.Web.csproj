@@ -203,7 +203,7 @@
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ArchiveController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DigitalPhotographsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ImagesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\UsersController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AdministrationControllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BackOfficeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\AuthorsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
@@ -212,12 +212,13 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\DocumentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\KeywordsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SiteController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
@@ -880,9 +881,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\Views\About\" />
-    <Folder Include="Areas\BackOffice\Views\Archive\" />
     <Folder Include="Public\" />
   </ItemGroup>
   <ItemGroup>
