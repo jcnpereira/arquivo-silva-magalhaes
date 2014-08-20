@@ -5,12 +5,18 @@ using System.Data.Entity;
 using System.Threading;
 using ArquivoSilvaMagalhaes.ViewModels;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class HomeController : FrontOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
+
+        public ActionResult About()
+        {
+            return View();
+        }
 
 
         public ActionResult Index()
@@ -54,7 +60,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         public ActionResult Links()
         {
-            return View();
+            return View(db.ReferencedLinks.ToList());
         }
 
 
@@ -68,6 +74,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .ToList();
 
             return View(model);
+        }
+
+        public async Task<ActionResult> Partnerships()
+        {
+            return View(await db.Partnerships.ToListAsync());
         }
     }
 }

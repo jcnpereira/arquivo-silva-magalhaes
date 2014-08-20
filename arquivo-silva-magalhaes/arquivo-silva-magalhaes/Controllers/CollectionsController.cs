@@ -14,33 +14,21 @@ using ArquivoSilvaMagalhaes.Utilitites;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class CollectionsController : Controller
+    public class CollectionsController : FrontOfficeController
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        public ActionResult SetLanguage(string lang, string returnUrl)
-        {
-            Response.SetCookie(new HttpCookie("lang", lang));
-
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
+        
 
 
         // GET: Collections
         public async Task<ActionResult> Index()
         {
-            return View(await Task.Run(() => db.CollectionTranslations
-           .Include(col => col.Collection)
-           .Where(col => col.LanguageCode == LanguageDefinitions.DefaultLanguage)
-           .OrderBy(col => col.Collection.EndProductionDate)));
-            //return View(await db.Collections.ToListAsync());
+            return View((await db.Collections
+                            .Include(col => col.Authors)
+                            .OrderBy(col => col.EndProductionDate)
+                            .ToListAsync())
+                            .Select(col => new CollectionViewModel(col)));
         }
 
 
