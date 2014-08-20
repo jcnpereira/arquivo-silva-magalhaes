@@ -24,11 +24,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
     {
         public Image Image { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
+        //[Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
         public List<SelectListItem> AvailableKeywords { get; set; }
 
-        [Required]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public List<SelectListItem> AvailableDocuments { get; set; }
 

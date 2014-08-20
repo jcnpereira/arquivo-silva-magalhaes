@@ -1,5 +1,7 @@
 ﻿using ImageResizer;
+using ImageResizer.Util;
 using System.Collections.Generic;
+using System.IO;
 using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Common
@@ -30,14 +32,45 @@ namespace ArquivoSilvaMagalhaes.Common
             ImageBuilder.Current.Build(job);
         }
 
+        public static void GenerateVersions(Stream source, string baseFileName)
+        {
+            Dictionary<string, string> versions = new Dictionary<string, string>();
+            //Define the versions to generate and their filename suffixes.
+            versions.Add("_thumb", "width=300&height=300&crop=auto&format=jpg");
+            versions.Add("_large", "maxwidth=1024&maxheight=768&format=jpg&mode=max");
+
+            // Ensure that no extensions are in the file name.
+            string basePath = PathUtils.RemoveExtension(baseFileName);
+
+            using (source)
+            {
+                //Generate each version
+                foreach (string suffix in versions.Keys)
+                {
+                    var job = new ImageJob
+                    {
+                        Source = source,
+                        Dest = basePath + suffix,
+                        Instructions = new Instructions(versions[suffix]),
+                        DisposeSourceObject = false,
+                        AddFileExtension = true,
+                        ResetSourceStream = true,
+                        CreateParentDirectory = true
+                    };
+
+                    ImageBuilder.Current.Build(job);
+                } 
+            }
+        }
+
         public static void GenerateVersions(string original)
         {
             Dictionary<string, string> versions = new Dictionary<string, string>();
             //Define the versions to generate and their filename suffixes.
-            versions.Add("_thumb", "width=400&height=300&crop=auto&format=jpg");
-            versions.Add("_large", "maxwidth=1024&maxheight=768&format=jpg");
+            versions.Add("_thumb", "width=300&height=300&crop=auto&format=jpg");
+            versions.Add("_large", "maxwidth=1024&maxheight=768&format=jpg&mode=max");
 
-            string basePath = ImageResizer.Util.PathUtils.RemoveExtension(original);
+            string basePath = PathUtils.RemoveExtension(original);
 
             //Generate each version
             foreach (string suffix in versions.Keys)
