@@ -1,6 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.Translations;
 using System.ComponentModel.DataAnnotations;
-namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 {
     public class KeywordViewModel
     {

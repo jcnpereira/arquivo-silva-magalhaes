@@ -3,7 +3,7 @@ using ArquivoSilvaMagalhaes.Models.Translations;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
-namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 {
 
 

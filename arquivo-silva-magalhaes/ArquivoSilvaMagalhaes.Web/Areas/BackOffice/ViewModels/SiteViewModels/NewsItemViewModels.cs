@@ -1,6 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.SiteModels;
 
-namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 {
     public class NewsItemViewModel
     {

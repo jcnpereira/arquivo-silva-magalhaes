@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Models.ArchiveViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 {
     public class DocumentEditViewModel
     {

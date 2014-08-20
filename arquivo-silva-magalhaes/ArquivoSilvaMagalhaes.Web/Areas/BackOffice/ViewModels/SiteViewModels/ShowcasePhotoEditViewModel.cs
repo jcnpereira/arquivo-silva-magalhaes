@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Models.SiteViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 {
     public class ShowcasePhotoEditViewModel
     {

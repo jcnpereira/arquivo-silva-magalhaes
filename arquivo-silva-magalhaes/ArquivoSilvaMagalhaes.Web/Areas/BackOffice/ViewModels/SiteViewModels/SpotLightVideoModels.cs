@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 {
     public class SpotLightVideoModels
     {
