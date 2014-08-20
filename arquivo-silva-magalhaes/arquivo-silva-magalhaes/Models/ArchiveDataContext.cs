@@ -72,7 +72,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<TechnicalDocument> TechnicalDocuments { get; set; }
 
         public virtual DbSet<Archive> Archives { get; set; }
-        public virtual DbSet<ArchiveTranslations> ArchiveTranslations { get; set; }
+        public virtual DbSet<ArchiveTranslation> ArchiveTranslations { get; set; }
 
         public virtual DbSet<Contact> ArchiveContacts { get; set; }
     }

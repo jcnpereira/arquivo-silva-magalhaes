@@ -39,12 +39,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             var classification = await _db.Classifications.FindAsync(id);
 
-            classification.Translations = classification.Translations.ToList();
+            
 
             if (classification == null)
             {
                 return HttpNotFound();
             }
+
+            classification.Translations = classification.Translations.ToList();
 
             return View(classification);
         }

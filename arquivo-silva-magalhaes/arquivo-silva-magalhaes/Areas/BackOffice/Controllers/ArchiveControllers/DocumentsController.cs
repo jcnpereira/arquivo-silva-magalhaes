@@ -44,15 +44,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             Document document = await _db.Documents.FindAsync(id);
-            document.Translations = document.Translations.ToList();
-
-            ViewBag.TranslationsAvailable =
-                document.Translations.Count < LanguageDefinitions.Languages.Count;
-
+            
             if (document == null)
             {
                 return HttpNotFound();
             }
+
+            document.Translations = document.Translations.ToList();
+
             return View(document);
         }
 

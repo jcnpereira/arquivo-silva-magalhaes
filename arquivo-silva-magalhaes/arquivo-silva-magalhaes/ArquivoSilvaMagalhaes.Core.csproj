@@ -311,6 +311,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LayoutStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ModelTranslations\ArchiveStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchiveStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ModelTranslations\AuthorStrings.Designer.cs">
       <DependentUpon>AuthorStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -330,6 +335,11 @@
       <DependentUpon>CollectionStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ModelTranslations\ContactStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ModelTranslations\DigitalPhotographStrings.Designer.cs">
       <DependentUpon>DigitalPhotographStrings.resx</DependentUpon>
@@ -415,7 +425,7 @@
     <Compile Include="Utilitites\AlphaNumericComparator.cs" />
     <Compile Include="Utilitites\FileTypeValidationAttribute.cs" />
     <Compile Include="Utilitites\FileUploadHelper.cs" />
-    <Compile Include="Utilitites\HtmlEncodeAttribute.cs" />
+    <Compile Include="Utilitites\HtmlEncoder.cs" />
     <Compile Include="Utilitites\ImageUtilities.cs" />
     <Compile Include="Utilitites\LanguageDefinitions.cs" />
     <Compile Include="Utilitites\MembershipUtils.cs" />
@@ -596,6 +606,7 @@
     <Content Include="Content\Fonts\ostrich-light-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
+    <Content Include="Content\Images\logo-square.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Styles\frontoffice\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
@@ -940,9 +951,7 @@
     <Content Include="Areas\BackOffice\Views\Formats\_FormatFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\_DigitalPhotographFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\PostUpload.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\AddTranslation.cshtml" />
@@ -1298,6 +1307,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LayoutStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ArchiveStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ArchiveStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\AuthorStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthorStrings.Designer.cs</LastGenOutput>
@@ -1313,6 +1326,10 @@
     <EmbeddedResource Include="Resources\ModelTranslations\CollectionStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CollectionStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModelTranslations\ContactStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ModelTranslations\DigitalPhotographStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
