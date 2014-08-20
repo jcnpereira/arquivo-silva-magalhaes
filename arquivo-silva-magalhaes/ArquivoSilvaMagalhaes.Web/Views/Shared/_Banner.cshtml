@@ -1,0 +1,5 @@
+﻿@model BannerTranslation
+<li>
+    <img src="@Url.Content(Model.BannerPhotograph.UriPath)" />
+    <p class="flex-caption">@Html.DisplayFor(model => model.Caption)</p>
+</li>

@@ -1,0 +1,119 @@
+﻿@model Author
+
+@{
+    ViewBag.Id = Model.Id;
+    ViewBag.Title = AuthorStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+
+}
+
+@section ExtraActions {
+    @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> @UiStrings.AddTranslation
+            </a>
+        </div>
+    }
+}
+
+<dl class="dl-horizontal">
+
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BirthDate)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.DeathDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.DeathDate)
+    </dd>
+
+
+</dl>
+
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => t.Nationality)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => t.Nationality)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => t.Biography)
+                </dt>
+
+                <dd>
+                    @Html.DisplayMultilineFor(model => t.Biography)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => t.Curriculum)
+                </dt>
+
+                <dd>
+                    @Html.DisplayMultilineFor(model => t.Curriculum)
+                </dd>
+            </dl>
+
+            @if (langCode != LanguageDefinitions.DefaultLanguage)
+            {
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                    Remover tradução
+                </a>
+            }
+
+            
+        </div>
+
+
+    }
+</div>

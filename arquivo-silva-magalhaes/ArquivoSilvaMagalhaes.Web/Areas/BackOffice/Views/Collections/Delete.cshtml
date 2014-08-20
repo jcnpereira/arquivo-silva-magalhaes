@@ -1,0 +1,157 @@
+﻿@model Collection
+
+@{
+    var ptTrans = Model.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+    ViewBag.Title = String.Format(CollectionStrings.DeleteTitleFormat, ptTrans.Title);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-danger" role="alert">@CollectionStrings.DeleteWarningMessage</div>
+
+<div class="container">
+
+    <h4>
+        @Html.DisplayNameFor(model => model.CatalogCode)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.CatalogCode)
+    </p>
+    <h4>
+        @Html.DisplayNameFor(model => model.Type)
+    </h4>
+
+    <p>
+        @Html.EnumDisplayFor(model => model.Type)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.InitialProductionDate)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.InitialProductionDate)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.EndProductionDate)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.EndProductionDate)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.LogoLocation)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.LogoLocation)
+    </p>
+    <h4>
+        @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.AttachmentsDescriptions)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.OrganizationSystem)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.OrganizationSystem)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.Notes)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.Notes)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </h4>
+
+    <p>
+        @(Model.IsVisible ? UiStrings.Yes : UiStrings.No)
+    </p>
+</div>
+
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguageName(langCode)</a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+
+            <h4>
+                @Html.DisplayNameFor(model => t.Title)
+            </h4>
+            <p>
+                @t.Title
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.Description)
+            </h4>
+            <p>
+                @t.Description
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.Provenience)
+            </h4>
+            <p>
+                @t.Provenience
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.AdministrativeAndBiographicStory)
+            </h4>
+            <p>
+                @t.AdministrativeAndBiographicStory
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.FieldAndContents)
+            </h4>
+            <p>
+                @t.FieldAndContents
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.Dimension)
+            </h4>
+            <p>
+                @t.Dimension
+            </p>
+            <h4>
+                @Html.DisplayNameFor(model => t.CopyrightInfo)
+            </h4>
+            <p>
+                @t.CopyrightInfo
+            </p>
+        </div>
+    }
+</div>
+
+<form method="post" action="@Url.Action("Delete")">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">@UiStrings.Delete</button>
+    @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-default" })
+</form>

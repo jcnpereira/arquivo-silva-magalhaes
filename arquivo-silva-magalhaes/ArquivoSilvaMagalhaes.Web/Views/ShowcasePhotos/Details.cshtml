@@ -1,0 +1,38 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
+
+<h2>Informações</h2>
+    <hr />
+<div class="form-horizontal">
+    <dl class="dl-horizontal">
+        <dt>
+            <b> @Html.DisplayNameFor(model => model.Image.ProductionDate)</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image.ProductionDate)
+        </dd>
+
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.CommenterName):</b>
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => modelItem.CommenterName)
+        </dd>
+        <dt>
+            <b> @Html.DisplayNameFor(model => model.CommenterEmail):</b>
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => modelItem.CommenterEmail)
+        </dd>
+
+        @*<dt>
+                <b> @Html.DisplayNameFor(model => model.ShowcasePhoto):</b>
+                @Html.DisplayFor(model => model.ShowcasePhoto.CommenterEmail)
+            </dt>*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>
+

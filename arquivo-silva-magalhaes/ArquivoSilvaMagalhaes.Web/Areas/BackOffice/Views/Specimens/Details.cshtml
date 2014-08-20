@@ -1,0 +1,71 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Specimen
+
+@{
+    ViewBag.Title = SpecimenStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+    ViewBag.Id = Model.Id;
+}
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.ReferenceCode)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.ReferenceCode)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.AuthorCatalogationCode)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.HasMarksOrStamps)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.HasMarksOrStamps, "YesNoDisplayFor")
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Notes)
+    </dt>
+
+    <dd>
+        @Html.DisplayMultilineFor(model => model.Notes)
+    </dd>
+
+</dl>
+
+<hr />
+
+@if (Model.DigitalPhotographs.Count() > 0)
+{
+
+    foreach (var item in Model.DigitalPhotographs)
+    {
+        <div class="media">
+            <a class="pull-left" href="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "large" })">
+                <img class="media-object img-thumbnail" style="max-width: 128px; max-height: 128px" src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">@Html.DisplayFor(model => item.FileName)</h4>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => item.ScanDate)</dt>
+                    <dd>@Html.DisplayFor(model => item.ScanDate)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => item.Notes)</dt>
+                    <dd>@Html.DisplayMultilineFor(model => item.Notes)</dd>
+                </dl>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <p>(@SpecimenStrings.NoDigitalPhotographs)</p>
+}

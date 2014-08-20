@@ -1,0 +1,85 @@
+﻿@model Event
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Place, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@*<div class="form-group">
+        @Html.LabelFor(model => model.Coordinates, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Coordinates, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Coordinates, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Coordinates, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @* Google Map. *@
+        @Html.HiddenFor(model => model.Coordinates, new { @class = "form-control" })
+        <div id="map_canvas" style="width:100%; height: 400px" data-afsm-for="#@Html.IdFor(model => model.Coordinates)"></div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.VisitorInformation, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.VisitorInformation, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.VisitorInformation, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.StartMoment, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DatePickerFor(model => model.StartMoment, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.StartMoment, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.EndMoment, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DatePickerFor(model => model.EndMoment, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EndMoment, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DatePickerFor(model => model.PublishDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DatePickerFor(model => model.ExpiryDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.HideAfterExpiry, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.CheckBoxFor(model => model.HideAfterExpiry, new { @class = "checkbox" })
+        @Html.ValidationMessageFor(model => model.HideAfterExpiry, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.EventType, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EnumDropDownListFor(model => model.EventType, UiPrompts.ChooseOne, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EventType, "", new { @class = "text-danger" })
+    </div>
+</div>
+

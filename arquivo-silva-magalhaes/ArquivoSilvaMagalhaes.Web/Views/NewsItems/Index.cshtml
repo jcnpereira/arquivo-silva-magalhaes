@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItemTranslation>
+
+<div class="column_content">
+    <h2 class="page_title">Notícias</h2>
+
+    <table class="table">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Heading)</h4>
+                    <h5>@Html.DisplayFor(modelItem => item.NewsItem.PublishDate)</h5>
+                    @Html.ActionLink("Ler notícia", "Details", new { id = item.NewsItemId })
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>

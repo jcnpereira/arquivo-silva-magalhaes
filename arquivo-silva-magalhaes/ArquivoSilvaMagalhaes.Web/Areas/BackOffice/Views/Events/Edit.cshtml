@@ -1,0 +1,62 @@
+﻿@model EventEditViewModel
+
+@{
+    ViewBag.Title = EventStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        
+
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Event.Translations.Count(); i++)
+            {
+                var langCode = Model.Event.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+            @for (var i = 0; i < Model.Event.Translations.Count; i++)
+            {
+                var langCode = Model.Event.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+
+                    @Html.PartialFor(model => model.Event.Translations[i], "_EventTranslateableFields")
+                </div>
+            }
+        </div>
+
+        <hr />
+
+        @Html.PartialFor(model => model.Event, "_EventMainFields")
+
+        @Html.Partial("_EventDropDownLists")
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                @Html.ActionLink(UiStrings.Cancel, "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+@section AdditionalScripts {
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    @Scripts.Render("~/Scripts/backoffice/gmaps")
+}

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Links Úteis</h2>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a href=@Url.Content(item.Link) target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>*@
+        </tr>
+    }
+</table>

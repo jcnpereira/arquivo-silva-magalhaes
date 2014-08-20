@@ -1,0 +1,182 @@
+﻿@model Collection
+
+@{
+    var ptTrans = Model.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
+    ViewBag.Title = String.Format(CollectionStrings.DetailsTitleFormat, ptTrans.Title);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+            <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+        </a>
+    </div>
+
+    <div class="btn-group">
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+            <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
+        </a>
+
+        <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@CollectionStrings.DeleteWarningMessage">
+            <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+        </a>
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+
+    <h4>
+        @Html.DisplayNameFor(model => model.CatalogCode)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.CatalogCode)
+    </p>
+    <h4>
+        @Html.DisplayNameFor(model => model.Type)
+    </h4>
+
+    <p>
+        @Html.EnumDisplayFor(model => model.Type)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.InitialProductionDate)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.InitialProductionDate)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.EndProductionDate)
+    </h4>
+
+    <p>
+        @if (Model.EndProductionDate != null)
+        {
+            @Html.DisplayFor(model => model.EndProductionDate)
+        }
+        else
+        {
+            @UiStrings.UnknownDate
+        }
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.LogoLocation)
+    </h4>
+
+    <p>
+        <img src="~/Public/Collections/@Model.LogoLocation" class="img-responsive img-thumbnail" style="max-width: 500px; max-height: 300px" />
+    </p>
+
+
+    <h4>
+        @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.AttachmentsDescriptions)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.OrganizationSystem)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.OrganizationSystem)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.Notes)
+    </h4>
+
+    <p>
+        @Html.DisplayFor(model => model.Notes)
+    </p>
+
+    <h4>
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </h4>
+
+    <p>
+        @(Model.IsVisible ? UiStrings.Yes : UiStrings.No)
+    </p>
+
+    <ul class="nav nav-tabs">
+        @for (int i = 0; i < Model.Translations.Count(); i++)
+        {
+            var langCode = Model.Translations[i].LanguageCode;
+            <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                <a href="#@langCode"
+                   role="tab"
+                   data-toggle="tab">@LanguageDefinitions.GetLanguageName(langCode)</a>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content">
+
+        @foreach (var t in Model.Translations)
+        {
+            var langCode = t.LanguageCode;
+
+            <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                 id="@langCode">
+
+
+                <h4>
+                    @Html.DisplayNameFor(model => t.Title)
+                </h4>
+                <p>
+                    @t.Title
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Description)
+                </h4>
+                <p>
+                    @t.Description
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Provenience)
+                </h4>
+                <p>
+                    @t.Provenience
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.AdministrativeAndBiographicStory)
+                </h4>
+                <p>
+                    @t.AdministrativeAndBiographicStory
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.FieldAndContents)
+                </h4>
+                <p>
+                    @t.FieldAndContents
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.Dimension)
+                </h4>
+                <p>
+                    @t.Dimension
+                </p>
+                <h4>
+                    @Html.DisplayNameFor(model => t.CopyrightInfo)
+                </h4>
+                <p>
+                    @t.CopyrightInfo
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

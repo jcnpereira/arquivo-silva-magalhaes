@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        @ViewBag.Title | Arquivo Fotográfico Silva Magalhães
+    </title>
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    @Styles.Render("~/Content/FrontOffice/Styles")
+</head>
+<body>
+    <div id="wrap">
+        <div id="sidebar">
+            <!-- the  sidebar -->
+            <!-- logo -->
+            <a href="#" id="logo"> <img src="~/images/logo.png" alt="" /></a>
+            <a href="#" id="logo"> <img src="~/images/cmt.png" alt="" /></a>
+            <!-- navigation menu -->
+            <ul id="navigation">
+                <li><a href="~/Home/Index">@LayoutStrings.Index</a></li>
+                <li><a href="~/ShowCasePhotoes">@LayoutStrings.Showcase</a></li>
+                <li>@Html.ActionLink(LayoutStrings.Contents, "Collections")</li>
+                <li><a href="~/Home/Search">PESQUISA</a></li>
+                <li><a href="~/NewsView">NOT&#205;CIAS</a></li>
+                <li><a href="~/EventsView">EVENTOS</a></li>
+                <li><a href="~/Home/History">HIST&#211;RIA</a></li>
+                <li><a href="~/TechnicalDocuments">DOCUMENTOS T&#201;CNICOS</a></li>
+                @*<li><a href="Loja">LOJA</a></li>*@
+                <li><a href="~/Contacts">CONTACTOS</a></li>
+                <li><a href="~/ReferencedLinks">LINKS &#218;TEIS</a></li>
+                <li><a href="~/Partnerships">PROJETOS E PARCERIAS</a></li>
+            </ul>
+        </div>
+        <div class="container body-content">
+            <div id="wrap">
+                <div id="container">
+                    <div class="page" id="">
+                        <div class="page_content">
+                            @RenderBody()
+                            <footer class="footer" style="text-align:center">
+                                <p> &copy; 2014 AFSM</p>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*</div>*@
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/Scripts/frontoffice")
+
+</body>
+</html>

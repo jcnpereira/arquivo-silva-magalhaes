@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CollectionViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Acervo</h2>
+<hr />  
+
+@foreach (var col in Model)
+{
+    <div class="media">
+        <a class="pull-left" href="~/Collections/Details/@col.Collection.Id">
+            <img class="media-object" style="width:96px; height: 96px" src="~/Public/Collections/@col.Collection.LogoLocation">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="~/Collections/Details/@col.Collection.Id">
+                    @Html.DisplayFor(modelItem => col.Translation.Title)
+                </a>
+            </h4>
+            <p>
+                @Html.DisplayFor(modelItem => col.Translation.Description)
+            </p>
+
+            @{
+                var authors = col.Collection.Authors.ToList();
+            }
+
+            @foreach (var a in authors.Select(a => a.FirstName + " " + a.LastName))
+            {
+                <p>
+                    @Html.DisplayFor(modelItem => a)
+                </p>
+
+            }
+
+        </div>
+    </div>
+
+    @*</li>*@
+    @*</li>*@
+}

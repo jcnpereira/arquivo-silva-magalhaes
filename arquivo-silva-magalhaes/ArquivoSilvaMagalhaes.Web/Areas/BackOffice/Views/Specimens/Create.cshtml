@@ -1,0 +1,27 @@
+﻿@model SpecimenEditViewModel
+
+@{
+    ViewBag.Title = SpecimenStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.PartialFor(model => model.Specimen, "_SpecimenMainFields")
+
+        @Html.Partial("_SpecimenDropDownLists")
+
+        @Html.PartialFor(model => model.Specimen.Translations[0], "_SpecimenTranslateableFields")
+
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
+    </div>
+}
+
+@section AdditionalContent {
+    @Html.Partial("_AjaxPostModal")
+}

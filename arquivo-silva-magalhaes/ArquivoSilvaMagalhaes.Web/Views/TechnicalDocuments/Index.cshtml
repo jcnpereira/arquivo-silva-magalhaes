@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
+
+
+<h2>Documentos Técnicos</h2>
+
+<hr />
+
+
+<ul class="media-list">
+    @foreach (var doc in Model)
+    {
+        <li class="media">
+            <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+                <img class="media-object afsm-media-object" src="~/images/docIcon.png" alt="...">
+            </a>
+            <div class="media-body">
+                <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+                    <h4 class="media-heading">@doc.Title</h4>
+                </a>
+                <p>
+                    @Html.DisplayFor(model => doc.LastModificationDate)
+                </p>
+            </div>
+        </li>
+    }
+</ul>
+
+
+
+
+@*<table class="table">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td align="left">
+                    <a href="~/Public/TechnicalDocuments/@item.FileName" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Format)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.LastModificationDate.Day) / @Html.DisplayFor(modelItem => item.LastModificationDate.Month) / @Html.DisplayFor(modelItem => item.LastModificationDate.Year)
+                </td>
+
+            </tr>
+        }
+
+    </table>*@
+

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.EventTranslation>
+
+<h2>Eventos</h2>
+
+<hr />
+
+<ul class="media-list">
+    @foreach (var item in Model)
+    {
+        <li class="media">
+            <a class="pull-left" href="~/Events/Event/@item.Event.Id">
+                <img class="media-object afsm-media-object" src="~/Images/@String.Concat(@Html.DisplayFor(modelItem => item.Event.EventType),".png")" width="48" height="48" alt="...">
+            </a>
+            <div class="media-body">
+                <a href="~/Events/Event/@item.EventId">
+                    <h4 class="media-heading">@item.Title</h4>
+                </a>
+                <div>
+                    <p>@Html.DisplayFor(model => item.Heading)</p>
+                    <p>@Html.DisplayFor(model => item.TextContent)</p>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

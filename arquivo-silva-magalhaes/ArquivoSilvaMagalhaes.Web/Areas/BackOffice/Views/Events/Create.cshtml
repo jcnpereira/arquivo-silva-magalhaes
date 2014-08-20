@@ -1,0 +1,29 @@
+﻿@model EventEditViewModel
+
+@{
+    ViewBag.Title = EventStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        
+        @Html.PartialFor(model => model.Event.Translations[0], "_EventTranslateableFields")
+
+        @Html.PartialFor(model => model.Event, "_EventMainFields")
+
+        @Html.Partial("_EventDropDownLists")
+
+        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
+    </div>
+}
+
+@section AdditionalScripts {
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    @Scripts.Render("~/Scripts/backoffice/gmaps")
+}
