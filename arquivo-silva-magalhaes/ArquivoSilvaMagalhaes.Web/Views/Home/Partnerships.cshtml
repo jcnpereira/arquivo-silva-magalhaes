@@ -13,7 +13,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Logo)
+            @Html.DisplayNameFor(model => model.LogoFileName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SiteLink)
@@ -24,9 +24,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Contact)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PartnershipType)
-        </th>
         <th></th>
     </tr>
 
@@ -36,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Logo)
+            @Html.DisplayFor(modelItem => item.LogoFileName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SiteLink)
@@ -46,9 +43,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PartnershipType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
