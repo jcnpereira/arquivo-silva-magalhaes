@@ -833,9 +833,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Portal\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Portal\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Portal\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Create.cshtml" />
