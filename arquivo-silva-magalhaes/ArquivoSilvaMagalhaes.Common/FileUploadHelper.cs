@@ -8,7 +8,7 @@ namespace ArquivoSilvaMagalhaes.Common
 {
     public class FileUploadHelper
     {
-        public static void SaveImage(HttpPostedFileBase source, int width, int height, string path, FitMode mode, bool dispose = true, bool resetSource = false)
+        public static void SaveImage(Stream source, int width, int height, string path, FitMode mode, bool dispose = true, bool resetSource = false)
         {
             var instructions = new Instructions
             {
@@ -22,11 +22,12 @@ namespace ArquivoSilvaMagalhaes.Common
             var job = new ImageJob
             {
                 Instructions = instructions,
-                Source = source.InputStream,
+                Source = source,
                 Dest = path,
                 CreateParentDirectory = true,
                 ResetSourceStream = resetSource,
-                DisposeSourceObject = dispose
+                DisposeSourceObject = dispose,
+                AddFileExtension = true
             };
 
             ImageBuilder.Current.Build(job);

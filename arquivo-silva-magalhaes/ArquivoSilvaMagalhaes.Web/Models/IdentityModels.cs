@@ -6,7 +6,6 @@ namespace ArquivoSilvaMagalhaes.Models
     public class ApplicationUser : IdentityUser
     {
         public string RealName { get; set; }
-        public string EmailAddress { get; set; }
         public string PictureUrl { get; set; }
     }
 

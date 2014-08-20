@@ -5,9 +5,9 @@ namespace ArquivoSilvaMagalhaes.Migrations
     using System;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ArquivoSilvaMagalhaes.Models.ArchiveDataContext>
+    internal sealed class ArchiveDataContext_Configuration : DbMigrationsConfiguration<ArquivoSilvaMagalhaes.Models.ArchiveDataContext>
     {
-        public Configuration()
+        public ArchiveDataContext_Configuration()
         {
             AutomaticMigrationsEnabled = true;
 

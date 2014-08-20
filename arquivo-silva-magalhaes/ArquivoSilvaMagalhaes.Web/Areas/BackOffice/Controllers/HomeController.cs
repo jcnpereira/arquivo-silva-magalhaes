@@ -2,6 +2,7 @@
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
+    
     public class HomeController : BackOfficeController
     {
         //
