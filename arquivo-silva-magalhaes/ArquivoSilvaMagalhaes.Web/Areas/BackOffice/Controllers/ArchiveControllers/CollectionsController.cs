@@ -24,7 +24,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public async Task<ActionResult> Index(int authorId = 0, int pageNumber = 1)
         {
             var query = db.CollectionTranslations
-                .Include(c => c.Collection);
+                .Include(c => c.Collection)
+                .Where(c => c.LanguageCode == LanguageDefinitions.DefaultLanguage);
 
             if (authorId > 0)
             {

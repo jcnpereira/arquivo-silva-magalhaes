@@ -22,13 +22,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<Image> Images { get; set; }
     }
 
-    public partial class KeywordTranslation
+    public partial class KeywordTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int KeywordId { get; set; }
 
         [Key, Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [MaxLength(50), Index(IsUnique = true)]

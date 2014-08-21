@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public IList<ArchiveTranslation> Translations { get; set; }
     }
 
-    public class ArchiveTranslation
+    public class ArchiveTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int ArchiveId { get; set; }
@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual Archive Archive { get; set; }
 
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "ArchiveHistory")]

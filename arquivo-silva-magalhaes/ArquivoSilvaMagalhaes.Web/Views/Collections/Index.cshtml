@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CollectionViewModel>
+﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
 @{
     ViewBag.Title = "Index";
@@ -9,12 +9,12 @@
 @foreach (var col in Model)
 {
     <div class="media">
-        <a class="pull-left" href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Collection.Id)">
-            <img class="media-object" style="width:96px; height: 96px" src="~/Public/Collections/@col.Collection.LogoLocation">
+        <a class="pull-left" href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
+            <img class="media-object" style="width:96px; height: 96px" src="~/Public/Collections/@col.Entity.LogoLocation">
         </a>
         <div class="media-body">
             <h4 class="media-heading">
-                <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Collection.Id)">
+                <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
                     @Html.DisplayFor(modelItem => col.Translation.Title)
                 </a>
             </h4>
@@ -22,7 +22,7 @@
                 @Html.DisplayFor(modelItem => col.Translation.Description)
             </p>
             @{
-    var authors = col.Collection.Authors.ToList();
+    var authors = col.Entity.Authors.ToList();
             }
 
             @foreach (var a in authors.Select(a => a.FirstName + " " + a.LastName))
@@ -32,7 +32,7 @@
                 </p>
             }
             <p>
-                @Html.ActionLink("Informações", "Details", new { id = col.Collection.Id })
+                @Html.ActionLink("Informações", "Details", new { id = col.Entity.Id })
             </p>
         </div>
     </div>

@@ -80,7 +80,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual IList<EventTranslation> Translations { get; set; }
     }
 
-    public partial class EventTranslation : IValidatableObject
+    public partial class EventTranslation : EntityTranslation, IValidatableObject
     {
 
         [Key, Column(Order = 0)]
@@ -89,7 +89,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public Event Event { get; set; }
 
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(EventStrings), Name = "Title")]

@@ -95,7 +95,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<Author> Authors { get; set; }
     }
 
-    public partial class CollectionTranslation
+    public class CollectionTranslation : EntityTranslation
     {
         [Key]
         [Column(Order = 0)]
@@ -103,7 +103,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         [Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(CollectionStrings), Name = "Title")]

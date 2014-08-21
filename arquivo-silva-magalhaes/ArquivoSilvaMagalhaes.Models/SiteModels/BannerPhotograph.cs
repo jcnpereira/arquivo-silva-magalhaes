@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual IList<BannerTranslation> Translations { get; set; }
     }
 
-    public class BannerTranslation
+    public class BannerTranslation : EntityTranslation
     {
 
         [Key, Column(Order = 0)]
@@ -30,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual Banner BannerPhotograph { get; set; }
 
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Display(ResourceType = typeof(BannerStrings), Name = "Caption")]
         public string Caption { get; set; }

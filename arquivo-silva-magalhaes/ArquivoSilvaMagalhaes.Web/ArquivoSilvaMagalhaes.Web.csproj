@@ -308,8 +308,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
+    <Compile Include="ViewModels\TranslatedViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\ostrich-black-webfont.svg" />

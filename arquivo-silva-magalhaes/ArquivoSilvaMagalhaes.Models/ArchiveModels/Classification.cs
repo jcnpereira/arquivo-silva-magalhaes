@@ -26,14 +26,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// <summary>
     /// Details about a classification.
     /// </summary>
-    public class ClassificationTranslation
+    public class ClassificationTranslation : EntityTranslation
     {
 
         [Key, Column(Order = 0)]
         public int ClassificationId { get; set; }
 
         [Key, Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         /// <summary>
         /// The classification details.

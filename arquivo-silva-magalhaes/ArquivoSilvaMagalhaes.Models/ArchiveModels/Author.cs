@@ -83,7 +83,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// <summary>
     /// Text details about this author.
     /// </summary>
-    public partial class AuthorTranslation
+    public partial class AuthorTranslation : EntityTranslation
     {
         /// <summary>
         /// The author which is associated with this detail text.
@@ -95,7 +95,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         [Column(Order = 1)]
         [Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         /// <summary>
         /// The nationality of this author. eg. Portuguese.

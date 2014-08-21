@@ -20,13 +20,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<Specimen> Specimens { get; set; }
     }
 
-    public class ProcessTranslation
+    public class ProcessTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int ProcessId { get; set; }
 
         [Key, Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [MaxLength(100)]

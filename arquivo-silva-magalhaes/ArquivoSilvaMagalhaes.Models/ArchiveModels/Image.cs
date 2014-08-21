@@ -60,12 +60,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
     }
 
-    public class ImageTranslation
+    public class ImageTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int ImageId { get; set; }
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(ImageStrings), Name = "Title")]

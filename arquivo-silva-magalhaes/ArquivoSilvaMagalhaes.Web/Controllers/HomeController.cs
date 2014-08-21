@@ -6,6 +6,7 @@ using System.Threading;
 using ArquivoSilvaMagalhaes.ViewModels;
 using System.Web;
 using System.Threading.Tasks;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -69,7 +70,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Where(c => c.IsVisible)
                 .Include(c => c.Translations)
                 .ToList()
-                .Select(c => new CollectionViewModel(c))
+                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
                 .ToList();
 
             return View(model);

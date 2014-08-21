@@ -44,13 +44,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
     }
 
-    public class ShowcasePhotoTranslation : IValidatableObject
+    public class ShowcasePhotoTranslation : EntityTranslation, IValidatableObject
     {
         [Key, Column(Order = 0)]
         public int ShowcasePhotoId { get; set; }
 
         [Key, Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Title")]

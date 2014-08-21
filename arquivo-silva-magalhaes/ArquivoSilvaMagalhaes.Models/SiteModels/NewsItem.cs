@@ -48,7 +48,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual IList<Attachment> Attachments { get; set; }
     }
 
-    public class NewsItemTranslation : IValidatableObject
+    public class NewsItemTranslation : EntityTranslation, IValidatableObject
     {
         [Key, Column(Order = 0)]
         public int NewsItemId { get; set; }
@@ -56,7 +56,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public NewsItem NewsItem { get; set; }
         [Required]
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Title")]

@@ -94,13 +94,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
     }
 
-    public partial class DocumentTranslation
+    public partial class DocumentTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int DocumentId { get; set; }
 
         [Key, Column(Order = 1), Required]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]

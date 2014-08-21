@@ -91,7 +91,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         }
     }
 
-    public class SpecimenTranslation
+    public class SpecimenTranslation : EntityTranslation
     {
         [Key, Column(Order = 0)]
         public int SpecimenId { get; set; }
@@ -99,7 +99,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public Specimen Specimen { get; set; }
 
         [Key, Column(Order = 1)]
-        public string LanguageCode { get; set; }
+        public override string LanguageCode { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Description")]
