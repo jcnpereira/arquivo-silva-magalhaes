@@ -18,10 +18,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-
         public ActionResult Index()
         {
-            return View();
+            return View(db.BannerTranslations.ToList());
         }
 
         public ActionResult History()
