@@ -142,6 +142,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visível ao público.
+        /// </summary>
+        public static string IsVisible {
+            get {
+                return ResourceManager.GetString("IsVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indexações desta imagem.
         /// </summary>
         public static string Keywords {

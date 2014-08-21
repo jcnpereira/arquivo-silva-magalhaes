@@ -32,6 +32,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public string ImageUrl { get; set; }
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "IsVisible")]
+        public bool IsVisible { get; set; }
+
         [ForeignKey("DocumentId")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public virtual Document Document { get; set; }

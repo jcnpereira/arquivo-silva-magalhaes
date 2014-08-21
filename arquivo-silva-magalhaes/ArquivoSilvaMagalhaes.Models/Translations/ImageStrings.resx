@@ -144,6 +144,9 @@
   <data name="ImageCode" xml:space="preserve">
     <value>Código de referência</value>
   </data>
+  <data name="IsVisible" xml:space="preserve">
+    <value>Visível ao público</value>
+  </data>
   <data name="Keywords" xml:space="preserve">
     <value>Indexações desta imagem</value>
   </data>
