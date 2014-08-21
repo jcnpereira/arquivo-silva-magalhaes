@@ -24,17 +24,15 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Collection col = new Collection();
-
             return View(await Task.Run(() => db.ImageTranslations
           .Include(img => img.Image)
           .Where(doc => doc.Image.DocumentId == id)
-          .Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                //.Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Image.ProductionDate)));
-          
+
         }
-        
+
 
         // GET: Images/Details/5
         public ActionResult Details(int? id)
