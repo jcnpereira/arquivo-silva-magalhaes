@@ -134,14 +134,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Image image, int[] keywordIds)
+        public async Task<ActionResult> Edit(ImageEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // "Force-load" the collection and the authors.
+                var image = model.Image;
+                var keywordIds = model.KeywordIds;
+
+                // "Force-load" the image and the keywords.
                 _db.Images.Attach(image);
                 _db.Entry(image).Collection(i => i.Keywords).Load();
-                // The forced-loading was required so that the author list can be updated.
+
+                var fileNameProp = _db.Entry(image).Property(i => i.ImageUrl);
+                fileNameProp.IsModified = false;
+
+                if (model.ImageUpload != null)
+                {
+                    var fileName = 
+                        fileNameProp.CurrentValue ?? 
+                        Guid.NewGuid().ToString() + "_" + Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+
+                    var path = Server.MapPath("~/Public/Images/");
+                    Directory.CreateDirectory(path);
+
+                    FileUploadHelper.GenerateVersions(model.ImageUpload.InputStream, path + fileName);
+
+                    image.ImageUrl = fileName;
+                }
+                
                 image.Keywords = _db.Keywords.Where(k => keywordIds.Contains(k.Id)).ToList();
 
                 _db.Entry(image).State = EntityState.Modified;
@@ -156,7 +176,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(image));
+            return View(GenerateViewModel(model.Image));
         }
 
         public async Task<ActionResult> Delete(int? id)
