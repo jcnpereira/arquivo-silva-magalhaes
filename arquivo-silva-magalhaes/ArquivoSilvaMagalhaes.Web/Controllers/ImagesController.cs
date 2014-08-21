@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             return View(await Task.Run(() => db.ImageTranslations
           .Include(img => img.Image)
-          .Where(doc => doc.Image.Id == id)
+          .Where(doc => doc.Image.DocumentId == id)
           .Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Image.ProductionDate)));
           
