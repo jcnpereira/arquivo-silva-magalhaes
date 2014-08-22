@@ -22,6 +22,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
     public class ImageEditViewModel
     {
+        public ImageEditViewModel()
+        {
+            AddWatermark = true;
+        }
+
         public Image Image { get; set; }
 
         //[Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
@@ -35,6 +40,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         public int[] KeywordIds { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
+
+        public bool AddWatermark { get; set; }
     }
 
     public class ImageCreateModel

@@ -14,7 +14,7 @@ using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class CollectionsController : FrontOfficeController
+    public class CollectionsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

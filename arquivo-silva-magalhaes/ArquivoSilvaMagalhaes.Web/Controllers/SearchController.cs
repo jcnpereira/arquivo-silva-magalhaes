@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class SearchController : FrontOfficeController
+    public class SearchController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
         // GET: Search

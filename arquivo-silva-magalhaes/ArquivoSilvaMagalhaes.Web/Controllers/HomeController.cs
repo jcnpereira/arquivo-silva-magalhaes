@@ -10,7 +10,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class HomeController : FrontOfficeController
+    public class HomeController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

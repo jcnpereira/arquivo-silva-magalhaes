@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ArquivoSilvaMagalhaes.Controllers
+namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -286,7 +286,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { Area = "" });
         }
 
         //

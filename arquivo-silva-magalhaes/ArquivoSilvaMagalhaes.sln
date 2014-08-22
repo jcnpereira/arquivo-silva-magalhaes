@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Common", "ArquivoSilvaMagalhaes.Common\ArquivoSilvaMagalhaes.Common.csproj", "{FC7D90B5-1D96-4FCE-A3E8-FE44CA8CAA48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Web.Libs", "ArquivoSilvaMagalhaes.Web.Libs\ArquivoSilvaMagalhaes.Web.Libs.csproj", "{346522A3-4FC1-4E0C-99B5-88365347B379}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FC7D90B5-1D96-4FCE-A3E8-FE44CA8CAA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC7D90B5-1D96-4FCE-A3E8-FE44CA8CAA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC7D90B5-1D96-4FCE-A3E8-FE44CA8CAA48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346522A3-4FC1-4E0C-99B5-88365347B379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346522A3-4FC1-4E0C-99B5-88365347B379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346522A3-4FC1-4E0C-99B5-88365347B379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346522A3-4FC1-4E0C-99B5-88365347B379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

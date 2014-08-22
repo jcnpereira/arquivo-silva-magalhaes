@@ -231,7 +231,6 @@
     <Compile Include="Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
-    <Compile Include="Controllers\FrontOfficeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\NewsItemsController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
@@ -243,7 +242,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SpotLightVideoController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\NewsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PortalController.cs" />
@@ -835,15 +834,15 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\Login.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\Manage.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\Register.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Create.cshtml" />
@@ -858,11 +857,8 @@
     <Content Include="Views\Home\Links.cshtml" />
     <Content Include="Views\ShowcasePhotos\Index.cshtml" />
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
-    <Content Include="Views\Account\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
-    <Content Include="Views\EventsView\Details.cshtml" />
-    <Content Include="Views\EventsView\Index.cshtml" />
-    <Content Include="Views\Banner\Index.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Shared\_Banner.cshtml" />
@@ -941,6 +937,10 @@
     <ProjectReference Include="..\ArquivoSilvaMagalhaes.Models\ArquivoSilvaMagalhaes.Models.csproj">
       <Project>{092ded99-f5a2-4c82-8432-c6eba21f672d}</Project>
       <Name>ArquivoSilvaMagalhaes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArquivoSilvaMagalhaes.Web.Libs\ArquivoSilvaMagalhaes.Web.Libs.csproj">
+      <Project>{346522a3-4fc1-4e0c-99b5-88365347b379}</Project>
+      <Name>ArquivoSilvaMagalhaes.Web.Libs</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
