@@ -11,12 +11,12 @@
 {
     <div class="media">
 
-        <a class="pull-left" href="@Url.Action("Details", "Images", new { id= img.ImageId})">
+        <a class="pull-left" href="@Url.Action("ViewImage", "Images", new { id= img.ImageId})">
             <img class="media-object" style="width:96px; height: 96px" src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg">
         </a>
         <div class="media-body">
             <h4 class="media-heading">
-                @Html.ActionLink(img.Title, "Details", "Images", new { id= img.ImageId},null)
+                @Html.ActionLink(img.Title, "ViewImage", "Images", new { id= img.ImageId},null)
             </h4>
             <p>
                 @Html.DisplayFor(modelItem => img.Description)

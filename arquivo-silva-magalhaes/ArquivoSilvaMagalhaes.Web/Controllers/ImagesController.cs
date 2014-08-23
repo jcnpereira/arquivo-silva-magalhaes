@@ -28,6 +28,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(await Task.Run(() => db.ImageTranslations
           .Include(img => img.Image)
           .Where(doc => doc.Image.DocumentId == id)
+          .Where(doc => doc.Image.IsVisible)
                 //.Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Image.ProductionDate)));
 
@@ -48,6 +49,23 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
             return View(image);
         }
+
+        public ActionResult ViewImage(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Image image = db.Images.Find(id);
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+            return View(image);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -880,6 +880,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Views\Images\ViewImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

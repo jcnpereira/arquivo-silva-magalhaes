@@ -10,7 +10,7 @@
 {
     <div class="media">
         <a class="pull-left" href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
-            <img class="media-object" style="width:96px; height: 96px" src="~/Public/Collections/@col.Entity.LogoLocation">
+            <img class="media-object" style="width:200px" src="~/Public/Collections/@col.Entity.LogoLocation">
         </a>
         <div class="media-body">
             <h4 class="media-heading">
@@ -27,11 +27,11 @@
 
             @foreach (var a in authors.Select(a => a.FirstName + " " + a.LastName))
             {
-                <p>
+                <p style="font-size:small">
                     @Html.DisplayFor(modelItem => a)
                 </p>
             }
-            <p>
+            <p style="font-size:smaller">
                 @Html.ActionLink("Informações", "Details", new { id = col.Entity.Id })
             </p>
         </div>
