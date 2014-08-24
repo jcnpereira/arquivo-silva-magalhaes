@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes
             //    //constraints: new { lang = "[a-zA-Z]{2}(-[a-zA-Z])?"}
             //);
 
-            routes.MapLocalizeRoute("Default",
+            routes.MapLocalizedRoute("Default",
                 url: "{culture}/{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 constraints: new { culture = "[a-zA-Z]{2}(-[a-zA-Z]{2})?" },

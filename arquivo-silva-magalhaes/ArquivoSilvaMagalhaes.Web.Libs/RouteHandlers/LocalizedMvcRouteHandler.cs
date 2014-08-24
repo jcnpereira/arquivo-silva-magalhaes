@@ -1,53 +1,62 @@
 ﻿using ArquivoSilvaMagalhaes.Common;
-using ArquivoSilvaMagalhaes.Web.Libs.Constants;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Web.Libs.RouteHandlers
 {
     public class LocalizedRouteHandler : MvcRouteHandler
     {
-        protected override System.Web.IHttpHandler GetHttpHandler(System.Web.Routing.RequestContext requestContext)
+        protected override IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            var urlLocale = requestContext.RouteData.Values["culture"] as string;
-            var cultureName = urlLocale ?? "";
+            // Get the language from the url -- most prioritary.
+            var urlLocale = requestContext.RouteData.Values["culture"] as string ?? "";
 
-            var cookieLocale = requestContext.HttpContext.Request.Cookies["locale"];
+            var culturesToTest = new List<string>();
 
-            if (cookieLocale != null && cultureName == "")
+            if (!string.IsNullOrEmpty(urlLocale))
             {
-                // if request contains locale cookie, we need to put higher priority than url locale
-                // user might click the link from somewhere but he/she already set different locale
-                //if (!cookieLocale.Value.Equals(urlLocale, StringComparison.OrdinalIgnoreCase))
-                //{
-                //    // if cookie locale and url cookie are different,
-                //    // we should redirect with cookie locale
-                //    var routeValues = requestContext.RouteData.Values;
-                //    routeValues["culture"] = cookieLocale.Value;
-                //    return new RedirectHandler(new UrlHelper(requestContext).RouteUrl(routeValues));
-                //}
-                //else
-                //{
-                    cultureName = cookieLocale.Value;
-                //}
+                culturesToTest.Add(urlLocale);
             }
 
-            if (cultureName == "")
+
+            // Get the language from the cookie, if it exists -- 2nd priority.
+            var cookieLocale = requestContext.HttpContext.Request.Cookies["locale"];
+
+            if (cookieLocale != null)
             {
-                return GetDefaultLocaleRedirectHandler(requestContext);
+                culturesToTest.Add(cookieLocale.Value);
+            }
+
+            // Add all the user's requested languages from the Accept-Language header -- 3rd priority.
+            culturesToTest.AddRange(requestContext
+                .HttpContext
+                .Request
+                .UserLanguages
+                .Select(l => l.Split(';')[0])
+                .ToList());
+
+            var chosenLanguage = LanguageDefinitions.GetClosestLanguageCode(culturesToTest.ToArray());
+            requestContext.HttpContext.Response.SetCookie(new HttpCookie("locale", chosenLanguage));
+
+            // Redirect if the url locale doesn't match the culture name.
+            if (!LanguageDefinitions.AreCodesEquivalent(chosenLanguage, urlLocale))
+            {
+                var routeValues = requestContext.RouteData.Values;
+                routeValues["culture"] =
+                    LanguageDefinitions.GetClosestLanguageCode(chosenLanguage);
+
+                return new RedirectHandler(new UrlHelper(requestContext).RouteUrl(routeValues));
             }
 
             try
             {
-                var culture = CultureInfo.GetCultureInfo(cultureName);
+                // Set the thread's language.
+                var culture = CultureInfo.GetCultureInfo(chosenLanguage);
                 Thread.CurrentThread.CurrentCulture = culture;
                 Thread.CurrentThread.CurrentUICulture = culture;
             }
@@ -58,16 +67,20 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.RouteHandlers
                 return GetDefaultLocaleRedirectHandler(requestContext);
             }
 
-            requestContext.HttpContext.Response.SetCookie(new HttpCookie("locale", cultureName));
-
             return base.GetHttpHandler(requestContext);
         }
 
+        /// <summary>
+        /// Gets a handler that redirects the request
+        /// to an url that has the default language for the
+        /// application.
+        /// </summary>
         private static IHttpHandler GetDefaultLocaleRedirectHandler(RequestContext requestContext)
         {
-            var uiCulture = CultureInfo.CurrentUICulture;
             var routeValues = requestContext.RouteData.Values;
-            routeValues["culture"] = uiCulture.Name;
+            routeValues["culture"] = 
+                LanguageDefinitions.GetClosestLanguageCode(requestContext.HttpContext.Request.UserLanguages);
+
             return new RedirectHandler(new UrlHelper(requestContext).RouteUrl(routeValues));
         }
     }

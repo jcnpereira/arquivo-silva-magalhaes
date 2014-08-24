@@ -104,11 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature\SortingTests.cs" />
-    <Compile Include="Feature\TranslationViewModels.cs" />
+    <Compile Include="Localization\TranslationViewModels.cs" />
+    <Compile Include="Localization\LanguageResolvingTests.cs" />
     <Compile Include="Mapping\AuthorMappingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="TranslationTests.cs" />
+    <Compile Include="Localization\TranslationTests.cs" />
     <Compile Include="HtmlEncoderTests.cs" />
   </ItemGroup>
   <ItemGroup>

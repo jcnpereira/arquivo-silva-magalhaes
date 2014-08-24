@@ -5,11 +5,15 @@ using ArquivoSilvaMagalhaes.ViewModels;
 using System.Threading;
 using System.Globalization;
 
-namespace ArquivoSilvaMagalhaes.Tests.Feature
+namespace ArquivoSilvaMagalhaes.Tests.Localization
 {
     [TestClass]
     public class TranslationViewModelTests
     {
+        /// <summary>
+        /// Ensure that, if the translation exists for the current language,
+        /// then it's returned.
+        /// </summary>
         [TestMethod]
         public void TranslationViewModel_GetsTranslation()
         {
@@ -34,6 +38,11 @@ namespace ArquivoSilvaMagalhaes.Tests.Feature
             Assert.AreEqual("Inglês", vm.Translation.Description);
         }
 
+        /// <summary>
+        /// Ensure that, when the translation
+        /// doesn't exist for the desired language,
+        /// the default language should be returned instead.
+        /// </summary>
         [TestMethod]
         public void TranslationViewModel_GetsDefaultTranslation()
         {

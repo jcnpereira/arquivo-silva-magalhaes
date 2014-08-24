@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Web", "ArquivoSilvaMagalhaes.Web\ArquivoSilvaMagalhaes.Web.csproj", "{A4A0B83F-7ED6-44D8-9570-96DA0EDDE716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Web.Tests", "ArquivoSilvaMagalhaes.Web.Tests\ArquivoSilvaMagalhaes.Web.Tests.csproj", "{73F31C9F-AD08-4B13-8875-869680A3149E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Tests", "ArquivoSilvaMagalhaes.Web.Tests\ArquivoSilvaMagalhaes.Tests.csproj", "{73F31C9F-AD08-4B13-8875-869680A3149E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquivoSilvaMagalhaes.Models", "ArquivoSilvaMagalhaes.Models\ArquivoSilvaMagalhaes.Models.csproj", "{092DED99-F5A2-4C82-8432-C6EBA21F672D}"
 EndProject

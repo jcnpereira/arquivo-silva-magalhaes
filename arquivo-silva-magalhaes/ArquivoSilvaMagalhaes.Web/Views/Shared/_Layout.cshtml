@@ -57,8 +57,11 @@
 
                 @* Language selectors. *@
                 <ul id="afsm-language-selector">
-                    <li>@Html.ActionLink("PT", "SetLanguage", "Home", new { lang = "pt", returnUrl = Request.Path }, null)</li>
-                    <li>@Html.ActionLink("EN", "SetLanguage", "Home", new { lang = "en", returnUrl = Request.Path }, null)</li>
+                    @*<li>@Html.ActionLink("PT", "SetLanguage", "Home", new { lang = "pt", returnUrl = Request.Path }, null)</li>
+            <li>@Html.ActionLink("EN", "SetLanguage", "Home", new { lang = "en", returnUrl = Request.Path }, null)</li>*@
+                    
+                    <li>@Html.ActionLink("EN", "Index", "Home", new { culture = "en" }, null)</li>
+                    <li>@Html.ActionLink("PT", "Index", "Home", new { culture = "pt" }, null)</li>
                 </ul>
 
                 <ul class="nav nav-stacked">

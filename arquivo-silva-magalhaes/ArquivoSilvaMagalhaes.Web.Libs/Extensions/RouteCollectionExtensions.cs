@@ -11,8 +11,10 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
 {
     public static class RouteCollectionExtensions
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-            Justification = "This is a URL template with special characters, not just a regular valid URL.")]
+        /// <summary>
+        /// Maps a route that is not localized, but needs to be.
+        /// </summary>
+        /// <returns></returns>
         public static Route MapRouteToLocalizeRedirect(this RouteCollection routes, string name, string url, object defaults)
         {
             var redirectRoute = new Route(url, new RouteValueDictionary(defaults), new LocalizationRedirectRouteHandler());
@@ -21,31 +23,26 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
             return redirectRoute;
         }
 
-        public static Route MapLocalizeRoute(this RouteCollection routes, string name, string url, object defaults)
+        /// <summary>
+        /// Maps a localized route with the specified
+        /// name, url, defaults and constraints.
+        /// </summary>
+        public static Route MapLocalizedRoute(this RouteCollection routes, string name, string url, object defaults)
         {
-            return routes.MapLocalizeRoute(name, url, defaults, new { });
+            return routes.MapLocalizedRoute(name, url, defaults, new { });
         }
 
-        public static Route MapLocalizeRoute(this RouteCollection routes, string name, string url, object defaults, object constraints)
+        public static Route MapLocalizedRoute(this RouteCollection routes, string name, string url, object defaults, object constraints)
         {
-            var route = new Route(
-                url,
-                new RouteValueDictionary(defaults),
-                new RouteValueDictionary(constraints),
-                new LocalizedRouteHandler());
+            var route = routes.MapRoute(name, url, defaults, constraints);
 
-            routes.Add(name, route);
+            route.RouteHandler = new LocalizedRouteHandler();
 
             return route;
         }
 
-        public static Route MapLocalizeRoute(this RouteCollection routes, string name, string url, object defaults, object constraints, string[] namespaces)
+        public static Route MapLocalizedRoute(this RouteCollection routes, string name, string url, object defaults, object constraints, string[] namespaces)
         {
-            //var route = new Route(
-            //    url,
-            //    new RouteValueDictionary(defaults),
-            //    new RouteValueDictionary(constraints),
-            //    new LocalizedRouteHandler());
 
             var route = routes.MapRoute(name, url, defaults, constraints, namespaces);
 

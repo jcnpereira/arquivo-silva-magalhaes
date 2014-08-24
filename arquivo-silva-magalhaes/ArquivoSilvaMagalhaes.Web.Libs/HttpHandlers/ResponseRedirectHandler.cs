@@ -16,8 +16,6 @@ namespace ArquivoSilvaMagalhaes.Web.Libs
     {
         private string _newUrl;
 
-        [SuppressMessage(category: "Microsoft.Design", checkId: "CA1054:UriParametersShouldNotBeStrings",
-            Justification = "We just use string since HttpResponse.Redirect only accept as string parameter.")]
         public RedirectHandler(string newUrl)
         {
             this._newUrl = newUrl;

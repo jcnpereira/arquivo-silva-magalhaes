@@ -8,9 +8,6 @@ using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Common
 {
-
-
-
     public class LanguageDefinitions
     {
         public const string DefaultLanguage = "pt";
@@ -21,42 +18,81 @@ namespace ArquivoSilvaMagalhaes.Common
             "en"
         };
 
-        /// <summary>
-        /// Sets the current thread's culture for localization purposes.
-        /// The order for setting the thread's language is as follows:
-        /// 1. The value of the "lang" cookie.
-        /// 2. 
-        /// parameter on 
-        /// </summary>
-        /// <param name="routeData"></param>
-        public static void SetThreadLanguage(RouteData routeData, HttpCookie langCookie = null)
-        {
-            var lang = routeData.Values["lang"] as string ?? "pt";
-
-            if (Thread.CurrentThread.CurrentUICulture.Name != lang)
-            {
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-            }
-        }
-
         public static string GetLanguage(string languageCode)
         {
             return LanguageNames.ResourceManager.GetString(languageCode);
         }
 
-        //public static string GetLanguageNameForCurrentLanguage(string languageCode)
-        //{
-        //    return new CultureInfo(Thread.CurrentThread.CurrentUICulture.Name).Na
-        //}
-
-        public static string GetLanguageName(string languageCode)
+        public static bool AreCodesEquivalent(string x, string y)
         {
-            return CultureInfo.GetCultureInfo(languageCode).NativeName;
+            x = x.ToLower();
+            y = y.ToLower();
+
+            if (x == y)
+            {
+                return true;
+            }
+
+            if (x.Split('-')[0] == y.Split('-')[0])
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static string GetClosestLanguageCode(params string[] languages)
+        {
+            languages = languages ?? new string[] { };
+
+            foreach (var lang in languages.Where(l => !string.IsNullOrEmpty(l)))
+            {
+                var resultingLanguage = GetClosestLanguageCode(lang);
+
+                if (resultingLanguage != null)
+                {
+                    return resultingLanguage;
+                }
+            }
+
+            return DefaultLanguage;
+        }
+
+        private static string GetClosestLanguageCode(string cultureCode)
+        {
+            // Ensure that the culture code is valid.
+            try
+            {
+                CultureInfo.GetCultureInfo(cultureCode);
+            }
+            catch
+            {
+                return null;
+            }
+
+            // If the language code is in the list, return it.
+            if (Languages.Contains(cultureCode.ToLower()))
+            {
+                return cultureCode;
+            }
+
+            // Get the language code from the culture code,
+            // i.e., en-US -> en, and try again.
+            var language = cultureCode.Split('-')[0];
+
+            if (Languages.Contains(language.ToLower()))
+            {
+                return language;
+            }
+
+            return null;
         }
 
         public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(params string[] languages)
         {
-            return Languages.Where(l => !languages.Contains(l)).Select(l => new SelectListItem
+            return Languages
+                .Where(l => !languages.Contains(l))
+                .Select(l => new SelectListItem
                 {
                     Value = l,
                     Text = GetLanguage(l)
