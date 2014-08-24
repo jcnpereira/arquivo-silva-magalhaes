@@ -3,45 +3,46 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+<h2>Informações sobre a imagem</h2>
 <div>
-    <h4>Image</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Document.Title)
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Title)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Document.Title)
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Title)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Location)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductionDate)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ProductionDate)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ImageCode)
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Description)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.ImageCode)
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Description)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Publication)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Publication)
         </dd>
-
     </dl>
 </div>
 <p>

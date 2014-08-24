@@ -21,7 +21,10 @@
             <p>
                 @Html.DisplayFor(modelItem => img.Description)
             </p>
-            <p>
+            <p style="font-size:small">
+                @Html.DisplayFor(modelItem => img.Subject)
+            </p>
+            <p style="font-size:smaller">
                 @Html.ActionLink("Informações", "Details", new { id = img.ImageId })
             </p>
         </div>

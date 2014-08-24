@@ -6,20 +6,19 @@
 
 <h2>Documentos</h2>
 <hr />
-
-<ul class="media-list">
     @foreach (var doc in Model)
     {
-        <li class="media">
-        @*<li class="col-md-3 col-md-offset-0">
-        <li class="media-body col-md-3">*@
-            <a class="pull-left" href="~/Images/Index/@doc.DocumentId">
+        <div class="media">
+            @*<li class="col-md-3 col-md-offset-0">
+                <li class="media-body col-md-3">*@
+            <a href="~/Images/Index/@doc.DocumentId">
                 <h4 class="media-heading">@doc.Document.Title</h4>
             </a>
-                <h5>@doc.Description</h5>
-            <p>
+            <h5>@doc.Description</h5>
+            <h6>@doc.Document.DocumentDate.Value.Date.Day/@doc.Document.DocumentDate.Value.Date.Month/@doc.Document.DocumentDate.Value.Date.Year</h6>
+            <p style="font-size:smaller">
                 @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
             </p>
-        </li>
+        </div>
     }
-</ul>
+
