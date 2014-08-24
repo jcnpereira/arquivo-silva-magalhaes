@@ -15,7 +15,7 @@
                 <h4 class="media-heading">@doc.Document.Title</h4>
             </a>
             <h5>@doc.Description</h5>
-            <h6>@doc.Document.DocumentDate.Value.Date.Day/@doc.Document.DocumentDate.Value.Date.Month/@doc.Document.DocumentDate.Value.Date.Year</h6>
+            <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
             <p style="font-size:smaller">
                 @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
             </p>
