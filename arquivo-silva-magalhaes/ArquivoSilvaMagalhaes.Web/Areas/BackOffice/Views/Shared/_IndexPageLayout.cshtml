@@ -30,4 +30,6 @@
 @section scripts {
     @Html.Partial("_DeleteConfirmModal")
     @Scripts.Render("~/bundles/scripts/backoffice/delete-modal")
+
+    @RenderSection("scripts", required: false)
 }
