@@ -1,4 +1,6 @@
-﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +8,7 @@
 
 <h2>Acervo</h2>
 <hr />
+
 @foreach (var col in Model)
 {
     <div class="media">

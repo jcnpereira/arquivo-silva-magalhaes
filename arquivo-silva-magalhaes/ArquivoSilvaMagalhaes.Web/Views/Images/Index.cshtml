@@ -1,16 +1,15 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
 
-@{
+@*@{
     ViewBag.Title = "Index";
-}
-
+}*@
 <h2>Imagens</h2>
-<hr />
 
 @foreach (var img in Model)
 {
-    <div class="media">
-
+    <div class="media col-md-6">
         <a class="pull-left" href="@Url.Action("ViewImage", "Images", new { id= img.ImageId})">
             <img class="media-object" style="width:96px; height: 96px" src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg">
         </a>
@@ -29,4 +28,9 @@
             </p>
         </div>
     </div>
+}
+
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }

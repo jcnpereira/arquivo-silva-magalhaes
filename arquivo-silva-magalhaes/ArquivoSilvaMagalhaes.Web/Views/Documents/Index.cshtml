@@ -1,9 +1,10 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.DocumentTranslation>
+﻿@using PagedList;
+@using PagedList.Mvc;
 
+@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.DocumentTranslation>
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Documentos</h2>
 <hr />
     @foreach (var doc in Model)
@@ -21,4 +22,7 @@
             </p>
         </div>
     }
-
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}

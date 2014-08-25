@@ -10,6 +10,8 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -18,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: Images
-        public async Task<ActionResult> Index(int? id)
+        public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
             if (id == null)
             {
@@ -30,8 +32,8 @@ namespace ArquivoSilvaMagalhaes.Controllers
           .Where(doc => doc.Image.DocumentId == id)
           .Where(doc => doc.Image.IsVisible)
                 //.Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
-          .OrderBy(doc => doc.Image.ProductionDate)));
-
+          .OrderBy(doc => doc.Image.ProductionDate)
+          .ToPagedList(pageNumber, 8)));
         }
 
 

@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -18,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: Documents
-        public async Task<ActionResult> Index(int? id)
+        public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
             if (id == null)
             {
@@ -31,8 +33,8 @@ namespace ArquivoSilvaMagalhaes.Controllers
           .Include(doc => doc.Document)
           .Where(doc => doc.Document.CollectionId == id)
           .Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
-          .OrderBy(doc => doc.Document.DocumentDate)));
-          
+          .OrderBy(doc => doc.Document.DocumentDate)
+          .ToPagedList(pageNumber, 4)));
         }
 
         // GET: Documents/Details/5

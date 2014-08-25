@@ -1,0 +1,11 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    @RenderBody()
+    <div class="panel-footer">
+        <div class="text-center">
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+        </div>
+    </div>
