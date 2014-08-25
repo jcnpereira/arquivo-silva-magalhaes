@@ -10,6 +10,7 @@ using System.Data.Entity;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Common;
 using System.IO;
+using ArquivoSilvaMagalhaes.Web.I18n;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationControllers
 {
@@ -69,7 +70,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
         {
             if (_db.FindByName(model.UserName) != null)
             {
-                ModelState["UserName"].Errors.Add("Este utilizador já existe. Escolha outro.");
+                ModelState["UserName"].Errors.Add(AuthStrings.Error_UserAlreadyExists);
             }
 
             if (ModelState.IsValid)
@@ -120,8 +121,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
         }
 
         // GET: BackOffice/Users/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string userName)
         {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = _db.FindByName(userName);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
             return View();
         }
 

@@ -461,7 +461,6 @@
     <Content Include="Areas\BackOffice\Views\Authors\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shared\Web.config" />
     <Content Include="Areas\BackOffice\Views\Shared\_AddLanguagePrompt.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\Delete.cshtml" />
@@ -836,14 +835,10 @@
     <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Account\_RemoveAccountPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Areas\BackOffice\Views\Account\Login.cshtml" />
     <Content Include="Areas\BackOffice\Views\Account\Manage.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Account\Register.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Create.cshtml" />
@@ -857,7 +852,6 @@
     <Content Include="Views\Home\Links.cshtml" />
     <Content Include="Views\ShowcasePhotos\Index.cshtml" />
     <Content Include="Views\TechnicalDocuments\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
@@ -939,6 +933,10 @@
     <ProjectReference Include="..\ArquivoSilvaMagalhaes.Models\ArquivoSilvaMagalhaes.Models.csproj">
       <Project>{092ded99-f5a2-4c82-8432-c6eba21f672d}</Project>
       <Name>ArquivoSilvaMagalhaes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArquivoSilvaMagalhaes.Web.I18n\ArquivoSilvaMagalhaes.Web.I18n.csproj">
+      <Project>{15b7675e-1fb5-4787-9500-ae429927bc89}</Project>
+      <Name>ArquivoSilvaMagalhaes.Web.I18n</Name>
     </ProjectReference>
     <ProjectReference Include="..\ArquivoSilvaMagalhaes.Web.Libs\ArquivoSilvaMagalhaes.Web.Libs.csproj">
       <Project>{346522a3-4fc1-4e0c-99b5-88365347b379}</Project>
