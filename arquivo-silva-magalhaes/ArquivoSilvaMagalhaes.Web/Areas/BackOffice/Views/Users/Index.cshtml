@@ -8,7 +8,7 @@
 <div class="list-group">
     @foreach (var item in Model)
     {
-        <a href="#" class="list-group-item">
+        <a href="@Url.Action("Edit", "Users", new { userName = item.UserName })" class="list-group-item">
             <div class="media">
                 <div class="pull-left">
                     <img class="media-object" width="48" height="48" src="~/Public/Users/@item.PictureUrl" alt="@item.RealName">

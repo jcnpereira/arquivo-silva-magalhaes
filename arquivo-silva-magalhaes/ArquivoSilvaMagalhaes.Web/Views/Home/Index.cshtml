@@ -1,28 +1,24 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.BannerTranslation>
+﻿@model IList<ArquivoSilvaMagalhaes.Models.SiteModels.BannerTranslation>
 
 
 <div id="afsm-carousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    @*<ol class="carousel-indicators">
-            <li data-target="#afsm-carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#afsm-carousel" data-slide-to="1"></li>
-            <li data-target="#afsm-carousel" data-slide-to="2"></li>
-        </ol>*@
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <div class="afsm-banner-item-container">
-                <img src="~/Content/Images/temp/01.jpg">
-            </div>
-            <div class="carousel-caption">
-                Olá AFSM!
-            </div>
-        </div>
-        @foreach (var b in Model)
+    <ol class="carousel-indicators">
+        @for (var i = 0; i < Model.Count; i++)
         {
-            <div class="item">
-                <div class="afsm-banner-item-container">
-                    <img src="~/Public/Banners/@b.BannerPhotograph.UriPath">
+            <li data-target="#afsm-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+        }
+    </ol>
+
+    <div class="carousel-inner">
+
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            var b = Model[i];
+            <div class="item @(i == 0 ? "active" : "")">
+                <div class="afsm-banner-item-container"
+                     style="background-image: url(@Url.Content("~/Public/Banners/" + b.BannerPhotograph.UriPath));">
+                    @*<img src="~/Public/Banners/@b.BannerPhotograph.UriPath">*@
                 </div>
                 <div class="carousel-caption">
                     @Html.DisplayFor(modelItem => b.Caption)
@@ -30,62 +26,62 @@
             </div>
         }
     </div>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#afsm-carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#afsm-carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#afsm-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#afsm-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 </div>
-    <div class="row">
+<div class="row">
 
-        <div class="col-md-3">
-            <h4> Notícias</h4>
-            <a href="../NewsItems">
-                <img src="../images/news.png" class="left no_border" alt="" style="margin-top: 10px;
+    <div class="col-md-3">
+        <h4> Notícias</h4>
+        <a href="../NewsItems">
+            <img src="../images/news.png" class="left no_border" alt="" style="margin-top: 10px;
                                         margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Todas as novidades sobre coleções, fotos, projetos e exposições.
-                </small>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <h4> Eventos</h4>
-            <a href="../Events">
-                <img src="../images/events.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Exposições, atividades, eventos pedagógicos, workshops, entre outros...
-                </small>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <h4> Acervo</h4>
-            <a href="../Collections/">
-                <img src="../images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
-                </small>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <h4> Destaque</h4>
-            <a href="../ShowCasePhotoes">
-                <img src="../images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
-            </a>
-            <p>
-                <small>
-                    Fotografias em destaque com comentário de Carlos Rodante Veloso.
-                </small>
-            </p>
-        </div>
+        </a>
+        <p>
+            <small>
+                Todas as novidades sobre coleções, fotos, projetos e exposições.
+            </small>
+        </p>
     </div>
+    <div class="col-md-3">
+        <h4> Eventos</h4>
+        <a href="../Events">
+            <img src="../images/events.png" class="left no_border" alt="" style="margin-top: 10px;
+                                        margin-right: 10px" />
+        </a>
+        <p>
+            <small>
+                Exposições, atividades, eventos pedagógicos, workshops, entre outros...
+            </small>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h4> Acervo</h4>
+        <a href="../Collections/">
+            <img src="../images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
+                                        margin-right: 10px" />
+        </a>
+        <p>
+            <small>
+                Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
+            </small>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h4> Destaque</h4>
+        <a href="../ShowCasePhotoes">
+            <img src="../images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
+                                        margin-right: 10px" />
+        </a>
+        <p>
+            <small>
+                Fotografias em destaque com comentário de Carlos Rodante Veloso.
+            </small>
+        </p>
+    </div>
+</div>

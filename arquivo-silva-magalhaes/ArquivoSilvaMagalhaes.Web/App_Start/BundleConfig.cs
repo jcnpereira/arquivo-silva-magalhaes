@@ -56,19 +56,29 @@ namespace ArquivoSilvaMagalhaes
                         "~/Content/Styles/DatePicker/bootstrap-datetimepicker.css"));
 
             RegisterFrontOfficeBundles(bundles);
+            RegisterBackOfficeBundles(bundles);
+        }
+
+        /// <summary>
+        /// Register back-office specific style and script bundles.
+        /// </summary>
+        private static void RegisterBackOfficeBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/scripts/backoffice/delete-modal").Include(
+                "~/Scripts/BackOffice/delete-modal.js"
+                ));
         }
 
         private static void RegisterFrontOfficeBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/FrontOffice/Styles").Include(
-                "~/Content/Styles/frontoffice/*.css"));
+            bundles.Add(new ScriptBundle("~/bundles/scripts/frontoffice").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/frontoffice-styles").Include(
-                "~/Content/Styles/frontoffice/bootstrap/bootstrap.css",
+            bundles.Add(new StyleBundle("~/bundles/styles/frontoffice").Include(
+                //"~/Content/Styles/frontoffice/bootstrap/bootstrap.css",
                 "~/Content/Styles/frontoffice/main.css"));
-
-            bundles.Add(new ScriptBundle("~/Scripts/frontoffice").Include(
-                "~/Scripts/frontoffice/*.js"));
         }
     }
 }

@@ -12,8 +12,8 @@
 
 @*<div style="max-width: 1024px" class="center-block">
 
-    @RenderBody()
-</div>*@
+        @RenderBody()
+    </div>*@
 
 @RenderBody()
 
@@ -28,7 +28,7 @@
     </script>
 }
 
-@section AdditionalContent {
-    @RenderSection("AdditionalContent", false)
+@section scripts {
     @Scripts.Render("~/Scripts/backoffice/extras", "~/Scripts/backoffice/quill")
+    @RenderSection("scripts", false)
 }

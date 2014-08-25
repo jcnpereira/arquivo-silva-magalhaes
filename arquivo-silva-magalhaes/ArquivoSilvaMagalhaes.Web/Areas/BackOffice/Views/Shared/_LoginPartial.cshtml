@@ -1,28 +1,32 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework
 
-@if (Request.IsAuthenticated)
+@using (var manager =
+        new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
 {
     var userId = User.Identity.GetUserId();
+    var currentUser = manager.FindById(userId);
 
-    using (var manager =
-        new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
-    {
-        var currentUser = manager.FindById(userId);
+    <form method="post" action="@Url.Action("LogOff", "Account")" id="logoutForm" class="navbar-right">
+        @Html.AntiForgeryToken()
 
-        <form method="post" action="@Url.Action("LogOff", "Account")" id="logoutForm" class="navbar-right">
-            @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @if (!string.IsNullOrEmpty(currentUser.PictureUrl))
+                {
+                    <img src="~/Public/Users/@(currentUser.PictureUrl)" 
+                         style="margin-left: 15px;" 
+                         height="30" width="30" 
+                         alt="@(currentUser.RealName ?? currentUser.UserName)" />
+                }
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="@Url.Action("Manage", "Account")" title="@AuthStrings.Manage">
-                        @String.Format(AuthStrings.Format_Greeting, currentUser.RealName ?? currentUser.UserName)
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:document.getElementById('logoutForm').submit()">@AuthStrings.LogOff</a>
-                </li>
-            </ul>
-        </form>
-    }
+                <a href="@Url.Action("Manage", "Account")" title="@AuthStrings.Manage" style="display: inline-block;">
+                    @(currentUser.RealName ?? currentUser.UserName)
+                </a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">@AuthStrings.LogOff</a>
+            </li>
+        </ul>
+    </form>
 }

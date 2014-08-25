@@ -1,4 +1,5 @@
-﻿(function initialize() {
+﻿/*global google*/
+(function initialize() {
     var mapContainer = document.getElementById('map_canvas');
 
     var inputElement = $(mapContainer.getAttribute('data-afsm-for'));

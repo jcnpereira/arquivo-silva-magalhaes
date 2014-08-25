@@ -16,33 +16,3 @@
         </div>
     </div>
 </div>
-
-
-
-<script type="text/javascript">
-    (function () {
-        var delButton = $('#afsm-doDelete'),
-            alertModal = $('#afsm-deleteModalAlert'),
-            url = "",
-            correspondingForm,
-            message;
-
-        $('#afsm-doDelete').click(function () {
-            correspondingForm.submit();
-        });
-
-        $('[data-afsm-show-modal="true"]').click(function (e) {
-            var $element = $(this);
-            url = $element.attr('href');
-            message = $element.data('afsm-delete-warning') || '@UiPrompts.ConfirmDelete';
-
-            correspondingForm = $(this).parent('form');
-
-            $('#afsm-delete-modal-warning-message').text(message);
-
-            alertModal.modal('show');
-
-            return false;
-        });
-    }());
-</script>

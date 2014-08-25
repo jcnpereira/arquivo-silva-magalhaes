@@ -13,6 +13,17 @@
 
     @RenderSection("headscripts", required: false)
 
+    
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-TileImage" content="/content/images/afsm-logo-150.png" />
+
+    <meta name="application-name" content="Arquivo Fotográfico Silva Magalhães" />
+
+    <meta name="msapplication-square70x70logo" content="/content/images/afsm-logo-70.png" />
+    <meta name="msapplication-square150x150logo" content="/content/images/afsm-logo-150.png" />
+    <meta name="msapplication-wide310x150logo" content="/content/images/afsm-logo-wide.png" />
+    <meta name="msapplication-square310x310logo" content="/content/images/msnlogo/afsm-logo-310.png" />
+
 
     <meta name="description" content="@LayoutStrings.SiteDescription" />
 </head>
@@ -127,7 +138,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @* Additional scripts and content for specific pages that require it. *@
     @RenderSection("scripts", required: false)
-    @RenderSection("AdditionalContent", false)
 </body>
 </html>

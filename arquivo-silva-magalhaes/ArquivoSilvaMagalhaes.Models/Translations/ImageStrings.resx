@@ -123,6 +123,9 @@
   <data name="CodeFormat" xml:space="preserve">
     <value>O código da imagem tem que seguir o seguinte formato:  Coleção-Documento-Imagem (Ex: ASM-001-002 ou PAS-1-20)</value>
   </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordenadas</value>
+  </data>
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Criar imagem</value>
   </data>
