@@ -818,6 +818,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\frontoffice\setup.js" />
+    <Content Include="Scripts\toogleOverlay.js" />
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -851,7 +852,6 @@
     <Content Include="Areas\BackOffice\Views\News\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
     <Content Include="Views\Home\Shop.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Partnerships\Index.cshtml" />
     <Content Include="Views\Home\Links.cshtml" />

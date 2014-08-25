@@ -12,11 +12,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /ShowCasePhotoes/
+        //public async Task<ActionResult> Index()
+        //{
+        //    var showcasephotoestranslation = db.ShowcasePhotoTranslations;
+        //        //.Include(s => s.Image);
+        //    return View(await showcasephotoestranslation.ToListAsync());
+        //}
+
+
         public async Task<ActionResult> Index()
         {
-            var showcasephotoestranslation = db.ShowcasePhotoTranslations;
-                //.Include(s => s.Image);
-            return View(await showcasephotoestranslation.ToListAsync());
+          //  var showcasephotoestranslation = db.ShowcasePhotoTranslations;
+            //.Include(s => s.Image);
+            return View(await Task.Run(() => db.ShowcasePhotoTranslations
+                .Include(img => img.ShowcasePhoto.Image)
+                .ToListAsync()));
         }
 
         // GET: /ShowCasePhotoes/Details/5
@@ -46,7 +56,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
+        public async Task<ActionResult> Create([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +90,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
         {
             if (ModelState.IsValid)
             {

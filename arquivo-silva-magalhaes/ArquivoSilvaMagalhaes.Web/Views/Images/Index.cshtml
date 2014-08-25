@@ -3,9 +3,37 @@
 @model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
 
 @*@{
-    ViewBag.Title = "Index";
-}*@
+        ViewBag.Title = "Index";
+    }*@
 <h2>Imagens</h2>
+
+<style type="text/css">
+    div#overlay {
+        display: none;
+        z-index: 2;
+        background: #000;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+    }
+
+    div#specialBox {
+        display: none;
+        position: relative;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background: #101010;
+        color: #fff;
+        opacity: 0.8;
+    }
+</style>
 
 @foreach (var img in Model)
 {
@@ -14,12 +42,9 @@
             <img class="media-object" style="width:96px; height: 96px" src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg">
         </a>
         <div class="media-body">
-            <h4 class="media-heading">
-                @Html.ActionLink(img.Title, "ViewImage", "Images", new { id= img.ImageId},null)
+            <h4 class="media-heading" onmousedown="toggleOverlay()">
+                @Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)
             </h4>
-            <p>
-                @Html.DisplayFor(modelItem => img.Description)
-            </p>
             <p style="font-size:small">
                 @Html.DisplayFor(modelItem => img.Subject)
             </p>
@@ -28,9 +53,18 @@
             </p>
         </div>
     </div>
+    <div id="overlay"></div>
+    <div id="specialBox">
+        <img class="media-object center-block img-responsive" src="~/Public/Images/@(img.Image.ImageUrl)_large.jpg">
+        @*<img class="center-block img-responsive" src="~/Public/Images/@Html.DisplayFor(modelItem => img.Image.ImageUrl)_Large.jpg">*@
+        <p>@Html.DisplayFor(modelItem => img.Description)</p>
+        <button onmousedown="toggleOverlay()">Fechar</button>
+    </div>
 }
-
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
+@Scripts.Render("~/Scripts/toogleOverlay.js")
+
+

@@ -66,9 +66,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(image);
         }
 
-
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
