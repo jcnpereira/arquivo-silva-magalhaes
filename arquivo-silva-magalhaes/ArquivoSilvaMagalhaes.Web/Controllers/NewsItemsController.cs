@@ -19,37 +19,24 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: NewsItems
         public async Task<ActionResult> Index()
         {
-            return View(await db.NewsItemTranslations.ToListAsync());
+            return View(await db.NewsItemTranslations.OrderByDescending(news => news.NewsItemId).ToListAsync());
         }
+      
 
-        // GET: NewsItems/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //NewsItem newsItem = await db.NewsItems.FindAsync(id);
-            //if (newsItem == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View(await db.NewsItemTranslations.ToListAsync());
+
+            return View(await db.NewsItemTranslations.Where(news => news.NewsItemId == id).ToListAsync());
         }
 
-        public ActionResult SetLanguage(string lang, string returnUrl)
+
+        protected override void Dispose(bool disposing)
         {
-            Response.SetCookie(new HttpCookie("lang", lang));
-
-            if (Url.IsLocalUrl(returnUrl))
+            if (disposing)
             {
-                return Redirect(returnUrl);
+                db.Dispose();
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            base.Dispose(disposing);
         }
-       
     }
 }
