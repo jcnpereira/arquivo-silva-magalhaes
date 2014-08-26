@@ -88,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Common
             return null;
         }
 
-        public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(params string[] languages)
+        public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(IEnumerable<string> languages)
         {
             return Languages
                 .Where(l => !languages.Contains(l))

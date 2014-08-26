@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClassificationTranslation>
+﻿@model IEnumerable<TranslatedViewModel<Classification, ClassificationTranslation>>
 
 @{
     ViewBag.Title = ClassificationStrings.EntityNamePlural;
@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Value)
+                @Html.DisplayNameFor(model => model.Translation.Value)
             </th>
             <th>
                 @UiStrings.Actions
@@ -21,20 +21,20 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Value)
+                @Html.DisplayFor(modelItem => item.Translation.Value)
             </td>
             <td>
-                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.ClassificationId })">
-                    <a href="@Url.Action("Details", new { id = item.ClassificationId })" class="btn btn-default" title="@UiStrings.Details">
+                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                    <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Details">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </a>
 
-                    <a href="@Url.Action("Edit", new { id = item.ClassificationId })" class="btn btn-default" title="@UiStrings.Edit">
+                    <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
                     @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.ClassificationId })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ClassificationStrings.DeleteWarningMessage">
+                    <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ClassificationStrings.DeleteWarningMessage">
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>
