@@ -25,10 +25,12 @@
 
             // Show the modal dialog.
             $(target).modal('show');
+
+            $('.modal-form').submit(submitAsync);
         });
     });
 
-    $('.modal-form').submit(function (e) {
+    function submitAsync(e) {
         var $form = $(e.target);
 
         // Validate the form first.
@@ -58,5 +60,5 @@
         }
         // Prevent the form from submitting itself.
         e.preventDefault();
-    });
+    }
 }(window.jQuery));

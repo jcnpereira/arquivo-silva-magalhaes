@@ -375,9 +375,6 @@
       <DependentUpon>gmaps.js</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js">
-      <DependentUpon>modal-dialog.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\BackOffice\quill-config.js" />
     <Content Include="Scripts\BackOffice\quill-config.min.js">
       <DependentUpon>quill-config.js</DependentUpon>
@@ -714,6 +711,7 @@
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -741,9 +739,6 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
-      <DependentUpon>modal-dialog.min.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\BackOffice\quill-config.min.js.map">
       <DependentUpon>quill-config.min.js</DependentUpon>
     </Content>

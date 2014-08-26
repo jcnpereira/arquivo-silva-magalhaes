@@ -36,6 +36,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public List<SelectListItem> AvailableDocuments { get; set; }
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]
+        public List<SelectListItem> AvailableClassifications { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] KeywordIds { get; set; }
 

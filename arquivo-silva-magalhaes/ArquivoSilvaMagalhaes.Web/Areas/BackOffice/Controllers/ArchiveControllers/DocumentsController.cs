@@ -184,15 +184,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     Selected = true
                 });
 
-            var query = _db.Collections
-                .Join(_db.CollectionTranslations, (c) => c.Id, (ct) => ct.CollectionId, (c, ct) => new SelectListItem
+            model.AvailableCollections = _db.CollectionTranslations
+                .Include(ct => ct.Collection)
+                .Where(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                .Select(ct => new SelectListItem
                 {
-                    Selected = d.CollectionId == c.Id,
-                    Value = c.Id.ToString(),
-                    Text = c.CatalogCode + " - " + ct.Title
-                });
-
-            model.AvailableCollections = await query.ToListAsync();
+                    Selected = ct.CollectionId == d.CollectionId,
+                    Value = ct.CollectionId.ToString(),
+                    Text = ct.Collection.CatalogCode + " - " + "'" + ct.Title + "'"
+                })
+                .ToList();
 
             model.AvailableCollections.Insert(0, new SelectListItem
             {

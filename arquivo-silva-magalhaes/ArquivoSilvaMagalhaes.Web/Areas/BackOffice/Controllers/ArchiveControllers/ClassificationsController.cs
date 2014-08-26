@@ -54,7 +54,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Classifications/Create
         public ActionResult Create()
         {
-            return View(new ClassificationTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage });
+            var model = new ClassificationTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage };
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ClassificationFields", model);
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         // POST: BackOffice/Classifications/Create
@@ -72,6 +81,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 _db.Classifications.Add(c);
                 await _db.SaveChangesAsync();
+
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(await _db.ClassificationTranslations
+                                  .Where(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                                  .OrderBy(ct => ct.ClassificationId)
+                                  .Select(ct => new
+                                  {
+                                      value = ct.ClassificationId.ToString(),
+                                      text = ct.Value
+                                  })
+                                  .ToListAsync());
+                }
 
                 return RedirectToAction("Index");
             }

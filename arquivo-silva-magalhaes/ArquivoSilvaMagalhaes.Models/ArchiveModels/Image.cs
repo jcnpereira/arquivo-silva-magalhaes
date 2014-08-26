@@ -38,15 +38,23 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [ForeignKey("DocumentId")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public virtual Document Document { get; set; }
+
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]
         public int DocumentId { get; set; }
 
         public virtual IList<ImageTranslation> Translations { get; set; }
         [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
+
         public virtual IList<Keyword> Keywords { get; set; }
         public virtual IList<Specimen> Specimens { get; set; }
 
         public virtual IList<ShowcasePhoto> ShowcasePhotos { get; set; }
+
+        [ForeignKey("ClassificationId")]
+        public virtual Classification Classification { get; set; }
+
+        [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]
+        public int ClassificationId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

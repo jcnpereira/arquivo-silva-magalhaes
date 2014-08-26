@@ -21,3 +21,21 @@
     </div>
 </div>
 
+<div class="form-group">
+    @Html.LabelFor(model => model.Image.ClassificationId, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" 
+                        class="btn btn-default" 
+                        data-afsm-selectlist="#@Html.IdFor(model => model.Image.ClassificationId)" 
+                        data-afsm-toggle="modal" 
+                        data-target="#afsm-modal-form" 
+                        data-remote="@Url.Action("Create", "Classifications", null)">Adicionar...</button>
+            </span>
+            @Html.DropDownListFor(model => model.Image.ClassificationId, Model.AvailableClassifications, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Image.ClassificationId, "", new { @class = "text-danger" })
+    </div>
+</div>
+

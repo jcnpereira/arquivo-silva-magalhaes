@@ -6,21 +6,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
     /// <summary>
-    /// Defines a classification of a photographic specimen.
+    /// Defines a classification of an image.
     /// </summary>
     public class Classification
     {
         public Classification()
         {
             this.Translations = new List<ClassificationTranslation>();
-            this.Specimens = new List<Specimen>();
+            this.Images = new List<Image>();
         }
 
         [Key]
         public int Id { get; set; }
 
         public virtual IList<ClassificationTranslation> Translations { get; set; }
-        public virtual IList<Specimen> Specimens { get; set; }
+        public virtual IList<Image> Images { get; set; }
     }
 
     /// <summary>
