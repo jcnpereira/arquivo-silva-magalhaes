@@ -12,7 +12,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     /// archive managers.
     /// </summary>
     [Authorize(Roles = "archivemanagers,admins,contentmanagers")]
-    public class ArchiveController : BackOfficeController
+    public class ArchiveControllerBase : BackOfficeController
     {
     }
 }

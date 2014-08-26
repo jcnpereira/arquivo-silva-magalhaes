@@ -15,7 +15,7 @@ using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ImagesController : ArchiveController
+    public class ImagesController : ArchiveControllerBase
     {
         private ArchiveDataContext _db = new ArchiveDataContext();
 

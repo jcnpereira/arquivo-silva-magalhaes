@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class PortalController : BackOfficeController
+    public class PortalController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

@@ -10,7 +10,7 @@ using PagedList;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class PartnershipsController : BackOfficeController
+    public class PartnershipsController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
