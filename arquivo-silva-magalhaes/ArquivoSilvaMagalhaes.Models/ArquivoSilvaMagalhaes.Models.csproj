@@ -90,6 +90,9 @@
     <Compile Include="ArchiveModels\Specimen.cs" />
     <Compile Include="CodeGenerator.cs" />
     <Compile Include="EntityTranslation.cs" />
+    <Compile Include="GenericDbRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="ITranslateableEntityRepository.cs" />
     <Compile Include="SiteModels\Archive.cs" />
     <Compile Include="SiteModels\BannerPhotograph.cs" />
     <Compile Include="SiteModels\Collaborator.cs" />

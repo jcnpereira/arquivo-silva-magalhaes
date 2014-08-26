@@ -8,20 +8,32 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class KeywordsController : ArchiveController
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Keyword, KeywordTranslation> db;
+
+        public KeywordsController(ITranslateableEntityRepository<Keyword, KeywordTranslation> db)
+        {
+            this.db = db;
+        }
+
+        public KeywordsController() : this(new TranslateableGenericRepository<Keyword, KeywordTranslation>())
+        {
+
+        }
 
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => db.KeywordTranslations
-                .Where(k => k.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                .OrderBy(k => k.KeywordId)
-                .ToPagedList(pageNumber, 10)));
+            return View((await db.GetAll())
+                .OrderBy(k => k.Id)
+                .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Keywords/Details/5
@@ -31,14 +43,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Keyword k = await db.Keywords.FindAsync(id);
 
-            k.Translations = k.Translations.ToList();
+            var k = await db.GetById(id);
 
             if (k == null)
             {
                 return HttpNotFound();
             }
+
+            k.Translations = k.Translations.ToList();
             return View(new KeywordViewModel
             {
                 Id = k.Id,
@@ -75,20 +88,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 var keyword = new Keyword();
                 keyword.Translations.Add(kt);
 
-                db.Keywords.Add(keyword);
-                await db.SaveChangesAsync();
+                db.Add(keyword);
+                await db.SaveChanges();
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json(await db.KeywordTranslations
-                                  .Where(ktr => ktr.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                                  .OrderBy(ktr => ktr.KeywordId)
-                                  .Select(ktr => new
-                                  {
-                                      value = ktr.KeywordId.ToString(),
-                                      text = ktr.Value
-                                  })
-                                  .ToListAsync());
+                    return Json((await db.GetAll())
+                        .OrderBy(k => k.Id)
+                        .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                        .Select(ktr => new
+                        {
+                            value = ktr.Entity.ToString(),
+                            text = ktr.Translation.Value
+                        })
+                        .ToList());
                 }
 
                 return RedirectToAction("Index");
@@ -104,30 +117,33 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Keyword keyword = await db.Keywords.FindAsync(id);
-            keyword.Translations = keyword.Translations.ToList();
 
-            if (keyword == null)
+            var k = await db.GetById(id);
+
+            if (k == null)
             {
                 return HttpNotFound();
             }
-            return View(keyword);
+
+            k.Translations = k.Translations.ToList();
+
+            return View(k);
         }
 
         // POST: BackOffice/Keywords/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Keyword keyword)
         {
             if (ModelState.IsValid)
             {
-                foreach (var translation in keyword.Translations)
+                foreach (var t in keyword.Translations)
                 {
-                    db.Entry(translation).State = EntityState.Modified;
+                    db.UpdateTranslation(t);
                 }
-                await db.SaveChangesAsync();
+
+                await db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(keyword);
@@ -141,11 +157,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Keyword keyword = await db.Keywords.FindAsync(id);
+            Keyword keyword = await db.GetById(id);
+
             if (keyword == null)
             {
                 return HttpNotFound();
             }
+
             return View(keyword);
         }
 
@@ -154,18 +172,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Keyword keyword = await db.Keywords.FindAsync(id);
-            db.Keywords.Remove(keyword);
-            await db.SaveChangesAsync();
+            await db.RemoveById(id);
+            await db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }
