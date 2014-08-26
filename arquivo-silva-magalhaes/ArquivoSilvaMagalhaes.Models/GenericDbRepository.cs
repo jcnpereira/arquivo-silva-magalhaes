@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Linq;
 using ArquivoSilvaMagalhaes.Common;
+using System.Data.Entity.Infrastructure;
 
 namespace ArquivoSilvaMagalhaes.Models
 {
@@ -72,6 +73,17 @@ namespace ArquivoSilvaMagalhaes.Models
             {
                 _db.Dispose();
             }
+        }
+
+        public IEnumerable<TOther> Set<TOther>() where TOther : class
+        {
+            return _db.Set<TOther>();
+        }
+
+        public async Task ForceLoad<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class
+        {
+            _db.Set<TEntity>().Attach(entity);
+            await _db.Entry(entity).Collection(expression).LoadAsync();
         }
     }
 
