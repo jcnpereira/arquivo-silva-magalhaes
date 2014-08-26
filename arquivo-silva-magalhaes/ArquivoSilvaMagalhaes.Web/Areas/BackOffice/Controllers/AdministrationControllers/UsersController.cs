@@ -10,7 +10,7 @@ using System.Data.Entity;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
 using ArquivoSilvaMagalhaes.Common;
 using System.IO;
-using ArquivoSilvaMagalhaes.Web.I18n;
+using ArquivoSilvaMagalhaes.Web;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationControllers
 {
