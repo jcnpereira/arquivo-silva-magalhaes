@@ -66,8 +66,9 @@
         </a>
 
         <div class="media-body">
-            <h4 class="media-heading">
-                @Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)
+            <h4 class="media-heading" >
+
+                @*@Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)*@
             </h4>
             <p style="font-size:small">
                 @Html.DisplayFor(modelItem => img.Subject)
