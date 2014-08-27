@@ -24,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View((await db.Collections
                             .Include(col => col.Authors)
-                            .OrderBy(col => col.EndProductionDate)
+                            .OrderByDescending(col => col.EndProductionDate)
                             .Where(col => col.IsVisible)
                             .ToListAsync())
                 //.Select(col => new CollectionViewModel(col)));

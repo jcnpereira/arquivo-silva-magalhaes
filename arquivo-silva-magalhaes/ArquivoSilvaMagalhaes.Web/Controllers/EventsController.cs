@@ -37,7 +37,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(await Task.Run(() => db.EventTranslations
             .Include(et => et.Event)
             .Where(et => et.LanguageCode == LanguageDefinitions.DefaultLanguage)
-            .OrderBy(et => et.Event.StartMoment)));
+            .OrderByDescending(et => et.Event.PublishDate)));
         }
 
         // GET: Events/Details/5
