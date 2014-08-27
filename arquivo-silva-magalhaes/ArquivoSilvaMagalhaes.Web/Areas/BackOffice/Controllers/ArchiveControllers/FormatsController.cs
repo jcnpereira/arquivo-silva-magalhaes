@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class FormatsController : ArchiveController
+    public class FormatsController : ArchiveControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

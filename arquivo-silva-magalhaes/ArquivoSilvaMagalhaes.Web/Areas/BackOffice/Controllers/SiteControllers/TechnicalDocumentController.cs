@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class TechnicalDocumentController : BackOfficeController
+    public class TechnicalDocumentController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

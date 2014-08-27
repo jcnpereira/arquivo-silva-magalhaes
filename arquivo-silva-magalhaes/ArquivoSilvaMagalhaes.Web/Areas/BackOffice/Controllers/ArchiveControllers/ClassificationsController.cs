@@ -9,24 +9,28 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ClassificationsController : ArchiveController
+    public class ClassificationsController : ArchiveControllerBase
     {
-        private ArchiveDataContext _db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Classification, ClassificationTranslation> _db;
+
+        public ClassificationsController() : this (new TranslateableGenericRepository<Classification, ClassificationTranslation>()) { }
+
+        public ClassificationsController(ITranslateableEntityRepository<Classification, ClassificationTranslation> db)
+        {
+            this._db = db;
+        }
 
         // GET: BackOffice/Classifications
-        public async Task<ActionResult> Index(
-            int pageNumber = 1,
-            string query = null,
-            string orderByColumn = null)
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() =>
-                _db.ClassificationTranslations
-                   .Where(c => c.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                   .OrderBy(c => c.ClassificationId)
-                   .ToPagedList(pageNumber, 10)));
+            return View((await _db.GetAll())
+                .OrderBy(c => c.Id)
+                .Select(c => new TranslatedViewModel<Classification, ClassificationTranslation>(c))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Classifications/Details/5
@@ -37,9 +41,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var classification = await _db.Classifications.FindAsync(id);
-
-            
+            var classification = await _db.GetById(id);
 
             if (classification == null)
             {
@@ -67,8 +69,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Classifications/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ClassificationTranslation classification)
@@ -79,20 +79,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 c.Translations.Add(classification);
 
-                _db.Classifications.Add(c);
-                await _db.SaveChangesAsync();
+                _db.Add(c);
+                await _db.SaveChanges();
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json(await _db.ClassificationTranslations
-                                  .Where(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                                  .OrderBy(ct => ct.ClassificationId)
+                    return Json((await _db.GetAll())
+                                  .OrderBy(ct => ct.Id)
+                                  .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
                                   .Select(ct => new
                                   {
-                                      value = ct.ClassificationId.ToString(),
-                                      text = ct.Value
+                                      value = ct.Entity.Id.ToString(),
+                                      text = ct.Translation.Value
                                   })
-                                  .ToListAsync());
+                                  .ToList());
                 }
 
                 return RedirectToAction("Index");
@@ -109,9 +109,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Classification classification = await _db.Classifications.FindAsync(id);
-
-            Debug.WriteLine(classification.Translations.Count);
+            Classification classification = await _db.GetById(id);
 
             if (classification == null)
             {
@@ -122,22 +120,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Classifications/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Classification classification)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(classification).State = EntityState.Modified;
-
                 foreach (var t in classification.Translations)
                 {
-                    _db.Entry(t).State = EntityState.Modified;
+                    _db.UpdateTranslation(t);
                 }
 
-                await _db.SaveChangesAsync();
+                await _db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(classification);
@@ -150,13 +145,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await _db.Classifications.FindAsync(id);
-            classification.Translations = classification.Translations.ToList();
-
+            Classification classification = await _db.GetById(id);
+            
             if (classification == null)
             {
                 return HttpNotFound();
             }
+
+            classification.Translations = classification.Translations.ToList();
             return View(classification);
         }
 
@@ -165,13 +161,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Classification classification = await _db.Classifications.FindAsync(id);
-            _db.Classifications.Remove(classification);
-            await _db.SaveChangesAsync();
+            await _db.RemoveById(id);
+            await _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
 
         public async Task<ActionResult> AddTranslation(int? id)
         {
@@ -180,107 +173,50 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var classification = await _db.Classifications.FindAsync(id);
+            var c = await _db.GetById(id);
 
-            if (classification == null)
+            if (c == null)
             {
                 return HttpNotFound();
             }
 
-            if (classification.Translations.Count == LanguageDefinitions.Languages.Count)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            ViewBag.Languages = LanguageDefinitions
+                .GenerateAvailableLanguageDDL(c.Translations.Select(t => t.LanguageCode).ToList());
 
-            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
-                classification.Translations.Select(t => t.LanguageCode).ToArray());
-
-            return View(new AuthorTranslation
-            {
-                AuthorId = classification.Id
-            });
+            return View(new ClassificationTranslation
+                {
+                    ClassificationId = c.Id
+                });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(ClassificationTranslation translation)
         {
-            var classification = await _db.Classifications.FindAsync(translation.ClassificationId);
-
-            if (classification == null || classification.Translations.Any(t => t.LanguageCode == translation.LanguageCode))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             if (ModelState.IsValid)
             {
-                classification.Translations.Add(translation);
-                await _db.SaveChangesAsync();
+                _db.AddTranslation(translation);
+                await _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
-                classification.Translations.Select(t => t.LanguageCode).ToArray());
+            var c = await _db.GetById(translation.ClassificationId);
+
+            if (c != null)
+            {
+                ViewBag.Languages = LanguageDefinitions
+                    .GenerateAvailableLanguageDDL(c.Translations.Select(t => t.LanguageCode).ToList());
+            }
 
             return View(translation);
         }
-
-        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
-        {
-            if (id == null || String.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var tr = await _db.ClassificationTranslations.FindAsync(id, languageCode);
-
-            if (tr == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(tr);
-        }
-
-        [HttpPost]
-        [ActionName("DeleteTranslation")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
-        {
-            if (id == null || String.IsNullOrEmpty(languageCode))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var tr = await _db.ClassificationTranslations.FindAsync(id, languageCode);
-
-            if (tr == null)
-            {
-                return HttpNotFound();
-            }
-
-            _db.ClassificationTranslations.Remove(tr);
-
-            await _db.SaveChangesAsync();
-
-            return RedirectToAction("Index");
-        }
-
-
-
-
-
-
-
-
-
 
 
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _db != null)
             {
                 _db.Dispose();
             }

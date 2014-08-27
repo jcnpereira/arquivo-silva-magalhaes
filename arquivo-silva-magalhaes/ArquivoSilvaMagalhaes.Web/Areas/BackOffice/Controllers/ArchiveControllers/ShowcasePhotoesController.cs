@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ShowcasePhotoesController : ArchiveController
+    public class ShowcasePhotoesController : ArchiveControllerBase
     {
         private ArchiveDataContext _db = new ArchiveDataContext();
 

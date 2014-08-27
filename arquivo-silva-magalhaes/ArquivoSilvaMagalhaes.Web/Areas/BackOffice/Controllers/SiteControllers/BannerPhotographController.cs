@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class BannerPhotographController : SiteController
+    public class BannerPhotographController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

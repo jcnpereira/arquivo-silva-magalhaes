@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ProcessesController : ArchiveController
+    public class ProcessesController : ArchiveControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

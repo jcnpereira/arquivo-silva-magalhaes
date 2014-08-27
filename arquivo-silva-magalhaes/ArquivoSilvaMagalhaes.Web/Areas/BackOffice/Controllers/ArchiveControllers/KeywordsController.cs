@@ -13,7 +13,7 @@ using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class KeywordsController : ArchiveController
+    public class KeywordsController : ArchiveControllerBase
     {
         private ITranslateableEntityRepository<Keyword, KeywordTranslation> db;
 

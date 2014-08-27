@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class ReferencedLinkController : BackOfficeController
+    public class ReferencedLinkController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

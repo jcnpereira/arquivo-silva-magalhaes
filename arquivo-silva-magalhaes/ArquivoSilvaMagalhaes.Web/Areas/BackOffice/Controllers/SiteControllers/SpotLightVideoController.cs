@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class SpotLightVideoController : BackOfficeController
+    public class SpotLightVideoController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

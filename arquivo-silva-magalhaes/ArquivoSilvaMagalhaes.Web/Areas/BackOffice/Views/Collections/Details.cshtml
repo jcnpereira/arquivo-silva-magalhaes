@@ -1,8 +1,7 @@
 ﻿@model Collection
 
 @{
-    var ptTrans = Model.Translations.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage);
-    ViewBag.Title = String.Format(CollectionStrings.DetailsTitleFormat, ptTrans.Title);
+    ViewBag.Title = CollectionStrings.DeleteTitleFormat;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -115,7 +114,7 @@
             <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
                 <a href="#@langCode"
                    role="tab"
-                   data-toggle="tab">@LanguageDefinitions.GetLanguageName(langCode)</a>
+                   data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
             </li>
         }
     </ul>
