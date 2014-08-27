@@ -1,21 +1,7 @@
 ﻿@model DocumentTranslation
 
 @Html.HiddenFor(model => model.DocumentId)
-
-@if (ViewBag.AvailableLanguages == null)
-{
-    @Html.HiddenFor(model => model.LanguageCode)
-}
-else
-{
-    <div class="form-group">
-        @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-sm-2" })
-        <div class="col-sm-10">
-            @Html.DropDownListFor(model => model.LanguageCode, ViewBag.AvailableLanguages as IEnumerable<SelectListItem>, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.LanguageCode)
-        </div>
-    </div>
-}
+@Html.HiddenFor(model => model.LanguageCode)
 
 <div class="form-group">
     @Html.LabelFor(model => model.Description, new { @class = "control-label col-sm-2" })

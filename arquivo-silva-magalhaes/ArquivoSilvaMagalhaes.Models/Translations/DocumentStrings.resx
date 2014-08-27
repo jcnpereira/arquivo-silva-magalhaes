@@ -174,4 +174,7 @@
   <data name="MustChooseCollection" xml:space="preserve">
     <value>Tem que primeiro escolher uma coleção.</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do documento</value>
+  </data>
 </root>

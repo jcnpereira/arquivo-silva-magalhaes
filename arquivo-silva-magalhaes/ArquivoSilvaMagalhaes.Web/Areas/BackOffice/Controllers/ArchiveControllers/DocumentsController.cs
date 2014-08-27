@@ -10,29 +10,32 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class DocumentsController : ArchiveControllerBase
     {
-        private ArchiveDataContext _db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Document, DocumentTranslation> _db;
+
+        public DocumentsController() : this(new TranslateableGenericRepository<Document, DocumentTranslation>())
+        {
+
+        }
+
+        public DocumentsController(TranslateableGenericRepository<Document, DocumentTranslation> db)
+        {
+            this._db = db;
+        }
 
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
         {
-            var query = _db.Documents
-                           .Include(dt => dt.Author)
-                           .Include(dt => dt.Collection);
+            var query = await _db.Query(d => (authorId == 0 || d.AuthorId == authorId) && 
+                                             (collectionId == 0 || d.CollectionId == collectionId));
 
-            if (authorId > 0)
-            {
-                query = query.Where(d => d.AuthorId == authorId);
-            }
-
-            return View(await Task.Run(() =>
-                query
-                   .OrderBy(d => d.Id)
-                   .ToPagedList(pageNumber, 10)));
+            return View(query.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
+                             .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Documents/Details/5
@@ -43,8 +46,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await _db.Documents.FindAsync(id);
-            
+            Document document = await _db.GetById(id);
+
             if (document == null)
             {
                 return HttpNotFound();
@@ -66,19 +69,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             });
 
             // Check for a collection.
-            if (collectionId != null && _db.Collections.Find(collectionId) != null)
+            if (collectionId != null && _db.Set<Collection>().FirstOrDefault(c => c.Id == collectionId) != null)
             {
                 doc.CatalogCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
                 doc.CollectionId = collectionId.Value;
             }
 
             // Check for an author.
-            if (authorId != null && _db.Authors.Find(authorId) != null)
+            if (authorId != null && _db.Set<Author>().FirstOrDefault(a => a.Id == authorId) != null)
             {
                 doc.AuthorId = authorId.Value;
             }
 
-            var model = await GenerateViewModel(doc);
+            var model =  GenerateViewModel(doc);
 
             return View(model);
         }
@@ -92,13 +95,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.Documents.Add(document);
-                await _db.SaveChangesAsync();
+                _db.Add(document);
+                await _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(await GenerateViewModel(document));
+            return View(GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Edit/5
@@ -108,12 +111,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await _db.Documents.FindAsync(id);
+
+            Document document = await _db.GetById(id);
+
             if (document == null)
             {
                 return HttpNotFound();
             }
-            return View(await GenerateViewModel(document));
+
+            document.Translations = document.Translations.ToList();
+
+            return View(GenerateViewModel(document));
         }
 
         // POST: BackOffice/Documents/Edit/5
@@ -125,17 +133,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(document).State = EntityState.Modified;
-
                 foreach (var t in document.Translations)
                 {
-                    _db.Entry(t).State = EntityState.Modified;
+                    _db.UpdateTranslation(t);
                 }
 
-                await _db.SaveChangesAsync();
+                _db.Update(document);
+
+                await _db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(await GenerateViewModel(document));
+
+            return View(GenerateViewModel(document));
         }
 
         // GET: BackOffice/Documents/Delete/5
@@ -145,11 +155,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await _db.Documents.FindAsync(id);
+            Document document = await _db.GetById(id);
+
             if (document == null)
             {
                 return HttpNotFound();
             }
+
+            document.Translations = document.Translations.ToList();
+
             return View(document);
         }
 
@@ -158,24 +172,24 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Document document = await _db.Documents.FindAsync(id);
-            _db.Documents.Remove(document);
-            await _db.SaveChangesAsync();
+            await _db.RemoveById(id);
+            await _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
-        private async Task<DocumentEditViewModel> GenerateViewModel(Document d)
+        private DocumentEditViewModel GenerateViewModel(Document d)
         {
             var model = new DocumentEditViewModel();
             model.Document = d;
 
-            model.AvailableAuthors = await _db.Authors.Select(a => new SelectListItem
+            model.AvailableAuthors = _db.Set<Author>().Select(a => new SelectListItem
                 {
                     Text = a.LastName + ", " + a.FirstName,
                     Value = a.Id.ToString(),
                     Selected = d.AuthorId == a.Id
                 })
-                .ToListAsync();
+                .ToList();
 
             model.AvailableAuthors.Insert(0, new SelectListItem
                 {
@@ -184,14 +198,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     Selected = true
                 });
 
-            model.AvailableCollections = _db.CollectionTranslations
-                .Include(ct => ct.Collection)
-                .Where(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                .Select(ct => new SelectListItem
+            model.AvailableCollections = _db.Set<Collection>()
+                .ToList()
+                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
+                .Select(c => new SelectListItem
                 {
-                    Selected = ct.CollectionId == d.CollectionId,
-                    Value = ct.CollectionId.ToString(),
-                    Text = ct.Collection.CatalogCode + " - " + "'" + ct.Title + "'"
+                    Selected = c.Entity.Id == d.CollectionId,
+                    Value = c.Entity.Id.ToString(),
+                    Text = c.Entity.CatalogCode + " - " + "'" + c.Translation.Title + "'"
                 })
                 .ToList();
 
@@ -211,7 +225,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var doc = await _db.Documents.FindAsync(id);
+            var doc = await _db.GetById(id);
 
             if (doc == null)
             {
@@ -232,15 +246,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 DocumentId = doc.Id
             };
 
-            ViewBag.AvailableLanguages =
-                LanguageDefinitions.Languages
-                                   .Where(t => !translations.Contains(t))
-                                   .Select(t => new SelectListItem
-                                   {
-                                       Value = t,
-                                       Text = LanguageDefinitions.GetLanguage(t)
-                                   })
-                                   .ToList();
+            ViewBag.Languages = 
+                LanguageDefinitions.GenerateAvailableLanguageDDL(doc.Translations.Select(t => t.LanguageCode).ToList());
 
             return View(model);
         }
@@ -251,9 +258,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.DocumentTranslations.Add(translation);
+                _db.AddTranslation(translation);
 
-                await _db.SaveChangesAsync();
+                await _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -270,35 +277,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var c = await _db.Collections.FindAsync(collectionId);
 
-            if (c == null)
-            {
-                return HttpNotFound();
-            }
-
-            var collectionCode = c.CatalogCode;
-
-            var docCodes = c.Documents.Select(d => d.CatalogCode).ToArray();
-
-            Array.Sort(docCodes, new AlphaNumericComparator());
-
-            var lastCode = docCodes.LastOrDefault();
-            var lastCodeNumeric = 1;
-            var suggestedCode = collectionCode + "-";
-
-            if (lastCode == null)
-            {
-                suggestedCode = suggestedCode + "1";
-            }
-            else if (int.TryParse(lastCode, out lastCodeNumeric)) // number.
-            {
-                suggestedCode = suggestedCode + (lastCodeNumeric + 1).ToString();
-            }
-            else
-            {
-                suggestedCode = suggestedCode + (docCodes.Count() + 1).ToString();
-            }
+            var suggestedCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
 
             return Json(suggestedCode, JsonRequestBehavior.AllowGet);
         }
