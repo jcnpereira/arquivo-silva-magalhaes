@@ -713,6 +713,7 @@
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

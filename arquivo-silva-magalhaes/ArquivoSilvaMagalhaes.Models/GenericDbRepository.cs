@@ -85,6 +85,46 @@ namespace ArquivoSilvaMagalhaes.Models
             _db.Set<TEntity>().Attach(entity);
             await _db.Entry(entity).Collection(expression).LoadAsync();
         }
+
+        public void Update(TEntity entity, params string[] exclude)
+        {
+            var entry = _db.Entry(entity);
+
+            foreach (var propToExclude in exclude)
+            {
+                entry.Property(propToExclude).IsModified = false;
+            }
+
+            entry.State = EntityState.Modified;
+        }
+
+        public void Update(TEntity entity, Expression<Func<TEntity, object>> exclude)
+        {
+            ExcludeFromUpdate(entity, exclude);
+                
+            _db.Entry(entity).State = EntityState.Modified;
+        }
+
+        public TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression) 
+            where TResult : class
+        {
+            var entry = _db.Entry(entity);
+
+            return entry.Property(expression).CurrentValue;
+        }
+
+        public void ExcludeFromUpdate(TEntity entity, Expression<Func<TEntity, object>> exclude)
+        {
+            var entry = _db.Entry(entity);
+
+            var t = exclude.Body.Type;
+            var props = t.GetProperties().Select(p => p.Name).ToList();
+
+            foreach (var prop in props)
+            {
+                entry.Property(prop).IsModified = false;
+            }
+        }
     }
 
     public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableEntityRepository<TEntity, TTranslation>

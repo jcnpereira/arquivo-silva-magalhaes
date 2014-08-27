@@ -10,8 +10,14 @@ namespace ArquivoSilvaMagalhaes.Models
     {
         void Add(TEntity entity);
         void Update(TEntity entity);
+        void Update(TEntity entity, params string[] exclude);
         void Remove(TEntity entity);
         Task RemoveById(params object[] keys);
+
+        TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression) where TResult : class;
+
+        void Update(TEntity entity, Expression<Func<TEntity, object>> exclude);
+        void ExcludeFromUpdate(TEntity entity, Expression<Func<TEntity, object>> exclude);
 
         Task<IEnumerable<TEntity>> GetAll();
         Task<TEntity> GetById(params object[] keys);

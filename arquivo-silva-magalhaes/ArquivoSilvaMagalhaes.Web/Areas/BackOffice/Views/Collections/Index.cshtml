@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CollectionTranslation>
+﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
 
 @{
@@ -10,19 +10,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Collection.CatalogCode)
+                @Html.DisplayNameFor(model => model.Entity.CatalogCode)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Translation.Title)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Collection.IsVisible)
+                @Html.DisplayNameFor(model => model.Entity.IsVisible)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Dimension)
+                @Html.DisplayNameFor(model => model.Translation.Dimension)
             </th>
 
             <th>@UiStrings.Actions</th>
@@ -32,32 +32,32 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Collection.CatalogCode)
+                @Html.DisplayFor(modelItem => item.Entity.CatalogCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-
-            <td>
-                @(item.Collection.IsVisible ? UiStrings.Yes : UiStrings.No)
+                @Html.DisplayFor(modelItem => item.Translation.Title)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Dimension)
+                @(item.Entity.IsVisible ? UiStrings.Yes : UiStrings.No)
             </td>
 
             <td>
-                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.CollectionId })">
-                    <a href="@Url.Action("Details", new { id = item.CollectionId })" class="btn btn-default" title="@UiStrings.Details">
+                @Html.DisplayFor(modelItem => item.Translation.Dimension)
+            </td>
+
+            <td>
+                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                    <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Details">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </a>
 
-                    <a href="@Url.Action("Edit", new { id = item.CollectionId })" class="btn btn-default" title="@UiStrings.Edit">
+                    <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
                     @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.CollectionId })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@CollectionStrings.DeleteWarningMessage">
+                    <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@CollectionStrings.DeleteWarningMessage">
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>
