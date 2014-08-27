@@ -10,7 +10,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public Keyword()
         {
             this.Translations = new List<KeywordTranslation>();
-            this.Documents = new List<Document>();
             this.Images = new List<Image>();
         }
 
@@ -18,7 +17,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int Id { get; set; }
 
         public virtual IList<KeywordTranslation> Translations { get; set; }
-        public virtual IList<Document> Documents { get; set; }
         public virtual IList<Image> Images { get; set; }
     }
 
