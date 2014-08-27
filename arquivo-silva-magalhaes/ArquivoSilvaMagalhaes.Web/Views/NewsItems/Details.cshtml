@@ -1,23 +1,78 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItemTranslation>
+﻿@*@model ArquivoSilvaMagalhaes.Models.SiteModels.NewsItem*@
+
+
+@*<h2 class="page_title">Notícias</h2>*@
+@*<h2>Notícias</h2>
+<hr />
+
+
+<h3>@Html.DisplayFor(modelItem => modelItem.Title)</h3>
+<h4>@Html.DisplayFor(item => item.Heading)</h4>
+<h5>@Html.DisplayFor(modelItem => item.NewsItem.PublishDate)</h5>
+@Html.ActionLink("Ler notícia", "Details", new { id = item.NewsItemId })
+
+
+
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Location)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductionDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Publication)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translations.LastOrDefault().Publication)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>*@
+
+@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItemTranslation>
 
 <div class="column_content">
     <h2 class="page_title">Notícias</h2>
-
     <table class="table">
-
         @foreach (var item in Model)
         {
             <tr>
                 <td>
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <h4>@Html.DisplayFor(modelItem => item.Heading)</h4>
-                    <h5>@Html.DisplayFor(modelItem => item.NewsItem.PublishDate)</h5>
-                    <p>@Html.DisplayFor(modelItem => item.TextContent)</p>
-                    @Html.ActionLink("Voltar", "Index", new { id = item.NewsItemId })
+                    <h5>@Html.DisplayFor(modelItem => item.NewsItem.PublishDate)</h5><br />
+                    <h5>@Html.DisplayFor(modelItem => item.TextContent)</h5>
+                    @Html.ActionLink("Voltar", "Index")
                 </td>
-
             </tr>
         }
-
     </table>
 </div>

@@ -11,7 +11,7 @@
 @foreach (var item in Model)
 {
     <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-    <img src="~/Public/Images/@Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ImageUrl)_large.jpg"/>
+    <img class="img-responsive" src="~/Public/Images/@Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ImageUrl)_large.jpg" />
     @Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.Specimens)
     @Html.DisplayFor(modelItem => item.Comment)
     @Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ProductionDate)

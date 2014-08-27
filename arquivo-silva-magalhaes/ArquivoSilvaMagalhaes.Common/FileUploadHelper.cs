@@ -27,7 +27,7 @@ namespace ArquivoSilvaMagalhaes.Common
                 CreateParentDirectory = true,
                 ResetSourceStream = resetSource,
                 DisposeSourceObject = dispose,
-                AddFileExtension = true
+                AddFileExtension = !Path.HasExtension(path)
             };
 
             ImageBuilder.Current.Build(job);

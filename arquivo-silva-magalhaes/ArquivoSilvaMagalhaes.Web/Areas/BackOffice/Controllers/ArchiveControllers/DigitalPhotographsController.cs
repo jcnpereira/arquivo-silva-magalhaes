@@ -15,7 +15,7 @@ using System.Web.UI;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class DigitalPhotographsController : Controller
+    public class DigitalPhotographsController : ArchiveControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

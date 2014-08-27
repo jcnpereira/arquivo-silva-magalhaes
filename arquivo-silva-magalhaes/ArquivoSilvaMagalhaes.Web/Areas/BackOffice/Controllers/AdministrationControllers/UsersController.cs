@@ -136,6 +136,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
             }
 
             return View();
+
+            //return View(new UserRegistrationModel(user));
         }
 
         // POST: BackOffice/Users/Edit/5

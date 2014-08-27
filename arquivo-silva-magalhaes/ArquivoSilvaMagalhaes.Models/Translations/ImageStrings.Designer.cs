@@ -61,6 +61,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Classificação.
+        /// </summary>
+        public static string Classification {
+            get {
+                return ResourceManager.GetString("Classification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Já existe uma imagem com esse código de referência. Escolha outro..
         /// </summary>
         public static string CodeAlreadyExists {

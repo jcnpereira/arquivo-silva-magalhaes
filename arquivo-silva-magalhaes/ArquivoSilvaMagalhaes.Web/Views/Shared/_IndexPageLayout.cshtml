@@ -9,3 +9,8 @@
             @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
         </div>
     </div>
+
+
+@section scripts {
+    @RenderSection("scripts", required: false)
+}

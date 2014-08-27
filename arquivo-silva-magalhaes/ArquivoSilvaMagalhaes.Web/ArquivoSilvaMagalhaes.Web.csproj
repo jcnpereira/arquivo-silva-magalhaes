@@ -375,9 +375,6 @@
       <DependentUpon>gmaps.js</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js">
-      <DependentUpon>modal-dialog.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\BackOffice\quill-config.js" />
     <Content Include="Scripts\BackOffice\quill-config.min.js">
       <DependentUpon>quill-config.js</DependentUpon>
@@ -714,6 +711,9 @@
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -738,12 +738,10 @@
     <Content Include="Content\fonts\ostrich-rounded-webfont.woff" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\frontoffice\overlay-image.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
-      <DependentUpon>modal-dialog.min.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\BackOffice\quill-config.min.js.map">
       <DependentUpon>quill-config.min.js</DependentUpon>
     </Content>
@@ -820,7 +818,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\toogleOverlay.js" />
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -882,7 +879,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Public\" />
-    <Folder Include="Scripts\frontoffice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

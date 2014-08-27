@@ -55,7 +55,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// Location of the logo of this collection.
         /// </summary>
-        //[Required]
         [Display(ResourceType = typeof(CollectionStrings), Name = "LogoLocation")]
         [DataType(DataType.ImageUrl)]
         public string LogoLocation { get; set; }

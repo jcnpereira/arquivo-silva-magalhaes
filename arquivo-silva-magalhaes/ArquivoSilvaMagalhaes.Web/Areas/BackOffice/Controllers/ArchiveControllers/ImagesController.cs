@@ -15,7 +15,7 @@ using System.IO;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
-    public class ImagesController : ArchiveController
+    public class ImagesController : ArchiveControllerBase
     {
         private ArchiveDataContext _db = new ArchiveDataContext();
 
@@ -254,7 +254,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             var keywordIds = image.Keywords.Select(k => k.Id).ToList();
 
-            model.AvailableKeywords = _db.KeywordTranslations
+            model.AvailableKeywords = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value = "",
+                    Text = UiPrompts.ChooseOne,
+                    Selected = true
+                }
+            };
+
+            model.AvailableKeywords.AddRange(_db.KeywordTranslations
                 .Where(kt => kt.LanguageCode == LanguageDefinitions.DefaultLanguage)
                 .OrderBy(kt => kt.KeywordId)
                 .Select(kt => new SelectListItem
@@ -262,8 +272,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     Value = kt.KeywordId.ToString(),
                     Text = kt.Value,
                     Selected = keywordIds.Contains(kt.KeywordId)
-                })
-                .ToList();
+                }));
+
+            model.AvailableClassifications = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value = "",
+                    Text = UiPrompts.ChooseOne,
+                    Selected = true
+                }
+            };
+
+            model.AvailableClassifications.AddRange(_db.ClassificationTranslations
+                .Where(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage)
+                .OrderBy(ct => ct.ClassificationId)
+                .Select(ct => new SelectListItem
+                {
+                    Value = ct.ClassificationId.ToString(),
+                    Text = ct.Value,
+                    Selected = image.ClassificationId == ct.ClassificationId
+                }));
 
             return model;
         }

@@ -1,31 +1,21 @@
 ﻿@model Classification
 
 @{
+    ViewBag.Id = Model.Id;
     ViewBag.Title = ClassificationStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<div class="btn-toolbar" role="toolbar">
-
-    <div class="btn-group">
-        <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-            <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
-        </a>
-    </div>
-
-    <div class="btn-group">
-        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-            <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
-        </a>
-
-        <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ClassificationStrings.DeleteWarningMessage">
-            <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
-        </a>
-    </div>
-</div>
-
-<hr />
+@section ExtraActions {
+    @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> @UiStrings.AddTranslation
+            </a>
+        </div>
+    }
+}
 
 <div class="container">
     <ul class="nav nav-tabs">
@@ -58,6 +48,3 @@
         }
     </div>
 </div>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}

@@ -32,7 +32,9 @@
                 <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
                      id="@langCode">
 
-                    @Html.HiddenFor(model => model.Translations[i].ClassificationId)
+                    @Html.PartialFor(model => model.Translations[i], "_ClassificationFields")
+
+                    @*@Html.HiddenFor(model => model.Translations[i].ClassificationId)
 
                     @Html.HiddenFor(model => model.Translations[i].LanguageCode)
 
@@ -42,7 +44,7 @@
                             @Html.EditorFor(model => model.Translations[i].Value, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Translations[i].Value, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             }
         </div>

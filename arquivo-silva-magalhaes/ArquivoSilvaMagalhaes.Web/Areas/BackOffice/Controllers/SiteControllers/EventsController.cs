@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
-    public class EventsController : BackOfficeController
+    public class EventsController : SiteControllerBase
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 

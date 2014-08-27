@@ -1,4 +1,4 @@
-﻿@model KeywordViewModel
+﻿@model Keyword
 
 @{
     ViewBag.Title = "Delete";
@@ -11,8 +11,8 @@
 
     <hr />
     <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(model => model.Value)</dt>
-        <dd>@Html.DisplayFor(model => model.Value)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Translations[0].Value)</dt>
+        <dd>@Html.DisplayFor(model => model.Translations[0].Value)</dd>
     </dl>
 
     @using (Html.BeginForm()) {
