@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
         {
-            var query = await _db.Query(d => (authorId == 0 || d.AuthorId == authorId) && 
+            var query = await _db.QueryAsync(d => (authorId == 0 || d.AuthorId == authorId) && 
                                              (collectionId == 0 || d.CollectionId == collectionId));
 
             return View(query.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
@@ -46,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await _db.GetById(id);
+            Document document = await _db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -96,7 +96,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (ModelState.IsValid)
             {
                 _db.Add(document);
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -112,7 +112,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await _db.GetById(id);
+            Document document = await _db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -140,7 +140,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 _db.Update(document);
 
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -155,7 +155,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await _db.GetById(id);
+            Document document = await _db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -172,8 +172,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveById(id);
-            await _db.SaveChanges();
+            await _db.RemoveByIdAsync(id);
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
@@ -225,7 +225,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var doc = await _db.GetById(id);
+            var doc = await _db.GetByIdAsync(id);
 
             if (doc == null)
             {
@@ -260,7 +260,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 _db.AddTranslation(translation);
 
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }

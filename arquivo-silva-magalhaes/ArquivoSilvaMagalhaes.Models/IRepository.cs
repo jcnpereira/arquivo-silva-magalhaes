@@ -12,17 +12,17 @@ namespace ArquivoSilvaMagalhaes.Models
         void Update(TEntity entity);
         void Update(TEntity entity, params string[] exclude);
         void Remove(TEntity entity);
-        Task RemoveById(params object[] keys);
+        Task RemoveByIdAsync(params object[] keys);
 
         TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression) where TResult : class;
 
         void Update(TEntity entity, Expression<Func<TEntity, object>> exclude);
         void ExcludeFromUpdate(TEntity entity, Expression<Func<TEntity, object>> exclude);
 
-        Task<IEnumerable<TEntity>> GetAll();
-        Task<TEntity> GetById(params object[] keys);
-        Task<IEnumerable<TEntity>> Query(Expression<Func<TEntity, bool>> condition);
-        Task<int> SaveChanges();
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(params object[] keys);
+        Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> condition);
+        Task<int> SaveChangesAsync();
 
         IEnumerable<TOther> Set<TOther>() where TOther : class;
 
@@ -33,6 +33,6 @@ namespace ArquivoSilvaMagalhaes.Models
         /// <typeparam name="TOther">The type of the entity of the navigation property.</typeparam>
         /// <param name="entity">The entity from where to load the navigation property.</param>
         /// <param name="expression">A lambda expression that selects the entity to load.</param>
-        Task ForceLoad<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class;
+        Task ForceLoadAsync<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class;
     }
 }

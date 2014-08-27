@@ -37,8 +37,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: /BackOffice/Collection/
         public async Task<ActionResult> Index(int authorId = 0, int pageNumber = 1)
         {
-            var query = authorId > 0 ? await _db.Query(c => c.Authors.Any(a => a.Id == authorId)) :
-                                       await _db.GetAll();
+            var query = authorId > 0 ? await _db.QueryAsync(c => c.Authors.Any(a => a.Id == authorId)) :
+                                       await _db.GetAllAsync();
 
             return View(query
                 .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
@@ -53,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Collection collection = await _db.GetById(id);
+            Collection collection = await _db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -104,7 +104,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 model.Collection.Authors = authors.ToList();
 
                 _db.Add(model.Collection);
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -119,7 +119,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await _db.GetById(id);
+            Collection collection = await _db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -141,7 +141,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (ModelState.IsValid)
             {
                 // Force-update the collection's author list.
-                await _db.ForceLoad(model.Collection, c => c.Authors);
+                await _db.ForceLoadAsync(model.Collection, c => c.Authors);
 
                 model.Collection.Authors = _db.Set<Author>()
                      .Where(a => model.AuthorIds.Contains(a.Id)).ToList();
@@ -178,7 +178,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 _db.Update(model.Collection);
 
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -193,7 +193,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await _db.GetById(id);
+            Collection collection = await _db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -210,8 +210,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveById(id);
-            await _db.SaveChanges();
+            await _db.RemoveByIdAsync(id);
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
@@ -242,7 +242,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var c = await _db.GetById(id);
+            var c = await _db.GetByIdAsync(id);
 
             if (c == null)
             {
@@ -265,7 +265,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (ModelState.IsValid)
             {
                 _db.AddTranslation(translation);
-                await _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }

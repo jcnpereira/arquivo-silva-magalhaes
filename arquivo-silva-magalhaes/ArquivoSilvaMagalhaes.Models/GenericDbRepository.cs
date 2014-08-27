@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using ArquivoSilvaMagalhaes.Common;
 using System.Data.Entity.Infrastructure;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models
 {
@@ -36,27 +37,27 @@ namespace ArquivoSilvaMagalhaes.Models
             _db.Set<TEntity>().Remove(entity);
         }
 
-        public async Task<TEntity> GetById(params object[] keys)
+        public async Task<TEntity> GetByIdAsync(params object[] keys)
         {
             return await _db.Set<TEntity>().FindAsync(keys);
         }
 
-        public async Task<IEnumerable<TEntity>> Query(Expression<Func<TEntity, bool>> condition)
+        public async Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> condition)
         {
             return await _db.Set<TEntity>().Where(condition).ToListAsync();
         }
 
-        public async Task<int> SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
             return await _db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _db.Set<TEntity>().ToListAsync();
         }
 
-        public async Task RemoveById(params object[] keys)
+        public async Task RemoveByIdAsync(params object[] keys)
         {
             var set = _db.Set<TEntity>();
             var entity = await set.FindAsync(keys);
@@ -80,7 +81,7 @@ namespace ArquivoSilvaMagalhaes.Models
             return _db.Set<TOther>();
         }
 
-        public async Task ForceLoad<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class
+        public async Task ForceLoadAsync<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class
         {
             _db.Set<TEntity>().Attach(entity);
             await _db.Entry(entity).Collection(expression).LoadAsync();
@@ -110,7 +111,8 @@ namespace ArquivoSilvaMagalhaes.Models
         {
             var entry = _db.Entry(entity);
 
-            return entry.Property(expression).CurrentValue;
+            return entry.GetDatabaseValues()
+                        .GetValue<TResult>(ExpressionHelper.GetExpressionText(expression));
         }
 
         public void ExcludeFromUpdate(TEntity entity, Expression<Func<TEntity, object>> exclude)

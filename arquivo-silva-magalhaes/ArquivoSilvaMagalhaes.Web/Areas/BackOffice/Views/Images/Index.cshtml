@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ImageTranslation>
+﻿@model IEnumerable<TranslatedViewModel<Image, ImageTranslation>>
 
 @{
     ViewBag.Title = ImageStrings.EntityNamePlural;
@@ -9,14 +9,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Translation.Title)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Image.ImageCode)
+                @Html.DisplayNameFor(model => model.Entity.ImageCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image.ProductionDate)
+                @Html.DisplayNameFor(model => model.Entity.ProductionDate)
             </th>
             <th>
                 @UiStrings.Actions
@@ -29,21 +29,21 @@
         <tr>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Translation.Title)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Image.ImageCode)
+                @Html.DisplayFor(modelItem => item.Entity.ImageCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image.ProductionDate)
+                @Html.DisplayFor(modelItem => item.Entity.ProductionDate)
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ImageId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ImageId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ImageId }) |
-                @Html.ActionLink("Espécies", "Index", "Specimens", new { imageId = item.ImageId }, null)
+                @Html.ActionLink("Edit", "Edit", new { id = item.Entity.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Entity.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Entity.Id }) |
+                @Html.ActionLink("Espécies", "Index", "Specimens", new { imageId = item.Entity.Id }, null)
             </td>
         </tr>
     }
