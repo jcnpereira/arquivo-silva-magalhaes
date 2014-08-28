@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -32,12 +34,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
         // GET: Events
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index( int pageNumber=1)
         {
             return View(await Task.Run(() => db.EventTranslations
             .Include(et => et.Event)
             .Where(et => et.LanguageCode == LanguageDefinitions.DefaultLanguage)
-            .OrderByDescending(et => et.Event.PublishDate)));
+            .OrderByDescending(et => et.Event.PublishDate)
+            .ToPagedList(pageNumber, 3)));
         }
 
         // GET: Events/Details/5

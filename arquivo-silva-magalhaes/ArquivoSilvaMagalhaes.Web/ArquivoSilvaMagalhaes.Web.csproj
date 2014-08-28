@@ -322,6 +322,7 @@
     <Content Include="Content\Fonts\ostrich-light-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
     <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
+    <Content Include="Content\Styles\Images.css" />
     <Content Include="mstile-square.png" />
     <Content Include="mstile-large.png" />
     <Content Include="mstile-tiny.png" />
@@ -873,7 +874,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
-    <Content Include="Views\Images\ViewImage.cshtml" />
     <Content Include="Views\Shared\_IndexPageLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>

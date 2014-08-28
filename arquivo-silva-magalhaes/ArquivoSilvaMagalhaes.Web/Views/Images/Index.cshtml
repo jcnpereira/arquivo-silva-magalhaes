@@ -2,54 +2,9 @@
 @using PagedList.Mvc;
 @model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
 
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-}
-
 <h2>Imagens</h2>
 
-<style type="text/css">
-    .afsm-overlay {
-        z-index: 10000;
-        background-color: rgba(0,0,0, 0.8);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-    }
-
-    .afsm-overlay-container {
-        position: relative;
-        top: 0;
-        width: 60%;
-        height: 100%;
-        margin: 0 auto 0 auto;
-        background: #101010;
-        color: #888;
-        padding-top: 10%;
-    }
-
-    .afsm-overlay-image {
-        max-width: 100%;
-        max-height: 100%;
-        margin: 0 auto;
-    }
-
-    .img-container {
-        position: relative;
-        height: 70%;
-        margin-bottom: 5%;
-    }
-
-    .overlay-description {
-        position: relative;
-        height: 15%;
-    }
-
-</style>
+@Styles.Render("~/Content/Styles/Images.css")
 
 @foreach (var img in Model)
 {
@@ -66,7 +21,7 @@
         </a>
 
         <div class="media-body">
-            <h4 class="media-heading" >
+            <h4 class="media-heading">
                 @Html.DisplayFor(modelItem => img.Title)
                 @*@Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)*@
             </h4>
@@ -80,27 +35,23 @@
     </div>
 }
 
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
+
 @section scripts {
     <div id="afsm-overlay" class="afsm-overlay hidden">
         <div class="afsm-overlay-container center-block">
             <div class="img-container">
                 <img class="afsm-overlay-image img-responsive">
             </div>
-
             <div class="overlay-description">
-
                 <p class="afsm-image-description">
-
                 </p>
-
                 <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">Fechar</button>
             </div>
         </div>
     </div>
-
-    @Scripts.Render("~/Scripts/frontoffice/overlay-image.js")   
+    @Scripts.Render("~/Scripts/frontoffice/overlay-image.js")
 }
-
-
-
-

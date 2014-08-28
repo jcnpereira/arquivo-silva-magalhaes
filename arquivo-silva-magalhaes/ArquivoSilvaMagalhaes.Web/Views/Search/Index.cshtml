@@ -1,4 +1,7 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
 
 <h2>Pesquisa</h2>
 <hr />
@@ -23,9 +26,8 @@
     @foreach (var item in Model)
     {
         <li class="media">
-            <img class="media-object afsm-media-object" src="..." alt="...">
             <div class="media-body">
-                <a href="~/Collections/Details/@item.CollectionId">
+                <a href="~/Documents/Index/@item.CollectionId">
                     <h4 class="media-heading">@item.Title</h4>
                 </a>
                 <h5>@item.Provenience</h5>
@@ -36,3 +38,7 @@
         </li>
     }
 </ul>
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
