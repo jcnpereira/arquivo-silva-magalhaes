@@ -161,25 +161,6 @@ namespace ArquivoSilvaMagalhaes.Models
             _db.Entry(translation).State = EntityState.Modified;
         }
 
-        public async Task<GenericTranslatedEntity<TEntity, TTranslation>> GetTranslatedEntity(int id, string languageCode)
-        {
-            var dbEntry = await _db.Set<TEntity>().FindAsync(id);
-
-            var translationProp = await _db.Entry(dbEntry)
-                .Collection("Translations")
-                .Cast<TEntity, TTranslation>()
-                .Query()
-                .ToListAsync();
-
-            var translation = translationProp.FirstOrDefault(t => t.LanguageCode == languageCode);
-
-            return new GenericTranslatedEntity<TEntity, TTranslation>
-            {
-                Entity = dbEntry,
-                Translation = translation ?? translationProp.FirstOrDefault(t => t.LanguageCode == LanguageDefinitions.DefaultLanguage)
-            };
-        }
-
         public async Task<IEnumerable<TTranslation>> GetAllByLanguage(string languageCode)
         {
             return await _db.Set<TTranslation>().Where(t => t.LanguageCode == languageCode).ToListAsync();
