@@ -44,7 +44,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartMoment)
+            @Html.DisplayFor(model => model.StartMoment.Date.Day)/@Html.DisplayFor(model => model.StartMoment.Date.Month)/@Html.DisplayFor(model => model.StartMoment.Date.Year)
         </dd>
 
         <dt>
@@ -52,7 +52,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndMoment)
+            @Html.DisplayFor(model => model.EndMoment.Date.Day)/@Html.DisplayFor(model => model.EndMoment.Date.Month)/@Html.DisplayFor(model => model.EndMoment.Date.Year)
         </dd>
     </dl>
 </div>

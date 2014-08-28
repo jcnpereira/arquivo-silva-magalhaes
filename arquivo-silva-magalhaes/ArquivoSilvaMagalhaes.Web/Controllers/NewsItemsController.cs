@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -17,9 +19,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: NewsItems
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
-            return View(await db.NewsItemTranslations.OrderByDescending(news => news.NewsItemId).ToListAsync());
+            return View(await Task.Run(() => db.NewsItemTranslations.OrderByDescending(news => news.NewsItemId).ToPagedList(pageNumber, 3)));
         }
       
 

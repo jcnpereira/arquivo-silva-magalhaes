@@ -16,10 +16,15 @@
                     <h4 class="media-heading">@item.Title</h4>
                 </a>
                 <div>
-                    <p>@Html.DisplayFor(model => item.Heading)</p>
+                    <p><b>@Html.DisplayFor(model => item.Heading)</b></p>
                     <p>@Html.DisplayFor(model => item.TextContent)</p>
                 </div>
             </div>
         </li>
     }
 </ul>
+
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}

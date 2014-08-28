@@ -1,10 +1,16 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
-using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -13,9 +19,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /TechnicalDocuments/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
-            return View(await db.TechnicalDocuments.ToListAsync());
+          
+            return View(await Task.Run(() => db.TechnicalDocuments.OrderByDescending(doc => doc.LastModificationDate).ToPagedList(pageNumber, 4)));
         }
 
         // GET: /TechnicalDocuments/Details/5
