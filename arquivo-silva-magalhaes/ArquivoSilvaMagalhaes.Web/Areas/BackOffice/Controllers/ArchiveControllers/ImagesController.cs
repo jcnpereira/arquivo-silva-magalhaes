@@ -54,18 +54,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(image);
         }
 
-        public ActionResult Create(int? documentId)
+        public ActionResult Create(int documentId = 0)
         {
             var image = new Image();
+
+            if (_db.Set<Document>().Any(d => d.Id == documentId))
+            {
+                image.DocumentId = documentId;
+                image.ImageCode = CodeGenerator.SuggestImageCode(documentId);
+            }
 
             image.Translations.Add(new ImageTranslation
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             });
 
-            
+            var model = new ImageEditViewModel(image, true);
+            model.PopulateDropDownLists(_db.Set<Document>(), _db.Set<Classification>(), _db.Set<Keyword>());
 
-            return View(GenerateViewModel(image));
+            return View(model);
         }
 
         [HttpPost]
@@ -110,7 +117,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return HttpNotFound();
             }
 
-            return View(GenerateViewModel(image));
+            var model = new ImageEditViewModel(image, true);
+
+            model.PopulateDropDownLists(_db.Set<Document>(), _db.Set<Classification>(), _db.Set<Keyword>());
+
+            return View(model);
         }
 
         [HttpPost]
@@ -155,7 +166,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(model.Image));
+            model.PopulateDropDownLists(_db.Set<Document>(), _db.Set<Classification>(), _db.Set<Keyword>());
+
+            return View(model);
         }
 
         public async Task<ActionResult> Delete(int? id)
@@ -203,81 +216,48 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Populates the ViewBag with select list items for the
-        /// drop-down lists required for this entity.
-        /// </summary>
-        /// <param name="keywordIds"></param>
-        /// <param name="documentId"></param>
-        private ImageEditViewModel GenerateViewModel(Image image)
+        public async Task<ActionResult> AddTranslation(int? id)
         {
-            var model = new ImageEditViewModel();
-            model.Image = image;
-
-            model.AvailableDocuments = new List<SelectListItem>
+            if (id == null)
             {
-                new SelectListItem
-                {
-                    Text = UiPrompts.ChooseOne,
-                    Value = String.Empty,
-                    Selected = true
-                }
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var image = await _db.GetByIdAsync(id);
+
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ImageTranslation
+            {
+                ImageId = image.Id
             };
 
-            model.AvailableDocuments.AddRange(
-                _db.Set<Document>()
-                .OrderBy(d => d.Id)
-                .Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.CatalogCode + " - " + d.Title,
-                    Selected = d.Id == image.DocumentId
-                }));
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(image.Translations.Select(t => t.LanguageCode));
 
-            var keywordIds = image.Keywords.Select(k => k.Id).ToList();
+            return View(model);
+        }
 
-            model.AvailableKeywords = new List<SelectListItem>();
-
-            model.AvailableKeywords
-                .AddRange(_db.Set<Keyword>()
-                .OrderBy(k => k.Id)
-                .ToList()
-                .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
-                .Select(k => new SelectListItem
-                {
-                    Value = k.Entity.Id.ToString(),
-                    Text = k.Translation.Value,
-                    Selected = keywordIds.Contains(k.Entity.Id)
-                }));
-
-            model.AvailableClassifications = new List<SelectListItem>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(ImageTranslation translation)
+        {
+            if (ModelState.IsValid)
             {
-                new SelectListItem
-                {
-                    Value = "",
-                    Text = UiPrompts.ChooseOne,
-                    Selected = true
-                }
-            };
+                _db.AddTranslation(translation);
+                await _db.SaveChangesAsync();
 
-            model.AvailableClassifications
-                .AddRange(_db.Set<Classification>()
-                .OrderBy(k => k.Id)
-                .ToList()
-                .Select(k => new TranslatedViewModel<Classification, ClassificationTranslation>(k))
-                .Select(k => new SelectListItem
-                {
-                    Value = k.Entity.Id.ToString(),
-                    Text = k.Translation.Value,
-                    Selected = keywordIds.Contains(k.Entity.Id)
-                }));
+                return RedirectToAction("Index");
+            }
 
-            return model;
+            return View(translation);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _db != null)
             {
                 _db.Dispose();
             }
