@@ -38,6 +38,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View(await Task.Run(() => db.EventTranslations
             .Include(et => et.Event)
+            .Where(et => (et.Event.HideAfterExpiry==false || et.Event.ExpiryDate > DateTime.Now ))
             .Where(et => et.LanguageCode == LanguageDefinitions.DefaultLanguage)
             .OrderByDescending(et => et.Event.PublishDate)
             .ToPagedList(pageNumber, 3)));
