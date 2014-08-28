@@ -199,7 +199,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> SuggestCode(int? documentId)
+        public ActionResult SuggestCode(int? documentId)
         {
             if (documentId == null)
             {

@@ -9,19 +9,32 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ProcessesController : ArchiveControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Process, ProcessTranslation> _db;
+
+        public ProcessesController(ITranslateableEntityRepository<Process, ProcessTranslation> db)
+        {
+            this._db = db;
+        }
+
+        public ProcessesController()
+            : this(new TranslateableGenericRepository<Process, ProcessTranslation>())
+        {
+
+        }
 
         // GET: BackOffice/Processes
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => db.Processes
+            return View((await _db.GetAllAsync())
                 .OrderBy(p => p.Id)
-                .ToPagedList(pageNumber, 10)));
+                .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Processes/Details/5
@@ -31,11 +44,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process p = await db.Processes.FindAsync(id);
+            Process p = await _db.GetByIdAsync(id);
+
             if (p == null)
             {
                 return HttpNotFound();
             }
+
+            p.Translations = p.Translations.ToList();
+
             return View(p);
         }
 
@@ -56,8 +73,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Processes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ProcessTranslation pt)
@@ -67,8 +82,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 var process = new Process();
                 process.Translations.Add(pt);
 
-                db.Processes.Add(process);
-                await db.SaveChangesAsync();
+                _db.Add(process);
+
+                await _db.SaveChangesAsync();
 
                 if (Request.IsAjaxRequest())
                 {
@@ -80,13 +96,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                         }
                     };
 
-                    result.AddRange(db.ProcessTranslations
-                          .Where(ptr => ptr.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                          .OrderBy(ptr => ptr.ProcessId)
+                    result.AddRange((await _db.GetAllAsync())
+                          .OrderBy(ptr => ptr.Id)
+                          .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
                           .Select(ptr => new
                           {
-                              text = ptr.Value,
-                              value = ptr.ProcessId.ToString()
+                              text = ptr.Translation.Value,
+                              value = ptr.Entity.Id.ToString()
                           }));
 
                     return Json(result);
@@ -105,7 +121,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process process = await db.Processes.FindAsync(id);
+            Process process = await _db.GetByIdAsync(id);
 
             if (process == null)
             {
@@ -116,8 +132,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Processes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Process process)
@@ -126,9 +140,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var translation in process.Translations)
                 {
-                    db.Entry(translation).State = EntityState.Modified;
+                    _db.UpdateTranslation(translation);
                 }
-                await db.SaveChangesAsync();
+
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(process);
@@ -141,12 +156,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Process p = await db.Processes.FindAsync(id);
+            Process p = await _db.GetByIdAsync(id);
 
             if (p == null)
             {
                 return HttpNotFound();
             }
+
             p.Translations = p.Translations.ToList();
             return View(p);
         }
@@ -156,17 +172,57 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Process process = await db.Processes.FindAsync(id);
-            db.Processes.Remove(process);
-            await db.SaveChangesAsync();
+            Process process = await _db.GetByIdAsync(id);
+            _db.Remove(process);
+
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var k = await _db.GetByIdAsync(id);
+
+            if (k == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Languages =
+                LanguageDefinitions.GenerateAvailableLanguageDDL(k.Translations.Select(t => t.LanguageCode));
+
+            var model = new KeywordTranslation
+            {
+                KeywordId = k.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(ProcessTranslation translation)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.AddTranslation(translation);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+            return View(translation);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

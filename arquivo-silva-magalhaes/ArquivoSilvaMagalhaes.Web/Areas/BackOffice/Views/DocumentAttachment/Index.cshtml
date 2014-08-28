@@ -25,9 +25,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.MimeFormat)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LanguageCode)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -40,9 +37,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MimeFormat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LanguageCode)
             </td>
             <td>
                 <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">

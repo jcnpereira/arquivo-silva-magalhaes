@@ -15,11 +15,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class KeywordsController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<Keyword, KeywordTranslation> db;
+        private ITranslateableEntityRepository<Keyword, KeywordTranslation> _db;
 
         public KeywordsController(ITranslateableEntityRepository<Keyword, KeywordTranslation> db)
         {
-            this.db = db;
+            this._db = db;
         }
 
         public KeywordsController() : this(new TranslateableGenericRepository<Keyword, KeywordTranslation>())
@@ -30,7 +30,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.GetAllAsync())
+            return View((await _db.GetAllAsync())
                 .OrderBy(k => k.Id)
                 .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
                 .ToPagedList(pageNumber, 10));
@@ -44,7 +44,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var k = await db.GetByIdAsync(id);
+            var k = await _db.GetByIdAsync(id);
 
             if (k == null)
             {
@@ -88,12 +88,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 var keyword = new Keyword();
                 keyword.Translations.Add(kt);
 
-                db.Add(keyword);
-                await db.SaveChangesAsync();
+                _db.Add(keyword);
+                await _db.SaveChangesAsync();
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json((await db.GetAllAsync())
+                    return Json((await _db.GetAllAsync())
                         .OrderBy(k => k.Id)
                         .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
                         .Select(ktr => new
@@ -118,7 +118,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var k = await db.GetByIdAsync(id);
+            var k = await _db.GetByIdAsync(id);
 
             if (k == null)
             {
@@ -139,10 +139,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var t in keyword.Translations)
                 {
-                    db.UpdateTranslation(t);
+                    _db.UpdateTranslation(t);
                 }
 
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -157,7 +157,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Keyword keyword = await db.GetByIdAsync(id);
+            Keyword keyword = await _db.GetByIdAsync(id);
 
             if (keyword == null)
             {
@@ -172,17 +172,56 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.RemoveByIdAsync(id);
-            await db.SaveChangesAsync();
+            await _db.RemoveByIdAsync(id);
+            await _db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var k = await _db.GetByIdAsync(id);
+
+            if (k == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Languages = 
+                LanguageDefinitions.GenerateAvailableLanguageDDL(k.Translations.Select(t => t.LanguageCode));
+
+            var model = new KeywordTranslation
+            {
+                KeywordId = k.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(KeywordTranslation translation)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.AddTranslation(translation);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+            return View(translation);
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing && db != null)
+            if (disposing && _db != null)
             {
-                db.Dispose();
+                _db.Dispose();
             }
 
             base.Dispose(disposing);

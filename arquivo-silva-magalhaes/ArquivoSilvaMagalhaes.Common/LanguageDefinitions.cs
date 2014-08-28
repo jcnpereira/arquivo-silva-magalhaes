@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Linq;
+using System;
 
 namespace ArquivoSilvaMagalhaes.Common
 {
@@ -90,6 +91,11 @@ namespace ArquivoSilvaMagalhaes.Common
 
         public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(IEnumerable<string> languages)
         {
+            if (languages.Count() == Languages.Count)
+            {
+                throw new InvalidOperationException("No more languages available.");
+            }
+
             return Languages
                 .Where(l => !languages.Contains(l))
                 .Select(l => new SelectListItem

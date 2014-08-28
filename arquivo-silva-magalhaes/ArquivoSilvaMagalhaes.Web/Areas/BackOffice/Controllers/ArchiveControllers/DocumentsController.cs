@@ -59,7 +59,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Documents/Create
-        public async Task<ActionResult> Create(int? collectionId, int? authorId)
+        public ActionResult Create(int? collectionId, int? authorId)
         {
             var doc = new Document();
 
@@ -271,7 +271,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 });
         }
 
-        public async Task<ActionResult> SuggestCode(int? collectionId)
+        public ActionResult SuggestCode(int? collectionId)
         {
             if (collectionId == null)
             {

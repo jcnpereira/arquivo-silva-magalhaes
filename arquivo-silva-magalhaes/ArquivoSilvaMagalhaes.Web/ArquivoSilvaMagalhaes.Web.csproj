@@ -512,16 +512,6 @@
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnerships\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnerships\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Partnerships\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Collaborator\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Collaborator\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Collaborator\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Collaborator\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Collaborator\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\Details.cshtml" />
@@ -716,6 +706,8 @@
     <Content Include="Areas\BackOffice\Views\Classifications\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Images\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
