@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Process>
+﻿@model IEnumerable<TranslatedViewModel<Process, ProcessTranslation>>
 
 
 @{
@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Translations[0].Value)
+                @Html.DisplayNameFor(model => model.Translation.Value)
             </th>
             <th>
                 @UiStrings.Actions
@@ -19,25 +19,25 @@
     </thead>
     @foreach (var item in Model)
     {
-        var translation = item.Translations.FirstOrDefault(tr => tr.LanguageCode == LanguageDefinitions.DefaultLanguage);
+        
 
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => translation.Value)
+                @Html.DisplayFor(modelItem => item.Translation.Value)
             </td>
 
             <td>
-                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
-                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">
+                <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                    <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Details">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </a>
 
-                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
+                    <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
                     @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                    <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>
