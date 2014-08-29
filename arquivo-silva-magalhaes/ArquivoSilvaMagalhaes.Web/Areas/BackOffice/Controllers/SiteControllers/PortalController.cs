@@ -1,49 +1,54 @@
 ﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
+using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class PortalController : SiteControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Archive, ArchiveTranslation> db;
+
+        public PortalController() : this(new TranslateableGenericRepository<Archive, ArchiveTranslation>())
+        {
+
+        }
+
+        public PortalController(ITranslateableEntityRepository<Archive, ArchiveTranslation> db)
+        {
+            this.db = db;
+        }
 
         // GET: /Portal/
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Archives.ToListAsync());
+            return View(db.Set<Archive>().FirstOrDefault());
         }
 
         // GET: /Portal/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Archive archive = await db.Archives.FindAsync(id);
-            if (archive == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
-
-            return View(archive);
+            return View(db.Set<Archive>().FirstOrDefault());
         }
 
         // POST: /Portal/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Archive model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(model).State = EntityState.Modified;
+                db.Update(model);
+
+                foreach (var t in model.Translations)
+                {
+                    db.UpdateTranslation(t);
+                }
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -52,35 +57,69 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return View(model);
         }
 
-        // GET: /Portal/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> AddTranslation()
         {
-            if (id == null)
+            var archive = db.Set<Archive>().FirstOrDefault();
+
+            var t = new ArchiveTranslation
+            {
+                ArchiveId = archive.Id
+            };
+
+            ViewBag.Languages = 
+                LanguageDefinitions.GenerateAvailableLanguageDDL(archive.Translations.Select(tr => tr.LanguageCode));
+
+            return View(t);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(ArchiveTranslation t)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AddTranslation(t);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(t);
+        }
+
+        // GET: /Portal/Delete/5
+        public async Task<ActionResult> DeleteTranslation(string languageCode)
+        {
+            if (string.IsNullOrEmpty(languageCode))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive archive = await db.Archives.FindAsync(id);
-            if (archive == null)
+
+            var t = await db.GetTranslationAsync(1, languageCode);
+
+            if (t == null)
             {
                 return HttpNotFound();
             }
-            return View(archive);
+
+            return View(t);
         }
 
         // POST: /Portal/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteTranslation")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteTranslationConfirmed(string languageCode)
         {
-            Archive archive = await db.Archives.FindAsync(id);
-            db.Archives.Remove(archive);
+            var archive = db.Set<Archive>().FirstOrDefault();
+
+            await db.RemoveTranslationByIdAsync(archive.Id, languageCode);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

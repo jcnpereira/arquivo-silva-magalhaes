@@ -24,6 +24,8 @@ namespace ArquivoSilvaMagalhaes.Models
         Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TEntity, bool>> condition);
         Task<int> SaveChangesAsync();
 
+        int SaveChanges();
+
         IEnumerable<TOther> Set<TOther>() where TOther : class;
 
         /// <summary>

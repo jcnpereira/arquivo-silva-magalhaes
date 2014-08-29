@@ -126,4 +126,7 @@
   <data name="ArchiveMission" xml:space="preserve">
     <value>Missão</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do arquivo</value>
+  </data>
 </root>

@@ -127,6 +127,12 @@ namespace ArquivoSilvaMagalhaes.Models
                 entry.Property(prop).IsModified = false;
             }
         }
+
+
+        public int SaveChanges()
+        {
+            return _db.SaveChanges();
+        }
     }
 
     public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableEntityRepository<TEntity, TTranslation>
@@ -134,7 +140,7 @@ namespace ArquivoSilvaMagalhaes.Models
         where TTranslation : EntityTranslation
     {
 
-        public async Task<TTranslation> GetTranslation(int id, string languageCode)
+        public async Task<TTranslation> GetTranslationAsync(int id, string languageCode)
         {
             return await _db.Set<TTranslation>().FindAsync(id, languageCode);
         }
@@ -164,6 +170,14 @@ namespace ArquivoSilvaMagalhaes.Models
         public async Task<IEnumerable<TTranslation>> GetAllByLanguage(string languageCode)
         {
             return await _db.Set<TTranslation>().Where(t => t.LanguageCode == languageCode).ToListAsync();
+        }
+
+
+        public async Task RemoveTranslationByIdAsync(params object[] keys)
+        {
+            var t = _db.Set<TTranslation>();
+
+            t.Remove(await t.FindAsync(keys));
         }
     }
 }

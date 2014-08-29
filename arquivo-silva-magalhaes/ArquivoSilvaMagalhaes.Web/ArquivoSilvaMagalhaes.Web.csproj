@@ -213,7 +213,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\PartnershipsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ProcessesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ShowcasePhotoesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SiteController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SiteControllerBase.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\Translations\UserViewModelStrings.Designer.cs">
@@ -713,6 +713,7 @@
     <Content Include="Areas\BackOffice\Views\Partnerships\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\_PortalTranslateableFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

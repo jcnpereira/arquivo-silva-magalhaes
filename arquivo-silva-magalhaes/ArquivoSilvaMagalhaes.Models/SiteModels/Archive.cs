@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(ArchiveStrings), Name = "Address")]
         public string Address { get; set; }
 
-        public IList<ArchiveTranslation> Translations { get; set; }
+        public virtual IList<ArchiveTranslation> Translations { get; set; }
     }
 
     public class ArchiveTranslation : EntityTranslation

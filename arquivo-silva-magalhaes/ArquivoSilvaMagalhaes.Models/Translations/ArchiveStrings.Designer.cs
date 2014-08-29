@@ -86,5 +86,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("ArchiveMission", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes do arquivo.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
+            }
+        }
     }
 }
