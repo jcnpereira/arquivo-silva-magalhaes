@@ -22,13 +22,22 @@
             </div>
         </div>
 
+
         <div class="form-group">
+            @Html.LabelFor(model => model.LogoFileName, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.LogoFileName, new { @class = "form-control-static", accept = "image/*" })
+                @Html.ValidationMessageFor(model => model.LogoFileName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.LogoFileName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LogoFileName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LogoFileName, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.SiteLink, htmlAttributes: new { @class = "control-label col-md-2" })

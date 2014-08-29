@@ -4,10 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
+<div class="btn-toolbar btn-group" role="toolbar">
+    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
 
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </a>
+</div>
 <div>
-    <h4>Partnership</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -52,7 +63,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

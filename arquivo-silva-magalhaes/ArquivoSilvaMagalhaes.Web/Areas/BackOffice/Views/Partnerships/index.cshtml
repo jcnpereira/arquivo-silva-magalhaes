@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Partnership>
 
 @{
-    //ViewBag.Title = TechnicalDocumentStrings.EntityNamePlural;
-
+    //ViewBag.Title = PartnershipStrings.EntityNamePlural;
+    ViewBag.Title = " Projetos e parcerias";
     Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
 
@@ -54,8 +54,8 @@
                     </a>
 
                     @*<a class="btn btn-default" title="@UiStrings.Download" target="_blank" href="@Url.Content("~/Public/TechnicalDocuments/" + item.FileName)">
-                        <span class="glyphicon glyphicon-download"></span>
-                    </a>*@
+                            <span class="glyphicon glyphicon-download"></span>
+                        </a>*@
 
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
                         <span class="glyphicon glyphicon-edit"></span>
@@ -68,6 +68,5 @@
                 </form>
             </td>
         </tr>
-
     }
 </table>
