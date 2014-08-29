@@ -708,6 +708,11 @@
     <Content Include="Areas\BackOffice\Views\Images\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Processes\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Keywords\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

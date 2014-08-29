@@ -1,10 +1,14 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink>
+﻿@using PagedList;
+@using PagedList.Mvc; 
+@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ReferencedLink>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Links Úteis</h2>
+<div class="space"></div>
+<div class="clear"></div>
 
 <table class="table">
     @foreach (var item in Model)
@@ -16,9 +20,11 @@
             <td>
                 <a href=@Url.Content(item.Link) target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>*@
         </tr>
     }
 </table>
+
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}

@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         //[Required]
         //[DataType(DataType.MultilineText)]
-        //[Display(ResourceType = typeof(DataStrings), Name = "Description")]
+        //[Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Description")]
         //public string Description { get; set; }
     }
 }
