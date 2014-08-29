@@ -1,5 +1,7 @@
-﻿using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;
@@ -16,10 +18,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/ReferencedLink/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => 
-                db.ReferencedLinks
-                  .OrderBy(l => l.Id)
-                  .ToPagedList(pageNumber, 10)));
+            return View((await db.ReferencedLinks.ToListAsync())
+                .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: /BackOffice/ReferencedLink/Details/5
@@ -40,7 +41,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/ReferencedLink/Create
         public ActionResult Create()
         {
-            return View(new ReferencedLink());
+            var link = new ReferencedLink();
+
+            link.Translations.Add(new ReferencedLinkTranslation
+                {
+                    LanguageCode = LanguageDefinitions.DefaultLanguage
+                });
+
+            return View(link);
         }
 
         // POST: /BackOffice/ReferencedLink/Create
@@ -85,6 +93,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             if (ModelState.IsValid)
             {
                 db.Entry(referencedlink).State = EntityState.Modified;
+
+                foreach (var t in referencedlink.Translations)
+                {
+                    db.Entry(t).State = EntityState.Modified;
+                }
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -119,7 +133,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

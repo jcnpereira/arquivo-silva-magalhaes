@@ -70,6 +70,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Criar link útil.
+        /// </summary>
+        public static string CreateTitleFormat {
+            get {
+                return ResourceManager.GetString("CreateTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar link útil.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço de e-mail.
         /// </summary>
         public static string EmailAddress {

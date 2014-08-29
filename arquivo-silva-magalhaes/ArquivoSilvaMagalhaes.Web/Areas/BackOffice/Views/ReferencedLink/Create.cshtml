@@ -12,6 +12,9 @@
         @Html.ValidationSummary(true)
 
         @Html.Partial("_ReferencedLinkMainFields")
+
+        @Html.PartialFor(model => model.Translations[0], "_ReferencedLinkTranslateableFields")
+
         @Html.Partial("_SubmitBackPartial", UiStrings.Create)
     </div>
 

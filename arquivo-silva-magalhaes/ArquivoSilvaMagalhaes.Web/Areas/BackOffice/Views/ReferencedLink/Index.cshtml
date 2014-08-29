@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReferencedLink>
+﻿@model IEnumerable<TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>>
 
 @{
     ViewBag.Title = ReferencedLinkStrings.EntityNamePlural;
@@ -9,10 +9,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.DisplayNameFor(model => model.Entity.Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Link)
+                    @Html.DisplayNameFor(model => model.Entity.Link)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Translation.Description)
                 </th>
                 <th>
                     @UiStrings.Actions
@@ -23,23 +26,26 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.Entity.Title)
                 </td>
                 <td>
-                    <a href="@(item.Link)" target="_blank">@item.Link</a>
+                    <a target="_blank" href="@item.Entity.Link">@item.Entity.Link</a>
                 </td>
                 <td>
-                    <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Id })">
-                        <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Details">
+                    @Html.DisplayFor(modelItem => item.Translation.Description)
+                </td>
+                <td>
+                    <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                        <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Details">
                             <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
 
-                        <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
+                        <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
 
                         @Html.AntiForgeryToken()
-                        <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
                             <span class="glyphicon glyphicon-floppy-remove"></span>
                         </a>
                     </form>

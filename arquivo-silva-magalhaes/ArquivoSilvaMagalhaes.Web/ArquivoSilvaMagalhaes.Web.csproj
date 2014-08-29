@@ -714,6 +714,8 @@
     <Content Include="Areas\BackOffice\Views\Partnerships\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\_PortalTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkTranslateableFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\_PartnershipMainFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

@@ -120,6 +120,12 @@
   <data name="Contact" xml:space="preserve">
     <value>Contacto</value>
   </data>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar link útil</value>
+  </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Editar link útil</value>
+  </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Endereço de e-mail</value>
   </data>
