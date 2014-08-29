@@ -7,6 +7,8 @@ using ArquivoSilvaMagalhaes.ViewModels;
 using System.Web;
 using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -58,11 +60,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-        public ActionResult Links()
+        public ActionResult Links(int pageNumber=1)
         {
-            return View(db.ReferencedLinks.ToList());
+            var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber,10);
+            return View(model);
+            //return View(db.ReferencedLinks.ToList());
         }
-
 
         public ActionResult Collections()
         {
