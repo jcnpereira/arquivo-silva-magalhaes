@@ -24,7 +24,7 @@
                 </div>
             </div>
     
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.PublicationDate,htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PublicationDate, new {htmlAttributes=new { @Value = Model.PublicationDate.ToString("yyyy-MM-dd")}})
@@ -46,7 +46,7 @@
                     @Html.EditorFor(model => model.IsPermanent)
                     @Html.ValidationMessageFor(model => model.IsPermanent)
                 </div>
-            </div>
+            </div>*@
     
             @*<div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -54,6 +54,6 @@
                 </div>
             </div>*@
         </div>
-        @Html.Partial("_SubmitBackPartial")
+        @Html.Partial("_SubmitBackPartial", UiStrings.Done)
     }
 
