@@ -9,19 +9,28 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class AuthorsController : ArchiveControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<Author, AuthorTranslation> db;
+
+        public AuthorsController() : this (new TranslateableGenericRepository<Author, AuthorTranslation>()) { }
+
+        public AuthorsController(ITranslateableEntityRepository<Author, AuthorTranslation> db)
+        {
+            this.db = db;
+        }
 
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
         {
-            return View(await Task.Run(() => db.Authors
-                .OrderBy(a => a.Id)
-                .ToPagedList(pageNumber, 10))); // TODO Allow configs for page size.
+            return View((await db.GetAllAsync())
+                                 .OrderBy(a => a.Id)
+                                 .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
+                                 .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -32,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var author = await db.Authors.FindAsync(id);
+            var author = await db.GetByIdAsync(id);
             
 
             if (author == null)
@@ -70,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                db.Authors.Add(author);
+                db.Add(author);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
@@ -87,7 +96,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Author author = await db.Authors.FindAsync(id);
+            Author author = await db.GetByIdAsync(id);
 
             if (author == null)
             {
@@ -107,12 +116,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(author).State = EntityState.Modified;
+                db.Update(author);
 
                 // Update each translation.
                 foreach (var t in author.Translations)
                 {
-                    db.Entry(t).State = EntityState.Modified;
+                    db.UpdateTranslation(t);
                 }
 
                 await db.SaveChangesAsync();
@@ -132,7 +141,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var author = await db.Authors.FindAsync(id);
+            var author = await db.GetByIdAsync(id);
 
             if (author == null)
             {
@@ -157,12 +166,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(AuthorTranslation translation)
         {
-            var author = await db.Authors.FindAsync(translation.AuthorId);
-
-            if (author == null || author.Translations.Any(t => t.LanguageCode == translation.LanguageCode))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var author = await db.GetByIdAsync(translation.AuthorId);
 
             if (ModelState.IsValid)
             {
@@ -185,7 +189,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var tr = await db.AuthorTranslations.FindAsync(id, languageCode);
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
 
             if (tr == null)
             {
@@ -205,14 +209,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var tr = await db.AuthorTranslations.FindAsync(id, languageCode);
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
 
             if (tr == null)
             {
                 return HttpNotFound();
             }
 
-            db.AuthorTranslations.Remove(tr);
+            await db.RemoveTranslationByIdAsync(id, languageCode);
 
             await db.SaveChangesAsync();
 
@@ -227,7 +231,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.Authors.FindAsync(id);
+            Author author = await db.GetByIdAsync(id);
+
             if (author == null)
             {
                 return HttpNotFound();
@@ -240,15 +245,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Author author = await db.Authors.FindAsync(id);
-            db.Authors.Remove(author);
+            await db.RemoveByIdAsync(id);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }
