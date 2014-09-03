@@ -9,10 +9,10 @@
     {
         <li class="media-body col-md-3">
             <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-            <h6>@Html.DisplayFor(modelItem => item.PartnershipType)</h6>
+
             <img height="150" src="~/images/@Html.DisplayFor(modelItem => item.Logo)" alt="Logotipo associado à pareceria." /><br />
             <a href="@Html.DisplayFor(modelItem => item.SiteLink)" target="_blank">Visitar Site</a>
-           
+            
             <br /><b>tel:</b> @Html.DisplayFor(modelItem => item.Contact)
             <br /><b>e-mail:</b> @Html.DisplayFor(modelItem => item.EmailAddress)
             <br />

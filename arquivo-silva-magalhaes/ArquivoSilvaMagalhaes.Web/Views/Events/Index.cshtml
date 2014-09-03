@@ -8,7 +8,7 @@
     @foreach (var item in Model)
     {
         <li class="media">
-            <a class="pull-left" href="~/Events/Event/@item.Event.Id">
+            <a class="pull-left" href="~/Events/Event/@item.Event.Id" title="@item.Event.EventType">
                 <img class="media-object afsm-media-object" src="~/Images/@String.Concat(@Html.DisplayFor(modelItem => item.Event.EventType),".png")" width="48" height="48" alt="...">
             </a>
             <div class="media-body">
