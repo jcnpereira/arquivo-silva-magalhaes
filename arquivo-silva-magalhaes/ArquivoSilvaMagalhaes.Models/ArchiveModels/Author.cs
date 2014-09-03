@@ -74,7 +74,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             {
                 if (DeathDate.Value.CompareTo(BirthDate) < 0)
                 {
-                    yield return new ValidationResult(AuthorStrings.ValidationError_Dates);
+                    yield return new ValidationResult(AuthorStrings.ValidationError_Dates, new string[] { "BirthDate", "DeathDate" });
                 }
             }
         }
