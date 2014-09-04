@@ -186,4 +186,7 @@
   <data name="VisitorInformation" xml:space="preserve">
     <value>Informação sobre visitantes</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do evento</value>
+  </data>
 </root>

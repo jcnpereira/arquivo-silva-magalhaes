@@ -1,144 +1,137 @@
 ﻿@model Event
 
-@Html.DisplayFor(model => model.Translations[0].TextContent)
-
-@*@model Event
-
 @{
-    ViewBag.Title = "Details";
-    
+    ViewBag.Title = EventStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
 }
 
-<h2>Detalhes do evento</h2>
+@section ExtraActions {
+    @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> @UiStrings.AddTranslation
+            </a>
+        </div>
+    }
+}
 
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
 
-    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-        <span class="glyphicon glyphicon-edit"></span>
-    </a>
+<div class="tab-content">
 
-    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-        <span class="glyphicon glyphicon-floppy-remove"></span>
-    </a>
+    @foreach (var t in Model.Translations)
+    {
+
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+
+            <dl class="dl-horizontal">
+                @Html.Partial("_EventTranslationDisplay", t)
+            </dl>
+
+            @if (langCode != LanguageDefinitions.DefaultLanguage)
+            {
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                    Remover tradução
+                </a>
+            }
+        </div>
+    }
 </div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Place)
-        </dt>
+<dl class="dl-horizontal">
+    
+    <dt>
+        @Html.DisplayNameFor(model => model.EventType)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Place)
-        </dd>
+    <dd>
+        @Html.EnumDisplayFor(model => model.EventType)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Coordinates)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.VisitorInformation)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Coordinates)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.VisitorInformation)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VisitorInformation)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.StartMoment)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VisitorInformation)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.StartMoment)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartMoment)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.EndMoment)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartMoment)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.EndMoment)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndMoment)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.PublishDate)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndMoment)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.PublishDate)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.ExpiryDate)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishDate)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.ExpiryDate)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpiryDate)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.HideAfterExpiry)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpiryDate)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.HideAfterExpiry, "YesNoDisplayFor")
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HideAfterExpiry)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Place)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HideAfterExpiry)
-        </dd>
-    </dl>
+    <dd>
+        @Html.DisplayFor(model => model.Place)
+    </dd>
 
-    @foreach (var t in Model.EventTexts)
-        {
-        
-        <div>
-            <h4>@UiStrings.Language: @ArquivoSilvaMagalhaes.Utilitites.LanguageDefinitions.GetLanguageName(t.LanguageCode)</h4>
+    <dt>
+        @Html.DisplayNameFor(model => model.Coordinates)
+    </dt>
 
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(model => t.Title)
-                </dt>
-                <dd>
-                    @t.Title
-                </dd>
+    <dd>
+        <div id="map_canvas" style="width:100%; height: 400px" data-afsm-coords="@Model.Coordinates"></div>
+    </dd>
+</dl>
 
-                <dt>
-                    @Html.DisplayNameFor(model => t.Heading)
-                </dt>
-                <dd>
-                    @t.Heading
-                </dd>
+@section scripts {
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="~/Scripts/frontoffice/gmaps-readonly.js"></script>
+}
 
-                <dt>
-                    @Html.DisplayNameFor(model => t.SpotLight)
-                </dt>
-                <dd>
-                    @t.SpotLight
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => t.TextContent)
-                </dt>
-                <dd>
-                    @t.TextContent
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => t.LanguageCode)
-                </dt>
-                <dd>
-                    @t.LanguageCode
-                </dd>
-            </dl>
-           </div>    
-    }
-    </div>
-
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}*@

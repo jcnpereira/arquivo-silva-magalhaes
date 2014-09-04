@@ -14,7 +14,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
     {
         private ITranslateableEntityRepository<Archive, ArchiveTranslation> db;
 
-        public PortalController() : this(new TranslateableGenericRepository<Archive, ArchiveTranslation>())
+        public PortalController()
+            : this(new TranslateableGenericRepository<Archive, ArchiveTranslation>())
         {
 
         }
@@ -23,6 +24,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             this.db = db;
         }
+
 
         // GET: /Portal/
         public ActionResult Index()
@@ -66,7 +68,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
                 ArchiveId = archive.Id
             };
 
-            ViewBag.Languages = 
+            ViewBag.Languages =
                 LanguageDefinitions.GenerateAvailableLanguageDDL(archive.Translations.Select(tr => tr.LanguageCode));
 
             return View(t);

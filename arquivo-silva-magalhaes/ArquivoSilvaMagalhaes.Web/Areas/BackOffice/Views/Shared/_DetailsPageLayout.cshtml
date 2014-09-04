@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+    ViewBag.Id = Model.Id ?? ViewBag.Id;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -38,8 +39,9 @@
     </div>
 </div>
 
-@section Scripts {
+@section scripts {
     @Html.Partial("_DeleteConfirmModal")
+    @RenderSection("scripts", required: false)
 }
 
 <style>

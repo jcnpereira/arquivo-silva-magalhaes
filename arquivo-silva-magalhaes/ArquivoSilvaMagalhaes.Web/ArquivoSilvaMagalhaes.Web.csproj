@@ -376,6 +376,9 @@
       <DependentUpon>gmaps.js</DependentUpon>
     </Content>
     <Content Include="Scripts\BackOffice\modal-dialog.js" />
+    <Content Include="Scripts\BackOffice\modal-dialog.min.js">
+      <DependentUpon>modal-dialog.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\BackOffice\quill-config.js" />
     <Content Include="Scripts\BackOffice\quill-config.min.js">
       <DependentUpon>quill-config.js</DependentUpon>
@@ -716,6 +719,9 @@
     <Content Include="Areas\BackOffice\Views\Portal\_PortalTranslateableFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\_ReferencedLinkTranslateableFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\_PartnershipMainFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventTranslationDisplay.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\DeleteTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -740,7 +746,14 @@
     <Content Include="Content\fonts\ostrich-rounded-webfont.woff" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
+      <DependentUpon>gmaps-readonly.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\frontoffice\overlay-image.js" />
+    <Content Include="Scripts\frontoffice\gmaps-readonly.js" />
+    <Content Include="Scripts\frontoffice\overlay-image.min.js">
+      <DependentUpon>overlay-image.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -755,6 +768,15 @@
     </Content>
     <Content Include="Scripts\BackOffice\delete-modal.min.js.map">
       <DependentUpon>delete-modal.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\gmaps-readonly.min.js.map">
+      <DependentUpon>gmaps-readonly.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
+      <DependentUpon>modal-dialog.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\overlay-image.min.js.map">
+      <DependentUpon>overlay-image.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
