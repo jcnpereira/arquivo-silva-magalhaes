@@ -26,7 +26,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         {
             Translations = new List<EventTranslation>();
             Partnerships = new List<Partnership>();
-            Links = new List<ReferencedLink>();
             AttachedDocuments = new List<Attachment>();
         }
 
@@ -75,7 +74,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public EventType? EventType { get; set; }
 
         public virtual IList<Partnership> Partnerships { get; set; }
-        public virtual IList<ReferencedLink> Links { get; set; }
         public virtual IList<Attachment> AttachedDocuments { get; set; }
         public virtual IList<EventTranslation> Translations { get; set; }
     }
