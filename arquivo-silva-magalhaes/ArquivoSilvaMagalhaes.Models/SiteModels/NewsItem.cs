@@ -12,11 +12,9 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public NewsItem()
         {
-            Links = new List<ReferencedLink>();
             Translations = new List<NewsItemTranslation>();
             Attachments = new List<Attachment>();
 
-            CreationDate = DateTime.Now;
             LastModificationDate = DateTime.Now;
         }
 
@@ -43,7 +41,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(NewsItemStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 
-        public virtual IList<ReferencedLink> Links { get; set; }
         public virtual IList<NewsItemTranslation> Translations { get; set;}
         public virtual IList<Attachment> Attachments { get; set; }
     }
