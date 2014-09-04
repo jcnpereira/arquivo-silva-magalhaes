@@ -33,7 +33,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         }
 
         // GET: /Portal/Edit/5
-        public async Task<ActionResult> Edit()
+        //public async Task<ActionResult> Edit()
+        public ActionResult Edit()
         {
             return View(db.Set<Archive>().FirstOrDefault());
         }
@@ -59,7 +60,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return View(model);
         }
 
-        public async Task<ActionResult> AddTranslation()
+        //public async Task<ActionResult> AddTranslation()
+        public ActionResult AddTranslation()
         {
             var archive = db.Set<Archive>().FirstOrDefault();
 

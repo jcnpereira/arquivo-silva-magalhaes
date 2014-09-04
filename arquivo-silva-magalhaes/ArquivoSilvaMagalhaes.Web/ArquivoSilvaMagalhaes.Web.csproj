@@ -726,6 +726,11 @@
     <Content Include="Areas\BackOffice\Views\News\_NewsItemDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\_NewsItemTranslationDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\News\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoTranslationDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

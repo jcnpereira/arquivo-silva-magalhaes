@@ -106,6 +106,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detalhes da fotografia em destaque.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editar fotografia em destaque.
         /// </summary>
         public static string EditTitleFormat {
@@ -156,6 +165,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esta imagem não está visível ao público. Escolha outra..
+        /// </summary>
+        public static string ValidationError_ImageHidden {
+            get {
+                return ResourceManager.GetString("ValidationError_ImageHidden", resourceCulture);
             }
         }
         
