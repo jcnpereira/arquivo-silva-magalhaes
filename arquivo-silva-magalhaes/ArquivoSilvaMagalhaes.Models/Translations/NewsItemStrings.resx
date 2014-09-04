@@ -126,6 +126,9 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar notícia</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da notícia</value>
+  </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar notícia</value>
   </data>

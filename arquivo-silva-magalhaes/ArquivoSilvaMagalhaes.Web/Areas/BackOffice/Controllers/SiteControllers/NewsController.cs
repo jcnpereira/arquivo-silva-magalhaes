@@ -8,22 +8,28 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class NewsController : SiteControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableEntityRepository<NewsItem, NewsItemTranslation> db;
+
+        public NewsController() : this (new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
+
+        public NewsController(ITranslateableEntityRepository<NewsItem, NewsItemTranslation> db)
+        {
+            this.db = db;
+        }
 
         // GET: /News/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => 
-                db.NewsItemTranslations
-                  .Include(nt => nt.NewsItem)
-                  .Where(nt => nt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                  .OrderByDescending(nt => nt.NewsItem.CreationDate)
-                  .ToPagedList(pageNumber, 10)));
+            return View((await db.GetAllAsync())
+                .OrderBy(n => n.Id)
+                .Select(n => new TranslatedViewModel<NewsItem, NewsItemTranslation>(n))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: /News/Details/5
@@ -33,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsItems.FindAsync(id);
+            NewsItem newsitem = await db.GetByIdAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -64,7 +70,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-                db.NewsItems.Add(newsItem);
+                db.Add(newsItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -79,7 +85,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsItems.FindAsync(id);
+            NewsItem newsitem = await db.GetByIdAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -96,11 +102,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newsitem).State = EntityState.Modified;
+                db.Update(newsitem);
 
                 foreach (var t in newsitem.Translations)
                 {
-                    db.Entry(t).State = EntityState.Modified;
+                    db.UpdateTranslation(t);
                 }
 
                 await db.SaveChangesAsync();
@@ -116,7 +122,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.NewsItems.FindAsync(id);
+            NewsItem newsitem = await db.GetByIdAsync(id);
             if (newsitem == null)
             {
                 return HttpNotFound();
@@ -129,12 +135,99 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            NewsItem newsitem = await db.NewsItems.FindAsync(id);
-            db.NewsItems.Remove(newsitem);
+            await db.RemoveByIdAsync(id);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var newsItem = await db.GetByIdAsync(id);
+
+            if (newsItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (newsItem.Translations.Count == LanguageDefinitions.Languages.Count)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                newsItem.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(new NewsItemTranslation
+            {
+                NewsItemId = newsItem.Id
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(NewsItemTranslation translation)
+        {
+            var item = await db.GetByIdAsync(translation.NewsItemId);
+
+            if (ModelState.IsValid)
+            {
+                item.Translations.Add(translation);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                item.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(translation);
+        }
+
+        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tr);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            await db.RemoveTranslationByIdAsync(id, languageCode);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
 
         private NewsItemViewModel GenerateViewModel(NewsItem item)
         {
@@ -148,7 +241,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

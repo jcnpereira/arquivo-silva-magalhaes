@@ -722,6 +722,10 @@
     <Content Include="Areas\BackOffice\Views\Events\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Events\_EventTranslationDisplay.cshtml" />
     <Content Include="Areas\BackOffice\Views\Events\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_EventFieldsDisplay.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_NewsItemTranslationDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
