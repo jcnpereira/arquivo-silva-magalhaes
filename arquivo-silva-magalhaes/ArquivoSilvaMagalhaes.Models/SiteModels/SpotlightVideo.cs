@@ -1,5 +1,4 @@
-﻿
-    using ArquivoSilvaMagalhaes.Models.Translations;
+﻿using ArquivoSilvaMagalhaes.Models.Translations;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,6 +10,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int Id { get; set; }
         [Required]
         [Display(ResourceType = typeof(SpotlightVideoStrings), Name = "UriPath")]
-        public string UriPath { get; set;}
+        public string UriPath { get; set; }
     }
 }

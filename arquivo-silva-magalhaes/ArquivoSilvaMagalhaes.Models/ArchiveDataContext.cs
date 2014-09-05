@@ -75,5 +75,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<ArchiveTranslation> ArchiveTranslations { get; set; }
 
         public virtual DbSet<Contact> ArchiveContacts { get; set; }
+
+        
     }
 }

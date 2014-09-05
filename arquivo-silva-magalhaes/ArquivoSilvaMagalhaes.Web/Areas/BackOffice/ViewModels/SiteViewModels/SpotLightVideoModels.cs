@@ -13,17 +13,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
         
         [Display(ResourceType = typeof(DataStrings), Name = "UriPathVideo")]
         public string UriPath { get; set;}
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
-        [DataType(DataType.Date)]
-        public DateTime PublicationDate { get; set; }
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "RemotionDate")]
-        [DataType(DataType.Date)]
-        public DateTime RemotionDate { get; set; }
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "IsPermanent")]
-        public bool IsPermanent { get; set; }
+        //[Required]
+        //[Display(ResourceType = typeof(DataStrings), Name = "PublicationDate")]
+        //[DataType(DataType.Date)]
+        //public DateTime PublicationDate { get; set; }
+        //[Required]
+        //[Display(ResourceType = typeof(DataStrings), Name = "RemotionDate")]
+        //[DataType(DataType.Date)]
+        //public DateTime RemotionDate { get; set; }
+        //[Required]
+        //[Display(ResourceType = typeof(DataStrings), Name = "IsPermanent")]
+        //public bool IsPermanent { get; set; }
     
     }
 

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using PagedList;
 using PagedList.Mvc;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using System.Collections.Generic;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -20,6 +22,17 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View();
         }
+
+        public ActionResult IndexView()
+        {
+            IndexViewModel viewModel = new IndexViewModel();
+            List<IndexViewModel> viewModels = new List<IndexViewModel>();
+            //viewModel.BannerTranslation = Get the data from Service;
+            //viewModel.Video = Get the data from Service;
+            //var model= db.BannerTranslations.Include(c =>c.)
+            return View(viewModels);
+        }
+
 
         public ActionResult Index()
         {
@@ -60,9 +73,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-        public ActionResult Links(int pageNumber=1)
+        public ActionResult Links(int pageNumber = 1)
         {
-            var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber,10);
+            var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber, 10);
             return View(model);
             //return View(db.ReferencedLinks.ToList());
         }
@@ -75,7 +88,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .ToList()
                 .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
                 .ToList();
-
             return View(model);
         }
 
