@@ -21,3 +21,8 @@
     <h6>@Html.ActionLink("Informações", "Details", new { id = item.ShowcasePhoto.Id })</h6>
     <br />
 }
+
+@{
+    ViewBag.Title = ShowcasePhotoStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}

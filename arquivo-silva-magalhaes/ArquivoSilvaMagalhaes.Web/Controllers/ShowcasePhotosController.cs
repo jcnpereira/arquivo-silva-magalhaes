@@ -1,9 +1,17 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using System.Threading.Tasks;
+using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -20,13 +28,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
         //}
 
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
           //  var showcasephotoestranslation = db.ShowcasePhotoTranslations;
             //.Include(s => s.Image);
             return View(await Task.Run(() => db.ShowcasePhotoTranslations
                 .Include(img => img.ShowcasePhoto.Image)
-                .ToListAsync()));
+                .OrderBy(img=>img.ShowcasePhotoId)
+                .ToPagedList(pageNumber,1)
+               // .ToListAsync()
+                ));
         }
 
         // GET: /ShowCasePhotoes/Details/5
