@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItemTranslation>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItem>
 
 <div class="column_content">
     <h2 class="page_title">Notícias</h2>
@@ -7,11 +7,11 @@
         {
             <tr>
                 <td>
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                    <h4>@Html.DisplayFor(modelItem => item.Heading)</h4>
-                    <h5>@Html.DisplayFor(modelItem => item.NewsItem.PublishDate)</h5>
+                    <h3>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Heading)</h4>
+                    <h5>@Html.DisplayFor(modelItem => item.PublishDate)</h5>
                     @*<h5>@Html.DisplayFor(modelItem => item.TextContent)</h5>*@
-                    @Html.ActionLink("Ler notícia", "Details", new { id = item.NewsItemId })
+                    @Html.ActionLink("Ler notícia", "Details", new { id = item.Id })
                 </td>
             </tr>
         }

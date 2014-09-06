@@ -21,14 +21,14 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: NewsItems
         public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
-            return View(await Task.Run(() => db.NewsItemTranslations.OrderByDescending(news => news.NewsItemId).ToPagedList(pageNumber, 3)));
+            return View(await Task.Run(() => db.NewsItems.OrderByDescending(news => news.Id).ToPagedList(pageNumber, 3)));
         }
       
 
         public async Task<ActionResult> Details(int? id)
         {
 
-            return View(await db.NewsItemTranslations.Where(news => news.NewsItemId == id).ToListAsync());
+            return View(await db.NewsItems.Where(news => news.Id == id).ToListAsync());
         }
 
 

@@ -11,7 +11,7 @@
 
 @foreach (var col in Model)
 {
-    <div class="media">
+    <div class="media col-md-6">
         <a class="pull-left" href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
             <img class="media-object" style="width:200px" src="~/Public/Collections/@col.Entity.LogoLocation">
         </a>
@@ -40,3 +40,4 @@
         </div>
     </div>
 }
+
