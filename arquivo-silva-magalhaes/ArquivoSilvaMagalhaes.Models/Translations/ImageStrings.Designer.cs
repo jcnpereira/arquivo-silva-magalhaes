@@ -106,11 +106,38 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eliminar imagem.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta imagem? Todas as espécies associadas a esta também serão eliminadas!.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes da imagem.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
             }
         }
         

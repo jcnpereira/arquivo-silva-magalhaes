@@ -177,4 +177,10 @@
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Detalhes do documento</value>
   </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar documento</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este documento? Todas as imagens associadas a este serão removidas!</value>
+  </data>
 </root>

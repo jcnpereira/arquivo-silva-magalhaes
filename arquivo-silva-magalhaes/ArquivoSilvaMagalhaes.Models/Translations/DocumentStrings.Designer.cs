@@ -124,6 +124,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eliminar documento.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este documento? Todas as imagens associadas a este serão removidas!.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Description {

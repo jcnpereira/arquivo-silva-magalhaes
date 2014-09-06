@@ -61,6 +61,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adicionar fotografias digitais.
+        /// </summary>
+        public static string AddPhotos {
+            get {
+                return ResourceManager.GetString("AddPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A cota deve apenas conter números e letras. Não são permitidos acentos..
         /// </summary>
         public static string ArchivalCodeFormat {
@@ -126,9 +135,9 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         /// <summary>
         ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta espécie fotográfica?.
         /// </summary>
-        public static string DeleteWarning {
+        public static string DeleteWarningMessage {
             get {
-                return ResourceManager.GetString("DeleteWarning", resourceCulture);
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
             }
         }
         

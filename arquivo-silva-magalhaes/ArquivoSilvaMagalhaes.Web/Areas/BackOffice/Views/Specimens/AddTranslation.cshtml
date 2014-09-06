@@ -1,4 +1,4 @@
-﻿@model ImageTranslation
+﻿@model SpecimenTranslation
 
 @{
     ViewBag.Title = UiStrings.AddTranslation;
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        @Html.PartialFor(model => model, "_ImageTranslateableFields")
+        @Html.PartialFor(model => model, "_SpecimenTranslateableFields")
 
         @Html.Partial("_SubmitBackPartial", UiStrings.Done)
     </div>

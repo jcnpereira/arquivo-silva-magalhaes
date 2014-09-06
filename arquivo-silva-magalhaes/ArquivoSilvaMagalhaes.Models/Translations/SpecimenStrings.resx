@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddPhotos" xml:space="preserve">
+    <value>Adicionar fotografias digitais</value>
+  </data>
   <data name="ArchivalCodeFormat" xml:space="preserve">
     <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
   </data>
@@ -138,7 +141,7 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar espécie fotográfica</value>
   </data>
-  <data name="DeleteWarning" xml:space="preserve">
+  <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar esta espécie fotográfica?</value>
   </data>
   <data name="Description" xml:space="preserve">

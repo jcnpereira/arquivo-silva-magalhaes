@@ -1,56 +1,48 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Specimen
+﻿@model Specimen
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = SpecimenStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = SpecimenStrings.DeleteWarningMessage;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<dl class="dl-horizontal">
+    @Html.Partial("_MainDisplayFields")
+</dl>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Specimen</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ReferenceCode)
-        </dt>
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReferenceCode)
-        </dd>
+<div class="tab-content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
-        </dt>
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
 
-        <dd>
-            @Html.DisplayFor(model => model.AuthorCatalogationCode)
-        </dd>
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HasMarksOrStamps)
-        </dt>
+            <hr style="visibility: hidden" />
 
-        <dd>
-            @Html.DisplayFor(model => model.HasMarksOrStamps)
-        </dd>
+            <dl class="dl-horizontal">
+                @Html.Partial("_TranslatedDisplayFields", t)
+            </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @if (langCode != LanguageDefinitions.DefaultLanguage)
+            {
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                    Remover tradução
+                </a>
+            }
         </div>
     }
 </div>

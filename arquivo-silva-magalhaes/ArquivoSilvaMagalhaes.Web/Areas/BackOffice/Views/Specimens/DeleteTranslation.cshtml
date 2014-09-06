@@ -1,0 +1,11 @@
+﻿@model SpecimenTranslation
+
+@{
+    ViewBag.Title = UiStrings.DeleteTranslation;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
+    ViewBag.AlertMsg = UiStrings.DeleteTranslationWarning;
+}
+
+<dl class="dl-horizontal">
+    @Html.Partial("_TranslatedDisplayFields")
+</dl>

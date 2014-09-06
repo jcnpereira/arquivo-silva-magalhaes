@@ -132,8 +132,17 @@
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Criar imagem</value>
   </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar imagem</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta imagem? Todas as espécies associadas a esta também serão eliminadas!</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da imagem</value>
   </data>
   <data name="Document" xml:space="preserve">
     <value>Documento desta imagem</value>

@@ -17,56 +17,6 @@
     }
 }
 
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.ResponsibleName)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.ResponsibleName)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.DocumentDate)
-    </dt>
-
-    <dd>
-        @if (Model.DocumentDate != null)
-        {
-            @Html.DisplayFor(model => model.DocumentDate)
-        }
-        else
-        {
-            @DocumentStrings.UnknownDocumentDate
-        }
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.CatalogationDate)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.CatalogationDate)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Notes)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.Notes)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.CatalogCode)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.CatalogCode)
-    </dd>
-
-</dl>
-
 <ul class="nav nav-tabs">
     @for (int i = 0; i < Model.Translations.Count(); i++)
     {
@@ -91,29 +41,7 @@
             <hr style="visibility: hidden" />
 
             <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => t.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => t.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => t.DocumentLocation)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => t.DocumentLocation)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => t.FieldAndContents)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => t.FieldAndContents)
-                </dd>
+                @Html.Partial("_TranslatedDisplayFields", t)
             </dl>
 
             @if (langCode != LanguageDefinitions.DefaultLanguage)
@@ -125,3 +53,9 @@
         </div>
     }
 </div>
+
+<hr />
+
+<dl class="dl-horizontal">
+    @Html.Partial("_MainDisplayFields")
+</dl>

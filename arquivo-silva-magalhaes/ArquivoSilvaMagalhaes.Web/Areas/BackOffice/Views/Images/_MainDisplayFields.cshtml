@@ -1,0 +1,42 @@
+﻿@model Image
+
+<dt>
+    @Html.DisplayNameFor(model => model.ProductionDate)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.ProductionDate)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.ImageCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.ImageCode)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.ImageUrl)
+</dt>
+
+<dd>
+    @if (Model.ImageUrl != null)
+    {
+        <img src="~/Public/Images/@(Model.ImageUrl)_thumb.jpg"
+             class="img-responsive img-thumbnail"
+             style="max-width: 500px; max-height: 300px" />
+    }
+    else
+    {
+        @UiStrings.NoImage
+    }
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.IsVisible)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.IsVisible, "YesNoDisplayFor")
+</dd>

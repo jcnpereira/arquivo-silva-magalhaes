@@ -738,6 +738,16 @@
     <Content Include="Areas\BackOffice\Views\Collections\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\_TranslatedDisplayFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\AddTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

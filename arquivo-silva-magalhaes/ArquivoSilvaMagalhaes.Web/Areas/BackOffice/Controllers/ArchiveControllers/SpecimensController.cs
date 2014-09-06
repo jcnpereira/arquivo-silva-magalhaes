@@ -180,6 +180,88 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(s.DigitalPhotographs.ToList());
         }
 
+        #region Translation Actions
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var image = await db.GetByIdAsync(id);
+
+            if (image == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new SpecimenTranslation
+            {
+                SpecimenId = image.Id
+            };
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(image.Translations.Select(t => t.LanguageCode));
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(SpecimenTranslation translation)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AddTranslation(translation);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(translation);
+        }
+
+        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tr);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            await db.RemoveTranslationByIdAsync(id, languageCode);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+        #endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

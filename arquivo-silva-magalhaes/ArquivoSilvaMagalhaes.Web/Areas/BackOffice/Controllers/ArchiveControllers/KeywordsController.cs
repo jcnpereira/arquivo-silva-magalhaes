@@ -4,7 +4,6 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -96,7 +95,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                         .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
                         .Select(ktr => new
                         {
-                            value = ktr.Entity.ToString(),
+                            value = ktr.Entity.Id.ToString(),
                             text = ktr.Translation.Value
                         })
                         .ToList());

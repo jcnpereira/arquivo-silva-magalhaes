@@ -1,0 +1,50 @@
+﻿@model Specimen
+
+
+<dt>
+    @Html.DisplayNameFor(model => model.AuthorCatalogationCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.AuthorCatalogationCode)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.HasMarksOrStamps)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.HasMarksOrStamps, "YesNoDisplayFor")
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Notes)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Notes)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.State)
+</dt>
+
+<dd>
+    @Html.EnumDisplayFor(model => model.State)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.ReferenceCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.ReferenceCode)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.ArchivalReferenceCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.ArchivalReferenceCode)
+</dd>

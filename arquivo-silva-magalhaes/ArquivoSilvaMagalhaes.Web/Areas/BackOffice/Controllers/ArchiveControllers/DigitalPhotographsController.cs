@@ -120,7 +120,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 await db.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Specimens", new { id = model.UploadedItems[0].DigitalPhotograph.SpecimenId });
             }
 
             return View(model);
