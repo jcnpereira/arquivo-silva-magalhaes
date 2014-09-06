@@ -25,6 +25,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         [Key, Column(Order = 0)]
         public int BannerPhotographId { get; set; }
+
         [ForeignKey("BannerPhotographId")]
         public virtual Banner BannerPhotograph { get; set; }
 

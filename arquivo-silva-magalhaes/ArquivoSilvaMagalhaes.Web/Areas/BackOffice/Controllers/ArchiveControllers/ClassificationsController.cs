@@ -1,6 +1,7 @@
-﻿using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -9,26 +10,29 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ClassificationsController : ArchiveControllerBase
     {
-        private ITranslateableRepository<Classification, ClassificationTranslation> _db;
+        private ITranslateableRepository<Classification, ClassificationTranslation> db;
 
-        public ClassificationsController() : this (new TranslateableGenericRepository<Classification, ClassificationTranslation>()) { }
+        public ClassificationsController()
+            : this(new TranslateableGenericRepository<Classification, ClassificationTranslation>())
+        {
+        }
 
         public ClassificationsController(ITranslateableRepository<Classification, ClassificationTranslation> db)
         {
-            this._db = db;
+            this.db = db;
         }
 
         // GET: BackOffice/Classifications
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await _db.GetAllAsync())
-                .OrderBy(c => c.Id)
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
                 .Select(c => new TranslatedViewModel<Classification, ClassificationTranslation>(c))
                 .ToPagedList(pageNumber, 10));
         }
@@ -41,7 +45,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var classification = await _db.GetByIdAsync(id);
+            var classification = await db.GetByIdAsync(id);
 
             if (classification == null)
             {
@@ -79,12 +83,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 c.Translations.Add(classification);
 
-                _db.Add(c);
-                await _db.SaveChangesAsync();
+                db.Add(c);
+                await db.SaveChangesAsync();
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json((await _db.GetAllAsync())
+                    return Json((await db.GetAllAsync())
                                   .OrderBy(ct => ct.Id)
                                   .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
                                   .Select(ct => new
@@ -109,7 +113,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Classification classification = await _db.GetByIdAsync(id);
+            Classification classification = await db.GetByIdAsync(id);
 
             if (classification == null)
             {
@@ -128,10 +132,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var t in classification.Translations)
                 {
-                    _db.UpdateTranslation(t);
+                    db.UpdateTranslation(t);
                 }
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -145,8 +149,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = await _db.GetByIdAsync(id);
-            
+            Classification classification = await db.GetByIdAsync(id);
+
             if (classification == null)
             {
                 return HttpNotFound();
@@ -161,8 +165,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveByIdAsync(id);
-            await _db.SaveChangesAsync();
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -173,7 +177,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var c = await _db.GetByIdAsync(id);
+            var c = await db.GetByIdAsync(id);
 
             if (c == null)
             {
@@ -195,13 +199,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.AddTranslation(translation);
-                await _db.SaveChangesAsync();
+                db.AddTranslation(translation);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            var c = await _db.GetByIdAsync(translation.ClassificationId);
+            var c = await db.GetByIdAsync(translation.ClassificationId);
 
             if (c != null)
             {
@@ -212,13 +216,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(translation);
         }
 
-
-
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _db != null)
+            if (disposing && db != null)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

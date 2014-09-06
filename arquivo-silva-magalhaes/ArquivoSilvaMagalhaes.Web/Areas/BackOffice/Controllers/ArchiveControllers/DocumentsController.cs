@@ -1,8 +1,9 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
-using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -10,7 +11,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -18,10 +18,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         private ITranslateableRepository<Document, DocumentTranslation> _db;
 
-        public DocumentsController() : this(new TranslateableGenericRepository<Document, DocumentTranslation>())
-        {
-
-        }
+        public DocumentsController()
+            : this(new TranslateableGenericRepository<Document, DocumentTranslation>()) { }
 
         public DocumentsController(TranslateableGenericRepository<Document, DocumentTranslation> db)
         {
@@ -31,8 +29,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
         {
-            var query = await _db.QueryAsync(d => (authorId == 0 || d.AuthorId == authorId) && 
-                                             (collectionId == 0 || d.CollectionId == collectionId));
+            var query = await _db.QueryAsync(d => (authorId == 0 || d.AuthorId == authorId) &&
+                                                  (collectionId == 0 || d.CollectionId == collectionId));
 
             return View(query.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
                              .ToPagedList(pageNumber, 10));
@@ -81,14 +79,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 doc.AuthorId = authorId.Value;
             }
 
-            var model =  GenerateViewModel(doc);
+            var model = GenerateViewModel(doc);
 
             return View(model);
         }
 
-        // POST: BackOffice/Documents/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: BackOffice/Documents/Create To protect from overposting attacks, please enable the
+        // specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Document document)
@@ -124,9 +121,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(GenerateViewModel(document));
         }
 
-        // POST: BackOffice/Documents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: BackOffice/Documents/Edit/5 To protect from overposting attacks, please enable the
+        // specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Document document)
@@ -246,7 +242,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 DocumentId = doc.Id
             };
 
-            ViewBag.Languages = 
+            ViewBag.Languages =
                 LanguageDefinitions.GenerateAvailableLanguageDDL(doc.Translations.Select(t => t.LanguageCode).ToList());
 
             return View(model);

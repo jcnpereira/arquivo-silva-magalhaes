@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ArquivoSilvaMagalhaes.Common;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Linq;
-using ArquivoSilvaMagalhaes.Common;
-using System.Data.Entity.Infrastructure;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models
@@ -20,7 +20,10 @@ namespace ArquivoSilvaMagalhaes.Models
             this._db = db;
         }
 
-        public GenericDbRepository() : this(new ArchiveDataContext()) { }
+        public GenericDbRepository()
+            : this(new ArchiveDataContext())
+        {
+        }
 
         public void Add(TEntity entity)
         {
@@ -76,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Models
             }
         }
 
-        public IEnumerable<TOther> Set<TOther>() where TOther : class
+        public IQueryable<TOther> Set<TOther>() where TOther : class
         {
             return _db.Set<TOther>();
         }
@@ -102,11 +105,11 @@ namespace ArquivoSilvaMagalhaes.Models
         public void Update(TEntity entity, Expression<Func<TEntity, object>> exclude)
         {
             ExcludeFromUpdate(entity, exclude);
-                
+
             _db.Entry(entity).State = EntityState.Modified;
         }
 
-        public TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression) 
+        public TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression)
             where TResult : class
         {
             var entry = _db.Entry(entity);
@@ -128,16 +131,14 @@ namespace ArquivoSilvaMagalhaes.Models
             }
         }
 
-
         public int SaveChanges()
         {
             return _db.SaveChanges();
         }
 
-
         public IQueryable<TEntity> Entities
         {
-            get 
+            get
             {
                 return _db.Set<TEntity>();
             }
@@ -148,7 +149,6 @@ namespace ArquivoSilvaMagalhaes.Models
         where TEntity : class
         where TTranslation : EntityTranslation
     {
-
         public async Task<TTranslation> GetTranslationAsync(int id, string languageCode)
         {
             return await _db.Set<TTranslation>().FindAsync(id, languageCode);
@@ -180,7 +180,6 @@ namespace ArquivoSilvaMagalhaes.Models
         {
             return await _db.Set<TTranslation>().Where(t => t.LanguageCode == languageCode).ToListAsync();
         }
-
 
         public async Task RemoveTranslationByIdAsync(params object[] keys)
         {

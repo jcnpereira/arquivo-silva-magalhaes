@@ -16,7 +16,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
     {
         private ITranslateableRepository<Event, EventTranslation> db;
 
-        public EventsController() : this (new TranslateableGenericRepository<Event, EventTranslation>()) { }
+        public EventsController()
+            : this(new TranslateableGenericRepository<Event, EventTranslation>())
+        {
+        }
 
         public EventsController(ITranslateableRepository<Event, EventTranslation> db)
         {
@@ -26,8 +29,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: BackOffice/Event
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.GetAllAsync())
-                .OrderBy(e => e.Id)
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
                 .Select(e => new TranslatedViewModel<Event, EventTranslation>(e))
                 .ToPagedList(pageNumber, 10));
         }
@@ -103,7 +107,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Update(@event);
 
                 foreach (var t in @event.Translations)
@@ -117,7 +120,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             }
 
             return View(GenerateViewModel(@event));
-            
         }
 
         // GET: BackOffice/Event/Delete/5
@@ -145,14 +147,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return RedirectToAction("Index");
         }
 
-
         private EventEditViewModel GenerateViewModel(Event e)
         {
-            
-                var model = new EventEditViewModel();
-                model.Event = e;
+            var model = new EventEditViewModel();
+            model.Event = e;
 
-                return model;
+            return model;
         }
 
         public async Task<ActionResult> AddTranslation(int? id)

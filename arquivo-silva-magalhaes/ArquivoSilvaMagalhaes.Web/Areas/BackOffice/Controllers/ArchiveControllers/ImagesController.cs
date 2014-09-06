@@ -1,18 +1,18 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
-using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.IO;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -20,10 +20,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         private ITranslateableRepository<Image, ImageTranslation> _db;
 
-        public ImagesController() : this(new TranslateableGenericRepository<Image, ImageTranslation>())
-        {
-
-        }
+        public ImagesController()
+            : this(new TranslateableGenericRepository<Image, ImageTranslation>()) { }
 
         public ImagesController(ITranslateableRepository<Image, ImageTranslation> db)
         {
@@ -90,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     model.Image.ImageUrl = fileName;
                 }
 
-                model.Image.Keywords = 
+                model.Image.Keywords =
                     _db.Set<Keyword>()
                        .Where(kw => model.KeywordIds.Contains(kw.Id))
                        .ToList();

@@ -1,7 +1,8 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -9,7 +10,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -17,7 +17,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         private ITranslateableRepository<Author, AuthorTranslation> db;
 
-        public AuthorsController() : this (new TranslateableGenericRepository<Author, AuthorTranslation>()) { }
+        public AuthorsController()
+            : this(new TranslateableGenericRepository<Author, AuthorTranslation>())
+        {
+        }
 
         public AuthorsController(ITranslateableRepository<Author, AuthorTranslation> db)
         {
@@ -27,10 +30,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
         {
-            return View((await db.GetAllAsync())
-                                 .OrderBy(a => a.Id)
-                                 .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
-                                 .ToPagedList(pageNumber, 10));
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
+                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
+                .ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Authors/Details/5
@@ -42,7 +46,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             var author = await db.GetByIdAsync(id);
-            
 
             if (author == null)
             {
@@ -222,7 +225,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             return RedirectToAction("Index");
         }
-
 
         // GET: BackOffice/Authors/Delete/5
         public async Task<ActionResult> Delete(int? id)

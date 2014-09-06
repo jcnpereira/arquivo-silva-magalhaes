@@ -1,37 +1,36 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class KeywordsController : ArchiveControllerBase
     {
-        private ITranslateableRepository<Keyword, KeywordTranslation> _db;
+        private ITranslateableRepository<Keyword, KeywordTranslation> db;
+
+        public KeywordsController()
+            : this(new TranslateableGenericRepository<Keyword, KeywordTranslation>()) { }
 
         public KeywordsController(ITranslateableRepository<Keyword, KeywordTranslation> db)
         {
-            this._db = db;
-        }
-
-        public KeywordsController() : this(new TranslateableGenericRepository<Keyword, KeywordTranslation>())
-        {
-
+            this.db = db;
         }
 
         // GET: BackOffice/Keywords
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await _db.GetAllAsync())
-                .OrderBy(k => k.Id)
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
                 .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
                 .ToPagedList(pageNumber, 10));
         }
@@ -44,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var k = await _db.GetByIdAsync(id);
+            var k = await db.GetByIdAsync(id);
 
             if (k == null)
             {
@@ -67,7 +66,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     LanguageCode = LanguageDefinitions.DefaultLanguage
                 };
 
-
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_KeywordFields", model);
@@ -88,12 +86,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 var keyword = new Keyword();
                 keyword.Translations.Add(kt);
 
-                _db.Add(keyword);
-                await _db.SaveChangesAsync();
+                db.Add(keyword);
+                await db.SaveChangesAsync();
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json((await _db.GetAllAsync())
+                    return Json((await db.GetAllAsync())
                         .OrderBy(k => k.Id)
                         .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
                         .Select(ktr => new
@@ -118,7 +116,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var k = await _db.GetByIdAsync(id);
+            var k = await db.GetByIdAsync(id);
 
             if (k == null)
             {
@@ -139,10 +137,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var t in keyword.Translations)
                 {
-                    _db.UpdateTranslation(t);
+                    db.UpdateTranslation(t);
                 }
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -157,7 +155,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Keyword keyword = await _db.GetByIdAsync(id);
+            Keyword keyword = await db.GetByIdAsync(id);
 
             if (keyword == null)
             {
@@ -172,8 +170,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveByIdAsync(id);
-            await _db.SaveChangesAsync();
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
@@ -185,14 +183,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var k = await _db.GetByIdAsync(id);
+            var k = await db.GetByIdAsync(id);
 
             if (k == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Languages = 
+            ViewBag.Languages =
                 LanguageDefinitions.GenerateAvailableLanguageDDL(k.Translations.Select(t => t.LanguageCode));
 
             var model = new KeywordTranslation
@@ -209,8 +207,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.AddTranslation(translation);
-                await _db.SaveChangesAsync();
+                db.AddTranslation(translation);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -219,9 +217,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _db != null)
+            if (disposing && db != null)
             {
-                _db.Dispose();
+                db.Dispose();
             }
 
             base.Dispose(disposing);

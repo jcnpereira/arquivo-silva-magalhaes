@@ -1,8 +1,9 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
-using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.ViewModels;
 using ImageResizer;
 using PagedList;
 using System;
@@ -13,34 +14,28 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class CollectionsController : ArchiveControllerBase
     {
-        //private ArchiveDataContext _db = new ArchiveDataContext();
-
-        private ITranslateableRepository<Collection, CollectionTranslation> _db;
+        private ITranslateableRepository<Collection, CollectionTranslation> db;
 
         public CollectionsController()
-            : this(new TranslateableGenericRepository<Collection, CollectionTranslation>())
-        {
-
-        }
+            : this(new TranslateableGenericRepository<Collection, CollectionTranslation>()) { }
 
         public CollectionsController(TranslateableGenericRepository<Collection, CollectionTranslation> db)
         {
-            this._db = db;
+            this.db = db;
         }
 
         // GET: /BackOffice/Collection/
         public async Task<ActionResult> Index(int authorId = 0, int pageNumber = 1)
         {
-            var query = authorId > 0 ? await _db.QueryAsync(c => c.Authors.Any(a => a.Id == authorId)) :
-                                       await _db.GetAllAsync();
+            var query = db.Entities
+                          .Where(c => authorId == 0 || c.Authors.Any(a => a.Id == authorId));
 
-            return View(query
+            return View((await query.ToListAsync())
                 .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
                 .ToPagedList(pageNumber, 10));
         }
@@ -53,7 +48,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Collection collection = await _db.GetByIdAsync(id);
+            Collection collection = await db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -98,13 +93,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     model.Collection.LogoLocation = newName;
                 }
 
-                var authors = _db.Set<Author>()
-                                 .Where(a => model.AuthorIds.Contains(a.Id));
+                var authors = db.Set<Author>()
+                                .Where(a => model.AuthorIds.Contains(a.Id));
 
                 model.Collection.Authors = authors.ToList();
 
-                _db.Add(model.Collection);
-                await _db.SaveChangesAsync();
+                db.Add(model.Collection);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -119,7 +114,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await _db.GetByIdAsync(id);
+            Collection collection = await db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -141,26 +136,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (ModelState.IsValid)
             {
                 // Force-update the collection's author list.
-                await _db.ForceLoadAsync(model.Collection, c => c.Authors);
+                await db.ForceLoadAsync(model.Collection, c => c.Authors);
 
-                model.Collection.Authors = _db.Set<Author>()
+                model.Collection.Authors = db.Set<Author>()
                      .Where(a => model.AuthorIds.Contains(a.Id)).ToList();
 
                 foreach (var t in model.Collection.Translations)
                 {
-                    _db.UpdateTranslation(t);
+                    db.UpdateTranslation(t);
                 }
 
-                // Update the logo if a new one is supplied.
-                // Don't allow property value changes if the
-                // logo doesn't exist.
+                // Update the logo if a new one is supplied. Don't allow property value changes if
+                // the logo doesn't exist.
                 if (model.Logo != null)
                 {
-                    var logo = _db.GetValueFromDb(model.Collection, c => c.LogoLocation);
-                     
+                    var logo = db.GetValueFromDb(model.Collection, c => c.LogoLocation);
+
                     if (logo == null)
                     {
-                        model.Collection.LogoLocation = 
+                        model.Collection.LogoLocation =
                             Guid.NewGuid().ToString() + "_" + model.Logo.FileName;
 
                         logo = model.Collection.LogoLocation;
@@ -173,12 +167,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 }
                 else
                 {
-                    _db.ExcludeFromUpdate(model.Collection, c => new { c.LogoLocation });
+                    db.ExcludeFromUpdate(model.Collection, c => new { c.LogoLocation });
                 }
 
-                _db.Update(model.Collection);
+                db.Update(model.Collection);
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -193,7 +187,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await _db.GetByIdAsync(id);
+            Collection collection = await db.GetByIdAsync(id);
 
             if (collection == null)
             {
@@ -210,8 +204,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveByIdAsync(id);
-            await _db.SaveChangesAsync();
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
@@ -224,7 +218,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             var authorIds = c.Authors.Select(a => a.Id).ToList();
 
-            vm.AvailableAuthors = _db.Set<Author>()
+            vm.AvailableAuthors = db.Set<Author>()
                 .Select(a => new SelectListItem
                 {
                     Value = a.Id.ToString(),
@@ -242,7 +236,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var c = await _db.GetByIdAsync(id);
+            var c = await db.GetByIdAsync(id);
 
             if (c == null)
             {
@@ -264,8 +258,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.AddTranslation(translation);
-                await _db.SaveChangesAsync();
+                db.AddTranslation(translation);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -275,9 +269,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _db != null)
+            if (disposing && db != null)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

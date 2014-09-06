@@ -5,6 +5,8 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,21 +16,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ShowcasePhotoesController : ArchiveControllerBase
     {
-        private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> _db;
+        private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db;
 
         public ShowcasePhotoesController()
             : this(new TranslateableGenericRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
         public ShowcasePhotoesController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {
-            this._db = db;
+            this.db = db;
         }
 
         // GET: BackOffice/ShowcasePhotoes
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await _db.GetAllAsync())
-                .OrderByDescending(p => p.VisibleSince)
+            return View((await db.Entities
+                .OrderByDescending(b => b.VisibleSince)
+                .ToListAsync())
                 .Select(p => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(p))
                 .ToPagedList(pageNumber, 10));
         }
@@ -41,7 +44,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var showcasePhoto = await _db.GetByIdAsync(id);
+            var showcasePhoto = await db.GetByIdAsync(id);
 
             if (showcasePhoto == null)
             {
@@ -70,7 +73,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ShowcasePhoto showcasePhoto)
         {
-            var image = _db.Set<Image>().FirstOrDefault(i => i.Id == showcasePhoto.ImageId);
+            var image = db.Set<Image>().FirstOrDefault(i => i.Id == showcasePhoto.ImageId);
 
             if (!image.IsVisible)
             {
@@ -79,8 +82,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             if (ModelState.IsValid)
             {
-                _db.Add(showcasePhoto);
-                await _db.SaveChangesAsync();
+                db.Add(showcasePhoto);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -94,7 +97,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await _db.GetByIdAsync(id);
+            ShowcasePhoto showcasePhoto = await db.GetByIdAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -109,14 +112,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.Update(showcasePhoto);
+                db.Update(showcasePhoto);
 
                 foreach (var item in showcasePhoto.Translations)
                 {
-                    _db.Update(showcasePhoto);
+                    db.Update(showcasePhoto);
                 }
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(GenerateViewModel(showcasePhoto));
@@ -129,7 +132,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasePhoto = await _db.GetByIdAsync(id);
+            ShowcasePhoto showcasePhoto = await db.GetByIdAsync(id);
             if (showcasePhoto == null)
             {
                 return HttpNotFound();
@@ -142,8 +145,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveByIdAsync(id);
-            await _db.SaveChangesAsync();
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -154,7 +157,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 ShowcasePhoto = photo
             };
 
-            model.AvailableImages = _db.Set<Image>()
+            model.AvailableImages = db.Set<Image>()
                 .Where(i => i.IsVisible && i.ImageUrl != null && i.ImageUrl != "")
                 .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
                 .Select(i => new SelectListItem
@@ -173,7 +176,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var showcasePhoto = await _db.GetByIdAsync(id);
+            var showcasePhoto = await db.GetByIdAsync(id);
 
             if (showcasePhoto == null)
             {
@@ -198,12 +201,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(ShowcasePhotoTranslation translation)
         {
-            var showcasePhoto = await _db.GetByIdAsync(translation.ShowcasePhotoId);
+            var showcasePhoto = await db.GetByIdAsync(translation.ShowcasePhotoId);
 
             if (ModelState.IsValid)
             {
                 showcasePhoto.Translations.Add(translation);
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
@@ -221,7 +224,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var tr = await _db.GetTranslationAsync(id.Value, languageCode);
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
 
             if (tr == null)
             {
@@ -241,25 +244,25 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var tr = await _db.GetTranslationAsync(id.Value, languageCode);
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
 
             if (tr == null)
             {
                 return HttpNotFound();
             }
 
-            await _db.RemoveTranslationByIdAsync(id, languageCode);
+            await db.RemoveTranslationByIdAsync(id, languageCode);
 
-            await _db.SaveChangesAsync();
+            await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _db != null)
+            if (disposing && db != null)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

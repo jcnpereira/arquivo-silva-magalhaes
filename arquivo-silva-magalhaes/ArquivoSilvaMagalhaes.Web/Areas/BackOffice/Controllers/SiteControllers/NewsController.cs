@@ -1,14 +1,14 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
@@ -16,7 +16,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
     {
         private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
-        public NewsController() : this (new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
+        public NewsController()
+            : this(new TranslateableGenericRepository<NewsItem, NewsItemTranslation>())
+        {
+        }
 
         public NewsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
         {
@@ -26,8 +29,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /News/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.GetAllAsync())
-                .OrderBy(n => n.Id)
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
                 .Select(n => new TranslatedViewModel<NewsItem, NewsItemTranslation>(n))
                 .ToPagedList(pageNumber, 10));
         }
@@ -44,7 +48,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return HttpNotFound();
             }
-        //    ViewBag.AreLanguagesMissing = newsitem.ReferencedNewsText.Count <= LanguageDefinitions.Languages.Count;
+
+            // ViewBag.AreLanguagesMissing = newsitem.ReferencedNewsText.Count <= LanguageDefinitions.Languages.Count;
             return View(newsitem);
         }
 
@@ -61,9 +66,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return View(GenerateViewModel(item));
         }
 
-        // POST: /News/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /News/Create To protect from overposting attacks, please enable the specific
+        // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(NewsItem newsItem)
@@ -93,9 +97,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return View(GenerateViewModel(newsitem));
         }
 
-        // POST: /News/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /News/Edit/5 To protect from overposting attacks, please enable the specific
+        // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(NewsItem newsitem)
