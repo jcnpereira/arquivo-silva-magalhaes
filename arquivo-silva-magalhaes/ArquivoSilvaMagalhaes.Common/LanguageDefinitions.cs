@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Linq;
-using System;
 
 namespace ArquivoSilvaMagalhaes.Common
 {
@@ -15,15 +15,38 @@ namespace ArquivoSilvaMagalhaes.Common
 
         public static List<string> Languages = new List<string>
         {
-            "pt", 
+            "pt",
             "en"
         };
 
+        /// <summary>
+        ///     Gets the translated language name for the specified language code.
+        /// </summary>
+        /// <param name="languageCode">
+        ///     The language code to obtain the language name from.
+        /// </param>
+        /// <returns>
+        ///     The language name.
+        /// </returns>
         public static string GetLanguage(string languageCode)
         {
             return LanguageNames.ResourceManager.GetString(languageCode);
         }
 
+        /// <summary>
+        ///     Returns whether the two specified codes are equivalent or not. Two codes are
+        ///     equivalent if they are exactly equal or if the first component of each code ("pt"
+        ///     for "pt-PT") are equal.
+        /// </summary>
+        /// <param name="x">
+        ///     The first code to test.
+        /// </param>
+        /// <param name="y">
+        ///     The second code to test.
+        /// </param>
+        /// <returns>
+        ///     True if the codes are equal, false otherwise.
+        /// </returns>
         public static bool AreCodesEquivalent(string x, string y)
         {
             x = x.ToLower();
@@ -42,10 +65,19 @@ namespace ArquivoSilvaMagalhaes.Common
             return false;
         }
 
+        /// <summary>
+        ///     Returns the closest-supported language code for the specified list of language
+        ///     codes. If none of the supplied language codes is supported or the list is empty, the
+        ///     default language is returned.
+        /// </summary>
+        /// <param name="languages">
+        ///     The languages to test.
+        /// </param>
+        /// <returns>
+        ///     One of the language codes, or the default if none are supported.
+        /// </returns>
         public static string GetClosestLanguageCode(params string[] languages)
         {
-            languages = languages ?? new string[] { };
-
             foreach (var lang in languages.Where(l => !string.IsNullOrEmpty(l)))
             {
                 var resultingLanguage = GetClosestLanguageCode(lang);
@@ -77,8 +109,7 @@ namespace ArquivoSilvaMagalhaes.Common
                 return cultureCode;
             }
 
-            // Get the language code from the culture code,
-            // i.e., en-US -> en, and try again.
+            // Get the language code from the culture code, i.e., en-US -> en, and try again.
             var language = cultureCode.Split('-')[0];
 
             if (Languages.Contains(language.ToLower()))
@@ -89,6 +120,16 @@ namespace ArquivoSilvaMagalhaes.Common
             return null;
         }
 
+        /// <summary>
+        ///     Generates a select list with all the languages that are not specified. If all
+        ///     languages are taken, InvalidOperationException is thrown.
+        /// </summary>
+        /// <param name="languages">
+        ///     The languages which are to be removed, as they are already translated.
+        /// </param>
+        /// <returns>
+        ///     A list of languages which have yet to have translations.
+        /// </returns>
         public static IEnumerable<SelectListItem> GenerateAvailableLanguageDDL(IEnumerable<string> languages)
         {
             if (languages.Count() == Languages.Count)
