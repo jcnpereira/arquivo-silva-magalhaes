@@ -65,6 +65,16 @@ namespace ArquivoSilvaMagalhaes.Common
             return MvcHtmlString.Create(result);
         }
 
+        public static MvcHtmlString DateDisplayFor<TModel>(this HtmlHelper<TModel> html, DateTime? value, string nullDisplayText = "")
+        {
+            if (value == null)
+            {
+                return MvcHtmlString.Create(nullDisplayText);
+            }
+
+            return MvcHtmlString.Create(value.Value.ToShortDateString());
+        }
+
         public static MvcHtmlString FileUploadFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
         {
             var name = ExpressionHelper.GetExpressionText(expression);
@@ -73,8 +83,6 @@ namespace ArquivoSilvaMagalhaes.Common
             builder.Attributes["name"] = name;
 
             var type = typeof(TModel);
-
-            
 
             var prop = type.GetProperty(name);
             var required = prop.GetCustomAttributes(typeof(RequiredAttribute), false).FirstOrDefault() as RequiredAttribute;
@@ -119,7 +127,7 @@ namespace ArquivoSilvaMagalhaes.Common
             builder.Attributes["data-provide"] = "datetimepicker";
 
             builder.Attributes["data-date-mindate"] = "1753-1-1";
-            
+
             builder.Attributes["data-date-language"] = Thread.CurrentThread.CurrentUICulture.Name;
             builder.Attributes["data-date-minutestepping"] = "10";
 

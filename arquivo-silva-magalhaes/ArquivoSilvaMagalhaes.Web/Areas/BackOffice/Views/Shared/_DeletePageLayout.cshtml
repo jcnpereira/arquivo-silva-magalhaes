@@ -1,7 +1,7 @@
 ﻿
 @{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
-
+    ViewBag.AlertMsg = ViewBag.AlertMsg ?? UiPrompts.ConfirmDelete;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -15,6 +15,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    
     @RenderBody()
     
     <div class="input-group">
@@ -29,3 +30,9 @@
         </div>
     </div>
 }
+
+<style>
+    .dl-horizontal dd, .dl-horizontal dt {
+        line-height: 27px;
+    }
+</style>

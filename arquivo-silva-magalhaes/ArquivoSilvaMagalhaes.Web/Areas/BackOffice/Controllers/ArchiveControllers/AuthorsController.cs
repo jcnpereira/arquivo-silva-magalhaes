@@ -18,9 +18,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Author, AuthorTranslation> db;
 
         public AuthorsController()
-            : this(new TranslateableGenericRepository<Author, AuthorTranslation>())
-        {
-        }
+            : this(new TranslateableGenericRepository<Author, AuthorTranslation>()) { }
 
         public AuthorsController(ITranslateableRepository<Author, AuthorTranslation> db)
         {
@@ -138,6 +136,34 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 });
         }
 
+        // GET: BackOffice/Authors/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Author author = await db.GetByIdAsync(id);
+
+            if (author == null)
+            {
+                return HttpNotFound();
+            }
+            return View(author);
+        }
+
+        // POST: BackOffice/Authors/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        #region Translation Actions
+
         public async Task<ActionResult> AddTranslation(int? id)
         {
             if (id == null)
@@ -150,11 +176,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (author == null)
             {
                 return HttpNotFound();
-            }
-
-            if (author.Translations.Count == LanguageDefinitions.Languages.Count)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
@@ -227,31 +248,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
-        // GET: BackOffice/Authors/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Author author = await db.GetByIdAsync(id);
-
-            if (author == null)
-            {
-                return HttpNotFound();
-            }
-            return View(author);
-        }
-
-        // POST: BackOffice/Authors/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            await db.RemoveByIdAsync(id);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        #endregion Translation Actions
 
         protected override void Dispose(bool disposing)
         {

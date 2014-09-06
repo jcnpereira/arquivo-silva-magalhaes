@@ -1,0 +1,83 @@
+﻿@model Collection
+
+<dt>
+    @Html.DisplayNameFor(model => model.CatalogCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.CatalogCode)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Type)
+</dt>
+
+<dd>
+    @Html.EnumDisplayFor(model => model.Type)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.InitialProductionDate)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.InitialProductionDate)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.EndProductionDate)
+</dt>
+
+<dd>
+    @*@Html.DisplayFor(model => model.EndProductionDate, "DateDisplayFor")*@
+    @Html.DateDisplayFor(Model.EndProductionDate, UiStrings.UnknownDate)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.LogoLocation)
+</dt>
+
+<dd>
+    @if (Model.LogoLocation != null)
+    {
+        <img src="~/Public/Collections/@Model.LogoLocation"
+             class="img-responsive img-thumbnail"
+             style="max-width: 500px; max-height: 300px" />
+    }
+    else
+    {
+        @UiStrings.NoImage
+    }
+
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.AttachmentsDescriptions)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.OrganizationSystem)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.OrganizationSystem)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Notes)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Notes)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.IsVisible)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.IsVisible, "YesNoDisplayFor")
+</dd>

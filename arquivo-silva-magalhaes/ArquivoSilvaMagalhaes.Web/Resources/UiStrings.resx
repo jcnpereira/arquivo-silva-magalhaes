@@ -222,4 +222,7 @@
   <data name="DeleteTranslationWarning" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar esta tradução?</value>
   </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>(Sem imagem)</value>
+  </data>
 </root>

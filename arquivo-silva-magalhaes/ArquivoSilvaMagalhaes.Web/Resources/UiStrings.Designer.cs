@@ -295,6 +295,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (Sem imagem).
+        /// </summary>
+        public static string NoImage {
+            get {
+                return ResourceManager.GetString("NoImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nota.
         /// </summary>
         public static string Note {

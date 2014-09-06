@@ -1,8 +1,7 @@
 ﻿@model CollectionEditViewModel
 
 @{
-    var ptTrans = Model.Collection.Translations.FirstOrDefault(ct => ct.LanguageCode == LanguageDefinitions.DefaultLanguage);
-    ViewBag.Title = String.Format(CollectionStrings.EditTitleFormat, ptTrans != null ? ptTrans.Title : "");
+    ViewBag.Title = CollectionStrings.EditTitleFormat;
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 

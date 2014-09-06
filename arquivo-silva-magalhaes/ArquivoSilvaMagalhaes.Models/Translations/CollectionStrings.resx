@@ -139,7 +139,7 @@
     <value>Adicionar coleção</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Eliminar coleção {0}</value>
+    <value>Eliminar coleção</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar esta coleção? Todos os documentos (e elementos associados a estes) serão eliminados!</value>
@@ -148,7 +148,7 @@
     <value>Descrição</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
-    <value>Detalhes da coleção {0}</value>
+    <value>Detalhes da coleção</value>
   </data>
   <data name="Dimension" xml:space="preserve">
     <value>Dimensão</value>
@@ -157,7 +157,7 @@
     <value>Documentos desta coleção</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar coleção {0}</value>
+    <value>Editar coleção</value>
   </data>
   <data name="EndProductionDate" xml:space="preserve">
     <value>Data de fim de produção</value>

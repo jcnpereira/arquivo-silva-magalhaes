@@ -124,7 +124,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eliminar coleção {0}.
+        ///   Looks up a localized string similar to Eliminar coleção.
         /// </summary>
         public static string DeleteTitleFormat {
             get {
@@ -151,7 +151,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detalhes da coleção {0}.
+        ///   Looks up a localized string similar to Detalhes da coleção.
         /// </summary>
         public static string DetailsTitleFormat {
             get {
@@ -178,7 +178,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editar coleção {0}.
+        ///   Looks up a localized string similar to Editar coleção.
         /// </summary>
         public static string EditTitleFormat {
             get {
