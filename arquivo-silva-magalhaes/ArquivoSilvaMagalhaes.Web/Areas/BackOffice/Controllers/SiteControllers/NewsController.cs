@@ -27,10 +27,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         }
 
         // GET: /News/
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = null)
         {
             return View((await db.Entities
-                .OrderBy(b => b.Id)
+                .OrderByDescending(n => n.PublishDate)
                 .ToListAsync())
                 .Select(n => new TranslatedViewModel<NewsItem, NewsItemTranslation>(n))
                 .ToPagedList(pageNumber, 10));
@@ -43,13 +43,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsItem newsitem = await db.GetByIdAsync(id);
+
+            var newsitem = await db.GetByIdAsync(id);
+
             if (newsitem == null)
             {
                 return HttpNotFound();
             }
-
-            // ViewBag.AreLanguagesMissing = newsitem.ReferencedNewsText.Count <= LanguageDefinitions.Languages.Count;
             return View(newsitem);
         }
 
@@ -59,15 +59,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             var item = new NewsItem();
 
             item.Translations.Add(new NewsItemTranslation
-                {
-                    LanguageCode = LanguageDefinitions.DefaultLanguage
-                });
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            });
 
             return View(GenerateViewModel(item));
         }
 
-        // POST: /News/Create To protect from overposting attacks, please enable the specific
-        // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /News/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(NewsItem newsItem)
@@ -97,8 +96,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             return View(GenerateViewModel(newsitem));
         }
 
-        // POST: /News/Edit/5 To protect from overposting attacks, please enable the specific
-        // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: /News/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(NewsItem newsitem)
@@ -155,11 +153,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             if (newsItem == null)
             {
                 return HttpNotFound();
-            }
-
-            if (newsItem.Translations.Count == LanguageDefinitions.Languages.Count)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(

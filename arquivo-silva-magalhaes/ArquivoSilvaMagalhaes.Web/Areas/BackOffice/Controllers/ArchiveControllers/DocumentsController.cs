@@ -16,21 +16,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class DocumentsController : ArchiveControllerBase
     {
-        private ITranslateableRepository<Document, DocumentTranslation> _db;
+        private ITranslateableRepository<Document, DocumentTranslation> db;
 
         public DocumentsController()
             : this(new TranslateableGenericRepository<Document, DocumentTranslation>()) { }
 
         public DocumentsController(TranslateableGenericRepository<Document, DocumentTranslation> db)
         {
-            this._db = db;
+            this.db = db;
         }
 
         // GET: BackOffice/Documents
         public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
         {
-            var query = await _db.QueryAsync(d => (authorId == 0 || d.AuthorId == authorId) &&
-                                                  (collectionId == 0 || d.CollectionId == collectionId));
+            var query = await db.Entities
+                                .Where(d => (authorId == 0 || d.AuthorId == authorId) &&
+                                            (collectionId == 0 || d.CollectionId == collectionId))
+                                .ToListAsync();
 
             return View(query.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
                              .ToPagedList(pageNumber, 10));
@@ -44,7 +46,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await _db.GetByIdAsync(id);
+            Document document = await db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -57,7 +59,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Documents/Create
-        public ActionResult Create(int? collectionId, int? authorId)
+        public async Task<ActionResult> Create(int? collectionId, int? authorId)
         {
             var doc = new Document();
 
@@ -67,38 +69,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             });
 
             // Check for a collection.
-            if (collectionId != null && _db.Set<Collection>().FirstOrDefault(c => c.Id == collectionId) != null)
+            if (collectionId != null && db.Set<Collection>().FirstOrDefault(c => c.Id == collectionId) != null)
             {
                 doc.CatalogCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
                 doc.CollectionId = collectionId.Value;
             }
 
             // Check for an author.
-            if (authorId != null && _db.Set<Author>().FirstOrDefault(a => a.Id == authorId) != null)
+            if (authorId != null && db.Set<Author>().FirstOrDefault(a => a.Id == authorId) != null)
             {
                 doc.AuthorId = authorId.Value;
             }
 
-            var model = GenerateViewModel(doc);
+            var model = new DocumentEditViewModel(doc);
+            await model.PopulateDropDownLists(db.Set<Author>(), db.Set<Collection>());
 
             return View(model);
         }
 
-        // POST: BackOffice/Documents/Create To protect from overposting attacks, please enable the
-        // specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: BackOffice/Documents/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Document document)
         {
             if (ModelState.IsValid)
             {
-                _db.Add(document);
-                await _db.SaveChangesAsync();
+                db.Add(document);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(document));
+            var model = new DocumentEditViewModel(document);
+            await model.PopulateDropDownLists(db.Set<Author>(), db.Set<Collection>());
+
+            return View(model);
         }
 
         // GET: BackOffice/Documents/Edit/5
@@ -109,7 +114,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Document document = await _db.GetByIdAsync(id);
+            Document document = await db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -118,11 +123,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             document.Translations = document.Translations.ToList();
 
-            return View(GenerateViewModel(document));
+            var model = new DocumentEditViewModel(document);
+            await model.PopulateDropDownLists(db.Set<Author>(), db.Set<Collection>());
+
+            return View(model);
         }
 
-        // POST: BackOffice/Documents/Edit/5 To protect from overposting attacks, please enable the
-        // specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: BackOffice/Documents/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Document document)
@@ -131,17 +138,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var t in document.Translations)
                 {
-                    _db.UpdateTranslation(t);
+                    db.UpdateTranslation(t);
                 }
 
-                _db.Update(document);
+                db.Update(document);
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(document));
+            var model = new DocumentEditViewModel(document);
+            await model.PopulateDropDownLists(db.Set<Author>(), db.Set<Collection>());
+
+            return View(model);
         }
 
         // GET: BackOffice/Documents/Delete/5
@@ -151,7 +161,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = await _db.GetByIdAsync(id);
+            Document document = await db.GetByIdAsync(id);
 
             if (document == null)
             {
@@ -168,51 +178,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _db.RemoveByIdAsync(id);
-            await _db.SaveChangesAsync();
+            await db.RemoveByIdAsync(id);
+            await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
-        }
-
-        private DocumentEditViewModel GenerateViewModel(Document d)
-        {
-            var model = new DocumentEditViewModel();
-            model.Document = d;
-
-            model.AvailableAuthors = _db.Set<Author>().Select(a => new SelectListItem
-                {
-                    Text = a.LastName + ", " + a.FirstName,
-                    Value = a.Id.ToString(),
-                    Selected = d.AuthorId == a.Id
-                })
-                .ToList();
-
-            model.AvailableAuthors.Insert(0, new SelectListItem
-                {
-                    Text = UiPrompts.ChooseOne,
-                    Value = String.Empty,
-                    Selected = true
-                });
-
-            model.AvailableCollections = _db.Set<Collection>()
-                .ToList()
-                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
-                .Select(c => new SelectListItem
-                {
-                    Selected = c.Entity.Id == d.CollectionId,
-                    Value = c.Entity.Id.ToString(),
-                    Text = c.Entity.CatalogCode + " - " + "'" + c.Translation.Title + "'"
-                })
-                .ToList();
-
-            model.AvailableCollections.Insert(0, new SelectListItem
-            {
-                Text = UiPrompts.ChooseOne,
-                Value = String.Empty,
-                Selected = true
-            });
-
-            return model;
         }
 
         public async Task<ActionResult> AddTranslation(int? id)
@@ -221,7 +190,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var doc = await _db.GetByIdAsync(id);
+            var doc = await db.GetByIdAsync(id);
 
             if (doc == null)
             {
@@ -254,17 +223,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                _db.AddTranslation(translation);
+                db.AddTranslation(translation);
 
-                await _db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(new DocumentEditViewModel
-                {
-                    Document = translation.Document
-                });
+            return View(translation);
         }
 
         public ActionResult SuggestCode(int? collectionId)
@@ -281,9 +247,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

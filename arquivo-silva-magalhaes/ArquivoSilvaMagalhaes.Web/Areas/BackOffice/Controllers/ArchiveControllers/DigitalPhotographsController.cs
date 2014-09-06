@@ -1,8 +1,8 @@
 ﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -12,6 +12,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
+
+// TODO (@redroserade): Redo this.
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -43,8 +45,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/DigitalPhotographs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(SpecimenPhotoUploadModel model)
@@ -100,7 +100,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 foreach (var item in model.UploadedItems)
                 {
-                    var photo = 
+                    var photo =
                         await db.DigitalPhotographs.FindAsync(item.DigitalPhotograph.Id);
 
                     if (!item.Save)
@@ -126,7 +126,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return View(model);
         }
 
-
         // GET: BackOffice/DigitalPhotographs/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -144,8 +143,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/DigitalPhotographs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,SpecimenId,ScanDate,Notes")] DigitalPhotograph digitalPhotograph)
@@ -191,7 +188,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
-        [OutputCache(Duration = int.MaxValue, VaryByParam=("id;size;download"))]
+        [OutputCache(Duration = int.MaxValue, VaryByParam = ("id;size;download"))]
         public async Task<ActionResult> GetImage(int? id, string size = "large", bool download = false)
         {
             if (id == null)
@@ -218,6 +215,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 case "thumb":
                     fileName += "_thumb.jpg";
                     break;
+
                 case "large":
                 default:
                     fileName += "_large.jpg";

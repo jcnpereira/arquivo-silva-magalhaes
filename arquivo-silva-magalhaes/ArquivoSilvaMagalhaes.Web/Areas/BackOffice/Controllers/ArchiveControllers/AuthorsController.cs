@@ -28,10 +28,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Authors
-        public async Task<ActionResult> Index(int pageNumber = 1, string queryName = "")
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = null)
         {
             return View((await db.Entities
-                .OrderBy(b => b.Id)
+                .Where(a => query == null || a.FirstName.Contains(query) || a.LastName.Contains(query))
+                .OrderBy(a => a.Id)
                 .ToListAsync())
                 .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
                 .ToPagedList(pageNumber, 10));

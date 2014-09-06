@@ -68,7 +68,8 @@ namespace ArquivoSilvaMagalhaes.Models
         /// <returns>
         ///     The value that is present in the db for the item.
         /// </returns>
-        TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression) where TResult : class;
+        TResult GetValueFromDb<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression)
+            where TResult : class;
 
         /// <summary>
         ///     Marks an item to update in the repository, excluding certain properties from the update.

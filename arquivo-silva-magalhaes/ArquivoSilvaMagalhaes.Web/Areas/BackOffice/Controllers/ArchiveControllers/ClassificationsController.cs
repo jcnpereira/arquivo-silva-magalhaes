@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                .OrderBy(b => b.Id)
+                .OrderBy(c => c.Id)
                 .ToListAsync())
                 .Select(c => new TranslatedViewModel<Classification, ClassificationTranslation>(c))
                 .ToPagedList(pageNumber, 10));
