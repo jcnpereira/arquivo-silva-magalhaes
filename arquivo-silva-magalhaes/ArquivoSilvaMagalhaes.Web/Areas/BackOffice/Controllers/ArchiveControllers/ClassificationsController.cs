@@ -15,11 +15,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ClassificationsController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<Classification, ClassificationTranslation> _db;
+        private ITranslateableRepository<Classification, ClassificationTranslation> _db;
 
         public ClassificationsController() : this (new TranslateableGenericRepository<Classification, ClassificationTranslation>()) { }
 
-        public ClassificationsController(ITranslateableEntityRepository<Classification, ClassificationTranslation> db)
+        public ClassificationsController(ITranslateableRepository<Classification, ClassificationTranslation> db)
         {
             this._db = db;
         }

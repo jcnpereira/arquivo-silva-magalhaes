@@ -9,6 +9,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 
     public class BannerPhotographEditViewModel
     {
+        public BannerPhotographEditViewModel()
+            : this(new Banner())
+        {
+
+        }
+
+        public BannerPhotographEditViewModel(Banner banner)
+        {
+            this.Banner = banner;
+        }
+
         public Banner Banner { get; set; }
 
         [Required]

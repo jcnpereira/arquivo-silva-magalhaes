@@ -14,11 +14,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class NewsController : SiteControllerBase
     {
-        private ITranslateableEntityRepository<NewsItem, NewsItemTranslation> db;
+        private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsController() : this (new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
 
-        public NewsController(ITranslateableEntityRepository<NewsItem, NewsItemTranslation> db)
+        public NewsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
         {
             this.db = db;
         }

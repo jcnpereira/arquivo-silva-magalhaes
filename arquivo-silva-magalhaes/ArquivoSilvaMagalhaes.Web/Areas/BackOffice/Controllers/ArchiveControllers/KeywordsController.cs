@@ -15,9 +15,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class KeywordsController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<Keyword, KeywordTranslation> _db;
+        private ITranslateableRepository<Keyword, KeywordTranslation> _db;
 
-        public KeywordsController(ITranslateableEntityRepository<Keyword, KeywordTranslation> db)
+        public KeywordsController(ITranslateableRepository<Keyword, KeywordTranslation> db)
         {
             this._db = db;
         }

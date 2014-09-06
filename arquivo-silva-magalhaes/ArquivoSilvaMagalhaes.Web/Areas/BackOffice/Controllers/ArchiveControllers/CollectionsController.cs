@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
     {
         //private ArchiveDataContext _db = new ArchiveDataContext();
 
-        private ITranslateableEntityRepository<Collection, CollectionTranslation> _db;
+        private ITranslateableRepository<Collection, CollectionTranslation> _db;
 
         public CollectionsController()
             : this(new TranslateableGenericRepository<Collection, CollectionTranslation>())

@@ -12,65 +12,54 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
+using System.Diagnostics;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class BannerPhotographController : SiteControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableRepository<Banner, BannerTranslation> db;
+
+        public BannerPhotographController() : this(new TranslateableGenericRepository<Banner, BannerTranslation>()) { }
+
+        public BannerPhotographController(ITranslateableRepository<Banner, BannerTranslation> db)
+        {
+            this.db = db;
+        }
 
         // GET: /BackOffice/BannerPhotograph/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => 
-                db.BannerTranslations
-                  .Include(bt => bt.BannerPhotograph)
-                  .Where(bt => bt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                  .OrderBy(bt => bt.BannerPhotographId)
-                  .ToPagedList(pageNumber, 10)));
+            return View((await db.Entities
+                .OrderBy(b => b.Id)
+                .ToListAsync())
+                .Select(b => new TranslatedViewModel<Banner, BannerTranslation>(b))
+                .ToPagedList(pageNumber, 10));
         }
 
-        // GET: /BackOffice/BannerPhotograph/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Banner bannerphotograph = await db.Banners.FindAsync(id);
-            if (bannerphotograph == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bannerphotograph);
-        }
 
         // GET: /BackOffice/BannerPhotograph/Create
         public ActionResult Create()
         {
             var banner = new Banner();
+
             banner.Translations.Add(new BannerTranslation
-                {
-                    LanguageCode = LanguageDefinitions.DefaultLanguage
-                });
-            return View(GenerateViewModel(banner));
+            {
+                LanguageCode = LanguageDefinitions.DefaultLanguage
+            });
+
+            return View(new BannerPhotographEditViewModel(banner));
         }
 
         // POST: /BackOffice/BannerPhotograph/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Banner banner, HttpPostedFileBase image)
+        public async Task<ActionResult> Create(BannerPhotographEditViewModel model)
         {
-            if (image == null)
-            {
-                ModelState.AddModelError("Image", "");
-            }
-
             if (ModelState.IsValid)
             {
-                var newName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(image.FileName);
+                var newName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Image.FileName);
 
                 ImageJob j = new ImageJob
                 {
@@ -82,21 +71,39 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
                         Encoder = "freeimage",
                         OutputFormat = OutputFormat.Jpeg
                     },
-                    Source = image.InputStream,
+                    Source = model.Image.InputStream,
                     Dest = Path.Combine(Server.MapPath("~/Public/Banners"), newName),
                     CreateParentDirectory = true
                 };
 
                 ImageBuilder.Current.Build(j);
 
-                banner.UriPath = newName;
+                model.Banner.UriPath = newName;
 
-                db.Banners.Add(banner);
+                db.Add(model.Banner);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(banner));
+            return View(model);
+        }
+
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var banner = await db.GetByIdAsync(id);
+
+            if (banner == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(banner);
         }
 
         // GET: /BackOffice/BannerPhotograph/Edit/5
@@ -106,35 +113,39 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner bannerphotograph = await db.Banners.FindAsync(id);
-            if (bannerphotograph == null)
+
+            var banner = await db.GetByIdAsync(id);
+
+            if (banner == null)
             {
                 return HttpNotFound();
             }
-            return View(GenerateViewModel(bannerphotograph));
+
+            return View(new BannerPhotographEditViewModel(banner));
         }
 
         // POST: /BackOffice/BannerPhotograph/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Banner banner)
+        public async Task<ActionResult> Edit(BannerPhotographEditViewModel model)
         {
+            ModelState.Remove("Image");
+
             if (ModelState.IsValid)
             {
-                db.Entry(banner).State = EntityState.Modified;
-                db.Entry(banner).Property(b => b.UriPath).IsModified = false;
+                db.Update(model.Banner);
+                db.ExcludeFromUpdate(model.Banner, b => new { b.UriPath });
 
-                foreach (var item in banner.Translations)
+                foreach (var item in model.Banner.Translations)
                 {
-                    db.Entry(item).State = EntityState.Modified;
+                    db.UpdateTranslation(item);
                 }
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(GenerateViewModel(banner));
+
+            return View(model);
         }
 
         // GET: /BackOffice/BannerPhotograph/Delete/5
@@ -144,7 +155,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner bannerphotograph = await db.Banners.FindAsync(id);
+            Banner bannerphotograph = await db.GetByIdAsync(id);
             if (bannerphotograph == null)
             {
                 return HttpNotFound();
@@ -157,19 +168,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Banner bannerphotograph = await db.Banners.FindAsync(id);
-            db.Banners.Remove(bannerphotograph);
+            await db.RemoveByIdAsync(id);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        private BannerPhotographEditViewModel GenerateViewModel(Banner banner)
-        {
-            var model = new BannerPhotographEditViewModel
-            {
-                Banner = banner
-            };
-            return model;
         }
 
         protected override void Dispose(bool disposing)

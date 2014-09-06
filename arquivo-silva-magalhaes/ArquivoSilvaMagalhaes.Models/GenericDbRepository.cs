@@ -133,9 +133,18 @@ namespace ArquivoSilvaMagalhaes.Models
         {
             return _db.SaveChanges();
         }
+
+
+        public IQueryable<TEntity> Entities
+        {
+            get 
+            {
+                return _db.Set<TEntity>();
+            }
+        }
     }
 
-    public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableEntityRepository<TEntity, TTranslation>
+    public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableRepository<TEntity, TTranslation>
         where TEntity : class
         where TTranslation : EntityTranslation
     {

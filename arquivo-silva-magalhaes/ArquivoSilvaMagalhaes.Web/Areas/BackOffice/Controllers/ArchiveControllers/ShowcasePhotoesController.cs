@@ -14,12 +14,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ShowcasePhotoesController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<ShowcasePhoto, ShowcasePhotoTranslation> _db;
+        private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> _db;
 
         public ShowcasePhotoesController()
             : this(new TranslateableGenericRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
-        public ShowcasePhotoesController(ITranslateableEntityRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
+        public ShowcasePhotoesController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {
             this._db = db;
         }

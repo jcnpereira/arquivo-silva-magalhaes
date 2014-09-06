@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 namespace ArquivoSilvaMagalhaes.Models
@@ -36,5 +37,7 @@ namespace ArquivoSilvaMagalhaes.Models
         /// <param name="entity">The entity from where to load the navigation property.</param>
         /// <param name="expression">A lambda expression that selects the entity to load.</param>
         Task ForceLoadAsync<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class;
+
+        IQueryable<TEntity> Entities { get; }
     }
 }

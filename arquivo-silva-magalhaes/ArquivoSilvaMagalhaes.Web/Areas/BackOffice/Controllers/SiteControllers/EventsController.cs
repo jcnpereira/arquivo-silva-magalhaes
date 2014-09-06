@@ -14,11 +14,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class EventsController : SiteControllerBase
     {
-        private ITranslateableEntityRepository<Event, EventTranslation> db;
+        private ITranslateableRepository<Event, EventTranslation> db;
 
         public EventsController() : this (new TranslateableGenericRepository<Event, EventTranslation>()) { }
 
-        public EventsController(ITranslateableEntityRepository<Event, EventTranslation> db)
+        public EventsController(ITranslateableRepository<Event, EventTranslation> db)
         {
             this.db = db;
         }

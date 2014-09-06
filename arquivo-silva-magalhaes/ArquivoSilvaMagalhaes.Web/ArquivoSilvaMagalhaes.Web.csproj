@@ -225,6 +225,7 @@
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\NewsItemsController.cs" />
@@ -854,7 +855,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -907,6 +910,8 @@
     <Content Include="Views\Images\Index.cshtml" />
     <Content Include="Views\Shared\_IndexPageLayout.cshtml" />
     <Content Include="Views\Home\IndexView.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

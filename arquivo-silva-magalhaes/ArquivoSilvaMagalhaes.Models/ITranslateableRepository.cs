@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace ArquivoSilvaMagalhaes.Models
 {
-    public interface ITranslateableEntityRepository<TEntity, TTranslation> : IRepository<TEntity>
+    public interface ITranslateableRepository<TEntity, TTranslation> : IRepository<TEntity>
         where TEntity : class
         where TTranslation : EntityTranslation
     {

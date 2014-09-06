@@ -12,7 +12,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class PortalController : SiteControllerBase
     {
-        private ITranslateableEntityRepository<Archive, ArchiveTranslation> db;
+        private ITranslateableRepository<Archive, ArchiveTranslation> db;
 
         public PortalController()
             : this(new TranslateableGenericRepository<Archive, ArchiveTranslation>())
@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 
         }
 
-        public PortalController(ITranslateableEntityRepository<Archive, ArchiveTranslation> db)
+        public PortalController(ITranslateableRepository<Archive, ArchiveTranslation> db)
         {
             this.db = db;
         }

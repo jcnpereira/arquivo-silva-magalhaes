@@ -18,14 +18,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ImagesController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<Image, ImageTranslation> _db;
+        private ITranslateableRepository<Image, ImageTranslation> _db;
 
         public ImagesController() : this(new TranslateableGenericRepository<Image, ImageTranslation>())
         {
 
         }
 
-        public ImagesController(ITranslateableEntityRepository<Image, ImageTranslation> db)
+        public ImagesController(ITranslateableRepository<Image, ImageTranslation> db)
         {
             this._db = db;
         }

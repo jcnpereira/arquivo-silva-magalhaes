@@ -15,9 +15,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class ProcessesController : ArchiveControllerBase
     {
-        private ITranslateableEntityRepository<Process, ProcessTranslation> _db;
+        private ITranslateableRepository<Process, ProcessTranslation> _db;
 
-        public ProcessesController(ITranslateableEntityRepository<Process, ProcessTranslation> db)
+        public ProcessesController(ITranslateableRepository<Process, ProcessTranslation> db)
         {
             this._db = db;
         }

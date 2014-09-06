@@ -27,20 +27,6 @@ namespace ArquivoSilvaMagalhaes.ViewModels
         public virtual SpotlightVideo Video { get; set; }
     }
 
-    public class BannerTranslation : EntityTranslation
-    {
-        [Key, Column(Order = 0)]
-        public int BannerPhotographId { get; set; }
-        [ForeignKey("BannerPhotographId")]
-        public virtual Banner BannerPhotograph { get; set; }
-
-        [Key, Column(Order = 1)]
-        public override string LanguageCode { get; set; }
-
-        [Display(ResourceType = typeof(BannerStrings), Name = "Caption")]
-        public string Caption { get; set; }
-    }
-
     public class SpotlightVideo
     {
         [Key]
