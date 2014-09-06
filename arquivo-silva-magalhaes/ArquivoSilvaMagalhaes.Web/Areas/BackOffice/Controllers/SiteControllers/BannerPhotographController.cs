@@ -21,7 +21,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
     {
         private ITranslateableRepository<Banner, BannerTranslation> db;
 
-        public BannerPhotographController() : this(new TranslateableGenericRepository<Banner, BannerTranslation>()) { }
+        public BannerPhotographController() 
+            : this(new TranslateableGenericRepository<Banner, BannerTranslation>()) { }
 
         public BannerPhotographController(ITranslateableRepository<Banner, BannerTranslation> db)
         {
@@ -61,22 +62,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 var newName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Image.FileName);
 
-                ImageJob j = new ImageJob
-                {
-                    Instructions = new Instructions
-                    {
-                        Width = 1024,
-                        Height = 500,
-                        Mode = FitMode.Crop,
-                        Encoder = "freeimage",
-                        OutputFormat = OutputFormat.Jpeg
-                    },
-                    Source = model.Image.InputStream,
-                    Dest = Path.Combine(Server.MapPath("~/Public/Banners"), newName),
-                    CreateParentDirectory = true
-                };
-
-                ImageBuilder.Current.Build(j);
+                FileUploadHelper.SaveImage(
+                    model.Image.InputStream,
+                    1024, 
+                    500, 
+                    Path.Combine(Server.MapPath("~/Public/Banners"), newName), 
+                    FitMode.Crop);
 
                 model.Banner.UriPath = newName;
 
@@ -175,7 +166,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

@@ -31,6 +31,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
+        [StringLength(80)]
         [Display(ResourceType = typeof(BannerStrings), Name = "Caption")]
         public string Caption { get; set; }
     }
