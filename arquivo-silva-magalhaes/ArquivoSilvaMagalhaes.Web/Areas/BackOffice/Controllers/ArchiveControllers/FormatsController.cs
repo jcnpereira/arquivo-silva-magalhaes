@@ -13,14 +13,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
     public class FormatsController : ArchiveControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private IRepository<Format> db;
+
+        public FormatsController()
+            : this(new GenericDbRepository<Format>()) { }
+
+        public FormatsController(GenericDbRepository<Format> db)
+        {
+            this.db = db;
+        }
 
         // GET: BackOffice/Formats
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public ActionResult Index(int pageNumber = 1)
         {
-            return View(
-                await Task.Run(() => db.Formats.OrderBy(f => f.Id).ToPagedList(pageNumber, 10))
-            );
+            return View(db.Entities.OrderBy(f => f.Id).ToPagedList(pageNumber, 10));
         }
 
         // GET: BackOffice/Formats/Details/5
@@ -30,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.Formats.FindAsync(id);
+            Format format = await db.GetByIdAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -50,15 +56,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Formats/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Exclude = "Id")]Format format)
         {
             if (ModelState.IsValid)
             {
-                db.Formats.Add(format);
+                db.Add(format);
+
                 await db.SaveChangesAsync();
 
                 if (Request.IsAjaxRequest())
@@ -71,7 +76,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     });
 
                     result.AddRange(
-                        db.Formats
+                        db.Entities
                           .OrderBy(f => f.Id)
                           .Select(f => new
                           {
@@ -95,7 +100,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.Formats.FindAsync(id);
+            Format format = await db.GetByIdAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -104,15 +109,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // POST: BackOffice/Formats/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,FormatDescription")] Format format)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(format).State = EntityState.Modified;
+                db.Update(format);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -126,7 +129,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Format format = await db.Formats.FindAsync(id);
+            Format format = await db.GetByIdAsync(id);
             if (format == null)
             {
                 return HttpNotFound();
@@ -139,8 +142,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Format format = await db.Formats.FindAsync(id);
-            db.Formats.Remove(format);
+            Format format = await db.GetByIdAsync(id);
+            db.Remove(format);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
