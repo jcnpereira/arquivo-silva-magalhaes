@@ -69,14 +69,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             });
 
             // Check for a collection.
-            if (collectionId != null && db.Set<Collection>().FirstOrDefault(c => c.Id == collectionId) != null)
+            if (collectionId != null && db.Set<Collection>().Any(c => c.Id == collectionId))
             {
                 doc.CatalogCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
                 doc.CollectionId = collectionId.Value;
             }
 
             // Check for an author.
-            if (authorId != null && db.Set<Author>().FirstOrDefault(a => a.Id == authorId) != null)
+            if (authorId != null && db.Set<Author>().Any(a => a.Id == authorId))
             {
                 doc.AuthorId = authorId.Value;
             }
@@ -231,6 +231,47 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             return View(translation);
+        }
+
+        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tr);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            await db.RemoveTranslationByIdAsync(id, languageCode);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult SuggestCode(int? collectionId)
