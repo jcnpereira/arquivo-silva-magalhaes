@@ -3,8 +3,13 @@ using ArquivoSilvaMagalhaes.Models.SiteModels;
 using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -23,9 +28,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
         // GET: /Partnerships/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber=1)
         {
-            return View(await db.Partnerships.ToListAsync());
+
+            return View(await Task.Run(() => db.Partnerships
+                .OrderByDescending(p=>p.Id)
+                .ToPagedList(pageNumber,6)));
         }
 
         // GET: /Partnerships/Details/5

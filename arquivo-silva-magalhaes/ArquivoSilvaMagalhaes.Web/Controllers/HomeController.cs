@@ -27,9 +27,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             IndexViewModel viewModel = new IndexViewModel();
             List<IndexViewModel> viewModels = new List<IndexViewModel>();
-            //viewModel.BannerTranslation = Get the data from Service;
-            //viewModel.Video = Get the data from Service;
-            //var model= db.BannerTranslations.Include(c =>c.)
             return View(viewModels);
         }
 
@@ -49,10 +46,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
-        public ActionResult Search()
-        {
-            return View();
-        }
 
         public ActionResult SetLanguage(string lang, string returnUrl)
         {

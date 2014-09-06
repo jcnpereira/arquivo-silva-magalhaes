@@ -1,21 +1,30 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Partnership>
 
+
 <div class="column_content">
     <h2 class="page_title">Projetos e Parcerias</h2>
 </div>
 <hr />
-<ul class="media-list">
-    @foreach (var item in Model)
-    {
-        <li class="media-body col-md-3">
-            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+<div class="media">
+    <ul class="media-list">
+        @foreach (var item in Model)
+        {
+            <li class="media-body col-md-4">
+                <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                <a href=@Url.Content(item.SiteLink) target="_blank">
+                    <img height="150" width="150" src="~/images/@Html.DisplayFor(modelItem => item.LogoFileName)" alt="Logotipo associado à pareceria." /><br />
+                </a>
+                <div class="">
+                    <br /><b>contacto:</b><br /> @Html.DisplayFor(modelItem => item.Contact)
+                    <br /><b>e-mail:</b><br /><a href="mailto:@Html.DisplayFor(modelItem => item.EmailAddress)" target="_blank">@Html.DisplayFor(modelItem => item.EmailAddress)</a>
+                    <br />
+                </div>
+            </li>
+        }
+    </ul>
+</div>
 
-            <img height="150" src="~/images/@Html.DisplayFor(modelItem => item.LogoFileName)" alt="Logotipo associado à pareceria." /><br />
-            <a href="@Html.DisplayFor(modelItem => item.SiteLink)" target="_blank">Visitar Site</a>
-            
-            <br /><b>tel:</b> @Html.DisplayFor(modelItem => item.Contact)
-            <br /><b>e-mail:</b> @Html.DisplayFor(modelItem => item.EmailAddress)
-            <br />
-        </li>
-    }
-</ul>
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
