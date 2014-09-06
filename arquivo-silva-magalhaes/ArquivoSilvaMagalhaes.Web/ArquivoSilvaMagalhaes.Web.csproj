@@ -736,6 +736,8 @@
     <Content Include="Areas\BackOffice\Views\Collections\_MainDisplayFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\_TranslatedDisplayFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_MainDisplayFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
