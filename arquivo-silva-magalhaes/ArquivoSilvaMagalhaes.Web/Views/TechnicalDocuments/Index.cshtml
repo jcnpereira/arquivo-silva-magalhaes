@@ -5,26 +5,24 @@
 
 <hr />
 
-
-<ul class="media-list">
-    @foreach (var doc in Model)
-    {
-        <li class="media">
-            <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
-                <img class="media-object afsm-media-object" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
-            </a>
-            <div class="media-body">
-                <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
-                    <h4 class="media-heading">@doc.Title</h4>
+<div class="media">
+    <ul class="media-list">
+        @foreach (var doc in Model)
+        {
+            <li class=" col-md-6 list-group">
+                <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+                    <img class="media-object afsm-media-object" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
                 </a>
-                <p>
-                    @Html.DisplayFor(model => doc.LastModificationDate)
-                </p>
-            </div>
-        </li>
-    }
-</ul>
-
+                    <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+                        <h4 class="media-heading">@doc.Title</h4>
+                    </a>
+                    <p>
+                        @Html.DisplayFor(model => doc.LastModificationDate)
+                    </p>
+            </li>
+        }
+    </ul>
+</div>
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";

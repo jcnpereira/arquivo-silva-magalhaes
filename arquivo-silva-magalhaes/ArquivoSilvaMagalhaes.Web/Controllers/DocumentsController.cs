@@ -34,7 +34,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
           .Where(doc => doc.Document.CollectionId == id)
           .Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Document.DocumentDate)
-          .ToPagedList(pageNumber, 4)));
+          .ToPagedList(pageNumber, 12)));
         }
 
         // GET: Documents/Details/5

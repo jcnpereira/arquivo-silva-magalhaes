@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
           .Where(doc => doc.Image.IsVisible)
                 //.Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
           .OrderBy(doc => doc.Image.ProductionDate)
-          .ToPagedList(pageNumber, 8)));
+          .ToPagedList(pageNumber, 12)));
         }
 
 

@@ -11,7 +11,7 @@
     <ul class="media-list">
         @foreach (var img in Model)
         {
-            <li class="media-body col-md-4">
+            <li class="media-body col-md-4 list-group">
                 <a class="pull-left"
                    href="@Url.Action("ViewImage", "Images", new { id = img.ImageId })">
                     <img class="media-object"
@@ -24,7 +24,6 @@
                 </a>
                 <h4 class="media-heading">
                     @Html.DisplayFor(modelItem => img.Title)
-                    @*@Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)*@
                 </h4>
                 <p style="font-size:small">
                     @Html.DisplayFor(modelItem => img.Subject)
