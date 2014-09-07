@@ -79,11 +79,20 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta indexação? Todas as imagens associadas a esta também serão eliminadas!.
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta indexação? Todas as imagens associadas a esta perderão esta indexação!.
         /// </summary>
         public static string DeleteWarningMessage {
             get {
                 return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes da indexação.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
             }
         }
         

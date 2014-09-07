@@ -124,7 +124,10 @@
     <value>Eliminar indexação</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Tem a certeza que pretende eliminar esta indexação? Todas as imagens associadas a esta também serão eliminadas!</value>
+    <value>Tem a certeza que pretende eliminar esta indexação? Todas as imagens associadas a esta perderão esta indexação!</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da indexação</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar indexação</value>

@@ -1,26 +1,43 @@
 ﻿@model Keyword
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = KeywordStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = KeywordStrings.DeleteWarningMessage;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
 }
 
-<h2>Eliminar palavra chave</h2>
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
 
-<h3>Tem a certeza que pretente eliminar esta palavra chave?</h3>
-<div>
+<div class="tab-content">
 
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(model => model.Translations[0].Value)</dt>
-        <dd>@Html.DisplayFor(model => model.Translations[0].Value)</dd>
-    </dl>
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar à lista", "Index")
+            <hr style="visibility: hidden" />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => t.Value)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => t.Value)
+                </dd>
+            </dl>
         </div>
     }
 </div>

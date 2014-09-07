@@ -1,36 +1,17 @@
 ﻿@model Format
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = FormatStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
 }
 
-<h2>Detalhes do formato</h2>
-<div class="btn-toolbar btn-group" role="toolbar">
-    <a class="btn btn-default" href="@Url.Action("Index")" title="@UiStrings.GoToList">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </a>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.FormatDescription)
+    </dt>
 
-    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-default" title="@UiStrings.Edit">
-        <span class="glyphicon glyphicon-edit"></span>
-    </a>
+    <dd>
+        @Html.DisplayFor(model => model.FormatDescription)
+    </dd>
 
-    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
-        <span class="glyphicon glyphicon-floppy-remove"></span>
-    </a>
-</div>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FormatDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FormatDescription)
-        </dd>
-
-    </dl>
-</div>
-@section Scripts {
-    @Html.Partial("_DeleteConfirmModal")
-}
+</dl>

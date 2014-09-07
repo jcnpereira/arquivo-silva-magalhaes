@@ -123,8 +123,11 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar processo</value>
   </data>
-  <data name="DeleteWarning" xml:space="preserve">
+  <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este processo? Todas as espécies associadas a este serão eliminadas!</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do processo</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar processo</value>

@@ -240,6 +240,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return vm;
         }
 
+        #region Translation Actions
         public async Task<ActionResult> AddTranslation(int? id)
         {
             if (id == null)
@@ -316,7 +317,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
-        }
+        } 
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

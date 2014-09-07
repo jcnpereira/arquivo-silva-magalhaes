@@ -126,6 +126,9 @@
   <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este formato? Todas as espécies associadas a este também serão eliminadas!</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do formato</value>
+  </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar formato</value>
   </data>

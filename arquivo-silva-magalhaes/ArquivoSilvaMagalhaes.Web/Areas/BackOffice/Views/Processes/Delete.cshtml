@@ -1,32 +1,43 @@
-﻿@model ProcessViewModel
+﻿@model Process
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = ProcessStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = ProcessStrings.DeleteWarningMessage;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
 }
 
-<h2>Eliminar processo</h2>
-
-<h3>Tem a certeza que pertende eliminar este processo?</h3>
-<div>
-
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Value)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Value)
-        </dd>
-    </dl>
-
-    @using (Html.BeginForm())
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
     {
-        @Html.AntiForgeryToken()
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> <br />
-            @Html.ActionLink("Voltar à lista", "Index")
+<div class="tab-content">
+
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => t.Value)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => t.Value)
+                </dd>
+            </dl>
         </div>
     }
 </div>

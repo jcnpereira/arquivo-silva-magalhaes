@@ -81,9 +81,18 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         /// <summary>
         ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este processo? Todas as espécies associadas a este serão eliminadas!.
         /// </summary>
-        public static string DeleteWarning {
+        public static string DeleteWarningMessage {
             get {
-                return ResourceManager.GetString("DeleteWarning", resourceCulture);
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes do processo.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
             }
         }
         
