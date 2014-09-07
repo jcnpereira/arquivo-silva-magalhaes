@@ -120,6 +120,12 @@
   <data name="CopyrightInfo" xml:space="preserve">
     <value>Informações sobre direitos de autor</value>
   </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar fotografia digital</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende remover esta fotografia digital?</value>
+  </data>
   <data name="EntityName" xml:space="preserve">
     <value>Fotografia digital</value>
   </data>

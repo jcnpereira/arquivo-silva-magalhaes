@@ -71,19 +71,19 @@
 
     foreach (var item in Model.DigitalPhotographs)
     {
-        <div class="media">
-            <a class="pull-left" href="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "large" })">
-                <img class="media-object img-thumbnail" style="max-width: 128px; max-height: 128px" src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })" />
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">@Html.DisplayFor(model => item.FileName)</h4>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => item.ScanDate)</dt>
-                    <dd>@Html.DisplayFor(model => item.ScanDate)</dd>
-
-                    <dt>@Html.DisplayNameFor(model => item.Notes)</dt>
-                    <dd>@Html.DisplayMultilineFor(model => item.Notes)</dd>
-                </dl>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "large" })">
+                    <img src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })"
+                         style="height: 200px;" />
+                </a>
+                <div class="caption">
+                    <div class="text-center">
+                        <a href="@Url.Action("Delete", "DigitalPhotographs", new { item.Id })"
+                           class="btn btn-danger"
+                           role="button"><span class="glyphicon glyphicon-floppy-remove"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
     }

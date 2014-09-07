@@ -3,15 +3,11 @@ using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels;
 using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using PagedList;
 using System;
-using System.Data.Entity;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.UI;
 
 // TODO (@redroserade): Redo this.
 
@@ -60,15 +56,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     var dPhoto = new DigitalPhotograph
                     {
                         SpecimenId = model.SpecimenId,
-                        ScanDate = DateTime.Now,
-                        FileName = fileName,
-                        MimeType = photo.ContentType
+                        FileName = fileName
                     };
 
                     // Save the file and the smaller versions.
                     var completePath = Server.MapPath("~/App_Data/Uploads/Photos/");
                     Directory.CreateDirectory(completePath);
-                    photo.SaveAs(completePath + fileName);
                     FileUploadHelper.GenerateVersions(completePath + fileName);
 
                     returnModel.UploadedItems.Add(new DigitalPhotographUploadItem
@@ -108,14 +101,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                         // Remove the picture and its files.
                         db.DigitalPhotographs.Remove(photo);
                     }
-                    else
-                    {
-                        // Update the selected fields.
-                        photo.Notes = item.DigitalPhotograph.Notes;
-                        photo.ScanDate = item.DigitalPhotograph.ScanDate;
-
-                        db.Entry(photo).State = EntityState.Modified;
-                    }
                 }
 
                 await db.SaveChangesAsync();
@@ -124,42 +109,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             return View(model);
-        }
-
-        // GET: BackOffice/DigitalPhotographs/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DigitalPhotograph digitalPhotograph = await db.DigitalPhotographs.FindAsync(id);
-            if (digitalPhotograph == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.SpecimenId = new SelectList(db.Specimens, "Id", "AuthorCatalogationCode", digitalPhotograph.SpecimenId);
-            return View(digitalPhotograph);
-        }
-
-        // POST: BackOffice/DigitalPhotographs/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,SpecimenId,ScanDate,Notes")] DigitalPhotograph digitalPhotograph)
-        {
-            if (ModelState.IsValid)
-            {
-                var dp = await db.DigitalPhotographs.FindAsync(digitalPhotograph.Id);
-
-                dp.Notes = digitalPhotograph.Notes;
-                dp.ScanDate = digitalPhotograph.ScanDate;
-
-                db.Entry(dp).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.SpecimenId = new SelectList(db.Specimens, "Id", "AuthorCatalogationCode", digitalPhotograph.SpecimenId);
-            return View(digitalPhotograph);
         }
 
         // GET: BackOffice/DigitalPhotographs/Delete/5
@@ -183,9 +132,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             DigitalPhotograph digitalPhotograph = await db.DigitalPhotographs.FindAsync(id);
+
+            var fullPath = Server.MapPath("~/App_Data/Uploads/Photos/" + digitalPhotograph.FileName);
+
+            // Remove file from the disk.
+            if (System.IO.File.Exists(fullPath + "_thumb.jpg"))
+            {
+                System.IO.File.Delete(fullPath + "_thumb.jpg");
+            }
+
+            if (System.IO.File.Exists(fullPath + "_large.jpg"))
+            {
+                System.IO.File.Delete(fullPath + "_large.jpg");
+            }
+
             db.DigitalPhotographs.Remove(digitalPhotograph);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Specimens", new { id = digitalPhotograph.SpecimenId });
         }
 
         [OutputCache(Duration = int.MaxValue, VaryByParam = ("id;size;download"))]
@@ -227,7 +190,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

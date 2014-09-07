@@ -534,7 +534,6 @@
     <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Specimens\EditPhotoDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_PhotoPreviewModal.cshtml" />
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\Create.cshtml" />
@@ -612,8 +611,6 @@
     <Content Include="Areas\BackOffice\Views\Formats\_FormatFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DigitalPhotographs\_DigitalPhotographFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\DigitalPhotographs\PostUpload.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authors\AddTranslation.cshtml" />
     <Content Include="Content\Styles\frontoffice\bootstrap\.csscomb.json" />
