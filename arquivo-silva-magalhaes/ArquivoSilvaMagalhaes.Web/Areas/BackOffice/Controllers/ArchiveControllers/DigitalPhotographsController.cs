@@ -100,6 +100,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     {
                         // Remove the picture and its files.
                         db.DigitalPhotographs.Remove(photo);
+
+                        var fullPath = Server.MapPath("~/App_Data/Uploads/Photos/" + photo.FileName);
+
+                        // Remove file from the disk.
+                        if (System.IO.File.Exists(fullPath + "_thumb.jpg"))
+                        {
+                            System.IO.File.Delete(fullPath + "_thumb.jpg");
+                        }
+
+                        if (System.IO.File.Exists(fullPath + "_large.jpg"))
+                        {
+                            System.IO.File.Delete(fullPath + "_large.jpg");
+                        }
                     }
                 }
 

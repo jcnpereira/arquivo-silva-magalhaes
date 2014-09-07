@@ -201,9 +201,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.RemoveByIdAsync(id);
-            await db.SaveChangesAsync();
+            var collection = await db.GetByIdAsync(id);
 
+            db.Remove(collection);
+
+            if (collection.LogoLocation != null)
+            {
+                var fullPath = Server.MapPath("~/Public/Collections/" + collection.LogoLocation);
+
+                // Remove file from the disk.
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
