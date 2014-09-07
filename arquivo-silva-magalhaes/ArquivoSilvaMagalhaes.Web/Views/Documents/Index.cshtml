@@ -7,24 +7,27 @@
 }
 <h2>Documentos</h2>
 <hr />
-@foreach (var doc in Model)
-{
-    <div class="media">
-        @*<li class="col-md-3 col-md-offset-0">
-            <li class="media-body col-md-3">*@
-        <a class="pull-left">
-            <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
-        </a>
-        <a href="~/Images/Index/@doc.DocumentId">
-            <h4 class="media-heading">@doc.Document.Title</h4>
-        </a>
-        <h5>@doc.Description</h5>
-        <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
-        <p style="font-size:smaller">
-            @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
-        </p>
-    </div>
-}
+
+<div class="media">
+    <ul class="media-list">
+        @foreach (var doc in Model)
+        {
+            <li class="media-body col-md-4">
+                <a class="pull-left">
+                    <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
+                </a>
+                <a href="~/Images/Index/@doc.DocumentId">
+                    <h4 class="media-heading">@doc.Document.Title</h4>
+                </a>
+                <h5>@doc.Description</h5>
+                <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
+                <p style="font-size:smaller">
+                    @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
+                </p>
+            </li>
+        }
+    </ul>
+</div>
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";

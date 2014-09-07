@@ -3,37 +3,39 @@
 @model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
 
 <h2>Imagens</h2>
+<hr />
 
 @Styles.Render("~/Content/Styles/Images.css")
 
-@foreach (var img in Model)
-{
-    <div class="media col-md-6">
-        <a class="pull-left"
-           href="@Url.Action("ViewImage", "Images", new { id = img.ImageId })">
-            <img class="media-object"
-                 data-afsm-show-overlay="true"
-                 data-afsm-target="#afsm-overlay"
-                 data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Image.ImageUrl) + "_large.jpg")"
-                 style="width: 96px; height: 96px"
-                 data-afsm-description="@Html.DisplayFor(modelItem => img.Description)"
-                 src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg" />
-        </a>
-
-        <div class="media-body">
-            <h4 class="media-heading">
-                @Html.DisplayFor(modelItem => img.Title)
-                @*@Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)*@
-            </h4>
-            <p style="font-size:small">
-                @Html.DisplayFor(modelItem => img.Subject)
-            </p>
-            <p style="font-size:smaller">
-                @Html.ActionLink("Informações", "Details", new { id = img.ImageId })
-            </p>
-        </div>
-    </div>
-}
+<div class="media">
+    <ul class="media-list">
+        @foreach (var img in Model)
+        {
+            <li class="media-body col-md-4">
+                <a class="pull-left"
+                   href="@Url.Action("ViewImage", "Images", new { id = img.ImageId })">
+                    <img class="media-object"
+                         data-afsm-show-overlay="true"
+                         data-afsm-target="#afsm-overlay"
+                         data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Image.ImageUrl) + "_large.jpg")"
+                         style="width: 96px; height: 96px"
+                         data-afsm-description="@Html.DisplayFor(modelItem => img.Description)"
+                         src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg" />
+                </a>
+                <h4 class="media-heading">
+                    @Html.DisplayFor(modelItem => img.Title)
+                    @*@Html.ActionLink(img.Title, "ViewImage", "Images", new { id = img.ImageId }, null)*@
+                </h4>
+                <p style="font-size:small">
+                    @Html.DisplayFor(modelItem => img.Subject)
+                </p>
+                <p style="font-size:smaller">
+                    @Html.ActionLink("Informações", "Details", new { id = img.ImageId })
+                </p>
+            </li>
+        }
+    </ul>
+</div>
 
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
