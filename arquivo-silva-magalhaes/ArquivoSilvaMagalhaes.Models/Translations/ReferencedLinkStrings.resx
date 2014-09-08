@@ -123,8 +123,14 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar link útil</value>
   </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este link útil?</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes do link útil</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar link útil</value>

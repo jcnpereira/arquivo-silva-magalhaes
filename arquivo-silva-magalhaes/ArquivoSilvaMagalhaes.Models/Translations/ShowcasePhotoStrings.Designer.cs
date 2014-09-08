@@ -106,6 +106,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este artigo de fotografia em destaque?.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detalhes da fotografia em destaque.
         /// </summary>
         public static string DetailsTitleFormat {

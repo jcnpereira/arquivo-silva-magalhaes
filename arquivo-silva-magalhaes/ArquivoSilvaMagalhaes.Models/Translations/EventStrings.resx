@@ -189,4 +189,7 @@
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Detalhes do evento</value>
   </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este evento?</value>
+  </data>
 </root>

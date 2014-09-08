@@ -143,6 +143,12 @@ namespace ArquivoSilvaMagalhaes.Models
                 return _db.Set<TEntity>();
             }
         }
+
+
+        public void ForceUpdate<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression)
+        {
+            _db.Entry(entity).Property(expression).IsModified = true;
+        }
     }
 
     public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableRepository<TEntity, TTranslation>

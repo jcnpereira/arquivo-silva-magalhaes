@@ -125,10 +125,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             if (ModelState.IsValid)
             {
-                db.Update(model.Image);
-
                 // "Force-load" the image and the keywords.
                 await db.ForceLoadAsync(model.Image, i => i.Keywords);
+
+                db.Update(model.Image);
 
                 model.Image.Keywords = db.Set<Keyword>()
                                           .Where(k => model.KeywordIds.Contains(k.Id)).ToList();

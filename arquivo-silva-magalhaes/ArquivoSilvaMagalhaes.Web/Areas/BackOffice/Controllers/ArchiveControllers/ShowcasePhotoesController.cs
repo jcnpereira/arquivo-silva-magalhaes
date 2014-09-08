@@ -137,6 +137,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return HttpNotFound();
             }
+
+            showcasePhoto.Translations = showcasePhoto.Translations.ToList();
+
             return View(showcasePhoto);
         }
 
@@ -159,10 +162,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             model.AvailableImages = db.Set<Image>()
                 .Where(i => i.IsVisible && i.ImageUrl != null && i.ImageUrl != "")
+                .ToList()
                 .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
                 .Select(i => new SelectListItem
                 {
-                    Value = i.Entity.ToString(),
+                    Value = i.Entity.Id.ToString(),
                     Text = i.Translation.Title
                 });
 

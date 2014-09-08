@@ -132,6 +132,9 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar fotografia em destaque</value>
   </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este artigo de fotografia em destaque?</value>
+  </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Detalhes da fotografia em destaque</value>
   </data>

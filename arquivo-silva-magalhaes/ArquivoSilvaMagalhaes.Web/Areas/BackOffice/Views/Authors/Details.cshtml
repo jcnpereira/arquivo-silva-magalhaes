@@ -62,18 +62,22 @@
 @section additionalContent {
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">@DocumentStrings.EntityNamePlural</h3>
+            <a data-toggle="collapse" data-parent="#afsm-details-panel" href="#afsm-documents">
+                <h3 class="panel-title">@DocumentStrings.EntityNamePlural</h3>
+            </a>
         </div>
 
-        <div class="list-group">
-            @foreach (var doc in Model.Documents)
-            {
-                <a href="@Url.Action("Details", "Documents", new { id = doc.Id })" class="list-group-item">
-                    <h4 class="list-group-item-heading">@doc.Title <small>@doc.CatalogCode</small></h4>
-                    <p class="list-group-item-text">@Html.DisplayFor(model => doc.CatalogationDate)</p>
-                </a>
+        <div class="panel-collapse collapse" id="afsm-documents">
+            <div class="list-group">
+                @foreach (var doc in Model.Documents)
+                {
+                    <a href="@Url.Action("Details", "Documents", new { id = doc.Id })" class="list-group-item">
+                        <h4 class="list-group-item-heading">@doc.Title <small>@doc.CatalogCode</small></h4>
+                        <p class="list-group-item-text">@Html.DisplayFor(model => doc.CatalogationDate)</p>
+                    </a>
 
-            }
+                }
+            </div>
         </div>
     </div>
 }

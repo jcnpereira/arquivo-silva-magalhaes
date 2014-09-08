@@ -1,7 +1,6 @@
 ﻿@model Image
 
 @Html.HiddenFor(model => model.Id)
-@*@Html.HiddenFor(model => model.ImageUrl)*@
 
 <div class="form-group">
     @Html.LabelFor(model => model.ProductionDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -27,7 +26,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.IsVisible, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.CheckBoxFor(model => model.IsVisible, new { @class = "checkbox" })
+        @Html.EditorFor(model => model.IsVisible, new { htmlAttributes = new { @class = "checkbox" } })
         @Html.ValidationMessageFor(model => model.IsVisible, "", new { @class = "text-danger" })
     </div>
 </div>

@@ -20,6 +20,6 @@
     var marker = new google.maps.Marker({
         position: position,
         map: map,
-        draggable: true
+        draggable: false
     });
 }());

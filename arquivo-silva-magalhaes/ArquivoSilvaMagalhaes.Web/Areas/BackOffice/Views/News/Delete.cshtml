@@ -1,22 +1,46 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.NewsItem
+﻿@model NewsItem
+
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = NewsItemStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = NewsItemStrings.DeleteWarningMessage;
+
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
 }
 
-<h2>Apagar notícia</h2>
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
 
-<h3>Tem a certeza que pretende apagar esta notícia?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+<div class="tab-content">
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    @foreach (var t in Model.Translations)
+    {
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar á lista de notícias", "Index")
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+
+            <dl class="dl-horizontal">
+                @Html.Partial("_NewsItemTranslationDetails", t)
+            </dl>
         </div>
     }
 </div>
+
+<hr />
+
+<dl class="dl-horizontal">
+    @Html.Partial("_NewsItemDetails")
+</dl>

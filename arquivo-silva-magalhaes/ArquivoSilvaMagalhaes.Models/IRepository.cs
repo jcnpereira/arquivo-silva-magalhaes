@@ -164,6 +164,8 @@ namespace ArquivoSilvaMagalhaes.Models
         /// </param>
         Task ForceLoadAsync<TOther>(TEntity entity, Expression<Func<TEntity, ICollection<TOther>>> expression) where TOther : class;
 
+        void ForceUpdate<TResult>(TEntity entity, Expression<Func<TEntity, TResult>> expression);
+
         /// <summary>
         ///     Gets the underlying collection of entities from the repository.
         /// </summary>

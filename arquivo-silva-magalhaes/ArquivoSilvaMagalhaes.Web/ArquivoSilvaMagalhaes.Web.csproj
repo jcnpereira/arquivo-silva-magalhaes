@@ -750,6 +750,10 @@
     <Content Include="Areas\BackOffice\Views\Classifications\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Processes\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_TranslatedDisplayDetails.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\DeleteTranslation.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

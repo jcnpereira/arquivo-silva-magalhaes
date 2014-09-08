@@ -13,12 +13,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
     public class ReferencedLinkController : SiteControllerBase
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableRepository<ReferencedLink, ReferencedLinkTranslation> db;
+
+        public ReferencedLinkController()
+            : this(new TranslateableGenericRepository<ReferencedLink, ReferencedLinkTranslation>())
+        {
+        }
+
+        public ReferencedLinkController(ITranslateableRepository<ReferencedLink, ReferencedLinkTranslation> db)
+        {
+            this.db = db;
+        }
 
         // GET: /BackOffice/ReferencedLink/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.ReferencedLinks.ToListAsync())
+            return View((await db.GetAllAsync())
                 .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
                 .ToPagedList(pageNumber, 10));
         }
@@ -30,11 +40,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
+            ReferencedLink referencedlink = await db.GetByIdAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
             }
+
+            referencedlink.Translations = referencedlink.Translations.ToList();
+
             return View(referencedlink);
         }
 
@@ -60,7 +73,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-                db.ReferencedLinks.Add(referencedlink);
+                db.Add(referencedlink);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -75,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
+            ReferencedLink referencedlink = await db.GetByIdAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
@@ -84,19 +97,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         }
 
         // POST: /BackOffice/ReferencedLink/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ReferencedLink referencedlink)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(referencedlink).State = EntityState.Modified;
+                db.Update(referencedlink);
 
                 foreach (var t in referencedlink.Translations)
                 {
-                    db.Entry(t).State = EntityState.Modified;
+                    db.UpdateTranslation(t);
                 }
 
                 await db.SaveChangesAsync();
@@ -112,7 +123,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
+            ReferencedLink referencedlink = await db.GetByIdAsync(id);
             if (referencedlink == null)
             {
                 return HttpNotFound();
@@ -125,9 +136,93 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ReferencedLink referencedlink = await db.ReferencedLinks.FindAsync(id);
-            db.ReferencedLinks.Remove(referencedlink);
+            ReferencedLink referencedlink = await db.GetByIdAsync(id);
+            db.Remove(referencedlink);
             await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> AddTranslation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var referencedLink = await db.GetByIdAsync(id);
+
+            if (referencedLink == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                referencedLink.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(new ReferencedLinkTranslation
+            {
+                Id = referencedLink.Id
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTranslation(ReferencedLinkTranslation translation)
+        {
+            var item = await db.GetByIdAsync(translation.Id);
+
+            if (ModelState.IsValid)
+            {
+                item.Translations.Add(translation);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Languages = LanguageDefinitions.GenerateAvailableLanguageDDL(
+                item.Translations.Select(t => t.LanguageCode).ToArray());
+
+            return View(translation);
+        }
+
+        public async Task<ActionResult> DeleteTranslation(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode) || languageCode == LanguageDefinitions.DefaultLanguage)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tr);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteTranslation")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTranslationConfirmed(int? id, string languageCode)
+        {
+            if (id == null || string.IsNullOrEmpty(languageCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var tr = await db.GetTranslationAsync(id.Value, languageCode);
+
+            if (tr == null)
+            {
+                return HttpNotFound();
+            }
+
+            await db.RemoveTranslationByIdAsync(id, languageCode);
+
+            await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 

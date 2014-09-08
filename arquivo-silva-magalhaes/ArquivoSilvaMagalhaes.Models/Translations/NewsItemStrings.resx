@@ -126,6 +126,9 @@
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Eliminar notícia</value>
   </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta notícia?</value>
+  </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Detalhes da notícia</value>
   </data>

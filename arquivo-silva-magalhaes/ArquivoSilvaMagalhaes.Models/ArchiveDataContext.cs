@@ -66,6 +66,7 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<Partnership> Partnerships { get; set; }
 
         public virtual DbSet<ReferencedLink> ReferencedLinks { get; set; }
+        public virtual DbSet<ReferencedLinkTranslation> ReferencedLinkTranslations { get; set; }
 
         public virtual DbSet<SpotlightVideo> SpotlightVideos { get; set; }
 
@@ -75,7 +76,5 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<ArchiveTranslation> ArchiveTranslations { get; set; }
 
         public virtual DbSet<Contact> ArchiveContacts { get; set; }
-
-        
     }
 }

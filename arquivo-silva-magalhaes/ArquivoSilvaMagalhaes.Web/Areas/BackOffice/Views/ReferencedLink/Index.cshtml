@@ -45,7 +45,7 @@
                         </a>
 
                         @Html.AntiForgeryToken()
-                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ReferencedLinkStrings.DeleteWarningMessage">
                             <span class="glyphicon glyphicon-floppy-remove"></span>
                         </a>
                     </form>
