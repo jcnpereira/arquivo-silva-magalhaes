@@ -30,10 +30,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: /Partnerships/
         public async Task<ActionResult> Index(int pageNumber=1)
         {
-
             return View(await Task.Run(() => db.Partnerships
                 .OrderByDescending(p=>p.Id)
-                .ToPagedList(pageNumber,6)));
+                .ToPagedList(pageNumber,3)));
         }
 
         // GET: /Partnerships/Details/5

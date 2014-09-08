@@ -2,17 +2,16 @@
 
 <div class="column_content">
     <h2 class="page_title">Notícias</h2>
-    <table class="table">
+    <table class="table" style="text-align:justify">
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <h3>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</h3>
+                    <h3><b>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</b></h3>
                     <h4>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Heading)</h4>
                     <p>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().TextContent)</p>
                     <p>@Html.DisplayFor(modelItem => item.Attachments.LastOrDefault().FileName)</p>
                     <h5>@Html.DisplayFor(modelItem => item.PublishDate)</h5><br />
-
                     @Html.ActionLink("Voltar", "Index")
                 </td>
             </tr>

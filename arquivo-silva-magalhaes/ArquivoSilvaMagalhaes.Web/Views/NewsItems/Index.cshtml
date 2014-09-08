@@ -7,11 +7,14 @@
         {
             <tr>
                 <td>
-                    <h3>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</h3>
+                    <h3><b>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</b></h3>
                     <h4>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Heading)</h4>
                     <h5>@Html.DisplayFor(modelItem => item.PublishDate)</h5>
                     @*<h5>@Html.DisplayFor(modelItem => item.TextContent)</h5>*@
                     @Html.ActionLink("Ler notícia", "Details", new { id = item.Id })
+                </td>
+                <td>
+                    
                 </td>
             </tr>
         }
