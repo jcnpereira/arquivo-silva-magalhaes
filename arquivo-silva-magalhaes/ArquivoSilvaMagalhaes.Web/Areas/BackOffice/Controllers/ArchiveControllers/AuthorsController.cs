@@ -52,6 +52,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             author.Translations = author.Translations.ToList();
+            author.Documents = author.Documents.ToList();
 
             return View(author);
         }

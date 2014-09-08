@@ -3,7 +3,6 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Resources;
 using PagedList;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -18,7 +17,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public FormatsController()
             : this(new GenericDbRepository<Format>()) { }
 
-        public FormatsController(GenericDbRepository<Format> db)
+        public FormatsController(IRepository<Format> db)
         {
             this.db = db;
         }
