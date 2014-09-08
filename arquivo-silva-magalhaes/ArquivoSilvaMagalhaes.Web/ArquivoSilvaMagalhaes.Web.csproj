@@ -216,6 +216,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\SiteControllerBase.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\TechnicalDocumentController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\DigitalPhotographViewModels.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\PartnershipViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\Translations\UserViewModelStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -748,6 +749,7 @@
     <Content Include="Areas\BackOffice\Views\Keywords\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Processes\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\_MainDisplayFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />

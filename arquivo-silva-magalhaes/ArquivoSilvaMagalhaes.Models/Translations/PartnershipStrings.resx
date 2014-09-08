@@ -121,13 +121,28 @@
     <value>Contacto</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
-    <value>Criar link útil</value>
+    <value>Criar parceria</value>
+  </data>
+  <data name="DeleteTitleFormat" xml:space="preserve">
+    <value>Eliminar parceria</value>
+  </data>
+  <data name="DeleteWarningMessage" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta parceria?</value>
+  </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da parceria</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar link útil</value>
+    <value>Editar parceria</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Endereço de e-mail</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Parceria</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Parcerias</value>
   </data>
   <data name="Logo" xml:space="preserve">
     <value>Logótipo</value>
@@ -137,5 +152,8 @@
   </data>
   <data name="SiteLink" xml:space="preserve">
     <value>Website</value>
+  </data>
+  <data name="Validation_LogoMustBeImage" xml:space="preserve">
+    <value>O logótipo tem que ser uma imagem.</value>
   </data>
 </root>

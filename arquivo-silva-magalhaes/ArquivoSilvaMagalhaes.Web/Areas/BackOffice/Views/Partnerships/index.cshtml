@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Partnership>
 
 @{
-    //ViewBag.Title = PartnershipStrings.EntityNamePlural;
-    ViewBag.Title = " Projetos e parcerias";
+    ViewBag.Title = PartnershipStrings.EntityNamePlural;
     Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
 }
 
@@ -39,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.LogoFileName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SiteLink)
+                <a href="@item.SiteLink" target="_blank">@item.SiteLink</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EmailAddress)
@@ -53,16 +52,12 @@
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </a>
 
-                    @*<a class="btn btn-default" title="@UiStrings.Download" target="_blank" href="@Url.Content("~/Public/TechnicalDocuments/" + item.FileName)">
-                            <span class="glyphicon glyphicon-download"></span>
-                        </a>*@
-
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-default" title="@UiStrings.Edit">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
                     @Html.AntiForgeryToken()
-                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true">
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@PartnershipStrings.DeleteWarningMessage">
                         <span class="glyphicon glyphicon-floppy-remove"></span>
                     </a>
                 </form>

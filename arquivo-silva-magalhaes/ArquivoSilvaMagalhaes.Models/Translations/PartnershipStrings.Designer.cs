@@ -70,7 +70,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Criar link útil.
+        ///   Looks up a localized string similar to Criar parceria.
         /// </summary>
         public static string CreateTitleFormat {
             get {
@@ -79,7 +79,34 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editar link útil.
+        ///   Looks up a localized string similar to Eliminar parceria.
+        /// </summary>
+        public static string DeleteTitleFormat {
+            get {
+                return ResourceManager.GetString("DeleteTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta parceria?.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalhes da parceria.
+        /// </summary>
+        public static string DetailsTitleFormat {
+            get {
+                return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar parceria.
         /// </summary>
         public static string EditTitleFormat {
             get {
@@ -93,6 +120,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string EmailAddress {
             get {
                 return ResourceManager.GetString("EmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parceria.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parcerias.
+        /// </summary>
+        public static string EntityNamePlural {
+            get {
+                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
             }
         }
         
@@ -120,6 +165,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string SiteLink {
             get {
                 return ResourceManager.GetString("SiteLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O logótipo tem que ser uma imagem..
+        /// </summary>
+        public static string Validation_LogoMustBeImage {
+            get {
+                return ResourceManager.GetString("Validation_LogoMustBeImage", resourceCulture);
             }
         }
     }
