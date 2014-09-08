@@ -1,35 +1,38 @@
-﻿
-@{
+﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
     ViewBag.AlertMsg = ViewBag.AlertMsg ?? UiPrompts.ConfirmDelete;
 }
 
 <h2>@ViewBag.Title</h2>
 
-<div class="alert alert-danger" role="alert">
-    @ViewBag.AlertMsg
-</div>
-
 <hr />
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    @RenderBody()
-    
-    <div class="input-group">
-        <div class="btn-group">
-            <button type="submit" class="btn btn-danger">
-                <span class="glyphicon glyphicon-check"></span> @UiStrings.Yes
-            </button>
-
-            <a href="@Url.Action("Index")" class="btn btn-default">
-                <span class="glyphicon glyphicon-remove"></span> @UiStrings.No
-            </a>
-        </div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <span class="panel-title">@ViewBag.AlertMsg</span>
     </div>
-}
+
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @RenderBody()
+
+            <div class="input-group">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+                    </button>
+
+                    <a href="@Url.Action("Index")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span> @UiStrings.Cancel
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 <style>
     .dl-horizontal dd, .dl-horizontal dt {

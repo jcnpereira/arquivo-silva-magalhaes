@@ -16,9 +16,7 @@
                 </a>
             </div>
 
-            <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = ViewBag.Id })">
-                @Html.AntiForgeryToken()
-
+            <div class="btn-group">
                 <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
                     <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
                 </a>
@@ -26,12 +24,12 @@
                 <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@UiPrompts.ConfirmDelete">
                     <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
                 </a>
-            </form>
+            </div>
 
             @RenderSection("ExtraActions", required: false)
         </div>
 
-        
+
     </div>
 
     <div class="panel-body">
@@ -39,8 +37,9 @@
     </div>
 </div>
 
+@RenderSection("additionalContent", required: false)
+
 @section scripts {
-    @Html.Partial("_DeleteConfirmModal")
     @RenderSection("scripts", required: false)
 }
 
