@@ -34,11 +34,14 @@
     <meta name="msapplication-wide310x150logo" content="~/mstile-wide.png" />
     <meta name="msapplication-square310x310logo" content="~/mstile-large.png" />
 
+    <meta name="description" content="@LayoutStrings.SiteDescription" />
+
     <title>
         @ViewBag.Title @(ViewBag.Title != null ? "| " : "")Arquivo Fotográfico Silva Magalhães
     </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
+    <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/styles/frontoffice")
 
     @Scripts.Render("~/bundles/modernizr")

@@ -319,12 +319,13 @@
     <Content Include="apple-touch-icon-76x76.png" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
-    <Content Include="Content\Fonts\ostrich-black-webfont.svg" />
-    <Content Include="Content\Fonts\ostrich-bold-webfont.svg" />
-    <Content Include="Content\Fonts\ostrich-dashed-webfont.svg" />
-    <Content Include="Content\Fonts\ostrich-light-webfont.svg" />
-    <Content Include="Content\Fonts\ostrich-regular-webfont.svg" />
-    <Content Include="Content\Fonts\ostrich-rounded-webfont.svg" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons.css" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.css">
+      <DependentUpon>glyphicons.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.min.css">
+      <DependentUpon>glyphicons.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Images.css" />
     <Content Include="mstile-square.png" />
     <Content Include="mstile-large.png" />
@@ -395,13 +396,6 @@
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\ostrich-black-webfont.svg" />
-    <Content Include="Content\fonts\ostrich-bold-webfont.svg" />
-    <Content Include="Content\fonts\ostrich-dashed-webfont.svg" />
-    <Content Include="Content\fonts\ostrich-light-webfont.svg" />
-    <Content Include="Content\fonts\ostrich-regular-webfont.svg" />
-    <Content Include="Content\fonts\ostrich-rounded-webfont.svg" />
     <Content Include="Content\theme\arrows.png" />
     <Content Include="Content\theme\bg_control_nav.png" />
     <Content Include="Content\theme\bg_direction_nav.png" />
@@ -583,24 +577,6 @@
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographMainFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographTranslateableFields.cshtml" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.css.map" />
-    <Content Include="Content\Fonts\ostrich-black-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-black-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-black-webfont.woff" />
-    <Content Include="Content\Fonts\ostrich-bold-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-bold-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-bold-webfont.woff" />
-    <Content Include="Content\Fonts\ostrich-dashed-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-dashed-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-dashed-webfont.woff" />
-    <Content Include="Content\Fonts\ostrich-light-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-light-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-light-webfont.woff" />
-    <Content Include="Content\Fonts\ostrich-regular-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-regular-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-regular-webfont.woff" />
-    <Content Include="Content\Fonts\ostrich-rounded-webfont.eot" />
-    <Content Include="Content\Fonts\ostrich-rounded-webfont.ttf" />
-    <Content Include="Content\Fonts\ostrich-rounded-webfont.woff" />
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionMainFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionTranslateableFields.cshtml" />
@@ -754,28 +730,10 @@
     <Content Include="Areas\BackOffice\Views\ReferencedLink\_TranslatedDisplayDetails.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\DeleteTranslation.cshtml" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.css.map">
+      <DependentUpon>glyphicons.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\ostrich-black-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-black-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-black-webfont.woff" />
-    <Content Include="Content\fonts\ostrich-bold-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-bold-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-bold-webfont.woff" />
-    <Content Include="Content\fonts\ostrich-dashed-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-dashed-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-dashed-webfont.woff" />
-    <Content Include="Content\fonts\ostrich-light-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-light-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-light-webfont.woff" />
-    <Content Include="Content\fonts\ostrich-regular-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-regular-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-regular-webfont.woff" />
-    <Content Include="Content\fonts\ostrich-rounded-webfont.eot" />
-    <Content Include="Content\fonts\ostrich-rounded-webfont.ttf" />
-    <Content Include="Content\fonts\ostrich-rounded-webfont.woff" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
