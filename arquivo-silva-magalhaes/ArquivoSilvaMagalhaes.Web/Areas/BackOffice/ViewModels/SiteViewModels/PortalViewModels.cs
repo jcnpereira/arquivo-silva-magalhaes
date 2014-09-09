@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 {
-  
-
     public class PortalViewModels
     {
         [Key]

@@ -68,7 +68,7 @@
                     <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
                     <li>@Html.ActionLink(LayoutStrings.History, "History", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.TechnicalDocuments, "Index", "TechnicalDocuments")</li>
-                    <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "UsefulLinks", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "Links", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.Partnerships, "Index", "Partnerships")</li>
                 </ul>
@@ -114,9 +114,7 @@
 
             <div id="afsm-page-content" style="height: 100%">
                 @RenderBody()
-
                 <hr />
-
                 <footer class="text-center">
                     <p>
                         <a href="@Url.Action("About", "Home")">

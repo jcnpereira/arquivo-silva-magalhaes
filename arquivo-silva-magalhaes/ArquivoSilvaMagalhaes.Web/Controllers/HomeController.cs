@@ -25,11 +25,33 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         public ActionResult IndexView()
         {
-            IndexViewModel viewModel = new IndexViewModel();
-            List<IndexViewModel> viewModels = new List<IndexViewModel>();
-            return View(viewModels);
+            //IndexViewModel viewModel = new IndexViewModel();
+            //List<IndexViewModel> viewModels = new List<IndexViewModel>();
+
+            return View(GetIndexViewModel());
         }
 
+
+        private List<IndexViewModel> GetIndexViewModel()
+        {
+            List<IndexViewModel> indexView = new List<IndexViewModel>();
+            foreach (var ind in db.Banners.ToList())
+            {
+                IndexViewModel index = new IndexViewModel();
+                index.Id = ind.Id;
+                index.UriPath = ind.UriPath;
+                index.Caption = ind.Translations.LastOrDefault().Caption;
+                var SpotlightVideo = db.SpotlightVideos.ToList();
+                {
+                    foreach (var v in db.SpotlightVideos.ToList())
+                    {
+                        index.Video = v.UriPath;
+                    }
+                }
+                indexView.Add(index);
+            }
+            return indexView;
+        }
 
         public ActionResult Index()
         {

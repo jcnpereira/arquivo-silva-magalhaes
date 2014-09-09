@@ -10,29 +10,15 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
-    public class IndexViewModel : Banner
-    {
-        public IndexViewModel()
-        {
-            Translations = new List<BannerTranslation>();
-        }
-
-        [Key]
-        public int Id { get; set; }
-
-        [Display(ResourceType = typeof(BannerStrings), Name = "Image")]
-        public string UriPath { get; set; }
-
-        public virtual IList<BannerTranslation> Translations { get; set; }
-        public virtual SpotlightVideo Video { get; set; }
-    }
-
-    public class SpotlightVideo
+    public class IndexViewModel
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        [Display(ResourceType = typeof(SpotlightVideoStrings), Name = "UriPath")]
+
         public string UriPath { get; set; }
+        public string Caption { get; set; }
+
+        public string Video { get; set; }
+
     }
 }
