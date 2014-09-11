@@ -23,11 +23,14 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View();
         }
 
+        private List<PortalViewModel> GetPortalViewModel()
+        {
+            List<PortalViewModel> portalView = new List<PortalViewModel>();
+            return (portalView);
+        }
+
         public ActionResult IndexView()
         {
-            //IndexViewModel viewModel = new IndexViewModel();
-            //List<IndexViewModel> viewModels = new List<IndexViewModel>();
-
             return View(GetIndexViewModel());
         }
 

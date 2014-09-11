@@ -1,12 +1,17 @@
 ﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Event
 
 
-<h2>Evento</h2>
+<h2>@Html.DisplayFor(model => model.Translations.LastOrDefault().Title)</h2>
 
 <div>
     <hr />
     <dl>
-
+        <dd>
+            <h4>@Html.DisplayFor(model => model.Translations.LastOrDefault().Heading)</h4>
+        </dd>
+        <dd>
+            <p>@Html.DisplayFor(model => model.Translations.LastOrDefault().TextContent)</p>
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.EventType)
         </dt>

@@ -7,7 +7,8 @@
 }
 <h2>Documentos</h2>
 <hr />
-
+<a href="~/Collections">Acervo</a><b> &#9658 </b><b>Documentos</b>
+<hr />
 <div class="media">
     <ul class="media-list">
         @foreach (var doc in Model)
@@ -16,9 +17,16 @@
                 <a class="pull-left">
                     <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
                 </a>
-                <a href="~/Images/Index/@doc.DocumentId">
+                @if (@doc.Document.Images.Count != 0)
+                {
+                    <a href="~/Images/Index/@doc.DocumentId">
+                        <h4 class="media-heading">@doc.Document.Title</h4>
+                    </a>
+                }
+                else
+                {
                     <h4 class="media-heading">@doc.Document.Title</h4>
-                </a>
+                }
                 <h5>@doc.Description</h5>
                 <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
                 <p style="font-size:smaller">
@@ -27,6 +35,7 @@
             </li>
         }
     </ul>
+
 </div>
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;

@@ -8,6 +8,8 @@
 
 <h2>Acervo</h2>
 <hr />
+<b>Acervo</b>
+<hr />
 
 @foreach (var col in Model)
 {
@@ -17,9 +19,13 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">
-                <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
-                    @Html.DisplayFor(modelItem => col.Translation.Title)
-                </a>
+              @if(col.Translation.Collection.Documents.Count()!=null){
+                    <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
+                        @Html.DisplayFor(modelItem => col.Translation.Title)
+                    </a>
+              }
+              else
+              {  @Html.DisplayFor(modelItem => col.Translation.Title) }
             </h4>
             <p>
                 @Html.DisplayFor(modelItem => col.Translation.Description)

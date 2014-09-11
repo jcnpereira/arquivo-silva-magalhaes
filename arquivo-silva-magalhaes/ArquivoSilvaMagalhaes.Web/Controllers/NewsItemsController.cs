@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         // GET: NewsItems
         public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
-            return View(await Task.Run(() => db.NewsItems.OrderByDescending(news => news.Id).ToPagedList(pageNumber, 3)));
+            return View(await Task.Run(() => db.NewsItems.Where(news=>news.ExpiryDate<DateTime.Now).OrderByDescending(news => news.PublishDate).ToPagedList(pageNumber, 3)));
         }
       
 

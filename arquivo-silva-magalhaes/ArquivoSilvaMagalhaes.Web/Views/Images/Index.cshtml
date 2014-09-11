@@ -4,6 +4,10 @@
 
 <h2>Imagens</h2>
 <hr />
+@if (@Model.GetEnumerator()!=null){
+<a href="~/Collections">Acervo </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Image.DocumentId">Documentos</a><b> &#9658 </b><b>Imagens</b>
+ }
+<hr />
 
 @Styles.Render("~/Content/Styles/Images.css")
 
@@ -50,6 +54,8 @@
             <div class="overlay-description">
                 <p class="afsm-image-description">
                 </p>
+            </div>
+            <div>
                 <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">Fechar</button>
             </div>
         </div>

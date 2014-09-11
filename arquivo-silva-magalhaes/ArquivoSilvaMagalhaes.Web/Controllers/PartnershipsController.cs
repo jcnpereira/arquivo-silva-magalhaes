@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View(await Task.Run(() => db.Partnerships
                 .OrderByDescending(p=>p.Id)
-                .ToPagedList(pageNumber,3)));
+                .ToPagedList(pageNumber,6)));
         }
 
         // GET: /Partnerships/Details/5
