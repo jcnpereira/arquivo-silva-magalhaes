@@ -5,9 +5,10 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Documentos</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</h2>
+
 <hr />
-<a href="~/Collections">Acervo</a><b> &#9658 </b><b>Documentos</b>
+<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</b>
 <hr />
 <div class="media">
     <ul class="media-list">
@@ -30,7 +31,7 @@
                 <h5>@doc.Description</h5>
                 <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
                 <p style="font-size:smaller">
-                    @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = doc.DocumentId })
                 </p>
             </li>
         }

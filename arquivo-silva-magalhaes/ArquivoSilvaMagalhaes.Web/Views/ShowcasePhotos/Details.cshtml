@@ -1,18 +1,18 @@
 ﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
 
-<h2>Informações</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</h2>
     <hr />
 <div>
     <dl>
         <dt>
-            <b>@Html.DisplayNameFor(model => model.CommenterName):</b>
+            <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CommentatorName):</b>
 
         </dt>
         <dd>
             @Html.DisplayFor(modelItem => modelItem.CommenterName)
         </dd>
         <dt>
-            <b> @Html.DisplayNameFor(model => model.CommenterEmail):</b>
+            <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Email):</b>
 
         </dt>
         <dd>
@@ -21,6 +21,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
 </p>
 

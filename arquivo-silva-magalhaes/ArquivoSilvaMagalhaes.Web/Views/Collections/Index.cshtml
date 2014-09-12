@@ -6,9 +6,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Acervo</h2>
+<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</h2>
 <hr />
-<b>Acervo</b>
+<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</b>
 <hr />
 
 @foreach (var col in Model)
@@ -41,7 +41,7 @@
                 </p>
             }
             <p style="font-size:smaller">
-                @Html.ActionLink("Informações", "Details", new { id = col.Entity.Id })
+                @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = col.Entity.Id })
             </p>
         </div>
     </div>

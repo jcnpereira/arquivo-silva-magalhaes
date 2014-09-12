@@ -12,7 +12,7 @@
                     <p>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().TextContent)</p>
                     <p>@Html.DisplayFor(modelItem => item.Attachments.LastOrDefault().FileName)</p>
                     <h5>@Html.DisplayFor(modelItem => item.PublishDate)</h5><br />
-                    @Html.ActionLink("Voltar", "Index")
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = item.Id })
                 </td>
             </tr>
         }

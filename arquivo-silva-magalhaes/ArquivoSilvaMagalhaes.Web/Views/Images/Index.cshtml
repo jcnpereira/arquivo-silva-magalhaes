@@ -2,10 +2,10 @@
 @using PagedList.Mvc;
 @model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
 
-<h2>Imagens</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</h2>
 <hr />
 @if (@Model.GetEnumerator()!=null){
-<a href="~/Collections">Acervo </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Image.DocumentId">Documentos</a><b> &#9658 </b><b>Imagens</b>
+<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections) </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Image.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</b>
  }
 <hr />
 
@@ -33,7 +33,7 @@
                     @Html.DisplayFor(modelItem => img.Subject)
                 </p>
                 <p style="font-size:smaller">
-                    @Html.ActionLink("Informações", "Details", new { id = img.ImageId })
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = img.ImageId })
                 </p>
             </li>
         }
@@ -56,7 +56,7 @@
                 </p>
             </div>
             <div>
-                <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">Fechar</button>
+                <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Close)</button>
             </div>
         </div>
     </div>

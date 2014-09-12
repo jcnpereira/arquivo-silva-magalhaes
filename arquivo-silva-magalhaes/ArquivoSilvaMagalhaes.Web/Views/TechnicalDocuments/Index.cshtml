@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
 
 
-<h2>Documentos Técnicos</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.TechnicalDocuments)</h2>
 
 <hr />
 
@@ -13,12 +13,13 @@
                 <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
                     <img class="media-object afsm-media-object" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
                 </a>
-                    <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
-                        <h4 class="media-heading">@doc.Title</h4>
-                    </a>
-                    <p>
-                        @Html.DisplayFor(model => doc.LastModificationDate)
-                    </p>
+                <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+                    <h4 class="media-heading">@doc.Title</h4>
+                </a>
+                <p>
+                    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.LastModificationDate): @Html.DisplayFor(model => doc.LastModificationDate)<br />
+                    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Size): @Html.DisplayFor(model => doc.FileSize)
+                </p>
             </li>
         }
     </ul>
@@ -27,25 +28,5 @@
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
-
-
-@*<table class="table">
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td align="left">
-                    <a href="~/Public/TechnicalDocuments/@item.FileName" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Format)
-                </td>
-                <td align="right">
-                    @Html.DisplayFor(modelItem => item.LastModificationDate.Day) / @Html.DisplayFor(modelItem => item.LastModificationDate.Month) / @Html.DisplayFor(modelItem => item.LastModificationDate.Year)
-                </td>
-
-            </tr>
-        }
-
-    </table>*@
+    
 

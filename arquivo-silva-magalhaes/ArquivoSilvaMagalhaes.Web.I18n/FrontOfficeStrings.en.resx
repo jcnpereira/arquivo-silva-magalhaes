@@ -117,7 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AttachmentDescription" xml:space="preserve">
+    <value>Attachment description</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CollectionAuthors" xml:space="preserve">
+    <value>Collection Authors</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Collections</value>
+  </data>
+  <data name="CollectionTitle" xml:space="preserve">
+    <value>Collection Title</value>
+  </data>
+  <data name="CommentatorName" xml:space="preserve">
+    <value>Commentator name</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordinates</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DocumentDate" xml:space="preserve">
+    <value>Document date</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="DocumentTitle" xml:space="preserve">
+    <value>Document title</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EventPlace" xml:space="preserve">
+    <value>Event place</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Event type</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informations</value>
+  </data>
+  <data name="InformationVisitors" xml:space="preserve">
+    <value>Information on visitors</value>
+  </data>
+  <data name="InitialDate" xml:space="preserve">
+    <value>Initial date</value>
+  </data>
+  <data name="LastModificationDate" xml:space="preserve">
+    <value>Last modification</value>
+  </data>
+  <data name="Localization" xml:space="preserve">
+    <value>Localization</value>
+  </data>
+  <data name="NameResponsible" xml:space="preserve">
+    <value>Name of the responsible</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="OrganizationSystem" xml:space="preserve">
+    <value>Organization system</value>
+  </data>
+  <data name="Partnership" xml:space="preserve">
+    <value>Partnership</value>
+  </data>
+  <data name="ProductionDate" xml:space="preserve">
+    <value>Production date</value>
+  </data>
+  <data name="ProductionInitialDate" xml:space="preserve">
+    <value>Production initial date</value>
+  </data>
+  <data name="PruductionEndDate" xml:space="preserve">
+    <value>Production end date</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publication</value>
+  </data>
   <data name="ReadNews" xml:space="preserve">
     <value>Read news</value>
+  </data>
+  <data name="ReferenceCode" xml:space="preserve">
+    <value>Reference code</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchMessage" xml:space="preserve">
+    <value>Use the box to enter the terms that you want search for</value>
+  </data>
+  <data name="ShowCase" xml:space="preserve">
+    <value>Showcase photo</value>
+  </data>
+  <data name="ShowCasePhoto" xml:space="preserve">
+    <value>Show case photo</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="TechnicalDocuments" xml:space="preserve">
+    <value>Technical Documents</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful Links</value>
   </data>
 </root>

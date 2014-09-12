@@ -4,50 +4,49 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Informações sobre o documento</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</h2>
 
 <div>
     <hr />
     <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentTitle)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ResponsibleName)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.NameResponsible)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ResponsibleName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DocumentDate)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DocumentDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Notes)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Notes)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Notes)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Description)
+           @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Translations.LastOrDefault().Description)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CatalogCode)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ReferenceCode)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.CatalogCode)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Voltar", "Index", new { id = Model.CollectionId})
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.CollectionId })
 </p>
