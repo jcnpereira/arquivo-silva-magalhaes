@@ -196,6 +196,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email não visível ao público.
+        /// </summary>
+        public static string EmailNotVisible {
+            get {
+                return ResourceManager.GetString("EmailNotVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de fim.
         /// </summary>
         public static string EndDate {

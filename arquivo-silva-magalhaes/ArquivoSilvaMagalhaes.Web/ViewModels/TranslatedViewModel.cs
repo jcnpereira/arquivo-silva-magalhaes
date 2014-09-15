@@ -60,7 +60,5 @@ namespace ArquivoSilvaMagalhaes.ViewModels
         /// Translated fields.
         /// </summary>
         public TTranslation Translation { get; set; }
-
-        public bool Collections { get; set; }
     }
 }

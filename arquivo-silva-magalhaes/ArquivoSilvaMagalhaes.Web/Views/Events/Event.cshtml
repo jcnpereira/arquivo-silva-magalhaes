@@ -16,7 +16,7 @@
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventType)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.EventType)
+            @Html.EnumDisplayFor(model => model.EventType)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventPlace)
@@ -27,13 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Coordinates)
+            @Html.DisplayNameFor(model => model.Coordinates)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Coordinates)
-            @Html.HiddenFor(model => model.Coordinates, new { @class = "form-control" })
-            <div id="map_canvas" style="width:100%; height: 400px" data-afsm-for="#@Html.IdFor(model => model.Coordinates)"></div>
+            <div id="map_canvas" style="width:100%; height: 400px" data-afsm-coords="@Model.Coordinates"></div>
         </dd>
 
         <dt>
@@ -68,5 +66,5 @@
 
 @section scripts {
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    @Scripts.Render("~/Scripts/backoffice/gmaps")
+<script src="~/Scripts/frontoffice/gmaps-readonly.js"></script>
 }

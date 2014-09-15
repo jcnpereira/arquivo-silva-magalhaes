@@ -3,12 +3,11 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    @RenderBody()
-    <div class="panel-footer">
-        <div class="text-center">
-            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
-        </div>
-    </div>
+@RenderBody()
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+</div>
 
 
 @section scripts {

@@ -12,32 +12,30 @@ using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using PagedList.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class ShowcasePhotosController : Controller
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db;
 
-        // GET: /ShowCasePhotoes/
-        //public async Task<ActionResult> Index()
-        //{
-        //    var showcasephotoestranslation = db.ShowcasePhotoTranslations;
-        //        //.Include(s => s.Image);
-        //    return View(await showcasephotoestranslation.ToListAsync());
-        //}
+        public ShowcasePhotosController()
+            : this(new TranslateableGenericRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
-
-        public async Task<ActionResult> Index(int? id, int pageNumber=1)
+        public ShowcasePhotosController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {
-          //  var showcasephotoestranslation = db.ShowcasePhotoTranslations;
-            //.Include(s => s.Image);
-            return View(await Task.Run(() => db.ShowcasePhotoTranslations
-                .Include(img => img.ShowcasePhoto.Image)
-                .OrderBy(img=>img.ShowcasePhotoId)
-                .ToPagedList(pageNumber,1)
-               // .ToListAsync()
-                ));
+            this.db = db;
+        }
+
+        public async Task<ActionResult> Index(int pageNumber = 1)
+        {
+            return View((await db.Entities
+                .Include(sp => sp.Image)
+                .Where(sp => sp.VisibleSince <= DateTime.Now)
+                .ToListAsync())
+                .Select(b => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(b))
+                .ToPagedList(pageNumber, 6));
         }
 
         // GET: /ShowCasePhotoes/Details/5
@@ -47,101 +45,17 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasephoto = await db.ShowcasePhotoes.FindAsync(id);
-            if (showcasephoto == null)
+            ShowcasePhoto showcasephoto = await db.GetByIdAsync(id);
+            if (showcasephoto == null || showcasephoto.VisibleSince >= DateTime.Now)
             {
                 return HttpNotFound();
             }
-            return View(showcasephoto);
-        }
-
-        // GET: /ShowCasePhotoes/Create
-        public ActionResult Create()
-        {
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName");
-            return View();
-        }
-
-        // POST: /ShowCasePhotoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ShowcasePhotoes.Add(showcasephoto);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
-            return View(showcasephoto);
-        }
-
-        // GET: /ShowCasePhotoes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ShowcasePhoto showcasephoto = await db.ShowcasePhotoes.FindAsync(id);
-            if (showcasephoto == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
-            return View(showcasephoto);
-        }
-
-        // POST: /ShowCasePhotoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CommenterName,CommenterEmail,IsEmailVisible,VisibleSince,DigitalPhotographId")] ShowcasePhoto showcasephoto)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(showcasephoto).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.DigitalPhotographId = new SelectList(db.DigitalPhotographs, "Id", "FileName", showcasephoto.ImageId);
-            return View(showcasephoto);
-        }
-
-        // GET: /ShowCasePhotoes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ShowcasePhoto showcasephoto = await db.ShowcasePhotoes.FindAsync(id);
-            if (showcasephoto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(showcasephoto);
-        }
-
-        // POST: /ShowCasePhotoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            ShowcasePhoto showcasephoto = await db.ShowcasePhotoes.FindAsync(id);
-            db.ShowcasePhotoes.Remove(showcasephoto);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return View(new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(showcasephoto));
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

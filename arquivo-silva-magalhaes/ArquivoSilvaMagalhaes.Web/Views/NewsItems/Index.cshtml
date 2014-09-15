@@ -1,4 +1,9 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.NewsItem>
+﻿@model IEnumerable<TranslatedViewModel<NewsItem, NewsItemTranslation>>
+
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
 
 <div class="column_content">
     <h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.News)</h2>
@@ -7,21 +12,13 @@
         {
             <tr>
                 <td>
-                    <h3><b>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Title)</b></h3>
-                    <h4>@Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Heading)</h4>
-                    <h5>@Html.DisplayFor(modelItem => item.PublishDate)</h5>
-                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ReadNews, "Details", new { id = item.Id })
-                </td>
-                <td>
-                    
+                    <h3><b>@Html.DisplayFor(modelItem => item.Entity.Translations.LastOrDefault().Title)</b></h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Entity.Translations.LastOrDefault().Heading)</h4>
+                    <h5>@Html.DisplayFor(modelItem => item.Entity.PublishDate)</h5>
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ReadNews, "Details", new { id = item.Entity.Id })
                 </td>
             </tr>
         }
     </table>
 </div>
 
-
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-}

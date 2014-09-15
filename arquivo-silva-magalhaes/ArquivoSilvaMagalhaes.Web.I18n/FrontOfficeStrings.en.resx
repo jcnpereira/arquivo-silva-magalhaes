@@ -258,4 +258,7 @@
   <data name="UsefulLinks" xml:space="preserve">
     <value>Useful Links</value>
   </data>
+  <data name="EmailNotVisible" xml:space="preserve">
+    <value>Email not visible</value>
+  </data>
 </root>

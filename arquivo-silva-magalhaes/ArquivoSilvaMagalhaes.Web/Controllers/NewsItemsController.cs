@@ -11,24 +11,55 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using PagedList;
 using PagedList.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class NewsItemsController : Controller
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+       // private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: NewsItems
-        public async Task<ActionResult> Index(int? id, int pageNumber=1)
+        //public async Task<ActionResult> Index(int? id, int pageNumber=1)
+        //{
+        //    return View(await Task.Run(() => db.NewsItems.Where(news=>news.ExpiryDate<DateTime.Now).OrderByDescending(news => news.PublishDate).ToPagedList(pageNumber, 3)));
+        //}
+
+
+         private ITranslateableRepository< NewsItem, NewsItemTranslation> db;
+
+        public NewsItemsController()
+            : this(new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
+
+        public NewsItemsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
         {
-            return View(await Task.Run(() => db.NewsItems.Where(news=>news.ExpiryDate<DateTime.Now).OrderByDescending(news => news.PublishDate).ToPagedList(pageNumber, 3)));
+            this.db = db;
+        }
+
+        public async Task<ActionResult> Index(int pageNumber = 1)
+        {
+            return View((await db.Entities
+                .Include(n => n.Attachments)
+                .Where(n => n.ExpiryDate <= DateTime.Now)
+                .ToListAsync())
+                .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b))
+                .ToPagedList(pageNumber, 6));
         }
       
 
+        //public async Task<ActionResult> Details(int? id)
+        //{
+        //    return View(await db.NewsItems.Where(news => news.Id == id).ToListAsync());
+        //}
+
         public async Task<ActionResult> Details(int? id)
         {
-
-            return View(await db.NewsItems.Where(news => news.Id == id).ToListAsync());
+            return View((await db.Entities
+                .Include(n=>n.Translations)
+                .Where(n => n.Id == id)
+                .ToListAsync())
+                .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b)));
         }
 
 

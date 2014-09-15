@@ -1,4 +1,9 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.EventTranslation>
+﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
+
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
 
 <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</h2>
 
@@ -8,32 +13,26 @@
     @foreach (var item in Model)
     {
         <li class="media">
-            <a class="pull-left" href="~/Events/Event/@item.Event.Id" title="@item.Event.EventType">
-                <img class="media-object afsm-media-object" src="~/Images/@String.Concat(@Html.DisplayFor(modelItem => item.Event.EventType),".png")" width="48" height="48" alt="...">
+            <a class="pull-left" href="~/Events/Event/@item.Entity.Id" title="@item.Entity.EventType">
+                <img class="media-object afsm-media-object" src="~/Images/@String.Concat(@Html.DisplayFor(modelItem => item.Entity.EventType),".png")" width="48" height="48" alt="...">
             </a>
             <div class="media-body">
-                <a href="~/Events/Event/@item.EventId">
-                    <h4 class="media-heading">@item.Title</h4>
+                <a href="~/Events/Event/@item.Entity.Translations.LastOrDefault().EventId">
+                    <h4 class="media-heading">@item.Entity.Translations.LastOrDefault().Title</h4>
                 </a>
                 <div>
-                    <p><b>@Html.DisplayFor(model => item.Heading)</b></p>
+                    <p><b>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().Heading)</b></p>
                     <p id="text"></p>
-                    @if (@Html.DisplayFor(model => item.TextContent).ToString().Count()>300)
+                    @if (@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent).ToString().Count()>300)
                     {
-                        <p>@Html.DisplayFor(model => item.TextContent).ToString().Substring(30, 330)</p>
+                        <p>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent).ToString().Substring(30, 330)</p>
                     }
                     else
                     {
-                        <p>@Html.DisplayFor(model => item.TextContent)</p>
+                        <p>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent)</p>
                     }
                 </div>
             </div>
         </li>
     }
 </ul>
-
-
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-}

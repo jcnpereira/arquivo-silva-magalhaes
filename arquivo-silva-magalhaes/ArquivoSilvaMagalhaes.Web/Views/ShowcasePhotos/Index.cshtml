@@ -1,6 +1,12 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhotoTranslation>
+﻿@model IEnumerable<TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>>
 
-<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ShowCase)</h2>
+@{
+    ViewBag.Title = ShowcasePhotoStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+
+<h2 class="page_title">@Html.DisplayName(FrontOfficeStrings.ShowCase)</h2>
 <hr />
 <div class="space"> </div>
 <div class="clear"> </div>
@@ -8,18 +14,14 @@
 @foreach (var item in Model)
 {
     <div align="center">
-        <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-        <img class="img-responsive" src="~/Public/Images/@Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ImageUrl)_large.jpg" />
-        @Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.Specimens)<br />
-        @Html.DisplayFor(modelItem => item.Comment)
-        @Html.DisplayFor(modelItem => item.ShowcasePhoto.Image.ProductionDate)
-        <h6>@Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = item.ShowcasePhoto.Id })</h6>
-        <br />
+        <h4>@Html.DisplayFor(modelItem => item.Translation.Title)</h4>
+        <img class="img-responsive" src="~/Public/Images/@(item.Entity.Image.ImageUrl)_large.jpg" />
+        @Html.DisplayFor(modelItem => item.Entity.Image.Specimens)<br />
+            <p align="justify"> @Html.DisplayFor(modelItem => item.Translation.Comment)</p>
+            @Html.DisplayFor(modelItem => item.Entity.VisibleSince)
+            <h6>@Html.ActionLink(FrontOfficeStrings.Informations, "Details", new { id = item.Entity.Id })</h6>
+            <br />
     </div>
 }
 
 
-@{
-    ViewBag.Title = ShowcasePhotoStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-}
