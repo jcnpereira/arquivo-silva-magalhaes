@@ -9,23 +9,23 @@
     <ul class="media-list">
         @foreach (var doc in Model)
         {
-            <li class=" col-md-6 list-group">
+            <li class=" col-md-4 list-group">
                 <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
                     @switch (doc.Format)
                     {
-                        case ("image/jpeg"): <img class="media-object afsm-media-object" src="~/images/JPEG.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("image/jpeg"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/JPEG.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        case ("image/png"): <img class="media-object afsm-media-object" src="~/images/PNG.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("image/png"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PNG.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        case ("application/pdf"): <img class="media-object afsm-media-object" src="~/images/PDF.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("application/pdf"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PDF.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        case ("application/vnd.openxmlformats-officedocument.presentationml.presentation"): <img class="media-object afsm-media-object" src="~/images/PPT.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("application/vnd.openxmlformats-officedocument.presentationml.presentation"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PPT.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        case ("application/octet-stream"): <img class="media-object afsm-media-object" src="~/images/WinZip.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("application/octet-stream"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/WinZip.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        case ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"): <img class="media-object afsm-media-object" src="~/images/Word.png" alt="Documento Técnico" title="@doc.Format">
+                        case ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/Word.png" alt="Documento Técnico" title="@doc.Format">
                             break;
-                        default: <img class="media-object afsm-media-object" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
+                        default: <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
                             break;
                     }
                 </a>

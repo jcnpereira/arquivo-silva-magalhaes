@@ -9,10 +9,11 @@ using System.Web;
 using System.Web.Mvc;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using PagedList.Mvc;
 using ArquivoSilvaMagalhaes.ViewModels;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -27,7 +28,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         //}
 
 
-         private ITranslateableRepository< NewsItem, NewsItemTranslation> db;
+         private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsItemsController()
             : this(new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
@@ -40,8 +41,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                .Include(n => n.Attachments)
-                .Where(n => n.ExpiryDate <= DateTime.Now)
+                //.Include(n => n.Attachments)
+                .Where(n => n.PublishDate <= DateTime.Now)
+                .Where(n => n.ExpiryDate >= DateTime.Now || n.HideAfterExpiry==false)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b))
                 .ToPagedList(pageNumber, 6));
@@ -51,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         //public async Task<ActionResult> Details(int? id)
         //{
         //    return View(await db.NewsItems.Where(news => news.Id == id).ToListAsync());
-        //}
+         
 
         public async Task<ActionResult> Details(int? id)
         {

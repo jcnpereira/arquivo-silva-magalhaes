@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
           
-            return View(await Task.Run(() => db.TechnicalDocuments.OrderByDescending(doc => doc.LastModificationDate).ToPagedList(pageNumber, 10)));
+            return View(await Task.Run(() => db.TechnicalDocuments.OrderByDescending(doc => doc.LastModificationDate).ToPagedList(pageNumber, 15)));
         }
 
         // GET: /TechnicalDocuments/Details/5
