@@ -1,11 +1,11 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
+@model IEnumerable<TranslatedViewModel<Image, ImageTranslation>>
 
 <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</h2>
 <hr />
 @if (@Model.GetEnumerator()!=null){
-<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections) </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Image.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</b>
+<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections) </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Entity.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</b>
  }
 <hr />
 
@@ -17,23 +17,23 @@
         {
             <li class="media-body col-md-4 list-group">
                 <a class="pull-left"
-                   href="@Url.Action("ViewImage", "Images", new { id = img.ImageId })">
+                   href="@Url.Action("ViewImage", "Images", new { id = img.Entity.Id })">
                     <img class="media-object"
                          data-afsm-show-overlay="true"
                          data-afsm-target="#afsm-overlay"
-                         data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Image.ImageUrl) + "_large.jpg")"
+                         data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Entity.ImageUrl) + "_large.jpg")"
                          style="width: 96px; height: 96px"
-                         data-afsm-description="@Html.DisplayFor(modelItem => img.Description)"
-                         src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg" />
+                         data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                         src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />
                 </a>
                 <h4 class="media-heading">
-                    @Html.DisplayFor(modelItem => img.Title)
+                    @Html.DisplayFor(modelItem => img.Translation.Title)
                 </h4>
                 <p style="font-size:small">
-                    @Html.DisplayFor(modelItem => img.Subject)
+                    @Html.DisplayFor(modelItem => img.Translation.Subject)
                 </p>
                 <p style="font-size:smaller">
-                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = img.ImageId })
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = img.Entity.Id })
                 </p>
             </li>
         }

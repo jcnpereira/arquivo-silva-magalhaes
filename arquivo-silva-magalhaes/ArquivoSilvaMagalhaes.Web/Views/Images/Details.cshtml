@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Image
+﻿@model TranslatedViewModel<Image, ImageTranslation>
 
 @{
     ViewBag.Title = "Details";
@@ -11,40 +11,40 @@
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Title)
+            @Html.DisplayFor(model => model.Translation.Title)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Subject)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Subject)
+            @Html.DisplayFor(model => model.Translation.Subject)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Localization)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Location)
+            @Html.DisplayFor(model => model.Translation.Location)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ProductionDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductionDate)
+            @Html.DisplayFor(model => model.Entity.ProductionDate)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Description)
+            @Html.DisplayFor(model => model.Translation.Description)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Publication)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Publication)
+            @Html.DisplayFor(model => model.Translation.Publication)
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.DocumentId })
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.Entity.DocumentId })
 </p>

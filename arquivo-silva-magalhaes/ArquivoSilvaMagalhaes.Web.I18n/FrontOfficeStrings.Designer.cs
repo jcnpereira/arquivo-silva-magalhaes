@@ -88,6 +88,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data de catalogação.
+        /// </summary>
+        public static string CatalogationDate {
+            get {
+                return ResourceManager.GetString("CatalogationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fechar.
         /// </summary>
         public static string Close {
@@ -111,6 +120,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string Collections {
             get {
                 return ResourceManager.GetString("Collections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente..
+        /// </summary>
+        public static string CollectionsIndex {
+            get {
+                return ResourceManager.GetString("CollectionsIndex", resourceCulture);
             }
         }
         
@@ -151,11 +169,29 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Informação sobre direitos de cópia.
+        /// </summary>
+        public static string CopyrightInfo {
+            get {
+                return ResourceManager.GetString("CopyrightInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dimensão.
+        /// </summary>
+        public static string Dimension {
+            get {
+                return ResourceManager.GetString("Dimension", resourceCulture);
             }
         }
         
@@ -214,6 +250,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entrar.
+        /// </summary>
+        public static string Enter {
+            get {
+                return ResourceManager.GetString("Enter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local do evento.
         /// </summary>
         public static string EventPlace {
@@ -232,11 +277,29 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exposições, atividades, eventos pedagógicos, workshops, entre outros....
+        /// </summary>
+        public static string EventsIndex {
+            get {
+                return ResourceManager.GetString("EventsIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo de evento.
         /// </summary>
         public static string EventType {
             get {
                 return ResourceManager.GetString("EventType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Âmbito e conteúdo.
+        /// </summary>
+        public static string FieldAndContents {
+            get {
+                return ResourceManager.GetString("FieldAndContents", resourceCulture);
             }
         }
         
@@ -322,6 +385,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Todas as novidades sobre coleções, fotos, projetos e exposições..
+        /// </summary>
+        public static string NewsIndex {
+            get {
+                return ResourceManager.GetString("NewsIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notas.
         /// </summary>
         public static string Notes {
@@ -363,6 +435,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string ProductionInitialDate {
             get {
                 return ResourceManager.GetString("ProductionInitialDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proveniência.
+        /// </summary>
+        public static string Provenience {
+            get {
+                return ResourceManager.GetString("Provenience", resourceCulture);
             }
         }
         
@@ -430,6 +511,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fotografias em destaque com comentários..
+        /// </summary>
+        public static string ShowCaseIndex {
+            get {
+                return ResourceManager.GetString("ShowCaseIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fotografia em destaque.
         /// </summary>
         public static string ShowCasePhoto {
@@ -489,6 +579,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string UsefulLinks {
             get {
                 return ResourceManager.GetString("UsefulLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bem-vindo.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

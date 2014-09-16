@@ -261,4 +261,37 @@
   <data name="EmailNotVisible" xml:space="preserve">
     <value>Email não visível ao público</value>
   </data>
+  <data name="CollectionsIndex" xml:space="preserve">
+    <value>Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="EventsIndex" xml:space="preserve">
+    <value>Exposições, atividades, eventos pedagógicos, workshops, entre outros...</value>
+  </data>
+  <data name="NewsIndex" xml:space="preserve">
+    <value>Todas as novidades sobre coleções, fotos, projetos e exposições.</value>
+  </data>
+  <data name="ShowCaseIndex" xml:space="preserve">
+    <value>Fotografias em destaque com comentários.</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bem-vindo</value>
+  </data>
+  <data name="CatalogationDate" xml:space="preserve">
+    <value>Data de catalogação</value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>Informação sobre direitos de cópia</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Dimensão</value>
+  </data>
+  <data name="FieldAndContents" xml:space="preserve">
+    <value>Âmbito e conteúdo</value>
+  </data>
+  <data name="Provenience" xml:space="preserve">
+    <value>Proveniência</value>
+  </data>
 </root>

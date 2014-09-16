@@ -1,4 +1,4 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Document
+﻿@model TranslatedViewModel<Document, DocumentTranslation>
 
 @{
     ViewBag.Title = "Details";
@@ -13,40 +13,52 @@
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Entity.Title)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.NameResponsible)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ResponsibleName)
+            @Html.DisplayFor(model => model.Entity.ResponsibleName)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DocumentDate)
+            @Html.DisplayFor(model => model.Entity.DocumentDate)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Notes)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Notes)
+            @Html.DisplayFor(model => model.Entity.Notes)
         </dd>
         <dt>
            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Description)
+            @Html.DisplayFor(model => model.Translation.Description)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.FieldAndContents)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translation.FieldAndContents)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CatalogationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Entity.CatalogationDate)
         </dd>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ReferenceCode)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CatalogCode)
+            @Html.DisplayFor(model => model.Entity.CatalogCode)
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.CollectionId })
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.Entity.CollectionId })
 </p>

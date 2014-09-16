@@ -29,11 +29,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return (portalView);
         }
 
-        public ActionResult IndexView()
+        public ActionResult Index()
         {
             return View(GetIndexViewModel());
         }
-
 
         private List<IndexViewModel> GetIndexViewModel()
         {
@@ -56,7 +55,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return indexView;
         }
 
-        public ActionResult Index()
+        public ActionResult IndexView()
         {
             return View(db.BannerTranslations.ToList());
         }
@@ -70,7 +69,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View();
         }
-
 
         public ActionResult SetLanguage(string lang, string returnUrl)
         {
