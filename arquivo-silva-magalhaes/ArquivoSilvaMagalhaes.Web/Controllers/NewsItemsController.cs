@@ -20,14 +20,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
     public class NewsItemsController : Controller
     {
        // private ArchiveDataContext db = new ArchiveDataContext();
-
-        // GET: NewsItems
-        //public async Task<ActionResult> Index(int? id, int pageNumber=1)
-        //{
-        //    return View(await Task.Run(() => db.NewsItems.Where(news=>news.ExpiryDate<DateTime.Now).OrderByDescending(news => news.PublishDate).ToPagedList(pageNumber, 3)));
-        //}
-
-
          private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsItemsController()
@@ -41,19 +33,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                //.Include(n => n.Attachments)
+                .Include(n => n.Attachments)
                 .Where(n => n.PublishDate <= DateTime.Now)
                 .Where(n => n.ExpiryDate >= DateTime.Now || n.HideAfterExpiry==false)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b))
                 .ToPagedList(pageNumber, 6));
         }
-      
-
-        //public async Task<ActionResult> Details(int? id)
-        //{
-        //    return View(await db.NewsItems.Where(news => news.Id == id).ToListAsync());
-         
 
         public async Task<ActionResult> Details(int? id)
         {

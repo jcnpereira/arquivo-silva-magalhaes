@@ -65,6 +65,15 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .ToPagedList(pageNumber, 6));
         }
 
+        public async Task<ActionResult> Event(int? id)
+        {
+            return View((await db.Entities
+                .Where(e => e.Id == id)
+                .ToListAsync())
+                .Select(e => new TranslatedViewModel<Event, EventTranslation>(e)));
+        }
+
+
         // GET: Events/Details/5
         //public async Task<ActionResult> Event(int? id)
         //{
@@ -90,5 +99,5 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
             base.Dispose(disposing);
         }
-   }
+    }
 }

@@ -62,7 +62,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         public ActionResult History()
         {
-            return View();
+            return View(db.ArchiveTranslations.ToList());
         }
 
         public ActionResult Shop()

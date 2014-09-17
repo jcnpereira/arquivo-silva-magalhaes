@@ -21,15 +21,15 @@
                     <h4 class="media-heading">@item.Entity.Translations.LastOrDefault().Title</h4>
                 </a>
                 <div>
-                    <p><b>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().Heading)</b></p>
+                    <p><b>@Html.DisplayFor(model => item.Translation.Title)</b></p>
                     <p id="text"></p>
-                    @if (@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent).ToString().Count()>300)
+                    @if (@Html.DisplayFor(model => item.Translation.TextContent).ToString().Count()>300)
                     {
-                        <p>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent).ToString().Substring(30, 330)</p>
+                        <p>@Html.DisplayFor(model => item.Translation.TextContent).ToString().Substring(30, 330)</p>
                     }
                     else
                     {
-                        <p>@Html.DisplayFor(model => item.Entity.Translations.LastOrDefault().TextContent)</p>
+                        <p>@Html.DisplayFor(model => item.Translation.TextContent)</p>
                     }
                 </div>
             </div>

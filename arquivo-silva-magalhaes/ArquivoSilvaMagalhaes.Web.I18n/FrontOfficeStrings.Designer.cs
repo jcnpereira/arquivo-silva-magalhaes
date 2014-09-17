@@ -367,6 +367,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missão.
+        /// </summary>
+        public static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome do responsável.
         /// </summary>
         public static string NameResponsible {
