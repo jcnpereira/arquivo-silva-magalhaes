@@ -34,11 +34,13 @@
     var authors = col.Entity.Authors.ToList();
             }
 
-            @foreach (var a in authors.Select(a => a.FirstName + " " + a.LastName))
+            @foreach (var a in authors)
             {
-                <p style="font-size:small">
-                    @Html.DisplayFor(modelItem => a)
-                </p>
+                <a href="~/Authors/Details/@a.Id">
+                    <p style="font-size:small">
+                        @(a.LastName + ", " + a.FirstName)
+                    </p>
+                </a>
             }
             <p style="font-size:smaller">
                 @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = col.Entity.Id })

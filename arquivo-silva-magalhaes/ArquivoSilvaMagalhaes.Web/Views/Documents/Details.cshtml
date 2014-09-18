@@ -8,6 +8,10 @@
 
 <div>
     <hr />
+    <a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b> &#9658 </b><a href="~/Documents/Index/@Model.Entity.CollectionId">
+    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)
+</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
+    <hr />
     <dl>
         <dt>
             @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentTitle)
@@ -34,7 +38,7 @@
             @Html.DisplayFor(model => model.Entity.Notes)
         </dd>
         <dt>
-           @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Translation.Description)

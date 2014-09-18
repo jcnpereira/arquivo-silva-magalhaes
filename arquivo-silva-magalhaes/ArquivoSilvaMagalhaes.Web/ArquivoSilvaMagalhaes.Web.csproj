@@ -894,9 +894,6 @@
     <Content Include="Views\Home\IndexView.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Authors\Create.cshtml" />
-    <Content Include="Views\Authors\Delete.cshtml" />
-    <Content Include="Views\Authors\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

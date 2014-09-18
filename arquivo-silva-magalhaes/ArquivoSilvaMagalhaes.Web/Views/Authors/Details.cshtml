@@ -9,40 +9,50 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)
-        </dt>
+    <dl>
+    <dt>
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Entity.BirthDate)
+    </dd>
+    <dt>
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Entity.DeathDate)
+    </dd>
+    <dt>
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Nacionality)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Translation.Nationality)
+    </dd>
+    <dt>
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Biography)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Translation.Biography)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Translation.Curriculum)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Translation.Curriculum)
+    </dd>
+    <dt>
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)
+    </dt>
 
+    @*@foreach (var item in Model.Translation.Author.Collections  )
+    {*@
+    @for (var i = 0; i < Model.Translation.Author.Collections.Count; i++) 
+    { 
         <dd>
-            @Html.DisplayFor(model => model.Entity.BirthDate)
+            <a href="~/Documents/Index/@Html.DisplayFor(model => model.Entity.Collections.ElementAtOrDefault(i).Id)">@Html.DisplayFor(modelItem => modelItem.Entity.Collections.ElementAtOrDefault(i).Translations.LastOrDefault().Title)</a>
         </dd>
+    }
 
-        <dt>
-           @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Entity.DeathDate)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Nacionality)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Nationality)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Biography)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Biography)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Translation.Curriculum)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Curriculum)
-        </dd>
     </dl>
 </div>
 <p>
