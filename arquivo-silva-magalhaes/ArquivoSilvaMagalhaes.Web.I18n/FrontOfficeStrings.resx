@@ -297,4 +297,19 @@
   <data name="Provenience" xml:space="preserve">
     <value>Proveniência</value>
   </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Autores</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Data de nascimento</value>
+  </data>
+  <data name="DeathDate" xml:space="preserve">
+    <value>Data de falecimento</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Biografia</value>
+  </data>
+  <data name="Nacionality" xml:space="preserve">
+    <value>Nacionalidade</value>
+  </data>
 </root>

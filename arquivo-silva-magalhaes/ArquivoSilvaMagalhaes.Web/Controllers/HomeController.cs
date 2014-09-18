@@ -93,7 +93,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber, 10);
             return View(model);
-            //return View(db.ReferencedLinks.ToList());
         }
 
         public ActionResult Collections()

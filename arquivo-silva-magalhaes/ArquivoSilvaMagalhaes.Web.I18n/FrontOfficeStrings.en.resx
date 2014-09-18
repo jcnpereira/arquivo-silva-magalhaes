@@ -310,4 +310,19 @@
   <data name="Provenience" xml:space="preserve">
     <value>Provenience</value>
   </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Biography</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth date</value>
+  </data>
+  <data name="DeathDate" xml:space="preserve">
+    <value>Death date</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
 </root>

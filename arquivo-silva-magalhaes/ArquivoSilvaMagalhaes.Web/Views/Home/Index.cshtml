@@ -112,7 +112,6 @@
         var v = Model[i];
         <div style="top:1%; right:20%; position:absolute">
             <h1>@Html.DisplayName(FrontOfficeStrings.Welcome)</h1>
-            @*<iframe width="854" height="510" src="https://www.youtube.com/embed/bFs0zJ9jQ-k" frameborder="0" allowfullscreen></iframe>*@
             <iframe width="854" height="510" src=@Html.DisplayFor(modelItem=>v.Video) frameborder="0" allowfullscreen></iframe>
         </div>
     }

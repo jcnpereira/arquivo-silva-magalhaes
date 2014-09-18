@@ -223,6 +223,7 @@
       <DependentUpon>UserViewModelStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Areas\BackOffice\ViewModels\UserViewModels.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
     <Compile Include="Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -304,6 +305,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AuthorsViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\PortalViewModel.cs" />
@@ -892,6 +894,9 @@
     <Content Include="Views\Home\IndexView.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Authors\Create.cshtml" />
+    <Content Include="Views\Authors\Delete.cshtml" />
+    <Content Include="Views\Authors\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

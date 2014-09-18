@@ -1,74 +1,50 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveViewModels.AuthorViewModel
+﻿@model TranslatedViewModel<Author, AuthorTranslation>
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
+<h2>@Html.DisplayFor(model => model.Entity.FirstName) @Html.DisplayFor(model => model.Entity.LastName)</h2>
 
 <div>
-    <h4>AuthorViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Entity.BirthDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+           @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.Entity.DeathDate)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Nacionality)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.BirthDate)
+            @Html.DisplayFor(model => model.Translation.Nationality)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.DeathDate)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Biography)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.DeathDate)
+            @Html.DisplayFor(model => model.Translation.Biography)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Nationality)
+            @Html.DisplayNameFor(model => model.Translation.Curriculum)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Nationality)
+            @Html.DisplayFor(model => model.Translation.Curriculum)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Curriculum)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
 </p>

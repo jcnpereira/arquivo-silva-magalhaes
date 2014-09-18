@@ -79,11 +79,38 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autores.
+        /// </summary>
+        public static string Authors {
+            get {
+                return ResourceManager.GetString("Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Voltar.
         /// </summary>
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biografia.
+        /// </summary>
+        public static string Biography {
+            get {
+                return ResourceManager.GetString("Biography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data de nascimento.
+        /// </summary>
+        public static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string CopyrightInfo {
             get {
                 return ResourceManager.GetString("CopyrightInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data de falecimento.
+        /// </summary>
+        public static string DeathDate {
+            get {
+                return ResourceManager.GetString("DeathDate", resourceCulture);
             }
         }
         
@@ -372,6 +408,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string Mission {
             get {
                 return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nacionalidade.
+        /// </summary>
+        public static string Nacionality {
+            get {
+                return ResourceManager.GetString("Nacionality", resourceCulture);
             }
         }
         

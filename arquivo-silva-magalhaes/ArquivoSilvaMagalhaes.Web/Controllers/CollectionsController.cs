@@ -11,6 +11,8 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
 
 
 namespace ArquivoSilvaMagalhaes.Controllers
@@ -31,14 +33,15 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
         // GET: Collections
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber=1)
         {
             return View((await db.Entities
                             .Include(col => col.Authors)
-                            .OrderByDescending(col => col.EndProductionDate)
                             .Where(col => col.IsVisible)
+                            .OrderByDescending(col => col.EndProductionDate)
                             .ToListAsync())
-                            .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col)));
+                            .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
+                            .ToPagedList(pageNumber, 12));
         }
 
         public async Task<ActionResult> Details(int? id)
