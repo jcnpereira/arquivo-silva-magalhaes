@@ -18,13 +18,25 @@
             <li class="media-body col-md-4 list-group">
                 <a class="pull-left"
                    href="@Url.Action("ViewImage", "Images", new { id = img.Entity.Id })">
-                    <img class="media-object"
-                         data-afsm-show-overlay="true"
-                         data-afsm-target="#afsm-overlay"
-                         data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Entity.ImageUrl) + "_large.jpg")"
-                         style="width: 96px; height: 96px"
-                         data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
-                         src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />
+                    @if (img.Entity.ImageUrl != null)
+                    {
+                        <img class="media-object"
+                             data-afsm-show-overlay="true"
+                             data-afsm-target="#afsm-overlay"
+                             data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Entity.ImageUrl) + "_large.jpg")"
+                             style="width: 96px; height: 96px"
+                             data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                             src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />}
+                    else
+                    {
+                        <img class="media-object"
+                             data-afsm-show-overlay="true"
+                             data-afsm-target="#afsm-overlay"
+                             data-afsm-large-image-url="@Url.Content("~/images/noImage.gif")"
+                             style="width: 96px; height: 96px"
+                             data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                             src="@Url.Content("~/images/noImage.gif")" />
+                    }
                 </a>
                 <h4 class="media-heading">
                     @Html.DisplayFor(modelItem => img.Translation.Title)
@@ -38,6 +50,7 @@
             </li>
         }
     </ul>
+
 </div>
 
 @{

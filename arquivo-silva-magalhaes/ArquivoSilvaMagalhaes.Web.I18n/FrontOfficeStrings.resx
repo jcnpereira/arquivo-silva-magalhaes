@@ -312,4 +312,7 @@
   <data name="Nacionality" xml:space="preserve">
     <value>Nacionalidade</value>
   </data>
+  <data name="ImageNotAvailable" xml:space="preserve">
+    <value>Imagem não disponível</value>
+  </data>
 </root>

@@ -322,6 +322,9 @@
   <data name="DeathDate" xml:space="preserve">
     <value>Death date</value>
   </data>
+  <data name="ImageNotAvailable" xml:space="preserve">
+    <value>Image not available</value>
+  </data>
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
   </data>

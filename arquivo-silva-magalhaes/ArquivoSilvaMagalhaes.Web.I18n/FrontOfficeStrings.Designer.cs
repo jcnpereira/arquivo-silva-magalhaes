@@ -349,6 +349,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem não disponível.
+        /// </summary>
+        public static string ImageNotAvailable {
+            get {
+                return ResourceManager.GetString("ImageNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imagens.
         /// </summary>
         public static string Images {
