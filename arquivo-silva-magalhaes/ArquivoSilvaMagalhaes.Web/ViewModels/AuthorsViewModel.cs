@@ -10,6 +10,9 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
+    /// <summary>
+    /// ViewModel que contem os atributos dos autores aprensentados
+    /// </summary>
     public class AuthorsViewModel
     {
         [Key]

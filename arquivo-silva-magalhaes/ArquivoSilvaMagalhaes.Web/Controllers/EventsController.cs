@@ -19,6 +19,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class EventsController : Controller
     {
+        /// <summary>
+        /// Associa Entidade Author às traduções existentes
+        /// </summary>
         private ITranslateableRepository<Event, EventTranslation> db;
 
         public EventsController()
@@ -30,29 +33,18 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
 
-        public ActionResult SetLanguage(string lang, string returnUrl)
-        {
-            Response.SetCookie(new HttpCookie("lang", lang));
-
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Events/Index");
-            }
-        }
-
-        // GET: Events
-        //public async Task<ActionResult> Index( int pageNumber=1)
+        //public ActionResult SetLanguage(string lang, string returnUrl)
         //{
-        //    return View(await Task.Run(() => db.EventTranslations
-        //    .Include(et => et.Event)
-        //    .Where(et => (et.Event.HideAfterExpiry==false || et.Event.ExpiryDate > DateTime.Now ))
-        //    .Where(et => et.LanguageCode == LanguageDefinitions.DefaultLanguage)
-        //    .OrderByDescending(et => et.Event.PublishDate)
-        //    .ToPagedList(pageNumber, 3)));
+        //    Response.SetCookie(new HttpCookie("lang", lang));
+
+        //    if (Url.IsLocalUrl(returnUrl))
+        //    {
+        //        return Redirect(returnUrl);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Events/Index");
+        //    }
         //}
 
         public async Task<ActionResult> Index(int pageNumber = 1)
@@ -73,24 +65,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Select(e => new TranslatedViewModel<Event, EventTranslation>(e)));
         }
 
-
-        // GET: Events/Details/5
-        //public async Task<ActionResult> Event(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Event @event = await db.Events.FindAsync(id);
-        //    if (@event == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(@event);
-        //}
-
-
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

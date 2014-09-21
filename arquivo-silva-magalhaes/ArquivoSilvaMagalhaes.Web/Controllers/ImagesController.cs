@@ -18,8 +18,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class ImagesController : Controller
     {
-        //private ArchiveDataContext db = new ArchiveDataContext();
-
+        /// <summary>
+        /// Associa Entidade Author às traduções existentes
+        /// </summary>
          private ITranslateableRepository<Image, ImageTranslation> db;
 
         public ImagesController()
@@ -30,7 +31,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
             this.db = db;
         }
 
-        // GET: Images
+        /// <summary>
+        /// Fornece lista paginada de imagens correspondentes ao documento onde estão inseridas 
+        /// e ordenada pelo id da imagem
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
             if (id == null)
@@ -50,7 +56,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
 
-        // GET: Images/Details/5
+       /// <summary>
+       /// Forence os detalhes de determinada imagem
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -65,20 +75,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(new TranslatedViewModel<Image, ImageTranslation>(image));
         }
 
-        //public ActionResult ViewImage(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Image image = db.Images.Find(id);
-        //    if (image == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(image);
-        //}
-
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

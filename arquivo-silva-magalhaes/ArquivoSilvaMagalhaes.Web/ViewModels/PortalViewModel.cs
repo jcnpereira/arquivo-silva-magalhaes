@@ -7,6 +7,10 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
+    /// <summary>
+    /// ViewModel que contem atributos de banner e de video necessários para
+    /// apresentar na View carregada quando o site é acedido
+    /// </summary>
     public class PortalViewModel
     {
         [Key]
@@ -44,7 +48,9 @@ namespace ArquivoSilvaMagalhaes.ViewModels
         [Display(ResourceType = typeof(DataStrings), Name = "ArchiveMission")]
         public string ArchiveMission { get; set; }
 
-
+        /// <summary>
+        /// Classe parcial referente aos contactos de um arquivo
+        /// </summary>
         public partial class PortalContactsViewModel
         {
             [Key]
@@ -64,14 +70,11 @@ namespace ArquivoSilvaMagalhaes.ViewModels
             public PortalContactsViewModel Archive { get; set; }
         }
 
-
+        /// <summary>
+        /// Classe parcial referente à história e missão do arquivo
+        /// </summary>
         public class ArchiveText
         {
-            /*   public ArchiveTexts()
-               {
-                   LanguageCode = "pt";
-               }*/
-
             [Key]
             public int Id { get; set; }
             [Required]

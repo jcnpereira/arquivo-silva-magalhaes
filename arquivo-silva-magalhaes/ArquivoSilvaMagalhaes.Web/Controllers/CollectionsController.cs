@@ -19,9 +19,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class CollectionsController : Controller
     {
-        //private ArchiveDataContext db = new ArchiveDataContext();
-
-
+        /// <summary>
+        /// Associa Entidade Collections às traduções existentes
+        /// </summary>
         private ITranslateableRepository<Collection, CollectionTranslation> db;
 
         public CollectionsController()
@@ -32,7 +32,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
             this.db = db;
         }
 
-        // GET: Collections
+        /// <summary>
+        /// Fornece lista de coleções paginada e ordenada por data de fim de produção por ordem descendente
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber=1)
         {
             return View((await db.Entities
@@ -43,7 +47,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
                             .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
                             .ToPagedList(pageNumber, 12));
         }
-
+        /// <summary>
+        /// Forece detalhes de uma determinda coleção
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -58,9 +66,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
         }
 
+        /// <summary>
+        /// Faz corresponder o documento à sua coleção 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Docs(int? id)
         {
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -73,6 +85,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
         }
 
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

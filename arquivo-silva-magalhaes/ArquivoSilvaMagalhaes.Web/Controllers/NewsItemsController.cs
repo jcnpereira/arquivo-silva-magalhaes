@@ -19,7 +19,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class NewsItemsController : Controller
     {
-       // private ArchiveDataContext db = new ArchiveDataContext();
+       /// <summary>
+        /// Associa Entidade NewsItems às traduções existentes
+       /// </summary>
          private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsItemsController()
@@ -30,6 +32,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
             this.db = db;
         }
 
+        /// <summary>
+        /// Fornece lista paginada de notícias que estejam dentro do intervalo de tempo definido
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
@@ -41,6 +48,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .ToPagedList(pageNumber, 6));
         }
 
+        /// <summary>
+        /// Forence o conteúdo de uma determinada notíca
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             return View((await db.Entities
@@ -50,7 +62,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b)));
         }
 
-
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

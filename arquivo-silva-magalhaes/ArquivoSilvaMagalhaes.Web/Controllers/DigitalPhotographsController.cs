@@ -11,18 +11,26 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
+
     public class DigitalPhotographsController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
-        // GET: DigitalPhotographs
+        /// <summary>
+        /// Fornece uma lista de fotografias digitais
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var digitalPhotographs = db.DigitalPhotographs.Include(d => d.Specimen);
             return View(digitalPhotographs.ToList());
         }
 
-        // GET: DigitalPhotographs/Details/5
+       /// <summary>
+       /// Fornece os atributos de uma determinada fotografia digital
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +45,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(digitalPhotograph);
         }
 
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

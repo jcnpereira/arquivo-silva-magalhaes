@@ -17,34 +17,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class AuthorsController : Controller
     {
-        //private ArchiveDataContext db = new ArchiveDataContext();
-
-        // GET: Authors
-        //public ActionResult Index()
-        //{
-        //    return View(GetAuthorsViewModel());
-        //}
-
-        //private List<AuthorsViewModel> GetAuthorsViewModel()
-        //{
-        //    List<AuthorsViewModel> authorView = new List<AuthorsViewModel>();
-        //    foreach (var item in db.Authors.ToList())
-        //    {
-        //        AuthorsViewModel a = new AuthorsViewModel();
-        //        a.Id = item.Id;
-        //        a.FirstName = item.FirstName;
-        //        a.LastName = item.LastName;
-        //        a.BirthDate = item.BirthDate;
-        //        a.DeathDate = item.DeathDate.Value;
-        //        a.Nationality = item.Translations.LastOrDefault().Nationality;
-        //        a.Biagraphy = item.Translations.LastOrDefault().Biography;
-        //        a.Curriculum = item.Translations.LastOrDefault().Curriculum;
-                
-        //        authorView.Add(a);
-        //    }
-        //    return authorView;
-        //}
-
+        
+        /// <summary>
+        /// Associa Entidade Author às traduções existentes
+        /// </summary>
         private ITranslateableRepository<Author, AuthorTranslation> db;
 
         public AuthorsController()
@@ -55,19 +31,25 @@ namespace ArquivoSilvaMagalhaes.Controllers
             this.db = db;
         }
 
-
+        /// <summary>
+        /// Fornece lista de autores paginada e ordenada por data de nascimento por ordem descendente
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                            //.Include(col => col.Authors)
-                            //.Where(col => col.IsVisible)
                             .OrderByDescending(a => a.BirthDate)
                             .ToListAsync())
                             .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
                             .ToPagedList(pageNumber, 12));
         }
 
-
+        /// <summary>
+        /// Forece detalhes de um determindo autor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -82,31 +64,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(new TranslatedViewModel<Author, AuthorTranslation>(author));
         }
 
-        // GET: Authors/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Author author = db.Authors.Find(id);
-        //    if (author == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(author);
-        //}
-
-        // GET: Authors/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Authors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-       
+       /// <summary>
+       /// Actualização à base de dados
+       /// </summary>
+       /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

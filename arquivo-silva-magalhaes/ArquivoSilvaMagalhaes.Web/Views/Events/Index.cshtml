@@ -8,6 +8,8 @@
 <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</h2>
 
 <hr />
+<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</b>
+<hr />
 
 <ul class="media-list">
     @foreach (var item in Model)
@@ -18,10 +20,10 @@
             </a>
             <div class="media-body">
                 <a href="~/Events/Event/@item.Entity.Translations.LastOrDefault().EventId">
-                    <h4 class="media-heading">@item.Entity.Translations.LastOrDefault().Title</h4>
+                    <h4 class="media-heading">@item.Translation.Title</h4>
                 </a>
                 <div>
-                    <p><b>@Html.DisplayFor(model => item.Translation.Title)</b></p>
+                    <p><b>@Html.DisplayFor(model => item.Translation.Heading)</b></p>
                     <p id="text"></p>
                     @if (@Html.DisplayFor(model => item.Translation.TextContent).ToString().Count()>300)
                     {

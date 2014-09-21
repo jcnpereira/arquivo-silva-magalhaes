@@ -10,6 +10,9 @@ using System.Web;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
+    /// <summary>
+    /// ViewModel que contem atributos do model banner utilizados na página de indexView do arquivo
+    /// </summary>
     public class IndexViewModel
     {
         [Key]
