@@ -66,14 +66,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos", null, null)</li>
                     <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Authors, "Index", "Authors")</li>
                     <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
                     <li>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</li>
                     <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
                     <li>@Html.ActionLink(LayoutStrings.History, "History", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.TechnicalDocuments, "Index", "TechnicalDocuments")</li>
                     <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "Links", "Home")</li>
-                    <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Contacts, "Contacts", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.Partnerships, "Index", "Partnerships")</li>
+                    <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -93,7 +95,7 @@
 
                 <ul class="nav nav-stacked">
                     <li>
-                        <a href="@Url.Action("Index", "Home")" title="@LayoutStrings.Index">
+                        <a href="@Url.Action("IndexView", "Home")" title="@LayoutStrings.Index">
                             <img src="~/Content/Images/logo.png" alt="@LayoutStrings.SiteName" />
                         </a>
                     </li>
@@ -104,19 +106,23 @@
                 <ul class="nav nav-stacked">
                     <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos")</li>
                     <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Authors, "Index", "Authors")</li>
                     <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
                     <li>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</li>
                     <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
                     <li>@Html.ActionLink(LayoutStrings.History, "History", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.TechnicalDocuments, "Index", "TechnicalDocuments")</li>
                     <li>@Html.ActionLink(LayoutStrings.UsefulLinks, "Links", "Home")</li>
-                    <li>@Html.ActionLink(LayoutStrings.About, "About", "Home")</li>
+                    <li>@Html.ActionLink(LayoutStrings.Contacts, "Contacts", "Home")</li>
                     <li>@Html.ActionLink(LayoutStrings.Partnerships, "Index", "Partnerships")</li>
                 </ul>
             </div>
 
             <div id="afsm-page-content" style="height: 100%">
                 @RenderBody()
+
+                <div class="clearfix"></div>
+
                 <hr />
                 <footer class="text-center">
                     <p>

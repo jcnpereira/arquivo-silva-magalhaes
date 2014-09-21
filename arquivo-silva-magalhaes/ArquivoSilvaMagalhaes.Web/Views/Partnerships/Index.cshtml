@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Partnership>
 
 <div class="column_content">
-    <h2 class="page_title">Projetos e Parcerias</h2>
+    <h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Partnership)</h2>
 </div>
 <hr />
 <div class="media">
     <ul class="media-list">
         @foreach (var item in Model)
         {
-            <li class="media-body col-md-4">
+            <li class="media-body col-md-3">
                 <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                 <a href=@Url.Content(item.SiteLink) target="_blank">
-                    <img height="150" width="150" src="~/images/@Html.DisplayFor(modelItem => item.LogoFileName)" alt="Logotipo associado à pareceria." /><br />
+                    <img height="90" width="90" src="~/images/@Html.DisplayFor(modelItem => item.LogoFileName)" alt="Logotipo associado à pareceria." /><br />
                 </a>
                 <div class="">
-                    <br /><b>contacto:</b><br /> @Html.DisplayFor(modelItem => item.Contact)
+                    <br /><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Contacts):</b><br /> @Html.DisplayFor(modelItem => item.Contact)
                     <br /><b>e-mail:</b><br /><a href="mailto:@Html.DisplayFor(modelItem => item.EmailAddress)" target="_blank">@Html.DisplayFor(modelItem => item.EmailAddress)</a>
                     <br />
                 </div>

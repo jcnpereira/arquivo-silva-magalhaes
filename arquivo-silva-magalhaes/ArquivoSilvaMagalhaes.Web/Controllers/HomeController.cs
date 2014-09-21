@@ -18,20 +18,29 @@ namespace ArquivoSilvaMagalhaes.Controllers
     {
         private ArchiveDataContext db = new ArchiveDataContext();
 
+        /// <summary>
+        /// Página de about
+        /// </summary>
+        /// <returns></returns>
         public ActionResult About()
         {
             return View();
         }
 
-        public ActionResult IndexView()
-        {
-            //IndexViewModel viewModel = new IndexViewModel();
-            //List<IndexViewModel> viewModels = new List<IndexViewModel>();
 
+        /// <summary>
+        /// Fornece ViewModel que agrega atributos de BannerModel e SpotLightVideoModel
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
             return View(GetIndexViewModel());
         }
 
-
+        /// <summary>
+        /// Obtem os atributos de Banner e Video
+        /// </summary>
+        /// <returns></returns>
         private List<IndexViewModel> GetIndexViewModel()
         {
             List<IndexViewModel> indexView = new List<IndexViewModel>();
@@ -53,22 +62,40 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return indexView;
         }
 
-        public ActionResult Index()
+        /// <summary>
+        /// Fornece os atributos listados contidos no model BannerTranslation
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult IndexView()
         {
             return View(db.BannerTranslations.ToList());
         }
 
+        /// <summary>
+        /// Forence os atributos listados contidos no model ArchiveTranslations
+        /// </summary>
+        /// <returns></returns>
         public ActionResult History()
         {
-            return View();
+            return View(db.ArchiveTranslations.ToList());
         }
+        
 
-        public ActionResult Shop()
-        {
-            return View();
-        }
+        /// <summary>
+        /// Loja ainda não existe (poderá ser desenvolvida futuramente)
+        /// </summary>
+        /// <returns></returns>
+        //public ActionResult Shop()
+        //{
+        //    return View();
+        //}
 
-
+        /// <summary>
+        /// Estabelece qual a lingua a ser usada no portal
+        /// </summary>
+        /// <param name="lang"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public ActionResult SetLanguage(string lang, string returnUrl)
         {
             Response.SetCookie(new HttpCookie("lang", lang));
@@ -83,18 +110,30 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
         }
 
+        /// <summary>
+        /// Página de contactos estática
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Contacts()
         {
             return View();
         }
 
+        /// <summary>
+        /// Fornece a lista de links existentes paginada
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public ActionResult Links(int pageNumber = 1)
         {
             var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber, 10);
             return View(model);
-            //return View(db.ReferencedLinks.ToList());
         }
 
+        /// <summary>
+        /// Forence a lista de coleções
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Collections()
         {
             var model = db.Collections
@@ -106,6 +145,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Forence a lista de parcerias
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Partnerships()
         {
             return View(await db.Partnerships.ToListAsync());

@@ -1,8 +1,49 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Contacts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Contacts</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Contacts)</h2>
+<hr />
+<h3>Instituto Politécnico de Tomar</h3>
+
+<div class="space"> </div>
+<div class="clear"> </div>
+
+<p>
+    <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Address) </b><br />
+    Estrada da Serra<br />
+    2300-313 TOMAR<br />
+</p>
+
+
+<p><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Telephone)</b><br />
+249 328 100</p>
+
+<p>
+    <b> E-mail</b><br />
+    <a href="mailto:presidencia@cm-tomar.pt" target="_blank">geral@ipt</a>
+</p>
+
+<div class="">
+
+    <h3>Câmara Municipal de Tomar</h3>
+
+    <div class="space"> </div>
+    <div class="clear"> </div>
+
+</div>
+
+<p>
+    <b> @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Address) </b><br />
+    Praça da República<br />
+    2300-550 TOMAR<br />
+</p>
+<p><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Telephone)</b><br />
+249 329 800</p>
+
+<p>
+    <b> E-mail </b><br />
+    <a href="mailto:presidencia@cm-tomar.pt" target="_blank">presidencia@cm-tomar.pt</a>
+</p>
 

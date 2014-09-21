@@ -13,7 +13,14 @@ namespace ArquivoSilvaMagalhaes.Controllers
     public class SearchController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
-        // GET: Search
+        
+
+        /// <summary>
+        /// Forence lista paginada de elementos encontrados na pesquisa
+        /// </summary>
+        /// <param name="searchTerm"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public ActionResult Index(string searchTerm = null, int pageNumber=1)
         {
             var model =
@@ -24,19 +31,17 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(model.ToPagedList(pageNumber, 10));
         }
 
-
-        public ActionResult SetLanguage(string lang, string returnUrl)
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
         {
-            Response.SetCookie(new HttpCookie("lang", lang));
-
-            if (Url.IsLocalUrl(returnUrl))
+            if (disposing)
             {
-                return Redirect(returnUrl);
+                db.Dispose();
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            base.Dispose(disposing);
         }
 
     }

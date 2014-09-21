@@ -6,7 +6,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Acervo</h2>
+<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</h2>
+<hr />
+<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</b>
 <hr />
 
 @foreach (var col in Model)
@@ -17,9 +19,13 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">
-                <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
-                    @Html.DisplayFor(modelItem => col.Translation.Title)
-                </a>
+              @if(col.Translation.Collection.Documents.Count()!=null){
+                    <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
+                        @Html.DisplayFor(modelItem => col.Translation.Title)
+                    </a>
+              }
+              else
+              {  @Html.DisplayFor(modelItem => col.Translation.Title) }
             </h4>
             <p>
                 @Html.DisplayFor(modelItem => col.Translation.Description)
@@ -28,16 +34,22 @@
     var authors = col.Entity.Authors.ToList();
             }
 
-            @foreach (var a in authors.Select(a => a.FirstName + " " + a.LastName))
+            @foreach (var a in authors)
             {
-                <p style="font-size:small">
-                    @Html.DisplayFor(modelItem => a)
-                </p>
+                <a href="~/Authors/Details/@a.Id">
+                    <p style="font-size:small">
+                        @(a.FirstName +" "+ a.LastName)
+                    </p>
+                </a>
             }
             <p style="font-size:smaller">
-                @Html.ActionLink("Informações", "Details", new { id = col.Entity.Id })
+                @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = col.Entity.Id })
             </p>
         </div>
     </div>
 }
 
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}

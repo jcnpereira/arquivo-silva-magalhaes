@@ -3,18 +3,17 @@
 
 @model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
 
-<h2>Pesquisa</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Search)</h2>
 <hr />
-<p>Utilize a caixa de pesquisa para inserir os termos que deseja procurar</p>
+<p>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.SearchMessage)</p>
 <form method="get">
     <div>
         <div class="form-group">
-
             <div class="input-group">
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">@UiStrings.Done</button>
+                    <button type="submit" class="btn btn-default">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Search)</button>
                 </span>
-                <input type="search"  placeholder="@UiStrings.SearchPlaceholder" name="SearchTerm" class="form-control" />
+                <input type="search" autofocus="" name="SearchTerm" class="form-control" />
             </div>
         </div>
     </div>

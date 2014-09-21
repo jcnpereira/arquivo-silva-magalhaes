@@ -11,58 +11,84 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class CollectionsController : Controller
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        /// <summary>
+        /// Associa Entidade Collections às traduções existentes
+        /// </summary>
+        private ITranslateableRepository<Collection, CollectionTranslation> db;
 
-        
-        // GET: Collections
-        public async Task<ActionResult> Index()
+        public CollectionsController()
+            : this(new TranslateableGenericRepository<Collection, CollectionTranslation>()) { }
+
+        public CollectionsController(ITranslateableRepository<Collection, CollectionTranslation> db)
         {
-            return View((await db.Collections
+            this.db = db;
+        }
+
+        /// <summary>
+        /// Fornece lista de coleções paginada e ordenada por data de fim de produção por ordem descendente
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Index(int pageNumber=1)
+        {
+            return View((await db.Entities
                             .Include(col => col.Authors)
-                            .OrderByDescending(col => col.EndProductionDate)
                             .Where(col => col.IsVisible)
+                            .OrderByDescending(col => col.EndProductionDate)
                             .ToListAsync())
-                //.Select(col => new CollectionViewModel(col)));
-                            .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col)));
+                            .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
+                            .ToPagedList(pageNumber, 12));
         }
-
-        public async Task<ActionResult> Docs(int? id)
-        {
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Collection collection = await db.Collections.FindAsync(id);
-            if (collection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(collection);
-        }
-
-        // GET: Collections/Details/5
+        /// <summary>
+        /// Forece detalhes de uma determinda coleção
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection collection = await db.Collections.FindAsync(id);
+            Collection collection = await db.GetByIdAsync(id);
             if (collection == null)
             {
                 return HttpNotFound();
             }
-            return View(collection);
+            return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
         }
 
+        /// <summary>
+        /// Faz corresponder o documento à sua coleção 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Docs(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Collection collection = await db.GetByIdAsync(id);
+            if (collection == null)
+            {
+                return HttpNotFound();
+            }
+            return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
+        }
 
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -73,3 +99,4 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
     }
 }
+

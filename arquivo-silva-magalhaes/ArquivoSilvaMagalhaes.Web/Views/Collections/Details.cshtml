@@ -1,103 +1,93 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Collection
+﻿@model TranslatedViewModel<Collection, CollectionTranslation>
+
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Informações sobre a coleção</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</h2>
 <div>
     <hr />
-    <dl >
+    <a href="~/Collections">
+        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)
+    </a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
+    <hr />
+    <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Translations.LastOrDefault().Title)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CollectionTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Translations.LastOrDefault().Title)
+            @Html.DisplayFor(model => model.Translation.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Authors)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Provenience)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translation.Provenience)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CollectionAuthors)
+        </dt>
+        <dd>
+            @for (int i = 0; i < Model.Entity.Authors.Count(); i++)
+            {
+                @Html.DisplayFor(model => model.Entity.Authors.ElementAt(i).FirstName) @Html.DisplayFor(model => model.Entity.Authors.ElementAt(i).LastName)<br />
+            }
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Provenience)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translation.Provenience)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Dimension)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translation.Dimension)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ProductionInitialDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Authors.LastOrDefault().FirstName) @Html.DisplayFor(model => model.Authors.LastOrDefault().LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.InitialProductionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InitialProductionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndProductionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndProductionDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrganizationSystem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrganizationSystem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AttachmentsDescriptions)
-        </dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.AttachmentsDescriptions)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AttachmentsDescriptions)
+            @Html.DisplayFor(model => model.Entity.InitialProductionDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OrganizationSystem)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.PruductionEndDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OrganizationSystem)
+            @Html.DisplayFor(model => model.Entity.EndProductionDate)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Notes)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Notes)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Notes)
+            @Html.DisplayFor(model => model.Entity.Notes)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IsVisible)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.OrganizationSystem)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.IsVisible)
+            @Html.DisplayFor(model => model.Entity.OrganizationSystem)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.CatalogCode)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.AttachmentDescription)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.CatalogCode)
-        </dd>*@
-
+            @Html.DisplayFor(model => model.Translation.Description)
+        </dd>
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CopyrightInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Translation.CopyrightInfo)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
 </p>

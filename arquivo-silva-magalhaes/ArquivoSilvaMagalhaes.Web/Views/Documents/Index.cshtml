@@ -1,13 +1,15 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 
-@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.DocumentTranslation>
+@model IEnumerable<TranslatedViewModel<Document,DocumentTranslation>>
 @{
     ViewBag.Title = "Index";
 }
-<h2>Documentos</h2>
-<hr />
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</h2>
 
+<hr />
+<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</b>
+<hr />
 <div class="media">
     <ul class="media-list">
         @foreach (var doc in Model)
@@ -16,17 +18,25 @@
                 <a class="pull-left">
                     <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
                 </a>
-                <a href="~/Images/Index/@doc.DocumentId">
-                    <h4 class="media-heading">@doc.Document.Title</h4>
-                </a>
-                <h5>@doc.Description</h5>
-                <h6>@Html.DisplayFor(modelItem => doc.Document.DocumentDate)</h6>
+                @if (@doc.Translation.Document.Images.Count != 0)
+                {
+                    <a href="~/Images/Index/@doc.Translation.DocumentId">
+                        <h4 class="media-heading">@doc.Translation.Document.Title</h4>
+                    </a>
+                }
+                else
+                {
+                    <h4 class="media-heading">@doc.Translation.Document.Title</h4>
+                }
+                <h5>@doc.Translation.Description</h5>
+                <h6>@Html.DisplayFor(modelItem => doc.Entity.DocumentDate)</h6>
                 <p style="font-size:smaller">
-                    @Html.ActionLink("Informações", "Details", new { id = doc.DocumentId })
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = doc.Translation.DocumentId })
                 </p>
             </li>
         }
     </ul>
+
 </div>
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;

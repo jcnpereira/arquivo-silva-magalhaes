@@ -1,8 +1,12 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.ImageTranslation>
+@model IEnumerable<TranslatedViewModel<Image, ImageTranslation>>
 
-<h2>Imagens</h2>
+<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</h2>
+<hr />
+@if (@Model.GetEnumerator()!=null){
+<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections) </a><b>&#9658</b> <a href="~/Documents/Index/@Model.LastOrDefault().Entity.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</b>
+ }
 <hr />
 
 @Styles.Render("~/Content/Styles/Images.css")
@@ -13,27 +17,40 @@
         {
             <li class="media-body col-md-4 list-group">
                 <a class="pull-left"
-                   href="@Url.Action("ViewImage", "Images", new { id = img.ImageId })">
-                    <img class="media-object"
-                         data-afsm-show-overlay="true"
-                         data-afsm-target="#afsm-overlay"
-                         data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Image.ImageUrl) + "_large.jpg")"
-                         style="width: 96px; height: 96px"
-                         data-afsm-description="@Html.DisplayFor(modelItem => img.Description)"
-                         src="~/Public/Images/@(img.Image.ImageUrl)_thumb.jpg" />
+                   href="@Url.Action("ViewImage", "Images", new { id = img.Entity.Id })">
+                    @if (img.Entity.ImageUrl != null)
+                    {
+                        <img class="media-object"
+                             data-afsm-show-overlay="true"
+                             data-afsm-target="#afsm-overlay"
+                             data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Entity.ImageUrl) + "_large.jpg")"
+                             style="width: 96px; height: 96px"
+                             data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                             src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />}
+                    else
+                    {
+                        <img class="media-object"
+                             data-afsm-show-overlay="true"
+                             data-afsm-target="#afsm-overlay"
+                             data-afsm-large-image-url="@Url.Content("~/images/noImage.gif")"
+                             style="width: 96px; height: 96px"
+                             data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                             src="@Url.Content("~/images/noImage.gif")" />
+                    }
                 </a>
                 <h4 class="media-heading">
-                    @Html.DisplayFor(modelItem => img.Title)
+                    @Html.DisplayFor(modelItem => img.Translation.Title)
                 </h4>
                 <p style="font-size:small">
-                    @Html.DisplayFor(modelItem => img.Subject)
+                    @Html.DisplayFor(modelItem => img.Translation.Subject)
                 </p>
                 <p style="font-size:smaller">
-                    @Html.ActionLink("Informações", "Details", new { id = img.ImageId })
+                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = img.Entity.Id })
                 </p>
             </li>
         }
     </ul>
+
 </div>
 
 @{
@@ -50,7 +67,9 @@
             <div class="overlay-description">
                 <p class="afsm-image-description">
                 </p>
-                <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">Fechar</button>
+            </div>
+            <div>
+                <button type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Close)</button>
             </div>
         </div>
     </div>

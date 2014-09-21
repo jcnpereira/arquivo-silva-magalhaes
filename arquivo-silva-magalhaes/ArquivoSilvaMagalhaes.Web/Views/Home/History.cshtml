@@ -1,4 +1,25 @@
-﻿<h2>História</h2>
+﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveTranslation>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+    <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.History)</h2>
+    <hr />
+    <p>@Html.DisplayFor(modelItem => item.ArchiveHistory)</p><br />
+    <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Mission)</h2>
+    <hr />
+    <p>@Html.DisplayFor(modelItem => item.ArchiveMission)</p><br />
+    <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Address)</h2>
+    <hr />
+    <p>@Html.DisplayFor(modelItem => item.Archive.Address)</p><br /><br />
+}
+
+@*<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.History)</h2>
 <hr />
 <div class="space"> </div>
 <div class="clear"> </div>
@@ -109,4 +130,4 @@
     </p>
     <div class="space"> </div>
     <div class="clear"> </div>
-</div>
+</div>*@

@@ -1,29 +1,9 @@
-﻿@model IList<ArquivoSilvaMagalhaes.ViewModels.IndexViewModel>
+﻿@model IList<ArquivoSilvaMagalhaes.Models.SiteModels.BannerTranslation>
 
-<style type="text/css">
-    div#overlay {
-        display: none;
-        z-index: 2000;
-        background: #000;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        text-align: right;
-        border: 0;
-        margin: 0;
-        padding: 0;
-    }
-</style>
-<body onload="toggleOverlay()">
-</body>
 
 <div id="afsm-carousel" class="carousel slide" data-ride="carousel">
-
     <!-- Indicators -->
     <ol class="carousel-indicators">
-
         @for (var i = 0; i < Model.Count; i++)
         {
             <li data-target="#afsm-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
@@ -31,12 +11,15 @@
     </ol>
 
     <div class="carousel-inner">
+
         @for (var i = 0; i < Model.Count; i++)
         {
             var b = Model[i];
             <div class="item @(i == 0 ? "active" : "")">
                 <div class="afsm-banner-item-container"
-                     style="background-image: url(@Url.Content("~/Public/Banners/" + b.UriPath));">
+                     style="background-image: url(@Url.Content("~/Public/Banners/" + b.BannerPhotograph.UriPath));">
+
+                    @*<img src="~/Public/Banners/@b.BannerPhotograph.UriPath">*@
                 </div>
                 <div class="carousel-caption">
                     @Html.DisplayFor(modelItem => b.Caption)
@@ -53,80 +36,53 @@
     </a>
 </div>
 <div class="row">
+
     <div class="col-md-3">
-        <h4> Notícias</h4>
+        <h4>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</h4>
         <a href="~/NewsItems">
             <img src="~/images/news.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+                                                                margin-right: 10px" />
         </a>
         <p>
             <small>
-                Todas as novidades sobre coleções, fotos, projetos e exposições.
+                @Html.ValueForModel(FrontOfficeStrings.NewsIndex)
             </small>
         </p>
     </div>
     <div class="col-md-3">
-        <h4> Eventos</h4>
+        <h4>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</h4>
         <a href="~/Events">
             <img src="~/images/events.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+                                                                margin-right: 10px" />
         </a>
         <p>
             <small>
-                Exposições, atividades, eventos pedagógicos, workshops, entre outros...
+                @Html.ValueForModel(FrontOfficeStrings.EventsIndex)
             </small>
         </p>
     </div>
     <div class="col-md-3">
-        <h4> Acervo</h4>
+        <h4>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</h4>
         <a href="~/Collections/">
             <img src="~/images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+                                                                margin-right: 10px" />
         </a>
         <p>
             <small>
-                Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.
+               @Html.ValueForModel(FrontOfficeStrings.CollectionsIndex)
             </small>
         </p>
     </div>
     <div class="col-md-3">
-        <h4> Destaque</h4>
+        <h4>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos", null, null)</h4>
         <a href="~/ShowCasePhotos">
             <img src="~/images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+                                                                margin-right: 10px" />
         </a>
         <p>
             <small>
-                Fotografias em destaque com comentário de Carlos Rodante Veloso.
+                @Html.ValueForModel(FrontOfficeStrings.ShowCaseIndex)
             </small>
         </p>
     </div>
 </div>
-
-<div id="overlay" style="top:0; left:0; width:100%; height:100%; z-index:100000 ">
-    <div style="top:5%; left:1% ; position:absolute">
-        <img style="max-height: 60px;" src="~/Content/Images/logo.png" />
-    </div>
-    @for (var i = 1; i < 2; i++)
-    {
-        var v = Model[i];
-        <div style="top:1%; right:20%; position:absolute">
-            <h1>Bem-vindo</h1>
-            @*<iframe width="854" height="510" src="https://www.youtube.com/embed/bFs0zJ9jQ-k" frameborder="0" allowfullscreen></iframe>*@
-            <iframe width="854" height="510" src=@Html.DisplayFor(modelItem=>v.Video) frameborder="0" allowfullscreen></iframe>
-        </div>
-    }
-    <button style="right:49%; bottom:5%; position:absolute" type="button" data-afsm-close-overlay="#afsm-overlay" class="btn btn-default" onmousedown="toggleOverlay()">Entrar</button>
-</div>
-
-<script type="text/javascript">
-    function toggleOverlay() {
-        var overlay = document.getElementById('overlay');
-        overlay.style.opacity = .99;
-        if (overlay.style.display == "block") {
-            overlay.style.display = "none";
-        } else {
-            overlay.style.display = "block";
-        }
-    }
-</script>

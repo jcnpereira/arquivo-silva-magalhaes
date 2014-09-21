@@ -1,67 +1,72 @@
-﻿@model ArquivoSilvaMagalhaes.Models.SiteModels.Event
+﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
 
 
-<h2>Evento</h2>
+<h2>@Html.DisplayFor(model => model.LastOrDefault().Translation.Title)</h2>
 
 <div>
     <hr />
+    <a href="~/Events">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</a> <b>&#9658</b> <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
+    <hr />
     <dl>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EventType)
-        </dt>
         <dd>
-            @Html.DisplayFor(model => model.EventType)
+            <h4>@Html.DisplayFor(model => model.LastOrDefault().Translation.Heading)</h4>
+        </dd>
+        <dd>
+            <p>@Html.DisplayFor(model => model.LastOrDefault().Translation.TextContent)</p>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Place)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventType)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Place)
+            @Html.EnumDisplayFor(model => model.LastOrDefault().Translation.Event.EventType)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Coordinates)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventPlace)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Coordinates)
-            @Html.HiddenFor(model => model.Coordinates, new { @class = "form-control" })
-            <div id="map_canvas" style="width:100%; height: 400px" data-afsm-for="#@Html.IdFor(model => model.Coordinates)"></div>
+            @Html.DisplayFor(model => model.LastOrDefault().Entity.Place)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VisitorInformation)
+            @Html.DisplayNameFor(model => model.LastOrDefault().Entity.Coordinates)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VisitorInformation)
+            <div id="map_canvas" style="width:100%; height: 400px" data-afsm-coords="@Model.LastOrDefault().Entity.Coordinates"></div>
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartMoment)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.InformationVisitors)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartMoment.Date.Day)/@Html.DisplayFor(model => model.StartMoment.Date.Month)/@Html.DisplayFor(model => model.StartMoment.Date.Year)
+            @Html.DisplayFor(model => model.LastOrDefault().Entity.VisitorInformation)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EndMoment)
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.InitialDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndMoment.Date.Day)/@Html.DisplayFor(model => model.EndMoment.Date.Month)/@Html.DisplayFor(model => model.EndMoment.Date.Year)
+            @Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Day)/@Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Month)/@Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Day)/@Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Month)/@Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Year)
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
 </p>
 
 
 @section scripts {
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    @Scripts.Render("~/Scripts/backoffice/gmaps")
+<script src="~/Scripts/frontoffice/gmaps-readonly.js"></script>
 }

@@ -1,26 +1,35 @@
-﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.ShowcasePhoto
+﻿@model TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
 
-<h2>Informações</h2>
-    <hr />
+<h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
+
+<hr />
 <div>
     <dl>
         <dt>
-            <b>@Html.DisplayNameFor(model => model.CommenterName):</b>
+            <strong>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CommentatorName)</strong>
 
         </dt>
         <dd>
-            @Html.DisplayFor(modelItem => modelItem.CommenterName)
+            @Html.DisplayFor(modelItem => modelItem.Entity.CommenterName)
         </dd>
         <dt>
-            <b> @Html.DisplayNameFor(model => model.CommenterEmail):</b>
+            <strong>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Email)</strong>
 
         </dt>
         <dd>
-            @Html.DisplayFor(modelItem => modelItem.CommenterEmail)
+            @if (Model.Entity.IsEmailVisible)
+            {
+                @Html.DisplayFor(modelItem => modelItem.Entity.CommenterEmail)
+            }
+            else
+            {
+                @FrontOfficeStrings.EmailNotVisible
+            }
         </dd>
     </dl>
+
 </div>
 <p>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
 </p>
 

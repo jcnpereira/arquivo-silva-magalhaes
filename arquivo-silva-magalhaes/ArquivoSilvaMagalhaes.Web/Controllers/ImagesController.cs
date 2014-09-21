@@ -12,60 +12,73 @@ using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Common;
 using PagedList;
 using PagedList.Mvc;
+using ArquivoSilvaMagalhaes.ViewModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class ImagesController : Controller
     {
-        private ArchiveDataContext db = new ArchiveDataContext();
+        /// <summary>
+        /// Associa Entidade Author às traduções existentes
+        /// </summary>
+         private ITranslateableRepository<Image, ImageTranslation> db;
 
-        // GET: Images
+        public ImagesController()
+            : this(new TranslateableGenericRepository<Image, ImageTranslation>()) { }
+
+        public ImagesController(ITranslateableRepository<Image, ImageTranslation> db)
+        {
+            this.db = db;
+        }
+
+        /// <summary>
+        /// Fornece lista paginada de imagens correspondentes ao documento onde estão inseridas 
+        /// e ordenada pelo id da imagem
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(int? id, int pageNumber=1)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Collection col = new Collection();
-            return View(await Task.Run(() => db.ImageTranslations
-          .Include(img => img.Image)
-          .Where(doc => doc.Image.DocumentId == id)
-          .Where(doc => doc.Image.IsVisible)
-                //.Where(doc => doc.LanguageCode == LanguageDefinitions.DefaultLanguage)
-          .OrderBy(doc => doc.Image.ProductionDate)
-          .ToPagedList(pageNumber, 12)));
+            Image img = new Image();
+
+            return View((await db.Entities
+                .Include(i => i.Translations)
+                .Where(i => i.IsVisible)
+                .Where(i => i.DocumentId == id)
+                .OrderBy(i => i.Id)
+                .ToListAsync())
+                .Select(doc => new TranslatedViewModel<Image, ImageTranslation>(doc))
+                .ToPagedList(pageNumber, 12));
         }
 
 
-        // GET: Images/Details/5
-        public ActionResult Details(int? id)
+       /// <summary>
+       /// Forence os detalhes de determinada imagem
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Image image = db.Images.Find(id);
+            Image image = await db.GetByIdAsync(id);
             if (image == null)
             {
                 return HttpNotFound();
             }
-            return View(image);
+            return View(new TranslatedViewModel<Image, ImageTranslation>(image));
         }
 
-        public ActionResult ViewImage(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Image image = db.Images.Find(id);
-            if (image == null)
-            {
-                return HttpNotFound();
-            }
-            return View(image);
-        }
-
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

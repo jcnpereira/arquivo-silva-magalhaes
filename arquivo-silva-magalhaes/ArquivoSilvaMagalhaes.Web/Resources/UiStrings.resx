@@ -225,4 +225,7 @@
   <data name="NoImage" xml:space="preserve">
     <value>(Sem imagem)</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Pesquisar</value>
+  </data>
 </root>

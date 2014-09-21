@@ -117,52 +117,202 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Acerca</value>
+  <data name="Address" xml:space="preserve">
+    <value>Morada</value>
   </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Autores</value>
+  <data name="AttachmentDescription" xml:space="preserve">
+    <value>Descrição de anexos</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="CollectionAuthors" xml:space="preserve">
+    <value>Autores da coleção</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Acervo</value>
+  </data>
+  <data name="CollectionTitle" xml:space="preserve">
+    <value>Título da coleção</value>
+  </data>
+  <data name="CommentatorName" xml:space="preserve">
+    <value>Nome do comentador</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Contactos</value>
   </data>
-  <data name="Contents" xml:space="preserve">
-    <value>Acervo</value>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordenadas</value>
   </data>
-  <data name="Council" xml:space="preserve">
-    <value>Câmara Municipal de Tomar</value>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="DocumentDate" xml:space="preserve">
+    <value>Data do documento</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documentos</value>
+  </data>
+  <data name="DocumentTitle" xml:space="preserve">
+    <value>Título do documento</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Data de fim</value>
+  </data>
+  <data name="EventPlace" xml:space="preserve">
+    <value>Local do evento</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Eventos</value>
   </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Tipo de evento</value>
+  </data>
   <data name="History" xml:space="preserve">
     <value>História</value>
   </data>
-  <data name="Index" xml:space="preserve">
-    <value>Início</value>
+  <data name="Images" xml:space="preserve">
+    <value>Imagens</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informações</value>
+  </data>
+  <data name="InformationVisitors" xml:space="preserve">
+    <value>Informações sobre visitantes</value>
+  </data>
+  <data name="InitialDate" xml:space="preserve">
+    <value>Data de início</value>
+  </data>
+  <data name="LastModificationDate" xml:space="preserve">
+    <value>Última modificação</value>
+  </data>
+  <data name="Localization" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+  <data name="NameResponsible" xml:space="preserve">
+    <value>Nome do responsável</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Notícias</value>
   </data>
-  <data name="Partnerships" xml:space="preserve">
+  <data name="Notes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="OrganizationSystem" xml:space="preserve">
+    <value>Sistema de organização</value>
+  </data>
+  <data name="Partnership" xml:space="preserve">
     <value>Projetos e Parcerias</value>
+  </data>
+  <data name="ProductionDate" xml:space="preserve">
+    <value>Data de produção</value>
+  </data>
+  <data name="ProductionInitialDate" xml:space="preserve">
+    <value>Data de início de produção</value>
+  </data>
+  <data name="PruductionEndDate" xml:space="preserve">
+    <value>Data de fim de produção</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publicação</value>
+  </data>
+  <data name="ReadNews" xml:space="preserve">
+    <value>Ler notícia</value>
+  </data>
+  <data name="ReferenceCode" xml:space="preserve">
+    <value>Código de referência</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisa</value>
   </data>
-  <data name="Showcase" xml:space="preserve">
-    <value>Destaque</value>
+  <data name="SearchMessage" xml:space="preserve">
+    <value>Utilize a caixa de pesquisa para inserir os termos que deseja procurar</value>
   </data>
-  <data name="SiteDescription" xml:space="preserve">
-    <value>Portal do Arquivo Fotográfico Silva Magalhães. O acervo deste Arquivo é constituído por diversos fundos e coleções de diversos fotógrafos e colecionadores do séc. XIX.</value>
+  <data name="ShowCase" xml:space="preserve">
+    <value>Fotografia em destaque</value>
   </data>
-  <data name="SiteName" xml:space="preserve">
-    <value>Arquivo Fotográfico Silva Magalhães</value>
+  <data name="ShowCasePhoto" xml:space="preserve">
+    <value>Fotografia em destaque</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Assunto</value>
   </data>
   <data name="TechnicalDocuments" xml:space="preserve">
     <value>Documentos Técnicos</value>
   </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telefone</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Links Úteis</value>
+  </data>
+  <data name="EmailNotVisible" xml:space="preserve">
+    <value>Email não visível ao público</value>
+  </data>
+  <data name="CollectionsIndex" xml:space="preserve">
+    <value>Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="EventsIndex" xml:space="preserve">
+    <value>Exposições, atividades, eventos pedagógicos, workshops, entre outros...</value>
+  </data>
+  <data name="NewsIndex" xml:space="preserve">
+    <value>Todas as novidades sobre coleções, fotos, projetos e exposições.</value>
+  </data>
+  <data name="ShowCaseIndex" xml:space="preserve">
+    <value>Fotografias em destaque com comentários.</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bem-vindo</value>
+  </data>
+  <data name="CatalogationDate" xml:space="preserve">
+    <value>Data de catalogação</value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>Informação sobre direitos de cópia</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Dimensão</value>
+  </data>
+  <data name="FieldAndContents" xml:space="preserve">
+    <value>Âmbito e conteúdo</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Missão</value>
+  </data>
+  <data name="Provenience" xml:space="preserve">
+    <value>Proveniência</value>
+  </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Autores</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Data de nascimento</value>
+  </data>
+  <data name="DeathDate" xml:space="preserve">
+    <value>Data de falecimento</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Biografia</value>
+  </data>
+  <data name="Nacionality" xml:space="preserve">
+    <value>Nacionalidade</value>
+  </data>
+  <data name="ImageNotAvailable" xml:space="preserve">
+    <value>Imagem não disponível</value>
   </data>
 </root>

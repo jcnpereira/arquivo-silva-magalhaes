@@ -11,17 +11,20 @@ using System.Web;
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
     /// <summary>
-    /// ViewModel que contem atributos do model banner utilizados na página de indexView do arquivo
+    /// ViewModel que contem os atributos dos autores aprensentados
     /// </summary>
-    public class IndexViewModel
+    public class AuthorsViewModel
     {
         [Key]
         public int Id { get; set; }
 
-        public string UriPath { get; set; }
-        public string Caption { get; set; }
-
-        public string Video { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime BirthDate { get; set; }
+        public DateTime DeathDate { get; set; }
+        public string Nationality { get; set; }
+        public string Biagraphy { get; set; }
+        public string Curriculum { get; set; }
 
     }
 }

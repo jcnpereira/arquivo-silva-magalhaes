@@ -1,69 +1,47 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveViewModels.AuthorViewModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Authors)</h2>
+<hr />
+<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Authors)</b>
+<hr />
+<ul class="media-list">
+    @foreach (var item in Model)
+    {
+        <li class="media">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeathDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Biography)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeathDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nationality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Biography)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Curriculum)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+            <div>
+                <a href="~/Authors/Details/@item.Entity.Id">
+                    <h4><b>@Html.DisplayFor(model => item.Entity.FirstName) @Html.DisplayFor(model => item.Entity.LastName)</b></h4>
+                </a>
+                <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)</b>
+                @if ((@Html.DisplayFor(model => item.Entity.BirthDate) != null))
+                {
+                    <p>@Html.DisplayFor(model => item.Entity.BirthDate.Year) / @Html.DisplayFor(model => item.Entity.BirthDate.Month) / @Html.DisplayFor(model => item.Entity.BirthDate.Day)</p>
+                }
+                else
+                {
+                    <p>@Html.Display("-")</p>
+                }
+                <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)</b>
+                @if ((@Html.DisplayFor(model => item.Entity.DeathDate) != null))
+                {
+                    <p>@Html.DisplayFor(model => item.Entity.DeathDate.Value.Year) / @Html.DisplayFor(model => item.Entity.DeathDate.Value.Month) / @Html.DisplayFor(model => item.Entity.DeathDate.Value.Day)</p>
+                }
+                else
+                {
+                    <p>@Html.Display("-")</p>
+                }
+            </div>
+        </li>
+    }
+</ul>
+@{
+    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
-
-</table>

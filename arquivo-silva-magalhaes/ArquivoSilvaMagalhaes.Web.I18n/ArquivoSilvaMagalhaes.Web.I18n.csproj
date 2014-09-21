@@ -44,6 +44,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="FrontOfficeStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeStrings.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeStrings.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +61,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrontOfficeStrings.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeStrings.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontOfficeStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web.config" />
+    <None Include="Resources\web.debug.config" />
+    <None Include="Resources\web.release.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
