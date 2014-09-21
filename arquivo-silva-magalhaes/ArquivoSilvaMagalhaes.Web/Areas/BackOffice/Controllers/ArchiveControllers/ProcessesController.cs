@@ -23,7 +23,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         public ProcessesController()
-            : this(new TranslateableGenericRepository<Process, ProcessTranslation>())
+            : this(new TranslateableRepository<Process, ProcessTranslation>())
         {
         }
 
@@ -96,8 +96,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                         }
                     };
 
-                    result.AddRange((await db.GetAllAsync())
-                          .OrderBy(ptr => ptr.Id)
+                    result.AddRange((await db.Entities
+                                  .OrderBy(p => p.Id)
+                                  .ToListAsync())
                           .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
                           .Select(ptr => new
                           {

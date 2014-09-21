@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         private ITranslateableRepository<Banner, BannerTranslation> db;
 
         public BannerPhotographController() 
-            : this(new TranslateableGenericRepository<Banner, BannerTranslation>()) { }
+            : this(new TranslateableRepository<Banner, BannerTranslation>()) { }
 
         public BannerPhotographController(ITranslateableRepository<Banner, BannerTranslation> db)
         {

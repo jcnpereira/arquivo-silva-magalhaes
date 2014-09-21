@@ -18,7 +18,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Image, ImageTranslation> db;
 
         public ImagesController()
-            : this(new TranslateableGenericRepository<Image, ImageTranslation>()) { }
+            : this(new TranslateableRepository<Image, ImageTranslation>()) { }
 
         public ImagesController(ITranslateableRepository<Image, ImageTranslation> db)
         {
@@ -46,9 +46,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             image.Translations = image.Translations.ToList();
 
-            return View(image);
+            return View(new ImageViewModel(image));
         }
 
+        #region Create
         public ActionResult Create(int documentId = 0)
         {
             var image = new Image();
@@ -64,7 +65,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             });
 
-            var model = new ImageEditViewModel(image, true);
+            var model = new ImageEditViewModel(image);
             model.PopulateDropDownLists(db.Set<Document>(), db.Set<Classification>(), db.Set<Keyword>());
 
             return View(model);
@@ -80,6 +81,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 {
                     var fileName = Guid.NewGuid().ToString() + "_" + Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
                     var path = Server.MapPath("~/Public/Images/");
+
                     FileUploadHelper.GenerateVersions(model.ImageUpload.InputStream, path + fileName);
 
                     model.Image.ImageUrl = fileName;
@@ -98,7 +100,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             return View(model);
         }
+        #endregion
 
+        #region Edit
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -112,7 +116,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return HttpNotFound();
             }
 
-            var model = new ImageEditViewModel(image, true);
+            var model = new ImageEditViewModel(image);
 
             model.PopulateDropDownLists(db.Set<Document>(), db.Set<Classification>(), db.Set<Keyword>());
 
@@ -131,7 +135,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 db.Update(model.Image);
 
                 model.Image.Keywords = db.Set<Keyword>()
-                                          .Where(k => model.KeywordIds.Contains(k.Id)).ToList();
+                                         .Where(k => model.KeywordIds.Contains(k.Id)).ToList();
 
                 foreach (var t in model.Image.Translations)
                 {
@@ -165,7 +169,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             return View(model);
         }
+        #endregion
 
+        #region Delete
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -212,7 +218,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Helper Actions
         public ActionResult SuggestCode(int? documentId)
         {
             if (documentId == null)
@@ -229,6 +237,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
         }
+        #endregion
 
         #region Translation Actions
         public async Task<ActionResult> AddTranslation(int? id)

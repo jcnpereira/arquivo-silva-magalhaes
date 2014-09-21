@@ -19,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db;
 
         public ShowcasePhotoesController()
-            : this(new TranslateableGenericRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
+            : this(new TranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
         public ShowcasePhotoesController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {

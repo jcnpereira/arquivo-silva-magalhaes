@@ -2,7 +2,6 @@
 using ImageResizer.Util;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.Common
 {
@@ -60,7 +59,7 @@ namespace ArquivoSilvaMagalhaes.Common
                     };
 
                     ImageBuilder.Current.Build(job);
-                } 
+                }
             }
         }
 

@@ -17,7 +17,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         private ITranslateableRepository<Event, EventTranslation> db;
 
         public EventsController()
-            : this(new TranslateableGenericRepository<Event, EventTranslation>())
+            : this(new TranslateableRepository<Event, EventTranslation>())
         {
         }
 

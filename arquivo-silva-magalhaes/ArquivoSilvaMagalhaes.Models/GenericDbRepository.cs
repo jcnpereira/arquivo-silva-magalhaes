@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -151,7 +150,7 @@ namespace ArquivoSilvaMagalhaes.Models
         }
     }
 
-    public class TranslateableGenericRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableRepository<TEntity, TTranslation>
+    public class TranslateableRepository<TEntity, TTranslation> : GenericDbRepository<TEntity>, ITranslateableRepository<TEntity, TTranslation>
         where TEntity : class
         where TTranslation : EntityTranslation
     {

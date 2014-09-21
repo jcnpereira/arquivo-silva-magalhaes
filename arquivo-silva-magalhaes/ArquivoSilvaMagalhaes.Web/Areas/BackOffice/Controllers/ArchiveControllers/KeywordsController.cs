@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Keyword, KeywordTranslation> db;
 
         public KeywordsController()
-            : this(new TranslateableGenericRepository<Keyword, KeywordTranslation>()) { }
+            : this(new TranslateableRepository<Keyword, KeywordTranslation>()) { }
 
         public KeywordsController(ITranslateableRepository<Keyword, KeywordTranslation> db)
         {
@@ -85,15 +85,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json((await db.GetAllAsync())
-                        .OrderBy(k => k.Id)
-                        .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
-                        .Select(ktr => new
-                        {
-                            value = ktr.Entity.Id.ToString(),
-                            text = ktr.Translation.Value
-                        })
-                        .ToList());
+                    return Json((await db.Entities
+                                  .OrderBy(k => k.Id)
+                                  .ToListAsync())
+                                  .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                                  .Select(ktr => new
+                                  {
+                                      value = ktr.Entity.Id.ToString(),
+                                      text = ktr.Translation.Value
+                                  })
+                                  .ToList());
                 }
 
                 return RedirectToAction("Index");
@@ -249,7 +250,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
-        }  
+        }
         #endregion
 
         protected override void Dispose(bool disposing)

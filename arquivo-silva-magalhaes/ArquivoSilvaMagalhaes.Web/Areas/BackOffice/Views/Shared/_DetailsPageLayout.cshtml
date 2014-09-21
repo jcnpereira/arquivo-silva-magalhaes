@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
-    ViewBag.Id = Model.Id ?? ViewBag.Id;
+    if (ViewBag.Id == null)
+    {
+        ViewBag.Id = Model.Id;
+    }
 }
 
 <h2>@ViewBag.Title</h2>

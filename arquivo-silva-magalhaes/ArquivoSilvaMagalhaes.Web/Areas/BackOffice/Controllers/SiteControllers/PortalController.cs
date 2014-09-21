@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         private ITranslateableRepository<Archive, ArchiveTranslation> db;
 
         public PortalController()
-            : this(new TranslateableGenericRepository<Archive, ArchiveTranslation>())
+            : this(new TranslateableRepository<Archive, ArchiveTranslation>())
         {
 
         }

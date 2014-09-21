@@ -17,7 +17,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Specimen, SpecimenTranslation> db;
 
         public SpecimensController()
-            : this(new TranslateableGenericRepository<Specimen, SpecimenTranslation>()) { }
+            : this(new TranslateableRepository<Specimen, SpecimenTranslation>()) { }
 
         public SpecimensController(ITranslateableRepository<Specimen, SpecimenTranslation> db)
         {

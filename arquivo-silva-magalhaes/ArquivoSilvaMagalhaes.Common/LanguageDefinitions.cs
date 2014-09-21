@@ -75,14 +75,17 @@ namespace ArquivoSilvaMagalhaes.Common
         /// </returns>
         public static string GetClosestLanguageCode(params string[] languages)
         {
-            foreach (var lang in languages.Where(l => !string.IsNullOrEmpty(l)))
+            if (languages != null)
             {
-                var resultingLanguage = GetClosestLanguageCode(lang);
-
-                if (resultingLanguage != null)
+                foreach (var lang in languages.Where(l => !string.IsNullOrEmpty(l)))
                 {
-                    return resultingLanguage;
-                }
+                    var resultingLanguage = GetClosestLanguageCode(lang);
+
+                    if (resultingLanguage != null)
+                    {
+                        return resultingLanguage;
+                    }
+                } 
             }
 
             return DefaultLanguage;

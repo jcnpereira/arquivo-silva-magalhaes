@@ -18,7 +18,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Author, AuthorTranslation> db;
 
         public AuthorsController()
-            : this(new TranslateableGenericRepository<Author, AuthorTranslation>()) { }
+            : this(new TranslateableRepository<Author, AuthorTranslation>()) { }
 
         public AuthorsController(ITranslateableRepository<Author, AuthorTranslation> db)
         {

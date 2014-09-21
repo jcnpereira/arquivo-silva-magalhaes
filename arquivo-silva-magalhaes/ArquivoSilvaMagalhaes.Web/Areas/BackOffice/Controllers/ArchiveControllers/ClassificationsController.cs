@@ -18,7 +18,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Classification, ClassificationTranslation> db;
 
         public ClassificationsController()
-            : this(new TranslateableGenericRepository<Classification, ClassificationTranslation>())
+            : this(new TranslateableRepository<Classification, ClassificationTranslation>())
         {
         }
 
@@ -88,8 +88,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 if (Request.IsAjaxRequest())
                 {
-                    return Json((await db.GetAllAsync())
+                    return Json((await db.Entities
                                   .OrderBy(ct => ct.Id)
+                                  .ToListAsync())
                                   .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
                                   .Select(ct => new
                                   {

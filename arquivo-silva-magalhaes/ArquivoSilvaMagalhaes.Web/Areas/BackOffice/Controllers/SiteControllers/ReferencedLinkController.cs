@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         private ITranslateableRepository<ReferencedLink, ReferencedLinkTranslation> db;
 
         public ReferencedLinkController()
-            : this(new TranslateableGenericRepository<ReferencedLink, ReferencedLinkTranslation>())
+            : this(new TranslateableRepository<ReferencedLink, ReferencedLinkTranslation>())
         {
         }
 
@@ -28,7 +28,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/ReferencedLink/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.GetAllAsync())
+            return View((await db.Entities
+                .OrderBy(rl => rl.Id)
+                .ToListAsync())
                 .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
                 .ToPagedList(pageNumber, 10));
         }

@@ -19,9 +19,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         private ITranslateableRepository<Collection, CollectionTranslation> db;
 
         public CollectionsController()
-            : this(new TranslateableGenericRepository<Collection, CollectionTranslation>()) { }
+            : this(new TranslateableRepository<Collection, CollectionTranslation>()) { }
 
-        public CollectionsController(TranslateableGenericRepository<Collection, CollectionTranslation> db)
+        public CollectionsController(TranslateableRepository<Collection, CollectionTranslation> db)
         {
             this.db = db;
         }

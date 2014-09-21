@@ -2,36 +2,46 @@
 using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 {
-
-
     public class ImageViewModel
     {
+        public ImageViewModel(Image i)
+        {
+            this.Image = i;
+
+            Keywords = Image.Keywords.ToList().Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                            .ToList();
+
+            Classification = new TranslatedViewModel<Classification, ClassificationTranslation>(Image.Classification);
+
+            Specimens = Image.Specimens.ToList().Select(s => new TranslatedViewModel<Specimen, SpecimenTranslation>(s))
+                             .ToList();
+        }
+
         public Image Image { get; set; }
 
-        public List<SelectListItem> AvailableKeywords { get; set; }
-        public List<SelectListItem> AvailableDocuments { get; set; }
+        public IEnumerable<TranslatedViewModel<Keyword, KeywordTranslation>> Keywords { get; set; }
+        public TranslatedViewModel<Classification, ClassificationTranslation> Classification { get; set; }
+        public IEnumerable<TranslatedViewModel<Specimen, SpecimenTranslation>> Specimens { get; set; }
     }
 
     public class ImageEditViewModel
     {
-        public ImageEditViewModel() : this(new Image(), true)
+        public ImageEditViewModel()
+            : this(new Image())
         {
         }
 
-        public ImageEditViewModel(Image i, bool addWatermark)
+        public ImageEditViewModel(Image i)
         {
             this.Image = i;
-            this.AddWatermark = addWatermark;
 
             AvailableKeywords = new List<SelectListItem>();
 
@@ -100,7 +110,5 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         public int[] KeywordIds { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
-
-        public bool AddWatermark { get; set; }
     }
 }
