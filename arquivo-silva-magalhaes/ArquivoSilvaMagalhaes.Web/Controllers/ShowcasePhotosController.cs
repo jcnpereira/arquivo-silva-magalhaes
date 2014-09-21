@@ -24,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db;
 
         public ShowcasePhotosController()
-            : this(new TranslateableGenericRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
+            : this(new TranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
         public ShowcasePhotosController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {

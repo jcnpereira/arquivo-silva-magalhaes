@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ITranslateableRepository<Collection, CollectionTranslation> db;
 
         public CollectionsController()
-            : this(new TranslateableGenericRepository<Collection, CollectionTranslation>()) { }
+            : this(new TranslateableRepository<Collection, CollectionTranslation>()) { }
 
         public CollectionsController(ITranslateableRepository<Collection, CollectionTranslation> db)
         {

@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         private ITranslateableRepository<Event, EventTranslation> db;
 
         public EventsController()
-            : this(new TranslateableGenericRepository<Event, EventTranslation>()) { }
+            : this(new TranslateableRepository<Event, EventTranslation>()) { }
 
         public EventsController(ITranslateableRepository<Event, EventTranslation> db)
         {

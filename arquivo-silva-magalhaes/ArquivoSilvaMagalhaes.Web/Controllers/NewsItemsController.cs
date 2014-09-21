@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
          private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsItemsController()
-            : this(new TranslateableGenericRepository<NewsItem, NewsItemTranslation>()) { }
+            : this(new TranslateableRepository<NewsItem, NewsItemTranslation>()) { }
 
         public NewsItemsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
         {

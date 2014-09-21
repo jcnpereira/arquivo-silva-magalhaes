@@ -24,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
          private ITranslateableRepository<Image, ImageTranslation> db;
 
         public ImagesController()
-            : this(new TranslateableGenericRepository<Image, ImageTranslation>()) { }
+            : this(new TranslateableRepository<Image, ImageTranslation>()) { }
 
         public ImagesController(ITranslateableRepository<Image, ImageTranslation> db)
         {
