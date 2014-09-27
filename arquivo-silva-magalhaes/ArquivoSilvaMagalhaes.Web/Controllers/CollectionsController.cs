@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
+﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
-using ArquivoSilvaMagalhaes.Common;
 using PagedList;
-using PagedList.Mvc;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 
 namespace ArquivoSilvaMagalhaes.Controllers
@@ -37,18 +31,18 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int pageNumber=1)
+        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0)
         {
             return View((await db.Entities
                             .Include(col => col.Authors)
+                            .Where(c => authorId == 0 || c.Authors.Any(a => a.Id == authorId))
                             .Where(col => col.IsVisible)
-                            .OrderByDescending(col => col.EndProductionDate)
                             .ToListAsync())
                             .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
                             .ToPagedList(pageNumber, 12));
         }
         /// <summary>
-        /// Forece detalhes de uma determinda coleção
+        /// Fornece detalhes de uma determinda coleção
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

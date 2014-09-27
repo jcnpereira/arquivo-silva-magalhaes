@@ -323,6 +323,7 @@
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons.css" />
+    <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.css">
       <DependentUpon>glyphicons.less</DependentUpon>
     </Content>
@@ -888,7 +889,6 @@
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
     <Content Include="Views\Shared\_IndexPageLayout.cshtml" />
-    <Content Include="Views\Home\IndexView.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\_VideoDisplayPartial.cshtml" />

@@ -1,55 +1,39 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
-@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</h2>
-<hr />
-<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</b>
-<hr />
-
-@foreach (var col in Model)
-{
-    <div class="media col-md-6">
-        <a class="pull-left" href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
-            <img class="media-object" style="width:200px" src="~/Public/Collections/@col.Entity.LogoLocation">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">
-              @if(col.Translation.Collection.Documents.Count()!=null){
-                    <a href="~/Documents/Index/@Html.DisplayFor(itemModel => col.Entity.Id)">
-                        @Html.DisplayFor(modelItem => col.Translation.Title)
-                    </a>
-              }
-              else
-              {  @Html.DisplayFor(modelItem => col.Translation.Title) }
-            </h4>
-            <p>
-                @Html.DisplayFor(modelItem => col.Translation.Description)
-            </p>
-            @{
-    var authors = col.Entity.Authors.ToList();
-            }
-
-            @foreach (var a in authors)
-            {
-                <a href="~/Authors/Details/@a.Id">
-                    <p style="font-size:small">
-                        @(a.FirstName +" "+ a.LastName)
-                    </p>
-                </a>
-            }
-            <p style="font-size:smaller">
-                @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = col.Entity.Id })
-            </p>
-        </div>
-    </div>
-}
+﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+    var m = Model.ToList();
 }
+
+<h2>
+    @FrontOfficeStrings.Collections
+</h2>
+<hr />
+<b>@FrontOfficeStrings.Collections</b>
+<hr />
+
+<div class="row">
+    @foreach (var col in Model)
+    {
+        var authors = col.Entity.Authors.ToList();
+
+        var logo = col.Entity.LogoLocation != null ?
+            "Public/Collections/" + col.Entity.LogoLocation :
+            "Content/Images/no-image.png";
+
+        <div class="afsm-thumb col-sm-6 col-lg-4">
+            <a href="@Url.Action("Index", "Documents", new { id = col.Entity.Id })"
+               class="thumbnail">
+                <img src="~/@logo"
+                     alt="@col.Translation.Title" />
+                <div class="caption">
+                    <h4>@col.Translation.Title</h4>
+                    <p>
+                        @Html.Truncate(col.Translation.Description, 100)
+                    </p>
+                </div>
+            </a>
+        </div>
+    }
+</div>

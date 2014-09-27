@@ -11,6 +11,13 @@ namespace ArquivoSilvaMagalhaes.Common
 {
     public static class ViewExtensions
     {
+        public static MvcHtmlString Truncate(this HtmlHelper html, string content, int maxLength, string ellipsis = "...")
+        {
+            return content.Length < maxLength ?
+                MvcHtmlString.Create(content.Replace("\r\n", "<br />\r\n")) :
+                MvcHtmlString.Create(content.Substring(0, maxLength).Replace("\r\n", "<br />\r\n") + ellipsis);
+        }
+
         /// <summary>
         /// Returns an HTML-encoded string for a model whose property
         /// contains line breaks.
