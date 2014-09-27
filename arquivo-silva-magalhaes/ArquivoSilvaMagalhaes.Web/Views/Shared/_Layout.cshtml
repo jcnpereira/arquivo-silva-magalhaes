@@ -37,7 +37,7 @@
     <meta name="description" content="@LayoutStrings.SiteDescription" />
 
     <title>
-        @ViewBag.Title @(ViewBag.Title != null ? "| " : "")Arquivo Fotográfico Silva Magalhães
+        @ViewBag.Title @(!string.IsNullOrEmpty(ViewBag.Title) ? "| " : "")Arquivo Fotográfico Silva Magalhães
     </title>
 
     <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
@@ -66,7 +66,6 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos", null, null)</li>
                     <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
-                    <li>@Html.ActionLink(LayoutStrings.Authors, "Index", "Authors")</li>
                     <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
                     <li>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</li>
                     <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
@@ -95,7 +94,7 @@
 
                 <ul class="nav nav-stacked">
                     <li>
-                        <a href="@Url.Action("IndexView", "Home")" title="@LayoutStrings.Index">
+                        <a href="@Url.Action("Index", "Home")" title="@LayoutStrings.Index">
                             <img src="~/Content/Images/logo.png" alt="@LayoutStrings.SiteName" />
                         </a>
                     </li>
@@ -106,7 +105,6 @@
                 <ul class="nav nav-stacked">
                     <li>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos")</li>
                     <li>@Html.ActionLink(LayoutStrings.Contents, "Index", "Collections")</li>
-                    <li>@Html.ActionLink(LayoutStrings.Authors, "Index", "Authors")</li>
                     <li>@Html.ActionLink(LayoutStrings.Search, "Index", "Search")</li>
                     <li>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</li>
                     <li>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</li>
@@ -127,7 +125,7 @@
                 <footer class="text-center">
                     <p>
                         <a href="@Url.Action("About", "Home")">
-                            &copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT
+                            &copy; @DateTime.Now.Year - @LayoutStrings.SiteName &amp; IPT
                         </a>
                     </p>
                 </footer>

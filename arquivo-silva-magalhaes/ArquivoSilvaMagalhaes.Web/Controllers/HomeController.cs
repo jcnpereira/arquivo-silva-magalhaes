@@ -1,16 +1,13 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using System.Web.Mvc;
-using System.Linq;
-using System.Data.Entity;
-using System.Threading;
-using ArquivoSilvaMagalhaes.ViewModels;
-using System.Web;
-using System.Threading.Tasks;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using PagedList;
-using PagedList.Mvc;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System.Collections.Generic;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -32,43 +29,20 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// Fornece ViewModel que agrega atributos de BannerModel e SpotLightVideoModel
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(GetIndexViewModel());
-        }
-
-        /// <summary>
-        /// Obtem os atributos de Banner e Video
-        /// </summary>
-        /// <returns></returns>
-        private List<IndexViewModel> GetIndexViewModel()
-        {
-            List<IndexViewModel> indexView = new List<IndexViewModel>();
-            foreach (var ind in db.Banners.ToList())
+            var model = new IndexViewModel
             {
-                IndexViewModel index = new IndexViewModel();
-                index.Id = ind.Id;
-                index.UriPath = ind.UriPath;
-                index.Caption = ind.Translations.LastOrDefault().Caption;
-                var SpotlightVideo = db.SpotlightVideos.ToList();
-                {
-                    foreach (var v in db.SpotlightVideos.ToList())
-                    {
-                        index.Video = v.UriPath;
-                    }
-                }
-                indexView.Add(index);
-            }
-            return indexView;
-        }
+                Banners = (await db.Banners.ToListAsync())
+                                   .Select(b => new TranslatedViewModel<Banner, BannerTranslation>(b))
+                                   .ToList(),
 
-        /// <summary>
-        /// Fornece os atributos listados contidos no model BannerTranslation
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult IndexView()
-        {
-            return View(db.BannerTranslations.ToList());
+                VideoId = (await db.Configurations
+                                   .FindAsync(AppConfiguration.VideoUrlKey))
+                                   .Value
+            };
+
+            return View(model);
         }
 
         /// <summary>
@@ -79,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View(db.ArchiveTranslations.ToList());
         }
-        
+
 
         /// <summary>
         /// Loja ainda não existe (poderá ser desenvolvida futuramente)
