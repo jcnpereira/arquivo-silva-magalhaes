@@ -1,6 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System.Collections;
+using ArquivoSilvaMagalhaes.Web.Libs;
 using System.Data.Entity;
 
 namespace ArquivoSilvaMagalhaes.Models
@@ -12,6 +12,7 @@ namespace ArquivoSilvaMagalhaes.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
         }
 
         public virtual DbSet<Collection> Collections { get; set; }
@@ -76,5 +77,10 @@ namespace ArquivoSilvaMagalhaes.Models
         public virtual DbSet<ArchiveTranslation> ArchiveTranslations { get; set; }
 
         public virtual DbSet<Contact> ArchiveContacts { get; set; }
+
+        /// <summary>
+        /// Key-Value store for configurations.
+        /// </summary>
+        public virtual DbSet<AppConfiguration> Configurations { get; set; }
     }
 }

@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Alterar vídeo em destaque</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Vídeo em Destaque</value>
+  </data>
   <data name="UriPath" xml:space="preserve">
-    <value>URL do vídeo</value>
+    <value>URL do vídeo do YouTube</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Vídeo</value>
   </data>
 </root>

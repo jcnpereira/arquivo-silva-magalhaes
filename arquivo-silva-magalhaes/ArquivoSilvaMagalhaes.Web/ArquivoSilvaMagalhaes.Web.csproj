@@ -500,9 +500,6 @@
     <Content Include="Areas\BackOffice\Views\Specimens\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_SubmitBackPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\SpotLightVideo\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\SpotLightVideo\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Events\Create.cshtml" />

@@ -16,7 +16,13 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         protected override void Seed(ArquivoSilvaMagalhaes.Models.ArchiveDataContext context)
         {
-                
+            context.Configurations.AddOrUpdate(
+                c => c.Key,
+                new AppConfiguration
+                {
+                    Key = AppConfiguration.VideoUrlKey,
+                    Value = "63JNz7UZYwU"
+                });
         }
 
 

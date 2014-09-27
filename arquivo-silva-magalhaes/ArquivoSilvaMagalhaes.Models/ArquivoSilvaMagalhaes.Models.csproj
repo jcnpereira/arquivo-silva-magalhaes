@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfiguration.cs" />
     <Compile Include="ArchiveDataContext.cs" />
     <Compile Include="ArchiveModels\Author.cs" />
     <Compile Include="ArchiveModels\Classification.cs" />
@@ -305,6 +306,10 @@
     <ProjectReference Include="..\ArquivoSilvaMagalhaes.Common\ArquivoSilvaMagalhaes.Common.csproj">
       <Project>{fc7d90b5-1d96-4fce-a3e8-fe44ca8caa48}</Project>
       <Name>ArquivoSilvaMagalhaes.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArquivoSilvaMagalhaes.Web.Libs\ArquivoSilvaMagalhaes.Web.Libs.csproj">
+      <Project>{346522a3-4fc1-4e0c-99b5-88365347b379}</Project>
+      <Name>ArquivoSilvaMagalhaes.Web.Libs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

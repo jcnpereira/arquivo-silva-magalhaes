@@ -61,11 +61,38 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL do vídeo.
+        ///   Looks up a localized string similar to Alterar vídeo em destaque.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vídeo em Destaque.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL do vídeo do YouTube.
         /// </summary>
         public static string UriPath {
             get {
                 return ResourceManager.GetString("UriPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vídeo.
+        /// </summary>
+        public static string Video {
+            get {
+                return ResourceManager.GetString("Video", resourceCulture);
             }
         }
     }
