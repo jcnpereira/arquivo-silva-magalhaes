@@ -1,5 +1,4 @@
 ﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,20 +36,24 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(CollectionStrings), Name = "Type"), Required]
         public CollectionType? Type { get; set; }
 
-        /// <summary>
-        /// The date on which this collection was created.
-        /// </summary>
         [Required]
-        [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(CollectionStrings), Name = "InitialProductionDate")]
-        public DateTime InitialProductionDate { get; set; }
+        [Display(ResourceType = typeof(CollectionStrings), Name = "ProductionPeriod")]
+        public string ProductionPeriod { get; set; }
 
-        /// <summary>
-        /// The date on which this collection was created.
-        /// </summary>
-        [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(CollectionStrings), Name = "EndProductionDate")]
-        public DateTime? EndProductionDate { get; set; }
+        ///// <summary>
+        ///// The date on which this collection was created.
+        ///// </summary>
+        //[Required]
+        //[DataType(DataType.Date)]
+        //[Display(ResourceType = typeof(CollectionStrings), Name = "InitialProductionDate")]
+        //public DateTime InitialProductionDate { get; set; }
+
+        ///// <summary>
+        ///// The date on which this collection was created.
+        ///// </summary>
+        //[DataType(DataType.Date)]
+        //[Display(ResourceType = typeof(CollectionStrings), Name = "EndProductionDate")]
+        //public DateTime? EndProductionDate { get; set; }
 
         /// <summary>
         /// Location of the logo of this collection.

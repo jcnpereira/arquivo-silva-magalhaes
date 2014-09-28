@@ -22,6 +22,10 @@
             </th>
 
             <th>
+                @Html.DisplayNameFor(model => model.Entity.ProductionPeriod)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Translation.Dimension)
             </th>
 
@@ -40,6 +44,10 @@
 
             <td>
                 @(item.Entity.IsVisible ? UiStrings.Yes : UiStrings.No)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Entity.ProductionPeriod)
             </td>
 
             <td>

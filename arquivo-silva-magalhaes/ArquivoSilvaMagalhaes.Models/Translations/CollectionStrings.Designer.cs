@@ -277,6 +277,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Período de produção.
+        /// </summary>
+        public static string ProductionPeriod {
+            get {
+                return ResourceManager.GetString("ProductionPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proveniência.
         /// </summary>
         public static string Provenience {

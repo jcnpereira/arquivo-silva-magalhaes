@@ -189,6 +189,9 @@
   <data name="OrganizationSystem" xml:space="preserve">
     <value>Sistema de organização</value>
   </data>
+  <data name="ProductionPeriod" xml:space="preserve">
+    <value>Período de produção</value>
+  </data>
   <data name="Provenience" xml:space="preserve">
     <value>Proveniência</value>
   </data>
