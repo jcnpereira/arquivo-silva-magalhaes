@@ -23,19 +23,19 @@
             "Content/Images/no-image.png";
 
         <div class="afsm-thumb col-sm-6 col-lg-4">
-            <a href="@Url.Action("Index", "Documents", new { collectionId = col.Entity.Id })"
+            <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })"
                class="thumbnail">
                 <img src="~/@logo"
                      alt="@col.Translation.Title" />
                 <div class="caption">
                     <h4>
-                        @Html.Truncate(col.Translation.Title, 30)
+                        @Html.Truncate(col.Translation.Title, 20)
                         <small>
                             &nbsp;@col.Entity.CatalogCode
                         </small>
                     </h4>
                     <p>
-                        <small>@Html.Truncate(col.Translation.Description, 80)</small>
+                        <small>@Html.Truncate(col.Translation.Description, 40)</small>
                     </p>
                 </div>
             </a>

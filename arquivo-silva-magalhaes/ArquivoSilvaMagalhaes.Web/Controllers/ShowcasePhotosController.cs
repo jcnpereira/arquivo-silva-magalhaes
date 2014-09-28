@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Threading.Tasks;
-using ArquivoSilvaMagalhaes.Common;
-using PagedList;
-using PagedList.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -41,25 +36,29 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View((await db.Entities
                 .Include(sp => sp.Image)
+                .OrderByDescending(sp => sp.VisibleSince)
                 .Where(sp => sp.VisibleSince <= DateTime.Now)
                 .ToListAsync())
-                .OrderByDescending(sp=>sp.Id)
                 .Select(b => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(b))
-                .ToPagedList(pageNumber, 1));
+                .ToPagedList(pageNumber, 10));
         }
 
-       /// <summary>
-       /// Fornece o nome do Comentador e o seu email caso seja permitido
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Fornece o nome do Comentador e o seu email caso seja permitido
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasephoto = await db.GetByIdAsync(id);
+            ShowcasePhoto showcasephoto = await db.Entities
+                .Include(sp => sp.Image)
+                .FirstOrDefaultAsync(sp => sp.Id == id);
+
+
             if (showcasephoto == null || showcasephoto.VisibleSince >= DateTime.Now)
             {
                 return HttpNotFound();

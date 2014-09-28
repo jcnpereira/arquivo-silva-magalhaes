@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int documentId, int pageNumber = 1)
+        public async Task<ActionResult> Index(int documentId = 0, int pageNumber = 1)
         {
 
             return View((await db.Entities

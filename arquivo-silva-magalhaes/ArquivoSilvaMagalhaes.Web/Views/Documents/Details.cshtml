@@ -1,68 +1,88 @@
-﻿@model TranslatedViewModel<Document, DocumentTranslation>
+﻿@model DocumentDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Document.Entity.Title;
 }
 
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</h2>
+<h2>
+    @Html.Truncate(Model.Document.Entity.Title, 50)
+    &nbsp;<small>@Model.Document.Entity.CatalogCode</small>
+</h2>
 
-<div>
-    <hr />
-    <a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b> &#9658 </b><a href="~/Documents/Index/@Model.Entity.CollectionId">
-    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)
-</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentTitle)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.Title)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.NameResponsible)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.ResponsibleName)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DocumentDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.DocumentDate)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Notes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.Notes)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Description)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.FieldAndContents)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.FieldAndContents)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CatalogationDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.CatalogationDate)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ReferenceCode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.CatalogCode)
-        </dd>
-    </dl>
-</div>
+<hr />
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Collections")">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Document.Entity.CollectionId })">
+            @DocumentStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li class="active">
+        @Html.Truncate(Model.Document.Entity.Title, 20)
+    </li>
+</ol>
+
 <p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.Entity.CollectionId })
+    @Html.DisplayMultilineFor(model => model.Document.Translation.Description)
 </p>
+
+<dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.Document.Entity.DocumentDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Document.Entity.DocumentDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Document.Translation.FieldAndContents)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Document.Translation.FieldAndContents)
+    </dd>
+</dl>
+
+@if (Model.Images.Count() > 0)
+{
+    <h4>
+        @(ImageStrings.EntityNamePlural) (@Model.Images.Count())
+        <small>
+            @Html.ActionLink("Ver imagens", "Index", "Images", new { documentId = Model.Document.Entity.Id }, null)
+        </small>
+    </h4>
+
+    <hr />
+
+    <div class="row">
+        @foreach (var img in Model.Images)
+        {
+            var logo = img.Entity.ImageUrl != null ?
+                "Public/Images/" + img.Entity.ImageUrl + "_thumb.jpg" :
+                "Content/Images/no-image.png";
+
+            <div class="afsm-thumb col-sm-6 col-lg-4">
+                <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
+                   class="thumbnail">
+                    <img src="~/@logo"
+                         alt="@img.Translation.Title" />
+                    <div class="caption">
+                        <h4>
+                            @Html.Truncate(img.Translation.Title, 30)
+                            <small>
+                                &nbsp;@img.Entity.ImageCode
+                            </small>
+                        </h4>
+                        <p>
+                            <small>@Html.Truncate(img.Translation.Description, 80)</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}

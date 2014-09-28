@@ -116,7 +116,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 foreach (var item in showcasePhoto.Translations)
                 {
-                    db.Update(showcasePhoto);
+                    db.UpdateTranslation(item);
                 }
 
                 await db.SaveChangesAsync();

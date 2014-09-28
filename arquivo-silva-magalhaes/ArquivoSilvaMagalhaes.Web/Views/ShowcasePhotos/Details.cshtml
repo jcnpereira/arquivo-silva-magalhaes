@@ -1,35 +1,63 @@
 ﻿@model TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
 
-<h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
+@{
+    ViewBag.Title = Model.Translation.Title;
+}
 
-<hr />
-<div>
-    <dl>
-        <dt>
-            <strong>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CommentatorName)</strong>
+<div class="afsm-header-image row"
+     style="background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
+    <div class="afsm-header">
+        <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
 
-        </dt>
-        <dd>
-            @Html.DisplayFor(modelItem => modelItem.Entity.CommenterName)
-        </dd>
-        <dt>
-            <strong>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Email)</strong>
+        <p>
+            @Model.Entity.CommenterName
 
-        </dt>
-        <dd>
             @if (Model.Entity.IsEmailVisible)
             {
-                @Html.DisplayFor(modelItem => modelItem.Entity.CommenterEmail)
+                <small>
+                    @Html.DisplayFor(model => model.Entity.CommenterEmail)
+                </small>
             }
-            else
-            {
-                @FrontOfficeStrings.EmailNotVisible
-            }
-        </dd>
-    </dl>
+        </p>
 
+        <p>
+            @Html.DisplayFor(model => Model.Entity.VisibleSince)
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
-</p>
 
+<div class="afsm-commentary">
+    @Html.DisplayFor(model => model.Translation.Comment)
+</div>
+
+@*@section scripts {
+    <style>
+        .afsm-header-image {
+            background-size: cover;
+            background-position: center center;
+            height: 400px;
+            display: flex;
+            -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+            margin: -20px -40px 0 -40px;
+        }
+
+        .afsm-header-image > .afsm-header {
+            padding: 10px 20px 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .afsm-commentary {
+            margin-top: 20px;
+        }
+
+        .line:empty, .line > br {
+            display: none;
+        }
+
+        .line + .line {
+            margin-bottom: 25px;
+        }
+    </style>
+}*@

@@ -5,20 +5,71 @@
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
-<h2 class="page_title">@Html.DisplayName(FrontOfficeStrings.ShowCase)</h2>
-<hr />
-<div class="space"> </div>
-<div class="clear"> </div>
+<h2>
+    @ShowcasePhotoStrings.EntityNamePlural
+</h2>
 
-@foreach (var item in Model)
-{
-    <div align="center">
-        <h4>@Html.DisplayFor(modelItem => item.Translation.Title)</h4>
-        <img class="img-responsive" src="~/Public/Images/@(item.Entity.Image.ImageUrl)_large.jpg" />
-        @Html.DisplayFor(modelItem => item.Entity.Image.Specimens)<br />
-            <p align="justify"> @Html.DisplayFor(modelItem => item.Translation.Comment)</p>
-            @Html.DisplayFor(modelItem => item.Entity.VisibleSince)
-            <h6>@Html.ActionLink(FrontOfficeStrings.Informations, "Details", new { id = item.Entity.Id })</h6>
-            <br />
-    </div>
+<hr />
+
+@{
+    var mostRecent = Model.FirstOrDefault();
 }
+<div class="list-group">
+
+    <a href="@Url.Action("Details", "ShowcasePhotos", new { mostRecent.Entity.Id })" class="list-group-item">
+        <div class="media">
+            <div class="pull-left">
+                <img class="media-object" style="width: 128px; height: 128px"
+                     src="~/Public/Images/@(mostRecent.Entity.Image.ImageUrl)_thumb.jpg">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">
+                    @Html.Truncate(mostRecent.Translation.Title, 60)
+                </h3>
+
+                <p>
+                    @mostRecent.Entity.CommenterName
+                </p>
+
+                <small>
+                    @Html.DisplayFor(model => mostRecent.Entity.VisibleSince)
+                </small>
+
+                <p>
+                    @Html.Truncate(mostRecent.Translation.Comment, 100, ellipsis: "...</div>")
+                </p>
+            </div>
+        </div>
+    </a>
+
+    @foreach (var item in Model.Where(m => m != mostRecent))
+    {
+        <a href="@Url.Action("Details", "ShowcasePhotos", new { item.Entity.Id })" class="list-group-item">
+            <div class="media">
+                <div class="pull-left">
+                    <img class="media-object" style="width: 96px; height: 96px"
+                         src="~/Public/Images/@(item.Entity.Image.ImageUrl)_thumb.jpg">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @Html.Truncate(item.Translation.Title, 60)
+                    </h4>
+
+                    <p>
+                        @item.Entity.CommenterName
+                    </p>
+
+                    <small>
+                        @Html.DisplayFor(model => item.Entity.VisibleSince)
+                    </small>
+
+                    <p>
+                        @Html.Truncate(item.Translation.Comment, 100, ellipsis: "...</div>")
+                    </p>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+

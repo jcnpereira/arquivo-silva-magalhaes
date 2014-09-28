@@ -53,11 +53,20 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Collection collection = await db.GetByIdAsync(id);
+
+            collection.Authors = collection.Authors.ToList();
+            collection.Documents = collection.Documents.ToList();
+
             if (collection == null)
             {
                 return HttpNotFound();
             }
-            return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
+            return View(new CollectionDetailsViewModel
+                {
+                    Collection = new TranslatedViewModel<Collection, CollectionTranslation>(collection),
+                    Documents = collection.Documents.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d)).ToList(),
+                    Authors = collection.Authors.Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a)).ToList()
+                });
         }
 
         /// <summary>

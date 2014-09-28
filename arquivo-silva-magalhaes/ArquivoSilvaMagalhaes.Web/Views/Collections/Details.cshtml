@@ -1,93 +1,182 @@
-﻿@model TranslatedViewModel<Collection, CollectionTranslation>
-
+﻿@model CollectionDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Collection.Translation.Title;
+
+    var logo = Model.Collection.Entity.LogoLocation != null ?
+        "Public/Collections/" + Model.Collection.Entity.LogoLocation :
+        "Content/Images/no-image.png";
 }
 
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</h2>
-<div>
-    <hr />
-    <a href="~/Collections">
-        @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)
-    </a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CollectionTitle)
-        </dt>
+<h2>
+    @Html.Truncate(Model.Collection.Translation.Title, 50)
+    &nbsp;<small>@Model.Collection.Entity.CatalogCode</small>
+</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Title)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Provenience)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Provenience)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CollectionAuthors)
-        </dt>
-        <dd>
-            @for (int i = 0; i < Model.Entity.Authors.Count(); i++)
-            {
-                @Html.DisplayFor(model => model.Entity.Authors.ElementAt(i).FirstName) @Html.DisplayFor(model => model.Entity.Authors.ElementAt(i).LastName)<br />
-            }
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Provenience)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Provenience)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Dimension)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Dimension)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ProductionInitialDate)
-        </dt>
+<hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Entity.InitialProductionDate)
-        </dd>
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Collections")">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
 
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.PruductionEndDate)
-        </dt>
+    <li class="active">
+        @Html.Truncate(Model.Collection.Translation.Title, 20)
+    </li>
+</ol>
 
-        <dd>
-            @Html.DisplayFor(model => model.Entity.EndProductionDate)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Notes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.Notes)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.OrganizationSystem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.OrganizationSystem)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.AttachmentDescription)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Description)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.CopyrightInfo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.CopyrightInfo)
-        </dd>
-    </dl>
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="~/@logo"
+             class="img-responsive"
+             alt="@Model.Collection.Translation.Title" />
+    </div>
+
+    <div class="col-sm-8">
+        <dl>
+
+            <dt>
+                @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
+            </dt>
+
+            <dd>
+                @Model.Collection.Entity.ProductionPeriod
+            </dd>
+
+            <dt>
+                Autoria de
+            </dt>
+
+            <dd>
+                @for (var i = 0; i < Model.Authors.Count(); i++)
+                {
+                    var a = Model.Authors[i];
+
+                    <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
+                        @(a.Entity.FirstName + " " + a.Entity.LastName)
+                    </a>
+
+                    <span>&nbsp;</span>
+                }
+            </dd>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
-</p>
+
+<hr />
+
+<dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.Description)
+    </dt>
+
+    <dd>
+        @Html.DisplayMultilineFor(model => model.Collection.Translation.Description)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.Provenience)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Collection.Translation.Provenience)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.Dimension)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Collection.Translation.Dimension)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.FieldAndContents)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Collection.Translation.FieldAndContents)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Collection.Translation.CopyrightInfo)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Collection.Translation.CopyrightInfo)
+    </dd>
+</dl>
+
+@if (Model.Documents.Count > 0)
+{
+    <h4>
+        @DocumentStrings.EntityNamePlural (@(Model.Documents.Count))
+        <small>
+            @Html.ActionLink("Ver documentos", "Index", "Documents", new { collectionId = Model.Collection.Entity.Id }, null)
+        </small>
+    </h4>
+
+    <hr />
+
+    <div class="list-group">
+
+        @foreach (var doc in Model.Documents)
+        {
+            <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="media-object" style="width: 96px; height: 96px"
+                             src="~/Content/Images/no-image.png">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            @Html.Truncate(doc.Entity.Title, 60)
+                            &nbsp;<small>@doc.Entity.CatalogCode</small>
+                        </h4>
+
+                        <dl>
+                            <dt>
+                                Data:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                            </dd>
+
+                            <dt>
+                                Local:
+                            </dt>
+                            <dd>
+                                @doc.Translation.DocumentLocation
+                            </dd>
+
+                        </dl>
+
+                        <p>
+                            @Html.Truncate(doc.Translation.Description, 120)
+                        </p>
+
+
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+}
+
+@section scripts {
+    <style>
+        dl > dt + dd {
+            margin-bottom: 15px;
+        }
+
+        dl > dt {
+            margin-bottom: 5px;
+        }
+    </style>
+}

@@ -54,12 +54,22 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Document document = await db.GetByIdAsync(id);
+
             if (document == null)
             {
                 return HttpNotFound();
             }
-            return View(new TranslatedViewModel<Document, DocumentTranslation>(document));
+
+            return View(new DocumentDetailsViewModel
+                {
+                    Document = new TranslatedViewModel<Document, DocumentTranslation>(document),
+                    Images = document.Images
+                                     .Where(i => i.IsVisible)
+                                     .ToList()
+                                     .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
+                });
         }
 
         /// <summary>

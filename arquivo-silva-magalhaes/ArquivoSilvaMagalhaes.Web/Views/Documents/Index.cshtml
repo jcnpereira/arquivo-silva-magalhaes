@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
+<h2>
+    @DocumentStrings.EntityNamePlural
+</h2>
+
+<hr />
 
 <ol class="breadcrumb">
     <li>
@@ -21,7 +26,7 @@
 
     @foreach (var doc in Model)
     {
-        <a href="@Url.Action("Index", "Images", new { documentId = doc.Entity.Id })" class="list-group-item">
+        <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
             <div class="media">
                 <div class="pull-left">
                     <img class="media-object" style="width: 96px; height: 96px"
@@ -33,13 +38,22 @@
                         &nbsp;<small>@doc.Entity.CatalogCode</small>
                     </h4>
 
-                    <p>
-                        @Html.DisplayFor(model => doc.Entity.DocumentDate)
-                    </p>
+                    <dl>
+                        <dt>
+                            Data: 
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                        </dd>
 
-                    <p>
-                        @doc.Translation.DocumentLocation
-                    </p>
+                        <dt>
+                            Local:
+                        </dt>
+                        <dd>
+                            @doc.Translation.DocumentLocation
+                        </dd>
+
+                    </dl>
 
                     <p>
                         @Html.Truncate(doc.Translation.Description, 120)
@@ -52,31 +66,13 @@
     }
 </div>
 
-@*<div class="media">
-        <ul class="media-list">
-            @foreach (var doc in Model)
-            {
-                <li class="media-body col-md-4">
-                    <a class="pull-left">
-                        <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
-                    </a>
-                    @if (@doc.Translation.Document.Images.Count != 0)
-                    {
-                        <a href="~/Images/Index/@doc.Translation.DocumentId">
-                            <h4 class="media-heading">@doc.Translation.Document.Title</h4>
-                        </a>
-                    }
-                    else
-                    {
-                        <h4 class="media-heading">@doc.Translation.Document.Title</h4>
-                    }
-                    <h5>@doc.Translation.Description</h5>
-                    <h6>@Html.DisplayFor(modelItem => doc.Entity.DocumentDate)</h6>
-                    <p style="font-size:smaller">
-                        @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = doc.Translation.DocumentId })
-                    </p>
-                </li>
-            }
-        </ul>
 
-    </div>*@
+
+@section scripts {
+    <style>
+        dl > dt {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+    </style>
+}
