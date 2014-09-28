@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using System.Threading.Tasks;
-using ArquivoSilvaMagalhaes.Common;
-using PagedList;
-using PagedList.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -21,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <summary>
         /// Associa Entidade Author às traduções existentes
         /// </summary>
-         private ITranslateableRepository<Image, ImageTranslation> db;
+        private ITranslateableRepository<Image, ImageTranslation> db;
 
         public ImagesController()
             : this(new TranslateableRepository<Image, ImageTranslation>()) { }
@@ -37,18 +31,13 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int? id, int pageNumber=1)
+        public async Task<ActionResult> Index(int documentId, int pageNumber = 1)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Image img = new Image();
 
             return View((await db.Entities
                 .Include(i => i.Translations)
                 .Where(i => i.IsVisible)
-                .Where(i => i.DocumentId == id)
+                .Where(i => documentId == 0 || i.DocumentId == documentId)
                 .OrderBy(i => i.Id)
                 .ToListAsync())
                 .Select(doc => new TranslatedViewModel<Image, ImageTranslation>(doc))
@@ -56,11 +45,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
 
-       /// <summary>
-       /// Forence os detalhes de determinada imagem
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Forence os detalhes de determinada imagem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)

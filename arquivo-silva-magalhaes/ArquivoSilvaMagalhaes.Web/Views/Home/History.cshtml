@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveTranslation>
 
 @{
-    ViewBag.Title = "History";
+    ViewBag.Title = FrontOfficeStrings.History;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,7 +19,4 @@
     <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Mission)</h2>
     <hr />
     <p>@Html.DisplayFor(modelItem => item.ArchiveMission)</p><br />
-    <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Address)</h2>
-    <hr />
-    <p>@Html.DisplayFor(modelItem => item.Archive.Address)</p><br /><br />
 }

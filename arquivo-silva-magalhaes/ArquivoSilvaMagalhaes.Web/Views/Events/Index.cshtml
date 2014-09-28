@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
 
 @{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    ViewBag.Title = EventStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
 <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</h2>
-
-<hr />
-<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</b>
-<hr />
 
 <ul class="media-list">
     @foreach (var item in Model)
@@ -20,19 +16,13 @@
             </a>
             <div class="media-body">
                 <a href="~/Events/Event/@item.Entity.Translations.LastOrDefault().EventId">
-                    <h4 class="media-heading">@item.Translation.Title</h4>
+                    <h3 class="media-heading">@item.Translation.Title</h3>
                 </a>
                 <div>
-                    <p><b>@Html.DisplayFor(model => item.Translation.Heading)</b></p>
-                    <p id="text"></p>
-                    @if (@Html.DisplayFor(model => item.Translation.TextContent).ToString().Count()>300)
-                    {
-                        <p>@Html.DisplayFor(model => item.Translation.TextContent).ToString().Substring(30, 330)</p>
-                    }
-                    else
-                    {
-                        <p>@Html.DisplayFor(model => item.Translation.TextContent)</p>
-                    }
+                    <p>@Html.DisplayFor(model => item.Translation.Heading)</p>
+                    <p>
+                        @Html.Truncate(item.Translation.TextContent, 300)
+                    </p>
                 </div>
             </div>
         </li>

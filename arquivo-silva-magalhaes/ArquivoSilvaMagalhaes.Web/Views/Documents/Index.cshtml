@@ -1,44 +1,82 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
+﻿@model IEnumerable<TranslatedViewModel<Document, DocumentTranslation>>
 
-@model IEnumerable<TranslatedViewModel<Document,DocumentTranslation>>
 @{
-    ViewBag.Title = "Index";
-}
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</h2>
-
-<hr />
-<a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</b>
-<hr />
-<div class="media">
-    <ul class="media-list">
-        @foreach (var doc in Model)
-        {
-            <li class="media-body col-md-4">
-                <a class="pull-left">
-                    <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
-                </a>
-                @if (@doc.Translation.Document.Images.Count != 0)
-                {
-                    <a href="~/Images/Index/@doc.Translation.DocumentId">
-                        <h4 class="media-heading">@doc.Translation.Document.Title</h4>
-                    </a>
-                }
-                else
-                {
-                    <h4 class="media-heading">@doc.Translation.Document.Title</h4>
-                }
-                <h5>@doc.Translation.Description</h5>
-                <h6>@Html.DisplayFor(modelItem => doc.Entity.DocumentDate)</h6>
-                <p style="font-size:smaller">
-                    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = doc.Translation.DocumentId })
-                </p>
-            </li>
-        }
-    </ul>
-
-</div>
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    ViewBag.Title = DocumentStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
+
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Collections")">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
+    <li class="active">
+        @DocumentStrings.EntityNamePlural
+    </li>
+</ol>
+
+<div class="list-group">
+
+    @foreach (var doc in Model)
+    {
+        <a href="@Url.Action("Index", "Images", new { documentId = doc.Entity.Id })" class="list-group-item">
+            <div class="media">
+                <div class="pull-left">
+                    <img class="media-object" style="width: 96px; height: 96px"
+                         src="~/Content/Images/no-image.png">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @Html.Truncate(doc.Entity.Title, 60)
+                        &nbsp;<small>@doc.Entity.CatalogCode</small>
+                    </h4>
+
+                    <p>
+                        @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                    </p>
+
+                    <p>
+                        @doc.Translation.DocumentLocation
+                    </p>
+
+                    <p>
+                        @Html.Truncate(doc.Translation.Description, 120)
+                    </p>
+
+
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+@*<div class="media">
+        <ul class="media-list">
+            @foreach (var doc in Model)
+            {
+                <li class="media-body col-md-4">
+                    <a class="pull-left">
+                        <img class="media-object afsm-media-object" src="~/images/imageDoc.png" />
+                    </a>
+                    @if (@doc.Translation.Document.Images.Count != 0)
+                    {
+                        <a href="~/Images/Index/@doc.Translation.DocumentId">
+                            <h4 class="media-heading">@doc.Translation.Document.Title</h4>
+                        </a>
+                    }
+                    else
+                    {
+                        <h4 class="media-heading">@doc.Translation.Document.Title</h4>
+                    }
+                    <h5>@doc.Translation.Description</h5>
+                    <h6>@Html.DisplayFor(modelItem => doc.Entity.DocumentDate)</h6>
+                    <p style="font-size:smaller">
+                        @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations, "Details", new { id = doc.Translation.DocumentId })
+                    </p>
+                </li>
+            }
+        </ul>
+
+    </div>*@
