@@ -5807,7 +5807,7 @@ body {
   display: none;
 }
 .line + .line {
-  margin-bottom: 25px;
+  margin-top: 25px;
 }
 .afsm-thumb {
   height: 450px;

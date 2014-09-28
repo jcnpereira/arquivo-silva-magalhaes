@@ -1,7 +1,5 @@
 ﻿using HtmlAgilityPack;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
@@ -13,6 +11,16 @@ namespace ArquivoSilvaMagalhaes.Common
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(original as string);
+
+            var elementsWithStyleAttribute = doc.DocumentNode.SelectNodes("//@style");
+
+            if (elementsWithStyleAttribute != null)
+            {
+                foreach (var element in elementsWithStyleAttribute)
+                {
+                    element.Attributes["style"].Remove();
+                }
+            }
 
             var elementsToRemove = new List<HtmlNode>();
 
@@ -40,6 +48,5 @@ namespace ArquivoSilvaMagalhaes.Common
             sw.Close();
             return outHtml;
         }
-
     }
 }
