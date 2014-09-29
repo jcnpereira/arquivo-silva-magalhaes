@@ -45,7 +45,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View((await db.Entities
                 .Include(e => e.Partnerships)
-                .Where(e => (e.ExpiryDate < DateTime.Now && !e.HideAfterExpiry) || e.ExpiryDate >= DateTime.Now)
+                .Where(e => e.ExpiryDate >= DateTime.Now || !e.HideAfterExpiry)
                 .OrderByDescending(e => e.PublishDate)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<Event, EventTranslation>(b))

@@ -20,6 +20,9 @@
             <td>
                 <a href=@Url.Content(item.Link) target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Translations.LastOrDefault().Description)
+            </td>
         </tr>
     }
 </table>
