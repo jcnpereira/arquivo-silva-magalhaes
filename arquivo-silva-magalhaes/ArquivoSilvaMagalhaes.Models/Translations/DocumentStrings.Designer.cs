@@ -257,5 +257,23 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("UnknownDocumentDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de catalogação não pode ser anterior à data do documento..
+        /// </summary>
+        public static string Validation_CataloguedBeforeExisted {
+            get {
+                return ResourceManager.GetString("Validation_CataloguedBeforeExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de catalogação não pode ser posterior à data atual..
+        /// </summary>
+        public static string Validation_CataloguedInTheFuture {
+            get {
+                return ResourceManager.GetString("Validation_CataloguedInTheFuture", resourceCulture);
+            }
+        }
     }
 }

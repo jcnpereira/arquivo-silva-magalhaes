@@ -1,5 +1,4 @@
 ﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,9 +18,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public int Id { get; set; }
 
+        //[Display(ResourceType = typeof(ImageStrings), Name = "ProductionDate")]
+        //[DataType(DataType.Date)]
+        //public DateTime? ProductionDate { get; set; }
+
         [Display(ResourceType = typeof(ImageStrings), Name = "ProductionDate")]
-        [DataType(DataType.Date)]
-        public DateTime? ProductionDate { get; set; }
+        public string ProductionDate { get; set; }
 
         public double Latitude { get; set; }
 
@@ -29,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(100)]
+        [StringLength(100)]
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(ImageStrings), ErrorMessageResourceName = "CodeFormat")]
         [Display(ResourceType = typeof(ImageStrings), Name = "ImageCode")]
         public string ImageCode { get; set; }
@@ -47,9 +49,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int DocumentId { get; set; }
 
         public virtual IList<ImageTranslation> Translations { get; set; }
-        [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "Keywords")]
         public virtual IList<Keyword> Keywords { get; set; }
+
         public virtual IList<Specimen> Specimens { get; set; }
 
         public virtual IList<ShowcasePhoto> ShowcasePhotos { get; set; }
@@ -80,21 +83,26 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
+        [StringLength(100)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Subject")]
         public string Subject { get; set; }
 
+        [StringLength(100)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Publication")]
         public string Publication { get; set; }
 
         [Required]
+        [StringLength(80)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Location")]
         public string Location { get; set; }
 
         [Required]
+        [StringLength(300)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Description")]
         public string Description { get; set; }
 

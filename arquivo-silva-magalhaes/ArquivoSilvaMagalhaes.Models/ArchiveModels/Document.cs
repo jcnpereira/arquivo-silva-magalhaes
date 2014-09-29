@@ -19,6 +19,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int Id { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "Title")]
         public string Title { get; set; }
 
@@ -26,16 +27,20 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The name of the person that is responsible for this collection.
         /// </summary>
         [Required]
-        [MaxLength(100)]
+        [StringLength(80)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "ResponsibleName")]
         public string ResponsibleName { get; set; }
 
         /// <summary>
         /// The date on which this document was made.
         /// </summary>
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
+        //[Display(ResourceType = typeof(DocumentStrings), Name = "DocumentDate")]
+        //public DateTime? DocumentDate { get; set; }
+
+        [Required]
         [Display(ResourceType = typeof(DocumentStrings), Name = "DocumentDate")]
-        public DateTime? DocumentDate { get; set; }
+        public string DocumentDate { get; set; }
 
         /// <summary>
         /// The date on which this document was catalogued.
@@ -50,7 +55,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// this document.
         /// </summary>
         [DataType(DataType.MultilineText)]
-        [MaxLength(1000)]
+        [StringLength(1000)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "Notes")]
         public string Notes { get; set; }
 
@@ -59,7 +64,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// physically catalog this document.
         /// </summary>
         [Required]
-        [MaxLength(200)]
+        [StringLength(200)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "CatalogCode")]
         [Index(IsUnique = true)]
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(DocumentStrings), ErrorMessageResourceName = "CodeFormat")]
@@ -83,6 +88,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            if (CatalogationDate > DateTime.Now)
+            {
+                yield return new ValidationResult(DocumentStrings.Validation_CataloguedInTheFuture, new string[] { "CatalogationDate" });
+            }
+
             // Allows a more "friendly" error message.
             using (var db = new ArchiveDataContext())
             {
@@ -103,16 +113,19 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(80)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "DocumentLocation")]
         public string DocumentLocation { get; set; }
 
         [Required]
+        [StringLength(200)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "FieldAndContents")]
         public string FieldAndContents { get; set; }
 
         [Required]
+        [StringLength(300)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(DocumentStrings), Name = "Description")]
         public string Description { get; set; }

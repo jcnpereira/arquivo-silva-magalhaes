@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The first name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(60)]
+        [StringLength(60)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "FirstName")]
         public string FirstName { get; set; }
 
@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The last name(s) of this author.
         /// </summary>
         [Required]
-        [MaxLength(60)]
+        [StringLength(60)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "LastName")]
         public string LastName { get; set; }
 
@@ -101,7 +101,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "Nationality")]
         public string Nationality { get; set; }
 

@@ -96,13 +96,11 @@
     <Compile Include="ITranslateableRepository.cs" />
     <Compile Include="SiteModels\Archive.cs" />
     <Compile Include="SiteModels\BannerPhotograph.cs" />
-    <Compile Include="SiteModels\Collaborator.cs" />
     <Compile Include="SiteModels\Attachment.cs" />
     <Compile Include="SiteModels\Event.cs" />
     <Compile Include="SiteModels\NewsItem.cs" />
     <Compile Include="SiteModels\Partnership.cs" />
     <Compile Include="SiteModels\ReferencedLink.cs" />
-    <Compile Include="SiteModels\SpotlightVideo.cs" />
     <Compile Include="SiteModels\TechnicalDocument.cs" />
     <Compile Include="TranslateableEntity.cs" />
     <Compile Include="Translations\ArchiveStrings.Designer.cs">

@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         Other = 100
     }
 
-    public class Event
+    public class Event : IValidatableObject
     {
         public Event()
         {
@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         [Display(ResourceType = typeof(EventStrings), Name = "Place")]
         public string Place { get; set; }
 
@@ -76,6 +76,19 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public virtual IList<Partnership> Partnerships { get; set; }
         public virtual IList<Attachment> Attachments { get; set; }
         public virtual IList<EventTranslation> Translations { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (ExpiryDate < PublishDate)
+            {
+                yield return new ValidationResult(EventStrings.Validation_ExpiresBeforePublish, new string[] { "ExpiryDate" });
+            }
+
+            if (EndMoment > StartMoment)
+            {
+                yield return new ValidationResult(EventStrings.Validation_EndsBeforeItStarts, new string[] { "EndMoment" });
+            }
+        }
     }
 
     public partial class EventTranslation : EntityTranslation, IValidatableObject
@@ -90,12 +103,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [MaxLength(40)]
+        [StringLength(40)]
         [Display(ResourceType = typeof(EventStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(150)]
+        [StringLength(150)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }

@@ -11,38 +11,8 @@
 
 <hr />
 
-@{
-    var mostRecent = Model.FirstOrDefault();
-}
 <div class="list-group">
-
-    <a href="@Url.Action("Details", "ShowcasePhotos", new { mostRecent.Entity.Id })" class="list-group-item">
-        <div class="media">
-            <div class="pull-left">
-                <img class="media-object" style="width: 128px; height: 128px"
-                     src="~/Public/Images/@(mostRecent.Entity.Image.ImageUrl)_thumb.jpg">
-            </div>
-            <div class="media-body">
-                <h3 class="media-heading">
-                    @Html.Truncate(mostRecent.Translation.Title, 60)
-                </h3>
-
-                <p>
-                    @mostRecent.Entity.CommenterName
-                </p>
-
-                <small>
-                    @Html.DisplayFor(model => mostRecent.Entity.VisibleSince)
-                </small>
-
-                <p>
-                    @Html.Truncate(mostRecent.Translation.Comment, 100, ellipsis: "...</div>")
-                </p>
-            </div>
-        </div>
-    </a>
-
-    @foreach (var item in Model.Where(m => m != mostRecent))
+    @foreach (var item in Model)
     {
         <a href="@Url.Action("Details", "ShowcasePhotos", new { item.Entity.Id })" class="list-group-item">
             <div class="media">

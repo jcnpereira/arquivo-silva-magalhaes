@@ -29,7 +29,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [StringLength(100)]
         [Index(IsUnique = true)]
         [Display(ResourceType = typeof(ProcessStrings), Name = "Value")]
         public string Value { get; set; }

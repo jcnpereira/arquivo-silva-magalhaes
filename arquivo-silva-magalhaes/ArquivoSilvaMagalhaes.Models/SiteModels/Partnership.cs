@@ -5,11 +5,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
     public class Partnership
     {
-
         [Key]
         public int Id { get; set; }
 
         [Required]
+        [StringLength(80)]
         [Display(ResourceType = typeof(PartnershipStrings), Name = "Name")]
         public string Name { get; set; }
 

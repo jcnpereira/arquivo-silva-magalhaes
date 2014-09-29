@@ -286,6 +286,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O momento de início de um evento não pode ser posterior à sua data de término..
+        /// </summary>
+        public static string Validation_EndsBeforeItStarts {
+            get {
+                return ResourceManager.GetString("Validation_EndsBeforeItStarts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de expiração não pode ser anterior à data de publicação..
+        /// </summary>
+        public static string Validation_ExpiresBeforePublish {
+            get {
+                return ResourceManager.GetString("Validation_ExpiresBeforePublish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Informação sobre visitantes.
         /// </summary>
         public static string VisitorInformation {

@@ -195,4 +195,10 @@
   <data name="Attachments" xml:space="preserve">
     <value>Anexos</value>
   </data>
+  <data name="Validation_EndsBeforeItStarts" xml:space="preserve">
+    <value>O momento de início de um evento não pode ser posterior à sua data de término.</value>
+  </data>
+  <data name="Validation_ExpiresBeforePublish" xml:space="preserve">
+    <value>A data de expiração não pode ser anterior à data de publicação.</value>
+  </data>
 </root>

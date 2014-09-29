@@ -27,6 +27,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int Id { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(TechnicalDocumentStrings), Name = "Title")]
         public string Title { get; set; }
 

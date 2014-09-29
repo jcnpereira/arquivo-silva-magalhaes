@@ -38,9 +38,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The classification details.
         /// </summary>
-        [Required] 
+        [Required]
         [Index(IsUnique = true)]
-        [MaxLength(80)]
+        [StringLength(50)]
         [Display(ResourceType = typeof(ClassificationStrings), Name = "Value")]
         public string Value { get; set; }
 

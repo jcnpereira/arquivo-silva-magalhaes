@@ -1,5 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using ArquivoSilvaMagalhaes.Common;
+﻿using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,10 +19,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterName")]
         public string CommenterName { get; set; }
 
         [Required]
+        [StringLength(50)]
         [DataType(DataType.EmailAddress)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterEmail")]
         public string CommenterEmail { get; set; }
@@ -53,6 +55,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(80)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Title")]
         public string Title { get; set; }
 

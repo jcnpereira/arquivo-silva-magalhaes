@@ -14,6 +14,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(AttachmentStrings), Name = "FileName")]
         public string FileName { get; set; }
 
+        [StringLength(50)]
         [Display(ResourceType = typeof(AttachmentStrings), Name = "Title")]
         public string Title { get; set; }
 

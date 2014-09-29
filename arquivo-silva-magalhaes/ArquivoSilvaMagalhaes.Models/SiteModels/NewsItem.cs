@@ -1,5 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using ArquivoSilvaMagalhaes.Common;
+﻿using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
-    public class NewsItem
+    public class NewsItem : IValidatableObject
     {
         public NewsItem()
         {
@@ -26,7 +26,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(NewsItemStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
 
-        
+
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "ExpiryDate")]
         public DateTime? ExpiryDate { get; set; }
@@ -34,15 +34,24 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Required]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
-        
+
         [Display(ResourceType = typeof(NewsItemStrings), Name = "CreationDate")]
         public DateTime? CreationDate { get; set; }
 
         [Display(ResourceType = typeof(NewsItemStrings), Name = "LastModificationDate")]
         public DateTime LastModificationDate { get; set; }
 
-        public virtual IList<NewsItemTranslation> Translations { get; set;}
+        public virtual IList<NewsItemTranslation> Translations { get; set; }
         public virtual IList<Attachment> Attachments { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (ExpiryDate < PublishDate)
+            {
+                yield return new ValidationResult(NewsItemStrings.Validation_ExpiresBeforePublish, new string[] { "ExpiryDate" });
+            }
+
+        }
     }
 
     public class NewsItemTranslation : EntityTranslation, IValidatableObject
@@ -56,10 +65,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
+        [StringLength(80)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Heading")]
         public string Heading { get; set; }
 

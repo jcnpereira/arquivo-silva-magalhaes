@@ -5,7 +5,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.ProductionDate, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DatePickerFor(model => model.ProductionDate, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.ProductionDate, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.ProductionDate, "", new { @class = "text-danger" })
     </div>
 </div>

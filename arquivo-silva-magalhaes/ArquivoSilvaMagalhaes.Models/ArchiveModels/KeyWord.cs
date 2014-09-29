@@ -18,6 +18,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual IList<KeywordTranslation> Translations { get; set; }
         public virtual IList<Image> Images { get; set; }
+
+
     }
 
     public partial class KeywordTranslation : EntityTranslation
@@ -29,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [MaxLength(50), Index(IsUnique = true)]
+        [StringLength(50)]
         [Display(ResourceType = typeof(KeywordStrings), Name = "Value")]
         public string Value { get; set; }
 

@@ -194,5 +194,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de expiração não pode ser anterior à data de publicação..
+        /// </summary>
+        public static string Validation_ExpiresBeforePublish {
+            get {
+                return ResourceManager.GetString("Validation_ExpiresBeforePublish", resourceCulture);
+            }
+        }
     }
 }

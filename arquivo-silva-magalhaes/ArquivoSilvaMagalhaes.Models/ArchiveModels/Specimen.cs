@@ -27,16 +27,18 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             this.Translations = new List<SpecimenTranslation>();
             this.DigitalPhotographs = new List<DigitalPhotograph>();
         }
-    
+
         [Key]
         public int Id { get; set; }
 
+        [StringLength(100)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "AuthorCatalogationCode")]
         public string AuthorCatalogationCode { get; set; }
 
         [Display(ResourceType = typeof(SpecimenStrings), Name = "HasMarksOrStamps")]
         public bool HasMarksOrStamps { get; set; }
 
+        [StringLength(300)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Notes")]
         public string Notes { get; set; }
 
@@ -46,13 +48,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [Index(IsUnique = true)]
-        [MaxLength(100)]
+        [StringLength(100)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "ReferenceCode")]
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "CodeFormat")]
         public string ReferenceCode { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "ArchivalReferenceCode")]
         [RegularExpression("^[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "ArchivalCodeFormat")]
         public string ArchivalReferenceCode { get; set; }
@@ -102,13 +104,16 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(300)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Description")]
         public string Description { get; set; }
 
+        [StringLength(200)]
         [Required, DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "DetailedStateDescription")]
         public string DetailedStateDescription { get; set; }
 
+        [StringLength(200)]
         [Required, DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "InterventionDescription")]
         public string InterventionDescription { get; set; }

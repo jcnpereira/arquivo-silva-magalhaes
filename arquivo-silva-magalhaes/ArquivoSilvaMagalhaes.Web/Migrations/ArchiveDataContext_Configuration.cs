@@ -25,14 +25,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Value = "63JNz7UZYwU"
                 });
 
-            //SeedClassifications(db);
-            //SeedKeywords(db);
+            SeedClassifications(db);
+            SeedKeywords(db);
 
-            //SeedAuthors(db);
-            //SeedCollections(db);
-            //SeedDocuments(db);
+            SeedAuthors(db);
+            SeedCollections(db);
+            SeedDocuments(db);
 
-            //SeedImages(db);
+            SeedImages(db);
         }
 
         private void SeedAuthors(ArchiveDataContext db)
@@ -112,7 +112,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Id = i,
                     AuthorId = (i % 10) + 1,
                     CollectionId = (i % 10) + 1,
-                    DocumentDate = new DateTime(1940 + (i % 50), (i % 12) + 1, (i % 20) + 1),
+                    DocumentDate = (1940 + (i % 50)) + "-" + ((i % 12) + 1) + "-" + ((i % 20) + 1),
                     CatalogationDate = new DateTime(1996 + (i % 15), (i % 12) + 1, (i % 20) + 1),
                     Notes = "Notas " + i,
                     ResponsibleName = "Responsável " + i,
@@ -135,7 +135,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         private void SeedClassifications(ArchiveDataContext db)
         {
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i <= 30; i++)
             {
                 var classification = new Classification
                 {
@@ -157,7 +157,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         private void SeedKeywords(ArchiveDataContext db)
         {
-            for (int i = 1; i < 100; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 var kw = new Keyword
                 {
@@ -181,7 +181,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
         {
             var imgList = new List<Image>();
 
-            for (int i = 1; i < 1000; i++)
+            for (int i = 1; i <= 1000; i++)
             {
                 var image = new Image
                 {
@@ -190,7 +190,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     ClassificationId = (i % 30) + 1,
                     ImageCode = "COL" + ((i % 10) + 1) + "-" + (i % 100) + 1 + "-" + i,
                     IsVisible = i % 3 == 0,
-                    ProductionDate = new DateTime(1940 + (i % 50), (i % 12) + 1, (i % 20) + 1)
+                    ProductionDate = (1940 + (i % 50)) + "-" + ((i % 12) + 1) + "-" + ((i % 20) + 1)
                 };
 
                 image.Translations.Add(new ImageTranslation

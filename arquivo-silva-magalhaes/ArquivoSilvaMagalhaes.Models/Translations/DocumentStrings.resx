@@ -183,4 +183,10 @@
   <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este documento? Todas as imagens associadas a este serão removidas!</value>
   </data>
+  <data name="Validation_CataloguedBeforeExisted" xml:space="preserve">
+    <value>A data de catalogação não pode ser anterior à data do documento.</value>
+  </data>
+  <data name="Validation_CataloguedInTheFuture" xml:space="preserve">
+    <value>A data de catalogação não pode ser posterior à data atual.</value>
+  </data>
 </root>

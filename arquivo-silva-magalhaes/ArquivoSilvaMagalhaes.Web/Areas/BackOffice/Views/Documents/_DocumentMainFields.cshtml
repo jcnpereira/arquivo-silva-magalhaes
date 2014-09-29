@@ -33,7 +33,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.DocumentDate, new { @class = "control-label col-sm-2" })
     <div class="col-sm-10">
-        @Html.DatePickerFor(model => model.DocumentDate, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.DocumentDate, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.DocumentDate)
     </div>
 </div>

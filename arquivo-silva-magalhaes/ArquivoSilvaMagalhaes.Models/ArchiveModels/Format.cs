@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         [Index(IsUnique = true)]
         [Display(ResourceType = typeof(FormatStrings), Name = "Format")]
         public string FormatDescription { get; set; }

@@ -16,6 +16,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int Id { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Title")]
         public string Title { get; set; }
 
@@ -35,6 +36,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(200)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Description")]
         public string Description { get; set; }

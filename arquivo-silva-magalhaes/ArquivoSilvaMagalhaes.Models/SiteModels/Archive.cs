@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ArquivoSilvaMagalhaes.Models.Translations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ArquivoSilvaMagalhaes.Models.Translations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
@@ -47,16 +47,19 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int Id { get; set; }
 
         [Required]
+        [StringLength(80)]
         public string Name { get; set; }
 
         [Required]
+        [StringLength(80)]
         [Display(ResourceType = typeof(ContactStrings), Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
+        [StringLength(100)]
         public string Address { get; set; }
-        
+
         [Required]
         [Display(ResourceType = typeof(ContactStrings), Name = "PhoneNumber")]
         [DataType(DataType.PhoneNumber)]

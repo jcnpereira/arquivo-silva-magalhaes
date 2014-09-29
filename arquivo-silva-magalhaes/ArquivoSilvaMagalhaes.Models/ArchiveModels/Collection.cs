@@ -84,7 +84,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// Code used by the archive to physically catalog this
         /// collection.
         /// </summary>
-        [Required, MaxLength(100), Index(IsUnique = true)]
+        [Required, StringLength(100), Index(IsUnique = true)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "CatalogCode")]
         [RegularExpression("^[0-9A-Za-z]+$", ErrorMessageResourceType = typeof(CollectionStrings), ErrorMessageResourceName = "AlphanumericCode")]
         public string CatalogCode { get; set; }
@@ -108,31 +108,38 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [StringLength(40)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "Title")]
         public string Title { get; set; }
 
+        [StringLength(300)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "Description")]
         public string Description { get; set; }
 
+        [StringLength(100)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "Provenience")]
         public string Provenience { get; set; }
 
         [Required]
+        [StringLength(300)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "AdministrativeAndBiographicStory")]
         public string AdministrativeAndBiographicStory { get; set; }
 
         [Required]
+        [StringLength(100)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "Dimension")]
         public string Dimension { get; set; }
 
         [Required]
+        [StringLength(200)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "FieldAndContents")]
         public string FieldAndContents { get; set; }
 
         [Required]
+        [StringLength(300)]
         [Display(ResourceType = typeof(CollectionStrings), Name = "CopyrightInfo")]
         public string CopyrightInfo { get; set; }
 
