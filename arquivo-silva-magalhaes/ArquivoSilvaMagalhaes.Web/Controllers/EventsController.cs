@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Common;
-using PagedList;
-using PagedList.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -51,18 +45,30 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View((await db.Entities
                 .Include(e => e.Partnerships)
-                .Where(e => e.ExpiryDate <= DateTime.Now)
+                .Where(e => (e.ExpiryDate < DateTime.Now && !e.HideAfterExpiry) || e.ExpiryDate >= DateTime.Now)
+                .OrderByDescending(e => e.PublishDate)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<Event, EventTranslation>(b))
-                .ToPagedList(pageNumber, 6));
+                .ToPagedList(pageNumber, 10));
         }
 
         public async Task<ActionResult> Event(int? id)
         {
-            return View((await db.Entities
-                .Where(e => e.Id == id)
-                .ToListAsync())
-                .Select(e => new TranslatedViewModel<Event, EventTranslation>(e)));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var e = await db.GetByIdAsync(id);
+
+            if (e.ExpiryDate >= DateTime.Now && e.HideAfterExpiry)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            e.Attachments = e.Attachments.ToList();
+
+            return View(new TranslatedViewModel<Event, EventTranslation>(e));
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
-﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using ArquivoSilvaMagalhaes.Common;
+﻿using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,7 +26,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         {
             Translations = new List<EventTranslation>();
             Partnerships = new List<Partnership>();
-            AttachedDocuments = new List<Attachment>();
+            Attachments = new List<Attachment>();
         }
 
         [Key]
@@ -74,7 +74,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public EventType? EventType { get; set; }
 
         public virtual IList<Partnership> Partnerships { get; set; }
-        public virtual IList<Attachment> AttachedDocuments { get; set; }
+        public virtual IList<Attachment> Attachments { get; set; }
         public virtual IList<EventTranslation> Translations { get; set; }
     }
 
@@ -90,10 +90,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [MaxLength(40)]
         [Display(ResourceType = typeof(EventStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
+        [MaxLength(150)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }

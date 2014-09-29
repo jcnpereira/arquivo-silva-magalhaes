@@ -204,7 +204,7 @@
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\BannerPhotographController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\ClassificationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\CollectionsController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\DocumentAttachmentController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SiteControllers\AttachmentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\EventsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\FormatsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
@@ -305,6 +305,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\AttachmentEditViewModel.cs" />
     <Compile Include="ViewModels\AuthorsViewModel.cs" />
     <Compile Include="ViewModels\CollectionDetailsViewModel.cs" />
     <Compile Include="ViewModels\DocumentDetailsViewModel.cs" />
@@ -525,11 +526,7 @@
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\DocumentAttachment\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Attachments\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Specimens\_PhotoListItemPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_DeleteConfirmModal.cshtml" />
@@ -736,6 +733,8 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.css.map">
       <DependentUpon>glyphicons.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BackOffice\Views\Attachments\Test.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_AttachmentItem.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -896,7 +895,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Public\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

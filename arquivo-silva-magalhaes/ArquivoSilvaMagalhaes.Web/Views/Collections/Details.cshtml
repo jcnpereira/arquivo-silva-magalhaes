@@ -28,42 +28,40 @@
 </ol>
 
 
-<div class="row">
-    <div class="col-sm-4">
-        <img src="~/@logo"
-             class="img-responsive"
-             alt="@Model.Collection.Translation.Title" />
-    </div>
+<div class="col-sm-4">
+    <img src="~/@logo"
+         class="img-responsive"
+         alt="@Model.Collection.Translation.Title" />
+</div>
 
-    <div class="col-sm-8">
-        <dl>
+<div class="col-sm-8">
+    <dl>
 
-            <dt>
-                @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
-            </dt>
+        <dt>
+            @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
+        </dt>
 
-            <dd>
-                @Model.Collection.Entity.ProductionPeriod
-            </dd>
+        <dd>
+            @Model.Collection.Entity.ProductionPeriod
+        </dd>
 
-            <dt>
-                Autoria de
-            </dt>
+        <dt>
+            Autoria de
+        </dt>
 
-            <dd>
-                @for (var i = 0; i < Model.Authors.Count(); i++)
-                {
-                    var a = Model.Authors[i];
+        <dd>
+            @for (var i = 0; i < Model.Authors.Count(); i++)
+            {
+                var a = Model.Authors[i];
 
-                    <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
-                        @(a.Entity.FirstName + " " + a.Entity.LastName)
-                    </a>
+                <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
+                    @(a.Entity.FirstName + " " + a.Entity.LastName)
+                </a>
 
-                    <span>&nbsp;</span>
-                }
-            </dd>
-        </dl>
-    </div>
+                <span>&nbsp;</span>
+            }
+        </dd>
+    </dl>
 </div>
 
 <hr />

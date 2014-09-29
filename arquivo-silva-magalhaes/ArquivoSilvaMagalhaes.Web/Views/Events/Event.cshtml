@@ -1,72 +1,58 @@
-﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
+﻿@model TranslatedViewModel<Event, EventTranslation>
 
+<div class="row">
+    <div class="col-sm-8">
+        <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
 
-<h2>@Html.DisplayFor(model => model.LastOrDefault().Translation.Title)</h2>
+        <p>
+            @Html.DisplayFor(model => model.Entity.StartMoment) - @Html.DisplayFor(model => model.Entity.EndMoment)
+        </p>
 
-<div>
-    <hr />
-    <a href="~/Events">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Events)</a> <b>&#9658</b> <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
-    <hr />
-    <dl>
-        <dd>
-            <h4>@Html.DisplayFor(model => model.LastOrDefault().Translation.Heading)</h4>
-        </dd>
-        <dd>
-            <p>@Html.DisplayFor(model => model.LastOrDefault().Translation.TextContent)</p>
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventType)
-        </dt>
-        <dd>
-            @Html.EnumDisplayFor(model => model.LastOrDefault().Translation.Event.EventType)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EventPlace)
-        </dt>
+        <address>
+            @Model.Entity.Place
+        </address>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastOrDefault().Entity.Place)
-        </dd>
+        <p>
+            @Html.DisplayFor(model => model.Translation.Heading)
+        </p>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastOrDefault().Entity.Coordinates)
-        </dt>
-
-        <dd>
-            <div id="map_canvas" style="width:100%; height: 400px" data-afsm-coords="@Model.LastOrDefault().Entity.Coordinates"></div>
-        </dd>
-
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.InformationVisitors)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastOrDefault().Entity.VisitorInformation)
-        </dd>
-
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.InitialDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Day)/@Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Month)/@Html.DisplayFor(model => model.LastOrDefault().Entity.StartMoment.Date.Year)
-        </dd>
-
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Day)/@Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Month)/@Html.DisplayFor(model => model.LastOrDefault().Entity.EndMoment.Date.Year)
-        </dd>
-    </dl>
+    <div class="col-sm-4">
+        <div id="map_canvas" style="width:100%; height: 180px" data-afsm-coords="@Model.Entity.Coordinates"></div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index")
-</p>
+
+
+<hr />
+
+@Html.DisplayFor(model => model.Translation.TextContent)
+
+@if (Model.Entity.Attachments.Count > 0)
+{
+    <hr />
+    
+    <h4>@EventStrings.Attachments <small>(@Model.Entity.Attachments.Count)</small></h4>
+    
+    <div class="list-group">
+        @foreach (var attachment in Model.Entity.Attachments)
+        {
+            <a href="~/Public/Attachments/@attachment.FileName"
+               target="_blank"
+               class="list-group-item">
+                @(attachment.Title ?? attachment.FileName) (@(Math.Round(attachment.Size / 1000000.0, 2)) MB) 
+            </a>
+        }
+    </div>
+    
+    
+
+    // Anexos....
+}
+
+
 
 
 @section scripts {
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script src="~/Scripts/frontoffice/gmaps-readonly.js"></script>
+    <script src="~/Scripts/frontoffice/gmaps-readonly.js"></script>
 }

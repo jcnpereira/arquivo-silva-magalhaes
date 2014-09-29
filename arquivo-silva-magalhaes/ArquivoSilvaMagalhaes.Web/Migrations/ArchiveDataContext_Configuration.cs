@@ -25,14 +25,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Value = "63JNz7UZYwU"
                 });
 
-            SeedClassifications(db);
-            SeedKeywords(db);
+            //SeedClassifications(db);
+            //SeedKeywords(db);
 
-            SeedAuthors(db);
-            SeedCollections(db);
-            SeedDocuments(db);
+            //SeedAuthors(db);
+            //SeedCollections(db);
+            //SeedDocuments(db);
 
-            SeedImages(db);
+            //SeedImages(db);
         }
 
         private void SeedAuthors(ArchiveDataContext db)

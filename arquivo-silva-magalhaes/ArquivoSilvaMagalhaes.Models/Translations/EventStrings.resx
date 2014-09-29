@@ -192,4 +192,7 @@
   <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar este evento?</value>
   </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Anexos</value>
+  </data>
 </root>

@@ -5,17 +5,30 @@
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm("Create", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{    
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
-        
+
         @Html.PartialFor(model => model.Event.Translations[0], "_EventTranslateableFields")
 
         @Html.PartialFor(model => model.Event, "_EventMainFields")
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Attachments, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.Files, new { @class = "form-control-static", data_afsm_to = Url.Action("Create", "Attachments"), data_afsm_change = "true", data_afsm_target = "#afsm-attachments" })
+            </div>
+        </div>
+
+        <div id="afsm-attachments">
+            @* Will contain eventual files... *@
+        </div>
+
+        @*@Html.PartialFor(model => model.Attachments, "_AttachmentItem")*@
 
         @Html.Partial("_EventDropDownLists")
 
@@ -26,4 +39,27 @@
 @section scripts {
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
     @Scripts.Render("~/Scripts/backoffice/gmaps")
+
+    <script>
+        $('[data-afsm-change="true"]').on('change', function (e) {
+            var files = e.target.files,
+                data = {
+                    fileNames: [],
+                    __RequestVerificationToken: $('[name=__RequestVerificationToken]').val()
+                },
+                $input = $(this);
+
+            for (var i = 0; i < files.length; i++) {
+                data.fileNames.push(files[i].name);
+            }
+
+            $.post($input.data('afsm-to'), data).done(function (newData) {
+                $($input.data('afsm-target')).replaceWith(newData);
+                $input.closest('.form-group').addClass('hidden');
+            });
+
+            e.preventDefault();
+            return false;
+        });
+    </script>
 }

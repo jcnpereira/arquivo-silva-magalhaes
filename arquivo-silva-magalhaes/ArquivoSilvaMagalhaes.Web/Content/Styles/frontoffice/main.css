@@ -5761,7 +5761,7 @@ body {
 #afsm-carousel {
   height: 250px;
   margin: -20px;
-  margin: -20px -20px 20px -20px;
+  margin: -20px -5px 20px -5px;
 }
 #afsm-page-container {
   background-color: white;
@@ -5791,16 +5791,17 @@ body {
   display: flex;
   -ms-flex-direction: column-reverse;
   flex-direction: column-reverse;
-  margin: -20px;
+  margin: -20px -5px -20px -5px;
   margin-bottom: 0;
 }
 .afsm-header-image > .afsm-header {
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 10px 25px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
 .afsm-commentary {
   margin-top: 20px;
+  padding: 0 20px 0 20px;
 }
 .line:empty,
 .line > br {
@@ -5858,13 +5859,14 @@ body {
   }
   .afsm-header-image {
     height: 400px;
-    margin: -20px -40px 0 -40px;
+    margin: -20px -25px 0 -25px;
   }
-  .afsm-header-image > .afsm-header {
-    padding: 10px 20px 10px 20px;
-  }
+  /*.afsm-header-image > .afsm-header {
+        padding: 10px 20px 10px 20px;
+    }*/
   .afsm-commentary {
     margin-top: 20px;
+    padding: 0;
   }
   #afsm-page-content {
     padding-left: 40px;
@@ -5873,8 +5875,8 @@ body {
   }
   #afsm-carousel {
     margin-top: -20px;
-    margin-left: -40px;
-    margin-right: -40px;
+    margin-left: -25px;
+    margin-right: -25px;
     height: 350px;
   }
   .afsm-banner-item-container {

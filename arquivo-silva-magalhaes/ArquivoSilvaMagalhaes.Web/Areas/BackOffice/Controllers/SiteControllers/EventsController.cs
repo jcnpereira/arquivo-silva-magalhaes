@@ -4,7 +4,9 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -70,17 +72,40 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // POST: BackOffice/Event/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Event @event)
+        public async Task<ActionResult> Create(EventEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Add(@event);
+                foreach (var attachment in model.Attachments)
+                {
+                    var attachedFile = model.Files.FirstOrDefault(f => f.FileName == attachment.FileName);
+
+                    if (attachedFile != null)
+                    {
+                        var newName = Guid.NewGuid().ToString() + "_" + attachedFile.FileName;
+                        var dir = "~/Public/Attachments/";
+
+                        Directory.CreateDirectory(Server.MapPath(dir));
+
+                        attachedFile.SaveAs(Server.MapPath(dir + newName));
+
+                        model.Event.Attachments.Add(new Attachment
+                            {
+                                FileName = newName,
+                                MimeFormat = attachedFile.ContentType,
+                                Size = attachedFile.ContentLength,
+                                Title = attachment.Title
+                            });
+                    }
+                }
+
+                db.Add(model.Event);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(@event));
+            return View(model);
         }
 
         // GET: BackOffice/Events/Edit/5

@@ -1,7 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.Translations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
@@ -16,7 +14,6 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(AttachmentStrings), Name = "FileName")]
         public string FileName { get; set; }
 
-        [Required]
         [Display(ResourceType = typeof(AttachmentStrings), Name = "Title")]
         public string Title { get; set; }
 

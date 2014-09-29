@@ -2,10 +2,8 @@
 using ArquivoSilvaMagalhaes.Models;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Web;
 
 namespace ArquivoSilvaMagalhaes.ViewModels
 {
@@ -15,7 +13,7 @@ namespace ArquivoSilvaMagalhaes.ViewModels
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity that is translateable.</typeparam>
     /// <typeparam name="TTranslation">The type of the translation.</typeparam>
-    public class TranslatedViewModel<TEntity, TTranslation> 
+    public class TranslatedViewModel<TEntity, TTranslation>
         where TTranslation : EntityTranslation
     {
         public TranslatedViewModel(TEntity entity)
