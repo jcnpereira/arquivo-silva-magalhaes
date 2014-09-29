@@ -13,6 +13,7 @@
 <b>@FrontOfficeStrings.Collections</b>
 <hr />
 
+<div class="row">
     @foreach (var col in Model)
     {
         var authors = col.Entity.Authors.ToList();
@@ -39,4 +40,4 @@
                 </div>
             </a>
         </div>
-    }
+    }</div>

@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Translation.Title;
 }
 
-<div class="afsm-header-image"
+<div class="afsm-header-image afsm-negate-padding"
      style="background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
     <div class="afsm-header">
         <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>

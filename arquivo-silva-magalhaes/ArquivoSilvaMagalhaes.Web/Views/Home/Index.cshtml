@@ -1,6 +1,6 @@
 ﻿@model IndexViewModel
 
-<div id="afsm-carousel" class="carousel slide" data-ride="carousel">
+<div id="afsm-carousel" class="carousel slide afsm-negate-padding" data-ride="carousel">
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -35,6 +35,7 @@
     </a>
 </div>
 
+<div class="row">
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.News, "Index", "NewsItems")</h4>
         <a href="~/NewsItems">
@@ -86,6 +87,7 @@
             </small>
         </p>
     </div>
+</div>
 
 @if (Request.Cookies["afsm-novideo"] == null)
 {

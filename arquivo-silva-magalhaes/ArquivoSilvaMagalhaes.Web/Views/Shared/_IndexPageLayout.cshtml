@@ -1,9 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var pagerOptions = PagedListRenderOptions.TwitterBootstrapPagerAligned;
-    pagerOptions.Display = PagedListDisplayMode.IfNeeded;
-    pagerOptions.LinkToNextPageFormat = "Próximo";
-    pagerOptions.LinkToPreviousPageFormat = "Anterior";
+    var pagerOptions = new PagedListRenderOptions
+        {
+            Display = PagedListDisplayMode.IfNeeded   
+        };
 }
 
 @RenderBody()

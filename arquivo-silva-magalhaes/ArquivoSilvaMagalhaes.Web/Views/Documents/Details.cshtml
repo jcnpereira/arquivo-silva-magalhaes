@@ -58,29 +58,31 @@
 
     <hr />
 
-    foreach (var img in Model.Images)
-    {
-        var logo = img.Entity.ImageUrl != null ?
+    <div class="row">
+        @foreach (var img in Model.Images)
+        {
+            var logo = img.Entity.ImageUrl != null ?
             "Public/Images/" + img.Entity.ImageUrl + "_thumb.jpg" :
             "Content/Images/no-image.png";
 
-        <div class="afsm-thumb col-sm-6 col-lg-4">
-            <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
-               class="thumbnail">
-                <img src="~/@logo"
-                     alt="@img.Translation.Title" />
-                <div class="caption">
-                    <h4>
-                        @Html.Truncate(img.Translation.Title, 30)
-                        <small>
-                            &nbsp;@img.Entity.ImageCode
-                        </small>
-                    </h4>
-                    <p>
-                        <small>@Html.Truncate(img.Translation.Description, 80)</small>
-                    </p>
-                </div>
-            </a>
-        </div>
-    }
+            <div class="afsm-thumb col-sm-6 col-lg-4">
+                <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
+                   class="thumbnail">
+                    <img src="~/@logo"
+                         alt="@img.Translation.Title" />
+                    <div class="caption">
+                        <h4>
+                            @Html.Truncate(img.Translation.Title, 30)
+                            <small>
+                                &nbsp;@img.Entity.ImageCode
+                            </small>
+                        </h4>
+                        <p>
+                            <small>@Html.Truncate(img.Translation.Description, 80)</small>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
 }

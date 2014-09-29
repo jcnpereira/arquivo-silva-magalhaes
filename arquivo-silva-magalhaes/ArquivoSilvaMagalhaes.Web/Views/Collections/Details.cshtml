@@ -8,13 +8,6 @@
         "Content/Images/no-image.png";
 }
 
-<h2>
-    @Html.Truncate(Model.Collection.Translation.Title, 50)
-    &nbsp;<small>@Model.Collection.Entity.CatalogCode</small>
-</h2>
-
-<hr />
-
 <ol class="breadcrumb">
     <li>
         <a href="@Url.Action("Index", "Collections")">
@@ -28,144 +21,160 @@
 </ol>
 
 
-<div class="col-sm-4">
-    <img src="~/@logo"
-         class="img-responsive"
-         alt="@Model.Collection.Translation.Title" />
-</div>
-
-<div class="col-sm-8">
-    <dl>
-
-        <dt>
-            @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
-        </dt>
-
-        <dd>
-            @Model.Collection.Entity.ProductionPeriod
-        </dd>
-
-        <dt>
-            Autoria de
-        </dt>
-
-        <dd>
-            @for (var i = 0; i < Model.Authors.Count(); i++)
-            {
-                var a = Model.Authors[i];
-
-                <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
-                    @(a.Entity.FirstName + " " + a.Entity.LastName)
-                </a>
-
-                <span>&nbsp;</span>
-            }
-        </dd>
-    </dl>
-</div>
-
-<hr />
-
-<dl>
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.Description)
-    </dt>
-
-    <dd>
-        @Html.DisplayMultilineFor(model => model.Collection.Translation.Description)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.Provenience)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Collection.Translation.Provenience)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.Dimension)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Collection.Translation.Dimension)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.FieldAndContents)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Collection.Translation.FieldAndContents)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Collection.Translation.CopyrightInfo)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Collection.Translation.CopyrightInfo)
-    </dd>
-</dl>
-
-@if (Model.Documents.Count > 0)
-{
-    <h4>
-        @DocumentStrings.EntityNamePlural (@(Model.Documents.Count))
-        <small>
-            @Html.ActionLink("Ver documentos", "Index", "Documents", new { collectionId = Model.Collection.Entity.Id }, null)
-        </small>
-    </h4>
-
-    <hr />
-
-    <div class="list-group">
-
-        @foreach (var doc in Model.Documents)
-        {
-            <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
-                <div class="media">
-                    <div class="pull-left">
-                        <img class="media-object" style="width: 96px; height: 96px"
-                             src="~/Content/Images/no-image.png">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            @Html.Truncate(doc.Entity.Title, 60)
-                            &nbsp;<small>@doc.Entity.CatalogCode</small>
-                        </h4>
-
-                        <dl>
-                            <dt>
-                                Data:
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => doc.Entity.DocumentDate)
-                            </dd>
-
-                            <dt>
-                                Local:
-                            </dt>
-                            <dd>
-                                @doc.Translation.DocumentLocation
-                            </dd>
-
-                        </dl>
-
-                        <p>
-                            @Html.Truncate(doc.Translation.Description, 120)
-                        </p>
-
-
-                    </div>
-                </div>
-            </a>
-        }
+<div class="row afsm-detail-header">
+    <div class="col-sm-4">
+        <img src="~/@logo"
+             class="img-responsive"
+             alt="@Model.Collection.Translation.Title" />
     </div>
-}
+
+    <div class="col-sm-8">
+        <div class="row">
+            <h3 class="col-xs-12">
+                @Model.Collection.Translation.Title <small>@Model.Collection.Entity.CatalogCode</small>
+            </h3>
+        </div>
+
+        <dl>
+
+            <dt>
+                @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
+            </dt>
+
+            <dd>
+                @Model.Collection.Entity.ProductionPeriod
+            </dd>
+
+            <dt>
+                Autoria de
+            </dt>
+
+            <dd>
+                <ul class="afsm-header-list">
+                    @for (var i = 0; i < Model.Authors.Count(); i++)
+                    {
+                        var a = Model.Authors[i];
+                        <li>
+                            <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
+                                @(a.Entity.FirstName + " " + a.Entity.LastName)
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="active">
+        <a href="#afsm-details" role="tab" data-toggle="tab">
+            Detalhes
+        </a>
+    </li>
+    <li>
+        <a href="#afsm-documents" role="tab" data-toggle="tab">
+            @DocumentStrings.EntityNamePlural (@(Model.Documents.Count))
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="afsm-details">
+
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayMultilineFor(model => model.Collection.Translation.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.Provenience)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collection.Translation.Provenience)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.Dimension)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collection.Translation.Dimension)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.FieldAndContents)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collection.Translation.FieldAndContents)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection.Translation.CopyrightInfo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collection.Translation.CopyrightInfo)
+            </dd>
+        </dl>
+    </div>
+
+
+    <div class="tab-pane fade" id="afsm-documents">
+        <div class="list-group">
+
+            @foreach (var doc in Model.Documents)
+            {
+                <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="media-object" style="width: 96px; height: 96px"
+                                 src="~/Content/Images/no-image.png">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                @Html.Truncate(doc.Entity.Title, 60)
+                                &nbsp;<small>@doc.Entity.CatalogCode</small>
+                            </h4>
+
+                            <dl>
+                                <dt>
+                                    Data:
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                                </dd>
+
+                                <dt>
+                                    Local:
+                                </dt>
+                                <dd>
+                                    @doc.Translation.DocumentLocation
+                                </dd>
+
+                            </dl>
+
+                            <p>
+                                @Html.Truncate(doc.Translation.Description, 120)
+                            </p>
+
+
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
 
 @section scripts {
     <style>
@@ -175,6 +184,14 @@
 
         dl > dt {
             margin-bottom: 5px;
+        }
+
+        .tab-pane > dl {
+            margin-top: 20px;
+        }
+
+        .afsm-detail-header + .nav-tabs {
+            margin-top: 20px;
         }
     </style>
 }
