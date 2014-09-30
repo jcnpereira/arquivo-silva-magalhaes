@@ -5742,6 +5742,18 @@ body {
   padding-top: 50px;
   padding-bottom: 0;
 }
+.afsm-dl-vertical > dt + dd {
+  margin-bottom: 15px;
+}
+.afsm-dl-vertical > dt {
+  margin-bottom: 5px;
+}
+.tab-pane > .afsm-dl-vertical {
+  margin-top: 20px;
+}
+.afsm-detail-header + .nav-tabs {
+  margin-top: 20px;
+}
 #afsm-navbar {
   display: none;
 }

@@ -8,9 +8,9 @@
             @Html.DisplayFor(model => model.Entity.StartMoment) - @Html.DisplayFor(model => model.Entity.EndMoment)
         </p>
 
-        <address>
-            @Model.Entity.Place
-        </address>
+        <p>
+            @Html.EnumDisplayFor(e => e.Entity.EventType) - @Model.Entity.Place
+        </p>
 
         <p>
             @Html.DisplayFor(model => model.Translation.Heading)
@@ -26,6 +26,15 @@
 <hr />
 
 @Html.DisplayFor(model => model.Translation.TextContent)
+
+@if (!string.IsNullOrEmpty(Model.Entity.VisitorInformation))
+{
+    <h4>@EventStrings.VisitorInformation</h4>
+    
+    <div>
+        @Html.DisplayFor(model => model.Entity.VisitorInformation)
+    </div>
+}
 
 @if (Model.Entity.Attachments.Count > 0)
 {
@@ -43,14 +52,7 @@
             </a>
         }
     </div>
-    
-    
-
-    // Anexos....
 }
-
-
-
 
 @section scripts {
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>

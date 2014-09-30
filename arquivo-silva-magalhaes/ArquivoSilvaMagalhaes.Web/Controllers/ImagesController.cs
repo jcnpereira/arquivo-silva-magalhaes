@@ -61,7 +61,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new TranslatedViewModel<Image, ImageTranslation>(image));
+            return View(new ImageDetailsViewModel
+                {
+                    Image = new TranslatedViewModel<Image, ImageTranslation>(image),
+                    Classification = new TranslatedViewModel<Classification, ClassificationTranslation>(image.Classification),
+                    Keywords = image.Keywords.ToList().Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                });
         }
 
         /// <summary>

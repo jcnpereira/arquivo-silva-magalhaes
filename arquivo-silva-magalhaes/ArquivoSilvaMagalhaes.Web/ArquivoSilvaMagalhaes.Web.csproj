@@ -311,6 +311,7 @@
     <Compile Include="ViewModels\CollectionDetailsViewModel.cs" />
     <Compile Include="ViewModels\DocumentDetailsViewModel.cs" />
     <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
+    <Compile Include="ViewModels\ImageDetailsViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\PortalViewModel.cs" />
     <Compile Include="ViewModels\TranslatedViewModel.cs" />

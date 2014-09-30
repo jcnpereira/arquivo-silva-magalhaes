@@ -11,7 +11,7 @@
             <li class="media-body col-md-3">
                 <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                 <a href=@Url.Content(item.SiteLink) target="_blank">
-                    <img height="90" width="90" src="~/images/@Html.DisplayFor(modelItem => item.LogoFileName)" alt="Logotipo associado à pareceria." /><br />
+                    <img height="90" width="90" src="~/Public/Partnerships/@item.LogoFileName" alt="Logotipo associado à pareceria." /><br />
                 </a>
                 <div class="">
                     <br /><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Contacts):</b><br /> @Html.DisplayFor(modelItem => item.Contact)
