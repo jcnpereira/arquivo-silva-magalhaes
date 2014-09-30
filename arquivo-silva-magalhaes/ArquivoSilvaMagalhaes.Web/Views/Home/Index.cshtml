@@ -16,8 +16,10 @@
         {
             var b = Model.Banners[i];
             <div class="item @(i == 0 ? "active" : "")">
-                <div class="afsm-banner-item-container"
-                     style="background-image: url(@Url.Content("~/Public/Banners/" + b.Entity.UriPath));">
+                @* style="background-image: url(@Url.Content("~/Public/Banners/" + b.Entity.UriPath));" *@
+                <div class="afsm-banner-item-container">
+                    <img src="@Url.Content("~/Public/Banners/" + b.Entity.UriPath)"
+                         class="afsm-banner-item" />
                 </div>
                 <div class="carousel-caption">
                     <p>@Html.DisplayFor(modelItem => b.Translation.Caption)</p>

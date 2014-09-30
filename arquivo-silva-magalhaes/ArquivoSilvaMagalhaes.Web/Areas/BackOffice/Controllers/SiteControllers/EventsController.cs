@@ -76,27 +76,30 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-                foreach (var attachment in model.Attachments)
+                if (model.Attachments != null)
                 {
-                    var attachedFile = model.Files.FirstOrDefault(f => f.FileName == attachment.FileName);
-
-                    if (attachedFile != null)
+                    foreach (var attachment in model.Attachments)
                     {
-                        var newName = Guid.NewGuid().ToString() + "_" + attachedFile.FileName;
-                        var dir = "~/Public/Attachments/";
+                        var attachedFile = model.Files.FirstOrDefault(f => f.FileName == attachment.FileName);
 
-                        Directory.CreateDirectory(Server.MapPath(dir));
+                        if (attachedFile != null)
+                        {
+                            var newName = Guid.NewGuid().ToString() + "_" + attachedFile.FileName;
+                            var dir = "~/Public/Attachments/";
 
-                        attachedFile.SaveAs(Server.MapPath(dir + newName));
+                            Directory.CreateDirectory(Server.MapPath(dir));
 
-                        model.Event.Attachments.Add(new Attachment
-                            {
-                                FileName = newName,
-                                MimeFormat = attachedFile.ContentType,
-                                Size = attachedFile.ContentLength,
-                                Title = attachment.Title
-                            });
-                    }
+                            attachedFile.SaveAs(Server.MapPath(dir + newName));
+
+                            model.Event.Attachments.Add(new Attachment
+                                {
+                                    FileName = newName,
+                                    MimeFormat = attachedFile.ContentType,
+                                    Size = attachedFile.ContentLength,
+                                    Title = attachment.Title
+                                });
+                        }
+                    } 
                 }
 
                 db.Add(model.Event);

@@ -2,6 +2,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 {
     using ArquivoSilvaMagalhaes.Models;
     using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+    using ArquivoSilvaMagalhaes.Models.SiteModels;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
@@ -25,14 +26,31 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Value = "63JNz7UZYwU"
                 });
 
-            SeedClassifications(db);
-            SeedKeywords(db);
+            var archive = new Archive
+                {
+                    Address = "Morada - MUDAR!!"
+                };
 
-            SeedAuthors(db);
-            SeedCollections(db);
-            SeedDocuments(db);
+            archive.Translations.Add(new ArchiveTranslation
+                {
+                    Archive = archive,
+                    LanguageCode = "pt",
+                    ArchiveHistory = "História",
+                    ArchiveMission = "Missão"
+                });
 
-            SeedImages(db);
+            db.Archives.AddOrUpdate(
+                a => new { a.Address },
+                archive);
+
+            //SeedClassifications(db);
+            //SeedKeywords(db);
+
+            //SeedAuthors(db);
+            //SeedCollections(db);
+            //SeedDocuments(db);
+
+            //SeedImages(db);
         }
 
         private void SeedAuthors(ArchiveDataContext db)

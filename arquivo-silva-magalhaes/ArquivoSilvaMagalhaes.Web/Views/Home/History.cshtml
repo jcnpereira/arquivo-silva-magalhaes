@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.ArchiveTranslation>
+﻿@model TranslatedViewModel<Archive, ArchiveTranslation>
 
 @{
     ViewBag.Title = FrontOfficeStrings.History;
@@ -7,16 +7,13 @@
 
 <div class="embed-responsive embed-responsive-16by9">
     <iframe class="embed-responsive-item"
-            src="//www.youtube-nocookie.com/embed/@(Model)?rel=0"
+            src="//www.youtube-nocookie.com/embed/@(ViewBag.VideoId)?rel=0"
             frameborder="0"></iframe>
 </div>
 
-@foreach (var item in Model)
-{
-    <h2>@FrontOfficeStrings.History</h2>
-    <hr />
-    <p>@Html.DisplayFor(modelItem => item.ArchiveHistory)</p><br />
-    <h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Mission)</h2>
-    <hr />
-    <p>@Html.DisplayFor(modelItem => item.ArchiveMission)</p><br />
-}
+<h2>@FrontOfficeStrings.History</h2>
+<hr />
+<p>@Html.DisplayFor(model => model.Translation.ArchiveHistory)</p><br />
+<h2>@FrontOfficeStrings.Mission</h2>
+<hr />
+<p>@Html.DisplayFor(model => model.Translation.ArchiveMission)</p><br />

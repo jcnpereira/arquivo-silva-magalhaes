@@ -25,11 +25,24 @@ body {
     display: none;
 }
 
+.afsm-banner-item {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .afsm-banner-item-container {
+    overflow: hidden;
     height: 250px;
-    max-height: inherit;
+    /*max-height: inherit;
     background-size: cover;
-    background-position: center center;
+    background-position: center center;*/
 }
 
 .afsm-negate-padding {
@@ -207,6 +220,7 @@ body {
 
     .afsm-banner-item-container {
         height: 350px;
+        
     }
 
     .afsm-thumb > .thumbnail {

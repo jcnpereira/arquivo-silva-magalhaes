@@ -5745,11 +5745,23 @@ body {
 #afsm-navbar {
   display: none;
 }
+.afsm-banner-item {
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 .afsm-banner-item-container {
+  overflow: hidden;
   height: 250px;
-  max-height: inherit;
-  background-size: cover;
-  background-position: center center;
+  /*max-height: inherit;
+    background-size: cover;
+    background-position: center center;*/
 }
 .afsm-negate-padding {
   margin: -10px -15px 0 -15px;

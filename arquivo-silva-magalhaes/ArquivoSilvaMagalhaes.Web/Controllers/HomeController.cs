@@ -49,9 +49,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// Forence os atributos listados contidos no model ArchiveTranslations
         /// </summary>
         /// <returns></returns>
-        public ActionResult History()
+        public async Task<ActionResult> History()
         {
-            return View(db.ArchiveTranslations.ToList());
+            ViewBag.VideoId = (await db.Configurations.FindAsync(AppConfiguration.VideoUrlKey)).Value;
+
+            return View(new TranslatedViewModel<Archive, ArchiveTranslation>(await db.Archives.FirstOrDefaultAsync()));
         }
 
 
