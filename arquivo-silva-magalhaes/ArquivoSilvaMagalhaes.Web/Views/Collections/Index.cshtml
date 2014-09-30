@@ -3,15 +3,26 @@
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-    var m = Model.ToList();
 }
 
 <h2>
-    @FrontOfficeStrings.Collections
+    @CollectionStrings.EntityNamePlural
 </h2>
+
 <hr />
-<b>@FrontOfficeStrings.Collections</b>
-<hr />
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+
+    <li class="active">
+        @CollectionStrings.EntityNamePlural
+    </li>
+</ol>
+
 
 <div class="row">
     @foreach (var col in Model)
@@ -29,10 +40,7 @@
                      alt="@col.Translation.Title" />
                 <div class="caption">
                     <h4>
-                        @Html.Truncate(col.Translation.Title, 20)
-                        <small>
-                            &nbsp;@col.Entity.CatalogCode
-                        </small>
+                        @Html.Truncate(col.Translation.Title, 20) <small>@col.Entity.CatalogCode</small>
                     </h4>
                     <p>
                         <small>@Html.Truncate(col.Translation.Description, 40)</small>

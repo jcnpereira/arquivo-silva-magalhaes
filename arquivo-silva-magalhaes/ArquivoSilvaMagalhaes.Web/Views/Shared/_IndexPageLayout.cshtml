@@ -6,6 +6,10 @@
         };
 }
 
+@section additionalheadcontent {
+    @RenderSection("additionalheadcontent", required: false)
+}
+
 @RenderBody()
 
 @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }), pagerOptions)

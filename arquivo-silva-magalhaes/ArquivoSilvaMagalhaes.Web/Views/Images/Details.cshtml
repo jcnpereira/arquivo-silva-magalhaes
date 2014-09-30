@@ -1,52 +1,94 @@
-﻿@model TranslatedViewModel<Image, ImageTranslation>
+﻿@model ImageDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Image.Translation.Title;
+
+    var logo = Model.Image.Entity.ImageUrl != null ?
+        "Public/Images/" + Model.Image.Entity.ImageUrl + "_thumb.jpg" :
+        "Content/Images/no-image.png";
 }
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</h2>
-<div>
-    <hr />
-        <a href="~/Collections">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)</a><b>&#9658</b><a href="~/Documents/Index/@Model.Entity.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Documents)</a><b>&#9658</b><a href="~/Images/Index/@Model.Entity.DocumentId">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Images)</a><b> &#9658 </b><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Informations)</b>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Title)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Subject)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Subject)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Localization)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Location)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.ProductionDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Entity.ProductionDate)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Description)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Publication)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Publication)
-        </dd>
-    </dl>
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Images", new { documentId = Model.Image.Entity.DocumentId })">
+            @ImageStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li class="active">
+        @Html.Truncate(Model.Image.Translation.Title, 20)
+    </li>
+</ol>
+
+<div class="row afsm-detail-header">
+    <div class="col-sm-4">
+        <img src="~/@logo"
+             class="img-responsive"
+             alt="@Model.Image.Translation.Title" />
+    </div>
+
+    <div class="col-sm-8">
+        <div class="row">
+            <h3 class="col-xs-12">
+                @Model.Image.Translation.Title <small>@Model.Image.Entity.ImageCode</small>
+            </h3>
+        </div>
+
+        <dl class="afsm-dl-vertical">
+
+            <dt>
+                @(Html.DisplayNameFor(model => model.Image.Entity.ProductionDate))
+            </dt>
+
+            <dd>
+                @Model.Image.Entity.ProductionDate
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Classification.Translation.Value)
+            </dt>
+
+            <dd>
+                @Model.Classification.Translation.Value
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Entity.Keywords)
+            </dt>
+            <dd>
+                @string.Join(", ", Model.Keywords.Select(k => k.Translation.Value))
+            </dd>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Back, "Index", new { id = Model.Entity.DocumentId })
-</p>
+
+<hr />
+
+<dl class="afsm-dl-vertical">
+    <dt>
+        @Html.DisplayNameFor(model => model.Image.Translation.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Image.Translation.Description)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Image.Translation.Subject)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Image.Translation.Subject)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Image.Translation.Publication)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Image.Translation.Publication)
+    </dd>
+</dl>

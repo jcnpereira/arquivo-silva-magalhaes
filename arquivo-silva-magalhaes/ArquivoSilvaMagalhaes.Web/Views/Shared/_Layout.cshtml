@@ -44,6 +44,8 @@
     <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/styles/frontoffice")
 
+    @RenderSection("additionalheadcontent", required: false)
+
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
