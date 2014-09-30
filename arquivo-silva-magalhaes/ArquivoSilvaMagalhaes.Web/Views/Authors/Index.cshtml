@@ -1,47 +1,27 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
-@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
+﻿@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
 
 @{
-    ViewBag.Title = "Index";
-}
-
-<h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Authors)</h2>
-<hr />
-<b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Authors)</b>
-<hr />
-<ul class="media-list">
-    @foreach (var item in Model)
-    {
-        <li class="media">
-
-            <div>
-                <a href="~/Authors/Details/@item.Entity.Id">
-                    <h4><b>@Html.DisplayFor(model => item.Entity.FirstName) @Html.DisplayFor(model => item.Entity.LastName)</b></h4>
-                </a>
-                <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)</b>
-                @if ((@Html.DisplayFor(model => item.Entity.BirthDate) != null))
-                {
-                    <p>@Html.DisplayFor(model => item.Entity.BirthDate.Year) / @Html.DisplayFor(model => item.Entity.BirthDate.Month) / @Html.DisplayFor(model => item.Entity.BirthDate.Day)</p>
-                }
-                else
-                {
-                    <p>@Html.Display("-")</p>
-                }
-                <b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)</b>
-                @if ((@Html.DisplayFor(model => item.Entity.DeathDate) != null))
-                {
-                    <p>@Html.DisplayFor(model => item.Entity.DeathDate.Value.Year) / @Html.DisplayFor(model => item.Entity.DeathDate.Value.Month) / @Html.DisplayFor(model => item.Entity.DeathDate.Value.Day)</p>
-                }
-                else
-                {
-                    <p>@Html.Display("-")</p>
-                }
-            </div>
-        </li>
-    }
-</ul>
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    ViewBag.Title = AuthorStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+    <li class="active">
+        @AuthorStrings.EntityNamePlural
+    </li>
+</ol>
+
+<h2>@AuthorStrings.EntityNamePlural</h2>
+
+<hr />
+
+@Html.Partial("_AuthorList", Model)
+
+
+
+

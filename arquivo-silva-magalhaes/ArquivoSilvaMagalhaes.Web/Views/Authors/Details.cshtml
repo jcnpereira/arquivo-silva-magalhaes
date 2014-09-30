@@ -1,70 +1,87 @@
-﻿@model TranslatedViewModel<Author, AuthorTranslation>
+﻿@model AuthorDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Author.Entity.FirstName + " " + Model.Author.Entity.LastName;
 }
 
 <ol class="breadcrumb">
     <li>
         <a href="@Url.Action("Archive", "Home")">
-            @FrontOfficeStrings.Collections
+            @LayoutStrings.Contents
         </a>
     </li>
+    <li>
+        <a href="@Url.Action("Index", "Authors")">
+            @AuthorStrings.EntityNamePlural
+        </a>
+    </li>
+
     <li class="active">
-        @Html.Truncate(Model.Entity.FirstName +" "+ Model.Entity.LastName, 20)
+        @Model.Author.Entity.FirstName @Model.Author.Entity.LastName
     </li>
 </ol>
 
-<h2>@Html.DisplayFor(model => model.Entity.FirstName) @Html.DisplayFor(model => model.Entity.LastName)</h2>
+<h2>@Model.Author.Entity.FirstName @Model.Author.Entity.LastName</h2>
 
+<p>@Model.Author.Translation.Nationality</p>
 
-<div class="list-group">
-    <dl>
-        @if (Model.Entity.BirthDate != null)
-        {
+<p>@Html.DisplayFor(m => Model.Author.Entity.BirthDate) @(Model.Author.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => Model.Author.Entity.DeathDate) : "")</p>
+
+<hr />
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="active">
+        <a href="#afsm-details" role="tab" data-toggle="tab">
+            Detalhes
+        </a>
+    </li>
+    @if (Model.Documents.Count() > 0)
+    {
+        <li>
+            <a href="#afsm-documents" role="tab" data-toggle="tab">
+                @DocumentStrings.EntityNamePlural (@(Model.Documents.Count()))
+            </a>
+        </li>
+    }
+
+    @if (Model.Collections.Count() > 0)
+    {
+        <li>
+            <a href="#afsm-collections" role="tab" data-toggle="tab">
+                @CollectionStrings.EntityNamePlural (@(Model.Collections.Count()))
+            </a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="afsm-details">
+        <dl class="afsm-dl-vertical">
             <dt>
-                @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.BirthDate)
+                @Html.DisplayNameFor(model => model.Author.Translation.Biography)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Entity.BirthDate)
+                @Html.DisplayFor(model => model.Author.Translation.Biography)
             </dd>
-        }
-        @if (Model.Entity.DeathDate != null)
-        {
             <dt>
-                @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.DeathDate)
+                @Html.DisplayNameFor(model => model.Author.Translation.Curriculum)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Entity.DeathDate)
+                @Html.DisplayFor(model => model.Author.Translation.Curriculum)
             </dd>
-        }
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Nacionality)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Nationality)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Biography)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Biography)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Translation.Curriculum)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Translation.Curriculum)
-        </dd>
-        <dt>
-            @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Collections)
-        </dt>
-
-        @for (var i = 0; i < Model.Translation.Author.Collections.Count; i++)
-        {
-            <dd>
-                <a href="~/Documents/Index/@Html.DisplayFor(model => model.Entity.Collections.ElementAtOrDefault(i).Id)">@Html.DisplayFor(modelItem => modelItem.Entity.Collections.ElementAtOrDefault(i).Translations.LastOrDefault().Title)</a>
-            </dd>
-        }
-    </dl>
+        </dl>
+    </div>
+    @if (Model.Documents.Count() > 0)
+    {
+        <div class="tab-pane fade" id="afsm-documents">
+            @Html.Partial("_DocumentList", Model.Documents)
+        </div>
+    }
+    
+    @if (Model.Collections.Count() > 0)
+    {
+        <div class="tab-pane fade" id="afsm-collections">
+            @Html.Partial("_CollectionList", Model.Collections)
+        </div>
+    }
 </div>

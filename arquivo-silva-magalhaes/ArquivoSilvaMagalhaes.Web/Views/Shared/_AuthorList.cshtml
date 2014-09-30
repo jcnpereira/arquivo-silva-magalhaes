@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
+
+<div class="list-group">
+    @foreach (var author in Model)
+    {
+        <a href="@Url.Action("Details", "Authors", new { author.Entity.Id })" class="list-group-item">
+            <h4 class="list-group-item-heading">
+                @(author.Entity.FirstName + " " + author.Entity.LastName)
+            </h4>
+
+            <p class="list-group-item-text">
+                @Html.DisplayFor(m => author.Entity.BirthDate) @(author.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => author.Entity.DeathDate) : "")
+            </p>
+        </a>
+    }
+</div>

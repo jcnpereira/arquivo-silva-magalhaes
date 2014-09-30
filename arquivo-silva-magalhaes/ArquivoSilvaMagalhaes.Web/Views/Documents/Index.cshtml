@@ -5,13 +5,12 @@
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
-<h2>
-    @DocumentStrings.EntityNamePlural
-</h2>
-
-<hr />
-
 <ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
     <li>
         <a href="@Url.Action("Index", "Collections")">
             @CollectionStrings.EntityNamePlural
@@ -22,57 +21,10 @@
     </li>
 </ol>
 
-<div class="list-group">
+<h2>
+    @DocumentStrings.EntityNamePlural
+</h2>
 
-    @foreach (var doc in Model)
-    {
-        <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
-            <div class="media">
-                <div class="pull-left">
-                    <img class="media-object" style="width: 96px; height: 96px"
-                         src="~/Content/Images/no-image.png">
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        @Html.Truncate(doc.Entity.Title, 60)
-                        &nbsp;<small>@doc.Entity.CatalogCode</small>
-                    </h4>
+<hr />
 
-                    <dl>
-                        <dt>
-                            Data: 
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => doc.Entity.DocumentDate)
-                        </dd>
-
-                        <dt>
-                            Local:
-                        </dt>
-                        <dd>
-                            @doc.Translation.DocumentLocation
-                        </dd>
-
-                    </dl>
-
-                    <p>
-                        @Html.Truncate(doc.Translation.Description, 120)
-                    </p>
-
-
-                </div>
-            </div>
-        </a>
-    }
-</div>
-
-
-
-@section scripts {
-    <style>
-        dl > dt {
-            margin-bottom: 5px;
-            margin-top: 5px;
-        }
-    </style>
-}
+@Html.Partial("_DocumentList", Model)

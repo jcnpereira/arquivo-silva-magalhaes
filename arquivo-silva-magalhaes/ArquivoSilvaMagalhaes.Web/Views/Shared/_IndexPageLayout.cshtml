@@ -12,7 +12,9 @@
 
 @RenderBody()
 
-@Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }), pagerOptions)
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }), pagerOptions)
+</div>
 
 @section scripts {
     @RenderSection("scripts", required: false)

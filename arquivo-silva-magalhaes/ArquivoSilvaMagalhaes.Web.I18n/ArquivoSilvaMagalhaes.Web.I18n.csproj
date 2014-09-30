@@ -49,22 +49,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FrontOfficeStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="FrontOfficeStrings.en.Designer.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewSpecific\Layout_ShowcasePhoto.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FrontOfficeStrings.en.resx</DependentUpon>
+      <DependentUpon>Layout_ShowcasePhoto.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AuthStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrontOfficeStrings.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>FrontOfficeStrings.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="FrontOfficeStrings.en.resx" />
     <EmbeddedResource Include="FrontOfficeStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FrontOfficeStrings.Designer.cs</LastGenOutput>
@@ -74,6 +71,10 @@
     <None Include="Resources\web.config" />
     <None Include="Resources\web.debug.config" />
     <None Include="Resources\web.release.config" />
+    <EmbeddedResource Include="ViewSpecific\Layout_ShowcasePhoto.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Layout_ShowcasePhoto.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

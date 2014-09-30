@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
+
+<div class="list-group">
+    @foreach (var col in Model)
+    {
+        var authors = col.Entity.Authors.ToList();
+
+        var logo = col.Entity.LogoLocation != null ?
+            "Public/Collections/" + col.Entity.LogoLocation :
+            "Content/Images/no-image.png";
+        <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })" class="list-group-item">
+            <div class="media">
+                <div class="pull-left">
+                    <img class="media-object" style="width: 64px; height: 64px"
+                         src="~/@logo">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @Html.DisplayFor(model => col.Translation.Title) <small>@col.Entity.CatalogCode</small>
+                    </h4>
+
+                    <dl>
+                        <dt>
+                            Data:
+                        </dt>
+                        <dd>
+                            @col.Entity.ProductionPeriod
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+

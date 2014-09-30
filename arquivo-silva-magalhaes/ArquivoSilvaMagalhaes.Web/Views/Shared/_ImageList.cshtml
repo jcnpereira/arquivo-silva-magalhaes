@@ -1,29 +1,5 @@
 ﻿@model IEnumerable<TranslatedViewModel<Image, ImageTranslation>>
 
-@{
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
-}
-
-@section additionalheadcontent {
-    @Styles.Render("~/Content/Styles/Images.css")
-}
-
-<ol class="breadcrumb">
-    <li>
-        <a href="@Url.Action("Archive", "Home")">
-            @LayoutStrings.Contents
-        </a>
-    </li>
-
-    <li class="active">
-        @ImageStrings.EntityNamePlural
-    </li>
-</ol>
-
-<h2>@ImageStrings.EntityNamePlural</h2>
-
-<hr />
-
 <div class="row">
     @foreach (var img in Model)
     {
@@ -57,7 +33,3 @@
         </div>
     }
 </div>
-
-@section scripts {
-    @Html.Partial("_ImageOverlay")
-}

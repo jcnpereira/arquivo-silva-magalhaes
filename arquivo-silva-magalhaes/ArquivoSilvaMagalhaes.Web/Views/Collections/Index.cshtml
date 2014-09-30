@@ -5,12 +5,6 @@
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
-<h2>
-    @CollectionStrings.EntityNamePlural
-</h2>
-
-<hr />
-
 <ol class="breadcrumb">
     <li>
         <a href="@Url.Action("Archive", "Home")">
@@ -23,6 +17,11 @@
     </li>
 </ol>
 
+<h2>
+    @CollectionStrings.EntityNamePlural
+</h2>
+
+<hr />
 
 <div class="row">
     @foreach (var col in Model)

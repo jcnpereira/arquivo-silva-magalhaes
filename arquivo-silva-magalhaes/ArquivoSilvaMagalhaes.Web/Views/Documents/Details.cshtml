@@ -4,14 +4,12 @@
     ViewBag.Title = Model.Document.Entity.Title;
 }
 
-<h2>
-    @Html.Truncate(Model.Document.Entity.Title, 50)
-    &nbsp;<small>@Model.Document.Entity.CatalogCode</small>
-</h2>
-
-<hr />
-
 <ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
     <li>
         <a href="@Url.Action("Index", "Collections")">
             @CollectionStrings.EntityNamePlural
@@ -24,65 +22,78 @@
     </li>
 
     <li class="active">
-        @Html.Truncate(Model.Document.Entity.Title, 20)
+        @Model.Document.Entity.Title
     </li>
 </ol>
 
-<p>
-    @Html.DisplayMultilineFor(model => model.Document.Translation.Description)
-</p>
+<h2>
+    @Model.Document.Entity.Title <small>@Model.Document.Entity.CatalogCode</small>
+</h2>
 
-<dl>
+<dl class="afsm-dl-vertical">
     <dt>
         @Html.DisplayNameFor(model => model.Document.Entity.DocumentDate)
     </dt>
     <dd>
         @Html.DisplayFor(model => model.Document.Entity.DocumentDate)
     </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Document.Translation.FieldAndContents)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Document.Translation.FieldAndContents)
-    </dd>
+
 </dl>
 
-@if (Model.Images.Count() > 0)
-{
-    <h4>
-        @(ImageStrings.EntityNamePlural) (@Model.Images.Count())
-        <small>
-            @Html.ActionLink("Ver imagens", "Index", "Images", new { documentId = Model.Document.Entity.Id }, null)
-        </small>
-    </h4>
+<hr />
 
-    <hr />
 
-    <div class="row">
-        @foreach (var img in Model.Images)
-        {
-            var logo = img.Entity.ImageUrl != null ?
-            "Public/Images/" + img.Entity.ImageUrl + "_thumb.jpg" :
-            "Content/Images/no-image.png";
 
-            <div class="afsm-thumb col-sm-6 col-lg-4">
-                <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
-                   class="thumbnail">
-                    <img src="~/@logo"
-                         alt="@img.Translation.Title" />
-                    <div class="caption">
-                        <h4>
-                            @Html.Truncate(img.Translation.Title, 30)
-                            <small>
-                                &nbsp;@img.Entity.ImageCode
-                            </small>
-                        </h4>
-                        <p>
-                            <small>@Html.Truncate(img.Translation.Description, 80)</small>
-                        </p>
-                    </div>
-                </a>
-            </div>
-        }
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="active">
+        <a href="#afsm-details" role="tab" data-toggle="tab">
+            Detalhes
+        </a>
+    </li>
+    @if (Model.Images.Count() > 0)
+    {
+        <li>
+            <a href="#afsm-images" role="tab" data-toggle="tab">
+                @ImageStrings.EntityNamePlural (@(Model.Images.Count()))
+            </a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="afsm-details">
+        
+
+        <dl class="afsm-dl-vertical">
+            <dt>
+                @Html.DisplayNameFor(model => model.Document.Translation.Description)
+            </dt>
+            <dd>
+                @Html.DisplayMultilineFor(model => model.Document.Translation.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Document.Translation.FieldAndContents)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Document.Translation.FieldAndContents)
+            </dd>
+        </dl>
     </div>
-}
+    @if (Model.Images.Count() > 0)
+    {
+        <div class="tab-pane fade" id="afsm-images">
+
+            @section additionalheadcontent {
+                @Styles.Render("~/Content/Styles/Images.css")
+            }
+
+            @Html.Partial("_ImageList", Model.Images)
+
+            @section scripts {
+                @Html.Partial("_ImageOverlay")
+            }
+
+        </div>
+    }
+</div>
+

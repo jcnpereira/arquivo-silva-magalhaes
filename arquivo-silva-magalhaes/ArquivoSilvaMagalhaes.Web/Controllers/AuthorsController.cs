@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.ViewModels;
 using System.Threading.Tasks;
-using PagedList;
-using PagedList.Mvc;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class AuthorsController : Controller
     {
-        
+
         /// <summary>
         /// Associa Entidade Author às traduções existentes
         /// </summary>
@@ -39,10 +34,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                            .OrderByDescending(a => a.BirthDate)
                             .ToListAsync())
                             .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
-                            .ToPagedList(pageNumber, 12));
+                            .ToPagedList(pageNumber, 10));
         }
 
         /// <summary>
@@ -61,13 +55,18 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new TranslatedViewModel<Author, AuthorTranslation>(author));
+            return View(new AuthorDetailsViewModel
+                    {
+                        Author = new TranslatedViewModel<Author, AuthorTranslation>(author),
+                        Collections = author.Collections.ToList().Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c)),
+                        Documents = author.Documents.ToList().Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
+                    });
         }
 
-       /// <summary>
-       /// Actualização à base de dados
-       /// </summary>
-       /// <param name="disposing"></param>
+        /// <summary>
+        /// Actualização à base de dados
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
