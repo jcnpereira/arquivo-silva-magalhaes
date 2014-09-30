@@ -57,6 +57,23 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
 
+        public async Task<ActionResult> Archive()
+        {
+
+            var authors = (await db.Set<Author>().ToListAsync())
+                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a));
+
+            var collections = (await db.Set<Collection>().ToListAsync())
+                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c));
+
+            return View(new ArchiveDetailsViewModel
+                {
+                    Authors = authors,
+                    Collections = collections
+                });
+        }
+
+
         /// <summary>
         /// Loja ainda não existe (poderá ser desenvolvida futuramente)
         /// </summary>
@@ -128,6 +145,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Partnerships()
         {
             return View(await db.Partnerships.ToListAsync());
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }

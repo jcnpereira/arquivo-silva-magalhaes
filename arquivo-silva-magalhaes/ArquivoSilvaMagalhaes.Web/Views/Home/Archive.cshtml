@@ -1,0 +1,83 @@
+﻿@model ArchiveDetailsViewModel
+
+@{
+    ViewBag.Title = FrontOfficeStrings.Collections;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="active">
+        <a href="#afsm-collections" role="tab" data-toggle="tab">
+            @CollectionStrings.EntityNamePlural (@(Model.Collections.Count()))
+        </a>
+    </li>
+    <li>
+        <a href="#afsm-authors" role="tab" data-toggle="tab">
+            @AuthorStrings.EntityNamePlural (@(Model.Authors.Count()))
+        </a>
+    </li>
+</ul>
+
+@* Authors... *@
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="afsm-collections">
+        <div class="list-group">
+            @foreach (var col in Model.Collections)
+            {
+                var authors = col.Entity.Authors.ToList();
+
+                var logo = col.Entity.LogoLocation != null ?
+                    "Public/Collections/" + col.Entity.LogoLocation :
+                    "Content/Images/no-image.png";
+                <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })" class="list-group-item">
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="media-object" style="width: 64px; height: 64px"
+                                 src="~/@logo">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                @Html.DisplayFor(model => col.Translation.Title) <small>@col.Entity.CatalogCode</small>
+                            </h4>
+
+                            <dl>
+                                <dt>
+                                    Data:
+                                </dt>
+                                <dd>
+                                    @col.Entity.ProductionPeriod
+                                </dd>
+
+                            </dl>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="afsm-authors">
+        <div class="list-group">
+            @foreach (var author in Model.Authors)
+            {
+                <a href="@Url.Action("Details", "Authors", new { author.Entity.Id })" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        @(author.Entity.FirstName + " " + author.Entity.LastName)
+                    </h4>
+
+                    <p class="list-group-item-text">
+                        @Html.DisplayFor(m => author.Entity.BirthDate) @(author.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => author.Entity.DeathDate) : "")
+                    </p>
+                </a>
+            }
+        </div>
+    </div>
+
+
+
+    @* Collections... *@
+
+
+</div>

@@ -306,6 +306,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\AttachmentEditViewModel.cs" />
+    <Compile Include="ViewModels\ArchiveDetailsViewModel.cs" />
     <Compile Include="ViewModels\AuthorsViewModel.cs" />
     <Compile Include="ViewModels\CollectionDetailsViewModel.cs" />
     <Compile Include="ViewModels\DocumentDetailsViewModel.cs" />
@@ -892,6 +893,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\_VideoDisplayPartial.cshtml" />
+    <Content Include="Views\Home\Archive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
