@@ -235,10 +235,10 @@
     <value>Use the box to enter the terms that you want search for</value>
   </data>
   <data name="ShowCase" xml:space="preserve">
-    <value>Showcase photo</value>
+    <value>Showcase photos</value>
   </data>
   <data name="ShowCasePhoto" xml:space="preserve">
-    <value>Show case photo</value>
+    <value>Show case photos</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>
