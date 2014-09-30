@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                             .Where(col => col.IsVisible)
                             .ToListAsync())
                             .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
-                            .ToPagedList(pageNumber, 12));
+                            .ToPagedList(pageNumber, 10));
         }
         /// <summary>
         /// Fornece detalhes de uma determinda coleção

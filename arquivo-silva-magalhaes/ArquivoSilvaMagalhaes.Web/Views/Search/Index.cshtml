@@ -1,43 +1,35 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
+﻿@model SearchResult
 
-@model IEnumerable<ArquivoSilvaMagalhaes.Models.ArchiveModels.CollectionTranslation>
+@{
+    ViewBag.Title = "Pesquisar Documentos";
+}
 
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Search)</h2>
+<h2>Pesquisar Documentos</h2>
 <hr />
-<p>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.SearchMessage)</p>
+
 <form method="get">
-    <div>
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Search)</button>
-                </span>
-                <input type="search" autofocus="" name="SearchTerm" class="form-control" />
-            </div>
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Pesquisar</button>
+            </span>
+            <input type="search" @(string.IsNullOrEmpty(Model.Query) ? "autofocus" : "") name="searchTerm" class="form-control" value="@Model.Query" />
         </div>
     </div>
 </form>
 
-<hr style="visibility: hidden" />
-
-<ul class="media-list">
-    @foreach (var item in Model)
-    {
-        <li class="media">
-            <div class="media-body">
-                <a href="~/Documents/Index/@item.CollectionId">
-                    <h4 class="media-heading">@item.Title</h4>
-                </a>
-                <h5>@item.Provenience</h5>
-                <p>
-                    @Html.DisplayFor(model => item.Description)
-                </p>
-            </div>
-        </li>
-    }
-</ul>
-@{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+@if (Model != null)
+{
+    <div class="list-group">
+        @foreach (var doc in Model.Results)
+        {
+            <a href="@Url.Action("Details", "Documents", new { doc.Id })" class="list-group-item">
+                <h4 class="list-group-item-heading">@doc.Title</h4>
+            </a>
+        }
+    </div>
 }
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)Model.Results, p => Url.Action("Index", "Search", new { pageNumber = p, searchTerm = Model.Query }))
+</div>

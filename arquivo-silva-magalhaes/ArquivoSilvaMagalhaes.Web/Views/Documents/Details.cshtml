@@ -11,11 +11,6 @@
         </a>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Collections")">
-            @CollectionStrings.EntityNamePlural
-        </a>
-    </li>
-    <li>
         <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Document.Entity.CollectionId })">
             @DocumentStrings.EntityNamePlural
         </a>
@@ -36,6 +31,26 @@
     </dt>
     <dd>
         @Html.DisplayFor(model => model.Document.Entity.DocumentDate)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Document.Entity.Author)
+    </dt>
+
+    <dd>
+        <a href="@Url.Action("Details", "Authors", new { Model.Document.Entity.Author.Id })">
+            @Model.Document.Entity.Author.FirstName @Model.Document.Entity.Author.LastName
+        </a>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Document.Entity.Collection)
+    </dt>
+
+    <dd>
+        <a href="@Url.Action("Details", "Collections", new { Model.Collection.Entity.Id })">
+            @Model.Collection.Translation.Title
+        </a>
     </dd>
 
 </dl>
@@ -62,7 +77,7 @@
 
 <div class="tab-content">
     <div class="tab-pane active fade in" id="afsm-details">
-        
+
 
         <dl class="afsm-dl-vertical">
             <dt>
@@ -77,6 +92,8 @@
             <dd>
                 @Html.DisplayFor(model => model.Document.Translation.FieldAndContents)
             </dd>
+
+
         </dl>
     </div>
     @if (Model.Images.Count() > 0)

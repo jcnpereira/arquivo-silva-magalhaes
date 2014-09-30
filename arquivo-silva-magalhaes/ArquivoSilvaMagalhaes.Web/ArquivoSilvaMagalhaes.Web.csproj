@@ -225,7 +225,6 @@
     <Compile Include="Areas\BackOffice\ViewModels\UserViewModels.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\CollectionsController.cs" />
-    <Compile Include="Controllers\DigitalPhotographsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -314,6 +313,7 @@
     <Compile Include="ViewModels\ImageDetailsViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\PortalViewModel.cs" />
+    <Compile Include="ViewModels\SearchResult.cs" />
     <Compile Include="ViewModels\TranslatedViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

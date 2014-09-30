@@ -64,6 +64,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             return View(new DocumentDetailsViewModel
                 {
+                    Collection = new TranslatedViewModel<Collection, CollectionTranslation>(document.Collection),
                     Document = new TranslatedViewModel<Document, DocumentTranslation>(document),
                     Images = document.Images
                                      .Where(i => i.IsVisible)

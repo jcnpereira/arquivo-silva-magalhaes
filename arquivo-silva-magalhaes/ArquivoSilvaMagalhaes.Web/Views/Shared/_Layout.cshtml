@@ -40,7 +40,7 @@
         @ViewBag.Title @(!string.IsNullOrEmpty(ViewBag.Title) ? "| " : "")Arquivo Fotográfico Silva Magalhães
     </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
+    @*<link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />*@
     <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/styles/frontoffice")
 
@@ -89,7 +89,7 @@
 
                 @* Language selectors. *@
                 <ul id="afsm-language-selector">
-                    
+
                     <li>@Html.ActionLink("EN", "Index", "Home", new { culture = "en" }, null)</li>
                     <li>@Html.ActionLink("PT", "Index", "Home", new { culture = "pt" }, null)</li>
                 </ul>
@@ -121,9 +121,7 @@
             </div>
 
             <div id="afsm-page-content" style="height: 100%">
-                <div>
-                    @RenderBody()
-                </div>
+                @RenderBody()
 
                 <div class="clearfix"></div>
 

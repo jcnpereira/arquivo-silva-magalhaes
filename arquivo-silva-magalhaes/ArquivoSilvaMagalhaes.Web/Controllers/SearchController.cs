@@ -1,19 +1,26 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using System;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using PagedList;
-using PagedList.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
+    public static class PagedListAsyncExtensions
+    {
+        public async static Task<IPagedList<TModel>> ToPagedListAsync<TModel>(this IEnumerable<TModel> enumerable, int page, int count)
+        {
+            return await Task.Run(() => enumerable.ToPagedList(page, count));
+        }
+    }
+
+
     public class SearchController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
-        
+
 
         /// <summary>
         /// Forence lista paginada de elementos encontrados na pesquisa
@@ -21,14 +28,30 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="searchTerm"></param>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public ActionResult Index(string searchTerm = null, int pageNumber=1)
+        public async Task<ActionResult> Index(string searchTerm = null, int pageNumber = 1)
         {
-            var model =
-                from c in db.CollectionTranslations
-                orderby c.Title
-                where (c.Title.Contains(searchTerm) || c.Provenience.Contains(searchTerm) || c.Description.Contains(searchTerm))
-                select c;
-            return View(model.ToPagedList(pageNumber, 10));
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                var model = new SearchResult
+                {
+                    Query = searchTerm
+                };
+
+                model.Results = await db.Documents
+                    .Where(ct => ct.Title.Contains(searchTerm))
+                    .OrderBy(ct => ct.Id)
+                    .Select(ct => new SearchResultItem
+                    {
+                        Id = ct.Id,
+                        Title = ct.Title
+                    })
+                    .ToPagedListAsync(pageNumber, 10);
+
+
+                return View(model);
+            }
+
+            return View();
         }
 
         /// <summary>

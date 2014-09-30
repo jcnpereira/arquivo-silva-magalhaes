@@ -61,7 +61,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autor deste documento.
+        ///   Looks up a localized string similar to Fotógrafo.
         /// </summary>
         public static string Author {
             get {

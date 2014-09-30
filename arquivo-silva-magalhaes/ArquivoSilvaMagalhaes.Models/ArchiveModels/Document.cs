@@ -74,11 +74,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int CollectionId { get; set; }
 
         [ForeignKey("CollectionId")]
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Collection")]
         public virtual Collection Collection { get; set; }
 
         [Display(ResourceType = typeof(DocumentStrings), Name = "Author")]
         public int AuthorId { get; set; }
 
+        [Display(ResourceType = typeof(DocumentStrings), Name = "Author")]
         [ForeignKey("AuthorId")]
         public virtual Author Author { get; set; }
 

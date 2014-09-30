@@ -4,41 +4,23 @@
     @foreach (var doc in Model)
     {
         <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item">
-            <div class="media">
-                <div class="pull-left">
-                    <img class="media-object" style="width: 96px; height: 96px"
-                         src="~/Content/Images/no-image.png">
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        @Html.Truncate(doc.Entity.Title, 60)
-                        &nbsp;<small>@doc.Entity.CatalogCode</small>
-                    </h4>
+            <h4 class="list-group-item-heading">@Html.Truncate(doc.Entity.Title, 60) <small>@doc.Entity.CatalogCode</small></h4>
+            <dl class="afsm-dl-vertical">
+                <dt>
+                    @DocumentStrings.DocumentDate
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                </dd>
 
-                    <dl class="afsm-dl-vertical">
-                        <dt>
-                            Data:
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => doc.Entity.DocumentDate)
-                        </dd>
+                <dt>
+                    @DocumentStrings.DocumentLocation
+                </dt>
+                <dd>
+                    @doc.Translation.DocumentLocation
+                </dd>
 
-                        <dt>
-                            Local:
-                        </dt>
-                        <dd>
-                            @doc.Translation.DocumentLocation
-                        </dd>
-
-                    </dl>
-
-                    <p>
-                        @Html.Truncate(doc.Translation.Description, 120)
-                    </p>
-
-
-                </div>
-            </div>
+            </dl>
         </a>
     }
 </div>
