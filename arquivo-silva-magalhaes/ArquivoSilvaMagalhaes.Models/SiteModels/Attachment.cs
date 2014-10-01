@@ -1,5 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models.Translations;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArquivoSilvaMagalhaes.Models.SiteModels
 {
@@ -20,5 +21,10 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         [Display(ResourceType = typeof(AttachmentStrings), Name = "Size")]
         public int Size { get; set; }
+
+        [ForeignKey("EventId")]
+        public virtual Event Event { get; set; }
+
+        public int EventId { get; set; }
     }
 }

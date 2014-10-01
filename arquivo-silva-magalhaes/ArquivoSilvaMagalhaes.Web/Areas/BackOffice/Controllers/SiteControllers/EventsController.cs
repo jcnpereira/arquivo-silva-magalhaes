@@ -99,7 +99,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
                                     Title = attachment.Title
                                 });
                         }
-                    } 
+                    }
                 }
 
                 db.Add(model.Event);
@@ -162,6 +162,9 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             {
                 return HttpNotFound();
             }
+
+
+
             return View(events);
         }
 
@@ -170,7 +173,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.RemoveByIdAsync(id);
+            var e = await db.GetByIdAsync(id);
+
+            foreach (var att in e.Attachments.ToList())
+            {
+                var path = Server.MapPath("~/Public/Attachments/" + att.FileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+            }
+
+            db.Remove(e);
+
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
