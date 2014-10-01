@@ -228,4 +228,7 @@
   <data name="Search" xml:space="preserve">
     <value>Pesquisar</value>
   </data>
+  <data name="ChooseMultipleSuggestion" xml:space="preserve">
+    <value>Pode seleccionar múltiplos itens recorrendo à tecla </value>
+  </data>
 </root>
