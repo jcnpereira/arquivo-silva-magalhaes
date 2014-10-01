@@ -5,16 +5,19 @@
         var $target = $($link.data('afsm-target'));
         var description = $link.data('afsm-description');
 
-        $target.find('img:first').attr('src', url);
+        $target.css('background-image', 'url(' + url + ')');
         $target.find('p:first').text(description);
 
         $target.removeClass('hidden');
+        $('body').addClass('afsm-body-noscroll');
 
         e.preventDefault();
         return false;
     });
 
     $('[data-afsm-close-overlay]').click(function (e) {
-        $($(e.target).data('afsm-close-overlay')).addClass('hidden');
-    })
+        $($(this).data('afsm-close-overlay')).addClass('hidden');
+
+        $('body').removeClass('afsm-body-noscroll');
+    });
 }(window.jQuery));

@@ -57,8 +57,6 @@
 
 <hr />
 
-
-
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">
         <a href="#afsm-details" role="tab" data-toggle="tab">
@@ -99,11 +97,7 @@
     @if (Model.Images.Count() > 0)
     {
         <div class="tab-pane fade" id="afsm-images">
-
-            @section additionalheadcontent {
-                @Styles.Render("~/Content/Styles/Images.css")
-            }
-
+            
             @Html.Partial("_ImageList", Model.Images)
 
             @section scripts {

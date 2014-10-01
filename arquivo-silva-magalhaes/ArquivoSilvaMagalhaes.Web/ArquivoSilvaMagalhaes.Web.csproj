@@ -335,7 +335,12 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.min.css">
       <DependentUpon>glyphicons.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\Images.css" />
+    <Content Include="Content\Styles\frontoffice\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="mstile-square.png" />
     <Content Include="mstile-large.png" />
     <Content Include="mstile-tiny.png" />
@@ -354,28 +359,15 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\variables.min.css">
       <DependentUpon>variables.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Styles\frontoffice\main.css">
-      <DependentUpon>main.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\frontoffice\main.min.css">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
     <Content Include="favicon-160x160.png" />
     <Content Include="favicon-16x16.png" />
     <Content Include="favicon-196x196.png" />
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon-96x96.png" />
-    <Content Include="images\docIcon.png" />
-    <Content Include="images\documents.png" />
-    <Content Include="images\events.png" />
-    <Content Include="images\Expo.png" />
-    <Content Include="images\news.png" />
-    <Content Include="images\Other.png" />
-    <Content Include="images\pdfIcon.png" />
-    <Content Include="images\School.png" />
-    <Content Include="images\spotlightphoto.png" />
-    <Content Include="images\Workshop.png" />
+    <Content Include="Content\Images\documents.png" />
+    <Content Include="Content\Images\events.png" />
+    <Content Include="Content\Images\news.png" />
+    <Content Include="Content\Images\spotlightphoto.png" />
     <Content Include="Scripts\BackOffice\code-suggestions.js" />
     <Content Include="Scripts\BackOffice\code-suggestions.min.js">
       <DependentUpon>code-suggestions.js</DependentUpon>
@@ -405,61 +397,10 @@
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
-    <Content Include="Content\theme\arrows.png" />
-    <Content Include="Content\theme\bg_control_nav.png" />
-    <Content Include="Content\theme\bg_direction_nav.png" />
-    <Content Include="Content\theme\blocks.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Images\temp\01.jpg" />
-    <Content Include="Content\Images\temp\02.jpg" />
-    <Content Include="Content\Images\temp\03.jpg" />
-    <Content Include="images\artigo.png" />
-    <Content Include="images\atividade.jpg" />
-    <Content Include="images\banner.jpg" />
-    <Content Include="images\carousel-left-arrow.png" />
-    <Content Include="images\carousel-right-arrow.png" />
-    <Content Include="images\cmt.png" />
-    <Content Include="images\coded-with-love - Cópia.png" />
-    <Content Include="images\coded-with-love.png" />
-    <Content Include="images\colecao.png" />
-    <Content Include="images\contact_us.jpg" />
-    <Content Include="images\continente.jpg" />
-    <Content Include="images\customizable.png" />
-    <Content Include="images\destaque.jpg" />
-    <Content Include="images\documentos.png" />
-    <Content Include="images\evento.jpg" />
-    <Content Include="images\exposicao.jpg" />
-    <Content Include="images\facebook.png" />
-    <Content Include="images\for-pencil.png" />
-    <Content Include="images\ico-arrow.gif" />
-    <Content Include="images\image-gallery.png" />
-    <Content Include="images\ipt.jpg" />
-    <Content Include="images\jquery-code.png" />
-    <Content Include="images\linkedin.png" />
-    <Content Include="images\logo - Cópia.png" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\logo_abt.jpg" />
-    <Content Include="images\logo_cml.jpg" />
-    <Content Include="images\noticias.jpg" />
-    <Content Include="images\pesquisa.png" />
-    <Content Include="images\photos\01.jpg" />
-    <Content Include="images\photos\02.jpg" />
-    <Content Include="images\photos\03.jpg" />
-    <Content Include="images\photos\04.jpg" />
-    <Content Include="images\photos\05.jpg" />
-    <Content Include="images\photos\06.jpg" />
-    <Content Include="images\photos\07.jpg" />
-    <Content Include="images\photos\08.jpg" />
-    <Content Include="images\photos\09.jpg" />
-    <Content Include="images\photos\10.jpg" />
-    <Content Include="images\projeto.png" />
-    <Content Include="images\responsive.png" />
-    <Content Include="images\sending.gif" />
-    <Content Include="images\tomar_logo.jpg" />
-    <Content Include="images\twitter.png" />
-    <Content Include="images\workshop.jpg" />
+    <Content Include="Content\Images\cmt.png" />
     <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Web.config" />
@@ -668,9 +609,6 @@
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
     <Content Include="Content\Styles\frontoffice\main.less" />
-    <Content Include="Content\Styles\frontoffice\main.css.map">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
     <Content Include="Areas\BackOffice\Views\Authors\DeleteTranslation.cshtml" />
     <Content Include="Content\Styles\frontoffice\bootstrap\variables.css.map">
       <DependentUpon>variables.css</DependentUpon>
@@ -680,9 +618,6 @@
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\YesNoDisplayFor.cshtml" />
     <Content Include="Areas\BackOffice\Views\Users\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Users\Create.cshtml" />
-    <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\Styles\frontoffice\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\BackOffice\Views\Classifications\_ClassificationFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Classifications\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\AddTranslation.cshtml" />
@@ -740,6 +675,10 @@
     <Content Include="Areas\BackOffice\Views\Portal\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Content\Styles\frontoffice\image-overlay.less" />
+    <Content Include="Content\Styles\frontoffice\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

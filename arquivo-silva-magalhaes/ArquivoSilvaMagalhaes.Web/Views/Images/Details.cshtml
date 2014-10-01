@@ -28,9 +28,25 @@
 
 <div class="row afsm-detail-header">
     <div class="col-sm-4">
-        <img src="~/@logo"
-             class="img-responsive"
-             alt="@Model.Image.Translation.Title" />
+        @if (Model.Image.Entity.ImageUrl != null)
+        {
+            <a href="@Url.Content("~/Public/Images/" + (Model.Image.Entity.ImageUrl) + "_large.jpg")"
+               class="thumbnail">
+                <img data-afsm-show-overlay="true"
+                     data-afsm-target="#afsm-overlay"
+                     data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (Model.Image.Entity.ImageUrl) + "_large.jpg")"
+                     data-afsm-description="@Html.DisplayFor(modelItem => Model.Image.Translation.Description)"
+                     src="~/Public/Images/@(Model.Image.Entity.ImageUrl)_thumb.jpg" />
+            </a>
+
+            @section scripts {
+                @Html.Partial("_ImageOverlay")
+            }
+        }
+        else
+        {
+            <img src="~/Content/Images/no-image.png" />
+        }
     </div>
 
     <div class="col-sm-8">
