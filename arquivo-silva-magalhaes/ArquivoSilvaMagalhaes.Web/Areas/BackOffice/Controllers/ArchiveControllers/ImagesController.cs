@@ -2,6 +2,7 @@
 using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System;
@@ -75,6 +76,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ImageEditViewModel model)
         {
+            if (DoesCodeAlreadyExist(model.Image))
+            {
+                ModelState.AddModelError("Image.ImageCode", ImageStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 if (model.ImageUpload != null)
@@ -98,8 +104,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return RedirectToAction("Index");
             }
 
+            model.PopulateDropDownLists(db.Set<Document>(), db.Set<Classification>(), db.Set<Keyword>());
+
             return View(model);
         }
+
+
         #endregion
 
         #region Edit
@@ -127,6 +137,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ImageEditViewModel model)
         {
+            if (DoesCodeAlreadyExist(model.Image))
+            {
+                ModelState.AddModelError("Image.ImageCode", ImageStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 // "Force-load" the image and the keywords.
@@ -236,6 +251,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             }
 
             return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
+        }
+
+        private bool DoesCodeAlreadyExist(Image image)
+        {
+            return db.Entities
+                .Any(d => d.ImageCode == image.ImageCode && d.Id != image.Id);
         }
         #endregion
 

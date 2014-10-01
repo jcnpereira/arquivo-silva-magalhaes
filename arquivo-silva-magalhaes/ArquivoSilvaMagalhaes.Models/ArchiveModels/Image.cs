@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public class Image : IValidatableObject
+    public class Image
     {
         public Image()
         {
@@ -63,16 +63,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]
         public int ClassificationId { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            using (var _db = new ArchiveDataContext())
-            {
-                if (_db.Images.Any(i => i.ImageCode == this.ImageCode && i.Id != this.Id))
-                {
-                    yield return new ValidationResult(ImageStrings.CodeAlreadyExists, new string[] { "ImageCode" });
-                }
-            }
-        }
     }
 
     public class ImageTranslation : EntityTranslation
