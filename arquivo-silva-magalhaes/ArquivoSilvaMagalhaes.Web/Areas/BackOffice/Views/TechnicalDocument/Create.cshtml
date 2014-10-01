@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UploadedFile, new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
-                @Html.FileUploadFor(model => model.UploadedFile, new { @class = "form-control-static" })
+                @Html.FileUploadFor(model => model.UploadedFile, new { @class = "form-control-static", accept = "image/*, audio/*, video/*, application/pdf, application/msword, application/msexcel, application/mspowerpoint, .pptx, .docx, .xlsx, .zip" })
                 @Html.ValidationMessageFor(model => model.UploadedFile, "", new { @class = "text-danger" })
             </div>
         </div>

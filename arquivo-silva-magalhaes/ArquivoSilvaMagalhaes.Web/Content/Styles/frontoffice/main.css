@@ -5845,6 +5845,9 @@ div.line + div.line {
 div.line + ul {
   margin-top: 10px;
 }
+.afsm-commentary ul {
+  padding-left: 20px;
+}
 .afsm-thumb {
   height: 450px;
   max-height: 450px;
@@ -5859,8 +5862,10 @@ div.line + ul {
   .afsm-thumb {
     height: 100%;
   }
-  .afsm-header > h2 {
-    font-size: 18px;
+  #afsm-page-content h2 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

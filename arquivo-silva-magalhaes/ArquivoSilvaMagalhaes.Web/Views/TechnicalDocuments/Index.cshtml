@@ -13,6 +13,10 @@
 
 @functions 
 {
+    /// <summary>
+    /// Gets the appropriate glyphicon for the file type.
+    /// </summary>
+    /// <returns></returns>
     string GlyphIconForMimeType(string mimeType, string fileName = null)
     {
         var regex = new System.Text.RegularExpressions.Regex(".doc(x)?$|.ppt(x)?$|.xls(x)?$");
