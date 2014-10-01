@@ -3,7 +3,7 @@
 <div class="row">
     @foreach (var img in Model)
     {
-        <div class="afsm-thumb col-sm-6 col-lg-4">
+        <div class="afsm-thumb col-sm-6 col-md-4">
             <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
                class="thumbnail">
                 @if (img.Entity.ImageUrl != null)

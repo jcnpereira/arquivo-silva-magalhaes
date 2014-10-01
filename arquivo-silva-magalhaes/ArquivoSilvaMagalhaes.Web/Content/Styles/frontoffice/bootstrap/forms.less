@@ -7,7 +7,7 @@
 //
 // Restyle and baseline non-control form elements.
 
-fieldset {
+/*fieldset {
   padding: 0;
   margin: 0;
   border: 0;
@@ -15,9 +15,9 @@ fieldset {
   // so we reset that to ensure it behaves more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
-}
+}*/
 
-legend {
+/*legend {
   display: block;
   width: 100%;
   padding: 0;
@@ -34,7 +34,7 @@ label {
   max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
   margin-bottom: 5px;
   font-weight: bold;
-}
+}*/
 
 
 // Normalize form controls
@@ -57,9 +57,9 @@ input[type="checkbox"] {
 }
 
 // Set the height of file controls to match text inputs
-input[type="file"] {
+/*input[type="file"] {
   display: block;
-}
+}*/
 
 // Make range inputs behave like textual form controls
 input[type="range"] {
@@ -81,13 +81,13 @@ input[type="checkbox"]:focus {
 }
 
 // Adjust output element
-output {
+/*output {
   display: block;
   padding-top: (@padding-base-vertical + 1);
   font-size: @font-size-base;
   line-height: @line-height-base;
   color: @input-color;
-}
+}*/
 
 
 // Common form controls
@@ -138,18 +138,18 @@ output {
   // HTML5 says that controls under a fieldset > legend:first-child won't be
   // disabled if the fieldset is disabled. Due to implementation difficulty, we
   // don't honor that edge case; we style them as disabled anyway.
-  &[disabled],
+  /*&[disabled],
   &[readonly],
   fieldset[disabled] & {
     cursor: not-allowed;
     background-color: @input-bg-disabled;
     opacity: 1; // iOS fix for unreadable disabled content
-  }
+  }*/
 
   // Reset height for `textarea`s
-  textarea& {
+  /*textarea& {
     height: auto;
-  }
+  }*/
 }
 
 
@@ -181,12 +181,12 @@ input[type="month"] {
   // IE8+ misaligns the text within date inputs, so we reset
   line-height: @line-height-base ~"\0";
 
-  &.input-sm {
+  /*&.input-sm {
     line-height: @input-height-small;
   }
   &.input-lg {
     line-height: @input-height-large;
-  }
+  }*/
 }
 
 
@@ -219,7 +219,7 @@ input[type="month"] {
     cursor: pointer;
   }
 }
-.radio input[type="radio"],
+/*.radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
@@ -227,14 +227,14 @@ input[type="month"] {
   margin-left: -20px;
   margin-top: 4px \9;
 }
-
+    
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
-}
+}*/
 
 // Radios and checkboxes on same line
-.radio-inline,
+/*.radio-inline,
 .checkbox-inline {
   display: inline-block;
   padding-left: 20px;
@@ -247,13 +247,13 @@ input[type="month"] {
 .checkbox-inline + .checkbox-inline {
   margin-top: 0;
   margin-left: 10px; // space out consecutive inline controls
-}
+}*/
 
 // Apply same disabled cursor tweak as for inputs
 // Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
-input[type="radio"],
+/*input[type="radio"],
 input[type="checkbox"] {
   &[disabled],
   &.disabled,
@@ -278,7 +278,7 @@ input[type="checkbox"] {
       cursor: not-allowed;
     }
   }
-}
+}*/
 
 
 // Static form control text
@@ -286,7 +286,7 @@ input[type="checkbox"] {
 // Apply class to a `p` element to make any string of text align with labels in
 // a horizontal form layout.
 
-.form-control-static {
+/*.form-control-static {
   // Size it appropriately next to real form controls
   padding-top: (@padding-base-vertical + 1);
   padding-bottom: (@padding-base-vertical + 1);
@@ -298,7 +298,7 @@ input[type="checkbox"] {
     padding-left: 0;
     padding-right: 0;
   }
-}
+}*/
 
 
 // Form control sizing
@@ -306,20 +306,20 @@ input[type="checkbox"] {
 // Build on `.form-control` with modifier classes to decrease or increase the
 // height and font-size of form controls.
 
-.input-sm {
+/*.input-sm {
   .input-size(@input-height-small; @padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
 }
 
 .input-lg {
   .input-size(@input-height-large; @padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
-}
+}*/
 
 
 // Form control feedback states
 //
 // Apply contextual and semantic states to individual form controls.
 
-.has-feedback {
+/*.has-feedback {
   // Enable absolute positioning
   position: relative;
 
@@ -366,7 +366,7 @@ input[type="checkbox"] {
 // Reposition feedback icon if label is hidden with "screenreader only" state
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
-}
+}*/
 
 
 // Help text
@@ -374,12 +374,12 @@ input[type="checkbox"] {
 // Apply to any element you wish to create light text for placement immediately
 // below a form control. Use for general help, formatting, or instructional text.
 
-.help-block {
+/*.help-block {
   display: block; // account for any element using help-block
   margin-top: 5px;
   margin-bottom: 10px;
   color: lighten(@text-color, 25%); // lighten the text some for contrast
-}
+}*/
 
 
 
@@ -394,7 +394,7 @@ input[type="checkbox"] {
 //
 // Heads up! This is mixin-ed into `.navbar-form` in navbars.less.
 
-.form-inline {
+/*.form-inline {
 
   // Kick in the inline
   @media (min-width: @screen-sm-min) {
@@ -461,7 +461,7 @@ input[type="checkbox"] {
       top: 0;
     }
   }
-}
+}*/
 
 
 // Horizontal forms
@@ -517,7 +517,7 @@ input[type="checkbox"] {
   //
   // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
   // inputs and labels within a `.form-group`.
-  .form-group-lg {
+  /*.form-group-lg {
     @media (min-width: @screen-sm-min) {
       .control-label {
         padding-top: ((@padding-large-vertical * @line-height-large) + 1);
@@ -536,5 +536,5 @@ input[type="checkbox"] {
     .form-control {
       &:extend(.input-sm);
     }
-  }
+  }*/
 }
