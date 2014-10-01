@@ -213,4 +213,7 @@
   <data name="Type_Other" xml:space="preserve">
     <value>Outro</value>
   </data>
+  <data name="Validation_CodeAlreadyExists" xml:space="preserve">
+    <value>Já existe uma coleção com este código de catalogação.</value>
+  </data>
 </root>

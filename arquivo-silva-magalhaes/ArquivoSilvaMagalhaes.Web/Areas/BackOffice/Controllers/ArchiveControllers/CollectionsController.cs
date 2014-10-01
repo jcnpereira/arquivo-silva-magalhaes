@@ -2,6 +2,7 @@
 using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using ImageResizer;
 using PagedList;
@@ -76,6 +77,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CollectionEditViewModel model)
         {
+            if (DoesCodeAlreadyExist(model.Collection))
+            {
+                ModelState.AddModelError("Collection.CatalogCode", CollectionStrings.Validation_CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 if (model.Logo != null)
@@ -100,6 +106,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 return RedirectToAction("Index");
             }
+
+            model.AvailableAuthors = db.Set<Author>()
+                .Select(a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.LastName + ", " + a.FirstName,
+                    Selected = model.AuthorIds.Contains(a.Id)
+                })
+                .ToList();
 
             return View(model);
         }
@@ -130,6 +145,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(CollectionEditViewModel model)
         {
+            if (DoesCodeAlreadyExist(model.Collection))
+            {
+                ModelState.AddModelError("Collection.CatalogCode", CollectionStrings.Validation_CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 // Force-update the collection's author list.
@@ -173,6 +193,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 return RedirectToAction("Index");
             }
+
+            model.AvailableAuthors = db.Set<Author>()
+                .Select(a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.LastName + ", " + a.FirstName,
+                    Selected = model.AuthorIds.Contains(a.Id)
+                })
+                .ToList();
 
             return View(model);
         }
@@ -317,8 +346,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
-        } 
+        }
         #endregion
+
+        private bool DoesCodeAlreadyExist(Collection col)
+        {
+            return db.Entities
+                .Any(d => d.CatalogCode == col.CatalogCode && d.Id != col.Id);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

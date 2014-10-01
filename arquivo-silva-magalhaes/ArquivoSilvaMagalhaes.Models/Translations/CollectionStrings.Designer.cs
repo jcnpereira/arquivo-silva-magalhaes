@@ -347,5 +347,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("Type_Other", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Já existe uma coleção com este código de catalogação..
+        /// </summary>
+        public static string Validation_CodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("Validation_CodeAlreadyExists", resourceCulture);
+            }
+        }
     }
 }
