@@ -231,4 +231,7 @@
   <data name="ChooseMultipleSuggestion" xml:space="preserve">
     <value>Pode seleccionar múltiplos itens recorrendo à tecla </value>
   </data>
+  <data name="References" xml:space="preserve">
+    <value>Referências</value>
+  </data>
 </root>

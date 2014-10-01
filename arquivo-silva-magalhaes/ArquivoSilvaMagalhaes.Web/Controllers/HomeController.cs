@@ -147,6 +147,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(await db.Partnerships.ToListAsync());
         }
 
+        public async Task<ActionResult> References()
+        {
+            var model = new ReferencesViewModel
+            {
+                ReferencedLinks = (await db.ReferencedLinks
+                    .ToListAsync())
+                    .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
+                    .ToList(),
+                TechnicalDocuments = await db.TechnicalDocuments
+                    .ToListAsync()
+            };
+
+            return View(model);
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

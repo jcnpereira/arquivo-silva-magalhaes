@@ -5,6 +5,9 @@
 }
 
 <div class="afsm-header-image afsm-negate-padding"
+     data-afsm-show-overlay="true"
+     data-afsm-target="#afsm-overlay"
+     data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (Model.Entity.Image.ImageUrl) + "_large.jpg")"
      style="background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
     <div class="afsm-header">
         <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
@@ -29,3 +32,7 @@
 <div class="afsm-commentary">
     @Html.DisplayFor(model => model.Translation.Comment)
 </div>
+
+@section scripts {
+    @Html.Partial("_ImageOverlay")
+}

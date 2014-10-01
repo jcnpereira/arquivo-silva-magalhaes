@@ -1,29 +1,28 @@
-﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.Partnership>
-
-<div class="column_content">
-    <h2 class="page_title">@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Partnership)</h2>
-</div>
-<hr />
-<div class="media">
-    <ul class="media-list">
-        @foreach (var item in Model)
-        {
-            <li class="media-body col-md-3">
-                <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
-                <a href=@Url.Content(item.SiteLink) target="_blank">
-                    <img height="90" width="90" src="~/Public/Partnerships/@item.LogoFileName" alt="Logotipo associado à pareceria." /><br />
-                </a>
-                <div class="">
-                    <br /><b>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Contacts):</b><br /> @Html.DisplayFor(modelItem => item.Contact)
-                    <br /><b>e-mail:</b><br /><a href="mailto:@Html.DisplayFor(modelItem => item.EmailAddress)" target="_blank">@Html.DisplayFor(modelItem => item.EmailAddress)</a>
-                    <br />
-                </div>
-            </li>
-        }
-    </ul>
-</div>
+﻿@model IEnumerable<Partnership>
 
 @{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+    ViewBag.Title = PartnershipStrings.EntityNamePlural;
 }
+
+<h2>
+    @PartnershipStrings.EntityNamePlural
+</h2>
+
+<hr />
+
+<div class="row">
+    @foreach (var img in Model)
+    {
+        <div class="col-sm-6 col-md-4">
+            <a href="@img.SiteLink" target="_blank"
+               class="thumbnail">
+                <img src="~/Public/Partnerships/@(img.LogoFileName)" />
+                <div class="caption">
+                    <h4>
+                        @Html.Truncate(img.Name, 30)
+                    </h4>
+                </div>
+            </a>
+        </div>
+    }
+</div>

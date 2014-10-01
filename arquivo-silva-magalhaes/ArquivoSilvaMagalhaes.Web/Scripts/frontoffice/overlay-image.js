@@ -6,7 +6,13 @@
         var description = $link.data('afsm-description');
 
         $target.css('background-image', 'url(' + url + ')');
-        $target.find('p:first').text(description);
+        
+        if (description) {
+            $target.find('p:first').text(description);
+        } else {
+            $('.afsm-overlay-header').addClass('hidden');
+        }
+
 
         $target.removeClass('hidden');
         $('body').addClass('afsm-body-noscroll');

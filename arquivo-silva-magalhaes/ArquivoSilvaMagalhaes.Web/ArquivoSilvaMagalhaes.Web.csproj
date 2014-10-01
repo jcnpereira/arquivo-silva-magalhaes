@@ -313,6 +313,7 @@
     <Compile Include="ViewModels\ImageDetailsViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\PortalViewModel.cs" />
+    <Compile Include="ViewModels\ReferencesViewModel.cs" />
     <Compile Include="ViewModels\SearchResult.cs" />
     <Compile Include="ViewModels\TranslatedViewModel.cs" />
   </ItemGroup>
@@ -340,6 +341,12 @@
     </Content>
     <Content Include="Content\Styles\frontoffice\image-overlay.min.css">
       <DependentUpon>image-overlay.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="mstile-square.png" />
     <Content Include="mstile-large.png" />
@@ -679,6 +686,9 @@
     <Content Include="Content\Styles\frontoffice\image-overlay.css.map">
       <DependentUpon>image-overlay.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -842,6 +852,7 @@
     <Content Include="Views\Shared\_CollectionList.cshtml" />
     <Content Include="Views\Shared\_AuthorList.cshtml" />
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
+    <Content Include="Views\Home\References.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
