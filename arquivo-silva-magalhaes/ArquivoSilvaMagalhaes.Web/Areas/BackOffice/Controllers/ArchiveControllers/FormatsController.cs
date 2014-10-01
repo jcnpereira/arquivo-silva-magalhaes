@@ -1,5 +1,6 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.Resources;
 using PagedList;
 using System.Collections.Generic;
@@ -59,6 +60,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Exclude = "Id")]Format format)
         {
+            if (DoesFormatExist(format))
+            {
+                ModelState.AddModelError("FormatDescription", FormatStrings.Validation_FormatAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Add(format);
@@ -112,6 +118,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,FormatDescription")] Format format)
         {
+            if (DoesFormatExist(format))
+            {
+                ModelState.AddModelError("FormatDescription", FormatStrings.Validation_FormatAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Update(format);
@@ -147,9 +158,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
+        private bool DoesFormatExist(Format format)
+        {
+            return db.Entities
+                .Any(f => f.Id != format.Id && f.FormatDescription == format.FormatDescription);
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

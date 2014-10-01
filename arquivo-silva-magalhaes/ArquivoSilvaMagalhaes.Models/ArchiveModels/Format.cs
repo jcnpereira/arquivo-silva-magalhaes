@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public partial class Format
+    public class Format
     {
         public Format()
         {

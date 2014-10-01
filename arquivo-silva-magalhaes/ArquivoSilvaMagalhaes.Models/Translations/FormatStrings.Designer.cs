@@ -131,5 +131,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("Format", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Já existe um formato com esta descrição..
+        /// </summary>
+        public static string Validation_FormatAlreadyExists {
+            get {
+                return ResourceManager.GetString("Validation_FormatAlreadyExists", resourceCulture);
+            }
+        }
     }
 }

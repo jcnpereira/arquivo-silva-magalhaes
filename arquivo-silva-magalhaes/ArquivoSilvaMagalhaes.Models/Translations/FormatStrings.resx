@@ -141,4 +141,7 @@
   <data name="Format" xml:space="preserve">
     <value>Formato</value>
   </data>
+  <data name="Validation_FormatAlreadyExists" xml:space="preserve">
+    <value>Já existe um formato com esta descrição.</value>
+  </data>
 </root>
