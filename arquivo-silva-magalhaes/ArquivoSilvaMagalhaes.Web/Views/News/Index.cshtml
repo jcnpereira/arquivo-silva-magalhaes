@@ -1,12 +1,12 @@
-﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
+﻿@model IEnumerable<TranslatedViewModel<NewsItem, NewsItemTranslation>>
 
 @{
-    ViewBag.Title = EventStrings.EntityNamePlural;
+    ViewBag.Title = NewsItemStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
 <h2>
-    @EventStrings.EntityNamePlural
+    @NewsItemStrings.EntityNamePlural
 </h2>
 
 <hr />
@@ -14,7 +14,7 @@
 <div class="list-group">
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("Event", "Events", new { item.Entity.Id })" class="list-group-item">
+        <a href="@Url.Action("Details", "News", new { item.Entity.Id })" class="list-group-item">
             <div class="media">
                 <div class="pull-left">
                     <img class="media-object" style="width: 96px; height: 96px"
@@ -22,23 +22,18 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">
-                        @item.Translation.Title
+                        @Html.Truncate(item.Translation.Title, 60)
                     </h4>
-
-                    <p>
-                        @Html.DisplayFor(model => item.Entity.StartMoment) - @Html.DisplayFor(model => item.Entity.EndMoment)
-                    </p>
-
-                    <p>
-                        @Html.EnumDisplayFor(e => item.Entity.EventType) - @item.Entity.Place
-                    </p>
 
                     <p>
                         @item.Translation.Heading
                     </p>
+
+                    <small>
+                        @Html.DisplayFor(model => item.Entity.PublishDate)
+                    </small>
                 </div>
             </div>
         </a>
     }
 </div>
-

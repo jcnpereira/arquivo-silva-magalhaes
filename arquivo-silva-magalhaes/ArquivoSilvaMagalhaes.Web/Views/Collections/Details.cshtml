@@ -78,11 +78,14 @@
             Detalhes
         </a>
     </li>
-    <li>
-        <a href="#afsm-documents" role="tab" data-toggle="tab">
-            @DocumentStrings.EntityNamePlural (@(Model.Documents.Count))
-        </a>
-    </li>
+    @if (Model.Documents.Count > 0)
+    {
+        <li>
+            <a href="#afsm-documents" role="tab" data-toggle="tab">
+                @DocumentStrings.EntityNamePlural (@(Model.Documents.Count))
+            </a>
+        </li>
+    }
 </ul>
 
 <div class="tab-content">
@@ -135,11 +138,15 @@
     </div>
 
 
-    <div class="tab-pane fade" id="afsm-documents">
-        @*<div class="form-horizontal">
-            <input type="search" name="documentName" class="form-control" placeholder="@UiStrings.SearchPlaceholder" />
-        </div>*@
+    @if (Model.Documents.Count > 0)
+    {
 
-        @Html.Partial("_DocumentList", Model.Documents)
-    </div>
+        <div class="tab-pane fade" id="afsm-documents">
+            @*<div class="form-horizontal">
+                    <input type="search" name="documentName" class="form-control" placeholder="@UiStrings.SearchPlaceholder" />
+                </div>*@
+
+            @Html.Partial("_DocumentList", Model.Documents)
+        </div>
+    }
 </div>

@@ -103,12 +103,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [StringLength(40)]
+        [StringLength(70)]
         [Display(ResourceType = typeof(EventStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(150)]
+        [StringLength(100)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }

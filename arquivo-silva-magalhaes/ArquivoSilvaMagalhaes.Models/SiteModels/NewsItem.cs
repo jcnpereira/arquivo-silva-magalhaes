@@ -65,12 +65,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [StringLength(40)]
+        [StringLength(70)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(80)]
+        [StringLength(100)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Heading")]
         public string Heading { get; set; }
 

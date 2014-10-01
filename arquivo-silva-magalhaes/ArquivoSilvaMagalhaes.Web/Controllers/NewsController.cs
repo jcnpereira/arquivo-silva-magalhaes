@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.ViewModels;
+using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Common;
-using PagedList;
-using PagedList.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
 
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class NewsItemsController : Controller
+    public class NewsController : Controller
     {
-       /// <summary>
+        /// <summary>
         /// Associa Entidade NewsItems às traduções existentes
-       /// </summary>
-         private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
+        /// </summary>
+        private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
-        public NewsItemsController()
+        public NewsController()
             : this(new TranslateableRepository<NewsItem, NewsItemTranslation>()) { }
 
-        public NewsItemsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
+        public NewsController(ITranslateableRepository<NewsItem, NewsItemTranslation> db)
         {
             this.db = db;
         }
@@ -41,8 +36,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             return View((await db.Entities
                 .Include(n => n.Attachments)
-                .Where(n => n.PublishDate <= DateTime.Now)
-                .Where(n => n.ExpiryDate >= DateTime.Now || n.HideAfterExpiry==false)
+                .Where(n => n.PublishDate <= DateTime.Now && n.ExpiryDate >= DateTime.Now || n.HideAfterExpiry == false)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b))
                 .ToPagedList(pageNumber, 6));
@@ -55,11 +49,14 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
-            return View((await db.Entities
-                .Include(n=>n.Translations)
-                .Where(n => n.Id == id)
-                .ToListAsync())
-                .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b)));
+            var newsItem = await db.GetByIdAsync(id);
+
+            if (newsItem == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            return View(new TranslatedViewModel<NewsItem, NewsItemTranslation>(newsItem));
         }
 
         /// <summary>

@@ -229,7 +229,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
-    <Compile Include="Controllers\NewsItemsController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShowcasePhotosController.cs" />
@@ -886,8 +886,8 @@
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
-    <Content Include="Views\NewsItems\Details.cshtml" />
-    <Content Include="Views\NewsItems\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Home\Contacts.cshtml" />
     <Content Include="Views\Home\Partnerships.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
