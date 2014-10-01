@@ -62,6 +62,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     // Save the file and the smaller versions.
                     var completePath = Server.MapPath("~/App_Data/Uploads/Photos/");
                     Directory.CreateDirectory(completePath);
+                    photo.SaveAs(completePath + fileName);
                     FileUploadHelper.GenerateVersions(completePath + fileName);
 
                     returnModel.UploadedItems.Add(new DigitalPhotographUploadItem
