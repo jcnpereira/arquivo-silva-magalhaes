@@ -5849,6 +5849,9 @@ div.line + ul {
   height: 450px;
   max-height: 450px;
 }
+.afsm-large-glyphicon {
+  font-size: 32px;
+}
 @media (max-width: 767px), (orientation: portrait) {
   #afsm-navbar {
     display: block;

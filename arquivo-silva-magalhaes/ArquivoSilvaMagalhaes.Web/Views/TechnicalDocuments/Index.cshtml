@@ -1,53 +1,61 @@
 ﻿@model IEnumerable<ArquivoSilvaMagalhaes.Models.SiteModels.TechnicalDocument>
 
-
-<h2>@Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.TechnicalDocuments)</h2>
-
-<hr />
-
-<div class="media">
-    <ul class="media-list">
-        @foreach (var doc in Model)
-        {
-            <li class=" col-md-4 list-group">
-                <a class="pull-left" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
-                    @switch (doc.Format)
-                    {
-                        case ("image/jpeg"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/JPEG.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("image/png"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PNG.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("application/pdf"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PDF.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("application/vnd.openxmlformats-officedocument.presentationml.presentation"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/PPT.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("application/octet-stream"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/WinZip.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"): <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/Word.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                        case ("video/x-ms-wmv"):<img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/video.png" alt="Documento Técnico" title="@doc.Format">
-                        break;
-                        default: <img class="media-object afsm-media-object" style="width:20px; height:20px" src="~/images/docIcon.png" alt="Documento Técnico" title="@doc.Format">
-                            break;
-                    }
-                </a>
-                <a href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
-                    <h4 class="media-heading">@doc.Title</h4>
-                </a>
-                <p>
-                    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.LastModificationDate): @Html.DisplayFor(model => doc.LastModificationDate)<br />
-                    @Html.DisplayName(ArquivoSilvaMagalhaes.Web.I18n.FrontOfficeStrings.Size): @Html.DisplayFor(model => doc.FileSize)
-                </p>
-            </li>
-        }
-    </ul>
-
-
-
-</div>
 @{
-    ViewBag.Title = CollectionStrings.EntityNamePlural;
+    ViewBag.Title = TechnicalDocumentStrings.EntityNamePlural;
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
+<h2>
+    @TechnicalDocumentStrings.EntityNamePlural
+</h2>
+
+<hr />
+
+@functions 
+{
+    string GlyphIconForMimeType(string mimeType, string fileName = null)
+    {
+        var regex = new System.Text.RegularExpressions.Regex(".doc(x)?$|.ppt(x)?$|.xls(x)?$");
+        
+        
+        if (mimeType.StartsWith("image/"))
+        {
+            return "glyphicon-picture";
+        }
+        else if (mimeType.StartsWith("audio/"))
+        {
+            return "glyphicon-music";
+        }
+        else if (mimeType.StartsWith("video/"))
+        {
+            return "glyphicon-film";
+        }
+        else if (mimeType == "application/pdf" || regex.IsMatch(fileName))
+        {
+            return "glyphicon-book";
+        }
+        else if (mimeType == "application/zip" || fileName.EndsWith(".zip"))
+        {
+            return "glyphicon-compressed";
+        }
+            
+        return "glyphicon-file";
+    }
+}
+
+<div class="list-group">
+    @foreach (var doc in Model)
+    {
+        <a class="list-group-item" href="~/Public/TechnicalDocuments/@doc.FileName" target="_blank">
+            <div class="media">
+                <span class="pull-left afsm-large-glyphicon glyphicon @GlyphIconForMimeType(doc.Format, doc.FileName)">
+                </span>
+                <div class="media-body">
+                    <h4 class="media-heading">@doc.Title</h4>
+                    @(Math.Round(doc.FileSize / 1000000.0, 2)) MB
+                </div>
+            </div>
+        </a>
+    }
+</div>
 
