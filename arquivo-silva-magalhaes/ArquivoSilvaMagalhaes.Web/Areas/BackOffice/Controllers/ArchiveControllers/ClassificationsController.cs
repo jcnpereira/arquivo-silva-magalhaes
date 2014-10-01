@@ -1,11 +1,10 @@
 ﻿using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
-using System;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -77,6 +76,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ClassificationTranslation classification)
         {
+            if (DoesClassificationExist(classification))
+            {
+                ModelState.AddModelError("Value", ClassificationStrings.ValError_AlreadyExists);
+            }
+
+
             if (ModelState.IsValid)
             {
                 var c = new Classification();
@@ -129,6 +134,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Classification classification)
         {
+            for (var i = 0; i < classification.Translations.Count; i++)
+            {
+                var pt = classification.Translations[i];
+                if (DoesClassificationExist(pt))
+                {
+                    ModelState.AddModelError("Translations[" + i + "].Value",
+                        ClassificationStrings.ValError_AlreadyExists);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 foreach (var t in classification.Translations)
@@ -199,6 +214,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(ClassificationTranslation translation)
         {
+            if (DoesClassificationExist(translation))
+            {
+                ModelState.AddModelError("Value", ClassificationStrings.ValError_AlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.AddTranslation(translation);
@@ -257,8 +277,17 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             await db.SaveChangesAsync();
 
             return RedirectToAction("Index");
-        }  
+        }
         #endregion
+
+        private bool DoesClassificationExist(ClassificationTranslation p)
+        {
+            return db.Set<ClassificationTranslation>()
+                .Any(t =>
+                    t.LanguageCode == p.LanguageCode &&
+                    t.Value == p.Value &&
+                    t.ClassificationId != p.ClassificationId);
+        }
 
         protected override void Dispose(bool disposing)
         {
