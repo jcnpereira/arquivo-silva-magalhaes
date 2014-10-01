@@ -737,6 +737,9 @@
     </Content>
     <Content Include="Areas\BackOffice\Views\Attachments\Test.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_AttachmentItem.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\DeleteTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Portal\_TranslatedDisplayFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

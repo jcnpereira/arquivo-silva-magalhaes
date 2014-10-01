@@ -19,6 +19,13 @@
             <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
                 <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
             </a>
+
+            @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+            {
+                <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                    <span class="glyphicon glyphicon-plus"></span> @UiStrings.AddTranslation
+                </a>
+            }
         </div>
     </div>
 
@@ -57,21 +64,7 @@
                     <hr style="visibility: hidden" />
 
                     <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => t.ArchiveHistory)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => t.ArchiveHistory)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => t.ArchiveMission)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayMultilineFor(model => t.ArchiveMission)
-                        </dd>
+                        @Html.Partial("_TranslatedDisplayFields", t)
                     </dl>
 
                     @if (langCode != LanguageDefinitions.DefaultLanguage)
