@@ -2,10 +2,9 @@
 using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -92,6 +91,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Document document)
         {
+            if (DoesCodeAlreadyExist(document))
+            {
+                ModelState.AddModelError("CatalogCode", DocumentStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Add(document);
@@ -134,6 +138,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Document document)
         {
+            if (DoesCodeAlreadyExist(document))
+            {
+                ModelState.AddModelError("CatalogCode", DocumentStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 foreach (var t in document.Translations)
@@ -284,6 +293,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             var suggestedCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
 
             return Json(suggestedCode, JsonRequestBehavior.AllowGet);
+        }
+
+        private bool DoesCodeAlreadyExist(Document doc)
+        {
+            return db.Entities
+                .Any(d => d.CatalogCode == doc.CatalogCode && d.Id != doc.Id);
         }
 
         protected override void Dispose(bool disposing)

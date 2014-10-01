@@ -94,15 +94,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
             {
                 yield return new ValidationResult(DocumentStrings.Validation_CataloguedInTheFuture, new string[] { "CatalogationDate" });
             }
-
-            // Allows a more "friendly" error message.
-            using (var db = new ArchiveDataContext())
-            {
-                if (db.Documents.Any(d => d.CatalogCode == this.CatalogCode && d.Id != this.Id))
-                {
-                    yield return new ValidationResult(DocumentStrings.CodeAlreadyExists, new string[] { "CatalogCode" });
-                }
-            }
         }
     }
 
