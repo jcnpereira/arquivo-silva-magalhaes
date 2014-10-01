@@ -138,6 +138,9 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Indexações</value>
   </data>
+  <data name="Validation_AlreadyExists" xml:space="preserve">
+    <value>Esta indexação já existe.</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Indexação</value>
   </data>

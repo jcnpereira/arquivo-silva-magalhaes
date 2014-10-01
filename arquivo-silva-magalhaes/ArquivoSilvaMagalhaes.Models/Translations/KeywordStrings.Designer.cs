@@ -124,6 +124,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esta indexação já existe..
+        /// </summary>
+        public static string Validation_AlreadyExists {
+            get {
+                return ResourceManager.GetString("Validation_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indexação.
         /// </summary>
         public static string Value {

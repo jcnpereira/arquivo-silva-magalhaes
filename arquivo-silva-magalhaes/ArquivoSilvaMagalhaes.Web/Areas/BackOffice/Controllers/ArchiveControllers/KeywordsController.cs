@@ -1,6 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System.Data.Entity;
@@ -75,6 +76,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(KeywordTranslation kt)
         {
+            if (DoesKeywordExist(kt))
+            {
+                ModelState.AddModelError("Value", KeywordStrings.Validation_AlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 var keyword = new Keyword();
@@ -128,6 +134,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Keyword keyword)
         {
+            for (var i = 0; i < keyword.Translations.Count; i++)
+            {
+                var pt = keyword.Translations[i];
+                if (DoesKeywordExist(pt))
+                {
+                    ModelState.AddModelError("Translations[" + i + "].Value",
+                        KeywordStrings.Validation_AlreadyExists);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 foreach (var t in keyword.Translations)
@@ -201,6 +217,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(KeywordTranslation translation)
         {
+            if (DoesKeywordExist(translation))
+            {
+                ModelState.AddModelError("Value", KeywordStrings.Validation_AlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.AddTranslation(translation);
@@ -208,6 +229,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Languages =
+                LanguageDefinitions.GenerateAvailableLanguageDDL(
+                    (await db.GetByIdAsync(translation.KeywordId)).Translations.Select(t => t.LanguageCode));
+
             return View(translation);
         }
 
@@ -252,6 +278,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        private bool DoesKeywordExist(KeywordTranslation k)
+        {
+            return db.Set<KeywordTranslation>()
+                .Any(t =>
+                    t.LanguageCode == k.LanguageCode &&
+                    t.Value == k.Value &&
+                    t.KeywordId != k.KeywordId);
+        }
 
         protected override void Dispose(bool disposing)
         {
