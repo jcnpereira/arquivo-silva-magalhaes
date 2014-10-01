@@ -1,6 +1,7 @@
 ﻿using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.Resources;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
@@ -77,6 +78,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ProcessTranslation pt)
         {
+            if (DoesProcessExist(pt))
+            {
+                ModelState.AddModelError("Value", ProcessStrings.Validation_AlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 var process = new Process();
@@ -137,6 +143,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Process process)
         {
+            for (var i = 0; i < process.Translations.Count; i++)
+            {
+                var pt = process.Translations[i];
+                if (DoesProcessExist(pt))
+                {
+                    ModelState.AddModelError("Translations[" + i + "].Value",
+                        ProcessStrings.Validation_AlreadyExists);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 foreach (var translation in process.Translations)
@@ -209,6 +225,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddTranslation(ProcessTranslation translation)
         {
+            if (DoesProcessExist(translation))
+            {
+                ModelState.AddModelError("Value", ProcessStrings.Validation_AlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.AddTranslation(translation);
@@ -261,6 +282,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        private bool DoesProcessExist(ProcessTranslation p)
+        {
+            return db.Set<ProcessTranslation>()
+                .Any(t =>
+                    t.LanguageCode == p.LanguageCode &&
+                    t.Value == p.Value &&
+                    t.ProcessId != p.ProcessId);
+        }
 
         protected override void Dispose(bool disposing)
         {

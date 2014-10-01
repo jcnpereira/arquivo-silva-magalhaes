@@ -138,6 +138,9 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Processos</value>
   </data>
+  <data name="Validation_AlreadyExists" xml:space="preserve">
+    <value>Já existe um processo com esta descrição.</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Processo</value>
   </data>

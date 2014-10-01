@@ -30,7 +30,6 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [StringLength(100)]
-        [Index(IsUnique = true)]
         [Display(ResourceType = typeof(ProcessStrings), Name = "Value")]
         public string Value { get; set; }
 
