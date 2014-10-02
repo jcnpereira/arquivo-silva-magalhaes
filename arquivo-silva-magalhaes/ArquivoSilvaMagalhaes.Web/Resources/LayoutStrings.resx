@@ -132,6 +132,9 @@
   <data name="Council" xml:space="preserve">
     <value>Câmara Municipal de Tomar</value>
   </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>Não mostrar novamente</value>
+  </data>
   <data name="Events" xml:space="preserve">
     <value>Eventos</value>
   </data>

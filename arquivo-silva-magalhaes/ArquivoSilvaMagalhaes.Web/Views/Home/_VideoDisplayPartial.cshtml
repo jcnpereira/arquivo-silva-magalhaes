@@ -1,49 +1,48 @@
 ﻿@model string
 
 <div id="afsm-fullscreen">
-    <div class="embed-container center-block">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item"
-                    src="//www.youtube-nocookie.com/embed/@(Model)?rel=0"
-                    frameborder="0"></iframe>
-        </div>
-        <p>
-            <input type="checkbox" id="afsm-dontshowagain" checked />
-            <span>Não mostrar novamente</span>
-
-            <a href="#" id="afsm-close-overlay" class="btn btn-link">Fechar</a>
-        </p>
-
-
+    <div class="embed-container">
+        <iframe class="afsm-embedded-video"
+                src="//www.youtube-nocookie.com/embed/@(Model)?rel=0"
+                frameborder="0" allowfullscreen></iframe>
     </div>
-</div>
-<style>
-    #afsm-fullscreen {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 75px;
-        z-index: 10000;
-        color: white;
-    }
 
-        #afsm-fullscreen > .embed-container {
-            position: relative;
-            width: 60%;
-        }
-</style>
+    <img src="~/Content/Images/logo.png" height="40" class="afsm-embedded-logo" />
+
+    <p class="afsm-embedded-description fade in">
+        <input type="checkbox" id="afsm-dontshowagain" checked />
+        <span>@LayoutStrings.DontShowAgain</span>
+
+        <a href="#" id="afsm-close-overlay" class="btn btn-link">Fechar</a>
+    </p>
+</div>
 
 <script type="text/javascript">
     (function ($) {
+        //var hideTimeOutId;
+        
+        //function hideDescription() {
+        //    $('.afsm-embedded-description').css('opacity', 0);
+        //}
+
+        $('body').addClass('afsm-body-noscroll');
         $('#afsm-close-overlay').click(function (e) {
             if ($('#afsm-dontshowagain').is(':checked')) {
                 document.cookie = 'afsm-novideo=1';
             }
 
             $('#afsm-fullscreen').remove();
+
+            $('body').removeClass('afsm-body-noscroll');
         });
+
+        //hideTimeoutId = window.setTimeout(hideDescription, 1000);
+
+        //$('body').mousemove(function () {
+        //    window.clearTimeout(hideTimeOutId);
+        //    hideTimeoutId = window.setTimeout(hideDescription, 1000);
+        //    $('.afsm-embedded-description').css('opacity', 1);
+        //});
+
     }(window.jQuery));
 </script>

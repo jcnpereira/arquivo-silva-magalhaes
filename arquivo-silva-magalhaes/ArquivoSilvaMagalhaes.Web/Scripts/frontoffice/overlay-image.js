@@ -26,7 +26,7 @@
         return false;
     });
 
-    $('[data-afsm-close-overlay]').click(function (e) {
+    $('[data-afsm-close-overlay]').click(function () {
         $($(this).data('afsm-close-overlay')).addClass('hidden');
 
         $('body').removeClass('afsm-body-noscroll');

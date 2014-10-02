@@ -106,6 +106,15 @@ namespace ArquivoSilvaMagalhaes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Não mostrar novamente.
+        /// </summary>
+        public static string DontShowAgain {
+            get {
+                return ResourceManager.GetString("DontShowAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Eventos.
         /// </summary>
         public static string Events {

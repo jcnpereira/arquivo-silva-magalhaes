@@ -348,6 +348,12 @@
     <Content Include="Content\Styles\frontoffice\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\video-overlay.css">
+      <DependentUpon>video-overlay.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\video-overlay.min.css">
+      <DependentUpon>video-overlay.css</DependentUpon>
+    </Content>
     <Content Include="mstile-square.png" />
     <Content Include="mstile-large.png" />
     <Content Include="mstile-tiny.png" />
@@ -689,6 +695,10 @@
     <Content Include="Content\Styles\frontoffice\main.css.map">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\video-overlay.less" />
+    <Content Include="Content\Styles\frontoffice\video-overlay.css.map">
+      <DependentUpon>video-overlay.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -853,6 +863,7 @@
     <Content Include="Views\Shared\_AuthorList.cshtml" />
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />
+    <Content Include="Views\Shared\_LayoutLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
