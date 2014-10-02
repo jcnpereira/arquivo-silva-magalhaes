@@ -84,7 +84,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 
                         if (attachedFile != null)
                         {
-                            var newName = Guid.NewGuid().ToString() + "_" + attachedFile.FileName;
+                            var newName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(attachedFile.FileName);
                             var dir = "~/Public/Attachments/";
 
                             Directory.CreateDirectory(Server.MapPath(dir));

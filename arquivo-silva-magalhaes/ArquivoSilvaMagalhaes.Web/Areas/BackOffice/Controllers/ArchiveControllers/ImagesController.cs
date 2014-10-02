@@ -85,7 +85,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 if (model.ImageUpload != null)
                 {
-                    var fileName = Guid.NewGuid().ToString() + "_" + Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                    var fileName = Guid.NewGuid().ToString();
                     var path = Server.MapPath("~/Public/Images/");
 
                     FileUploadHelper.GenerateVersions(model.ImageUpload.InputStream, path + fileName);
@@ -161,7 +161,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 {
                     var fileName =
                         db.GetValueFromDb(model.Image, i => i.ImageUrl) ??
-                        Guid.NewGuid().ToString() + "_" + Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                        Guid.NewGuid().ToString();
 
                     var path = Server.MapPath("~/Public/Images/");
                     Directory.CreateDirectory(path);

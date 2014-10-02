@@ -10,8 +10,8 @@
         var url = $link.data('afsm-large-image-url');
         var $target = $($link.data('afsm-target'));
         var description = $link.data('afsm-description');
-
-        $target.css('background-image', 'url(' + url + ')');
+        
+        $target.css('background-image', 'url(' + escape(url) + ')');
         
         if (description) {
             $target.find('p:first').text(description);

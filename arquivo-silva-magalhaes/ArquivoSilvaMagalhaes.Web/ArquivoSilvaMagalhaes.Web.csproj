@@ -867,7 +867,7 @@
     <Content Include="Views\Home\Archive.cshtml" />
     <Content Include="Views\Documents\_DocumentList.cshtml" />
     <Content Include="Views\Images\_ImageList.cshtml" />
-    <Content Include="Views\Shared\_CollectionList.cshtml" />
+    <Content Include="Views\Collections\_CollectionList.cshtml" />
     <Content Include="Views\Shared\_AuthorList.cshtml" />
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />

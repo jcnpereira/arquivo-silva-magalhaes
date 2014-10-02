@@ -37,6 +37,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             var model = (await db.Entities
                 .Include(doc => doc.Translations)
                 .Where(doc =>
+                    (doc.Collection.IsVisible) &&
                     (collectionId == 0 || doc.CollectionId == collectionId) &&
                     (authorId == 0 || doc.AuthorId == authorId) &&
                     (query == "" || doc.Title.Contains(query)))
@@ -70,7 +71,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             Document document = await db.GetByIdAsync(id);
 
-            if (document == null)
+            if (document == null || !document.Collection.IsVisible)
             {
                 return HttpNotFound();
             }

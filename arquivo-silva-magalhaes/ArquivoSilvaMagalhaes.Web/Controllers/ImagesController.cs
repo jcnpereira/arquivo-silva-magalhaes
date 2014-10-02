@@ -43,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             var model = (await GetImages(documentId, keywordId, classificationId, hideWithoutImage, query))
                 .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
-                .ToPagedList(pageNumber, 2);
+                .ToPagedList(pageNumber, 12);
 
             if (Request.IsAjaxRequest())
             {
@@ -65,7 +65,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return await db.Entities
                 .Include(i => i.Translations)
                 .Where(i =>
-                    i.IsVisible &&
+                    (i.IsVisible && i.Document.Collection.IsVisible) &&
                     (!hideWithoutImage || i.ImageUrl != null) &&
                     (documentId == 0 || i.DocumentId == documentId) &&
                     (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
@@ -87,7 +87,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Image image = await db.GetByIdAsync(id);
-            if (image == null)
+            if (image == null || !image.IsVisible || !image.Document.Collection.IsVisible)
             {
                 return HttpNotFound();
             }

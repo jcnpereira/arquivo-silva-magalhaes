@@ -1,7 +1,8 @@
-﻿using ArquivoSilvaMagalhaes.Models;
-using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels;
+﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels;
 using ArquivoSilvaMagalhaes.Common;
+using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.SiteModels;
+using ArquivoSilvaMagalhaes.ViewModels;
 using ImageResizer;
 using PagedList;
 using System;
@@ -10,10 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using ArquivoSilvaMagalhaes.ViewModels;
-using System.Diagnostics;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
@@ -21,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
     {
         private ITranslateableRepository<Banner, BannerTranslation> db;
 
-        public BannerPhotographController() 
+        public BannerPhotographController()
             : this(new TranslateableRepository<Banner, BannerTranslation>()) { }
 
         public BannerPhotographController(ITranslateableRepository<Banner, BannerTranslation> db)
@@ -60,13 +58,13 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         {
             if (ModelState.IsValid)
             {
-                var newName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Image.FileName);
+                var newName = Guid.NewGuid().ToString() + Path.GetExtension(model.Image.FileName);
 
                 FileUploadHelper.SaveImage(
                     model.Image.InputStream,
-                    1024, 
-                    500, 
-                    Path.Combine(Server.MapPath("~/Public/Banners"), newName), 
+                    1024,
+                    500,
+                    Path.Combine(Server.MapPath("~/Public/Banners"), newName),
                     FitMode.Crop);
 
                 model.Banner.UriPath = newName;
