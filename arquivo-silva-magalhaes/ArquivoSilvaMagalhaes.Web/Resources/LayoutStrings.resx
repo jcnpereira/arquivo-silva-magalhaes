@@ -147,6 +147,9 @@
   <data name="News" xml:space="preserve">
     <value>Notícias</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>(Sem itens)</value>
+  </data>
   <data name="Partnerships" xml:space="preserve">
     <value>Projetos e Parcerias</value>
   </data>

@@ -2901,7 +2901,58 @@ a.thumbnail.active {
   padding: 9px;
   color: #333333;
 }
-/*@import "alerts.less";*/
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+/*.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
+  padding-right: (@alert-padding + 20);
+
+  // Adjust close link position
+  .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+  }
+}*/
+/*.alert-success {
+  .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
+}*/
+/*.alert-info {
+  .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
+}*/
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #66512c;
+}
+/*.alert-danger {
+  .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
+}*/
 /*@import "progress-bars.less";*/
 .media,
 .media-body {
