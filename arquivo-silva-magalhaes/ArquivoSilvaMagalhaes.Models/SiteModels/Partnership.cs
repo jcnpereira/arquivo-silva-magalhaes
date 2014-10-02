@@ -20,6 +20,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(PartnershipStrings), Name = "SiteLink")]
         public string SiteLink { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Display(ResourceType = typeof(PartnershipStrings), Name = "EmailAddress")]
         public string EmailAddress { get; set; }
 

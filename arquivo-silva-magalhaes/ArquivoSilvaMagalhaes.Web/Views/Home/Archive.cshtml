@@ -9,7 +9,13 @@
 <hr />
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
-    <li class="active">
+    <li class="active" >
+        <a href="#afsm-details" role="tab" data-toggle="tab">
+            Descrição
+        </a>
+    </li>
+
+    <li>
         <a href="@Url.Action("Index", "Collections")" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-collections" target="_blank">
             @CollectionStrings.EntityNamePlural
         </a>
@@ -23,7 +29,11 @@
 
 @* Authors... *@
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
+    <div class="tab-pane fade active in" id="afsm-details">
+        ??????
+    </div>
+
+    <div class="tab-pane fade" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
