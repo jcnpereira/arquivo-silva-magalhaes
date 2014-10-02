@@ -31,15 +31,22 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0)
+        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, string query = "")
         {
-            return View((await db.Entities
-                            .Include(col => col.Authors)
+            var model = (await db.Entities
                             .Where(c => authorId == 0 || c.Authors.Any(a => a.Id == authorId))
+                            .Where(c => query == "" || c.Translations.Any(t => t.Title.Contains(query)))
                             .Where(col => col.IsVisible)
                             .ToListAsync())
                             .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
-                            .ToPagedList(pageNumber, 10));
+                            .ToPagedList(pageNumber, 10);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_CollectionList", model);
+            }
+
+            return View(model);
         }
         /// <summary>
         /// Fornece detalhes de uma determinda coleção
@@ -57,7 +64,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             collection.Authors = collection.Authors.ToList();
             collection.Documents = collection.Documents.ToList();
 
-            if (collection == null)
+            if (collection == null || !collection.IsVisible)
             {
                 return HttpNotFound();
             }

@@ -11,51 +11,34 @@
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">
         <a href="#afsm-collections" role="tab" data-toggle="tab">
-            @CollectionStrings.EntityNamePlural (@(Model.Collections.Count()))
+            @CollectionStrings.EntityNamePlural
         </a>
     </li>
     <li>
         <a href="#afsm-authors" role="tab" data-toggle="tab">
-            @AuthorStrings.EntityNamePlural (@(Model.Authors.Count()))
+            @AuthorStrings.EntityNamePlural
         </a>
     </li>
 </ul>
 
 @* Authors... *@
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="afsm-collections">
-        <div class="list-group">
-            @foreach (var col in Model.Collections)
-            {
-                var authors = col.Entity.Authors.ToList();
+    <div class="tab-pane fade active in" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("Index", "Collections")">
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Pesquisar coleções</button>
+                </span>
+            </div>
 
-                var logo = col.Entity.LogoLocation != null ?
-                    "Public/Collections/" + col.Entity.LogoLocation :
-                    "Content/Images/no-image.png";
-                <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })" class="list-group-item">
-                    <div class="media">
-                        <div class="pull-left">
-                            <img class="media-object" style="width: 64px; height: 64px"
-                                 src="~/@logo">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                @Html.DisplayFor(model => col.Translation.Title) <small>@col.Entity.CatalogCode</small>
-                            </h4>
+        </form>
 
-                            <dl>
-                                <dt>
-                                    Data:
-                                </dt>
-                                <dd>
-                                    @col.Entity.ProductionPeriod
-                                </dd>
-
-                            </dl>
-                        </div>
-                    </div>
-                </a>
-            }
+        <div data-afsm-load="@Url.Action("Index", "Collections")">
+            @* Empty! *@
         </div>
     </div>
 
@@ -83,3 +66,7 @@
 
 
 </div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
+}

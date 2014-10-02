@@ -872,6 +872,7 @@
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />
     <Content Include="Views\Shared\_LayoutLinks.cshtml" />
+    <Content Include="Views\Search\_SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

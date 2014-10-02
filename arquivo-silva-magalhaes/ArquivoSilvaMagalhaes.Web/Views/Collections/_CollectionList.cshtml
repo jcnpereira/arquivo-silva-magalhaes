@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
-<div class="list-group">
+<div class="list-group" id="afsm-collection-list">
     @foreach (var col in Model)
     {
         var authors = col.Entity.Authors.ToList();
@@ -33,7 +33,7 @@
         </a>
     }
 
-    <div class="text-center">
+    <div class="text-center afsm-pagination">
         @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
     </div>
 </div>

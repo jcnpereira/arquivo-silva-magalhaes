@@ -1,7 +1,9 @@
 ﻿using ArquivoSilvaMagalhaes.Models;
+using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -28,30 +30,28 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="searchTerm"></param>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(string searchTerm = null, int pageNumber = 1)
+        public async Task<ActionResult> Index(string query = null, int pageNumber = 1)
         {
-            if (!string.IsNullOrEmpty(searchTerm))
+            IEnumerable<TranslatedViewModel<Document, DocumentTranslation>> model = null;
+            ViewBag.Query = query;
+
+            if (!string.IsNullOrEmpty(query))
             {
-                var model = new SearchResult
-                {
-                    Query = searchTerm
-                };
-
-                model.Results = await db.Documents
-                    .Where(ct => ct.Title.Contains(searchTerm))
-                    .OrderBy(ct => ct.Id)
-                    .Select(ct => new SearchResultItem
-                    {
-                        Id = ct.Id,
-                        Title = ct.Title
-                    })
-                    .ToPagedListAsync(pageNumber, 10);
-
-
-                return View(model);
+                model = (await db.Documents
+                    .Where(d => d.Title.Contains(query))
+                    .Where(d => d.Collection.IsVisible)
+                    .OrderBy(d => d.Id)
+                    .ToListAsync())
+                    .Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
+                    .ToPagedList(pageNumber, 10);
             }
 
-            return View(new SearchResult());
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_SearchResults", model);
+            }
+
+            return View(model);
         }
 
         /// <summary>

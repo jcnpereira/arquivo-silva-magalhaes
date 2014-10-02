@@ -1,4 +1,4 @@
-﻿@model SearchResult
+﻿@model IEnumerable<TranslatedViewModel<Document, DocumentTranslation>>
 
 @{
     ViewBag.Title = "Pesquisar Documentos";
@@ -7,30 +7,27 @@
 <h2>Pesquisar Documentos</h2>
 <hr />
 
-<form method="get">
-    <div class="form-group">
+<div data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
+    <form method="get"
+          class="form-horizontal"
+          data-afsm-ajax="true"
+          action="@Url.Action("Index", "Search")">
+
         <div class="input-group">
+            <input type="search" class="form-control" name="query" value="@ViewBag.Query" />
             <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Pesquisar</button>
+                <button type="submit" class="btn btn-default">Pesquisar documentos</button>
             </span>
-            <input type="search" @(string.IsNullOrEmpty(Model.Query) ? "autofocus" : "") name="searchTerm" class="form-control" value="@Model.Query" />
         </div>
-    </div>
-</form>
 
-@if (Model.Results != null)
-{
-    <div class="list-group">
-        @foreach (var doc in Model.Results)
-        {
-            <a href="@Url.Action("Details", "Documents", new { doc.Id })" class="list-group-item">
-                <h4 class="list-group-item-heading">@doc.Title</h4>
-            </a>
-        }
-    </div>
+    </form>
 
-    <div class="text-center">
-        @Html.PagedListPager((IPagedList)Model.Results, p => Url.Action("Index", "Search", new { pageNumber = p, searchTerm = Model.Query }))
-    </div>
+    @if (Model != null)
+    {
+        @Html.Partial("_SearchResults")
+    }
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
 }
-
