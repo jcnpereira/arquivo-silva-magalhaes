@@ -55,12 +55,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new AuthorDetailsViewModel
-                    {
-                        Author = new TranslatedViewModel<Author, AuthorTranslation>(author),
-                        Collections = author.Collections.ToList().Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c)),
-                        Documents = author.Documents.ToList().Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
-                    });
+            return View(new TranslatedViewModel<Author, AuthorTranslation>(author));
         }
 
         /// <summary>

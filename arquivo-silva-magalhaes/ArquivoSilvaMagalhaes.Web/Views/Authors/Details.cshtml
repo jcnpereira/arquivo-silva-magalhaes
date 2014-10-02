@@ -1,7 +1,7 @@
-﻿@model AuthorDetailsViewModel
+﻿@model TranslatedViewModel<Author, AuthorTranslation>
 
 @{
-    ViewBag.Title = Model.Author.Entity.FirstName + " " + Model.Author.Entity.LastName;
+    ViewBag.Title = Model.Entity.FirstName + " " + Model.Entity.LastName;
 }
 
 <ol class="breadcrumb">
@@ -17,15 +17,15 @@
     </li>
 
     <li class="active">
-        @Model.Author.Entity.FirstName @Model.Author.Entity.LastName
+        @Model.Entity.FirstName @Model.Entity.LastName
     </li>
 </ol>
 
-<h2>@Model.Author.Entity.FirstName @Model.Author.Entity.LastName</h2>
+<h2>@Model.Entity.FirstName @Model.Entity.LastName</h2>
 
-<p>@Model.Author.Translation.Nationality</p>
+<p>@Model.Translation.Nationality</p>
 
-<p>@Html.DisplayFor(m => Model.Author.Entity.BirthDate) @(Model.Author.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => Model.Author.Entity.DeathDate) : "")</p>
+<p>@Html.DisplayFor(m => Model.Entity.BirthDate) @(Model.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => Model.Entity.DeathDate) : "")</p>
 
 <hr />
 
@@ -35,53 +35,79 @@
             Detalhes
         </a>
     </li>
-    @if (Model.Documents.Count() > 0)
-    {
-        <li>
-            <a href="#afsm-documents" role="tab" data-toggle="tab">
-                @DocumentStrings.EntityNamePlural (@(Model.Documents.Count()))
-            </a>
-        </li>
-    }
+    <li>
+        <a href="#afsm-documents" role="tab" data-toggle="tab">
+            @DocumentStrings.EntityNamePlural
+        </a>
+    </li>
 
-    @if (Model.Collections.Count() > 0)
-    {
-        <li>
-            <a href="#afsm-collections" role="tab" data-toggle="tab">
-                @CollectionStrings.EntityNamePlural (@(Model.Collections.Count()))
-            </a>
-        </li>
-    }
+    <li>
+        <a href="#afsm-collections" role="tab" data-toggle="tab">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane active fade in" id="afsm-details">
         <dl class="afsm-dl-vertical">
             <dt>
-                @Html.DisplayNameFor(model => model.Author.Translation.Biography)
+                @Html.DisplayNameFor(model => model.Translation.Biography)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Author.Translation.Biography)
+                @Html.DisplayFor(model => model.Translation.Biography)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Author.Translation.Curriculum)
+                @Html.DisplayNameFor(model => model.Translation.Curriculum)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Author.Translation.Curriculum)
+                @Html.DisplayFor(model => model.Translation.Curriculum)
             </dd>
         </dl>
     </div>
-    @if (Model.Documents.Count() > 0)
-    {
-        <div class="tab-pane fade" id="afsm-documents">
-            @Html.Partial("_DocumentList", Model.Documents)
+    <div class="tab-pane fade" id="afsm-documents" data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("Index", "Documents")">
+            <input type="hidden" name="authorId" value="@Model.Entity.Id" />
+
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Pesquisar documentos</button>
+                </span>
+            </div>
+
+        </form>
+
+        <div data-afsm-load="@Url.Action("Index", "Documents", new { authorId = Model.Entity.Id })">
+            @* Empty! *@
         </div>
-    }
-    
-    @if (Model.Collections.Count() > 0)
-    {
-        <div class="tab-pane fade" id="afsm-collections">
-            @Html.Partial("_CollectionList", Model.Collections)
+    </div>
+
+    <div class="tab-pane fade" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("Index", "Collections")">
+            <input type="hidden" name="authorId" value="@Model.Entity.Id" />
+
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Pesquisar coleções</button>
+                </span>
+            </div>
+
+        </form>
+
+        <div data-afsm-load="@Url.Action("Index", "Collections", new { authorId = Model.Entity.Id })">
+            @* Empty! *@
         </div>
-    }
+    </div>
 </div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
+}
