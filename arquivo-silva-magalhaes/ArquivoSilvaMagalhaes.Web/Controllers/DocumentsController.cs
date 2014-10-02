@@ -32,15 +32,28 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="collectionId"></param>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int collectionId = 0, int pageNumber = 1)
+        public async Task<ActionResult> Index(int collectionId = 0, int pageNumber = 1, string query = "", int authorId = 0)
         {
-
-            return View((await db.Entities
+            var model = (await db.Entities
                 .Include(doc => doc.Translations)
-                .Where(doc => collectionId == 0 || doc.CollectionId == collectionId)
+                .Where(doc =>
+                    (collectionId == 0 || doc.CollectionId == collectionId) &&
+                    (authorId == 0 || doc.AuthorId == authorId) &&
+                    (query == "" || doc.Title.Contains(query)))
                 .ToListAsync())
                 .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>(doc))
-                .ToPagedList(pageNumber, 12));
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.AuthorId = authorId;
+            ViewBag.CollectionId = collectionId;
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_DocumentList", model);
+            }
+
+            return View(model);
         }
 
         /// <summary>

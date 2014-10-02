@@ -702,6 +702,7 @@
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\frontoffice\ajax-pagination.js" />
     <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
       <DependentUpon>gmaps-readonly.js</DependentUpon>
     </Content>
@@ -864,8 +865,8 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\_VideoDisplayPartial.cshtml" />
     <Content Include="Views\Home\Archive.cshtml" />
-    <Content Include="Views\Shared\_DocumentList.cshtml" />
-    <Content Include="Views\Shared\_ImageList.cshtml" />
+    <Content Include="Views\Documents\_DocumentList.cshtml" />
+    <Content Include="Views\Images\_ImageList.cshtml" />
     <Content Include="Views\Shared\_CollectionList.cshtml" />
     <Content Include="Views\Shared\_AuthorList.cshtml" />
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
