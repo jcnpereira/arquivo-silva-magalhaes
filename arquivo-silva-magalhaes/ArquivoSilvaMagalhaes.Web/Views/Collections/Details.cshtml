@@ -79,7 +79,7 @@
     @if (Model.Documents.Count > 0)
     {
         <li>
-            <a href="#afsm-documents" role="tab" data-toggle="tab">
+            <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Collection.Entity.Id })" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-documents" target="_blank">
                 @DocumentStrings.EntityNamePlural
             </a>
         </li>

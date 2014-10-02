@@ -1,4 +1,10 @@
 ﻿(function ($) {
+    $('[data-afsm-switchto]').each(function () {
+        var $a = $(this);
+
+        $a.attr('href', $a.data('afsm-switchto'));
+    });
+
     $('form[data-afsm-ajax="true"]').submit(function (e) {
         var $form = $(this);
 

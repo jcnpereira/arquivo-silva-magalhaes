@@ -66,7 +66,7 @@
     @if (Model.Images.Count() > 0)
     {
         <li>
-            <a href="#afsm-images" role="tab" data-toggle="tab">
+            <a href="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-images" target="_blank">
                 @ImageStrings.EntityNamePlural
             </a>
         </li>

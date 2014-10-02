@@ -10,12 +10,12 @@
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">
-        <a href="#afsm-collections" role="tab" data-toggle="tab">
+        <a href="@Url.Action("Index", "Collections")" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-collections" target="_blank">
             @CollectionStrings.EntityNamePlural
         </a>
     </li>
     <li>
-        <a href="#afsm-authors" role="tab" data-toggle="tab">
+        <a href="@Url.Action("Index", "Authors")" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-authors" target="_blank">
             @AuthorStrings.EntityNamePlural
         </a>
     </li>
