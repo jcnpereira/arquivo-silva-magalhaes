@@ -8,8 +8,8 @@
      data-afsm-show-overlay="true"
      data-afsm-target="#afsm-overlay"
      data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (Model.Entity.Image.ImageUrl) + "_large.jpg")"
-     style="background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
-    <div class="afsm-header">
+     style="cursor: pointer; background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
+    <div class="afsm-header" style="cursor: default">
         <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
 
         <p>

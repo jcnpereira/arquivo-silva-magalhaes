@@ -1,6 +1,11 @@
 ﻿(function ($) {
     $('[data-afsm-show-overlay="true"]').click(function (e) {
         var $link = $(e.target);
+
+        if (!$link.data('afsm-show-overlay')) {
+            return;
+        }
+
         var url = $link.data('afsm-large-image-url');
         var $target = $($link.data('afsm-target'));
         var description = $link.data('afsm-description');

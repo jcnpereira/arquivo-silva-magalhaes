@@ -40,13 +40,11 @@
         @ViewBag.Title @(!string.IsNullOrEmpty(ViewBag.Title) ? "| " : "")Arquivo Fotográfico Silva Magalhães
     </title>
 
-    @*<link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />*@
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
     <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/styles/frontoffice")
 
     @RenderSection("additionalheadcontent", required: false)
-
-    @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
 
