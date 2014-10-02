@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -45,6 +44,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
                 .ToPagedList(pageNumber, 12);
 
+            ViewBag.Query = query;
+            ViewBag.DocumentId = documentId;
+            ViewBag.ClassificationId = classificationId;
+            ViewBag.KeywordId = keywordId;
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ImageList", model);
@@ -60,8 +64,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             bool hideWithoutImage = false,
             string query = "")
         {
-            var lang = Thread.CurrentThread.CurrentUICulture.Name;
-
             return await db.Entities
                 .Include(i => i.Translations)
                 .Where(i =>

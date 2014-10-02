@@ -20,7 +20,8 @@
 
         $.ajax({
             url: $a.attr('href'),
-            data: $('form[data-afsm-ajax="true"]').serialize(),
+            // Link will have the information that is sent by the server, for users without JS.
+            // data: $('form[data-afsm-ajax="true"]').serialize(),
             type: 'get'
         })
         .done(function (data) {
