@@ -7,7 +7,7 @@
 <h2>Pesquisar Documentos</h2>
 <hr />
 
-<div data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
+<div data-afsm-ajax="true" data-afsm-id="#afsm-search-results">
     <form method="get"
           class="form-horizontal"
           data-afsm-ajax="true"
@@ -22,11 +22,11 @@
 
     </form>
 
-    @if (Model != null)
-    {
-        @Html.Partial("_SearchResults")
-    }
+    @Html.Partial("_SearchResults")
 </div>
+</div>
+
+
 
 @section scripts {
     @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")

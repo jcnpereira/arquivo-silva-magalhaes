@@ -30,12 +30,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="searchTerm"></param>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(string query = null, int pageNumber = 1)
+        public async Task<ActionResult> Index(string query = "", int pageNumber = 1)
         {
             IEnumerable<TranslatedViewModel<Document, DocumentTranslation>> model = null;
             ViewBag.Query = query;
 
-            if (!string.IsNullOrEmpty(query))
+            if (query != "")
             {
                 model = (await db.Documents
                     .Where(d => d.Title.Contains(query))
