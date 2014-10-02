@@ -16,7 +16,6 @@
         {
             var b = Model.Banners[i];
             <div class="item @(i == 0 ? "active" : "")">
-                @* style="background-image: url(@Url.Content("~/Public/Banners/" + b.Entity.UriPath));" *@
                 <div class="afsm-banner-item-container">
                     <img src="@Url.Content("~/Public/Banners/" + b.Entity.UriPath)"
                          class="afsm-banner-item" />
@@ -40,7 +39,7 @@
 <div class="row">
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.News, "Index", "News")</h4>
-        <a href="~/NewsItems">
+        <a href="~/News">
             <img src="~/Content/Images/news.png" class="left no_border" alt="" style="margin-top: 10px;
                                         margin-right: 10px" />
         </a>
