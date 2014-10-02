@@ -48,7 +48,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id, int pageNumber = 1)
         {
             if (id == null)
             {
@@ -70,6 +70,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                                      .Where(i => i.IsVisible)
                                      .ToList()
                                      .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
+                                     .ToPagedList(pageNumber, 2)
                 });
         }
 

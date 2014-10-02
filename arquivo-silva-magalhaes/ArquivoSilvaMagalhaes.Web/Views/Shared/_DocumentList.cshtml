@@ -23,4 +23,8 @@
             </dl>
         </a>
     }
+
+    <div class="text-center">
+        @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+    </div>
 </div>

@@ -1,5 +1,6 @@
 ﻿(function ($) {
-    $('[data-afsm-show-overlay="true"]').click(function (e) {
+    $('body').on('click', '[data-afsm-show-overlay="true"]', function (e) {
+    // $('[data-afsm-show-overlay="true"]').click(function (e) {
         var $link = $(e.target);
 
         if (!$link.data('afsm-show-overlay')) {

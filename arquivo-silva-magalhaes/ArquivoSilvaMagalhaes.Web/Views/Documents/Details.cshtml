@@ -67,7 +67,7 @@
     {
         <li>
             <a href="#afsm-images" role="tab" data-toggle="tab">
-                @ImageStrings.EntityNamePlural (@(Model.Images.Count()))
+                @ImageStrings.EntityNamePlural
             </a>
         </li>
     }
@@ -96,15 +96,80 @@
     </div>
     @if (Model.Images.Count() > 0)
     {
-        <div class="tab-pane fade" id="afsm-images">
-            
-            @Html.Partial("_ImageList", Model.Images)
+        <div class="tab-pane fade" id="afsm-images" data-afsm-ajax="true" data-afsm-id="#afsm-image-list">
 
-            @section scripts {
-                @Html.Partial("_ImageOverlay")
-            }
+            <form method="get"
+                  class="form-horizontal"
+                  data-afsm-ajax="true"
+                  action="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })">
+                <input type="hidden" name="documentId" value="@Model.Document.Entity.Id" />
 
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="query" />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">Pesquisar imagens</button>
+                        </span>
+                    </div>
+                
+            </form>
+
+            <div data-afsm-load="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })">
+                @* Empty! *@
+            </div>
+
+            @*@Html.Partial("_ImageList", Model.Images)*@
         </div>
     }
 </div>
 
+@section scripts {
+    @Html.Partial("_ImageOverlay")
+
+    <script>
+        (function ($) {
+            $('form[data-afsm-ajax="true"]').submit(function (e) {
+                var $form = $(this);
+
+                $.ajax({
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    type: $form.attr('method')
+                })
+                .done(function (data) {
+                    $($form.parents('div[data-afsm-id]').data('afsm-id')).replaceWith(data);
+                });
+
+                e.preventDefault();
+                return false;
+            });
+
+            $('[data-afsm-ajax="true"]').on('click', '.afsm-pagination a', function (e) {
+                var $a = $(this);
+
+                $.ajax({
+                    url: $a.attr('href'),
+                    data: $('form[data-afsm-ajax="true"]').serialize(),
+                    type: 'get'
+                })
+                .done(function (data) {
+                    $($a.parents('div[data-afsm-id]').data('afsm-id')).replaceWith(data);
+                });
+
+                e.preventDefault();
+                return false;
+            });
+
+            $('[data-afsm-load]').each(function () {
+                var $div = $(this);
+
+                $.ajax({
+                    type: 'get',
+                    url: $div.data('afsm-load')
+                })
+                .done(function (data) {
+                    $div.replaceWith(data);
+                });
+            })
+        }($));
+    </script>
+}

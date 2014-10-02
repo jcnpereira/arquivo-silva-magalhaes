@@ -16,6 +16,7 @@
         {
             var b = Model.Banners[i];
             <div class="item @(i == 0 ? "active" : "")">
+                @* style="background-image: url(@Url.Content("~/Public/Banners/" + b.Entity.UriPath));" *@
                 <div class="afsm-banner-item-container">
                     <img src="@Url.Content("~/Public/Banners/" + b.Entity.UriPath)"
                          class="afsm-banner-item" />

@@ -2,9 +2,11 @@
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -31,19 +33,47 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int documentId = 0, int pageNumber = 1)
+        public async Task<ActionResult> Index(
+            int documentId = 0,
+            int keywordId = 0,
+            int classificationId = 0,
+            bool hideWithoutImage = false,
+            string query = "",
+            int pageNumber = 1)
         {
+            var model = (await GetImages(documentId, keywordId, classificationId, hideWithoutImage, query))
+                .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
+                .ToPagedList(pageNumber, 2);
 
-            return View((await db.Entities
-                .Include(i => i.Translations)
-                .Where(i => i.IsVisible)
-                .Where(i => documentId == 0 || i.DocumentId == documentId)
-                .OrderBy(i => i.Id)
-                .ToListAsync())
-                .Select(doc => new TranslatedViewModel<Image, ImageTranslation>(doc))
-                .ToPagedList(pageNumber, 12));
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ImageList", model);
+            }
+
+            return View(model);
         }
 
+        private async Task<IEnumerable<Image>> GetImages(
+            int documentId = 0,
+            int keywordId = 0,
+            int classificationId = 0,
+            bool hideWithoutImage = false,
+            string query = "")
+        {
+            var lang = Thread.CurrentThread.CurrentUICulture.Name;
+
+            return await db.Entities
+                .Include(i => i.Translations)
+                .Where(i =>
+                    i.IsVisible &&
+                    (!hideWithoutImage || i.ImageUrl != null) &&
+                    (documentId == 0 || i.DocumentId == documentId) &&
+                    (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
+                    (classificationId == 0 || i.ClassificationId == classificationId))
+                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(i => i.Id)
+                .ToListAsync();
+        }
 
         /// <summary>
         /// Forence os detalhes de determinada imagem

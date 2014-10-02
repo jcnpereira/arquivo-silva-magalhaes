@@ -35,7 +35,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
-                .Include(n => n.Attachments)
                 .Where(n => n.PublishDate <= DateTime.Now && n.ExpiryDate >= DateTime.Now || n.HideAfterExpiry == false)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<NewsItem, NewsItemTranslation>(b))
