@@ -18,7 +18,7 @@
     </div>
 </form>
 
-@if (Model != null)
+@if (Model.Results != null)
 {
     <div class="list-group">
         @foreach (var doc in Model.Results)
@@ -28,8 +28,9 @@
             </a>
         }
     </div>
+
+    <div class="text-center">
+        @Html.PagedListPager((IPagedList)Model.Results, p => Url.Action("Index", "Search", new { pageNumber = p, searchTerm = Model.Query }))
+    </div>
 }
 
-<div class="text-center">
-    @Html.PagedListPager((IPagedList)Model.Results, p => Url.Action("Index", "Search", new { pageNumber = p, searchTerm = Model.Query }))
-</div>

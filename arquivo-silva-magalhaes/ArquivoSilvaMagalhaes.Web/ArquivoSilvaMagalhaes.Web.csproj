@@ -710,6 +710,10 @@
     <Content Include="Scripts\frontoffice\overlay-image.min.js">
       <DependentUpon>overlay-image.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\frontoffice\showcase-video.js" />
+    <Content Include="Scripts\frontoffice\showcase-video.min.js">
+      <DependentUpon>showcase-video.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -733,6 +737,9 @@
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image.min.js.map">
       <DependentUpon>overlay-image.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\showcase-video.min.js.map">
+      <DependentUpon>showcase-video.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -864,6 +871,7 @@
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />
     <Content Include="Views\Shared\_LayoutLinks.cshtml" />
+    <Content Include="Views\Images\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

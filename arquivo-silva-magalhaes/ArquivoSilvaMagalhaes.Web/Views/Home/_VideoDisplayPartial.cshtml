@@ -3,7 +3,8 @@
 <div id="afsm-fullscreen">
     <div class="embed-container">
         <iframe class="afsm-embedded-video"
-                src="//www.youtube-nocookie.com/embed/@(Model)?rel=0"
+                type="text/html"
+                src="https://www.youtube.com/embed/@(Model)?modestbranding=1&rel=0&showinfo=0"
                 frameborder="0" allowfullscreen></iframe>
     </div>
 
@@ -17,32 +18,4 @@
     </p>
 </div>
 
-<script type="text/javascript">
-    (function ($) {
-        //var hideTimeOutId;
-        
-        //function hideDescription() {
-        //    $('.afsm-embedded-description').css('opacity', 0);
-        //}
-
-        $('body').addClass('afsm-body-noscroll');
-        $('#afsm-close-overlay').click(function (e) {
-            if ($('#afsm-dontshowagain').is(':checked')) {
-                document.cookie = 'afsm-novideo=1';
-            }
-
-            $('#afsm-fullscreen').remove();
-
-            $('body').removeClass('afsm-body-noscroll');
-        });
-
-        //hideTimeoutId = window.setTimeout(hideDescription, 1000);
-
-        //$('body').mousemove(function () {
-        //    window.clearTimeout(hideTimeOutId);
-        //    hideTimeoutId = window.setTimeout(hideDescription, 1000);
-        //    $('.afsm-embedded-description').css('opacity', 1);
-        //});
-
-    }(window.jQuery));
-</script>
+@Scripts.Render("~/Scripts/frontoffice/showcase-video.js")

@@ -51,7 +51,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 return View(model);
             }
 
-            return View();
+            return View(new SearchResult());
         }
 
         /// <summary>
