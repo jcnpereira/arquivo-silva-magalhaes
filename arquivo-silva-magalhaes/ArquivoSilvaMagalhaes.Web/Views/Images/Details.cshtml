@@ -65,6 +65,16 @@
             </dd>
 
             <dt>
+                @Html.DisplayNameFor(model => model.Image.Entity.Document)
+            </dt>
+
+            <dd>
+                <a href="@Url.Action("Details", "Documents", new { id = Model.Image.Entity.DocumentId })">
+                    @Model.Image.Entity.Document.Title
+                </a>
+            </dd>
+
+            <dt>
                 @Html.DisplayNameFor(model => model.Classification.Translation.Value)
             </dt>
 
