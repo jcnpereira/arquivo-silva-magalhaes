@@ -1,18 +1,8 @@
-﻿@import "bootstrap/bootstrap.less";
+﻿@import 'bootstrap/bootstrap.less';
+@import "afsm-variables.less";
 @import "image-overlay.less";
 @import 'video-overlay.less';
-
-@afsm-page-padding: 40px;
-
-@afsm-top-padding: 20px;
-
-@afsm-page-padding-sm: 15px;
-@afsm-top-padding-sm: 10px;
-
-@afsm-negate-margin: @afsm-page-padding * -1;
-@afsm-negate-margin-top: @afsm-top-padding * -1;
-@afsm-negate-margin-sm: @afsm-page-padding-sm * -1;
-@afsm-negate-margin-top-sm: @afsm-top-padding-sm * -1;
+//@import 'afsm-animations.less';
 
 html, body {
     height: 100%;
@@ -82,7 +72,7 @@ body {
 }
 
 #afsm-page-container {
-    background-color: white;
+    background-color: @afsm-page-container-bg;
     min-height: 100%;
 }
 

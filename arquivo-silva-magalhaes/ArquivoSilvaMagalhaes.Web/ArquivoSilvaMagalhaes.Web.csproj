@@ -692,12 +692,14 @@
     <Content Include="Content\Styles\frontoffice\image-overlay.css.map">
       <DependentUpon>image-overlay.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\frontoffice\main.css.map">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
     <Content Include="Content\Styles\frontoffice\video-overlay.less" />
     <Content Include="Content\Styles\frontoffice\video-overlay.css.map">
       <DependentUpon>video-overlay.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\afsm-animations.less" />
+    <Content Include="Content\Styles\frontoffice\afsm-variables.less" />
+    <Content Include="Content\Styles\frontoffice\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />

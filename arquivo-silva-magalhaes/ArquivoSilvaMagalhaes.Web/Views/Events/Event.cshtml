@@ -24,18 +24,20 @@
 </div>
 
 
-<hr />
+<hr class="hidden-xs" />
 
-@Html.DisplayFor(model => model.Translation.TextContent)
+<div class="afsm-commentary">
+    @Html.DisplayFor(model => model.Translation.TextContent)
 
-@if (!string.IsNullOrEmpty(Model.Entity.VisitorInformation))
-{
-    <h4>@EventStrings.VisitorInformation</h4>
-    
-    <div>
-        @Html.DisplayFor(model => model.Entity.VisitorInformation)
-    </div>
-}
+    @if (!string.IsNullOrEmpty(Model.Entity.VisitorInformation))
+    {
+        <h4>@EventStrings.VisitorInformation</h4>
+
+        <div>
+            @Html.DisplayFor(model => model.Entity.VisitorInformation)
+        </div>
+    }
+</div>
 
 @if (Model.Entity.Attachments.Count > 0)
 {
