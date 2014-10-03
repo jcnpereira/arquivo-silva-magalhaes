@@ -1,5 +1,12 @@
 ﻿/*global google*/
-(function initialize() {
+
+/**
+ * Initializes a read-only version
+ * of Google Maps.
+ */
+(function (google) {
+    'use strict';
+
     var coords = $('#map_canvas').data('afsm-coords').split(',');
 
     var lat = parseFloat(coords[0]);
@@ -17,9 +24,9 @@
         document.getElementById("map_canvas"),
         mapOptions);
 
-    var marker = new google.maps.Marker({
+    new google.maps.Marker({
         position: position,
         map: map,
         draggable: false
     });
-}());
+}(google));

@@ -676,6 +676,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\frontoffice\ajax-pagination.js" />
+    <Content Include="Scripts\frontoffice\ajax-pagination.min.js">
+      <DependentUpon>ajax-pagination.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
       <DependentUpon>gmaps-readonly.js</DependentUpon>
     </Content>
@@ -714,6 +717,9 @@
     </Content>
     <Content Include="Scripts\frontoffice\showcase-video.min.js.map">
       <DependentUpon>showcase-video.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\ajax-pagination.min.js.map">
+      <DependentUpon>ajax-pagination.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

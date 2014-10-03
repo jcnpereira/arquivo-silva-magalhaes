@@ -91,6 +91,10 @@
         @Html.Partial("_VideoDisplayPartial", Model.VideoId)
     }
 }
+else
+{
+    Response.Cookies["afsm-novideo"].Expires = DateTime.Now.AddYears(2);
+}
 
 
 

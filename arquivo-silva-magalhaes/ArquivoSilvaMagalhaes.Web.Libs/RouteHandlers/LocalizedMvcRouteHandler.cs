@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Linq;
+using System;
 
 namespace ArquivoSilvaMagalhaes.Web.Libs.RouteHandlers
 {
@@ -41,7 +42,10 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.RouteHandlers
                 .ToList());
 
             var chosenLanguage = LanguageDefinitions.GetClosestLanguageCode(culturesToTest.ToArray());
-            requestContext.HttpContext.Response.SetCookie(new HttpCookie("locale", chosenLanguage));
+            var localeCookie = new HttpCookie("locale", chosenLanguage);
+            localeCookie.Expires = DateTime.Now.AddYears(2);
+
+            requestContext.HttpContext.Response.SetCookie(localeCookie);
 
             // Redirect if the url locale doesn't match the culture name.
             if (!LanguageDefinitions.AreCodesEquivalent(chosenLanguage, urlLocale))
