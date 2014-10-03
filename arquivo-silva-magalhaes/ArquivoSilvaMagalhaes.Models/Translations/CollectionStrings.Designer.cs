@@ -259,6 +259,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É recomendado uma imagem .jpg ou .png com dimensões de 400x400. A imagem é opcional..
+        /// </summary>
+        public static string LogoRecommendation {
+            get {
+                return ResourceManager.GetString("LogoRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notas.
         /// </summary>
         public static string Notes {

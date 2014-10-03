@@ -255,16 +255,12 @@
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\DocumentViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\ImageViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\KeywordViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\ProcessesViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\ArchiveViewModels\SpecimenViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\BannerPhotographViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\EventViewModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\NewsItemViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\PortalViewModels.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\ReferencedLinkModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\ShowcasePhotoEditViewModel.cs" />
-    <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\SpotLightVideoModels.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\SiteViewModels\TechnicalDocumentViewModels.cs" />
     <Compile Include="Models\TranslateableEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -884,7 +880,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+  <!-- <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <ItemGroup>
       <ExtraWebConfigs Include="$(BaseIntermediateOutputPath)\**\web.config" />
       <ExtraPackageTmp Include="$([System.IO.Directory]::GetDirectories(&quot;$(BaseIntermediateOutputPath)&quot;, &quot;PackageTmp&quot;, System.IO.SearchOption.AllDirectories))" />
@@ -892,7 +888,7 @@
     <Delete Files="@(ExtraWebConfigs)" />
     <RemoveDir Directories="@(ExtraPackageTmp)" />
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-  </Target>
+  </Target> -->
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">

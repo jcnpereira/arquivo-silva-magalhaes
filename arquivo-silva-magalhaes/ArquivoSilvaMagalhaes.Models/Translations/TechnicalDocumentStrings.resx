@@ -147,4 +147,7 @@
   <data name="UploadDate" xml:space="preserve">
     <value>Data de upload</value>
   </data>
+  <data name="UploadedFile" xml:space="preserve">
+    <value>Ficheiro</value>
+  </data>
 </root>

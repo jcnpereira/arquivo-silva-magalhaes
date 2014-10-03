@@ -187,6 +187,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É recomendada uma imagem com dimensões de 1024x768. A imagem é opcional..
+        /// </summary>
+        public static string ImageRecommendation {
+            get {
+                return ResourceManager.GetString("ImageRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagem.
+        /// </summary>
+        public static string ImageUrl {
+            get {
+                return ResourceManager.GetString("ImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visível ao público.
         /// </summary>
         public static string IsVisible {
@@ -196,7 +214,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indexações desta imagem.
+        ///   Looks up a localized string similar to Indexação.
         /// </summary>
         public static string Keywords {
             get {

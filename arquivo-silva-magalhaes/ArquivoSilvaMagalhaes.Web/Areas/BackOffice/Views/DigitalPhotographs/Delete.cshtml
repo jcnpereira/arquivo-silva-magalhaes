@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = DigitalPhotographStrings.DeleteTitleFormat;
+    ViewBag.ReturnTo = Url.Action("Details", "Specimens", new { id = Model.SpecimenId });
     ViewBag.AlertMsg = DigitalPhotographStrings.DeleteWarningMessage;
     Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
 }

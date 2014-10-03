@@ -16,7 +16,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         public IEnumerable<SelectListItem> AvailableAuthors { get; set; }
 
         //[ContentType(ContentType = "image/*", ErrorMessage = "A")]
-        [Display(ResourceType = typeof(DataStrings), Name = "CollectionLogo")]
+        [Display(ResourceType = typeof(CollectionStrings), Name = "LogoLocation")]
         public HttpPostedFileBase Logo { get; set; }
 
         [Display(ResourceType = typeof(CollectionStrings), Name = "Authors")]

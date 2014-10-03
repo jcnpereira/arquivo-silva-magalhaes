@@ -36,6 +36,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "ImageCode")]
         public string ImageCode { get; set; }
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "ImageUrl")]
         public string ImageUrl { get; set; }
 
         [Display(ResourceType = typeof(ImageStrings), Name = "IsVisible")]
@@ -58,6 +59,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual IList<ShowcasePhoto> ShowcasePhotos { get; set; }
 
         [ForeignKey("ClassificationId")]
+        [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]
         public virtual Classification Classification { get; set; }
 
         [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]

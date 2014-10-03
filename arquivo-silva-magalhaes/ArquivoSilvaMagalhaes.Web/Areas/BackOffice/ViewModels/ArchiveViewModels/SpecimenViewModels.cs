@@ -37,29 +37,4 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Photos")]
         public List<HttpPostedFileBase> Photos { get; set; }
     }
-
-    public class PhotoUploadModelItem
-    {
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(ResourceType = typeof(DataStrings), Name = "ScanDate")]
-        public DateTime ScanDate { get; set; }
-
-        [Required]
-        [Display(ResourceType = typeof(DataStrings), Name = "ScanProcess")]
-        public string Process { get; set; }
-
-
-        public string OriginalFileName { get; set; }
-
-        [Required]
-        [DataType(DataType.MultilineText)]
-        [Display(ResourceType = typeof(DataStrings), Name = "CopyrightInfo")]
-        public string CopyrightInfo { get; set; }
-
-        [Display(ResourceType = typeof(DataStrings), Name = "IsVisible")]
-        public bool IsVisible { get; set; }
-
-        public bool IsToConsider { get; set; }
-    }
 }

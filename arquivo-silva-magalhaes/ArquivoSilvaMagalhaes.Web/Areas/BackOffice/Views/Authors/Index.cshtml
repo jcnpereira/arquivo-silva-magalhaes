@@ -45,7 +45,7 @@
                     </a>
                 </form>
                 &nbsp;
-                @Html.ActionLink(DataStrings.Collection__Collections, "Index", "Collections", new { authorId = item.Entity.Id }, null)
+                @Html.ActionLink(CollectionStrings.EntityNamePlural, "Index", "Collections", new { authorId = item.Entity.Id }, null)
                 &nbsp;
                 @Html.ActionLink(DocumentStrings.EntityNamePlural, "Index", "Documents", new { authorId = item.Entity.Id }, null)
             </td>

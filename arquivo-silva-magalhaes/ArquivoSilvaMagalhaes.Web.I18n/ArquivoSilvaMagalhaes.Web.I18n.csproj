@@ -44,11 +44,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataStrings1.Designer.cs">
-      <DependentUpon>DataStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ErrorStrings.Designer.cs">
       <DependentUpon>ErrorStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -95,11 +90,6 @@
     <EmbeddedResource Include="AuthStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DataStrings1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorStrings.en.resx" />
     <EmbeddedResource Include="ErrorStrings.resx">

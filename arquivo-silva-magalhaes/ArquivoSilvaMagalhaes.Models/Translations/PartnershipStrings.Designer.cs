@@ -151,6 +151,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O logótipo deve ser uma imagem com dimensões de 400x400. A imagem é opcional..
+        /// </summary>
+        public static string LogoRecommendation {
+            get {
+                return ResourceManager.GetString("LogoRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome da entidade.
         /// </summary>
         public static string Name {

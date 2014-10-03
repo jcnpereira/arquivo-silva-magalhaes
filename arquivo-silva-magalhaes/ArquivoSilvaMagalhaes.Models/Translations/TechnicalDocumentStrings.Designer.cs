@@ -149,5 +149,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("UploadDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ficheiro.
+        /// </summary>
+        public static string UploadedFile {
+            get {
+                return ResourceManager.GetString("UploadedFile", resourceCulture);
+            }
+        }
     }
 }

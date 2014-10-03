@@ -138,4 +138,7 @@
   <data name="Image" xml:space="preserve">
     <value>Imagem</value>
   </data>
+  <data name="ImageRecommendation" xml:space="preserve">
+    <value>É recomendada uma imagem com pelo menos 400px de altura e 1000px de largura.</value>
+  </data>
 </root>

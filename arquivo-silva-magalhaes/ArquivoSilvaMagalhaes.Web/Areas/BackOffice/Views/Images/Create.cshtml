@@ -24,6 +24,7 @@
             <div class="col-sm-10">
                 @Html.FileUploadFor(model => model.ImageUpload, new { @class = "form-control-static", accept = "image/*" })
                 @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
+                <p class="help-block">@ImageStrings.ImageRecommendation</p>
             </div>
         </div>
 

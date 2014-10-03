@@ -122,5 +122,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("Image", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to É recomendada uma imagem com pelo menos 400px de altura e 1000px de largura..
+        /// </summary>
+        public static string ImageRecommendation {
+            get {
+                return ResourceManager.GetString("ImageRecommendation", resourceCulture);
+            }
+        }
     }
 }

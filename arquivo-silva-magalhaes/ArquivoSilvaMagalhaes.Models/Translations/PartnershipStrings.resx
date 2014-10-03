@@ -147,6 +147,9 @@
   <data name="Logo" xml:space="preserve">
     <value>Logótipo</value>
   </data>
+  <data name="LogoRecommendation" xml:space="preserve">
+    <value>O logótipo deve ser uma imagem com dimensões de 400x400. A imagem é opcional.</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nome da entidade</value>
   </data>

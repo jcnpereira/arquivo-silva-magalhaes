@@ -63,12 +63,16 @@
         @Html.DisplayNameFor(model => model.Image.Keywords)
     </dt>
     <dd>
-        @foreach (var k in Model.Keywords)
-        {
-            <a href="@Url.Action("Details", "Keywords", new { k.Entity.Id })">
-                @k.Translation.Value
-            </a> 
-        }
+        <ul class="list-inline">
+            @foreach (var k in Model.Keywords)
+            {
+                <li>
+                    <a href="@Url.Action("Details", "Keywords", new { k.Entity.Id })">
+                        @k.Translation.Value
+                    </a>
+                </li>
+            }
+        </li>
     </dd>
 
     <dt>

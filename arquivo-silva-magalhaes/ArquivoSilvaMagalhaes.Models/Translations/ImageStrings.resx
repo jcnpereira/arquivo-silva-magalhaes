@@ -159,11 +159,17 @@
   <data name="ImageCode" xml:space="preserve">
     <value>Código de referência</value>
   </data>
+  <data name="ImageRecommendation" xml:space="preserve">
+    <value>É recomendada uma imagem com dimensões de 1024x768. A imagem é opcional.</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Imagem</value>
+  </data>
   <data name="IsVisible" xml:space="preserve">
     <value>Visível ao público</value>
   </data>
   <data name="Keywords" xml:space="preserve">
-    <value>Indexações desta imagem</value>
+    <value>Indexação</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Localização</value>

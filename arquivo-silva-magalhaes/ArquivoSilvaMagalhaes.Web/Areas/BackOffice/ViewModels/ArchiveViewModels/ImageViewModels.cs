@@ -109,6 +109,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] KeywordIds { get; set; }
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "ImageUrl")]
         public HttpPostedFileBase ImageUpload { get; set; }
     }
 }
