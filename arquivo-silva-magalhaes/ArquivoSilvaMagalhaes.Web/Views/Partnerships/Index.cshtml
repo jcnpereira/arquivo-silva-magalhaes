@@ -13,21 +13,23 @@
 <div class="row">
     @foreach (var img in Model)
     {
-        <div class="col-sm-6 col-md-4 thumbnail">
-            <img src="~/Public/Partnerships/@(img.LogoFileName)" />
-            <div class="caption">
-                <h4>
-                    @img.Name
-                </h4>
-                <p>
-                    @Html.DisplayFor(model => img.EmailAddress)
-                </p>
-                <p>
-                    <a href="@img.SiteLink" target="_blank">@img.SiteLink</a>
-                </p>
-                <p>
-                    @img.Contact
-                </p>
+        <div class="afsm-thumb col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img class="img-responsive" style="width: 100%" src="~/Public/Partnerships/@(img.LogoFileName)" />
+                <div class="caption">
+                    <h4>
+                        @img.Name
+                    </h4>
+                    <p>
+                        @Html.DisplayFor(model => img.EmailAddress)
+                    </p>
+                    <p>
+                        <a href="@img.SiteLink" target="_blank">@img.SiteLink</a>
+                    </p>
+                    <p>
+                        @img.Contact
+                    </p>
+                </div>
             </div>
         </div>
     }
