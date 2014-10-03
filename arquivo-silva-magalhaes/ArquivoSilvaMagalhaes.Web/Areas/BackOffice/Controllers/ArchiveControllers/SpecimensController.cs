@@ -2,6 +2,7 @@
 using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
+using ArquivoSilvaMagalhaes.Models.Translations;
 using ArquivoSilvaMagalhaes.Resources;
 using PagedList;
 using System.Data.Entity;
@@ -92,6 +93,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Specimen specimen)
         {
+            if (DoesCodeAlreadyExist(specimen))
+            {
+                ModelState.AddModelError("ReferenceCode", SpecimenStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Add(specimen);
@@ -125,6 +131,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Specimen specimen)
         {
+            if (DoesCodeAlreadyExist(specimen))
+            {
+                ModelState.AddModelError("ReferenceCode", SpecimenStrings.CodeAlreadyExists);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Update(specimen);
@@ -329,6 +340,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             model.Specimen = specimen;
 
             return model;
+        }
+
+        private bool DoesCodeAlreadyExist(Specimen s)
+        {
+            return db.Entities
+                .Any(d => d.ReferenceCode == s.ReferenceCode && d.Id != s.Id);
         }
 
         public async Task<ActionResult> SuggestCode(int? imageId)

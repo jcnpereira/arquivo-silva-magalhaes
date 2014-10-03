@@ -98,18 +98,12 @@
                         </li>
                     }
                 </ul>
-
-
-
-                @*@string.Join(", ", Model.Keywords.Select(k => k.Translation.Value))*@
             </dd>
-
-
         </dl>
     </div>
 </div>
 
-<hr />
+<hr class="hidden-xs" />
 
 <dl class="afsm-dl-vertical">
     <dt>
@@ -129,7 +123,62 @@
     <dt>
         @Html.DisplayNameFor(model => model.Image.Translation.Publication)
     </dt>
+
     <dd>
         @Html.DisplayFor(model => model.Image.Translation.Publication)
     </dd>
+
+    @if (Model.Specimens.Count() > 0)
+    {
+        <dt>
+            @SpecimenStrings.ArchivalReferenceCode
+        </dt>
+
+        <dd>
+            <ul class="list-inline">
+                @foreach (var refCode in Model.Specimens.Select(s => s.Entity.ArchivalReferenceCode))
+                {
+                    <li>@refCode</li>
+                }
+            </ul>
+        </dd>
+
+        <dt>
+            @SpecimenStrings.AuthorCatalogationCode
+        </dt>
+
+        <dd>
+            <ul class="list-inline">
+                @foreach (var authorCode in Model.Specimens.Select(s => s.Entity.AuthorCatalogationCode))
+                {
+                    <li>@authorCode</li>
+                }
+            </ul>
+        </dd>
+
+        <dt>
+            @FormatStrings.EntityName
+        </dt>
+
+        <dd>
+            <ul class="list-inline">
+                @foreach (var format in Model.Formats)
+                {
+                    <li>@format.FormatDescription</li>
+                }
+            </ul>
+        </dd>
+
+        <dt>
+            @ProcessStrings.EntityName
+        </dt>
+        <dd>
+            <ul class="list-inline">
+                @foreach (var process in Model.Processes)
+                {
+                    <li>@process.Translation.Value</li>
+                }
+            </ul>
+        </dd>
+    }
 </dl>

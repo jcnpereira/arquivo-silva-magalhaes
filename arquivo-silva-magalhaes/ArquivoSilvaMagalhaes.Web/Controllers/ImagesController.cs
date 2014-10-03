@@ -93,11 +93,19 @@ namespace ArquivoSilvaMagalhaes.Controllers
             {
                 return HttpNotFound();
             }
+
+            var specimens = image.Specimens.ToList();
+            var formats = specimens.Select(s => s.Format).ToList();
+            var processes = specimens.Select(s => s.Process).ToList();
+
             return View(new ImageDetailsViewModel
                 {
                     Image = new TranslatedViewModel<Image, ImageTranslation>(image),
                     Classification = new TranslatedViewModel<Classification, ClassificationTranslation>(image.Classification),
-                    Keywords = image.Keywords.ToList().Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
+                    Keywords = image.Keywords.ToList().Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k)),
+                    Specimens = specimens.Select(s => new TranslatedViewModel<Specimen, SpecimenTranslation>(s)),
+                    Processes = processes.Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p)),
+                    Formats = formats
                 });
         }
 

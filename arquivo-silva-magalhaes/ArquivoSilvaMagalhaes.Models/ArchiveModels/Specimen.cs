@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
@@ -20,7 +19,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         VeryGood = 5
     }
 
-    public class Specimen : IValidatableObject
+    public class Specimen// : IValidatableObject
     {
         public Specimen()
         {
@@ -81,16 +80,16 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual IList<SpecimenTranslation> Translations { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            using (var _db = new ArchiveDataContext())
-            {
-                if (_db.Specimens.Any(i => i.ReferenceCode == this.ReferenceCode && i.Id != this.Id))
-                {
-                    yield return new ValidationResult(SpecimenStrings.CodeAlreadyExists, new string[] { "ReferenceCode" });
-                }
-            }
-        }
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    using (var _db = new ArchiveDataContext())
+        //    {
+        //        if (_db.Specimens.Any(i => i.ReferenceCode == this.ReferenceCode && i.Id != this.Id))
+        //        {
+        //            yield return new ValidationResult(SpecimenStrings.CodeAlreadyExists, new string[] { "ReferenceCode" });
+        //        }
+        //    }
+        //}
     }
 
     public class SpecimenTranslation : EntityTranslation
