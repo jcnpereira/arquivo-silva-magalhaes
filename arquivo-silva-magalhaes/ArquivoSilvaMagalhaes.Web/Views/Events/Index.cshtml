@@ -5,6 +5,23 @@
     Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
+@functions {
+    string GlyphiconForEventType(EventType type)
+    {
+        switch (type)
+        {
+            case EventType.Expo:
+                return "glyphicon-star";
+            case EventType.School:
+                return "glyphicon-pencil";
+            case EventType.Workshop:
+                return "glyphicon-comment";
+            default:
+                return "glyphicon-picture";
+        }
+    }
+}
+
 <h2>
     @EventStrings.EntityNamePlural
 </h2>
@@ -17,8 +34,8 @@
         <a href="@Url.Action("Event", "Events", new { item.Entity.Id })" class="list-group-item">
             <div class="media">
                 <div class="pull-left">
-                    <img class="media-object" style="width: 96px; height: 96px"
-                         src="~/Public/Images/_thumb.jpg">
+                    <span class="pull-left afsm-xlarge-glyphicon glyphicon @GlyphiconForEventType(item.Entity.EventType.Value)">
+                    </span>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">

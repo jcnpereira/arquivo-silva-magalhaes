@@ -206,18 +206,22 @@ th {
 .glyphicon-euro                   { &:before { content: "\20ac"; } }
 .glyphicon-minus                  { &:before { content: "\2212"; } }
 .glyphicon-cloud                  { &:before { content: "\2601"; } }
-.glyphicon-envelope               { &:before { content: "\2709"; } }
-.glyphicon-pencil                 { &:before { content: "\270f"; } }
-.glyphicon-glass                  { &:before { content: "\e001"; } }*/
+.glyphicon-envelope               { &:before { content: "\2709"; } }*/
+.glyphicon-pencil:before {
+  content: "\270f";
+}
+/*.glyphicon-glass                  { &:before { content: "\e001"; } }*/
 .glyphicon-music:before {
   content: "\e002";
 }
 .glyphicon-search:before {
   content: "\e003";
 }
-/*.glyphicon-heart                  { &:before { content: "\e005"; } }
-.glyphicon-star                   { &:before { content: "\e006"; } }
-.glyphicon-star-empty             { &:before { content: "\e007"; } }
+/*.glyphicon-heart                  { &:before { content: "\e005"; } }*/
+.glyphicon-star:before {
+  content: "\e006";
+}
+/*.glyphicon-star-empty             { &:before { content: "\e007"; } }
 .glyphicon-user                   { &:before { content: "\e008"; } }*/
 .glyphicon-film:before {
   content: "\e009";
@@ -330,9 +334,11 @@ th {
 .glyphicon-warning-sign           { &:before { content: "\e107"; } }
 .glyphicon-plane                  { &:before { content: "\e108"; } }
 .glyphicon-calendar               { &:before { content: "\e109"; } }
-.glyphicon-random                 { &:before { content: "\e110"; } }
-.glyphicon-comment                { &:before { content: "\e111"; } }
-.glyphicon-magnet                 { &:before { content: "\e112"; } }
+.glyphicon-random                 { &:before { content: "\e110"; } }*/
+.glyphicon-comment:before {
+  content: "\e111";
+}
+/*.glyphicon-magnet                 { &:before { content: "\e112"; } }
 .glyphicon-chevron-up             { &:before { content: "\e113"; } }
 .glyphicon-chevron-down           { &:before { content: "\e114"; } }
 .glyphicon-retweet                { &:before { content: "\e115"; } }
@@ -3866,6 +3872,9 @@ div.line + ul {
 }
 .afsm-large-glyphicon {
   font-size: 32px;
+}
+.afsm-xlarge-glyphicon {
+  font-size: 48px;
 }
 @media (max-width: 767px), (orientation: portrait) {
   #afsm-navbar {
