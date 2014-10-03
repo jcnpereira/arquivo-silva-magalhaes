@@ -16,13 +16,19 @@
     </li>
 
     <li>
-        <a href="@Url.Action("Index", "Images", new { documentId = Model.Image.Entity.DocumentId })">
-            @ImageStrings.EntityNamePlural
+        <a href="@Url.Action("Details", "Collections", new { id = Model.Image.Entity.Document.CollectionId })">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Details", "Documents", new { id = Model.Image.Entity.DocumentId })">
+            @DocumentStrings.EntityNamePlural
         </a>
     </li>
 
     <li class="active">
-        @Html.Truncate(Model.Image.Translation.Title, 20)
+        @Model.Image.Translation.Title
     </li>
 </ol>
 

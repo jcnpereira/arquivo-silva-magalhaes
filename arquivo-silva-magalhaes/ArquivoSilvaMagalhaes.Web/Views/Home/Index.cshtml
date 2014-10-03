@@ -40,9 +40,8 @@
 <div class="row">
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.News, "Index", "News")</h4>
-        <a href="~/News">
-            <img src="~/Content/Images/news.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+        <a href="@Url.Action("Index", "News")">
+            <img src="~/Content/Images/news.png" />
         </a>
         <p>
             <small>
@@ -52,11 +51,8 @@
     </div>
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</h4>
-        <a href="~/Events">
-            <img src="~/Content/Images/events.png"
-                 class="left no_border"
-                 alt=""
-                 style="margin-top: 10px; margin-right: 10px" />
+        <a href="@Url.Action("Index", "Events")">
+            <img src="~/Content/Images/events.png" />
         </a>
         <p>
             <small>
@@ -67,9 +63,8 @@
 
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.Contents, "Archive", "Home")</h4>
-        <a href="~/Home/Archive">
-            <img src="~/Content/Images/documents.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+        <a href="@Url.Action("Archive", "Home")">
+            <img src="~/Content/Images/documents.png" />
         </a>
         <p>
             <small>
@@ -79,9 +74,8 @@
     </div>
     <div class="col-md-3">
         <h4>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos", null, null)</h4>
-        <a href="~/ShowCasePhotos">
-            <img src="~/Content/Images/spotlightphoto.png" class="left no_border" alt="" style="margin-top: 10px;
-                                        margin-right: 10px" />
+        <a href="@Url.Action("Index", "ShowcasePhotos")">
+            <img src="~/Content/Images/spotlightphoto.png" />
         </a>
         <p>
             <small>

@@ -11,10 +11,30 @@
             @LayoutStrings.Contents
         </a>
     </li>
+    <li>
+        @if (ViewBag.CollectionId != 0)
+        {
+            <a href="@Url.Action("Details", "Collections", new { id = ViewBag.CollectionId })">
+                @CollectionStrings.EntityNamePlural
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Collections")">
+                @CollectionStrings.EntityNamePlural
+            </a>
+        }
+    </li>
     <li class="active">
         @DocumentStrings.EntityNamePlural
     </li>
 </ol>
+
+
+
+
+
+
 
 <h2>
     @DocumentStrings.EntityNamePlural

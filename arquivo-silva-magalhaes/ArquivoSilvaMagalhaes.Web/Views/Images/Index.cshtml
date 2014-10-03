@@ -11,7 +11,34 @@
             @LayoutStrings.Contents
         </a>
     </li>
-
+    <li>
+        @if (ViewBag.CollectionId != 0)
+        {
+            <a href="@Url.Action("Details", "Collections", new { id = ViewBag.CollectionId })">
+                @CollectionStrings.EntityNamePlural
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Collections")">
+                @CollectionStrings.EntityNamePlural
+            </a>
+        }
+    </li>
+    <li>
+        @if (ViewBag.DocumentId != 0)
+        {
+            <a href="@Url.Action("Details", "Documents", new { id = ViewBag.DocumentId })">
+                @DocumentStrings.EntityNamePlural
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Documents", new { collectionId = ViewBag.CollectionId })">
+                @DocumentStrings.EntityNamePlural
+            </a>
+        }
+    </li>
     <li class="active">
         @ImageStrings.EntityNamePlural
     </li>

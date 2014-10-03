@@ -11,13 +11,12 @@
         </a>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Document.Entity.CollectionId })">
-            @DocumentStrings.EntityNamePlural
+        <a href="@Url.Action("Details", "Collections", new { Model.Collection.Entity.Id })">
+            @CollectionStrings.EntityNamePlural
         </a>
     </li>
-
     <li class="active">
-        @Model.Document.Entity.Title
+        @DocumentStrings.EntityNamePlural
     </li>
 </ol>
 

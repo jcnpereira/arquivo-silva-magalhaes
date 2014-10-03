@@ -33,6 +33,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="pageNumber"></param>
         /// <returns></returns>
         public async Task<ActionResult> Index(
+            int collectionId = 0,
             int documentId = 0,
             int keywordId = 0,
             int classificationId = 0,
@@ -40,14 +41,29 @@ namespace ArquivoSilvaMagalhaes.Controllers
             string query = "",
             int pageNumber = 1)
         {
-            var model = (await GetImages(documentId, keywordId, classificationId, hideWithoutImage, query))
+            var model = (await db.Entities
+                .Include(i => i.Document.Collection)
+                .Include(i => i.Document)
+                .Include(i => i.Translations)
+                .Where(i =>
+                    (i.IsVisible && i.Document.Collection.IsVisible) &&
+                    (!hideWithoutImage || i.ImageUrl != null) &&
+                    (collectionId == 0 || i.Document.CollectionId == collectionId) &&
+                    (documentId == 0 || i.DocumentId == documentId) &&
+                    (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
+                    (classificationId == 0 || i.ClassificationId == classificationId))
+                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(i => i.Id)
+                .ToListAsync())
                 .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
                 .ToPagedList(pageNumber, 12);
 
             ViewBag.Query = query;
+            ViewBag.CollectionId = collectionId;
             ViewBag.DocumentId = documentId;
             ViewBag.ClassificationId = classificationId;
             ViewBag.KeywordId = keywordId;
+
 
             if (Request.IsAjaxRequest())
             {
@@ -55,26 +71,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
 
             return View(model);
-        }
-
-        private async Task<IEnumerable<Image>> GetImages(
-            int documentId = 0,
-            int keywordId = 0,
-            int classificationId = 0,
-            bool hideWithoutImage = false,
-            string query = "")
-        {
-            return await db.Entities
-                .Include(i => i.Translations)
-                .Where(i =>
-                    (i.IsVisible && i.Document.Collection.IsVisible) &&
-                    (!hideWithoutImage || i.ImageUrl != null) &&
-                    (documentId == 0 || i.DocumentId == documentId) &&
-                    (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
-                    (classificationId == 0 || i.ClassificationId == classificationId))
-                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
-                .OrderBy(i => i.Id)
-                .ToListAsync();
         }
 
         /// <summary>

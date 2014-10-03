@@ -64,13 +64,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
             Collection collection = await db.GetByIdAsync(id);
 
-            collection.Authors = collection.Authors.ToList();
-            collection.Documents = collection.Documents.ToList();
+
 
             if (collection == null || !collection.IsVisible)
             {
                 return HttpNotFound();
             }
+
+            collection.Authors = collection.Authors.ToList();
+            collection.Documents = collection.Documents.ToList();
+
             return View(new CollectionDetailsViewModel
                 {
                     Collection = new TranslatedViewModel<Collection, CollectionTranslation>(collection),

@@ -38,7 +38,7 @@
 
         </div>
         <div class="text-center afsm-pagination">
-            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId }))
+            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }))
         </div>
     }
     else
