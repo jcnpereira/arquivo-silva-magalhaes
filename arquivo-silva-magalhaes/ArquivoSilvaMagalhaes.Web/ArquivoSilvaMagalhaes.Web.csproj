@@ -291,6 +291,12 @@
     <Content Include="apple-touch-icon.png" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons.css" />
     <Content Include="Content\Images\no-image.png" />
+    <Content Include="Content\Styles\frontoffice\afsm-animations.css">
+      <DependentUpon>afsm-animations.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\afsm-animations.min.css">
+      <DependentUpon>afsm-animations.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.css">
       <DependentUpon>glyphicons.less</DependentUpon>
     </Content>
@@ -662,6 +668,9 @@
     <Content Include="Content\Styles\frontoffice\afsm-variables.less" />
     <Content Include="Content\Styles\frontoffice\main.css.map">
       <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\afsm-animations.css.map">
+      <DependentUpon>afsm-animations.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />

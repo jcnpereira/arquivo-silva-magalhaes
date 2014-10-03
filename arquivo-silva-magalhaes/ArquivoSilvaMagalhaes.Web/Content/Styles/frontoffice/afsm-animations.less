@@ -1,50 +1,38 @@
 ﻿@-moz-keyframes afsm-update-highlight {
     0% {
-        background-color: @afsm-page-container-bg;
-    }
-
-    50% {
-        background-color: @alert-warning-bg;
+        opacity: 0;
     }
 
     100% {
-        background-color: @afsm-page-container-bg;
+        opacity: 1;
     }
 }
 
 @-webkit-keyframes afsm-update-highlight {
     0% {
-        background-color: @afsm-page-container-bg;
-    }
-
-    50% {
-        background-color: @alert-warning-bg;
+        opacity: 0;
     }
 
     100% {
-        background-color: @afsm-page-container-bg;
+        opacity: 1;
     }
 }
 
 @keyframes afsm-update-highlight {
     0% {
-        background-color: @afsm-page-container-bg;
-    }
-
-    50% {
-        background-color: @alert-warning-bg;
+        opacity: 0;
     }
 
     100% {
-        background-color: @afsm-page-container-bg;
+        opacity: 1;
     }
 }
 
 .afsm-highlighted {
-    -moz-animation: afsm-update-highlight ease 1s;
-    -o-animation: afsm-update-highlight ease 1s;
-    -webkit-animation: afsm-update-highlight ease 1s;
-    animation: afsm-update-highlight ease 1s;
+    -moz-animation: afsm-update-highlight ease 0.5s;
+    -o-animation: afsm-update-highlight ease 0.5s;
+    -webkit-animation: afsm-update-highlight ease 0.5s;
+    animation: afsm-update-highlight ease 0.5s;
 
     -moz-animation-iteration-count: 1;
     -o-animation-iteration-count: 1;

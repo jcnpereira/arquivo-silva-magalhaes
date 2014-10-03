@@ -20,7 +20,11 @@
             type: $form.attr('method')
         })
         .done(function (data) {
-            $($form.parents('div[data-afsm-id]').data('afsm-id')).replaceWith(data);
+            var $data = $(data);
+
+            $($form.parents('div[data-afsm-id]').data('afsm-id')).replaceWith($data);
+
+            $data.find('.afsm-dohighlight').addClass('afsm-highlighted');
         });
 
         e.preventDefault();
@@ -37,7 +41,11 @@
             type: 'get'
         })
         .done(function (data) {
-            $($a.parents('div[data-afsm-id]').data('afsm-id')).replaceWith(data);
+            var $data = $(data);
+
+            $($a.parents('div[data-afsm-id]').data('afsm-id')).replaceWith($data);
+
+            $data.find('.afsm-dohighlight').addClass('afsm-highlighted');
         });
 
         e.preventDefault();

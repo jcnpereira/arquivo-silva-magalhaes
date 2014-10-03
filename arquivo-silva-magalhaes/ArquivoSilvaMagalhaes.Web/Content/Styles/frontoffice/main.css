@@ -3748,6 +3748,28 @@ a.list-group-item-danger.active:focus {
     height: calc(100% - 40px);
   }
 }
+@-webkit-keyframes afsm-update-highlight {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes afsm-update-highlight {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.afsm-highlighted {
+  -webkit-animation: afsm-update-highlight ease 0.5s;
+  animation: afsm-update-highlight ease 0.5s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
 html,
 body {
   height: 100%;
