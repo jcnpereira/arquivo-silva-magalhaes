@@ -79,15 +79,32 @@
             </dt>
 
             <dd>
-                @Model.Classification.Translation.Value
+                <a target="_blank" href="@Url.Action("Index", "Images", new { classificationId = Model.Classification.Entity.Id })">
+                    @Model.Classification.Translation.Value
+                </a>
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.Image.Entity.Keywords)
             </dt>
             <dd>
-                @string.Join(", ", Model.Keywords.Select(k => k.Translation.Value))
+                <ul class="list-inline">
+                    @foreach (var kw in Model.Keywords)
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("Index", "Images", new { keywordId = kw.Entity.Id })">
+                                @kw.Translation.Value
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+
+
+                @*@string.Join(", ", Model.Keywords.Select(k => k.Translation.Value))*@
             </dd>
+
+
         </dl>
     </div>
 </div>

@@ -1,4 +1,10 @@
 ﻿(function ($) {
+    'use strict';
+    //function toggleFade($element) {
+    //    $element.toggleClass('in');
+    //}
+
+
     $('[data-afsm-switchto]').each(function () {
         var $a = $(this);
 
