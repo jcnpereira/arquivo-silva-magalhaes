@@ -1,5 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.ArchiveModels;
-using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Web.I18n;
 using ArquivoSilvaMagalhaes.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;

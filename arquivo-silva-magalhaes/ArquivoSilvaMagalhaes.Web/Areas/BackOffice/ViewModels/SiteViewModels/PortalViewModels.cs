@@ -1,4 +1,4 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Web.I18n;
 using System.ComponentModel.DataAnnotations;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels

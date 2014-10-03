@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources
-{
-
-
+namespace ArquivoSilvaMagalhaes.Web.I18n {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.DataStrings", typeof(DataStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Web.I18n.DataStrings", typeof(DataStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -155,7 +155,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         /// </summary>
         public static string BannerTexts {
             get {
-                return ResourceManager.GetString("Translations", resourceCulture);
+                return ResourceManager.GetString("BannerTexts", resourceCulture);
             }
         }
         

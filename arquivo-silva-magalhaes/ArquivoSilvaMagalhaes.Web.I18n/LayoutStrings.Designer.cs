@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources {
+namespace ArquivoSilvaMagalhaes.Web.I18n {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.LayoutStrings", typeof(LayoutStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Web.I18n.LayoutStrings", typeof(LayoutStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

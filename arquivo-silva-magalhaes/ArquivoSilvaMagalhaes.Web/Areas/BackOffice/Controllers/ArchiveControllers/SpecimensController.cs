@@ -3,7 +3,7 @@ using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.Translations;
-using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Web.I18n;
 using PagedList;
 using System.Data.Entity;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using ArquivoSilvaMagalhaes.Resources;
+﻿using ArquivoSilvaMagalhaes.Web.I18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources
-{
-
-
+namespace ArquivoSilvaMagalhaes.Web.I18n {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,14 +22,14 @@ namespace ArquivoSilvaMagalhaes.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ValidationErrorStrings {
+    public class UiPrompts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ValidationErrorStrings() {
+        internal UiPrompts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ValidationErrorStrings", typeof(ValidationErrorStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Web.I18n.UiPrompts", typeof(UiPrompts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,47 @@ namespace ArquivoSilvaMagalhaes.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O ficheiro do campo {0} tem que ser do tipo {1}..
+        ///   Looks up a localized string similar to A terminar a inserção de conteúdos.
         /// </summary>
-        public static string InvalidFileType {
+        public static string AddContentEnd {
             get {
-                return ResourceManager.GetString("InvalidFileType", resourceCulture);
+                return ResourceManager.GetString("AddContentEnd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem que escolher pelo menos um item da lista..
+        ///   Looks up a localized string similar to Deseja adicionar os conteúdos numa nova linguagem?.
         /// </summary>
-        public static string MustChooseAtLeastOne {
+        public static string AddNewLanguage {
             get {
-                return ResourceManager.GetString("MustChooseAtLeastOne", resourceCulture);
+                return ResourceManager.GetString("AddNewLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Escolha um....
+        /// </summary>
+        public static string ChooseOne {
+            get {
+                return ResourceManager.GetString("ChooseOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este registo?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Por favor, aguarde....
+        /// </summary>
+        public static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿using ArquivoSilvaMagalhaes.Models.SiteModels;
-using ArquivoSilvaMagalhaes.Resources;
+using ArquivoSilvaMagalhaes.Web.I18n;
 using System;
 using System.ComponentModel.DataAnnotations;
 

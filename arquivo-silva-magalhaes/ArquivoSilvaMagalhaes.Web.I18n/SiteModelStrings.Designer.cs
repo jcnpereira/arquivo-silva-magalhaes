@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquivoSilvaMagalhaes.Resources
-{
-
-
+namespace ArquivoSilvaMagalhaes.Web.I18n {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,14 +22,14 @@ namespace ArquivoSilvaMagalhaes.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ErrorStrings {
+    public class SiteModelStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorStrings() {
+        internal SiteModelStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ArquivoSilvaMagalhaes.Resources
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Resources.ErrorStrings", typeof(ErrorStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArquivoSilvaMagalhaes.Web.I18n.SiteModelStrings", typeof(SiteModelStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +61,74 @@ namespace ArquivoSilvaMagalhaes.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Não pode eliminar informações textuais na linguagem pré-definida..
+        ///   Looks up a localized string similar to Outro.
         /// </summary>
-        public static string CannotDeleteDefaultLang {
+        public static string EventPartnerOther {
             get {
-                return ResourceManager.GetString("CannotDeleteDefaultLang", resourceCulture);
+                return ResourceManager.GetString("EventPartnerOther", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A data de falecimento tem que ser posterior à data de nascimento..
+        ///   Looks up a localized string similar to Publicidade.
         /// </summary>
-        public static string DeathDateEarlierThanBirthDate {
+        public static string EventPartnerPublicity {
             get {
-                return ResourceManager.GetString("DeathDateEarlierThanBirthDate", resourceCulture);
+                return ResourceManager.GetString("EventPartnerPublicity", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A data de fim não pode ser anterior à data de início..
+        ///   Looks up a localized string similar to Parceiro normal.
         /// </summary>
-        public static string EndMomentEarlierThanStartMoment {
+        public static string EventPartnerRegular {
             get {
-                return ResourceManager.GetString("EndMomentEarlierThanStartMoment", resourceCulture);
+                return ResourceManager.GetString("EventPartnerRegular", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A data de expiração não pode ser anterior à data de criação..
+        ///   Looks up a localized string similar to Exposição.
         /// </summary>
-        public static string ExpiryDateEarlierThanPublishDate {
+        public static string EventTypeExpo {
             get {
-                return ResourceManager.GetString("ExpiryDateEarlierThanPublishDate", resourceCulture);
+                return ResourceManager.GetString("EventTypeExpo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O código de imagem especificado já existe. Por favor, escolha outro..
+        ///   Looks up a localized string similar to Outro.
         /// </summary>
-        public static string Image__CodeAlreadyExists {
+        public static string EventTypeOther {
             get {
-                return ResourceManager.GetString("Image__CodeAlreadyExists", resourceCulture);
+                return ResourceManager.GetString("EventTypeOther", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Foi impossível encontrar o documento solicitado..
+        ///   Looks up a localized string similar to Atividade pedagógica.
         /// </summary>
-        public static string Image__UnknownDocument {
+        public static string EventTypeSchool {
             get {
-                return ResourceManager.GetString("Image__UnknownDocument", resourceCulture);
+                return ResourceManager.GetString("EventTypeSchool", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data inválida..
+        ///   Looks up a localized string similar to Inglês.
         /// </summary>
-        public static string InvalidDate {
+        public static string LangEn {
             get {
-                return ResourceManager.GetString("InvalidDate", resourceCulture);
+                return ResourceManager.GetString("LangEn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O logótipo tem que ser um ficheiro de imagem..
+        ///   Looks up a localized string similar to Português.
         /// </summary>
-        public static string Logo__MustBeImage {
+        public static string LangPt {
             get {
-                return ResourceManager.GetString("Logo__MustBeImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tem que especificar qual é o conteúdo que pretende modificar ou eliminar..
-        /// </summary>
-        public static string MustSpecifyContent {
-            get {
-                return ResourceManager.GetString("MustSpecifyContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Foi impossível encontrar a imagem solicitada..
-        /// </summary>
-        public static string Specimen__UnknownImage {
-            get {
-                return ResourceManager.GetString("Specimen__UnknownImage", resourceCulture);
+                return ResourceManager.GetString("LangPt", resourceCulture);
             }
         }
     }
