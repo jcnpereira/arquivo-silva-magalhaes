@@ -1,18 +1,10 @@
 ﻿@model IEnumerable<TranslatedViewModel<Collection, CollectionTranslation>>
 
 <div id="afsm-collection-list">
-
-    <div class="list-group afsm-dohighlight">
-
-        @if (Model.Count() == 0)
-        {
-            <div class="alert alert-warning" role="alert">
-                @LayoutStrings.NoItems
-            </div>
-        }
-        else
-        {
-            foreach (var col in Model)
+    @if (Model.Count() > 0)
+    {
+        <div class="list-group afsm-dohighlight">
+            @foreach (var col in Model)
             {
                 var authors = col.Entity.Authors.ToList();
 
@@ -43,9 +35,16 @@
                     </div>
                 </a>
             }
-            <div class="text-center afsm-pagination">
-                @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p, query = ViewBag.Query, authorId = ViewBag.AuthorId }))
-            </div>
-        }
-    </div>
+        </div>
+        <div class="text-center afsm-pagination">
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p, query = ViewBag.Query, authorId = ViewBag.AuthorId }))
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning afsm-dohighlight" role="alert">
+            @LayoutStrings.NoItems
+        </div>
+    }
+
 </div>

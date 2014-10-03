@@ -104,5 +104,14 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
                 return ResourceManager.GetString("PleaseWait", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilize a caixa de texto acima para pesquisar..
+        /// </summary>
+        public static string UseBoxForSearch {
+            get {
+                return ResourceManager.GetString("UseBoxForSearch", resourceCulture);
+            }
+        }
     }
 }

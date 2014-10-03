@@ -132,4 +132,7 @@
   <data name="PleaseWait" xml:space="preserve">
     <value>Por favor, aguarde...</value>
   </data>
+  <data name="UseBoxForSearch" xml:space="preserve">
+    <value>Utilize a caixa de texto acima para pesquisar.</value>
+  </data>
 </root>
