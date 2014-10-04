@@ -113,14 +113,13 @@
             <div data-afsm-load="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })">
                 @* Empty! *@
             </div>
-
-            @*@Html.Partial("_ImageList", Model.Images)*@
         </div>
+        
+        @Html.Partial("_ImageOverlayCarousel", Model.Images)
     }
 </div>
 
 @section scripts {
-    @Html.Partial("_ImageOverlayCarousel", Model.Images)
-
     @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
+    @Scripts.Render("~/Scripts/frontoffice/overlay-image-carousel.js")
 }

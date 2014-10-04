@@ -27,14 +27,10 @@
         var $target = $($link.data('afsm-target'));
         var imgId = $link.data('afsm-imageid');
 
-        $target.find('.item').each(function () {
-            var $item = $(this);
-            if ($item.data('afsm-imageid') === imgId) {
-                $item.addClass('active');
-            } else {
-                $item.removeClass('active');
-            }
-        });
+        // Start the carousel.
+        $target.carousel('cycle');
+        // Move the carousel to the selected item.
+        $target.carousel($link.data('afsm-slideto'));
 
         $target.removeClass('hidden');
         $('body').addClass('afsm-body-noscroll');
@@ -53,9 +49,12 @@
     /**
      * Wire-up an event to a button that closes the overlay.
      */
-    $('[data-afsm-close-overlay]').click(function () {
+    $('body').on('click', '[data-afsm-close-overlay]', function () {
         var $overlay = $($(this).data('afsm-close-overlay'));
         $overlay.removeClass('in');
+
+        // Pause the carousel.
+        $overlay.carousel('pause');
 
         /**
          * This timeout has the same value as the timeout

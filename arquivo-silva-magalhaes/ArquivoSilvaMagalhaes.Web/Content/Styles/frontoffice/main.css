@@ -3709,18 +3709,12 @@ a.list-group-item-danger.active:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  color: white;
 }
 #afsm-overlay-carousel .carousel-inner {
   height: 100%;
 }
 #afsm-overlay-carousel .carousel-inner .item {
   height: 100%;
-}
-.afsm-overlay-image {
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 #afsm-fullscreen {
   position: fixed;

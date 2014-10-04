@@ -309,6 +309,12 @@
     <Content Include="Content\Styles\frontoffice\image-overlay.min.css">
       <DependentUpon>image-overlay.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\image-overlay-carousel.css">
+      <DependentUpon>image-overlay-carousel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\image-overlay-carousel.min.css">
+      <DependentUpon>image-overlay-carousel.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\frontoffice\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -656,9 +662,9 @@
     <Content Include="Areas\BackOffice\Views\Portal\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\DeleteTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\Portal\_TranslatedDisplayFields.cshtml" />
-    <Content Include="Content\Styles\frontoffice\image-overlay.less" />
-    <Content Include="Content\Styles\frontoffice\image-overlay.css.map">
-      <DependentUpon>image-overlay.css</DependentUpon>
+    <Content Include="Content\Styles\frontoffice\image-overlay-carousel.less" />
+    <Content Include="Content\Styles\frontoffice\image-overlay-carousel.css.map">
+      <DependentUpon>image-overlay-carousel.css</DependentUpon>
     </Content>
     <Content Include="Content\Styles\frontoffice\video-overlay.less" />
     <Content Include="Content\Styles\frontoffice\video-overlay.css.map">
@@ -672,7 +678,10 @@
     <Content Include="Content\Styles\frontoffice\afsm-animations.css.map">
       <DependentUpon>afsm-animations.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\frontoffice\afsm-immersive-experience.less" />
+    <Content Include="Content\Styles\frontoffice\image-overlay.less" />
+    <Content Include="Content\Styles\frontoffice\image-overlay.css.map">
+      <DependentUpon>image-overlay.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -682,6 +691,10 @@
     </Content>
     <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
       <DependentUpon>gmaps-readonly.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\overlay-image-carousel.js" />
+    <Content Include="Scripts\frontoffice\overlay-image-carousel.min.js">
+      <DependentUpon>overlay-image-carousel.js</DependentUpon>
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image.js" />
     <Content Include="Scripts\frontoffice\gmaps-readonly.js" />
@@ -721,6 +734,9 @@
     </Content>
     <Content Include="Scripts\frontoffice\ajax-pagination.min.js.map">
       <DependentUpon>ajax-pagination.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\frontoffice\overlay-image-carousel.min.js.map">
+      <DependentUpon>overlay-image-carousel.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
