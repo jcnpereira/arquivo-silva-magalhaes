@@ -3,6 +3,7 @@ using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,6 +32,8 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index()
         {
+            throw new InvalidOperationException("NO");
+            
             var model = new IndexViewModel
             {
                 Banners = (await db.Banners.ToListAsync())

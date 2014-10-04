@@ -6,7 +6,10 @@ namespace ArquivoSilvaMagalhaes
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            var errAttribute = new HandleErrorAttribute();
+            errAttribute.View = "~/Views/Shared/Error.cshtml";
+
+            filters.Add(errAttribute);
         }
     }
 }
