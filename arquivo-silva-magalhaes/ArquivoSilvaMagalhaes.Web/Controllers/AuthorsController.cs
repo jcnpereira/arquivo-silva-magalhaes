@@ -12,10 +12,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class AuthorsController : Controller
     {
-
-        /// <summary>
-        /// Associa Entidade Author às traduções existentes
-        /// </summary>
         private ITranslateableRepository<Author, AuthorTranslation> db;
 
         public AuthorsController()
@@ -33,10 +29,15 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
+            //return View(db.Entities
+            //    .Select(a => new { Author = a, Translations = a.Translations })
+            //    .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a.Author))
+            //    .ToPagedList(pageNumber, 10));
+
             return View((await db.Entities
-                            .ToListAsync())
-                            .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
-                            .ToPagedList(pageNumber, 10));
+                .ToListAsync())
+                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
+                .ToPagedList(pageNumber, 10));
         }
 
         /// <summary>

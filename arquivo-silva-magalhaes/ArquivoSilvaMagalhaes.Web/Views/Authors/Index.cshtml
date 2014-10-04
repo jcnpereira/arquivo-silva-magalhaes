@@ -22,6 +22,9 @@
 
 @Html.Partial("_AuthorList", Model)
 
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Authors", new { pageNumber = p }))
+</div>
 
 
 

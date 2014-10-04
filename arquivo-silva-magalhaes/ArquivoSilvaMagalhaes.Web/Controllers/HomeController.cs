@@ -113,17 +113,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
         /// <summary>
-        /// Fornece a lista de links existentes paginada
-        /// </summary>
-        /// <param name="pageNumber"></param>
-        /// <returns></returns>
-        public ActionResult Links(int pageNumber = 1)
-        {
-            var model = db.ReferencedLinks.ToList().ToPagedList(pageNumber, 10);
-            return View(model);
-        }
-
-        /// <summary>
         /// Forence a lista de coleções
         /// </summary>
         /// <returns></returns>
@@ -155,8 +144,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                     .ToListAsync())
                     .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
                     .ToList(),
-                TechnicalDocuments = await db.TechnicalDocuments
-                    .ToListAsync()
+                TechnicalDocuments = await db.TechnicalDocuments.ToListAsync()
             };
 
             return View(model);
@@ -164,6 +152,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            if (disposing && db != null)
+            {
+                db.Dispose();
+            }
             base.Dispose(disposing);
         }
     }

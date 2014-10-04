@@ -14,9 +14,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
 {
     public class NewsController : Controller
     {
-        /// <summary>
-        /// Associa Entidade NewsItems às traduções existentes
-        /// </summary>
         private ITranslateableRepository<NewsItem, NewsItemTranslation> db;
 
         public NewsController()
@@ -64,7 +61,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = ShowcasePhotoStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
 <h2>
@@ -42,6 +41,10 @@
             </div>
         </a>
     }
+</div>
+
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "ShowcasePhotos", new { pageNumber = p }))
 </div>
 
 

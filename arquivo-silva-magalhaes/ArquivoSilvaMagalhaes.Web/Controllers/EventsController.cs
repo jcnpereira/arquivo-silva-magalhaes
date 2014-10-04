@@ -26,25 +26,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
             this.db = db;
         }
 
-
-        //public ActionResult SetLanguage(string lang, string returnUrl)
-        //{
-        //    Response.SetCookie(new HttpCookie("lang", lang));
-
-        //    if (Url.IsLocalUrl(returnUrl))
-        //    {
-        //        return Redirect(returnUrl);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Events/Index");
-        //    }
-        //}
-
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View((await db.Entities
                 .Include(e => e.Partnerships)
+                .Where(e => e.PublishDate <= DateTime.Now)
                 .Where(e => e.ExpiryDate < DateTime.Now || !e.HideAfterExpiry)
                 .OrderByDescending(e => e.PublishDate)
                 .ToListAsync())
@@ -77,7 +63,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && db != null)
             {
                 db.Dispose();
             }

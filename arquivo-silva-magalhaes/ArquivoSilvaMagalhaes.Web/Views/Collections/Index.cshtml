@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = CollectionStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
 <ol class="breadcrumb">
@@ -39,35 +38,6 @@
 
     @Html.Partial("_CollectionList")
 </div>
-
-
-@*<div class="row">
-
-        @foreach (var col in Model)
-        {
-            // var authors = col.Entity.Authors.ToList();
-
-            var logo = col.Entity.LogoLocation != null ?
-                "Public/Collections/" + col.Entity.LogoLocation :
-                "Content/Images/no-image.png";
-
-            <div class="afsm-thumb col-sm-6 col-md-4">
-                <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })"
-                   class="thumbnail">
-                    <img src="~/@logo"
-                         alt="@col.Translation.Title" />
-                    <div class="caption">
-                        <h4>
-                            @Html.Truncate(col.Translation.Title, 20) <small>@col.Entity.CatalogCode</small>
-                        </h4>
-                        <p>
-                            <small>@Html.Truncate(col.Translation.Description, 40)</small>
-                        </p>
-                    </div>
-                </a>
-            </div>
-        }
-    </div>*@
 
 @section scripts {
     @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")

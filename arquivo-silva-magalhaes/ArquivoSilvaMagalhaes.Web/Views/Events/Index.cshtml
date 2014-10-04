@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = EventStrings.EntityNamePlural;
-    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
 }
 
 @functions {
@@ -59,3 +58,6 @@
     }
 </div>
 
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Events", new { pageNumber = p }))
+</div>

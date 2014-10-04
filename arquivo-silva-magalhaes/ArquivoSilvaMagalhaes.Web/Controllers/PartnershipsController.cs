@@ -22,24 +22,24 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int pageNumber=1)
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
             return View(await Task.Run(() => db.Partnerships
-                .OrderByDescending(p=>p.Id)
-                .ToPagedList(pageNumber,6)));
+                .OrderBy(p => p.Id)
+                .ToPagedList(pageNumber, 12)));
         }
 
         /// <summary>
         /// Actualização à base de dados
         /// </summary>
         /// <param name="disposing"></param>
-       protected override void Dispose(bool disposing)
-       {
-           if (disposing)
-           {
-               db.Dispose();
-           }
-           base.Dispose(disposing);
-       }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

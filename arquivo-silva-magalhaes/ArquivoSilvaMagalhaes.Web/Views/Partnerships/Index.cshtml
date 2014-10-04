@@ -34,3 +34,7 @@
         </div>
     }
 </div>
+
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Partnerships", new { pageNumber = p }))
+</div>
