@@ -120,7 +120,7 @@
 </div>
 
 @section scripts {
-    @Html.Partial("_ImageOverlay")
+    @Html.Partial("_ImageOverlayCarousel", Model.Images)
 
     @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
 }

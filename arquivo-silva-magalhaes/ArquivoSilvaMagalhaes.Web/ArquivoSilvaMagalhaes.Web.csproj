@@ -672,6 +672,7 @@
     <Content Include="Content\Styles\frontoffice\afsm-animations.css.map">
       <DependentUpon>afsm-animations.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\afsm-immersive-experience.less" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -852,6 +853,7 @@
     <Content Include="Views\Home\References.cshtml" />
     <Content Include="Views\Shared\_LayoutLinks.cshtml" />
     <Content Include="Views\Search\_SearchResults.cshtml" />
+    <Content Include="Views\Shared\_ImageOverlayCarousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3652,7 +3652,7 @@ a.list-group-item-danger.active:focus {
     .responsive-invisibility();
   }
 }*/
-#afsm-overlay {
+.afsm-overlay {
   z-index: 10000;
   background-color: black;
   position: fixed;
@@ -3700,6 +3700,27 @@ a.list-group-item-danger.active:focus {
     padding-bottom: 5px;
     font-size: 14px;
   }
+}
+#afsm-overlay-carousel {
+  z-index: 10000;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+}
+#afsm-overlay-carousel .carousel-inner {
+  height: 100%;
+}
+#afsm-overlay-carousel .carousel-inner .item {
+  height: 100%;
+}
+.afsm-overlay-image {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #afsm-fullscreen {
   position: fixed;

@@ -12,14 +12,13 @@
                         @if (img.Entity.ImageUrl != null)
                         {
                             <img data-afsm-show-overlay="true"
-                                 data-afsm-target="#afsm-overlay"
-                                 data-afsm-large-image-url="@Url.Content("~/Public/Images/" + (img.Entity.ImageUrl) + "_large.jpg")"
-                                 data-afsm-description="@Html.DisplayFor(modelItem => img.Translation.Description)"
+                                 data-afsm-target="#afsm-overlay-carousel"
+                                 data-afsm-imageid="@img.Entity.Id"
                                  src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />
                         }
                         else
                         {
-                            <img src="~/Content/Images/no-image.png" />
+                            <img src="~/Content/Images/no-image.png" class="afsm-noimage" />
                         }
                         <div class="caption">
                             <h4>
