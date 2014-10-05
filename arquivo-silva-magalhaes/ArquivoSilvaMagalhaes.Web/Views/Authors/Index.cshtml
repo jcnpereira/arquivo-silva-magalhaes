@@ -18,13 +18,25 @@
 
 <h2>@AuthorStrings.EntityNamePlural</h2>
 
-<hr />
+<hr class="hidden-xs" />
 
-@Html.Partial("_AuthorList", Model)
+<div id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-author-list">
+    <form method="get"
+          class="form-horizontal"
+          data-afsm-ajax="true"
+          action="@Url.Action("Index", "Authors")">
+        <div class="input-group">
+            <input type="search" class="form-control" name="query" />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">Pesquisar autores</button>
+            </span>
+        </div>
 
-<div class="text-center afsm-pagination">
-    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Authors", new { pageNumber = p }))
+    </form>
+
+    @Html.Partial("AuthorList")
 </div>
+
 
 
 

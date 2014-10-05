@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -27,17 +28,26 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            //return View(db.Entities
-            //    .Select(a => new { Author = a, Translations = a.Translations })
-            //    .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a.Author))
-            //    .ToPagedList(pageNumber, 10));
+            var model = await db.Entities
+                .Where(a => query == "" || a.LastName.Contains(query) || a.FirstName.Contains(query))
+                .Include(a => a.Translations)
+                .OrderBy(a => a.Id)
+                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>
+                {
+                    Entity = a
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
-            return View((await db.Entities
-                .ToListAsync())
-                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
-                .ToPagedList(pageNumber, 10));
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_AuthorList", model);
+            }
+
+            return View(model);
         }
 
         /// <summary>

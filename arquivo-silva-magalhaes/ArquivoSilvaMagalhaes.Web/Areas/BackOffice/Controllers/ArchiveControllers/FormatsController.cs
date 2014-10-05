@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -24,12 +25,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Formats
-        public ActionResult Index(int pageNumber = 1, string query = "")
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = db.Entities
+            var model = await db.Entities
                 .Where(f => query == "" || f.FormatDescription.Contains(query))
                 .OrderBy(f => f.Id)
-                .ToPagedList(pageNumber, 10);
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

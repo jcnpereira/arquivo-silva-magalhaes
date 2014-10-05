@@ -10,6 +10,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
@@ -20,10 +21,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/TechnicalDocument/
         public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = db.TechnicalDocuments
+            var model = await db.TechnicalDocuments
                 .Where(d => d.Title.Contains(query))
                 .OrderBy(td => td.Id)
-                .ToPagedList(pageNumber, 10);
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

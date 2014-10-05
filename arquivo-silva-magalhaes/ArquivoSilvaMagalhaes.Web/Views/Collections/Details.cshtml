@@ -1,10 +1,10 @@
-﻿@model CollectionDetailsViewModel
+﻿@model TranslatedViewModel<Collection, CollectionTranslation>
 
 @{
-    ViewBag.Title = Model.Collection.Translation.Title;
+    ViewBag.Title = Model.Translation.Title;
 
-    var logo = Model.Collection.Entity.LogoLocation != null ?
-        "Public/Collections/" + Model.Collection.Entity.LogoLocation :
+    var logo = Model.Entity.LogoLocation != null ?
+        "Public/Collections/" + Model.Entity.LogoLocation :
         "Content/Images/no-image.png";
 }
 
@@ -22,7 +22,7 @@
     </li>
 
     <li class="active">
-        @Html.Truncate(Model.Collection.Translation.Title, 20)
+        @Html.Truncate(Model.Translation.Title, 20)
     </li>
 </ol>
 
@@ -31,22 +31,22 @@
     <div class="col-sm-4">
         <img src="~/@logo"
              class="img-responsive thumbnail"
-             alt="@Model.Collection.Translation.Title" />
+             alt="@Model.Translation.Title" />
     </div>
 
     <div class="col-sm-8">
         <h3>
-            @Model.Collection.Translation.Title <small>@Model.Collection.Entity.CatalogCode</small>
+            @Model.Translation.Title <small>@Model.Entity.CatalogCode</small>
         </h3>
 
         <dl class="afsm-dl-vertical">
 
             <dt>
-                @(Html.DisplayNameFor(model => model.Collection.Entity.ProductionPeriod))
+                @(Html.DisplayNameFor(model => Model.Entity.ProductionPeriod))
             </dt>
 
             <dd>
-                @Model.Collection.Entity.ProductionPeriod
+                @Model.Entity.ProductionPeriod
             </dd>
 
             <dt>
@@ -54,13 +54,13 @@
             </dt>
 
             <dd>
-                <ul class="afsm-header-list">
-                    @for (var i = 0; i < Model.Authors.Count(); i++)
+                <ul class="list-unstyled">
+                    @for (var i = 0; i < Model.Entity.Authors.Count(); i++)
                     {
-                        var a = Model.Authors[i];
+                        var a = Model.Entity.Authors[i];
                         <li>
-                            <a href="@Url.Action("Details", "Authors", new { id = a.Entity.Id })">
-                                @(a.Entity.FirstName + " " + a.Entity.LastName)
+                            <a href="@Url.Action("Details", "Authors", new { id = a.Id })">
+                                @(a.FirstName + " " + a.LastName)
                             </a>
                         </li>
                     }
@@ -76,14 +76,11 @@
             Detalhes
         </a>
     </li>
-    @if (Model.Documents.Count > 0)
-    {
-        <li>
-            <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Collection.Entity.Id })" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-documents" target="_blank">
-                @DocumentStrings.EntityNamePlural
-            </a>
-        </li>
-    }
+    <li>
+        <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Entity.Id })" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-documents" target="_blank">
+            @DocumentStrings.EntityNamePlural
+        </a>
+    </li>
 </ul>
 
 <div class="tab-content">
@@ -91,75 +88,70 @@
 
         <dl class="afsm-dl-vertical">
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.Description)
+                @Html.DisplayNameFor(model => model.Translation.Description)
             </dt>
 
             <dd>
-                @Html.DisplayMultilineFor(model => model.Collection.Translation.Description)
+                @Html.DisplayMultilineFor(model => model.Translation.Description)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+                @Html.DisplayNameFor(model => model.Translation.AdministrativeAndBiographicStory)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Collection.Translation.AdministrativeAndBiographicStory)
+                @Html.DisplayFor(model => model.Translation.AdministrativeAndBiographicStory)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.Provenience)
+                @Html.DisplayNameFor(model => model.Translation.Provenience)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Collection.Translation.Provenience)
+                @Html.DisplayFor(model => model.Translation.Provenience)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.Dimension)
+                @Html.DisplayNameFor(model => model.Translation.Dimension)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Collection.Translation.Dimension)
+                @Html.DisplayFor(model => model.Translation.Dimension)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.FieldAndContents)
+                @Html.DisplayNameFor(model => model.Translation.FieldAndContents)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Collection.Translation.FieldAndContents)
+                @Html.DisplayFor(model => model.Translation.FieldAndContents)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Collection.Translation.CopyrightInfo)
+                @Html.DisplayNameFor(model => model.Translation.CopyrightInfo)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Collection.Translation.CopyrightInfo)
+                @Html.DisplayFor(model => model.Translation.CopyrightInfo)
             </dd>
         </dl>
     </div>
 
+    <div class="tab-pane fade" id="afsm-documents" data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("Index", "Documents")">
+            <input type="hidden" name="collectionId" value="@Model.Entity.Id" />
 
-    @if (Model.Documents.Count > 0)
-    {
-
-        <div class="tab-pane fade" id="afsm-documents" data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
-            <form method="get"
-                  class="form-horizontal"
-                  data-afsm-ajax="true"
-                  action="@Url.Action("Index", "Documents")">
-                <input type="hidden" name="collectionId" value="@Model.Collection.Entity.Id" />
-
-                <div class="input-group">
-                    <input type="search" class="form-control" name="query" />
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">Pesquisar documentos</button>
-                    </span>
-                </div>
-
-            </form>
-
-            <div data-afsm-load="@Url.Action("Index", "Documents", new { collectionId = Model.Collection.Entity.Id })">
-                @* Empty! *@
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Pesquisar documentos</button>
+                </span>
             </div>
+
+        </form>
+
+        <div data-afsm-load="@Url.Action("Index", "Documents", new { collectionId = Model.Entity.Id })">
+            @* Empty! *@
         </div>
-    }
+    </div>
 </div>
 
 @section scripts {

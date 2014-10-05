@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -33,13 +33,16 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, string query = "")
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Where(c => authorId == 0 || c.Authors.Any(a => a.Id == authorId))
                 .Where(c => query == "" || c.Translations.Any(t => t.Title.Contains(query)))
                 .Where(col => col.IsVisible)
-                .ToListAsync())
-                .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>(col))
-                .ToPagedList(pageNumber, 10);
+                .OrderBy(col => col.Id)
+                .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>
+                {
+                    Entity = col
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
             ViewBag.AuthorId = authorId;
@@ -65,8 +68,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             }
             Collection collection = await db.GetByIdAsync(id);
 
-
-
             if (collection == null || !collection.IsVisible)
             {
                 return HttpNotFound();
@@ -75,12 +76,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             collection.Authors = collection.Authors.ToList();
             collection.Documents = collection.Documents.ToList();
 
-            return View(new CollectionDetailsViewModel
-                {
-                    Collection = new TranslatedViewModel<Collection, CollectionTranslation>(collection),
-                    Documents = collection.Documents.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d)).ToList(),
-                    Authors = collection.Authors.Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a)).ToList()
-                });
+            return View(new TranslatedViewModel<Collection, CollectionTranslation>(collection));
         }
 
         /// <summary>

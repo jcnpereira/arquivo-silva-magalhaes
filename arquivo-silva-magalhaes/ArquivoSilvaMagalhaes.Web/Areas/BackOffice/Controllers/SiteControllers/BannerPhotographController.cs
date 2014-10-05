@@ -30,11 +30,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/BannerPhotograph/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            var model = (await db.Entities
+            var model = await db.Entities
+                .Include(b => b.Translations)
                 .OrderBy(b => b.Id)
-                .ToListAsync())
-                .Select(b => new TranslatedViewModel<Banner, BannerTranslation>(b))
-                .ToPagedList(pageNumber, 9);
+                .Select(b => new TranslatedViewModel<Banner, BannerTranslation>
+                {
+                    Entity = b
+                })
+                .ToPagedListAsync(pageNumber, 9);
 
             if (Request.IsAjaxRequest())
             {

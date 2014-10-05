@@ -26,16 +26,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Specimens
-        public ActionResult Index(int imageId = 0, int formatId = 0, int processId = 0, int pageNumber = 1, string query = "")
+        public async Task<ActionResult> Index(
+            int imageId = 0,
+            int formatId = 0,
+            int processId = 0,
+            int pageNumber = 1,
+            string query = "")
         {
-            var model = db.Entities
-                    .Where(s =>
-                        (query == "" || s.ArchivalReferenceCode.Contains(query)) &&
-                        (imageId == 0 || s.ImageId == imageId) &&
-                        (formatId == 0 || s.FormatId == formatId) &&
-                        (processId == 0 | s.ProcessId == processId))
-                    .OrderBy(s => new { s.ImageId, s.Id })
-                    .ToPagedList(pageNumber, 10);
+            var model = await db.Entities
+                .Include(s => s.Translations)
+                .Where(s =>
+                    (query == "" || s.ArchivalReferenceCode.Contains(query)) &&
+                    (imageId == 0 || s.ImageId == imageId) &&
+                    (formatId == 0 || s.FormatId == formatId) &&
+                    (processId == 0 | s.ProcessId == processId))
+                .OrderBy(s => new { s.ImageId, s.Id })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
             ViewBag.FormatId = formatId;

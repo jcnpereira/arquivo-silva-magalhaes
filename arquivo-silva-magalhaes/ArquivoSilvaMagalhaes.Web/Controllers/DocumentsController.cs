@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -34,16 +35,19 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index(int collectionId = 0, int pageNumber = 1, string query = "", int authorId = 0)
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Include(doc => doc.Translations)
                 .Where(doc =>
                     (doc.Collection.IsVisible) &&
                     (collectionId == 0 || doc.CollectionId == collectionId) &&
                     (authorId == 0 || doc.AuthorId == authorId) &&
                     (query == "" || doc.Title.Contains(query)))
-                .ToListAsync())
-                .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>(doc))
-                .ToPagedList(pageNumber, 10);
+                .OrderBy(doc => doc.Id)
+                .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>
+                {
+                    Entity = doc
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.AuthorId = authorId;
             ViewBag.CollectionId = collectionId;
@@ -79,12 +83,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(new DocumentDetailsViewModel
                 {
                     Collection = new TranslatedViewModel<Collection, CollectionTranslation>(document.Collection),
-                    Document = new TranslatedViewModel<Document, DocumentTranslation>(document),
-                    Images = document.Images
-                                     .Where(i => i.IsVisible)
-                                     .ToList()
-                                     .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
-                                     .ToPagedList(pageNumber, 2)
+                    Document = new TranslatedViewModel<Document, DocumentTranslation>(document)
                 });
         }
 

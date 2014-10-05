@@ -29,12 +29,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Classifications
         public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = (await db.Entities
+            var model = await db.Entities
+                .Include(c => c.Translations)
                 .Where(c => c.Translations.Any(t => t.Value.Contains(query)))
                 .OrderBy(c => c.Id)
-                .ToListAsync())
-                .Select(c => new TranslatedViewModel<Classification, ClassificationTranslation>(c))
-                .ToPagedList(pageNumber, 10);
+                .Select(c => new TranslatedViewModel<Classification, ClassificationTranslation>
+                {
+                    Entity = c
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

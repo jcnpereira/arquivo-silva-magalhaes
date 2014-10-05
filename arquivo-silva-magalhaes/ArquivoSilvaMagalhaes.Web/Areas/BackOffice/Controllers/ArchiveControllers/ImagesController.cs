@@ -36,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             string query = "",
             int pageNumber = 1)
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Include(i => i.Translations)
                 .Where(i =>
                     (collectionId == 0 || i.Document.CollectionId == collectionId) &&
@@ -45,9 +45,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     (classificationId == 0 || i.ClassificationId == classificationId))
                 .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(i => i.Id)
-                .ToListAsync())
-                .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
-                .ToPagedList(pageNumber, 10);
+                .Select(img => new TranslatedViewModel<Image, ImageTranslation>
+                {
+                    Entity = img
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
             ViewBag.CollectionId = collectionId;

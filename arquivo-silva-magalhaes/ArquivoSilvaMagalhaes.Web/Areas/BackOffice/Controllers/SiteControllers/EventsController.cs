@@ -31,12 +31,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: BackOffice/Event
         public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = (await db.Entities
+            var model = await db.Entities
+                .Include(e => e.Translations)
                 .Where(e => e.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(b => b.Id)
-                .ToListAsync())
-                .Select(e => new TranslatedViewModel<Event, EventTranslation>(e))
-                .ToPagedList(pageNumber, 10);
+                .Select(e => new TranslatedViewModel<Event, EventTranslation>
+                {
+                    Entity = e
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

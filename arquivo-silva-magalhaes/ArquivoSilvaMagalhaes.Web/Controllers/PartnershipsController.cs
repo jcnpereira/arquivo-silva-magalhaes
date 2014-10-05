@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -24,9 +25,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View(await Task.Run(() => db.Partnerships
+            return View(await db.Partnerships
                 .OrderBy(p => p.Id)
-                .ToPagedList(pageNumber, 12)));
+                .ToPagedListAsync(pageNumber, 12));
         }
 
         /// <summary>

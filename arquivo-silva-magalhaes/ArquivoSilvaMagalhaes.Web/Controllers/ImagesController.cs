@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -41,7 +42,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             string query = "",
             int pageNumber = 1)
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Include(i => i.Document.Collection)
                 .Include(i => i.Document)
                 .Include(i => i.Translations)
@@ -54,9 +55,11 @@ namespace ArquivoSilvaMagalhaes.Controllers
                     (classificationId == 0 || i.ClassificationId == classificationId))
                 .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(i => i.Id)
-                .ToListAsync())
-                .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
-                .ToPagedList(pageNumber, 12);
+                .Select(img => new TranslatedViewModel<Image, ImageTranslation>
+                {
+                    Entity = img
+                })
+                .ToPagedListAsync(pageNumber, 12);
 
             ViewBag.Query = query;
             ViewBag.CollectionId = collectionId;

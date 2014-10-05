@@ -35,7 +35,10 @@ namespace ArquivoSilvaMagalhaes.Controllers
             var model = new IndexViewModel
             {
                 Banners = (await db.Banners.ToListAsync())
-                                   .Select(b => new TranslatedViewModel<Banner, BannerTranslation>(b))
+                                   .Select(b => new TranslatedViewModel<Banner, BannerTranslation>
+                                   {
+                                       Entity = b
+                                   })
                                    .ToList(),
 
                 VideoId = (await db.Configurations
@@ -58,20 +61,9 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
 
-        public async Task<ActionResult> Archive()
+        public ActionResult Archive()
         {
-
-            var authors = (await db.Set<Author>().ToListAsync())
-                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a));
-
-            var collections = (await db.Set<Collection>().ToListAsync())
-                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c));
-
-            return View(new ArchiveDetailsViewModel
-                {
-                    Authors = authors,
-                    Collections = collections
-                });
+            return View();
         }
 
 
@@ -114,21 +106,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         }
 
         /// <summary>
-        /// Forence a lista de coleções
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Collections()
-        {
-            var model = db.Collections
-                .Where(c => c.IsVisible)
-                .Include(c => c.Translations)
-                .ToList()
-                .Select(c => new TranslatedViewModel<Collection, CollectionTranslation>(c))
-                .ToList();
-            return View(model);
-        }
-
-        /// <summary>
         /// Forence a lista de parcerias
         /// </summary>
         /// <returns></returns>
@@ -141,10 +118,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
         {
             var model = new ReferencesViewModel
             {
-                ReferencedLinks = (await db.ReferencedLinks
-                    .ToListAsync())
-                    .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
-                    .ToList(),
+                ReferencedLinks = await db.ReferencedLinks
+                    .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>
+                    {
+                        Entity = l
+                    })
+                    .ToListAsync(),
                 TechnicalDocuments = await db.TechnicalDocuments.ToListAsync()
             };
 

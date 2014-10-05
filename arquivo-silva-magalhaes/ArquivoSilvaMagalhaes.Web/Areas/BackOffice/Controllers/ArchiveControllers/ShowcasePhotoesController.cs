@@ -27,13 +27,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/ShowcasePhotoes
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "", int imageId = 0)
         {
-            return View((await db.Entities
+            var model = await db.Entities
+                .Include(sp => sp.Translations)
                 .OrderByDescending(b => b.VisibleSince)
-                .ToListAsync())
-                .Select(p => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(p))
-                .ToPagedList(pageNumber, 10));
+                .Select(p => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
+                {
+                    Entity = p
+                })
+                .ToPagedListAsync(pageNumber, 10);
+
+            ViewBag.ImageId = imageId;
+            ViewBag.Query = query;
+
+            return View(model);
         }
 
         // GET: BackOffice/ShowcasePhotoes/Details/5

@@ -28,10 +28,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/Parthnership/
         public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Where(p => p.Name.Contains(query))
-                .ToListAsync())
-                .ToPagedList(pageNumber, 10);
+                .OrderBy(p => p.Id)
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

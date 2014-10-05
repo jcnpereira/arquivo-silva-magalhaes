@@ -9,13 +9,7 @@
 <hr />
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
-    <li class="active" >
-        <a href="#afsm-details" role="tab" data-toggle="tab">
-            Descrição
-        </a>
-    </li>
-
-    <li>
+    <li class="active">
         <a href="@Url.Action("Index", "Collections")" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-collections" target="_blank">
             @CollectionStrings.EntityNamePlural
         </a>
@@ -29,11 +23,8 @@
 
 @* Authors... *@
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="afsm-details">
-        ??????
-    </div>
 
-    <div class="tab-pane fade" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
+    <div class="tab-pane active fade in" id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-collection-list">
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
@@ -53,28 +44,24 @@
     </div>
 
 
-    <div class="tab-pane fade" id="afsm-authors">
-        <div class="list-group">
-            @foreach (var author in Model.Authors)
-            {
-                <a href="@Url.Action("Details", "Authors", new { author.Entity.Id })" class="list-group-item">
-                    <h4 class="list-group-item-heading">
-                        @(author.Entity.FirstName + " " + author.Entity.LastName)
-                    </h4>
+    <div class="tab-pane fade" id="afsm-authors" data-afsm-ajax="true" data-afsm-id="#afsm-author-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("Index", "Authors")">
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Pesquisar autores</button>
+                </span>
+            </div>
 
-                    <p class="list-group-item-text">
-                        @Html.DisplayFor(m => author.Entity.BirthDate) @(author.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => author.Entity.DeathDate) : "")
-                    </p>
-                </a>
-            }
+        </form>
+
+        <div data-afsm-load="@Url.Action("Index", "Authors")">
+            @* Empty! *@
         </div>
     </div>
-
-
-
-    @* Collections... *@
-
-
 </div>
 
 @section scripts {

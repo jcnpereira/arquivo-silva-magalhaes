@@ -16,17 +16,55 @@ namespace ArquivoSilvaMagalhaes.ViewModels
     public class TranslatedViewModel<TEntity, TTranslation>
         where TTranslation : EntityTranslation
     {
+        public TranslatedViewModel()
+        {
+
+        }
+
         public TranslatedViewModel(TEntity entity)
         {
             this.Entity = entity;
 
+            // Try to get a translation for the current language.
+            Translation = FindTranslation();
+        }
+
+        /// <summary>
+        /// Non-translateable fields.
+        /// </summary>
+        public TEntity Entity { get; set; }
+
+        /// <summary>
+        /// Translated fields.
+        /// </summary>
+        public TTranslation Translation
+        {
+            get
+            {
+                if (_translation == null)
+                {
+                    var translation = FindTranslation();
+
+                    _translation = translation;
+                }
+
+                return _translation;
+            }
+            private set
+            {
+                _translation = value;
+            }
+        }
+
+        private TTranslation FindTranslation()
+        {
             var type = typeof(TEntity);
 
             // Get the translations.
             // TODO: Probably use interfaces.
-            var translations = entity.GetType()
+            var translations = Entity.GetType()
                                      .GetProperty("Translations")
-                                     .GetValue(entity) as IList<TTranslation>;
+                                     .GetValue(Entity) as IList<TTranslation>;
 
             // Get the current language code.
             var code = Thread.CurrentThread.CurrentUICulture.Name;
@@ -45,18 +83,8 @@ namespace ArquivoSilvaMagalhaes.ViewModels
             {
                 throw new InvalidOperationException("Unable to find a translation.");
             }
-
-            this.Translation = translation;
+            return translation;
         }
-
-        /// <summary>
-        /// Non-translateable fields.
-        /// </summary>
-        public TEntity Entity { get; set; }
-
-        /// <summary>
-        /// Translated fields.
-        /// </summary>
-        public TTranslation Translation { get; set; }
+        private TTranslation _translation;
     }
 }

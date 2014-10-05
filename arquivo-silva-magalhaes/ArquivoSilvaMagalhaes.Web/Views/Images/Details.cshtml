@@ -27,6 +27,12 @@
         </a>
     </li>
 
+    <li>
+        <a href="@Url.Action("Index", "Images", new { documentId = Model.Image.Entity.DocumentId })">
+            @ImageStrings.EntityNamePlural
+        </a>
+    </li>
+
     <li class="active">
         @Model.Image.Translation.Title
     </li>

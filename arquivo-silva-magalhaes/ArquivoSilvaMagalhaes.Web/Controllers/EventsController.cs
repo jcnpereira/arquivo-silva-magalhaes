@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
@@ -28,14 +29,18 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.Entities
+            var model = await db.Entities
                 .Include(e => e.Partnerships)
                 .Where(e => e.PublishDate <= DateTime.Now)
                 .Where(e => e.ExpiryDate < DateTime.Now || !e.HideAfterExpiry)
                 .OrderByDescending(e => e.PublishDate)
-                .ToListAsync())
-                .Select(b => new TranslatedViewModel<Event, EventTranslation>(b))
-                .ToPagedList(pageNumber, 10));
+                .Select(e => new TranslatedViewModel<Event, EventTranslation>
+                {
+                    Entity = e
+                })
+                .ToPagedListAsync(pageNumber, 10);
+
+            return View(model);
         }
 
         public async Task<ActionResult> Event(int? id)

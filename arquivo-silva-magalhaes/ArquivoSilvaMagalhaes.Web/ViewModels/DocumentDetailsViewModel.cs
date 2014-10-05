@@ -7,6 +7,5 @@ namespace ArquivoSilvaMagalhaes.ViewModels
     {
         public TranslatedViewModel<Collection, CollectionTranslation> Collection { get; set; }
         public TranslatedViewModel<Document, DocumentTranslation> Document { get; set; }
-        public IEnumerable<TranslatedViewModel<Image, ImageTranslation>> Images { get; set; }
     }
 }

@@ -232,7 +232,6 @@
     <Compile Include="Controllers\PartnershipsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShowcasePhotosController.cs" />
-    <Compile Include="Controllers\SpecimensViewController.cs" />
     <Compile Include="Areas\BackOffice\ViewModels\IndexListViewModels.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SiteControllers\ReferencedLinkController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ArchiveControllers\SpecimensController.cs" />
@@ -867,7 +866,7 @@
     <Content Include="Views\Documents\_DocumentList.cshtml" />
     <Content Include="Views\Images\_ImageList.cshtml" />
     <Content Include="Views\Collections\_CollectionList.cshtml" />
-    <Content Include="Views\Shared\_AuthorList.cshtml" />
+    <Content Include="Views\Authors\_AuthorList.cshtml" />
     <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />
     <Content Include="Views\Shared\_LayoutLinks.cshtml" />

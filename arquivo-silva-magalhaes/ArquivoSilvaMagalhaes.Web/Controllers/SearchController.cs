@@ -7,18 +7,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public static class PagedListAsyncExtensions
-    {
-        public async static Task<IPagedList<TModel>> ToPagedListAsync<TModel>(this IEnumerable<TModel> enumerable, int page, int count)
-        {
-            return await Task.Run(() => enumerable.ToPagedList(page, count));
-        }
-    }
-
-
     public class SearchController : Controller
     {
         private ArchiveDataContext db = new ArchiveDataContext();
@@ -37,13 +29,15 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             if (query != "")
             {
-                model = (await db.Documents
+                model = await db.Documents
                     .Where(d => d.Title.Contains(query))
                     .Where(d => d.Collection.IsVisible)
                     .OrderBy(d => d.Id)
-                    .ToListAsync())
-                    .Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
-                    .ToPagedList(pageNumber, 10);
+                    .Select(d => new TranslatedViewModel<Document, DocumentTranslation>
+                    {
+                        Entity = d
+                    })
+                    .ToPagedListAsync(pageNumber, 10);
             }
 
             if (Request.IsAjaxRequest())

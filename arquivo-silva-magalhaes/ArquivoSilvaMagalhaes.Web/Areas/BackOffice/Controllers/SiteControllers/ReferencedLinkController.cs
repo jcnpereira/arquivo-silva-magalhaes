@@ -28,12 +28,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/ReferencedLink/
         public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            var model = (await db.Entities
+            var model = await db.Entities
                 .Where(l => l.Title.Contains(query))
                 .OrderBy(rl => rl.Id)
-                .ToListAsync())
-                .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>(l))
-                .ToPagedList(pageNumber, 10);
+                .Select(l => new TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>
+                {
+                    Entity = l
+                })
+                .ToPagedListAsync(pageNumber, 10);
 
             ViewBag.Query = query;
 

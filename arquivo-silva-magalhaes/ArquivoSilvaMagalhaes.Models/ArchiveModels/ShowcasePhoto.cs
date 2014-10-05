@@ -41,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public int ImageId { get; set; }
 
         [ForeignKey("ImageId")]
-        public Image Image { get; set; }
+        public virtual Image Image { get; set; }
 
         public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
     }
