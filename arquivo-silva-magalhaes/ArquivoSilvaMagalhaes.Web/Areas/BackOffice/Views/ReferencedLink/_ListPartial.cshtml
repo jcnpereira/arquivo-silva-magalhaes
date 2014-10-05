@@ -1,28 +1,33 @@
-﻿@model IEnumerable<TranslatedViewModel<Classification, ClassificationTranslation>>
+﻿@model IEnumerable<TranslatedViewModel<ReferencedLink, ReferencedLinkTranslation>>
 <div id="afsm-list-contents">
     <table class="table table-striped table-hover afsm-dohighlight">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Translation.Value)
+                    @Html.DisplayNameFor(model => model.Entity.Title)
                 </th>
                 <th>
-                    @UiStrings.RelatedItems
+                    @Html.DisplayNameFor(model => model.Entity.Link)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Translation.Description)
                 </th>
                 <th>
                     @UiStrings.Actions
                 </th>
             </tr>
         </thead>
-
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Translation.Value)
+                    @Html.DisplayFor(modelItem => item.Entity.Title)
                 </td>
                 <td>
-                    @Html.ActionLink(ImageStrings.EntityNamePlural, "Index", "Images", new { classificationId = item.Entity.Id }, null)
+                    <a target="_blank" href="@item.Entity.Link">@item.Entity.Link</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Translation.Description)
                 </td>
                 <td>
                     <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
@@ -35,12 +40,11 @@
                         </a>
 
                         @Html.AntiForgeryToken()
-                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ClassificationStrings.DeleteWarningMessage">
+                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ReferencedLinkStrings.DeleteWarningMessage">
                             <span class="glyphicon glyphicon-floppy-remove"></span>
                         </a>
                     </form>
                 </td>
-
             </tr>
         }
     </table>

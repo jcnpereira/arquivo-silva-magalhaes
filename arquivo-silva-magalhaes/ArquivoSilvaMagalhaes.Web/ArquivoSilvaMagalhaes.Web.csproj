@@ -688,6 +688,12 @@
     <Content Include="Areas\BackOffice\Views\Processes\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Formats\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Events\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\News\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TechnicalDocument\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReferencedLink\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Partnerships\_ListPartial.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

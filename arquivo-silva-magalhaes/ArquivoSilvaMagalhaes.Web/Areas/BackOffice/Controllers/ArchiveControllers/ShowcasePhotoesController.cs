@@ -31,6 +31,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             var model = await db.Entities
                 .Include(sp => sp.Translations)
+                .Where(sp => query == "" || sp.Translations.Any(t => t.Title.Contains(query)))
+                .Where(sp => imageId == 0 || sp.ImageId == imageId)
                 .OrderByDescending(b => b.VisibleSince)
                 .Select(p => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
                 {
@@ -40,6 +42,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
             ViewBag.ImageId = imageId;
             ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
 
             return View(model);
         }

@@ -63,7 +63,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Include(sp => sp.Image)
                 .FirstOrDefaultAsync(sp => sp.Id == id);
 
-
             if (showcasephoto == null || showcasephoto.VisibleSince >= DateTime.Now)
             {
                 return HttpNotFound();
