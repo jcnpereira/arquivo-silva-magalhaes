@@ -24,9 +24,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Formats
-        public ActionResult Index(int pageNumber = 1)
+        public ActionResult Index(int pageNumber = 1, string query = "")
         {
-            return View(db.Entities.OrderBy(f => f.Id).ToPagedList(pageNumber, 10));
+            var model = db.Entities
+                .Where(f => query == "" || f.FormatDescription.Contains(query))
+                .OrderBy(f => f.Id)
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: BackOffice/Formats/Details/5

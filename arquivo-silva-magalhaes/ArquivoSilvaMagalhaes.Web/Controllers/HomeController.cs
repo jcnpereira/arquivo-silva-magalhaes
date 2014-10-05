@@ -32,8 +32,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index()
         {
-            throw new InvalidOperationException("NO");
-            
             var model = new IndexViewModel
             {
                 Banners = (await db.Banners.ToListAsync())

@@ -680,6 +680,15 @@
     <Content Include="Content\Styles\frontoffice\image-overlay.css.map">
       <DependentUpon>image-overlay.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BackOffice\Views\Documents\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authors\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Classifications\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Images\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Specimens\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Keywords\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Processes\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Formats\_ListPartial.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

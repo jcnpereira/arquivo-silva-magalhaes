@@ -2,11 +2,15 @@
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
 }
 
+@section headscripts {
+    @Styles.Render("~/Content/Styles/frontoffice/afsm-animations.css")
+}
+
 <h2>@ViewBag.Title</h2>
 
 <hr />
 
-<div class="panel panel-default">
+<div class="panel panel-default" data-afsm-ajax="true" data-afsm-id="#afsm-list-contents">
     <div class="panel-heading">
         <div class="btn-toolbar" role="toolbar">
             <a class="btn btn-default" href="@Url.Action("Index", "Home")">
@@ -16,13 +20,13 @@
                 <span class="glyphicon glyphicon-plus"></span> @UiStrings.New
             </a>
         </div>
+
+        @RenderSection("panelheader", required: false)
     </div>
 
-    @RenderBody()
-
-    <div class="panel-footer">
-        <div class="text-center">
-            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+    <div>
+        <div class="afsm-dohighlight">
+            @RenderBody()
         </div>
     </div>
 </div>
@@ -32,4 +36,6 @@
     @Scripts.Render("~/bundles/scripts/backoffice/delete-modal")
 
     @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
 }

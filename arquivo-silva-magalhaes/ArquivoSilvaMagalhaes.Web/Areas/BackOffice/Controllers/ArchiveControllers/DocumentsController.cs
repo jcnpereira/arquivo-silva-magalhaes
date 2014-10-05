@@ -26,15 +26,28 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Documents
-        public async Task<ActionResult> Index(int pageNumber = 1, int authorId = 0, int collectionId = 0)
+        public async Task<ActionResult> Index(int collectionId = 0, int pageNumber = 1, string query = "", int authorId = 0)
         {
-            var query = await db.Entities
-                                .Where(d => (authorId == 0 || d.AuthorId == authorId) &&
-                                            (collectionId == 0 || d.CollectionId == collectionId))
-                                .ToListAsync();
+            var model = (await db.Entities
+                .Include(doc => doc.Translations)
+                .Where(doc =>
+                    (collectionId == 0 || doc.CollectionId == collectionId) &&
+                    (authorId == 0 || doc.AuthorId == authorId) &&
+                    (query == "" || doc.Title.Contains(query)))
+                .ToListAsync())
+                .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>(doc))
+                .ToPagedList(pageNumber, 10);
 
-            return View(query.Select(d => new TranslatedViewModel<Document, DocumentTranslation>(d))
-                             .ToPagedList(pageNumber, 10));
+            ViewBag.AuthorId = authorId;
+            ViewBag.CollectionId = collectionId;
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: BackOffice/Documents/Details/5

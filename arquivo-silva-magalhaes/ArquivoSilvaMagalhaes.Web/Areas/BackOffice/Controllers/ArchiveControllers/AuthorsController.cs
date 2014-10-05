@@ -28,12 +28,20 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Authors
         public async Task<ActionResult> Index(int pageNumber = 1, string query = null)
         {
-            return View((await db.Entities
+            var model = (await db.Entities
                 .Where(a => query == null || a.FirstName.Contains(query) || a.LastName.Contains(query))
                 .OrderBy(a => a.Id)
                 .ToListAsync())
                 .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
-                .ToPagedList(pageNumber, 10));
+                .ToPagedList(pageNumber, 10);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+
+            return View(model);
         }
 
         // GET: BackOffice/Authors/Details/5

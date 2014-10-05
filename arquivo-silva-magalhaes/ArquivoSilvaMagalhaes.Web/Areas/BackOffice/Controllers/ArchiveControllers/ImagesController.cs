@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 {
@@ -27,13 +28,40 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Image
-        public async Task<ActionResult> Index(int pageNumber = 1, int documentId = 0)
+        public async Task<ActionResult> Index(
+            int collectionId = 0,
+            int documentId = 0,
+            int keywordId = 0,
+            int classificationId = 0,
+            string query = "",
+            int pageNumber = 1)
         {
-            var query = await db.QueryAsync(i => documentId == 0 || i.DocumentId == documentId);
+            var model = (await db.Entities
+                .Include(i => i.Translations)
+                .Where(i =>
+                    (collectionId == 0 || i.Document.CollectionId == collectionId) &&
+                    (documentId == 0 || i.DocumentId == documentId) &&
+                    (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
+                    (classificationId == 0 || i.ClassificationId == classificationId))
+                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(i => i.Id)
+                .ToListAsync())
+                .Select(img => new TranslatedViewModel<Image, ImageTranslation>(img))
+                .ToPagedList(pageNumber, 10);
 
-            return View(query
-                .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
-                .ToPagedList(pageNumber, 10));
+            ViewBag.Query = query;
+            ViewBag.CollectionId = collectionId;
+            ViewBag.DocumentId = documentId;
+            ViewBag.ClassificationId = classificationId;
+            ViewBag.KeywordId = keywordId;
+
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         public async Task<ActionResult> Details(int id)

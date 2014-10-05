@@ -234,4 +234,7 @@
   <data name="References" xml:space="preserve">
     <value>Referências</value>
   </data>
+  <data name="RelatedItems" xml:space="preserve">
+    <value>Itens relacionados</value>
+  </data>
 </root>

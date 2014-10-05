@@ -340,6 +340,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Itens relacionados.
+        /// </summary>
+        public static string RelatedItems {
+            get {
+                return ResourceManager.GetString("RelatedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar alterações.
         /// </summary>
         public static string SaveChanges {

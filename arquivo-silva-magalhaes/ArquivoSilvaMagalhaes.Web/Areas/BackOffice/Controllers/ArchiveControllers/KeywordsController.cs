@@ -25,13 +25,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Keywords
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            return View((await db.Entities
-                .OrderBy(b => b.Id)
+            var model = (await db.Entities
+                .Where(c => c.Translations.Any(t => t.Value.Contains(query)))
+                .OrderBy(c => c.Id)
                 .ToListAsync())
-                .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
-                .ToPagedList(pageNumber, 10));
+                .Select(c => new TranslatedViewModel<Keyword, KeywordTranslation>(c))
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: BackOffice/Keywords/Details/5

@@ -51,6 +51,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             return View(model);
         }
+
         /// <summary>
         /// Fornece detalhes de uma determinda coleção
         /// </summary>

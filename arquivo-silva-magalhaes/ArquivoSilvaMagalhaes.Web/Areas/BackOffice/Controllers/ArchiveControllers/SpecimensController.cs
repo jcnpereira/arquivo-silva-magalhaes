@@ -26,14 +26,27 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Specimens
-        public ActionResult Index(int imageId = 0, int formatId = 0, int processId = 0, int pageNumber = 1)
+        public ActionResult Index(int imageId = 0, int formatId = 0, int processId = 0, int pageNumber = 1, string query = "")
         {
-            return View(db.Entities
-                .Where(s => (imageId == 0 || s.ImageId == imageId) &&
-                            (formatId == 0 || s.FormatId == formatId) &&
-                            (processId == 0 | s.ProcessId == processId))
-                .OrderBy(s => new { s.ImageId, s.Id })
-                .ToPagedList(pageNumber, 10));
+            var model = db.Entities
+                    .Where(s =>
+                        (query == "" || s.ArchivalReferenceCode.Contains(query)) &&
+                        (imageId == 0 || s.ImageId == imageId) &&
+                        (formatId == 0 || s.FormatId == formatId) &&
+                        (processId == 0 | s.ProcessId == processId))
+                    .OrderBy(s => new { s.ImageId, s.Id })
+                    .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+            ViewBag.FormatId = formatId;
+            ViewBag.ProcessId = processId;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: BackOffice/Specimens/Details/5
