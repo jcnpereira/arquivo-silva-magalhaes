@@ -26,10 +26,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Authors
-        public async Task<ActionResult> Index(int pageNumber = 1, string query = null)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
             var model = (await db.Entities
-                .Where(a => query == null || a.FirstName.Contains(query) || a.LastName.Contains(query))
+                .Where(a => query == "" || a.FirstName.Contains(query) || a.LastName.Contains(query))
                 .OrderBy(a => a.Id)
                 .ToListAsync())
                 .Select(a => new TranslatedViewModel<Author, AuthorTranslation>(a))
@@ -39,7 +39,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 return PartialView("_ListPartial", model);
             }
-
 
             return View(model);
         }

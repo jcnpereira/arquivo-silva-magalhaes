@@ -30,11 +30,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // GET: /BackOffice/BannerPhotograph/
         public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            return View((await db.Entities
+            var model = (await db.Entities
                 .OrderBy(b => b.Id)
                 .ToListAsync())
                 .Select(b => new TranslatedViewModel<Banner, BannerTranslation>(b))
-                .ToPagedList(pageNumber, 10));
+                .ToPagedList(pageNumber, 9);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
 
@@ -76,23 +83,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             }
 
             return View(model);
-        }
-
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var banner = await db.GetByIdAsync(id);
-
-            if (banner == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(banner);
         }
 
         // GET: /BackOffice/BannerPhotograph/Edit/5

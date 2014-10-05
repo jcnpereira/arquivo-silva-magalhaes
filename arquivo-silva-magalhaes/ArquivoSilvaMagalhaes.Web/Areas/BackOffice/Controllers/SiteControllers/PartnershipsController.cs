@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
 {
@@ -25,9 +26,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         }
 
         // GET: /BackOffice/Parthnership/
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            return View((await db.Entities.ToListAsync()).ToPagedList(pageNumber, 10));
+            var model = (await db.Entities
+                .Where(p => p.Name.Contains(query))
+                .ToListAsync())
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: /BackOffice/Parthnership/Details/5

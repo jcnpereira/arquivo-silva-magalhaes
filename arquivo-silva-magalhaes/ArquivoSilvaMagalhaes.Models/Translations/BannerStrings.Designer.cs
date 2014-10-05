@@ -88,6 +88,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar a seguinte fotografia banner?.
+        /// </summary>
+        public static string DeleteWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editar fotografia banner.
         /// </summary>
         public static string EditTitleFormat {

@@ -18,12 +18,21 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         private ArchiveDataContext db = new ArchiveDataContext();
 
         // GET: /BackOffice/TechnicalDocument/
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            return View(await Task.Run(() =>
-                db.TechnicalDocuments
-                  .OrderBy(td => td.Id)
-                  .ToPagedList(pageNumber = 1, 10)));
+            var model = db.TechnicalDocuments
+                .Where(d => d.Title.Contains(query))
+                .OrderBy(td => td.Id)
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: /BackOffice/TechnicalDocument/Details/5
@@ -69,7 +78,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
                 technicalDocument.FileName = fileName;
                 technicalDocument.Format = uploadedFile.ContentType;
                 technicalDocument.FileSize = uploadedFile.ContentLength;
-                
+
 
                 db.TechnicalDocuments.Add(technicalDocument);
 
@@ -108,7 +117,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
             if (ModelState.IsValid)
             {
                 var doc = await db.TechnicalDocuments.FindAsync(technicaldocument.Id);
-         
+
                 if (uploadedFile != null)
                 {
                     var fileName = doc.FileName;

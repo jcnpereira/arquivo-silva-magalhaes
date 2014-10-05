@@ -451,7 +451,6 @@
     <Content Include="Areas\BackOffice\Views\ReferencedLink\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Attachments\Create.cshtml" />
@@ -689,6 +688,7 @@
     <Content Include="Areas\BackOffice\Views\Keywords\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Processes\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Formats\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_ListPartial.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

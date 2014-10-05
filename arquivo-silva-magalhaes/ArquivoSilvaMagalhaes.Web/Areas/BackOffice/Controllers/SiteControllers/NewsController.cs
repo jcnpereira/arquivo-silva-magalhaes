@@ -27,13 +27,23 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         }
 
         // GET: /News/
-        public async Task<ActionResult> Index(int pageNumber = 1, string query = null)
+        public async Task<ActionResult> Index(int pageNumber = 1, string query = "")
         {
-            return View((await db.Entities
-                .OrderByDescending(n => n.PublishDate)
+            var model = (await db.Entities
+                .Where(e => e.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(b => b.PublishDate)
                 .ToListAsync())
-                .Select(n => new TranslatedViewModel<NewsItem, NewsItemTranslation>(n))
-                .ToPagedList(pageNumber, 10));
+                .Select(e => new TranslatedViewModel<NewsItem, NewsItemTranslation>(e))
+                .ToPagedList(pageNumber, 10);
+
+            ViewBag.Query = query;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListPartial", model);
+            }
+
+            return View(model);
         }
 
         // GET: /News/Details/5
