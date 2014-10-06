@@ -116,14 +116,14 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     };
 
                     result.AddRange((await db.Entities
-                                  .OrderBy(p => p.Id)
-                                  .ToListAsync())
-                          .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
-                          .Select(ptr => new
-                          {
-                              text = ptr.Translation.Value,
-                              value = ptr.Entity.Id.ToString()
-                          }));
+                        .OrderBy(p => p.Id)
+                        .ToListAsync())
+                        .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
+                        .Select(ptr => new
+                        {
+                            text = ptr.Translation.Value,
+                            value = ptr.Entity.Id.ToString()
+                        }));
 
                     return Json(result);
                 }

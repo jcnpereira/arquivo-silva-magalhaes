@@ -10,7 +10,7 @@
         remote,
         list;
 
-    $('[data-afsm-toggle="modal"]').click(function (e) {
+    $('body').on('click', '[data-afsm-toggle="modal"]', function (e) {
         $e = $(e.target);
         target = $e.data('target');
         remote = $e.data('remote');
@@ -25,12 +25,13 @@
 
             // Show the modal dialog.
             $(target).modal('show');
-
-            $('.modal-form').submit(submitAsync);
         });
+
+        e.preventDefault();
+        return false;
     });
 
-    function submitAsync(e) {
+    $('body').on('submit', '.modal-form', function (e) {
         var $form = $(e.target);
 
         // Validate the form first.
@@ -60,5 +61,6 @@
         }
         // Prevent the form from submitting itself.
         e.preventDefault();
-    }
+        return false;
+    });
 }(window.jQuery));
