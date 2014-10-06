@@ -34,10 +34,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public override string LanguageCode { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "ArchiveHistory")]
         public string ArchiveHistory { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "ArchiveMission")]
         public string ArchiveMission { get; set; }
     }

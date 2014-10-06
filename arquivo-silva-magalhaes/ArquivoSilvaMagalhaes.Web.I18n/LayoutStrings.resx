@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Acerca</value>
   </data>
+  <data name="AboutArchive" xml:space="preserve">
+    <value>Acerca do Arquivo Fotográfico Silva Magalhães</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Ações</value>
   </data>

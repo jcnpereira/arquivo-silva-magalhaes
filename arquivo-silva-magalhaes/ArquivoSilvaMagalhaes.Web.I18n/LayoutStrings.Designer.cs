@@ -70,6 +70,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acerca do Arquivo Fotográfico Silva Magalhães.
+        /// </summary>
+        public static string AboutArchive {
+            get {
+                return ResourceManager.GetString("AboutArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ações.
         /// </summary>
         public static string Actions {
