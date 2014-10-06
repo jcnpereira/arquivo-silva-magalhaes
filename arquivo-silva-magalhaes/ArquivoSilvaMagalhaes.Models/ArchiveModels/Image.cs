@@ -25,9 +25,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "ProductionDate")]
         public string ProductionDate { get; set; }
 
-        public double Latitude { get; set; }
+        public string Latitude { get; set; }
 
-        public double Longitude { get; set; }
+        public string Longitude { get; set; }
 
         [Required]
         [Index(IsUnique = true)]

@@ -30,3 +30,16 @@
         @Html.ValidationMessageFor(model => model.IsVisible, "", new { @class = "text-danger" })
     </div>
 </div>
+
+<div class="form-group">
+    @*@Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <label for="map_canvas" class="control-label col-md-2">
+        @EventStrings.Coordinates
+    </label>
+    <div class="col-md-10">
+        @* Google Map. *@
+        @Html.HiddenFor(model => model.Latitude)
+        @Html.HiddenFor(model => model.Longitude)
+        <div id="map_canvas" style="width:100%; height: 400px" data-afsm-lat="#@Html.IdFor(model => model.Latitude)" data-afsm-lng="#@Html.IdFor(model => model.Longitude)"></div>
+    </div>
+</div>

@@ -7,10 +7,10 @@
 (function (google) {
     'use strict';
 
-    var coords = $('#map_canvas').data('afsm-coords').split(',');
+    var $map = $('#map_canvas');
 
-    var lat = parseFloat(coords[0]);
-    var lng = parseFloat(coords[1]);
+    var lat = parseFloat($map.data('afsm-lat'));
+    var lng = parseFloat($map.data('afsm-lng'));
 
     var position = new google.maps.LatLng(lat, lng);
 

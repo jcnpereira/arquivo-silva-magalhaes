@@ -65,9 +65,11 @@
 </dd>
 
 <dt>
-    @Html.DisplayNameFor(model => model.Coordinates)
+    @EventStrings.Coordinates
 </dt>
 
 <dd>
-    <div id="map_canvas" style="width:100%; height: 400px" data-afsm-coords="@Model.Coordinates"></div>
+    <div id="map_canvas" style="width:100%; height: 400px"
+         data-afsm-lat="@Model.Latitude"
+         data-afsm-lng="@Model.Longitude"></div>
 </dd>

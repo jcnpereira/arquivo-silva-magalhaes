@@ -37,8 +37,11 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(EventStrings), Name = "Place")]
         public string Place { get; set; }
 
-        [Display(ResourceType = typeof(EventStrings), Name = "Coordinates")]
-        public string Coordinates { get; set; }
+        [Display(ResourceType = typeof(EventStrings), Name = "Latitude")]
+        //public string Coordinates { get; set; }
+        public string Latitude { get; set; }
+        [Display(ResourceType = typeof(EventStrings), Name = "Longitude")]
+        public string Longitude { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "VisitorInformation")]

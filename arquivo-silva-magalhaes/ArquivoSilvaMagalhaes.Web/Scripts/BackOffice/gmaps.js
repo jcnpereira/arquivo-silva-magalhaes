@@ -1,17 +1,21 @@
 ﻿/*global google*/
 (function initialize() {
     var mapContainer = document.getElementById('map_canvas');
+    var $map = $(mapContainer);
 
-    var inputElement = $(mapContainer.getAttribute('data-afsm-for'));
+    //var inputElement = $(mapContainer.getAttribute('data-afsm-for'));
+    var $lat = $($map.data('afsm-lat'));
+    var $lng = $($map.data('afsm-lng'));
 
     var lat = 39.603539,
         lng = -8.415085;
 
-    if (inputElement.val()) {
-        var coords = inputElement.val().split(',');
+    if ($lat.val() !== '') {
+        lat = parseFloat($lat.val());
+    }
 
-        lat = parseFloat(coords[0]);
-        lng = parseFloat(coords[1]);
+    if ($lng.val() !== '') {
+        lng = parseFloat($lng.val());
     }
 
     var position = new google.maps.LatLng(lat, lng);
@@ -22,7 +26,8 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    inputElement.val(position.lat() + "," + position.lng());
+    $lat.val(position.lat());
+    $lng.val(position.lng());
 
     var map = new google.maps.Map(
         document.getElementById("map_canvas"),
@@ -38,6 +43,7 @@
     google.maps.event.addListener(marker, 'dragend', function () {
         var newPos = marker.getPosition();
 
-        inputElement.val(newPos.lat() + "," + newPos.lng());
+        $lat.val(newPos.lat());
+        $lng.val(newPos.lng());
     });
 }());

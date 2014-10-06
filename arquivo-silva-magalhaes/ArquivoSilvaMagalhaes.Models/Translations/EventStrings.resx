@@ -201,4 +201,10 @@
   <data name="Validation_ExpiresBeforePublish" xml:space="preserve">
     <value>A data de expiração não pode ser anterior à data de publicação.</value>
   </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
 </root>
