@@ -204,6 +204,9 @@
   <data name="Index" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="IPT" xml:space="preserve">
+    <value>Polytechnic Institute of Tomar</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>

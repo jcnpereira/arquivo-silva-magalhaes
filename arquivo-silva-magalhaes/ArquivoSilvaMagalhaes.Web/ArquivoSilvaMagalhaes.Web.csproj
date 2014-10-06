@@ -457,6 +457,7 @@
     <Content Include="Areas\BackOffice\Views\ReferencedLink\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Attachments\Create.cshtml" />
@@ -700,6 +701,9 @@
     <Content Include="Areas\BackOffice\Views\TechnicalDocument\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\ReferencedLink\_ListPartial.cshtml" />
     <Content Include="Areas\BackOffice\Views\Partnerships\_ListPartial.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\AddTranslation.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_MainDisplayFields.cshtml" />
+    <Content Include="Areas\BackOffice\Views\BannerPhotograph\_TranslatedDisplayFields.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

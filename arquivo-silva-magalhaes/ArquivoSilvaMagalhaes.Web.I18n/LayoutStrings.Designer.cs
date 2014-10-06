@@ -322,6 +322,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instituto Politécnico de Tomar.
+        /// </summary>
+        public static string IPT {
+            get {
+                return ResourceManager.GetString("IPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Língua.
         /// </summary>
         public static string Language {

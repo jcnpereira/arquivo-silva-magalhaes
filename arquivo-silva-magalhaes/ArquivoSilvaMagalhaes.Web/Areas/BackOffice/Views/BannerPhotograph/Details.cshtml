@@ -1,10 +1,21 @@
 ﻿@model Banner
 
-@{
-    ViewBag.Title = BannerStrings.DeleteTitleFormat;
-    ViewBag.AlertMsg = BannerStrings.DeleteWarningMessage;
 
-    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
+@{
+    ViewBag.Id = Model.Id;
+    ViewBag.Title = BannerStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+}
+
+@section ExtraActions {
+    @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> @LayoutStrings.AddTranslation
+            </a>
+        </div>
+    }
 }
 
 <ul class="nav nav-tabs">
@@ -33,10 +44,23 @@
             <dl class="dl-horizontal">
                 @Html.Partial("_TranslatedDisplayFields", t)
             </dl>
+
+            @if (langCode != LanguageDefinitions.DefaultLanguage)
+            {
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                    Remover tradução
+                </a>
+            }
         </div>
     }
 </div>
+
 <hr />
+
 <dl class="dl-horizontal">
     @Html.Partial("_MainDisplayFields")
 </dl>
+
+@section Scripts {
+    @Html.Partial("_DeleteConfirmModal")
+}

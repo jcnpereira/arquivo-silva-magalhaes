@@ -129,6 +129,9 @@
   <data name="DeleteWarningMessage" xml:space="preserve">
     <value>Tem a certeza que pretende eliminar a seguinte fotografia banner?</value>
   </data>
+  <data name="DetailsTitleFormat" xml:space="preserve">
+    <value>Detalhes da fotografia banner</value>
+  </data>
   <data name="EditTitleFormat" xml:space="preserve">
     <value>Editar fotografia banner</value>
   </data>

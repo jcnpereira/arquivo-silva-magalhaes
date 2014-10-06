@@ -12,6 +12,9 @@
 
                         <div class="text-center">
                             <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                                <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Details">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </a>
                                 <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Edit">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>

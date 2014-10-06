@@ -81,6 +81,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 db.Authors.AddOrUpdate(author => new { author.Id }, a);
             }
+            db.SaveChanges();
         }
 
         private void SeedCollections(ArchiveDataContext db)
@@ -99,7 +100,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Notes = "Notas " + i
                 };
 
-                c.Authors = db.Authors.Where(a => a.Id == i)
+                c.Authors = db.Authors.Where(a => a.Id == (i % 10) + 1)
                     .Take(5)
                     .ToList();
 
@@ -118,6 +119,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 db.Collections.AddOrUpdate(collection => new { collection.CatalogCode }, c);
             }
+            db.SaveChanges();
         }
 
 
@@ -149,11 +151,12 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 db.Documents.AddOrUpdate(d => new { d.CatalogCode }, document);
             }
+            db.SaveChanges();
         }
 
         private void SeedClassifications(ArchiveDataContext db)
         {
-            for (int i = 1; i <= 30; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 var classification = new Classification
                 {
@@ -171,11 +174,12 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 db.Classifications.AddOrUpdate(ct => new { ct.Id }, classification);
             }
+            db.SaveChanges();
         }
 
         private void SeedKeywords(ArchiveDataContext db)
         {
-            for (int i = 1; i <= 100; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 var kw = new Keyword
                 {
@@ -193,6 +197,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 db.Keywords.AddOrUpdate(kt => new { kt.Id }, kw);
             }
+            db.SaveChanges();
         }
 
         private void SeedImages(ArchiveDataContext db)
@@ -223,13 +228,13 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     });
 
                 image.Keywords = db.Keywords
-                    .Where(k => k.Id == (i % 100) + 1)
-                    .Take(10)
-                    .ToList();
+                     .Where(k => k.Id == (i % 5) + 1)
+                     .ToList();
 
                 imgList.Add(image);
             }
             db.Images.AddOrUpdate(img => new { img.ImageCode }, imgList.ToArray());
+            db.SaveChanges();
         }
     }
 }
