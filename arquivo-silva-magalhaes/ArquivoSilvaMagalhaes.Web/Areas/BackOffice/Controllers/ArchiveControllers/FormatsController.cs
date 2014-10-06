@@ -99,7 +99,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                           .Select(f => new
                           {
                               value = f.Id.ToString(),
-                              text = f.FormatDescription
+                              text = f.FormatDescription,
+                              selected = f.Id == format.Id
                           }));
 
                     return Json(result);

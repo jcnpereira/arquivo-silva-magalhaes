@@ -107,15 +107,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 if (Request.IsAjaxRequest())
                 {
                     return Json((await db.Entities
-                                  .OrderBy(ct => ct.Id)
-                                  .ToListAsync())
-                                  .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
-                                  .Select(ct => new
-                                  {
-                                      value = ct.Entity.Id.ToString(),
-                                      text = ct.Translation.Value
-                                  })
-                                  .ToList());
+                        .OrderBy(ct => ct.Id)
+                        .ToListAsync())
+                        .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
+                        .Select(ct => new
+                        {
+                            value = ct.Entity.Id.ToString(),
+                            text = ct.Translation.Value,
+                            selected = ct.Entity.Id == c.Id
+                        })
+                        .ToList());
                 }
 
                 return RedirectToAction("Index");

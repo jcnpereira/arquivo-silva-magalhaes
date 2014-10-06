@@ -122,7 +122,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                         .Select(ptr => new
                         {
                             text = ptr.Translation.Value,
-                            value = ptr.Entity.Id.ToString()
+                            value = ptr.Entity.Id.ToString(),
+                            selected = ptr.Entity.Id == process.Id
                         }));
 
                     return Json(result);

@@ -52,8 +52,13 @@
                 // Replace the select list's items with the new data.
                 $list.empty();
                 for (i; i < data.length; i++) {
-                    $('<option value="' + data[i].value + '">' + data[i].text + '</option>')
-                     .appendTo($list);
+                    var $option = $('<option value="' + data[i].value + '">' + data[i].text + '</option>');
+
+                    if (data[i].selected) {
+                        $option.attr('selected', '');
+                    }
+
+                     $option.appendTo($list);
                 }
             });
             // Close the modal dialog.
