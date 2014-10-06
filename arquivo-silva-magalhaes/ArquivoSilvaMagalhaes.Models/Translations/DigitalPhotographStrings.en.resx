@@ -124,7 +124,7 @@
     <value>Delete digital photogaph</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Are you sure you want to remove this digital photography?</value>
+    <value>Are you sure you want to remove this digital photograph?</value>
   </data>
   <data name="EntityName" xml:space="preserve">
     <value>Digital photograph</value>
