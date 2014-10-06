@@ -33,6 +33,12 @@
     @Html.DisplayFor(model => model.Translation.Comment)
 </div>
 
+<hr />
+
+<a href="@Url.Action("Old")">
+    @LayoutStrings.OldArticles
+</a>
+
 @section scripts {
     @Html.Partial("_ImageOverlay")
 }

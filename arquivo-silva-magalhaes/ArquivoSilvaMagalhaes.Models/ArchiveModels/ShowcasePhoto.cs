@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 {
-    public class ShowcasePhoto
+    public class ShowcasePhoto : IValidatableObject
     {
         public ShowcasePhoto()
         {
@@ -37,6 +37,10 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "VisibleSince")]
         public DateTime VisibleSince { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "HideAt")]
+        public DateTime? HideAt { get; set; }
+
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Image")]
         public int ImageId { get; set; }
 
@@ -44,6 +48,14 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public virtual Image Image { get; set; }
 
         public virtual IList<ShowcasePhotoTranslation> Translations { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (HideAt.HasValue && HideAt.Value < VisibleSince)
+            {
+                yield return new ValidationResult(ShowcasePhotoStrings.Validation_ExpiresBeforePublish, new string[] { "HideAt" });
+            }
+        }
     }
 
     public class ShowcasePhotoTranslation : EntityTranslation, IValidatableObject

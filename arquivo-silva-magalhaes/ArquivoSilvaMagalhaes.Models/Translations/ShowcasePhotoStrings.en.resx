@@ -153,6 +153,12 @@
   <data name="EntityNameShortPlural" xml:space="preserve">
     <value>Showcase</value>
   </data>
+  <data name="HideAt" xml:space="preserve">
+    <value>Hide at</value>
+  </data>
+  <data name="HideAtHint" xml:space="preserve">
+    <value>You do not need to specify a date. If no date is specified, the article will always be visible.</value>
+  </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
@@ -164,6 +170,9 @@
   </data>
   <data name="ValidationError_ImageHidden" xml:space="preserve">
     <value>This image is not publicly visible. Please, choose another one.</value>
+  </data>
+  <data name="Validation_ExpiresBeforePublish" xml:space="preserve">
+    <value>The publish date cannot be posterior to the hide date.</value>
   </data>
   <data name="VisibleSince" xml:space="preserve">
     <value>Publication date</value>

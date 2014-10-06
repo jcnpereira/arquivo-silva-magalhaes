@@ -851,9 +851,9 @@
     <Content Include="Areas\BackOffice\Views\News\Index.cshtml" />
     <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Partnerships\Index.cshtml" />
-    <Content Include="Views\ShowcasePhotos\Index.cshtml" />
+    <Content Include="Views\Showcase\Old.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
-    <Content Include="Views\ShowcasePhotos\Details.cshtml" />
+    <Content Include="Views\Showcase\Article.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Collections\Details.cshtml" />

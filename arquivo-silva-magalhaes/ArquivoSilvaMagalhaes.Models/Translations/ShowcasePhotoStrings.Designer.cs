@@ -169,6 +169,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esconder em.
+        /// </summary>
+        public static string HideAt {
+            get {
+                return ResourceManager.GetString("HideAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não é necessário especificar uma data. Caso não seja especificada nenhuma data, o artigo nunca será removido..
+        /// </summary>
+        public static string HideAtHint {
+            get {
+                return ResourceManager.GetString("HideAtHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imagem.
         /// </summary>
         public static string Image {
@@ -192,6 +210,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data de publicação não pode ser superior à data de expiração..
+        /// </summary>
+        public static string Validation_ExpiresBeforePublish {
+            get {
+                return ResourceManager.GetString("Validation_ExpiresBeforePublish", resourceCulture);
             }
         }
         

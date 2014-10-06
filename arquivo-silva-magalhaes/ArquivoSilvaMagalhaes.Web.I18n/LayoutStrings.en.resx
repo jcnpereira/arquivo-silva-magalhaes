@@ -225,6 +225,9 @@
   <data name="Note" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="OldArticles" xml:space="preserve">
+    <value>Older articles</value>
+  </data>
   <data name="PleaseWait" xml:space="preserve">
     <value>Please wait...</value>
   </data>

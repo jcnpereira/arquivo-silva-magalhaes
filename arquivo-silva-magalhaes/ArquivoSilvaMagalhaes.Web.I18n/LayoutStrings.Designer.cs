@@ -385,6 +385,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artigos mais antigos.
+        /// </summary>
+        public static string OldArticles {
+            get {
+                return ResourceManager.GetString("OldArticles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por favor, aguarde....
         /// </summary>
         public static string PleaseWait {

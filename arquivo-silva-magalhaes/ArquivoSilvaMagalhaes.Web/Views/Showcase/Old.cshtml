@@ -13,7 +13,7 @@
 <div class="list-group">
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("Details", "ShowcasePhotos", new { item.Entity.Id })" class="list-group-item">
+        <a href="@Url.Action("Article", "Showcase", new { item.Entity.Id })" class="list-group-item">
             <div class="media">
                 <div class="pull-left">
                     <img class="media-object" style="width: 96px; height: 96px"

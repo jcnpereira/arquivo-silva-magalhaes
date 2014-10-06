@@ -12,17 +12,17 @@ using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Controllers
 {
-    public class ShowcasePhotosController : Controller
+    public class ShowcaseController : Controller
     {
         /// <summary>
         /// Associa entidade ShowcasePhoto às traduções existentes
         /// </summary>
         private ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db;
 
-        public ShowcasePhotosController()
+        public ShowcaseController()
             : this(new TranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation>()) { }
 
-        public ShowcasePhotosController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
+        public ShowcaseController(ITranslateableRepository<ShowcasePhoto, ShowcasePhotoTranslation> db)
         {
             this.db = db;
         }
@@ -33,12 +33,12 @@ namespace ArquivoSilvaMagalhaes.Controllers
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(int pageNumber = 1)
+        public async Task<ActionResult> Old(int pageNumber = 1)
         {
             var model = await db.Entities
                 .Include(sp => sp.Image)
                 .OrderByDescending(sp => sp.VisibleSince)
-                .Where(sp => sp.VisibleSince <= DateTime.Now)
+                .Where(sp => sp.VisibleSince <= DateTime.Now && (sp.HideAt == null || sp.HideAt.Value > DateTime.Now))
                 .Select(b => new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
                 {
                     Entity = b
@@ -48,26 +48,50 @@ namespace ArquivoSilvaMagalhaes.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> Index()
+        {// Get the newest one.
+            ShowcasePhoto showcasephoto = await db.Entities
+                .Include(sp => sp.Image)
+                .Where(sp => sp.VisibleSince <= DateTime.Now)
+                .OrderByDescending(sp => sp.VisibleSince)
+                .FirstOrDefaultAsync(sp => sp.HideAt == null || sp.HideAt.Value > DateTime.Now);
+
+            if (showcasephoto == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View("Article", new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(showcasephoto));
+        }
+
         /// <summary>
         /// Fornece o nome do Comentador e o seu email caso seja permitido
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Article(int? id)
         {
+            ShowcasePhoto sp;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowcasePhoto showcasephoto = await db.Entities
-                .Include(sp => sp.Image)
-                .FirstOrDefaultAsync(sp => sp.Id == id);
-
-            if (showcasephoto == null || showcasephoto.VisibleSince >= DateTime.Now)
+            else
             {
-                return HttpNotFound();
+                // Display the one with said ID.
+
+                sp = await db.Entities
+                    .Include(s => s.Image)
+                    .FirstOrDefaultAsync(s => s.Id == id);
+
+                if (sp == null || sp.VisibleSince > DateTime.Now || (sp.HideAt.HasValue && sp.HideAt.Value <= DateTime.Now))
+                {
+                    return HttpNotFound();
+                }
             }
-            return View(new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(showcasephoto));
+
+            return View("Article", new TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>(sp));
         }
 
         /// <summary>

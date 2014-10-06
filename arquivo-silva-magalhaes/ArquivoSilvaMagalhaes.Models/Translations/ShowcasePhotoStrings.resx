@@ -153,6 +153,12 @@
   <data name="EntityNameShortPlural" xml:space="preserve">
     <value>Destaque</value>
   </data>
+  <data name="HideAt" xml:space="preserve">
+    <value>Esconder em</value>
+  </data>
+  <data name="HideAtHint" xml:space="preserve">
+    <value>Não é necessário especificar uma data. Caso não seja especificada nenhuma data, o artigo nunca será removido.</value>
+  </data>
   <data name="Image" xml:space="preserve">
     <value>Imagem</value>
   </data>
@@ -164,6 +170,9 @@
   </data>
   <data name="ValidationError_ImageHidden" xml:space="preserve">
     <value>Esta imagem não está visível ao público. Escolha outra.</value>
+  </data>
+  <data name="Validation_ExpiresBeforePublish" xml:space="preserve">
+    <value>A data de publicação não pode ser superior à data de expiração.</value>
   </data>
   <data name="VisibleSince" xml:space="preserve">
     <value>Data de publicação</value>
