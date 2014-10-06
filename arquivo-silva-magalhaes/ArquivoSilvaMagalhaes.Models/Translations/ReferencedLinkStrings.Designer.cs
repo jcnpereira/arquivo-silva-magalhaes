@@ -133,7 +133,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link.
+        ///   Looks up a localized string similar to URL.
         /// </summary>
         public static string Link {
             get {

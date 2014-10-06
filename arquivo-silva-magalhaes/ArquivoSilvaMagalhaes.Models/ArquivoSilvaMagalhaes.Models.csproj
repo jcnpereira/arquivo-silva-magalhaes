@@ -184,9 +184,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Translations\ReferencedLinkStrings.Designer.cs">
-      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ReferencedLinkStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\ShowcasePhotoStrings.Designer.cs">
       <DependentUpon>ShowcasePhotoStrings.resx</DependentUpon>
@@ -194,9 +194,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Translations\SpecimenStrings.Designer.cs">
-      <DependentUpon>SpecimenStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>SpecimenStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Translations\SpotlightVideoStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,46 +251,57 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EventStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\FormatStrings.en.resx" />
     <EmbeddedResource Include="Translations\FormatStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FormatStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\ImageStrings.en.resx" />
     <EmbeddedResource Include="Translations\ImageStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ImageStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\KeywordStrings.en.resx" />
     <EmbeddedResource Include="Translations\KeywordStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>KeywordStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\NewsItemStrings.en.resx" />
     <EmbeddedResource Include="Translations\NewsItemStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NewsItemStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\PartnershipStrings.en.resx" />
     <EmbeddedResource Include="Translations\PartnershipStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PartnershipStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\ProcessStrings.en.resx" />
     <EmbeddedResource Include="Translations\ProcessStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProcessStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\ReferencedLinkStrings.en.resx" />
     <EmbeddedResource Include="Translations\ReferencedLinkStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ReferencedLinkStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\ShowcasePhotoStrings.en.resx" />
     <EmbeddedResource Include="Translations\ShowcasePhotoStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ShowcasePhotoStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\SpecimenStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpecimenStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\SpotlightVideoStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpotlightVideoStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SpotlightVideoStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\TechnicalDocumentStrings.en.resx" />
     <EmbeddedResource Include="Translations\TechnicalDocumentStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TechnicalDocumentStrings.Designer.cs</LastGenOutput>

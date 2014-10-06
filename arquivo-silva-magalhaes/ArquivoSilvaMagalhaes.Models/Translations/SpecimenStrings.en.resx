@@ -117,106 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdministrativeAndBiographicStory" xml:space="preserve">
-    <value>História administrativa e biográfica</value>
+  <data name="AddPhotos" xml:space="preserve">
+    <value>Adicionar fotografias digitais</value>
   </data>
-  <data name="AlphanumericCode" xml:space="preserve">
-    <value>O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z)</value>
+  <data name="ArchivalCodeFormat" xml:space="preserve">
+    <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
   </data>
-  <data name="AttachmentDescription" xml:space="preserve">
-    <value>Descrição de anexos</value>
+  <data name="ArchivalReferenceCode" xml:space="preserve">
+    <value>Cota</value>
   </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Autoria de</value>
+  <data name="AuthorCatalogationCode" xml:space="preserve">
+    <value>Código original</value>
   </data>
-  <data name="CatalogCode" xml:space="preserve">
-    <value>Código de referência</value>
+  <data name="CodeAlreadyExists" xml:space="preserve">
+    <value>Já existe uma espécie com esse código de referência. Escolha outro.</value>
   </data>
-  <data name="CopyrightInfo" xml:space="preserve">
-    <value>Informações sobre direitos de autor</value>
+  <data name="CodeFormat" xml:space="preserve">
+    <value>O código de referência tem que respeitar o formato Coleção-Documento-Imagem-Espécie. A cota é inserida num campo à parte, e não são permitidos acentos ou caracteres especiais.</value>
   </data>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Adicionar coleção</value>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Criar espécie fotográfica</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Eliminar coleção</value>
+    <value>Eliminar espécie fotográfica</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Tem a certeza que pretende eliminar esta coleção? Todos os documentos (e elementos associados a estes) serão eliminados!</value>
+    <value>Tem a certeza que pretende eliminar esta espécie fotográfica?</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
+  <data name="DetailedStateDescription" xml:space="preserve">
+    <value>Descrição do estado de conservação</value>
+  </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
-    <value>Detalhes da coleção</value>
-  </data>
-  <data name="Dimension" xml:space="preserve">
-    <value>Dimensão</value>
-  </data>
-  <data name="Documents" xml:space="preserve">
-    <value>Documentos desta coleção</value>
+    <value>Detalhes da espécie fotográfica</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar coleção</value>
-  </data>
-  <data name="EndProductionDate" xml:space="preserve">
-    <value>Data de fim de produção</value>
+    <value>Editar espécie fotográfica</value>
   </data>
   <data name="EntityName" xml:space="preserve">
-    <value>Coleção</value>
+    <value>Espécie fotográfica</value>
   </data>
   <data name="EntityNamePlural" xml:space="preserve">
-    <value>Coleções</value>
+    <value>Espécies fotográficas</value>
   </data>
-  <data name="FieldAndContents" xml:space="preserve">
-    <value>Âmbito e conteúdo</value>
+  <data name="Format" xml:space="preserve">
+    <value>Formato</value>
   </data>
-  <data name="HasAttachments" xml:space="preserve">
-    <value>Tem anexos</value>
+  <data name="HasMarksOrStamps" xml:space="preserve">
+    <value>Tem marcas ou carimbos</value>
   </data>
-  <data name="InitialProductionDate" xml:space="preserve">
-    <value>Data de início de produção</value>
+  <data name="Image" xml:space="preserve">
+    <value>Imagem</value>
   </data>
-  <data name="IsVisible" xml:space="preserve">
-    <value>Visível ao público</value>
+  <data name="InterventionDescription" xml:space="preserve">
+    <value>Descrição da intervenção</value>
   </data>
-  <data name="LogoLocation" xml:space="preserve">
-    <value>Logótipo</value>
+  <data name="MustChooseImage" xml:space="preserve">
+    <value>Tem que escolher primeiro uma imagem.</value>
   </data>
-  <data name="LogoRecommendation" xml:space="preserve">
-    <value>É recomendado uma imagem .jpg ou .png com dimensões de 400x400. A imagem é opcional.</value>
+  <data name="NoDigitalPhotographs" xml:space="preserve">
+    <value>Sem fotografias digitais.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
   </data>
-  <data name="OrganizationSystem" xml:space="preserve">
-    <value>Sistema de organização</value>
+  <data name="Photos" xml:space="preserve">
+    <value>Fotografias digitais</value>
   </data>
-  <data name="ProductionPeriod" xml:space="preserve">
-    <value>Período de produção</value>
+  <data name="Process" xml:space="preserve">
+    <value>Processo fotográfico</value>
   </data>
-  <data name="Provenience" xml:space="preserve">
-    <value>Proveniência</value>
+  <data name="ReferenceCode" xml:space="preserve">
+    <value>Código de referência</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Título da coleção</value>
+  <data name="State" xml:space="preserve">
+    <value>Estado de conservação</value>
   </data>
-  <data name="Translations" xml:space="preserve">
-    <value>Traduções desta coleção</value>
+  <data name="State_1" xml:space="preserve">
+    <value>Mau</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Tipo de coleção</value>
+  <data name="State_2" xml:space="preserve">
+    <value>Mediocre</value>
   </data>
-  <data name="Type_Collection" xml:space="preserve">
-    <value>Coleção</value>
+  <data name="State_3" xml:space="preserve">
+    <value>Satisfatório</value>
   </data>
-  <data name="Type_Fond" xml:space="preserve">
-    <value>Fundo</value>
+  <data name="State_4" xml:space="preserve">
+    <value>Bom</value>
   </data>
-  <data name="Type_Other" xml:space="preserve">
-    <value>Outro</value>
-  </data>
-  <data name="Validation_CodeAlreadyExists" xml:space="preserve">
-    <value>Já existe uma coleção com este código de catalogação.</value>
+  <data name="State_5" xml:space="preserve">
+    <value>Muito Bom</value>
   </data>
 </root>

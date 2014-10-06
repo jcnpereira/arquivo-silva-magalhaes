@@ -88,6 +88,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A forma mais fácil de preencher este campo é copiar o URL da página do vídeo do YouTube e colá-la aqui..
+        /// </summary>
+        public static string UriPathHelp {
+            get {
+                return ResourceManager.GetString("UriPathHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vídeo.
         /// </summary>
         public static string Video {

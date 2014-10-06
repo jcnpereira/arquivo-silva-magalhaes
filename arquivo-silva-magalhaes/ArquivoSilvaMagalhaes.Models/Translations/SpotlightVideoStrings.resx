@@ -126,6 +126,9 @@
   <data name="UriPath" xml:space="preserve">
     <value>URL do vídeo do YouTube</value>
   </data>
+  <data name="UriPathHelp" xml:space="preserve">
+    <value>A forma mais fácil de preencher este campo é copiar o URL da página do vídeo do YouTube e colá-la aqui.</value>
+  </data>
   <data name="Video" xml:space="preserve">
     <value>Vídeo</value>
   </data>

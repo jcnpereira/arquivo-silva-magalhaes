@@ -183,9 +183,6 @@
   <data name="User__RealName" xml:space="preserve">
     <value>Nome</value>
   </data>
-  <data name="WarningEditInDefault" xml:space="preserve">
-    <value>Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida.</value>
-  </data>
   <data name="Yes" xml:space="preserve">
     <value>Sim</value>
   </data>
@@ -226,7 +223,7 @@
     <value>(Sem imagem)</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Pesquisar</value>
+    <value>Pesquisa</value>
   </data>
   <data name="ChooseMultipleSuggestion" xml:space="preserve">
     <value>Pode seleccionar múltiplos itens recorrendo à tecla </value>

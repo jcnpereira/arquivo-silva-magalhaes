@@ -61,7 +61,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adicionar fotografias digitais.
+        ///   Looks up a localized string similar to Add digital photographs.
         /// </summary>
         public static string AddPhotos {
             get {
@@ -70,7 +70,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A cota deve apenas conter números e letras. Não são permitidos acentos..
+        ///   Looks up a localized string similar to The annotation must only contain digits and letters..
         /// </summary>
         public static string ArchivalCodeFormat {
             get {
@@ -79,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cota.
+        ///   Looks up a localized string similar to Annotation.
         /// </summary>
         public static string ArchivalReferenceCode {
             get {
@@ -88,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código original.
+        ///   Looks up a localized string similar to Original code.
         /// </summary>
         public static string AuthorCatalogationCode {
             get {
@@ -97,7 +97,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Já existe uma espécie com esse código de referência. Escolha outro..
+        ///   Looks up a localized string similar to A specimen with that reference code already exists. Please choose another one..
         /// </summary>
         public static string CodeAlreadyExists {
             get {
@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O código de referência tem que respeitar o formato Coleção-Documento-Imagem-Espécie. A cota é inserida num campo à parte, e não são permitidos acentos ou caracteres especiais..
+        ///   Looks up a localized string similar to The reference code must respect the following format: Collection-Document-Image-Specimen. The annotation is inserted into a different field, and no special characters are allowed..
         /// </summary>
         public static string CodeFormat {
             get {
@@ -115,7 +115,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Criar espécie fotográfica.
+        ///   Looks up a localized string similar to Add specimen.
         /// </summary>
         public static string CreateTitleFormat {
             get {
@@ -124,7 +124,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eliminar espécie fotográfica.
+        ///   Looks up a localized string similar to Delete specimen.
         /// </summary>
         public static string DeleteTitleFormat {
             get {
@@ -133,7 +133,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar esta espécie fotográfica?.
+        ///   Looks up a localized string similar to Are you sure you want to delete this specimen?.
         /// </summary>
         public static string DeleteWarningMessage {
             get {
@@ -142,7 +142,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descrição.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
@@ -151,7 +151,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descrição do estado de conservação.
+        ///   Looks up a localized string similar to Conservation state description.
         /// </summary>
         public static string DetailedStateDescription {
             get {
@@ -160,7 +160,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detalhes da espécie fotográfica.
+        ///   Looks up a localized string similar to Specimen details.
         /// </summary>
         public static string DetailsTitleFormat {
             get {
@@ -169,7 +169,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editar espécie fotográfica.
+        ///   Looks up a localized string similar to Edit specimen.
         /// </summary>
         public static string EditTitleFormat {
             get {
@@ -178,7 +178,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Espécie fotográfica.
+        ///   Looks up a localized string similar to Specimen.
         /// </summary>
         public static string EntityName {
             get {
@@ -187,7 +187,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Espécies fotográficas.
+        ///   Looks up a localized string similar to Specimens.
         /// </summary>
         public static string EntityNamePlural {
             get {
@@ -196,7 +196,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formato.
+        ///   Looks up a localized string similar to Format.
         /// </summary>
         public static string Format {
             get {
@@ -205,7 +205,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem marcas ou carimbos.
+        ///   Looks up a localized string similar to Has marks or stamps.
         /// </summary>
         public static string HasMarksOrStamps {
             get {
@@ -214,7 +214,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Imagem.
+        ///   Looks up a localized string similar to Image.
         /// </summary>
         public static string Image {
             get {
@@ -223,7 +223,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descrição da intervenção.
+        ///   Looks up a localized string similar to Intervention description.
         /// </summary>
         public static string InterventionDescription {
             get {
@@ -232,7 +232,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tem que escolher primeiro uma imagem..
+        ///   Looks up a localized string similar to You must choose an image first..
         /// </summary>
         public static string MustChooseImage {
             get {
@@ -241,7 +241,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sem fotografias digitais..
+        ///   Looks up a localized string similar to No digital photographs..
         /// </summary>
         public static string NoDigitalPhotographs {
             get {
@@ -250,7 +250,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notas.
+        ///   Looks up a localized string similar to Notes.
         /// </summary>
         public static string Notes {
             get {
@@ -259,7 +259,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fotografias digitais.
+        ///   Looks up a localized string similar to Digital photographs.
         /// </summary>
         public static string Photos {
             get {
@@ -268,7 +268,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processo fotográfico.
+        ///   Looks up a localized string similar to Photographic process.
         /// </summary>
         public static string Process {
             get {
@@ -277,7 +277,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Código de referência.
+        ///   Looks up a localized string similar to Reference code.
         /// </summary>
         public static string ReferenceCode {
             get {
@@ -286,7 +286,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Estado de conservação.
+        ///   Looks up a localized string similar to Conservation state.
         /// </summary>
         public static string State {
             get {
@@ -295,7 +295,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mau.
+        ///   Looks up a localized string similar to Poor.
         /// </summary>
         public static string State_1 {
             get {
@@ -313,7 +313,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Satisfatório.
+        ///   Looks up a localized string similar to Satisfactory.
         /// </summary>
         public static string State_3 {
             get {
@@ -322,7 +322,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bom.
+        ///   Looks up a localized string similar to Good.
         /// </summary>
         public static string State_4 {
             get {
@@ -331,7 +331,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Muito Bom.
+        ///   Looks up a localized string similar to Very Good.
         /// </summary>
         public static string State_5 {
             get {

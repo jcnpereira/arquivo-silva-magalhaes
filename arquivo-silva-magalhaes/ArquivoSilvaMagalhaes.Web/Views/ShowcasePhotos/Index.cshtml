@@ -5,10 +5,8 @@
 }
 
 <h2>
-    @FrontOfficeStrings.ShowCasePhoto
+    @ShowcasePhotoStrings.EntityNamePlural
 </h2>
-
-<p>@Layout_ShowcasePhoto.Description</p>
 
 <hr />
 
@@ -44,7 +42,7 @@
 </div>
 
 <div class="text-center afsm-pagination">
-    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "ShowcasePhotos", new { pageNumber = p }))
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "ShowcasePhotos", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
 </div>
 
 

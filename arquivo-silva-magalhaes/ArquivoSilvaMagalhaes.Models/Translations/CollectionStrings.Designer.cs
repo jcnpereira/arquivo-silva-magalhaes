@@ -88,7 +88,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autores desta coleção.
+        ///   Looks up a localized string similar to Autoria de.
         /// </summary>
         public static string Authors {
             get {

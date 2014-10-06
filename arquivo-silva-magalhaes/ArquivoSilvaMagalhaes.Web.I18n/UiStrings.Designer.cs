@@ -358,7 +358,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pesquisar.
+        ///   Looks up a localized string similar to Pesquisa.
         /// </summary>
         public static string Search {
             get {
@@ -399,15 +399,6 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string User__RealName {
             get {
                 return ResourceManager.GetString("User__RealName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Qualquer edição abaixo irá reflectir-se apenas na linguagem pré-definida..
-        /// </summary>
-        public static string WarningEditInDefault {
-            get {
-                return ResourceManager.GetString("WarningEditInDefault", resourceCulture);
             }
         }
         

@@ -87,6 +87,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AuthStrings.en.resx" />
     <EmbeddedResource Include="AuthStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthStrings.Designer.cs</LastGenOutput>
@@ -115,10 +116,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UiPrompts.en.resx" />
     <EmbeddedResource Include="UiPrompts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UiStrings.en.resx" />
     <EmbeddedResource Include="UiStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>

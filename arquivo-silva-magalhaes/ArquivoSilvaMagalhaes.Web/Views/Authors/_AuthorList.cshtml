@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
 
+
 <div id="afsm-author-list">
     @if (Model.Count() > 0)
     {
@@ -19,7 +20,7 @@
         </div>
 
         <div class="text-center afsm-pagination">
-            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Authors", new { pageNumber = p }))
+            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Authors", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
         </div>
     }
     else

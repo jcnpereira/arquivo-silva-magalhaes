@@ -117,106 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdministrativeAndBiographicStory" xml:space="preserve">
-    <value>História administrativa e biográfica</value>
-  </data>
-  <data name="AlphanumericCode" xml:space="preserve">
-    <value>O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z)</value>
-  </data>
-  <data name="AttachmentDescription" xml:space="preserve">
-    <value>Descrição de anexos</value>
-  </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Autoria de</value>
-  </data>
-  <data name="CatalogCode" xml:space="preserve">
-    <value>Código de referência</value>
-  </data>
-  <data name="CopyrightInfo" xml:space="preserve">
-    <value>Informações sobre direitos de autor</value>
-  </data>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Adicionar coleção</value>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Add useful link</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Eliminar coleção</value>
+    <value>Delete useful link</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Tem a certeza que pretende eliminar esta coleção? Todos os documentos (e elementos associados a estes) serão eliminados!</value>
+    <value>Are you sure you want to delete this useful link?</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descrição</value>
+    <value>Description</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
-    <value>Detalhes da coleção</value>
-  </data>
-  <data name="Dimension" xml:space="preserve">
-    <value>Dimensão</value>
-  </data>
-  <data name="Documents" xml:space="preserve">
-    <value>Documentos desta coleção</value>
+    <value>Useful link details</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar coleção</value>
-  </data>
-  <data name="EndProductionDate" xml:space="preserve">
-    <value>Data de fim de produção</value>
+    <value>Edit useful link</value>
   </data>
   <data name="EntityName" xml:space="preserve">
-    <value>Coleção</value>
+    <value>Useful link</value>
   </data>
   <data name="EntityNamePlural" xml:space="preserve">
-    <value>Coleções</value>
+    <value>Useful links</value>
   </data>
-  <data name="FieldAndContents" xml:space="preserve">
-    <value>Âmbito e conteúdo</value>
-  </data>
-  <data name="HasAttachments" xml:space="preserve">
-    <value>Tem anexos</value>
-  </data>
-  <data name="InitialProductionDate" xml:space="preserve">
-    <value>Data de início de produção</value>
-  </data>
-  <data name="IsVisible" xml:space="preserve">
-    <value>Visível ao público</value>
-  </data>
-  <data name="LogoLocation" xml:space="preserve">
-    <value>Logótipo</value>
-  </data>
-  <data name="LogoRecommendation" xml:space="preserve">
-    <value>É recomendado uma imagem .jpg ou .png com dimensões de 400x400. A imagem é opcional.</value>
-  </data>
-  <data name="Notes" xml:space="preserve">
-    <value>Notas</value>
-  </data>
-  <data name="OrganizationSystem" xml:space="preserve">
-    <value>Sistema de organização</value>
-  </data>
-  <data name="ProductionPeriod" xml:space="preserve">
-    <value>Período de produção</value>
-  </data>
-  <data name="Provenience" xml:space="preserve">
-    <value>Proveniência</value>
+  <data name="Link" xml:space="preserve">
+    <value>URL</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Título da coleção</value>
-  </data>
-  <data name="Translations" xml:space="preserve">
-    <value>Traduções desta coleção</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Tipo de coleção</value>
-  </data>
-  <data name="Type_Collection" xml:space="preserve">
-    <value>Coleção</value>
-  </data>
-  <data name="Type_Fond" xml:space="preserve">
-    <value>Fundo</value>
-  </data>
-  <data name="Type_Other" xml:space="preserve">
-    <value>Outro</value>
-  </data>
-  <data name="Validation_CodeAlreadyExists" xml:space="preserve">
-    <value>Já existe uma coleção com este código de catalogação.</value>
+    <value>Title</value>
   </data>
 </root>

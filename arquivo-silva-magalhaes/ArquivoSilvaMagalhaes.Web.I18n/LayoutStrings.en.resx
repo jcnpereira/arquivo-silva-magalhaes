@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="Authors" xml:space="preserve">
     <value>Authors</value>
   </data>
@@ -125,6 +128,12 @@
   </data>
   <data name="Contents" xml:space="preserve">
     <value>Archive</value>
+  </data>
+  <data name="Council" xml:space="preserve">
+    <value>Council of Tomar</value>
+  </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>Don't show again</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Events</value>
@@ -138,8 +147,14 @@
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>(No items)</value>
+  </data>
   <data name="Partnerships" xml:space="preserve">
-    <value>Partnership</value>
+    <value>Partnerships</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>References</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -147,10 +162,16 @@
   <data name="Showcase" xml:space="preserve">
     <value>Showcase</value>
   </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>Site for the Photographic Archive of Silva Magalhães. This Archive is constituted by many fonds and collections from photographers and collectors from the 19th century.</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Photographic Archive of Silva Magalhães</value>
+  </data>
   <data name="TechnicalDocuments" xml:space="preserve">
-    <value>Technical Documents</value>
+    <value>Technical documents</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful Links</value>
+    <value>Useful links</value>
   </data>
 </root>

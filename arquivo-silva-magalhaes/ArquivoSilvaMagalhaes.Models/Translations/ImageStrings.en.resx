@@ -117,106 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdministrativeAndBiographicStory" xml:space="preserve">
-    <value>História administrativa e biográfica</value>
+  <data name="Classification" xml:space="preserve">
+    <value>Classification</value>
   </data>
-  <data name="AlphanumericCode" xml:space="preserve">
-    <value>O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z)</value>
+  <data name="CodeAlreadyExists" xml:space="preserve">
+    <value>There is already an image with that reference code. Please, choose another one.</value>
   </data>
-  <data name="AttachmentDescription" xml:space="preserve">
-    <value>Descrição de anexos</value>
+  <data name="CodeFormat" xml:space="preserve">
+    <value>The reference code must respect the following format: Collection-Document-Image. Only digits or letters (no special characters) are allowed.</value>
   </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Autoria de</value>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordinates</value>
   </data>
-  <data name="CatalogCode" xml:space="preserve">
-    <value>Código de referência</value>
-  </data>
-  <data name="CopyrightInfo" xml:space="preserve">
-    <value>Informações sobre direitos de autor</value>
-  </data>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Adicionar coleção</value>
+  <data name="CreateTitleFormat" xml:space="preserve">
+    <value>Create image</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Eliminar coleção</value>
+    <value>Delete image</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Tem a certeza que pretende eliminar esta coleção? Todos os documentos (e elementos associados a estes) serão eliminados!</value>
+    <value>Are you sure you want to delete this image? Any specimens that are associated with this will be lost!</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descrição</value>
+    <value>Description</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
-    <value>Detalhes da coleção</value>
+    <value>Image details</value>
   </data>
-  <data name="Dimension" xml:space="preserve">
-    <value>Dimensão</value>
-  </data>
-  <data name="Documents" xml:space="preserve">
-    <value>Documentos desta coleção</value>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Editar coleção</value>
-  </data>
-  <data name="EndProductionDate" xml:space="preserve">
-    <value>Data de fim de produção</value>
+    <value>Edit image</value>
   </data>
   <data name="EntityName" xml:space="preserve">
-    <value>Coleção</value>
+    <value>Image</value>
   </data>
   <data name="EntityNamePlural" xml:space="preserve">
-    <value>Coleções</value>
+    <value>Images</value>
   </data>
-  <data name="FieldAndContents" xml:space="preserve">
-    <value>Âmbito e conteúdo</value>
+  <data name="ImageCode" xml:space="preserve">
+    <value>Reference code</value>
   </data>
-  <data name="HasAttachments" xml:space="preserve">
-    <value>Tem anexos</value>
+  <data name="ImageRecommendation" xml:space="preserve">
+    <value>It is recommended for the image to have at least 1024x768 pixels of dimension. The image, however, is optional.</value>
   </data>
-  <data name="InitialProductionDate" xml:space="preserve">
-    <value>Data de início de produção</value>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image file</value>
   </data>
   <data name="IsVisible" xml:space="preserve">
-    <value>Visível ao público</value>
+    <value>Publicly visible</value>
   </data>
-  <data name="LogoLocation" xml:space="preserve">
-    <value>Logótipo</value>
+  <data name="Keywords" xml:space="preserve">
+    <value>Keywords</value>
   </data>
-  <data name="LogoRecommendation" xml:space="preserve">
-    <value>É recomendado uma imagem .jpg ou .png com dimensões de 400x400. A imagem é opcional.</value>
+  <data name="Location" xml:space="preserve">
+    <value>Localization</value>
   </data>
-  <data name="Notes" xml:space="preserve">
-    <value>Notas</value>
+  <data name="MustChooseDocument" xml:space="preserve">
+    <value>You must choose a document first.</value>
   </data>
-  <data name="OrganizationSystem" xml:space="preserve">
-    <value>Sistema de organização</value>
+  <data name="ProductionDate" xml:space="preserve">
+    <value>Production date</value>
   </data>
-  <data name="ProductionPeriod" xml:space="preserve">
-    <value>Período de produção</value>
+  <data name="Publication" xml:space="preserve">
+    <value>Publicated in</value>
   </data>
-  <data name="Provenience" xml:space="preserve">
-    <value>Proveniência</value>
+  <data name="Subject" xml:space="preserve">
+    <value>Topic</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Título da coleção</value>
-  </data>
-  <data name="Translations" xml:space="preserve">
-    <value>Traduções desta coleção</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Tipo de coleção</value>
-  </data>
-  <data name="Type_Collection" xml:space="preserve">
-    <value>Coleção</value>
-  </data>
-  <data name="Type_Fond" xml:space="preserve">
-    <value>Fundo</value>
-  </data>
-  <data name="Type_Other" xml:space="preserve">
-    <value>Outro</value>
-  </data>
-  <data name="Validation_CodeAlreadyExists" xml:space="preserve">
-    <value>Já existe uma coleção com este código de catalogação.</value>
+    <value>Title</value>
   </data>
 </root>
