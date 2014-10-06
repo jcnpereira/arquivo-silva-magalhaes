@@ -121,16 +121,16 @@
     <value>Catalogation date</value>
   </data>
   <data name="CatalogCode" xml:space="preserve">
-    <value>Catalog code</value>
+    <value>Reference code</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="DocumentDate" xml:space="preserve">
-    <value>Document date</value>
+    <value>Date</value>
   </data>
   <data name="DocumentLocation" xml:space="preserve">
-    <value>Document location</value>
+    <value>Location</value>
   </data>
   <data name="FieldAndContents" xml:space="preserve">
     <value>Field and contents</value>
@@ -139,10 +139,10 @@
     <value>Notes</value>
   </data>
   <data name="ResponsibleName" xml:space="preserve">
-    <value>Name of the resoinsible</value>
+    <value>Person responsible</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Document title</value>
+    <value>Title</value>
   </data>
   <data name="UnknownDocumentDate" xml:space="preserve">
     <value>Unknown date</value>
@@ -157,7 +157,7 @@
     <value>Photographer</value>
   </data>
   <data name="Collection" xml:space="preserve">
-    <value>Document collection</value>
+    <value>Collection</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Create document</value>
@@ -172,7 +172,7 @@
     <value>The format of the source document must respect the following format: Document Collection-(Ex: ASM-1 or PAS-002)</value>
   </data>
   <data name="MustChooseCollection" xml:space="preserve">
-    <value>Must first choose a collection.</value>
+    <value>You must choose a collection first.</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Document details</value>

@@ -25,7 +25,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
                     new SelectListItem
                     {
                         Value = "",
-                        Text = UiPrompts.ChooseOne
+                        Text = LayoutStrings.ChooseOne
                     }
                 };
 
@@ -34,7 +34,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
                     new SelectListItem
                     {
                         Value = "",
-                        Text = UiPrompts.ChooseOne
+                        Text = LayoutStrings.ChooseOne
                     }
                 };
         }

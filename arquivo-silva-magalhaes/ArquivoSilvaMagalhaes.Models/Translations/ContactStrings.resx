@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Morada</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Endereço de e-mail</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="EntityNamePlural" xml:space="preserve">
+    <value>Contactos</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

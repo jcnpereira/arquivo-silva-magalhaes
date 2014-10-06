@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
-    ViewBag.AlertMsg = ViewBag.AlertMsg ?? UiPrompts.ConfirmDelete;
+    ViewBag.AlertMsg = ViewBag.AlertMsg ?? LayoutStrings.ConfirmDelete;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -22,11 +22,11 @@
             <div class="input-group">
                 <div class="btn-group">
                     <button type="submit" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+                        <span class="glyphicon glyphicon-floppy-remove"></span> @LayoutStrings.Delete
                     </button>
 
                     <a href="@(ViewBag.ReturnTo ?? Url.Action("Index"))" class="btn btn-default">
-                        <span class="glyphicon glyphicon-stop"></span> @UiStrings.Cancel
+                        <span class="glyphicon glyphicon-stop"></span> @LayoutStrings.Cancel
                     </a>
                 </div>
             </div>

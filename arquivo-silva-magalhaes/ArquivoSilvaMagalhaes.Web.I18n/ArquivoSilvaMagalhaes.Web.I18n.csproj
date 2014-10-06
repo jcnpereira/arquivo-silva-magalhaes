@@ -44,42 +44,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="ErrorStrings.Designer.cs">
-      <DependentUpon>ErrorStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="FrontOfficeStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FrontOfficeStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="LayoutStrings.Designer.cs">
       <DependentUpon>LayoutStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiteModelStrings.Designer.cs">
-      <DependentUpon>SiteModelStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="UiPrompts.Designer.cs">
-      <DependentUpon>UiPrompts.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="UiStrings.Designer.cs">
-      <DependentUpon>UiStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="ValidationErrorStrings.Designer.cs">
-      <DependentUpon>ValidationErrorStrings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ViewSpecific\Layout_ShowcasePhoto.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,16 +62,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorStrings.en.resx" />
-    <EmbeddedResource Include="ErrorStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrontOfficeStrings.en.resx" />
-    <EmbeddedResource Include="FrontOfficeStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>FrontOfficeStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\web.config" />
@@ -111,24 +71,6 @@
     <EmbeddedResource Include="LayoutStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LayoutStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SiteModelStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SiteModelStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UiPrompts.en.resx" />
-    <EmbeddedResource Include="UiPrompts.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UiPrompts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UiStrings.en.resx" />
-    <EmbeddedResource Include="UiStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ValidationErrorStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ValidationErrorStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewSpecific\Layout_ShowcasePhoto.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

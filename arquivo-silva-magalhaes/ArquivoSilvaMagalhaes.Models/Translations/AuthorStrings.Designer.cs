@@ -160,15 +160,6 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Autor.
-        /// </summary>
-        public static string EntityTitleFormat {
-            get {
-                return ResourceManager.GetString("EntityTitleFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Primeiro nome.
         /// </summary>
         public static string FirstName {

@@ -1,7 +1,7 @@
 ﻿@model TranslatedViewModel<Archive, ArchiveTranslation>
 
 @{
-    ViewBag.Title = FrontOfficeStrings.History;
+    ViewBag.Title = LayoutStrings.History;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,9 +11,22 @@
             frameborder="0"></iframe>
 </div>
 
-<h2>@FrontOfficeStrings.History</h2>
+<h2>
+    @LayoutStrings.History
+</h2>
+
 <hr />
-<p>@Html.DisplayFor(model => model.Translation.ArchiveHistory)</p><br />
-<h2>@FrontOfficeStrings.Mission</h2>
+
+<h2>
+    @ArchiveStrings.ArchiveHistory
+</h2>
+<hr />
+<p>
+    @Html.DisplayFor(model => model.Translation.ArchiveHistory)
+</p>
+
+<h2>
+    @ArchiveStrings.ArchiveMission
+</h2>
 <hr />
 <p>@Html.DisplayFor(model => model.Translation.ArchiveMission)</p><br />

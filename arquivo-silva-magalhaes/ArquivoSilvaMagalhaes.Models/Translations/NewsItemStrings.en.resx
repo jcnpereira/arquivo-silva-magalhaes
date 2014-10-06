@@ -141,6 +141,12 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>News items</value>
   </data>
+  <data name="EntityNameShort" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="EntityNameShortPlural" xml:space="preserve">
+    <value>News</value>
+  </data>
   <data name="ExpiryDate" xml:space="preserve">
     <value>Expires at</value>
   </data>

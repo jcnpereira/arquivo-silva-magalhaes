@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <strong>@Html.DisplayNameFor(model => model.IsVisible)</strong>
-            <span>@(Model.IsVisible ? UiStrings.Yes : UiStrings.No)</span>
+            <span>@(Model.IsVisible ? LayoutStrings.Yes : LayoutStrings.No)</span>
         </div>
 
         <div class="row">
@@ -27,11 +27,11 @@
             <a class="btn btn-default" title="Transferir Original" href="@Url.Action("GetPicture", new { Id = Model.Id, size = "Original" })">
                 <span class="glyphicon glyphicon-download"></span>
             </a>
-            <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("EditPhotoDetails", new { id = Model.Id })">
+            <a class="btn btn-default" title="@LayoutStrings.Edit" href="@Url.Action("EditPhotoDetails", new { id = Model.Id })">
                 <span class="glyphicon glyphicon-edit"></span>
             </a>
             @Html.AntiForgeryToken()
-            <a href="@Url.Action("DeletePhoto", new { id = Model.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-link="">
+            <a href="@Url.Action("DeletePhoto", new { id = Model.Id })" class="btn btn-danger" title="@LayoutStrings.Delete" data-afsm-show-modal="true" data-afsm-link="">
                 <span class="glyphicon glyphicon-floppy-remove"></span>
             </a>
         </form>

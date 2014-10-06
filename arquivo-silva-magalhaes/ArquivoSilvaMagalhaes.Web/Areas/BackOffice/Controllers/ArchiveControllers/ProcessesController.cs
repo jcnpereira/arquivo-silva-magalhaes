@@ -110,7 +110,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     var result = new List<object>
                     {
                         new {
-                            text = UiPrompts.ChooseOne,
+                            text = LayoutStrings.ChooseOne,
                             value = ""
                         }
                     };

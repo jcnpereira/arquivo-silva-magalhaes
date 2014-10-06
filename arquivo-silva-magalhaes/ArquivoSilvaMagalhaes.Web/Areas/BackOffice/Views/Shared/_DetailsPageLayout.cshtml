@@ -15,17 +15,17 @@
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group">
                 <a class="btn btn-primary" href="@Url.Action("Index")">
-                    <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+                    <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
                 </a>
             </div>
 
             <div class="btn-group">
-                <a class="btn btn-default" title="@UiStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
-                    <span class="glyphicon glyphicon-edit"></span> @UiStrings.Edit
+                <a class="btn btn-default" title="@LayoutStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
+                    <span class="glyphicon glyphicon-edit"></span> @LayoutStrings.Edit
                 </a>
 
-                <a class="btn btn-danger" title="@UiStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@UiPrompts.ConfirmDelete">
-                    <span class="glyphicon glyphicon-floppy-remove"></span> @UiStrings.Delete
+                <a class="btn btn-danger" title="@LayoutStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@LayoutStrings.ConfirmDelete">
+                    <span class="glyphicon glyphicon-floppy-remove"></span> @LayoutStrings.Delete
                 </a>
             </div>
 

@@ -12,12 +12,12 @@
 
                         <div class="text-center">
                             <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
-                                <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
+                                <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Edit">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
 
                                 @Html.AntiForgeryToken()
-                                <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@BannerStrings.DeleteWarningMessage">
+                                <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@LayoutStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@BannerStrings.DeleteWarningMessage">
                                     <span class="glyphicon glyphicon-floppy-remove"></span>
                                 </a>
                             </form>

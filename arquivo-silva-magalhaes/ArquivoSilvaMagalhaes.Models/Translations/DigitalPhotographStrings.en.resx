@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CopyrightInfo" xml:space="preserve">
-    <value>Copyright info</value>
+    <value>Copyright information</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Delete digital photogaph</value>
@@ -133,7 +133,7 @@
     <value>Digital photographs</value>
   </data>
   <data name="IsVisible" xml:space="preserve">
-    <value>Visible to the public</value>
+    <value>Publicly visible</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>

@@ -95,5 +95,14 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
                 return ResourceManager.GetString("DetailsTitleFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar os detalhes do arquivo.
+        /// </summary>
+        public static string EditTitleFormat {
+            get {
+                return ResourceManager.GetString("EditTitleFormat", resourceCulture);
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        <h4>@UiStrings.Preview</h4>
+        <h4>@LayoutStrings.Preview</h4>
 
         <img src="@Url.Content("~/Public/Banners/" + Model.Banner.UriPath)" class="img-responsive center-block img-thumbnail" style="max-height: 300px" />
 
@@ -46,7 +46,7 @@
             }
         </div>
 
-        @Html.Partial("_SubmitBackPartial", UiStrings.Done)
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Done)
     </div>
 
 }

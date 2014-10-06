@@ -133,6 +133,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notícia.
+        /// </summary>
+        public static string EntityNameShort {
+            get {
+                return ResourceManager.GetString("EntityNameShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notícias.
+        /// </summary>
+        public static string EntityNameShortPlural {
+            get {
+                return ResourceManager.GetString("EntityNameShortPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de expiração.
         /// </summary>
         public static string ExpiryDate {

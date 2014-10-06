@@ -18,10 +18,10 @@
                     @Html.DisplayNameFor(model => model.Entity.IsVisible)
                 </th>
                 <th>
-                    @UiStrings.RelatedItems
+                    @LayoutStrings.RelatedItems
                 </th>
                 <th>
-                    @UiStrings.Actions
+                    @LayoutStrings.Actions
                 </th>
             </tr>
         </thead>
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Entity.ProductionDate)
                 </td>
                 <td>
-                    @(item.Entity.IsVisible ? UiStrings.Yes : UiStrings.No)
+                    @(item.Entity.IsVisible ? LayoutStrings.Yes : LayoutStrings.No)
                 </td>
                 <td>
                     @Html.ActionLink(DocumentStrings.EntityName, "Details", "Documents", new { id = item.Entity.DocumentId }, null) |
@@ -49,16 +49,16 @@
                 </td>
                 <td>
                     <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
-                        <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Details">
+                        <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Details">
                             <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
 
-                        <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@UiStrings.Edit">
+                        <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
 
                         @Html.AntiForgeryToken()
-                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@UiStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ImageStrings.DeleteWarningMessage">
+                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@LayoutStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ImageStrings.DeleteWarningMessage">
                             <span class="glyphicon glyphicon-floppy-remove"></span>
                         </a>
                     </form>

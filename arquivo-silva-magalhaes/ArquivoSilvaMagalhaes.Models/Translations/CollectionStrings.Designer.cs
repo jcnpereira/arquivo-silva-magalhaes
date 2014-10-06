@@ -304,7 +304,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título da coleção.
+        ///   Looks up a localized string similar to Título.
         /// </summary>
         public static string Title {
             get {

@@ -39,24 +39,24 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h4>@Html.ActionLink(LayoutStrings.News, "Index", "News")</h4>
+        <h4>@Html.ActionLink(NewsItemStrings.EntityNameShortPlural, "Index", "News")</h4>
         <a href="@Url.Action("Index", "News")">
             <img src="~/Content/Images/news.png" />
         </a>
         <p>
             <small>
-                @FrontOfficeStrings.NewsIndex
+                @LayoutStrings.NewsDescription
             </small>
         </p>
     </div>
     <div class="col-md-3">
-        <h4>@Html.ActionLink(LayoutStrings.Events, "Index", "Events")</h4>
+        <h4>@Html.ActionLink(EventStrings.EntityNamePlural, "Index", "Events")</h4>
         <a href="@Url.Action("Index", "Events")">
             <img src="~/Content/Images/events.png" />
         </a>
         <p>
             <small>
-                @FrontOfficeStrings.EventsIndex
+                @LayoutStrings.EventDescription
             </small>
         </p>
     </div>
@@ -68,18 +68,18 @@
         </a>
         <p>
             <small>
-                @FrontOfficeStrings.CollectionsIndex
+                @LayoutStrings.CollectionDescription
             </small>
         </p>
     </div>
     <div class="col-md-3">
-        <h4>@Html.ActionLink(LayoutStrings.Showcase, "Index", "ShowcasePhotos", null, null)</h4>
+        <h4>@Html.ActionLink(ShowcasePhotoStrings.EntityNamePlural, "Index", "ShowcasePhotos", null, null)</h4>
         <a href="@Url.Action("Index", "ShowcasePhotos")">
             <img src="~/Content/Images/spotlightphoto.png" />
         </a>
         <p>
             <small>
-                @FrontOfficeStrings.ShowCaseIndex
+                @LayoutStrings.ShowcaseDescription
             </small>
         </p>
     </div>

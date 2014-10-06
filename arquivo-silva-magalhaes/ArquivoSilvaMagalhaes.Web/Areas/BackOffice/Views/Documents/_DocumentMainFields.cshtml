@@ -51,7 +51,7 @@
     <div class="col-sm-10">
         <div class="input-group">
             <span class="input-group-btn">
-                <button data-afsm-suggest="true" data-afsm-warning="@DocumentStrings.MustChooseCollection" data-afsm-url="@Url.Action("SuggestCode", new { collectionId = "xx" })" data-afsm-src="@Html.IdFor(model => model.CollectionId)" data-afsm-for="@Html.IdFor(model => model.CatalogCode)" class="btn btn-primary" type="button">@UiStrings.Suggest</button>
+                <button data-afsm-suggest="true" data-afsm-warning="@DocumentStrings.MustChooseCollection" data-afsm-url="@Url.Action("SuggestCode", new { collectionId = "xx" })" data-afsm-src="@Html.IdFor(model => model.CollectionId)" data-afsm-for="@Html.IdFor(model => model.CatalogCode)" class="btn btn-primary" type="button">@LayoutStrings.Suggest</button>
             </span>
             @Html.EditorFor(model => model.CatalogCode, new { htmlAttributes = new { @class = "form-control" } })
 

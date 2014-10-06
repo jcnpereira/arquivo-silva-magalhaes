@@ -120,11 +120,38 @@
   <data name="About" xml:space="preserve">
     <value>Acerca</value>
   </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Autores</value>
+  <data name="Actions" xml:space="preserve">
+    <value>Ações</value>
   </data>
-  <data name="Contacts" xml:space="preserve">
-    <value>Contactos</value>
+  <data name="AddTranslation" xml:space="preserve">
+    <value>Adicionar tradução</value>
+  </data>
+  <data name="AssociatePicture" xml:space="preserve">
+    <value>Associar fotografias digitais</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Atenção</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Retroceder</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ChooseMultipleSuggestion" xml:space="preserve">
+    <value>Pode seleccionar múltiplos itens recorrendo à tecla </value>
+  </data>
+  <data name="ChooseOne" xml:space="preserve">
+    <value>Escolha um...</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="CollectionDescription" xml:space="preserve">
+    <value>Coleções de fotografias de diversos autores contextualizadas históricamente e geográficamente.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este registo?</value>
   </data>
   <data name="Contents" xml:space="preserve">
     <value>Acervo</value>
@@ -132,11 +159,41 @@
   <data name="Council" xml:space="preserve">
     <value>Câmara Municipal de Tomar</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteTranslation" xml:space="preserve">
+    <value>Eliminar Tradução</value>
+  </data>
+  <data name="DeleteTranslationWarning" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar esta tradução?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalhes</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Terminar</value>
+  </data>
   <data name="DontShowAgain" xml:space="preserve">
     <value>Não mostrar novamente</value>
   </data>
-  <data name="Events" xml:space="preserve">
-    <value>Eventos</value>
+  <data name="Download" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EventDescription" xml:space="preserve">
+    <value>Exposições, atividades, eventos pedagógicos, workshops, entre outros...</value>
+  </data>
+  <data name="GoToList" xml:space="preserve">
+    <value>Voltar para a lista</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>História</value>
@@ -144,23 +201,56 @@
   <data name="Index" xml:space="preserve">
     <value>Início</value>
   </data>
-  <data name="News" xml:space="preserve">
-    <value>Notícias</value>
+  <data name="Language" xml:space="preserve">
+    <value>Língua</value>
+  </data>
+  <data name="MustChooseAtLeastOne" xml:space="preserve">
+    <value>Tem que escolher pelo menos um item da lista.</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>Todas as novidades sobre coleções, fotos, projetos e exposições.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>(Sem imagem)</value>
   </data>
   <data name="NoItems" xml:space="preserve">
     <value>(Sem itens)</value>
   </data>
-  <data name="Partnerships" xml:space="preserve">
-    <value>Projetos e Parcerias</value>
+  <data name="Note" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Por favor, aguarde...</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Pré-visualização</value>
   </data>
   <data name="References" xml:space="preserve">
     <value>Referências</value>
   </data>
+  <data name="RelatedItems" xml:space="preserve">
+    <value>Itens relacionados</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Guardar alterações</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisa</value>
   </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Pesquisar...</value>
+  </data>
   <data name="Showcase" xml:space="preserve">
     <value>Destaque</value>
+  </data>
+  <data name="ShowcaseDescription" xml:space="preserve">
+    <value>Fotografias em destaque com comentários.</value>
   </data>
   <data name="SiteDescription" xml:space="preserve">
     <value>Portal do Arquivo Fotográfico Silva Magalhães. O acervo deste Arquivo é constituído por diversos fundos e coleções de diversos fotógrafos e colecionadores do séc. XIX.</value>
@@ -168,10 +258,16 @@
   <data name="SiteName" xml:space="preserve">
     <value>Arquivo Fotográfico Silva Magalhães</value>
   </data>
-  <data name="TechnicalDocuments" xml:space="preserve">
-    <value>Documentos Técnicos</value>
+  <data name="Suggest" xml:space="preserve">
+    <value>Sugerir</value>
   </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>Links Úteis</value>
+  <data name="UnknownDate" xml:space="preserve">
+    <value>Data desconhecida ou inexistente</value>
+  </data>
+  <data name="UseBoxForSearch" xml:space="preserve">
+    <value>Utilize a caixa de texto acima para pesquisar.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sim</value>
   </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿@model DocumentTranslation
 
 @{
-    ViewBag.Title = UiStrings.AddTranslation;
+    ViewBag.Title = LayoutStrings.AddTranslation;
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
@@ -22,7 +22,7 @@
 
         @Html.PartialFor(model => model, "_DocumentTranslateableFields")
 
-        @Html.Partial("_SubmitBackPartial", UiStrings.Done)
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Done)
     </div>
 }
 

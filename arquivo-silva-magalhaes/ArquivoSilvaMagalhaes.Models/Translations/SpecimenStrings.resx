@@ -162,6 +162,9 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Specimens</value>
   </data>
+  <data name="Error_UnknownImage" xml:space="preserve">
+    <value>Esta imagem não existe.</value>
+  </data>
   <data name="Format" xml:space="preserve">
     <value>Format</value>
   </data>

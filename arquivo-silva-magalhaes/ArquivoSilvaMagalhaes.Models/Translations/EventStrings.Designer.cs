@@ -151,15 +151,6 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eventos relacionados.
-        /// </summary>
-        public static string Events {
-            get {
-                return ResourceManager.GetString("Events", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tipo de evento.
         /// </summary>
         public static string EventType {
@@ -237,15 +228,6 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string Latitude {
             get {
                 return ResourceManager.GetString("Latitude", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Links relacionados.
-        /// </summary>
-        public static string Links {
-            get {
-                return ResourceManager.GetString("Links", resourceCulture);
             }
         }
         

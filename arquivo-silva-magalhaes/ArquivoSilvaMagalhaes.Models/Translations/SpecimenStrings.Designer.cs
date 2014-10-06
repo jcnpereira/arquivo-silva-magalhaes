@@ -196,6 +196,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esta imagem não existe..
+        /// </summary>
+        public static string Error_UnknownImage {
+            get {
+                return ResourceManager.GetString("Error_UnknownImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Format.
         /// </summary>
         public static string Format {

@@ -129,4 +129,7 @@
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Archive details</value>
   </data>
+  <data name="EditTitleFormat" xml:space="preserve">
+    <value>Edit archive details</value>
+  </data>
 </root>

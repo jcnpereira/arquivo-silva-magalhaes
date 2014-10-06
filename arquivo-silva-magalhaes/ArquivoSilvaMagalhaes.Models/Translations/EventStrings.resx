@@ -138,9 +138,6 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Eventos</value>
   </data>
-  <data name="Events" xml:space="preserve">
-    <value>Eventos relacionados</value>
-  </data>
   <data name="EventType" xml:space="preserve">
     <value>Tipo de evento</value>
   </data>
@@ -164,9 +161,6 @@
   </data>
   <data name="HideAfterExpiry" xml:space="preserve">
     <value>Esconder após expiração</value>
-  </data>
-  <data name="Links" xml:space="preserve">
-    <value>Links relacionados</value>
   </data>
   <data name="Place" xml:space="preserve">
     <value>Local do evento</value>

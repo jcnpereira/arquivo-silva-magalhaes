@@ -150,9 +150,6 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Authors</value>
   </data>
-  <data name="EntityTitleFormat" xml:space="preserve">
-    <value>Author</value>
-  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>

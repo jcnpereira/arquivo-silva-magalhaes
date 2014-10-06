@@ -18,7 +18,7 @@
             @Html.ListBoxFor(model => model.KeywordIds, Model.AvailableKeywords, new { @class = "form-control" })
         </div>
         @Html.ValidationMessageFor(model => Model.KeywordIds, "", new { @class = "text-danger" })
-        <p class="help-block">@UiStrings.ChooseMultipleSuggestion <kbd>Ctrl</kbd>.</p>
+        <p class="help-block">@LayoutStrings.ChooseMultipleSuggestion <kbd>Ctrl</kbd>.</p>
     </div>
 </div>
 

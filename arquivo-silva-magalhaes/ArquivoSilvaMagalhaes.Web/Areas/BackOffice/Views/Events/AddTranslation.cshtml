@@ -1,7 +1,7 @@
 ﻿@model EventTranslation
 
 @{
-    ViewBag.Title = UiStrings.AddTranslation;
+    ViewBag.Title = LayoutStrings.AddTranslation;
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 
 }
@@ -17,14 +17,14 @@
     <div class="form-horizontal">
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LanguageCode, UiStrings.Language, new { @class = "control-label col-sm-2" })
+            @Html.LabelFor(model => model.LanguageCode, LayoutStrings.Language, new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
                 @Html.DropDownListFor(model => model.LanguageCode, (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
             </div>
         </div>
 
         @Html.Partial("_EventTranslateableFields")
-        @Html.Partial("_SubmitBackPartial", UiStrings.Create)
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
     </div>
 
 }

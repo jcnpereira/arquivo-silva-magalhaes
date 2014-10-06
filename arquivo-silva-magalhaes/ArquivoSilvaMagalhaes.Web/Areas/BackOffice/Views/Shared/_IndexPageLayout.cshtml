@@ -15,10 +15,10 @@
         <div class="pull-left">
             <div class="btn-toolbar" role="toolbar">
                 <a class="btn btn-default" href="@Url.Action("Index", "Home")">
-                    <span class="glyphicon glyphicon-arrow-left"></span> @UiStrings.Back
+                    <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
                 </a>
-                <a class="btn btn-primary" title="@UiStrings.Create" href="@Url.Action("Create")">
-                    <span class="glyphicon glyphicon-plus"></span> @UiStrings.New
+                <a class="btn btn-primary" title="@LayoutStrings.Create" href="@Url.Action("Create")">
+                    <span class="glyphicon glyphicon-plus"></span> @LayoutStrings.New
                 </a>
             </div>
             @RenderSection("panelheader", required: false)

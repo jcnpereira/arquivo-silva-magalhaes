@@ -121,7 +121,7 @@
     <value>Coordinates</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
-    <value>Criate event</value>
+    <value>Create event</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
     <value>Delete event</value>
@@ -138,9 +138,6 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Events</value>
   </data>
-  <data name="Events" xml:space="preserve">
-    <value>Events related</value>
-  </data>
   <data name="EventType" xml:space="preserve">
     <value>Event type</value>
   </data>
@@ -151,13 +148,13 @@
     <value>Other</value>
   </data>
   <data name="EventType_School" xml:space="preserve">
-    <value>Pedagogical activity</value>
+    <value>Educational activity</value>
   </data>
   <data name="EventType_Workshop" xml:space="preserve">
     <value>Workshop</value>
   </data>
   <data name="ExpiryDate" xml:space="preserve">
-    <value>Expiry date</value>
+    <value>Expires at</value>
   </data>
   <data name="Heading" xml:space="preserve">
     <value>Heading</value>
@@ -166,25 +163,25 @@
     <value>Hide after expiry</value>
   </data>
   <data name="Links" xml:space="preserve">
-    <value>Links related</value>
+    <value>Related links</value>
   </data>
   <data name="Place" xml:space="preserve">
-    <value>Event place</value>
+    <value>Location</value>
   </data>
   <data name="PublishDate" xml:space="preserve">
-    <value>Publication date</value>
+    <value>Publish at</value>
   </data>
   <data name="StartMoment" xml:space="preserve">
-    <value>Start moment</value>
+    <value>Starts at</value>
   </data>
   <data name="TextContent" xml:space="preserve">
-    <value>Mesage</value>
+    <value>Message</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
   <data name="VisitorInformation" xml:space="preserve">
-    <value>Information on visitors</value>
+    <value>Visitor information</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
     <value>Event details</value>
@@ -196,10 +193,10 @@
     <value>Attachments</value>
   </data>
   <data name="Validation_EndsBeforeItStarts" xml:space="preserve">
-    <value>The start time of an event can not occur after the date of termination.</value>
+    <value>An event cannot start after it ends.</value>
   </data>
   <data name="Validation_ExpiresBeforePublish" xml:space="preserve">
-    <value>The expiration date can not be earlier than the date of publication.</value>
+    <value>The publish date cannot be posterior to the expiry date.</value>
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>

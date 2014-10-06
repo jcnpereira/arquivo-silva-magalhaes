@@ -90,7 +90,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     result.Add(new
                     {
                         value = "",
-                        text = UiPrompts.ChooseOne
+                        text = LayoutStrings.ChooseOne
                     });
 
                     result.AddRange(

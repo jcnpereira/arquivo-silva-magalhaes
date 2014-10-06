@@ -47,12 +47,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
             AvailableDocuments = new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = UiPrompts.ChooseOne }
+                new SelectListItem { Selected = true, Text = LayoutStrings.ChooseOne }
             };
 
             AvailableClassifications = new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = UiPrompts.ChooseOne }
+                new SelectListItem { Selected = true, Text = LayoutStrings.ChooseOne }
             };
 
             KeywordIds = i.Keywords.Select(k => k.Id).ToArray();
@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Classification")]
         public List<SelectListItem> AvailableClassifications { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
+        [Required(ErrorMessageResourceType = typeof(LayoutStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] KeywordIds { get; set; }
 
         [Display(ResourceType = typeof(ImageStrings), Name = "ImageUrl")]

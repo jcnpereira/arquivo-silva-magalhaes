@@ -151,6 +151,24 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destaque.
+        /// </summary>
+        public static string EntityNameShort {
+            get {
+                return ResourceManager.GetString("EntityNameShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destaques.
+        /// </summary>
+        public static string EntityNameShortPlural {
+            get {
+                return ResourceManager.GetString("EntityNameShortPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imagem.
         /// </summary>
         public static string Image {

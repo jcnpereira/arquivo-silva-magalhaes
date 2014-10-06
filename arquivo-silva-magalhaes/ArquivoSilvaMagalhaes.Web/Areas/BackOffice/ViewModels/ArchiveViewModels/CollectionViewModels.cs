@@ -20,7 +20,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
         public HttpPostedFileBase Logo { get; set; }
 
         [Display(ResourceType = typeof(CollectionStrings), Name = "Authors")]
-        [Required(ErrorMessageResourceType = typeof(ValidationErrorStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
+        [Required(ErrorMessageResourceType = typeof(LayoutStrings), ErrorMessageResourceName = "MustChooseAtLeastOne")]
         public int[] AuthorIds { get; set; }
     }
 }

@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Coleção deste documento.
+        ///   Looks up a localized string similar to Coleção.
         /// </summary>
         public static string Collection {
             get {
@@ -160,7 +160,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data do documento.
+        ///   Looks up a localized string similar to Data.
         /// </summary>
         public static string DocumentDate {
             get {

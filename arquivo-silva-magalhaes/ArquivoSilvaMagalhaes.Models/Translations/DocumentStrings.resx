@@ -127,7 +127,7 @@
     <value>Descrição</value>
   </data>
   <data name="DocumentDate" xml:space="preserve">
-    <value>Data do documento</value>
+    <value>Data</value>
   </data>
   <data name="DocumentLocation" xml:space="preserve">
     <value>Localização do documento</value>
@@ -157,7 +157,7 @@
     <value>Fotógrafo</value>
   </data>
   <data name="Collection" xml:space="preserve">
-    <value>Coleção deste documento</value>
+    <value>Coleção</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
     <value>Criar documento</value>

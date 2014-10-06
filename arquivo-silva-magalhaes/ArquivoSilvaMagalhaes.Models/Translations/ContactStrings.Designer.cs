@@ -61,11 +61,38 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Morada.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço de e-mail.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacto.
+        /// </summary>
+        public static string EntityName {
+            get {
+                return ResourceManager.GetString("EntityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contactos.
+        /// </summary>
+        public static string EntityNamePlural {
+            get {
+                return ResourceManager.GetString("EntityNamePlural", resourceCulture);
             }
         }
         

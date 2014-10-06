@@ -94,7 +94,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ErrorStrings.Specimen__UnknownImage);
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, SpecimenStrings.Error_UnknownImage);
                 }
             }
 
@@ -308,7 +308,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             model.AvailableImages.Add(new SelectListItem
                 {
                     Value = "",
-                    Text = UiPrompts.ChooseOne,
+                    Text = LayoutStrings.ChooseOne,
                     Selected = true
                 });
 
@@ -325,7 +325,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             model.AvailableProcesses.Add(new SelectListItem
             {
                 Value = "",
-                Text = UiPrompts.ChooseOne,
+                Text = LayoutStrings.ChooseOne,
                 Selected = true
             });
 
@@ -343,7 +343,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             model.AvailableFormats.Add(new SelectListItem
             {
                 Value = "",
-                Text = UiPrompts.ChooseOne,
+                Text = LayoutStrings.ChooseOne,
                 Selected = true
             });
 

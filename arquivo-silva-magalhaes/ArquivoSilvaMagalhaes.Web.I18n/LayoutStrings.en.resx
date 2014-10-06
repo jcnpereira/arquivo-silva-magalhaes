@@ -120,11 +120,38 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Authors</value>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="Contacts" xml:space="preserve">
-    <value>Contacts</value>
+  <data name="AddTranslation" xml:space="preserve">
+    <value>Add translation</value>
+  </data>
+  <data name="AssociatePicture" xml:space="preserve">
+    <value>Add digital photographs</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseMultipleSuggestion" xml:space="preserve">
+    <value>You can select multiple items by pressing </value>
+  </data>
+  <data name="ChooseOne" xml:space="preserve">
+    <value>Choose one...</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CollectionDescription" xml:space="preserve">
+    <value>Collections of photographs from many authors, historically and geographically contextualized.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
   </data>
   <data name="Contents" xml:space="preserve">
     <value>Archive</value>
@@ -132,11 +159,41 @@
   <data name="Council" xml:space="preserve">
     <value>Council of Tomar</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteTranslation" xml:space="preserve">
+    <value>Delete translation</value>
+  </data>
+  <data name="DeleteTranslationWarning" xml:space="preserve">
+    <value>Are you sure you want to delete this translation?</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
   <data name="DontShowAgain" xml:space="preserve">
     <value>Don't show again</value>
   </data>
-  <data name="Events" xml:space="preserve">
-    <value>Events</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EventDescription" xml:space="preserve">
+    <value>All the news related to events about the Photographic Archive of Silva Magalhães.</value>
+  </data>
+  <data name="GoToList" xml:space="preserve">
+    <value>Back to list</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
@@ -144,23 +201,56 @@
   <data name="Index" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MustChooseAtLeastOne" xml:space="preserve">
+    <value>You must choose at least one item from the list.</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewsDescription" xml:space="preserve">
+    <value>All the news about collections, events and projects by the Photographic Archive of Silva Magalhães.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>(No image)</value>
   </data>
   <data name="NoItems" xml:space="preserve">
     <value>(No items)</value>
   </data>
-  <data name="Partnerships" xml:space="preserve">
-    <value>Partnerships</value>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
   </data>
   <data name="References" xml:space="preserve">
     <value>References</value>
   </data>
+  <data name="RelatedItems" xml:space="preserve">
+    <value>Related items</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Search...</value>
+  </data>
   <data name="Showcase" xml:space="preserve">
     <value>Showcase</value>
+  </data>
+  <data name="ShowcaseDescription" xml:space="preserve">
+    <value>A place where our contributors use photography to discuss various topics.</value>
   </data>
   <data name="SiteDescription" xml:space="preserve">
     <value>Site for the Photographic Archive of Silva Magalhães. This Archive is constituted by many fonds and collections from photographers and collectors from the 19th century.</value>
@@ -168,10 +258,16 @@
   <data name="SiteName" xml:space="preserve">
     <value>Photographic Archive of Silva Magalhães</value>
   </data>
-  <data name="TechnicalDocuments" xml:space="preserve">
-    <value>Technical documents</value>
+  <data name="Suggest" xml:space="preserve">
+    <value>Suggest</value>
   </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+  <data name="UnknownDate" xml:space="preserve">
+    <value>Date unknown or inexsistant</value>
+  </data>
+  <data name="UseBoxForSearch" xml:space="preserve">
+    <value>Use the text box above to search.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>
