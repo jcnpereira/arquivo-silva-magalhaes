@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string currentAction = (Request.RequestContext.RouteData.Values["action"] as string) ?? "index";
+    string currentController = (Request.RequestContext.RouteData.Values["controller"] as string) ?? "home";
+
+    RouteValueDictionary ptRVD = new RouteValueDictionary(ViewContext.RouteData.Values);
+    RouteValueDictionary enRVD = new RouteValueDictionary(ViewContext.RouteData.Values);
+    foreach (string key in Request.QueryString.Keys)
+    {
+        ptRVD[key] = Request.QueryString[key].ToString();
+        enRVD[key] = Request.QueryString[key].ToString();
+    }
+    ptRVD["culture"] = "pt";
+    enRVD["culture"] = "en";
+}
+
+<!DOCTYPE html>
 <html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.Name">
 <head>
     <meta charset="utf-8" />
@@ -64,6 +79,11 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("EN", currentAction, currentController, enRVD, new Dictionary<string, object> { { "class", "pull-left" } })
+                        @Html.ActionLink("PT", currentAction, currentController, ptRVD, new Dictionary<string, object> { { "class", "pull-left" } })
+                        <div class="clearfix"></div>
+                    </li>
                     @Html.Partial("_LayoutLinks")
                 </ul>
             </div>
@@ -78,8 +98,8 @@
                 @* Language selectors. *@
                 <ul id="afsm-language-selector">
 
-                    <li>@Html.ActionLink("EN", "Index", "Home", new { culture = "en" }, null)</li>
-                    <li>@Html.ActionLink("PT", "Index", "Home", new { culture = "pt" }, null)</li>
+                    <li>@Html.ActionLink("EN", currentAction, currentController, enRVD, null)</li>
+                    <li>@Html.ActionLink("PT", currentAction, currentController, ptRVD, null)</li>
                 </ul>
 
                 <ul class="nav nav-stacked">

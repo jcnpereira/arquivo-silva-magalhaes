@@ -2318,13 +2318,11 @@ tbody.collapse.in {
     border-radius: 0;
   }
 }
-/*.navbar-header {
-  &:extend(.clearfix all);
-
-  @media (min-width: @grid-float-breakpoint) {
+@media (min-width: 992px) {
+  .navbar-header {
     float: left;
   }
-}*/
+}
 .navbar-collapse {
   overflow-x: visible;
   padding-right: 15px;
@@ -3404,6 +3402,8 @@ a.list-group-item-danger.active:focus {
 .nav:after,
 .navbar:before,
 .navbar:after,
+.navbar-header:before,
+.navbar-header:after,
 .navbar-collapse:before,
 .navbar-collapse:after {
   content: " ";
@@ -3417,6 +3417,7 @@ a.list-group-item-danger.active:focus {
 .form-horizontal .form-group:after,
 .nav:after,
 .navbar:after,
+.navbar-header:after,
 .navbar-collapse:after {
   clear: both;
 }
