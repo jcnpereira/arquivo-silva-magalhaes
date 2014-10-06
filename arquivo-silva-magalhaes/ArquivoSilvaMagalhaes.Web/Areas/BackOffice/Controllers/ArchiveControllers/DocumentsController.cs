@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 .Where(doc =>
                     (collectionId == 0 || doc.CollectionId == collectionId) &&
                     (authorId == 0 || doc.AuthorId == authorId) &&
-                    (query == "" || doc.Title.Contains(query)))
+                    (query == "" || doc.CatalogCode.Contains(query) || doc.Title.Contains(query)))
                 .OrderBy(doc => doc.Id)
                 .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>
                 {

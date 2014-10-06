@@ -36,7 +36,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             var model = await db.Entities
                 .Include(s => s.Translations)
                 .Where(s =>
-                    (query == "" || s.ArchivalReferenceCode.Contains(query)) &&
+                    (query == "" || s.AuthorCatalogationCode.Contains(query) || s.ReferenceCode.Contains(query) || s.ArchivalReferenceCode.Contains(query)) &&
                     (imageId == 0 || s.ImageId == imageId) &&
                     (formatId == 0 || s.FormatId == formatId) &&
                     (processId == 0 | s.ProcessId == processId))

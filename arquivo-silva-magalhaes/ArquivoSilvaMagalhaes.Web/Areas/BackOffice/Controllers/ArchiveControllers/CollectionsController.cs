@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             var model = await db.Entities
                 .Include(c => c.Translations)
                 .Where(c => authorId == 0 || c.Authors.Any(a => a.Id == authorId))
-                .Where(c => query == "" || c.Translations.Any(t => t.Title.Contains(query)))
+                .Where(c => query == "" || c.CatalogCode.Contains(query) || c.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(c => c.Id)
                 .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>
                 {

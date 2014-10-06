@@ -293,6 +293,9 @@
     <Content Include="Content\Images\Other.png" />
     <Content Include="Content\Images\School.png" />
     <Content Include="Content\Images\Workshop.png" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\frontoffice\afsm-animations.css">
       <DependentUpon>afsm-animations.less</DependentUpon>
     </Content>
@@ -384,7 +387,6 @@
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.css" />
-    <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -507,7 +509,6 @@
     <Content Include="Areas\BackOffice\Views\ShowcasePhotoes\_ShowcasePhotoDropDownLists.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographMainFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_BannerPhotographTranslateableFields.cshtml" />
-    <Content Include="Content\Styles\Bootstrap\bootstrap.css.map" />
     <Content Include="Content\Styles\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionMainFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\Collections\_CollectionTranslateableFields.cshtml" />

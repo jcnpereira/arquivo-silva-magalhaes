@@ -43,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     (documentId == 0 || i.DocumentId == documentId) &&
                     (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
                     (classificationId == 0 || i.ClassificationId == classificationId))
-                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
+                .Where(i => query == "" || i.ImageCode.Contains(query) || i.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(i => i.Id)
                 .Select(img => new TranslatedViewModel<Image, ImageTranslation>
                 {
