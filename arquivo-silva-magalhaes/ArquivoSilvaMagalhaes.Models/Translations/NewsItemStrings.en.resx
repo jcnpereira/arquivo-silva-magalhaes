@@ -150,6 +150,9 @@
   <data name="ExpiryDate" xml:space="preserve">
     <value>Expires at</value>
   </data>
+  <data name="HeaderImage" xml:space="preserve">
+    <value>Header image</value>
+  </data>
   <data name="Heading" xml:space="preserve">
     <value>Heading</value>
   </data>

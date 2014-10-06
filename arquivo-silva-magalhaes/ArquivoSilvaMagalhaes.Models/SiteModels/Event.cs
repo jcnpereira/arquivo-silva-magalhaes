@@ -87,7 +87,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
                 yield return new ValidationResult(EventStrings.Validation_ExpiresBeforePublish, new string[] { "ExpiryDate" });
             }
 
-            if (EndMoment > StartMoment)
+            if (EndMoment < StartMoment)
             {
                 yield return new ValidationResult(EventStrings.Validation_EndsBeforeItStarts, new string[] { "EndMoment" });
             }

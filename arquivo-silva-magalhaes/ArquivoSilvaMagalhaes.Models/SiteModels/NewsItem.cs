@@ -26,10 +26,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(NewsItemStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
 
-
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "ExpiryDate")]
         public DateTime? ExpiryDate { get; set; }
+
+        [Display(ResourceType = typeof(NewsItemStrings), Name = "HeaderImage")]
+        public string HeaderImage { get; set; }
 
         [Required]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "HideAfterExpiry")]

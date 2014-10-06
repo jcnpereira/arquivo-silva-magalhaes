@@ -3826,11 +3826,11 @@ body {
   transform: translateY(-50%);
 }
 .afsm-banner-item-container {
-  overflow: hidden;
+  /*overflow: hidden;*/
   height: 250px;
-  /*max-height: inherit;
-    background-size: cover;
-    background-position: center center;*/
+  max-height: inherit;
+  background-size: cover;
+  background-position: center center;
 }
 .afsm-negate-padding {
   margin: -10px -15px 0 -15px;

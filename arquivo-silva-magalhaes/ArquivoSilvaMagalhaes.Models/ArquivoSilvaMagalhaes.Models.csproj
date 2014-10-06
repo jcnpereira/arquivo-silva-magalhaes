@@ -301,11 +301,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ShowcasePhotoStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations\SpecimenStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpecimenStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Translations\SpecimenStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpotlightVideoStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpotlightVideoStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

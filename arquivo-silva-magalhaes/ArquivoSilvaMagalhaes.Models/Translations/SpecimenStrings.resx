@@ -118,99 +118,105 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddPhotos" xml:space="preserve">
-    <value>Add digital photographs</value>
+    <value>Adicionar fotografias digitais</value>
   </data>
   <data name="ArchivalCodeFormat" xml:space="preserve">
-    <value>The annotation must only contain digits and letters.</value>
+    <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
   </data>
   <data name="ArchivalReferenceCode" xml:space="preserve">
-    <value>Annotation</value>
+    <value>Cota</value>
   </data>
   <data name="AuthorCatalogationCode" xml:space="preserve">
-    <value>Original code</value>
+    <value>Código original</value>
   </data>
   <data name="CodeAlreadyExists" xml:space="preserve">
-    <value>A specimen with that reference code already exists. Please choose another one.</value>
+    <value>Já existe uma espécie com esse código de referência. Escolha outro.</value>
   </data>
   <data name="CodeFormat" xml:space="preserve">
-    <value>The reference code must respect the following format: Collection-Document-Image-Specimen. The annotation is inserted into a different field, and no special characters are allowed.</value>
+    <value>O código de referência tem que respeitar o formato Coleção-Documento-Imagem-Espécie. A cota é inserida num campo à parte, e não são permitidos acentos ou caracteres especiais.</value>
   </data>
   <data name="CreateTitleFormat" xml:space="preserve">
-    <value>Add specimen</value>
+    <value>Criar espécie fotográfica</value>
   </data>
   <data name="DeleteTitleFormat" xml:space="preserve">
-    <value>Delete specimen</value>
+    <value>Eliminar espécie fotográfica</value>
   </data>
   <data name="DeleteWarningMessage" xml:space="preserve">
-    <value>Are you sure you want to delete this specimen?</value>
+    <value>Tem a certeza que pretende eliminar esta espécie fotográfica?</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrição</value>
   </data>
   <data name="DetailedStateDescription" xml:space="preserve">
-    <value>Conservation state description</value>
+    <value>Descrição do estado de conservação</value>
   </data>
   <data name="DetailsTitleFormat" xml:space="preserve">
-    <value>Specimen details</value>
+    <value>Detalhes da espécie fotográfica</value>
   </data>
   <data name="EditTitleFormat" xml:space="preserve">
-    <value>Edit specimen</value>
+    <value>Editar espécie fotográfica</value>
   </data>
   <data name="EntityName" xml:space="preserve">
-    <value>Specimen</value>
+    <value>Espécie fotográfica</value>
   </data>
   <data name="EntityNamePlural" xml:space="preserve">
-    <value>Specimens</value>
+    <value>Espécies fotográficas</value>
+  </data>
+  <data name="EntityNamePluralShort" xml:space="preserve">
+    <value>Espécies</value>
+  </data>
+  <data name="EntityNameShort" xml:space="preserve">
+    <value>Espécie</value>
   </data>
   <data name="Error_UnknownImage" xml:space="preserve">
-    <value>Esta imagem não existe.</value>
+    <value>This image does not exist.</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format</value>
+    <value>Formato</value>
   </data>
   <data name="HasMarksOrStamps" xml:space="preserve">
-    <value>Has marks or stamps</value>
+    <value>Tem marcas ou carimbos</value>
   </data>
   <data name="Image" xml:space="preserve">
-    <value>Image</value>
+    <value>Imagem</value>
   </data>
   <data name="InterventionDescription" xml:space="preserve">
-    <value>Intervention description</value>
+    <value>Descrição da intervenção</value>
   </data>
   <data name="MustChooseImage" xml:space="preserve">
-    <value>You must choose an image first.</value>
+    <value>Tem que escolher primeiro uma imagem.</value>
   </data>
   <data name="NoDigitalPhotographs" xml:space="preserve">
-    <value>No digital photographs.</value>
+    <value>Sem fotografias digitais.</value>
   </data>
   <data name="Notes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Notas</value>
   </data>
   <data name="Photos" xml:space="preserve">
-    <value>Digital photographs</value>
+    <value>Fotografias digitais</value>
   </data>
   <data name="Process" xml:space="preserve">
-    <value>Photographic process</value>
+    <value>Processo fotográfico</value>
   </data>
   <data name="ReferenceCode" xml:space="preserve">
-    <value>Reference code</value>
+    <value>Código de referência</value>
   </data>
   <data name="State" xml:space="preserve">
-    <value>Conservation state</value>
+    <value>Estado de conservação</value>
   </data>
   <data name="State_1" xml:space="preserve">
-    <value>Poor</value>
+    <value>Mau</value>
   </data>
   <data name="State_2" xml:space="preserve">
     <value>Mediocre</value>
   </data>
   <data name="State_3" xml:space="preserve">
-    <value>Satisfactory</value>
+    <value>Satisfatório</value>
   </data>
   <data name="State_4" xml:space="preserve">
-    <value>Good</value>
+    <value>Bom</value>
   </data>
   <data name="State_5" xml:space="preserve">
-    <value>Very Good</value>
+    <value>Muito Bom</value>
   </data>
 </root>

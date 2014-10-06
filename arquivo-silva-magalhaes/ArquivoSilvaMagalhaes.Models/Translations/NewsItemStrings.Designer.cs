@@ -160,6 +160,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imagem de cabeçalho.
+        /// </summary>
+        public static string HeaderImage {
+            get {
+                return ResourceManager.GetString("HeaderImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Destaques.
         /// </summary>
         public static string Heading {

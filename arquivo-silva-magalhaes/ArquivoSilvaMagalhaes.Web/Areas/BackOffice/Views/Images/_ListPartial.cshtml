@@ -45,7 +45,7 @@
                 </td>
                 <td>
                     @Html.ActionLink(DocumentStrings.EntityName, "Details", "Documents", new { id = item.Entity.DocumentId }, null) |
-                    @Html.ActionLink(SpecimenStrings.EntityNamePlural, "Index", "Specimens", new { imageId = item.Entity.Id }, null)
+                    @Html.ActionLink(SpecimenStrings.EntityNamePluralShort, "Index", "Specimens", new { imageId = item.Entity.Id }, null)
                 </td>
                 <td>
                     <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">

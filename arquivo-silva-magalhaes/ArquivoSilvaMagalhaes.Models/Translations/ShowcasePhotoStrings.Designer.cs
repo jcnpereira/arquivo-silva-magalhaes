@@ -160,7 +160,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Destaques.
+        ///   Looks up a localized string similar to Destaque.
         /// </summary>
         public static string EntityNameShortPlural {
             get {

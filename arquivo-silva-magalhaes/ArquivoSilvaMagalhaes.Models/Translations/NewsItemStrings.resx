@@ -150,6 +150,9 @@
   <data name="ExpiryDate" xml:space="preserve">
     <value>Data de expiração</value>
   </data>
+  <data name="HeaderImage" xml:space="preserve">
+    <value>Imagem de cabeçalho</value>
+  </data>
   <data name="Heading" xml:space="preserve">
     <value>Destaques</value>
   </data>
