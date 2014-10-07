@@ -28,6 +28,9 @@
     <div class="col-md-10">
         @Html.EditorFor(model => model.IsVisible, new { htmlAttributes = new { @class = "checkbox" } })
         @Html.ValidationMessageFor(model => model.IsVisible, "", new { @class = "text-danger" })
+        <p class="help-block">
+            @ImageStrings.IsVisibleHint
+        </p>
     </div>
 </div>
 

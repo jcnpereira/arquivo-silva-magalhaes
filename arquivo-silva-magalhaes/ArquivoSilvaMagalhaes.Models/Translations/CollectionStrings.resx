@@ -180,6 +180,9 @@
   <data name="IsVisible" xml:space="preserve">
     <value>Visível ao público</value>
   </data>
+  <data name="IsVisibleHint" xml:space="preserve">
+    <value>Nota: Se a coleção não estiver visível ao público, quaisquer documentos ou imagens (mesmo se forem públicos) não serão listados no site nem aparecerão em resultados de pesquisa.</value>
+  </data>
   <data name="LogoLocation" xml:space="preserve">
     <value>Logótipo</value>
   </data>

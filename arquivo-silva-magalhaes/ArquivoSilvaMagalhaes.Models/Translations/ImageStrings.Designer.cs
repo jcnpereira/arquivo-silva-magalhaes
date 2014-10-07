@@ -214,6 +214,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nota: Se a coleção desta imagem não for visível, esta imagem não será listada no site nem aparecerá em resultados de pesquisa..
+        /// </summary>
+        public static string IsVisibleHint {
+            get {
+                return ResourceManager.GetString("IsVisibleHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indexação.
         /// </summary>
         public static string Keywords {
@@ -273,6 +282,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apesar da imagem ser visível ao público, a coleção não está visível ao público..
+        /// </summary>
+        public static string VisibilityWarning {
+            get {
+                return ResourceManager.GetString("VisibilityWarning", resourceCulture);
             }
         }
     }

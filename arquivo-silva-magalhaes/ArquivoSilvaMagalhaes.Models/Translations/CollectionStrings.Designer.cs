@@ -250,6 +250,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nota: Se a coleção não estiver visível ao público, quaisquer documentos ou imagens (mesmo se forem públicos) não serão listados no site nem aparecerão em resultados de pesquisa..
+        /// </summary>
+        public static string IsVisibleHint {
+            get {
+                return ResourceManager.GetString("IsVisibleHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logótipo.
         /// </summary>
         public static string LogoLocation {

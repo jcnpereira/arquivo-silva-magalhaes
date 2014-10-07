@@ -180,6 +180,9 @@
   <data name="IsVisible" xml:space="preserve">
     <value>Is visible to the public</value>
   </data>
+  <data name="IsVisibleHint" xml:space="preserve">
+    <value>Note: If the collection is not visible, any images and documents (even if they are set to visible) will not be listed on the site, even on search results.</value>
+  </data>
   <data name="LogoLocation" xml:space="preserve">
     <value>Logotype</value>
   </data>

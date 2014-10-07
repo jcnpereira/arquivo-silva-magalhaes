@@ -41,11 +41,25 @@
                     @Html.DisplayFor(modelItem => item.Entity.ProductionDate)
                 </td>
                 <td>
-                    @(item.Entity.IsVisible ? LayoutStrings.Yes : LayoutStrings.No)
+                    @*@(item.Entity.IsVisible ? item.Entity.Document.Collection.IsVisible ? LayoutStrings.Yes : LayoutStrings.No + "*" : LayoutStrings.No)*@
+                    @if (item.Entity.IsVisible && item.Entity.Document.Collection.IsVisible)
+                    {
+                        @LayoutStrings.Yes
+                    }
+                    else if (item.Entity.IsVisible && !item.Entity.Document.Collection.IsVisible)
+                    {
+                        @LayoutStrings.No<span>*</span>
+                    }
+                    else
+                    {
+                        @LayoutStrings.No
+                    }
                 </td>
+
                 <td>
                     @Html.ActionLink(DocumentStrings.EntityName, "Details", "Documents", new { id = item.Entity.DocumentId }, null) |
-                    @Html.ActionLink(SpecimenStrings.EntityNamePluralShort, "Index", "Specimens", new { imageId = item.Entity.Id }, null)
+                    @Html.ActionLink(SpecimenStrings.EntityNamePluralShort, "Index", "Specimens", new { imageId = item.Entity.Id }, null) |
+                    @Html.ActionLink(ShowcasePhotoStrings.EntityNameShortPlural, "Index", "ShowcasePhotoes", new { imageId = item.Entity.Id }, null)
                 </td>
                 <td>
                     <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
@@ -66,6 +80,9 @@
             </tr>
         }
     </table>
+
+    <span class="text-warning">*: @ImageStrings.VisibilityWarning</span>
+
     <div class="panel-footer">
         <div class="text-center afsm-pagination">
             @*@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }))*@

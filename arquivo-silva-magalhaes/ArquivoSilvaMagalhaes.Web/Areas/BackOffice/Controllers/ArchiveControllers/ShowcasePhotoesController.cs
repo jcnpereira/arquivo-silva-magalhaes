@@ -72,9 +72,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/ShowcasePhotoes/Create
-        public ActionResult Create(int? imageId)
+        public async Task<ActionResult> Create(int? imageId)
         {
             var photo = new ShowcasePhoto();
+
+            if (imageId != null && await db.Set<Image>()
+                .AnyAsync(i =>
+                    i.Id == imageId &&
+                    i.ImageUrl != null && i.IsVisible && i.Document.Collection.IsVisible))
+            {
+                photo.ImageId = imageId.Value;
+            }
+
             photo.Translations.Add(new ShowcasePhotoTranslation
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
@@ -176,7 +185,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             };
 
             model.AvailableImages = db.Set<Image>()
-                .Where(i => i.IsVisible && i.ImageUrl != null && i.ImageUrl != "")
+                .Where(i => 
+                    i.IsVisible &&
+                    i.Document.Collection.IsVisible &&
+                    i.ImageUrl != null &&
+                    i.ImageUrl != "")
                 .ToList()
                 .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
                 .Select(i => new SelectListItem

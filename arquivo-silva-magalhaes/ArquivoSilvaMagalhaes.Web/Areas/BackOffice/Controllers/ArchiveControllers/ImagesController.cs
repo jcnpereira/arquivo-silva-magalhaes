@@ -37,6 +37,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             int pageNumber = 1)
         {
             var model = await db.Entities
+                .Include(i => i.Document.Collection)
                 .Include(i => i.Translations)
                 .Where(i =>
                     (collectionId == 0 || i.Document.CollectionId == collectionId) &&
