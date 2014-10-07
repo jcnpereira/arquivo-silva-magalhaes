@@ -123,6 +123,9 @@
   <data name="AboutArchive" xml:space="preserve">
     <value>About the Photographic Archive of Silva Magalhães</value>
   </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>This site was developed by André Carvalho and Diogo Neto (students of the Polytechnic Institute of Tomar) in order to disclose the contents of the Photographic Archive Silva Magalhães. All rights reserved. It is strictly forbidden to reproduce in whole or in part, in any medium without prior written permission.</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
