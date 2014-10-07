@@ -9,11 +9,17 @@
     @LayoutStrings.SiteName
 </h2>
 
-<em>
-    @Html.DisplayMultilineFor(model => model.Translation.ArchiveMission)
-</em>
-
 <hr />
+
+<h4>
+    @ArchiveStrings.ArchiveMission
+</h4>
+
+<div class="afsm-commentary">
+    @Html.DisplayMultilineFor(model => model.Translation.ArchiveMission)
+</div>
+
+<br />
 
 <h4>
     @ArchiveStrings.ArchiveHistory
@@ -22,9 +28,7 @@
 <div class="afsm-commentary">
     @Html.DisplayMultilineFor(model => model.Translation.ArchiveHistory)
 </div>
-
 <hr />
-
 <div class="embed-responsive embed-responsive-16by9">
     <iframe class="embed-responsive-item"
             src="//www.youtube-nocookie.com/embed/@(ViewBag.VideoId)?rel=0"

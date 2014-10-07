@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+
+    var rvd = Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request);
 }
 
 @section headscripts {
@@ -17,7 +19,7 @@
                 <a class="btn btn-default" href="@Url.Action("Index", "Home")">
                     <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
                 </a>
-                <a class="btn btn-primary" title="@LayoutStrings.Create" href="@Url.Action("Create")">
+                <a class="btn btn-primary" title="@LayoutStrings.Create" href="@Url.Action("Create", rvd)">
                     <span class="glyphicon glyphicon-plus"></span> @LayoutStrings.New
                 </a>
             </div>

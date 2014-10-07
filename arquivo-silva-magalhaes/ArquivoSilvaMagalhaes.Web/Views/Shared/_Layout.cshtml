@@ -2,13 +2,9 @@
     string currentAction = (Request.RequestContext.RouteData.Values["action"] as string) ?? "index";
     string currentController = (Request.RequestContext.RouteData.Values["controller"] as string) ?? "home";
 
-    RouteValueDictionary ptRVD = new RouteValueDictionary(ViewContext.RouteData.Values);
-    RouteValueDictionary enRVD = new RouteValueDictionary(ViewContext.RouteData.Values);
-    foreach (string key in Request.QueryString.Keys)
-    {
-        ptRVD[key] = Request.QueryString[key].ToString();
-        enRVD[key] = Request.QueryString[key].ToString();
-    }
+    var ptRVD = Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request);
+    var enRVD = Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request);
+    
     ptRVD["culture"] = "pt";
     enRVD["culture"] = "en";
 }
