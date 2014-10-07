@@ -18,7 +18,7 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
         /// <param name="values"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static RouteValueDictionary AddQueryStringToRoute(this UrlHelper helper, RouteValueDictionary values, HttpRequestBase request)
+        public static RouteValueDictionary AddQueryStringToRoute(this UrlHelper helper, RouteValueDictionary values, HttpRequestBase request, object additionalProperties = null)
         {
             var rvd = new RouteValueDictionary(values);
 
@@ -26,6 +26,17 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
             {
                 rvd[key] = request.QueryString[key].ToString();
             }
+
+            if (additionalProperties != null)
+            {
+                var t = additionalProperties.GetType();
+
+                foreach (var prop in t.GetProperties())
+                {
+                    rvd[prop.Name] = prop.GetValue(additionalProperties);
+                }
+            }
+
             return rvd;
         }
     }

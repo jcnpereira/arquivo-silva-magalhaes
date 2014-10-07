@@ -52,7 +52,8 @@
     </table>
     <div class="panel-footer">
         <div class="text-center afsm-pagination">
-            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))
+            @*@Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p }))*@
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })))
         </div>
     </div>
 </div>

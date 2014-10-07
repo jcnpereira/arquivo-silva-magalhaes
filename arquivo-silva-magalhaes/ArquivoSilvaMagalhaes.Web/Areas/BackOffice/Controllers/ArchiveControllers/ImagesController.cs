@@ -81,7 +81,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         #region Create
-        public ActionResult Create(int documentId = 0)
+        public async Task<ActionResult> Create(int documentId = 0, int keywordId = 0, int classificationId = 0)
         {
             var image = new Image();
 
@@ -89,6 +89,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 image.DocumentId = documentId;
                 image.ImageCode = CodeGenerator.SuggestImageCode(documentId);
+            }
+
+            if (keywordId != 0)
+            {
+                image.Keywords = await db.Set<Keyword>().Where(k => k.Id == keywordId).ToListAsync();
+            }
+
+            if (classificationId != 0)
+            {
+                image.ClassificationId = classificationId;
             }
 
             image.Translations.Add(new ImageTranslation

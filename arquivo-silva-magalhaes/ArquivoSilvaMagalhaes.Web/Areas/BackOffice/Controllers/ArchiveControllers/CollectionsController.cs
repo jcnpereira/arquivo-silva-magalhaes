@@ -73,7 +73,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: /BackOffice/Collection/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create(int authorId = 0)
         {
             var model = new CollectionEditViewModel();
 
@@ -82,6 +82,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             {
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             });
+
+            if (authorId != 0)
+            {
+                c.Authors = await db.Set<Author>().Where(a => a.Id == authorId).ToListAsync();
+            }
 
             return View(GenerateViewModel(c));
         }

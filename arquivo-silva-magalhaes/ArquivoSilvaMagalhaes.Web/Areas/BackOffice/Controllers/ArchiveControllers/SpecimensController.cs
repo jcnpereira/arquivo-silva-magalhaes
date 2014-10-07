@@ -75,7 +75,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
 
         // GET: BackOffice/Specimens/Create
-        public async Task<ActionResult> Create(int imageId = 0)
+        public async Task<ActionResult> Create(int imageId = 0, int formatId = 0, int processId = 0)
         {
             var s = new Specimen();
 
@@ -96,6 +96,16 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest, SpecimenStrings.Error_UnknownImage);
                 }
+            }
+
+            if (formatId != 0)
+            {
+                s.FormatId = formatId;
+            }
+
+            if (processId != 0)
+            {
+                s.ProcessId = processId;
             }
 
             s.Translations.Add(new SpecimenTranslation
