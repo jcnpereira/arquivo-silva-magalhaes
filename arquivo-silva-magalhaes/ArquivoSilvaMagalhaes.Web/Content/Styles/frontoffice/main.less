@@ -4,6 +4,7 @@
 @import "image-overlay-carousel.less";
 @import 'video-overlay.less';
 @import 'afsm-animations.less';
+@import 'image-list.less';
 
 html, body {
     height: 100%;
@@ -146,10 +147,7 @@ div.line + ul {
     padding-left: 20px;
 }
 
-.afsm-thumb {
-    height: 450px;
-    max-height: 450px;
-}
+
 
 .afsm-large-glyphicon {
     font-size: 32px;
@@ -162,10 +160,6 @@ div.line + ul {
 @media (max-width: @screen-xs-max), (orientation: portrait) {
     #afsm-navbar {
         display: block;
-    }
-
-    .afsm-thumb {
-        height: 100%;
     }
 
     #afsm-page-content h2 {
@@ -258,7 +252,5 @@ div.line + ul {
         height: 350px;
     }
 
-    .afsm-thumb > .thumbnail {
-        height: 425px;
-    }
+    
 }

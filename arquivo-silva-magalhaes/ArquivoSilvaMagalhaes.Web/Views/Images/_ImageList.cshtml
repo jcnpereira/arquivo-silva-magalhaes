@@ -10,23 +10,58 @@
         <div class="row afsm-dohighlight">
             @foreach (var img in Model)
             {
-                <div class="afsm-thumb col-sm-6 col-md-4 @(img.Entity.ImageUrl == null ? "afsm-noimage" : "")">
+                <div class="afsm-thumb col-sm-6 col-lg-4">
                     <a href="@Url.Action("Details", "Images", new { img.Entity.Id })"
                        class="thumbnail">
                         @if (img.Entity.ImageUrl != null)
                         {
-                            <img 
-                                 data-afsm-slideto="@(index++)"
-                                 data-afsm-show-overlay="true"
-                                 data-afsm-target="#afsm-overlay-carousel"
-                                 data-target="#afsm-overlay-carousel"
-                                 src="~/Public/Images/@(img.Entity.ImageUrl)_thumb.jpg" />
+                            <div class="afsm-thumb-image"
+                                 style="background-image: url('@Url.Content("~/Public/Images/" + img.Entity.ImageUrl + "_thumb.jpg")')">
+
+                                <div data-afsm-slideto="@(index++)"
+                                     data-afsm-show-overlay="true"
+                                     data-afsm-target="#afsm-overlay-carousel"
+                                     data-target="#afsm-overlay-carousel"
+                                     class="afsm-spacer"></div>
+
+                                <div class="caption">
+                                    <h4>
+                                        @Html.Truncate(img.Translation.Title, 30)
+                                        <small>
+                                            &nbsp;@img.Entity.ImageCode
+                                        </small>
+                                    </h4>
+                                    <p>
+                                        <small>@Html.Truncate(img.Translation.Description, 80)</small>
+                                    </p>
+                                </div>
+                            </div>
                         }
                         else
                         {
-                            <img src="~/Content/Images/no-image.png" />
+                            <div class="afsm-thumb-image"
+                                 style="background-image: url('@Url.Content("~/Content/Images/no-image.png")')">
+
+                                <div class="afsm-noimage-caption">
+                                    @ImageStrings.NoImage
+                                </div>
+
+                                <div class="caption">
+                                    <h4>
+                                        @Html.Truncate(img.Translation.Title, 30)
+                                        <small>
+                                            &nbsp;@img.Entity.ImageCode
+                                        </small>
+                                    </h4>
+                                    <p>
+                                        <small>@Html.Truncate(img.Translation.Description, 80)</small>
+                                    </p>
+                                </div>
+                            </div>
+
+                            @*<img src="~/Content/Images/no-image.png" />*@
                         }
-                        <div class="caption">
+                        @*<div class="caption">
                             <h4>
                                 @Html.Truncate(img.Translation.Title, 30)
                                 <small>
@@ -36,7 +71,7 @@
                             <p>
                                 <small>@Html.Truncate(img.Translation.Description, 80)</small>
                             </p>
-                        </div>
+                        </div>*@
                     </a>
                 </div>
             }

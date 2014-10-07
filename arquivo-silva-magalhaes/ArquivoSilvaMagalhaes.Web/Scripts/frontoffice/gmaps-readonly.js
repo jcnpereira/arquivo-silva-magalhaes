@@ -9,8 +9,8 @@
 
     var $map = $('#map_canvas');
 
-    var lat = parseFloat($map.data('afsm-lat'));
-    var lng = parseFloat($map.data('afsm-lng'));
+    var lat = parseFloat($map.data('afsm-lat')) || 0;
+    var lng = parseFloat($map.data('afsm-lng')) || 0;
 
     var position = new google.maps.LatLng(lat, lng);
 

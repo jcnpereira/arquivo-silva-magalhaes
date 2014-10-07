@@ -250,6 +250,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sem imagem.
+        /// </summary>
+        public static string NoImage {
+            get {
+                return ResourceManager.GetString("NoImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de produção.
         /// </summary>
         public static string ProductionDate {

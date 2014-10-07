@@ -308,6 +308,12 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.min.css">
       <DependentUpon>glyphicons.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\image-list.css">
+      <DependentUpon>image-list.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\image-list.min.css">
+      <DependentUpon>image-list.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\frontoffice\image-overlay.css">
       <DependentUpon>image-overlay.less</DependentUpon>
     </Content>
@@ -704,6 +710,10 @@
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\AddTranslation.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_MainDisplayFields.cshtml" />
     <Content Include="Areas\BackOffice\Views\BannerPhotograph\_TranslatedDisplayFields.cshtml" />
+    <Content Include="Content\Styles\frontoffice\image-list.less" />
+    <Content Include="Content\Styles\frontoffice\image-list.css.map">
+      <DependentUpon>image-list.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

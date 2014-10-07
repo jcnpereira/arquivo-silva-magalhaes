@@ -21,12 +21,15 @@
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" href="#afsm-overlay-carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#afsm-overlay-carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+        @if (Model.Count(img => img.Entity.ImageUrl != null) > 1)
+        {
+            <a class="left carousel-control" href="#afsm-overlay-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#afsm-overlay-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        }
     </div>
     @* Close button. *@
     <button type="button" data-afsm-close-overlay="#afsm-overlay-carousel" class="afsm-close-overlay">

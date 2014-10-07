@@ -180,6 +180,9 @@
   <data name="MustChooseDocument" xml:space="preserve">
     <value>You must choose a document first.</value>
   </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>No image</value>
+  </data>
   <data name="ProductionDate" xml:space="preserve">
     <value>Production date</value>
   </data>
