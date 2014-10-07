@@ -15,8 +15,21 @@
     <div class="col-md-10">
         <div class="input-group">
             <span class="input-group-btn">
-                <button data-afsm-suggest="true" data-afsm-warning="@ImageStrings.MustChooseDocument" data-afsm-url="@Url.Action("SuggestCode", new { documentId = "xx" })" data-afsm-src="@Html.IdFor(model => model.DocumentId)" data-afsm-for="@Html.IdFor(model => model.ImageCode)" class="btn btn-primary" type="button">@LayoutStrings.Suggest</button>
+                @*<button data-afsm-suggest="true" data-afsm-warning="@ImageStrings.MustChooseDocument" data-afsm-url="@Url.Action("SuggestCode", new { documentId = "xx" })" data-afsm-src="@Html.IdFor(model => model.DocumentId)" data-afsm-for="@Html.IdFor(model => model.ImageCode)" class="btn btn-primary" type="button">@LayoutStrings.Suggest</button>*@
+
+
+                <button data-afsm-suggest="true"
+                        data-afsm-warning="@ImageStrings.MustChooseDocument"
+                        data-afsm-url="@Url.Action("SuggestCode")"
+                        data-afsm-entitysrc="#@Html.IdFor(model => model.Id)"
+                        data-afsm-src="#@Html.IdFor(model => model.DocumentId)"
+                        data-afsm-for="#@Html.IdFor(model => model.ImageCode)"
+                        class="btn btn-primary"
+                        type="button">
+                    @LayoutStrings.Suggest
+                </button>
             </span>
+
             @Html.EditorFor(model => model.ImageCode, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         @Html.ValidationMessageFor(model => model.ImageCode, "", new { @class = "text-danger" })

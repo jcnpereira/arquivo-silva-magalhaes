@@ -377,21 +377,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 .Any(d => d.ReferenceCode == s.ReferenceCode && d.Id != s.Id);
         }
 
-        public async Task<ActionResult> SuggestCode(int? imageId)
+        public async Task<ActionResult> SuggestCode(int parentId = 0, int entityId = 0)
         {
-            if (imageId == null)
+            if (parentId == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var i = await db.Set<Image>().FirstOrDefaultAsync(img => img.Id == imageId);
-
-            if (i == null)
+            if (entityId != 0)
             {
-                return HttpNotFound();
+                var doc = await db.GetByIdAsync(entityId);
+
+                if (doc.ImageId == parentId)
+                {
+                    return Json(doc.ReferenceCode, JsonRequestBehavior.AllowGet);
+                }
             }
 
-            return Json(CodeGenerator.SuggestSpecimenCode(i.Id), JsonRequestBehavior.AllowGet);
+            return Json(CodeGenerator.SuggestSpecimenCode(parentId), JsonRequestBehavior.AllowGet);
         }
+
+        //public async Task<ActionResult> SuggestCode(int? imageId)
+        //{
+        //    if (imageId == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    var i = await db.Set<Image>().FirstOrDefaultAsync(img => img.Id == imageId);
+
+        //    if (i == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return Json(CodeGenerator.SuggestSpecimenCode(i.Id), JsonRequestBehavior.AllowGet);
+        //}
     }
 }

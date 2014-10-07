@@ -47,12 +47,12 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
             AvailableDocuments = new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = LayoutStrings.ChooseOne }
+                new SelectListItem { Selected = true, Text = "" }
             };
 
             AvailableClassifications = new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = LayoutStrings.ChooseOne }
+                new SelectListItem { Selected = true, Text = "" }
             };
 
             KeywordIds = i.Keywords.Select(k => k.Id).ToArray();

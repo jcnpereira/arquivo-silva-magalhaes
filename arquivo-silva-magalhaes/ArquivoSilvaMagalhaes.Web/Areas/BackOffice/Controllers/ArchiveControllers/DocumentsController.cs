@@ -299,14 +299,24 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SuggestCode(int? collectionId)
+        public async Task<ActionResult> SuggestCode(int parentId = 0, int entityId = 0)
         {
-            if (collectionId == null)
+            if (parentId == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var suggestedCode = CodeGenerator.SuggestDocumentCode(collectionId.Value);
+            if (entityId != 0)
+            {
+                var doc = await db.GetByIdAsync(entityId);
+
+                if (doc.CollectionId == parentId)
+                {
+                    return Json(doc.CatalogCode, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            var suggestedCode = CodeGenerator.SuggestDocumentCode(parentId);
 
             return Json(suggestedCode, JsonRequestBehavior.AllowGet);
         }

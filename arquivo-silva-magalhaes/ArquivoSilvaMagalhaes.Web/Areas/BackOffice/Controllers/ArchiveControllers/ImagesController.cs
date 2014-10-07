@@ -277,22 +277,43 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         #endregion
 
         #region Helper Actions
-        public ActionResult SuggestCode(int? documentId)
+        public async Task<ActionResult> SuggestCode(int parentId = 0, int entityId = 0)
         {
-            if (documentId == null)
+            if (parentId == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var d = db.Set<Document>().FirstOrDefault(doc => doc.Id == documentId.Value);
-
-            if (d == null)
+            if (entityId != 0)
             {
-                return HttpNotFound();
+                var doc = await db.GetByIdAsync(entityId);
+
+                if (doc.DocumentId == parentId)
+                {
+                    return Json(doc.ImageCode, JsonRequestBehavior.AllowGet);
+                }
             }
 
-            return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
+            return Json(CodeGenerator.SuggestImageCode(parentId), JsonRequestBehavior.AllowGet);
         }
+
+
+        //public ActionResult SuggestCode(int? documentId)
+        //{
+        //    if (documentId == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    var d = db.Set<Document>().FirstOrDefault(doc => doc.Id == documentId.Value);
+
+        //    if (d == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
+        //}
 
         private bool DoesCodeAlreadyExist(Image image)
         {
