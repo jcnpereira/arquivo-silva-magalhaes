@@ -54,10 +54,11 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Required]
         [StringLength(50)]
-        [Display(ResourceType = typeof(SpecimenStrings), Name = "ArchivalReferenceCode")]
+        [Display(ResourceType = typeof(SpecimenStrings), Name = "Annotation")]
         [RegularExpression("^[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "ArchivalCodeFormat")]
-        public string ArchivalReferenceCode { get; set; }
-
+        public string Annotation { get; set; }
+        
+        #region Navigation Properties
         [Required]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Image")]
         public int ImageId { get; set; }
@@ -78,18 +79,8 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public virtual IList<DigitalPhotograph> DigitalPhotographs { get; set; }
 
-        public virtual IList<SpecimenTranslation> Translations { get; set; }
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    using (var _db = new ArchiveDataContext())
-        //    {
-        //        if (_db.Specimens.Any(i => i.ReferenceCode == this.ReferenceCode && i.Id != this.Id))
-        //        {
-        //            yield return new ValidationResult(SpecimenStrings.CodeAlreadyExists, new string[] { "ReferenceCode" });
-        //        }
-        //    }
-        //}
+        public virtual IList<SpecimenTranslation> Translations { get; set; } 
+        #endregion
     }
 
     public class SpecimenTranslation : EntityTranslation

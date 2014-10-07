@@ -120,11 +120,11 @@
   <data name="AddPhotos" xml:space="preserve">
     <value>Add digital photographs</value>
   </data>
+  <data name="Annotation" xml:space="preserve">
+    <value>Annotation</value>
+  </data>
   <data name="ArchivalCodeFormat" xml:space="preserve">
     <value>The annotation must only contain digits and letters.</value>
-  </data>
-  <data name="ArchivalReferenceCode" xml:space="preserve">
-    <value>Annotation</value>
   </data>
   <data name="AuthorCatalogationCode" xml:space="preserve">
     <value>Original code</value>

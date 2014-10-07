@@ -250,7 +250,7 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sem imagem.
+        ///   Looks up a localized string similar to Imagem não disponível.
         /// </summary>
         public static string NoImage {
             get {

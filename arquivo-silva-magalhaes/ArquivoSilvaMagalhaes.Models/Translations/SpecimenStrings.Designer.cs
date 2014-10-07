@@ -70,20 +70,20 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cota.
+        /// </summary>
+        public static string Annotation {
+            get {
+                return ResourceManager.GetString("Annotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A cota deve apenas conter números e letras. Não são permitidos acentos..
         /// </summary>
         public static string ArchivalCodeFormat {
             get {
                 return ResourceManager.GetString("ArchivalCodeFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cota.
-        /// </summary>
-        public static string ArchivalReferenceCode {
-            get {
-                return ResourceManager.GetString("ArchivalReferenceCode", resourceCulture);
             }
         }
         

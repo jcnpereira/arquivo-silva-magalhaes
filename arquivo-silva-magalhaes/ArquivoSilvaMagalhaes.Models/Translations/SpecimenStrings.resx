@@ -120,11 +120,11 @@
   <data name="AddPhotos" xml:space="preserve">
     <value>Adicionar fotografias digitais</value>
   </data>
+  <data name="Annotation" xml:space="preserve">
+    <value>Cota</value>
+  </data>
   <data name="ArchivalCodeFormat" xml:space="preserve">
     <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
-  </data>
-  <data name="ArchivalReferenceCode" xml:space="preserve">
-    <value>Cota</value>
   </data>
   <data name="AuthorCatalogationCode" xml:space="preserve">
     <value>Código original</value>

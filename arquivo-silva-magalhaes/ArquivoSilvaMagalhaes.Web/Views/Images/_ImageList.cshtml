@@ -78,7 +78,8 @@
 
         </div>
         <div class="text-center afsm-pagination">
-            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+            @*@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })*@
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })))
         </div>
         
         @Html.Partial("_ImageOverlayCarousel")

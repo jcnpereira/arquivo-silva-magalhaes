@@ -53,10 +53,10 @@
           class="form-horizontal"
           data-afsm-ajax="true"
           action="@Url.Action("Index", "Images")">
-        <input type="hidden" name="documentId" value="@ViewBag.DocumentId" />
+        @*<input type="hidden" name="documentId" value="@ViewBag.DocumentId" />*@
 
         <div class="input-group">
-            <input type="search" class="form-control" name="query" value="@ViewBag.Query" />
+            <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" value="@ViewBag.Query" />
             <span class="input-group-btn">
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search"></span>

@@ -102,7 +102,6 @@
     <Compile Include="SiteModels\Partnership.cs" />
     <Compile Include="SiteModels\ReferencedLink.cs" />
     <Compile Include="SiteModels\TechnicalDocument.cs" />
-    <Compile Include="TranslateableEntity.cs" />
     <Compile Include="Translations\ArchiveStrings.Designer.cs">
       <DependentUpon>ArchiveStrings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -304,6 +303,7 @@
     <EmbeddedResource Include="Translations\SpecimenStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SpecimenStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations\SpecimenStrings.en.resx" />
     <EmbeddedResource Include="Translations\SpotlightVideoStrings.en.resx" />

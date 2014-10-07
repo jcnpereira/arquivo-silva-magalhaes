@@ -132,23 +132,27 @@
         @Html.DisplayFor(model => model.Image.Translation.Subject)
     </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Image.Translation.Publication)
-    </dt>
 
-    <dd>
-        @Html.DisplayFor(model => model.Image.Translation.Publication)
-    </dd>
+    @if (!string.IsNullOrEmpty(Model.Image.Translation.Publication))
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.Translation.Publication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image.Translation.Publication)
+        </dd>
+    }
 
     @if (Model.Specimens.Count() > 0)
     {
         <dt>
-            @SpecimenStrings.ArchivalReferenceCode
+            @SpecimenStrings.Annotation
         </dt>
 
         <dd>
             <ul class="list-inline">
-                @foreach (var refCode in Model.Specimens.Select(s => s.Entity.ArchivalReferenceCode))
+                @foreach (var refCode in Model.Specimens.Select(s => s.Entity.Annotation))
                 {
                     <li>@refCode</li>
                 }
@@ -194,3 +198,4 @@
         </dd>
     }
 </dl>
+
