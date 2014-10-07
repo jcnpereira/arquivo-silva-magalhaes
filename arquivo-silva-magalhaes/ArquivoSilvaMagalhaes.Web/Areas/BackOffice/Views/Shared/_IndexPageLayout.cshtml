@@ -26,10 +26,18 @@
             @RenderSection("panelheader", required: false)
         </div>
         <div class="pull-right">
+
+            
+
             <form method="get"
                   class="form-inline"
                   data-afsm-ajax="true"
                   action="@Url.Action("Index")">
+
+                <a href="@Url.Action("Index", new { })" class="btn btn-default">
+                    @LayoutStrings.ClearFilters
+                </a>
+
                 <div class="input-group">
                     <input type="search" class="form-control" name="query" />
                     <span class="input-group-btn">
