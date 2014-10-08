@@ -61,20 +61,24 @@
     $('[data-afsm-ajax="true"]').on('click', '.afsm-pagination a', function (e) {
         var $a = $(this);
 
+        debugger;
+
         var $target = $($a.parents('div[data-afsm-id]').data('afsm-id'));
 
-        var originalUrl = $a.attr('href');
-        var pageNumber = originalUrl.substring(originalUrl.indexOf('pageNumber')).split('=')[1];
+        var options = {
+            type: 'get',
+            url: $target.data('afsm-ajaxurl') || $a.attr('href')
+        };
 
-        $.ajax({
-            //url: $a.attr('href'),
-            url: $target.data('afsm-ajaxurl'),
-            // Link will have the information that is sent by the server, for users without JS.
-            data: {
+        if ($target.data('afsm-ajaxurl')) {
+            var originalUrl = $a.attr('href');
+            var pageNumber = originalUrl.substring(originalUrl.indexOf('pageNumber')).split('=')[1];
+            options.data = {
                 pageNumber: pageNumber
-            },
-            type: 'get'
-        })
+            };
+        }
+
+        $.ajax(options)
         .done(function (data) {
             var $data = $(data);
 
