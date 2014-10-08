@@ -67,12 +67,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.ClassificationId = classificationId;
             ViewBag.KeywordId = keywordId;
 
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ImageList", model);
-            }
-
             return View(model);
         }
 
@@ -106,6 +100,37 @@ namespace ArquivoSilvaMagalhaes.Controllers
                     Processes = processes.Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p)),
                     Formats = formats
                 });
+        }
+
+        public ActionResult List(
+            int collectionId = 0,
+            int documentId = 0,
+            int keywordId = 0,
+            int classificationId = 0,
+            bool hideWithoutImage = false,
+            string query = "",
+            int pageNumber = 1)
+        {
+            var model = db.Entities
+                .Include(i => i.Document.Collection)
+                .Include(i => i.Document)
+                .Include(i => i.Translations)
+                .Where(i =>
+                    (i.IsVisible && i.Document.Collection.IsVisible) &&
+                    (!hideWithoutImage || i.ImageUrl != null) &&
+                    (collectionId == 0 || i.Document.CollectionId == collectionId) &&
+                    (documentId == 0 || i.DocumentId == documentId) &&
+                    (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
+                    (classificationId == 0 || i.ClassificationId == classificationId))
+                .Where(i => query == "" || i.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(i => i.Id)
+                .Select(img => new TranslatedViewModel<Image, ImageTranslation>
+                {
+                    Entity = img
+                })
+                .ToPagedList(pageNumber, 12);
+
+            return PartialView("_ImageList", model);
         }
 
         /// <summary>

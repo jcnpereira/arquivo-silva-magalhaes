@@ -94,11 +94,10 @@
         </dl>
     </div>
     <div class="tab-pane fade" id="afsm-images" data-afsm-ajax="true" data-afsm-id="#afsm-image-list">
-
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
-              action="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })">
+              action="@Url.Action("List", "Images", new { documentId = Model.Document.Entity.Id })">
             <input type="hidden" name="documentId" value="@Model.Document.Entity.Id" />
 
             <div class="input-group">
@@ -111,10 +110,7 @@
             </div>
 
         </form>
-
-        <div data-afsm-load="@Url.Action("Index", "Images", new { documentId = Model.Document.Entity.Id })">
-            @* Empty! *@
-        </div>
+        @Html.Action("List", "Images", new { documentId = Model.Document.Entity.Id })
     </div>
 </div>
 

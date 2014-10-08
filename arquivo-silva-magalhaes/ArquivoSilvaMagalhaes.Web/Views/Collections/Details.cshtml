@@ -136,7 +136,7 @@
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
-              action="@Url.Action("Index", "Documents")">
+              action="@Url.Action("List", "Documents")">
             <input type="hidden" name="collectionId" value="@Model.Entity.Id" />
 
             <div class="input-group">
@@ -150,9 +150,7 @@
 
         </form>
 
-        <div data-afsm-load="@Url.Action("Index", "Documents", new { collectionId = Model.Entity.Id })">
-            @* Empty! *@
-        </div>
+        @Html.Action("List", "Documents", new { collectionId = Model.Entity.Id })
     </div>
 </div>
 

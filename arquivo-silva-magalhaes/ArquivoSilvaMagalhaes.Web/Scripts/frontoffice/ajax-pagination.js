@@ -35,7 +35,7 @@
         // replace the original content
         // with the new data.
         $.ajax({
-            url: $form.attr('action'),
+            url: $form.data('afsm-ajaxurl') || $form.attr('action'),
             data: $form.serialize(),
             type: $form.attr('method')
         })
@@ -61,16 +61,24 @@
     $('[data-afsm-ajax="true"]').on('click', '.afsm-pagination a', function (e) {
         var $a = $(this);
 
+        var $target = $($a.parents('div[data-afsm-id]').data('afsm-id'));
+
+        var originalUrl = $a.attr('href');
+        var pageNumber = originalUrl.substring(originalUrl.indexOf('pageNumber')).split('=')[1];
+
         $.ajax({
-            url: $a.attr('href'),
+            //url: $a.attr('href'),
+            url: $target.data('afsm-ajaxurl'),
             // Link will have the information that is sent by the server, for users without JS.
-            // data: $('form[data-afsm-ajax="true"]').serialize(),
+            data: {
+                pageNumber: pageNumber
+            },
             type: 'get'
         })
         .done(function (data) {
             var $data = $(data);
 
-            $($a.parents('div[data-afsm-id]').data('afsm-id')).replaceWith($data);
+            $target.replaceWith($data);
 
             $data.find('.afsm-dohighlight').addClass('afsm-highlighted');
         });

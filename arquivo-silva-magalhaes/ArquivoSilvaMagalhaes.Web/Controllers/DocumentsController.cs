@@ -53,11 +53,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.CollectionId = collectionId;
             ViewBag.Query = query;
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_DocumentList", model);
-            }
-
             return View(model);
         }
 
@@ -85,6 +80,27 @@ namespace ArquivoSilvaMagalhaes.Controllers
                     Collection = new TranslatedViewModel<Collection, CollectionTranslation>(document.Collection),
                     Document = new TranslatedViewModel<Document, DocumentTranslation>(document)
                 });
+        }
+
+        public ActionResult List(int collectionId = 0, int pageNumber = 1, string query = "", int authorId = 0)
+        {
+            var model = db.Entities
+                .Include(doc => doc.Translations)
+                .Where(doc =>
+                    (doc.Collection.IsVisible) &&
+                    (collectionId == 0 || doc.CollectionId == collectionId) &&
+                    (authorId == 0 || doc.AuthorId == authorId) &&
+                    (query == "" || doc.Title.Contains(query)))
+                .OrderBy(doc => doc.Id)
+                .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>
+                {
+                    Entity = doc
+                })
+                .ToPagedList(pageNumber, 10);
+
+
+            return PartialView("_DocumentList", model);
+
         }
 
         /// <summary>

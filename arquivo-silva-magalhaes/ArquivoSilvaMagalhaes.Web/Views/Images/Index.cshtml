@@ -52,7 +52,8 @@
     <form method="get"
           class="form-horizontal"
           data-afsm-ajax="true"
-          action="@Url.Action("Index", "Images")">
+          data-afsm-ajaxurl="@Url.Action("List", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))"
+          action="@Url.Action("Index", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))">
         @*<input type="hidden" name="documentId" value="@ViewBag.DocumentId" />*@
 
         <div class="input-group">

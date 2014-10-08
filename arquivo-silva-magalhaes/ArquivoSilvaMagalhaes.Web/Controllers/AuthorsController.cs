@@ -42,11 +42,6 @@ namespace ArquivoSilvaMagalhaes.Controllers
 
             ViewBag.Query = query;
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_AuthorList", model);
-            }
-
             return View(model);
         }
 
@@ -67,6 +62,21 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 return HttpNotFound();
             }
             return View(new TranslatedViewModel<Author, AuthorTranslation>(author));
+        }
+
+        public ActionResult List(int pageNumber = 1, string query = "")
+        {
+            var model = db.Entities
+                .Where(a => query == "" || a.LastName.Contains(query) || a.FirstName.Contains(query))
+                .Include(a => a.Translations)
+                .OrderBy(a => a.Id)
+                .Select(a => new TranslatedViewModel<Author, AuthorTranslation>
+                {
+                    Entity = a
+                })
+                .ToPagedList(pageNumber, 10);
+
+            return PartialView("_AuthorList", model);
         }
 
         /// <summary>

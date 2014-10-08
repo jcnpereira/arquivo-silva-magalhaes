@@ -4,7 +4,7 @@
     int index = 0;
 }
 
-<div id="afsm-image-list">
+<div id="afsm-image-list" data-afsm-ajaxurl="@Url.Action("List", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, excludeProperties: new string[] { "pageNumber" }))">
     @if (Model.Count() > 0)
     {
         <div class="row afsm-dohighlight">
@@ -62,16 +62,16 @@
                             @*<img src="~/Content/Images/no-image.png" />*@
                         }
                         @*<div class="caption">
-                            <h4>
-                                @Html.Truncate(img.Translation.Title, 30)
-                                <small>
-                                    &nbsp;@img.Entity.ImageCode
-                                </small>
-                            </h4>
-                            <p>
-                                <small>@Html.Truncate(img.Translation.Description, 80)</small>
-                            </p>
-                        </div>*@
+                                <h4>
+                                    @Html.Truncate(img.Translation.Title, 30)
+                                    <small>
+                                        &nbsp;@img.Entity.ImageCode
+                                    </small>
+                                </h4>
+                                <p>
+                                    <small>@Html.Truncate(img.Translation.Description, 80)</small>
+                                </p>
+                            </div>*@
                     </a>
                 </div>
             }
@@ -79,9 +79,9 @@
         </div>
         <div class="text-center afsm-pagination">
             @*@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })*@
-            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })))
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
         </div>
-        
+
         @Html.Partial("_ImageOverlayCarousel")
     }
     else

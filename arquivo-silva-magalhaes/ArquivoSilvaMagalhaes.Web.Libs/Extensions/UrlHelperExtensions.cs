@@ -18,13 +18,16 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
         /// <param name="values"></param>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static RouteValueDictionary AddQueryStringToRoute(this UrlHelper helper, RouteValueDictionary values, HttpRequestBase request, object additionalProperties = null)
+        public static RouteValueDictionary AddQueryStringToRoute(this UrlHelper helper, RouteValueDictionary values, HttpRequestBase request, object additionalProperties = null, string[] excludeProperties = null)
         {
             var rvd = new RouteValueDictionary(values);
 
-            foreach (string key in request.QueryString.Keys)
+            if (request != null)
             {
-                rvd[key] = request.QueryString[key].ToString();
+                foreach (string key in request.QueryString.Keys)
+                {
+                    rvd[key] = request.QueryString[key].ToString();
+                } 
             }
 
             if (additionalProperties != null)
@@ -34,6 +37,17 @@ namespace ArquivoSilvaMagalhaes.Web.Libs.Extensions
                 foreach (var prop in t.GetProperties())
                 {
                     rvd[prop.Name] = prop.GetValue(additionalProperties);
+                }
+            }
+
+            if (excludeProperties != null)
+            {
+                foreach (var prop in excludeProperties)
+                {
+                    if (rvd[prop] != null)
+                    {
+                        rvd.Remove(prop);
+                    }
                 }
             }
 

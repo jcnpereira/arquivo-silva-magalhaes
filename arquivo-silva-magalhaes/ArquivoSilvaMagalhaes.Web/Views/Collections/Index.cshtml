@@ -26,7 +26,8 @@
     <form method="get"
           class="form-horizontal"
           data-afsm-ajax="true"
-          action="@Url.Action("Index", "Collections")">
+          data-afsm-ajaxurl="@Url.Action("List", "Collections", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))"
+          action="@Url.Action("Index", "Collections", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))">
         <div class="input-group">
             <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" />
             <span class="input-group-btn">

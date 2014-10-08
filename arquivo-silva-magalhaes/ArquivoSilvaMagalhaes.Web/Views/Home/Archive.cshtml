@@ -28,7 +28,7 @@
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
-              action="@Url.Action("Index", "Collections")">
+              action="@Url.Action("List", "Collections")">
             <div class="input-group">
                 <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" />
                 <span class="input-group-btn">
@@ -40,17 +40,13 @@
 
         </form>
 
-        <div data-afsm-load="@Url.Action("Index", "Collections")">
-            @* Empty! *@
-        </div>
+        @Html.Action("List", "Collections")
     </div>
-
-
     <div class="tab-pane fade" id="afsm-authors" data-afsm-ajax="true" data-afsm-id="#afsm-author-list">
         <form method="get"
               class="form-horizontal"
               data-afsm-ajax="true"
-              action="@Url.Action("Index", "Authors")">
+              action="@Url.Action("List", "Authors")">
             <div class="input-group">
                 <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" />
                 <span class="input-group-btn">
@@ -62,11 +58,12 @@
 
         </form>
 
-        <div data-afsm-load="@Url.Action("Index", "Authors")">
-            @* Empty! *@
-        </div>
+        @Html.Action("List", "Authors")
     </div>
 </div>
+
+
+
 
 @section scripts {
     @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
