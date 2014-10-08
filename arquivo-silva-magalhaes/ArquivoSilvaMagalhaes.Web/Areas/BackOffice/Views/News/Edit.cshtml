@@ -6,7 +6,7 @@
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -42,6 +42,15 @@
         <hr />
 
         @Html.PartialFor(model => model.NewsItem, "_NewsItemMainFields")
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HeaderImageUpload, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.HeaderImageUpload, new { @class = "form-control-static", accept = "image/*" })
+                @Html.ValidationMessageFor(model => model.HeaderImageUpload, "", new { @class = "text-danger" })
+                <p class="help-block">@NewsItemStrings.ImageRecommendation</p>
+            </div>
+        </div>
 
         @Html.Partial("_SubmitBackPartial", LayoutStrings.Done)
     </div>

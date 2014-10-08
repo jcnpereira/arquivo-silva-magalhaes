@@ -159,6 +159,9 @@
   <data name="HideAfterExpiry" xml:space="preserve">
     <value>Ocultar após expiração</value>
   </data>
+  <data name="ImageRecommendation" xml:space="preserve">
+    <value>É recomendada uma imagem de 1024x400. A imagem é opcional.</value>
+  </data>
   <data name="LastModificationDate" xml:space="preserve">
     <value>Data de última modificação</value>
   </data>

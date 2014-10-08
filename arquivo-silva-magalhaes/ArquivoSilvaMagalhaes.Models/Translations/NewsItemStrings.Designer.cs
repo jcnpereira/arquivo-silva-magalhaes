@@ -187,6 +187,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É recomendada uma imagem de 1024x400. A imagem é opcional..
+        /// </summary>
+        public static string ImageRecommendation {
+            get {
+                return ResourceManager.GetString("ImageRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data de última modificação.
         /// </summary>
         public static string LastModificationDate {

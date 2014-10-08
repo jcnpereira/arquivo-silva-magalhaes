@@ -4,7 +4,9 @@ using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.SiteModels;
 using ArquivoSilvaMagalhaes.ViewModels;
 using PagedList;
+using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -82,16 +84,26 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // POST: /News/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(NewsItem newsItem)
+        public async Task<ActionResult> Create(NewsItemViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Add(newsItem);
+                if (model.HeaderImageUpload != null)
+                {
+                    var fileName = Guid.NewGuid().ToString();
+                    var path = Server.MapPath("~/Public/News/");
+
+                    FileUploadHelper.GenerateVersions(model.HeaderImageUpload.InputStream, path + fileName);
+
+                    model.NewsItem.HeaderImage = fileName;
+                }
+
+                db.Add(model.NewsItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(GenerateViewModel(newsItem));
+            return View(GenerateViewModel(model.NewsItem));
         }
 
         // GET: /News/Edit/5
@@ -112,13 +124,31 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
         // POST: /News/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(NewsItem newsitem)
+        public async Task<ActionResult> Edit(NewsItemViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Update(newsitem);
+                db.Update(model.NewsItem);
 
-                foreach (var t in newsitem.Translations)
+                if (model.HeaderImageUpload != null)
+                {
+                    var fileName =
+                        db.GetValueFromDb(model.NewsItem, i => i.HeaderImage) ??
+                        Guid.NewGuid().ToString();
+
+                    var path = Server.MapPath("~/Public/News/");
+                    Directory.CreateDirectory(path);
+
+                    FileUploadHelper.GenerateVersions(model.HeaderImageUpload.InputStream, path + fileName);
+
+                    model.NewsItem.HeaderImage = fileName;
+                }
+                else
+                {
+                    db.ExcludeFromUpdate(model.NewsItem, i => new { i.HeaderImage });
+                }
+
+                foreach (var t in model.NewsItem.Translations)
                 {
                     db.UpdateTranslation(t);
                 }
@@ -126,7 +156,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.SiteControllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(GenerateViewModel(newsitem));
+            return View(GenerateViewModel(model.NewsItem));
         }
 
         // GET: /News/Delete/5
