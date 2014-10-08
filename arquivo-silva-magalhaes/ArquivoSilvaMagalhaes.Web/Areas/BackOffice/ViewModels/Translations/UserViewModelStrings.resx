@@ -123,6 +123,9 @@
   <data name="Password" xml:space="preserve">
     <value>Palavra-passe</value>
   </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmar palavra-passe</value>
+  </data>
   <data name="Picture" xml:space="preserve">
     <value>Fotografia</value>
   </data>

@@ -1,0 +1,23 @@
+﻿@model UserChangeRoleModel
+@{
+    ViewBag.Title = AuthStrings.ChangeRole;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.UserName)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Roles, new { @class = "control-label col-sm-2" })
+
+            <div class="col-sm-10">
+                @Html.ListBoxFor(model => model.Roles, Model.AvailableRoles, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
+    </div>
+}

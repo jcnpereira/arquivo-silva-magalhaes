@@ -61,6 +61,105 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administradores.
+        /// </summary>
+        public static string admins {
+            get {
+                return ResourceManager.GetString("admins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestores do Acervo.
+        /// </summary>
+        public static string archivemanagers {
+            get {
+                return ResourceManager.GetString("archivemanagers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não pode alterar a função do administrador..
+        /// </summary>
+        public static string CannotChangeRoleOfAdmin {
+            get {
+                return ResourceManager.GetString("CannotChangeRoleOfAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não pode eliminar a conta do administrador..
+        /// </summary>
+        public static string CannotDeleteAdmin {
+            get {
+                return ResourceManager.GetString("CannotDeleteAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não foi possível eliminar este utilizador..
+        /// </summary>
+        public static string CannotDeleteUser {
+            get {
+                return ResourceManager.GetString("CannotDeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alterar palavra-passe.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alterar tarefa.
+        /// </summary>
+        public static string ChangeRole {
+            get {
+                return ResourceManager.GetString("ChangeRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestores de Conteúdos.
+        /// </summary>
+        public static string contentmanagers {
+            get {
+                return ResourceManager.GetString("contentmanagers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar utilizador.
+        /// </summary>
+        public static string DeleteUser {
+            get {
+                return ResourceManager.GetString("DeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tem a certeza que pretende eliminar este utilizador?.
+        /// </summary>
+        public static string DeleteUserWarning {
+            get {
+                return ResourceManager.GetString("DeleteUserWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar detalhes do utilizador.
+        /// </summary>
+        public static string EditUser {
+            get {
+                return ResourceManager.GetString("EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço de e-mail.
         /// </summary>
         public static string Email {
@@ -133,11 +232,56 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to As palavras-passe têm que ser iguais..
+        /// </summary>
+        public static string PasswordsMustMatch {
+            get {
+                return ResourceManager.GetString("PasswordsMustMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestores do Site.
+        /// </summary>
+        public static string portalmanagers {
+            get {
+                return ResourceManager.GetString("portalmanagers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome real.
         /// </summary>
         public static string RealName {
             get {
                 return ResourceManager.GetString("RealName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tarefa.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não foi possivel alterar a palavra-passe..
+        /// </summary>
+        public static string UnableToChangePassword {
+            get {
+                return ResourceManager.GetString("UnableToChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não foi possível alterar a função..
+        /// </summary>
+        public static string UnableToChangeRoles {
+            get {
+                return ResourceManager.GetString("UnableToChangeRoles", resourceCulture);
             }
         }
         

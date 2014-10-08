@@ -1,24 +1,14 @@
 ﻿using ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.Translations;
+using ArquivoSilvaMagalhaes.Web.I18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 {
-    public enum UserRole
-    {
-        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role_Admin")]
-        Admin,
-        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role_ContentManager")]
-        ContentManager,
-        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role_ArchiveManager")]
-        ArchiveManager,
-        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role_SiteManager")]
-        SiteManager
-    }
-
     public class UserRegistrationModel
     {
         [Required]
@@ -32,6 +22,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
         [Display(ResourceType = typeof(UserViewModelStrings), Name = "Password")]
         public string Password { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceType = typeof(AuthStrings), ErrorMessageResourceName = "PasswordsMustMatch")]
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "PasswordConfirm")]
+        public string ConfirmPassword { get; set; }
+
         [Required]
         [Display(ResourceType = typeof(UserViewModelStrings), Name = "RealName")]
         public string RealName { get; set; }
@@ -42,9 +36,41 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels
 
         [Required]
         [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role")]
-        public UserRole? Role { get; set; }
+        public IList<string> Roles { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableRoles { get; set; }
 
         [Display(ResourceType = typeof(UserViewModelStrings), Name = "Picture")]
         public HttpPostedFileBase Picture { get; set; }
+    }
+
+    public class UserChangePasswordModel
+    {
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Required]
+        [MinLength(8)]
+        [DataType(DataType.Password)]
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Password")]
+        public string Password { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceType = typeof(AuthStrings), ErrorMessageResourceName = "PasswordsMustMatch")]
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "PasswordConfirm")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class UserChangeRoleModel
+    {
+        [Required]
+        [RegularExpression("[0-9A-Za-z]+", ErrorMessageResourceType = typeof(UserViewModelStrings), ErrorMessageResourceName = "UserName_LettersAndDigitsOnly")]
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(UserViewModelStrings), Name = "Role")]
+        public IList<string> Roles { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableRoles { get; set; }
     }
 }

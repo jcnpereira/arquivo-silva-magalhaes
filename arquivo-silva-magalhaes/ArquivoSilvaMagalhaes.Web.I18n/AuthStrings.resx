@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="admins" xml:space="preserve">
+    <value>Administradores</value>
+  </data>
+  <data name="archivemanagers" xml:space="preserve">
+    <value>Gestores do Acervo</value>
+  </data>
+  <data name="CannotChangeRoleOfAdmin" xml:space="preserve">
+    <value>Não pode alterar a função do administrador.</value>
+  </data>
+  <data name="CannotDeleteAdmin" xml:space="preserve">
+    <value>Não pode eliminar a conta do administrador.</value>
+  </data>
+  <data name="CannotDeleteUser" xml:space="preserve">
+    <value>Não foi possível eliminar este utilizador.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Alterar palavra-passe</value>
+  </data>
+  <data name="ChangeRole" xml:space="preserve">
+    <value>Alterar tarefa</value>
+  </data>
+  <data name="contentmanagers" xml:space="preserve">
+    <value>Gestores de Conteúdos</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Eliminar utilizador</value>
+  </data>
+  <data name="DeleteUserWarning" xml:space="preserve">
+    <value>Tem a certeza que pretende eliminar este utilizador?</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Editar detalhes do utilizador</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Endereço de e-mail</value>
   </data>
@@ -141,8 +174,23 @@
   <data name="Manage" xml:space="preserve">
     <value>Gerir conta</value>
   </data>
+  <data name="PasswordsMustMatch" xml:space="preserve">
+    <value>As palavras-passe têm que ser iguais.</value>
+  </data>
+  <data name="portalmanagers" xml:space="preserve">
+    <value>Gestores do Site</value>
+  </data>
   <data name="RealName" xml:space="preserve">
     <value>Nome real</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Tarefa</value>
+  </data>
+  <data name="UnableToChangePassword" xml:space="preserve">
+    <value>Não foi possivel alterar a palavra-passe.</value>
+  </data>
+  <data name="UnableToChangeRoles" xml:space="preserve">
+    <value>Não foi possível alterar a função.</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Nome de utilizador</value>

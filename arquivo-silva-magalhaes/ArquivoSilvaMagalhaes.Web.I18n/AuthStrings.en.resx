@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotChangeRoleOfAdmin" xml:space="preserve">
+    <value>You cannot change the roles of the administrator.</value>
+  </data>
+  <data name="CannotDeleteAdmin" xml:space="preserve">
+    <value>The administrator account cannot be deleted.</value>
+  </data>
+  <data name="CannotDeleteUser" xml:space="preserve">
+    <value>It was not possible to delete this user.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="ChangeRole" xml:space="preserve">
+    <value>Change Role</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete user</value>
+  </data>
+  <data name="DeleteUserWarning" xml:space="preserve">
+    <value>Are you sure you want to delete this user?</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit user details</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email address</value>
   </data>
@@ -141,8 +165,17 @@
   <data name="Manage" xml:space="preserve">
     <value>Manage account</value>
   </data>
+  <data name="PasswordsMustMatch" xml:space="preserve">
+    <value>The passwords must match.</value>
+  </data>
   <data name="RealName" xml:space="preserve">
     <value>Real name</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="UnableToChangePassword" xml:space="preserve">
+    <value>The password could not be changed.</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>

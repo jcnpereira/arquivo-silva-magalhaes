@@ -14,7 +14,7 @@ using ArquivoSilvaMagalhaes.Web.I18n;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationControllers
 {
-    [Authorize(Roles="admins")]
+    [Authorize(Roles = "admins")]
     public class UsersController : BackOfficeController
     {
         public UsersController()
@@ -61,7 +61,19 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
         // GET: BackOffice/Users/Create
         public ActionResult Create()
         {
-            return View();
+            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+            {
+                var roles = roleManager.Roles.ToList().Select(r => new SelectListItem
+                {
+                    Value = r.Name,
+                    Text = AuthStrings.ResourceManager.GetString(r.Name)
+                });
+
+                return View(new UserRegistrationModel
+                    {
+                        AvailableRoles = roles
+                    });
+            }
         }
 
         // POST: BackOffice/Users/Create
@@ -94,24 +106,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
 
                 if (result.Succeeded)
                 {
-                    var roleName = "";
-                    switch (model.Role)
+                    foreach (var r in model.Roles)
                     {
-                        case UserRole.Admin:
-                            roleName = MembershipUtils.AdminRoleName;
-                            break;
-                        case UserRole.ArchiveManager:
-                            roleName = MembershipUtils.ArchiveRoleName;
-                            break;
-                        case UserRole.ContentManager:
-                            roleName = MembershipUtils.ContentRoleName;
-                            break;
-                        case UserRole.SiteManager:
-                            roleName = MembershipUtils.PortalRoleName;
-                            break;
+                        _db.AddToRole(user.Id, r);
                     }
-
-                    _db.AddToRole(_db.FindByName(user.UserName).Id, roleName);
 
                     return RedirectToAction("Index");
                 }
@@ -121,7 +119,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
         }
 
         // GET: BackOffice/Users/Edit/5
-        public ActionResult Edit(string userName)
+        public ActionResult ChangePassword(string userName)
         {
             if (string.IsNullOrEmpty(userName))
             {
@@ -135,47 +133,156 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.AdministrationContr
                 return HttpNotFound();
             }
 
-            return View();
-
-            //return View(new UserRegistrationModel(user));
+            return View(new UserChangePasswordModel
+                {
+                    UserName = user.UserName
+                });
         }
 
         // POST: BackOffice/Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult ChangePassword(UserChangePasswordModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var user = _db.FindByName(model.UserName);
 
-                return RedirectToAction("Index");
+                _db.RemovePassword(user.Id);
+                var result = _db.AddPassword(user.Id, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+
+            ModelState.AddModelError(string.Empty, AuthStrings.UnableToChangePassword);
+
+            return View(model);
+        }
+
+        public ActionResult ChangeRole(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
             {
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (userName.ToLower() == "admin")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden, AuthStrings.CannotChangeRoleOfAdmin);
+            }
+
+            var user = _db.FindByName(userName);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+            {
+                var roles = roleManager.Roles.ToList().Select(r => new SelectListItem
+                {
+                    Value = r.Name,
+                    Text = AuthStrings.ResourceManager.GetString(r.Name),
+                    Selected = _db.IsInRole(user.Id, r.Name)
+                });
+
+                return View(new UserChangeRoleModel
+                {
+                    UserName = user.UserName,
+                    AvailableRoles = roles
+                });
             }
         }
 
-        // GET: BackOffice/Users/Delete/5
-        public ActionResult Delete(int id)
+        // POST: BackOffice/Users/Edit/5
+        [HttpPost]
+        public ActionResult ChangeRole(UserChangeRoleModel model)
         {
-            return View();
+            if (model.UserName.ToLower() == "admin")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden, AuthStrings.CannotChangeRoleOfAdmin);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var user = _db.FindByName(model.UserName);
+
+                foreach (var role in _db.GetRoles(user.Id))
+                {
+                    _db.RemoveFromRole(user.Id, role);
+                }
+
+                var results = model.Roles.Select(r => _db.AddToRole(user.Id, r));
+
+                if (results.All(r => r.Succeeded))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                ModelState.AddModelError(string.Empty, AuthStrings.UnableToChangeRoles);
+            }
+
+            return View(model);
+        }
+
+        // GET: BackOffice/Users/Delete/5
+        public ActionResult Delete(string userName)
+        {
+            if (userName.ToLower() == "admin")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden, AuthStrings.CannotChangeRoleOfAdmin);
+            }
+
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = _db.FindByName(userName);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
         }
 
         // POST: BackOffice/Users/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string userName)
         {
-            try
+            if (userName.ToLower() == "admin")
             {
-                // TODO: Add delete logic here
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden, AuthStrings.CannotChangeRoleOfAdmin);
+            }
 
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = _db.FindByName(userName);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var result = _db.Delete(user);
+
+            if (result.Succeeded)
+            {
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            ModelState.AddModelError("", AuthStrings.CannotDeleteUser);
+
+            return View(user);
         }
     }
 }

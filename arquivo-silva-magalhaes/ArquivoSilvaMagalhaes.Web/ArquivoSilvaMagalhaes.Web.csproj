@@ -714,6 +714,9 @@
     <Content Include="Content\Styles\frontoffice\image-list.css.map">
       <DependentUpon>image-list.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BackOffice\Views\Users\ChangePassword.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\ChangeRole.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Users\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

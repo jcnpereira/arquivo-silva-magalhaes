@@ -80,6 +80,15 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmar palavra-passe.
+        /// </summary>
+        public static string PasswordConfirm {
+            get {
+                return ResourceManager.GetString("PasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fotografia.
         /// </summary>
         public static string Picture {

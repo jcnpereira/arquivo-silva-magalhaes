@@ -1,0 +1,42 @@
+﻿@model ApplicationUser
+
+@using Microsoft.AspNet.Identity;
+
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = AuthStrings.DeleteUser;
+    ViewBag.AlertMsg = AuthStrings.DeleteUserWarning;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
+}
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.UserName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.UserName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.RealName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.RealName)
+    </dd>
+    <dt>
+        @AuthStrings.Role
+    </dt>
+    <dd>
+        @using (var manager =
+        new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+        {
+            <ul class="list-inline">
+                @foreach (var role in Model.Roles.Select(r => manager.FindById(r.RoleId)))
+                {
+                    <li>@role.Name</li>
+                }
+            </ul>
+        }
+    </dd>
+</dl>

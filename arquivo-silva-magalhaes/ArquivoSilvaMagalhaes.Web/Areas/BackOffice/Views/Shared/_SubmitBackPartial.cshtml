@@ -7,7 +7,7 @@
                 <span class="glyphicon glyphicon-check"></span> @(Model ?? LayoutStrings.Done)
             </button>
 
-            <a href="@Url.Action("Index")" class="btn btn-default">
+            <a href="@(ViewBag.ReturnUrl ?? Url.Action("Index"))" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove"></span> @LayoutStrings.Cancel
             </a>
         </div>
