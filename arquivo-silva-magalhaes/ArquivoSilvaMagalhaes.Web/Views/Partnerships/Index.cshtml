@@ -10,37 +10,35 @@
 
 <hr class="hidden-xs" />
 
-<div data-afsm-ajax="true" data-afsm-id="#afsm-image-list">
 
-    <div class="row afsm-dohighlight">
-        @foreach (var img in Model)
-        {
-            <div class="afsm-thumb col-sm-6 col-lg-4">
+<div class="row">
+    @foreach (var img in Model)
+    {
+        <div class="col-sm-6 col-lg-4">
+            <div class="thumbnail">
+                @*<img class="img-responsive" style="height:200px" src="~/Public/Partnerships/@(img.LogoFileName)" />*@
+                <div style="background-image: url('@Url.Content("~/Public/Partnerships/" + img.LogoFileName)'); background-size: contain; background-position: center center; height: 300px; background-repeat: no-repeat">
 
-                <img class="img-responsive" style="height:200px" src="~/Public/Partnerships/@(img.LogoFileName)" />
+                </div>
                 <div class="caption">
-                    <h5 class="afsm-commentary">
-                        <b>
-                            @img.Name
-                        </b>
-                    </h5>
-                    <small>
+                    <h4>
+                        @img.Name
+                    </h4>
+                    <p>
                         @Html.DisplayFor(model => img.EmailAddress)
-                    </small><br />
-                    <small>
+                    </p>
+                    <p>
                         <a href="@img.SiteLink" target="_blank">@img.SiteLink</a>
-                    </small><br />
-                    <small class="text-muted">
+                    </p>
+                    <p>
                         @img.Contact
-                    </small>
+                    </p>
                 </div>
             </div>
-        }
-    </div>
-    <div class="text-center afsm-pagination">
-        @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", "Parthnerships", new {pageNumber=p}), new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded })
-    </div>
-
+        </div>
+    }
 </div>
-
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", "Parthnerships", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+</div>
 

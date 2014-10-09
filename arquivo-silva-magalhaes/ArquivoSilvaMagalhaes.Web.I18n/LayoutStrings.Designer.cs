@@ -79,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães. Todos os direitos reservados. É expressamente proibida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito..
+        ///   Looks up a localized string similar to Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães. Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito..
         /// </summary>
         public static string AboutText {
             get {
