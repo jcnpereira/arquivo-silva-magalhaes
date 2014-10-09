@@ -11,14 +11,6 @@
 <hr class="hidden-xs" />
 
 <div data-afsm-ajax="true" data-afsm-id="#afsm-image-list">
-    <form method="get"
-          class="form-horizontal"
-          data-afsm-ajax="true"
-          data-afsm-ajaxurl="@Url.Action("List", "Partnerships", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))"
-          action="@Url.Action("Index", "Partnerships", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))">
-        @*<input type="hidden" name="documentId" value="@ViewBag.DocumentId" />*@
-
-    </form>
 
     <div class="row afsm-dohighlight">
         @foreach (var img in Model)
@@ -46,8 +38,7 @@
         }
     </div>
     <div class="text-center afsm-pagination">
-        @*@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Images", new { pageNumber = p, query = ViewBag.Query, keywordId = ViewBag.KeywordId, classificationId = ViewBag.ClassificationId, documentId = ViewBag.DocumentId, collectionId = ViewBag.CollectionId }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })*@
-        @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+        @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", "Parthnerships", new {pageNumber=p}), new PagedListRenderOptions{Display = PagedListDisplayMode.IfNeeded })
     </div>
 
 </div>
