@@ -308,6 +308,18 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\glyphicons.min.css">
       <DependentUpon>glyphicons.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\normalize.css">
+      <DependentUpon>normalize.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\normalize.min.css">
+      <DependentUpon>normalize.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\responsive-embed.css">
+      <DependentUpon>responsive-embed.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\responsive-embed.min.css">
+      <DependentUpon>responsive-embed.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\frontoffice\image-list.css">
       <DependentUpon>image-list.less</DependentUpon>
     </Content>
@@ -365,28 +377,32 @@
     <Content Include="Content\Images\events.png" />
     <Content Include="Content\Images\news.png" />
     <Content Include="Content\Images\spotlightphoto.png" />
-    <Content Include="Scripts\BackOffice\code-suggestions.js" />
-    <Content Include="Scripts\BackOffice\code-suggestions.min.js">
+    <Content Include="Scripts\back-office\code-suggestions.js" />
+    <Content Include="Scripts\back-office\code-suggestions.min.js">
       <DependentUpon>code-suggestions.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\delete-modal.js" />
-    <Content Include="Scripts\BackOffice\delete-modal.min.js">
+    <Content Include="Scripts\back-office\delete-modal.js" />
+    <Content Include="Scripts\back-office\delete-modal.min.js">
       <DependentUpon>delete-modal.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\gmaps.js" />
-    <Content Include="Scripts\BackOffice\gmaps.min.js">
-      <DependentUpon>gmaps.js</DependentUpon>
+    <Content Include="Scripts\configs\google-maps\google-maps-rw.js" />
+    <Content Include="Scripts\configs\google-maps\google-maps-rw.min.js">
+      <DependentUpon>google-maps-rw.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\modal-dialog.js" />
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js">
+    <Content Include="Scripts\back-office\modal-dialog.js" />
+    <Content Include="Scripts\back-office\modal-dialog.min.js">
       <DependentUpon>modal-dialog.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\quill-config.js" />
-    <Content Include="Scripts\BackOffice\quill-config.min.js">
+    <Content Include="Scripts\configs\quill\quill-config.js" />
+    <Content Include="Scripts\configs\quill\quill-config.min.js">
       <DependentUpon>quill-config.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\bs-datepicker\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\bs-datepicker\moment.js" />
+    <Content Include="Scripts\configs\bs-datepicker\bs-datepicker-config.js" />
+    <Content Include="Scripts\configs\bs-datepicker\bs-datepicker-config.min.js">
+      <DependentUpon>bs-datepicker-config.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\vendor\bs-datepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\vendor\bs-datepicker\moment.js" />
     <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
     <Content Include="Content\Images\silva-magalhaes.jpg" />
     <Content Include="Content\Styles\Site.css" />
@@ -717,22 +733,28 @@
     <Content Include="Areas\BackOffice\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\BackOffice\Views\Users\ChangeRole.cshtml" />
     <Content Include="Areas\BackOffice\Views\Users\Delete.cshtml" />
+    <Content Include="Content\Styles\frontoffice\bootstrap\responsive-embed.css.map">
+      <DependentUpon>responsive-embed.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\frontoffice\bootstrap\normalize.css.map">
+      <DependentUpon>normalize.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\frontoffice\ajax-pagination.js" />
-    <Content Include="Scripts\frontoffice\ajax-pagination.min.js">
+    <Content Include="Scripts\vendor\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\vendor\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\common\ajax-pagination.js" />
+    <Content Include="Scripts\common\ajax-pagination.min.js">
       <DependentUpon>ajax-pagination.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\frontoffice\gmaps-readonly.min.js">
-      <DependentUpon>gmaps-readonly.js</DependentUpon>
+    <Content Include="Scripts\configs\google-maps\google-maps-ro.min.js">
+      <DependentUpon>google-maps-ro.js</DependentUpon>
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image-carousel.js" />
     <Content Include="Scripts\frontoffice\overlay-image-carousel.min.js">
       <DependentUpon>overlay-image-carousel.js</DependentUpon>
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image.js" />
-    <Content Include="Scripts\frontoffice\gmaps-readonly.js" />
+    <Content Include="Scripts\configs\google-maps\google-maps-ro.js" />
     <Content Include="Scripts\frontoffice\overlay-image.min.js">
       <DependentUpon>overlay-image.js</DependentUpon>
     </Content>
@@ -740,25 +762,25 @@
     <Content Include="Scripts\frontoffice\showcase-video.min.js">
       <DependentUpon>showcase-video.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Scripts\BackOffice\quill-config.min.js.map">
+    <Content Include="Scripts\vendor\jquery\jquery-2.1.1.js" />
+    <Content Include="Scripts\vendor\jquery\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\vendor\jquery\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\configs\quill\quill-config.min.js.map">
       <DependentUpon>quill-config.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\gmaps.min.js.map">
-      <DependentUpon>gmaps.min.js</DependentUpon>
+    <Content Include="Scripts\configs\google-maps\google-maps-rw.min.js.map">
+      <DependentUpon>google-maps-rw.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\code-suggestions.min.js.map">
+    <Content Include="Scripts\back-office\code-suggestions.min.js.map">
       <DependentUpon>code-suggestions.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\delete-modal.min.js.map">
+    <Content Include="Scripts\back-office\delete-modal.min.js.map">
       <DependentUpon>delete-modal.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\frontoffice\gmaps-readonly.min.js.map">
-      <DependentUpon>gmaps-readonly.min.js</DependentUpon>
+    <Content Include="Scripts\configs\google-maps\google-maps-ro.min.js.map">
+      <DependentUpon>google-maps-ro.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\BackOffice\modal-dialog.min.js.map">
+    <Content Include="Scripts\back-office\modal-dialog.min.js.map">
       <DependentUpon>modal-dialog.min.js</DependentUpon>
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image.min.js.map">
@@ -767,77 +789,27 @@
     <Content Include="Scripts\frontoffice\showcase-video.min.js.map">
       <DependentUpon>showcase-video.min.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\frontoffice\ajax-pagination.min.js.map">
+    <Content Include="Scripts\common\ajax-pagination.min.js.map">
       <DependentUpon>ajax-pagination.min.js</DependentUpon>
     </Content>
     <Content Include="Scripts\frontoffice\overlay-image-carousel.min.js.map">
       <DependentUpon>overlay-image-carousel.min.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.cy.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.fa.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.gl.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.kk.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.pt-PT.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.ua.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.vi.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
-    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
-    <Content Include="Scripts\modernizr-2.7.2.js" />
-    <Content Include="Scripts\quill\quill.js" />
-    <Content Include="Scripts\quill\quill.min.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="Scripts\configs\bs-datepicker\bs-datepicker-config.min.js.map">
+      <DependentUpon>bs-datepicker-config.min.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\vendor\jquery\jquery-2.1.1-vsdoc.js" />
+    <None Include="Scripts\vendor\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.validate.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\vendor\quill\quill.js" />
+    <Content Include="Scripts\vendor\quill\quill.min.js" />
+    <Content Include="Scripts\vendor\respond\respond.js" />
+    <Content Include="Scripts\vendor\respond\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\vendor\respond\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\vendor\respond\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -894,7 +866,6 @@
     <Content Include="Views\Images\_ImageList.cshtml" />
     <Content Include="Views\Collections\_CollectionList.cshtml" />
     <Content Include="Views\Authors\_AuthorList.cshtml" />
-    <Content Include="Views\Shared\_ImageOverlay.cshtml" />
     <Content Include="Views\Home\References.cshtml" />
     <Content Include="Views\Shared\_LayoutLinks.cshtml" />
     <Content Include="Views\Search\_SearchResults.cshtml" />

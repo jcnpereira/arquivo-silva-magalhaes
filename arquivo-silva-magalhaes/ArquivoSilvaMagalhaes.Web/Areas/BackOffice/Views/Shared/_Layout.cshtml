@@ -42,12 +42,9 @@
     <meta name="description" content="@LayoutStrings.SiteDescription" />
 
     <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/customcss")
+    @Styles.Render("~/bundles/css/backoffice-main")
 
     @RenderSection("additionalstyles", required: false)
-
-    @Scripts.Render("~/bundles/modernizr")
 
     @RenderSection("headscripts", required: false)
 </head>
@@ -159,8 +156,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js/common")
 
     @* Additional scripts and content for specific pages that require it. *@
     @RenderSection("scripts", required: false)

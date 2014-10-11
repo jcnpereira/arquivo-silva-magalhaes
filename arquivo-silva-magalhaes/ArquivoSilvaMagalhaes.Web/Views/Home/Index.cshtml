@@ -88,6 +88,10 @@
 
 @if (Request.Cookies["afsm-novideo"] == null)
 {
+    @section head {
+        @Styles.Render("~/bundles/css/video-overlay")
+    }
+    
     @section scripts {
         @Html.Partial("_VideoDisplayPartial", Model.VideoId)
     }

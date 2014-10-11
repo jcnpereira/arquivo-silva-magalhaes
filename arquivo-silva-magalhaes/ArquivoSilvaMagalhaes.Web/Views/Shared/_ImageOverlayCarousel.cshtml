@@ -21,7 +21,7 @@
         </div>
 
         <!-- Controls -->
-        @if (Model.Count(img => img.Entity.ImageUrl != null) > 1)
+        @if (Model.Count(img => img.Entity.ImageUrl != null && img.Entity.ShowImage) > 1)
         {
             <a class="left carousel-control" href="#afsm-overlay-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>

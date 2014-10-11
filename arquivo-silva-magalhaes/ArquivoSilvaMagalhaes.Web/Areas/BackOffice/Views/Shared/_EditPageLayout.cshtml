@@ -3,30 +3,22 @@
 }
 
 @section AdditionalStyles {
-    @Styles.Render("~/Content/datepicker-bootstrap")
+    @Styles.Render("~/bundles/css/vendor/bs-datetimepicker")
 }
 
 <h2>@ViewBag.Title</h2>
 
 <hr />
 
-@*<div style="max-width: 1024px" class="center-block">
-
-        @RenderBody()
-    </div>*@
-
 @RenderBody()
 
 @section Scripts {
-    @Scripts.Render("~/bundles/bootstrap-date-picker")
-    @*<script type="text/javascript" src="~/Scripts/locales/bootstrap-datepicker.@(System.Threading.Thread.CurrentThread.CurrentUICulture.Name).js"></script>*@
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script type="text/javascript">
-        $('[data-provide=datetimepicker]').datetimepicker();
-    </script>
-
-    @Scripts.Render("~/Scripts/backoffice/extras", "~/Scripts/backoffice/quill")
+    @Scripts.Render(
+        "~/bundles/js/date-picker",
+        "~/bundles/js/val",
+        "~/bundles/js/quill", 
+        "~/bundles/js/suggestions"
+    )
 
     @RenderSection("scripts", required: false)
 }

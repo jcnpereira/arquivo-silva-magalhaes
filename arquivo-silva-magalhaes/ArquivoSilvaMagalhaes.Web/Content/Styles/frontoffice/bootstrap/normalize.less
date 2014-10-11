@@ -29,18 +29,18 @@ body {
 // Correct `block` display not defined for `main` in IE 11.
 //
 
-article,
+/*article,
 aside,
 details,
 figcaption,
-figure,
-footer,
+figure,*/
+footer/*,
 header,
 hgroup,
 main,
 nav,
 section,
-summary {
+summary*/ {
   display: block;
 }
 
@@ -49,33 +49,33 @@ summary {
 // 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
 //
 
-audio,
+/*audio,
 canvas,
 progress,
 video {
   display: inline-block; // 1
   vertical-align: baseline; // 2
-}
+}*/
 
 //
 // Prevent modern browsers from displaying `audio` without controls.
 // Remove excess height in iOS 5 devices.
 //
 
-audio:not([controls]) {
+/*audio:not([controls]) {
   display: none;
   height: 0;
-}
+}*/
 
 //
 // Address `[hidden]` styling not present in IE 8/9/10.
 // Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
 //
 
-[hidden],
+/*[hidden],
 template {
   display: none;
-}
+}*/
 
 // Links
 // ==========================================================================
@@ -104,26 +104,26 @@ a:hover {
 // Address styling not present in IE 8/9/10/11, Safari, and Chrome.
 //
 
-abbr[title] {
+/*abbr[title] {
   border-bottom: 1px dotted;
-}
+}*/
 
 //
 // Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
 //
 
-b,
+/*b,
 strong {
   font-weight: bold;
-}
+}*/
 
 //
 // Address styling not present in Safari and Chrome.
 //
 
-dfn {
+/*dfn {
   font-style: italic;
-}
+}*/
 
 //
 // Address variable `h1` font-size and margin within `section` and `article`
@@ -139,10 +139,10 @@ h1 {
 // Address styling not present in IE 8/9.
 //
 
-mark {
+/*mark {
   background: #ff0;
   color: #000;
-}
+}*/
 
 //
 // Address inconsistent and variable font size in all browsers.
@@ -156,7 +156,7 @@ small {
 // Prevent `sub` and `sup` affecting `line-height` in all browsers.
 //
 
-sub,
+/*sub,
 sup {
   font-size: 75%;
   line-height: 0;
@@ -170,7 +170,7 @@ sup {
 
 sub {
   bottom: -0.25em;
-}
+}*/
 
 // Embedded content
 // ==========================================================================
@@ -187,9 +187,9 @@ img {
 // Correct overflow not hidden in IE 9/10/11.
 //
 
-svg:not(:root) {
+/*svg:not(:root) {
   overflow: hidden;
-}
+}*/
 
 // Grouping content
 // ==========================================================================
@@ -198,9 +198,9 @@ svg:not(:root) {
 // Address margin not present in IE 8/9 and Safari.
 //
 
-figure {
+/*figure {
   margin: 1em 40px;
-}
+}*/
 
 //
 // Address differences between Firefox and other browsers.
@@ -216,21 +216,21 @@ hr {
 // Contain overflow in all browsers.
 //
 
-pre {
+/*pre {
   overflow: auto;
-}
+}*/
 
 //
 // Address odd `em`-unit font size rendering in all browsers.
 //
 
-code,
+/*code,
 kbd,
 pre,
 samp {
   font-family: monospace, monospace;
   font-size: 1em;
-}
+}*/
 
 // Forms
 // ==========================================================================
@@ -248,10 +248,10 @@ samp {
 //
 
 button,
-input,
+input/*,
 optgroup,
 select,
-textarea {
+textarea*/ {
   color: inherit; // 1
   font: inherit; // 2
   margin: 0; // 3
@@ -272,8 +272,8 @@ button {
 // Correct `select` style inheritance in Firefox.
 //
 
-button,
-select {
+button/*,
+select*/ {
   text-transform: none;
 }
 
@@ -297,10 +297,10 @@ input[type="submit"] {
 // Re-set default cursor for disabled elements.
 //
 
-button[disabled],
+/*button[disabled],
 html input[disabled] {
   cursor: default;
-}
+}*/
 
 //
 // Remove inner padding and border in Firefox 4+.
@@ -329,11 +329,11 @@ input {
 // 2. Remove excess padding in IE 8/9/10.
 //
 
-input[type="checkbox"],
+/*input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box; // 1
   padding: 0; // 2
-}
+}*/
 
 //
 // Fix the cursor style for Chrome's increment/decrement buttons. For certain
@@ -341,10 +341,10 @@ input[type="radio"] {
 // decrement button to change from `default` to `text`.
 //
 
-input[type="number"]::-webkit-inner-spin-button,
+/*input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
-}
+}*/
 
 //
 // 1. Address `appearance` set to `searchfield` in Safari and Chrome.
@@ -374,38 +374,38 @@ input[type="search"]::-webkit-search-decoration {
 // Define consistent border, margin, and padding.
 //
 
-fieldset {
+/*fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
-}
+}*/
 
 //
 // 1. Correct `color` not being inherited in IE 8/9/10/11.
 // 2. Remove padding so people aren't caught out if they zero out fieldsets.
 //
 
-legend {
+/*legend {
   border: 0; // 1
   padding: 0; // 2
-}
+}*/
 
 //
 // Remove default vertical scrollbar in IE 8/9/10/11.
 //
 
-textarea {
+/*textarea {
   overflow: auto;
-}
+}*/
 
 //
 // Don't inherit the `font-weight` (applied by a rule above).
 // NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
 //
 
-optgroup {
+/*optgroup {
   font-weight: bold;
-}
+}*/
 
 // Tables
 // ==========================================================================
@@ -414,7 +414,7 @@ optgroup {
 // Remove most spacing between table cells.
 //
 
-table {
+/*table {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -422,4 +422,4 @@ table {
 td,
 th {
   padding: 0;
-}
+}*/

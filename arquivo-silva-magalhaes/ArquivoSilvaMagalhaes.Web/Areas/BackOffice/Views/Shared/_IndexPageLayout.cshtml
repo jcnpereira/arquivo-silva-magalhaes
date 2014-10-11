@@ -5,7 +5,7 @@
 }
 
 @section headscripts {
-    @Styles.Render("~/Content/Styles/frontoffice/afsm-animations.css")
+    @Styles.Render("~/bundles/css/animations")
 }
 
 <h2>@ViewBag.Title</h2>
@@ -60,9 +60,8 @@
 
 @section scripts {
     @Html.Partial("_DeleteConfirmModal")
-    @Scripts.Render("~/bundles/scripts/backoffice/delete-modal")
+    @Scripts.Render("~/bundles/js/delete-modal")
+    @Scripts.Render("~/bundles/js/ajax-pagination")
 
     @RenderSection("scripts", required: false)
-
-    @Scripts.Render("~/Scripts/frontoffice/ajax-pagination.js")
 }

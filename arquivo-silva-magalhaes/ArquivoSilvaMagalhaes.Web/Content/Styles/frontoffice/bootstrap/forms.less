@@ -49,12 +49,12 @@ input[type="search"] {
 }
 
 // Position radios and checkboxes better
-input[type="radio"],
+/*input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9; // IE8-9
   line-height: normal;
-}
+}*/
 
 // Set the height of file controls to match text inputs
 /*input[type="file"] {
@@ -62,23 +62,23 @@ input[type="checkbox"] {
 }*/
 
 // Make range inputs behave like textual form controls
-input[type="range"] {
+/*input[type="range"] {
   display: block;
   width: 100%;
-}
+}*/
 
 // Make multiple select elements height not fixed
-select[multiple],
+/*select[multiple],
 select[size] {
   height: auto;
-}
+}*/
 
 // Focus for file, radio, and checkbox
-input[type="file"]:focus,
+/*input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   .tab-focus();
-}
+}*/
 
 // Adjust output element
 /*output {
@@ -173,7 +173,7 @@ input[type="search"] {
 // given height of the input. Since this fucks up everything else, we have to
 // appropriately reset it for Internet Explorer and the size variations.
 
-input[type="date"],
+/*input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
@@ -181,13 +181,13 @@ input[type="month"] {
   // IE8+ misaligns the text within date inputs, so we reset
   line-height: @line-height-base ~"\0";
 
-  /*&.input-sm {
+  &.input-sm {
     line-height: @input-height-small;
   }
   &.input-lg {
     line-height: @input-height-large;
-  }*/
-}
+  }
+}*/
 
 
 // Form groups
@@ -204,7 +204,7 @@ input[type="month"] {
 //
 // Indent the labels to position radios/checkboxes as hanging controls.
 
-.radio,
+/*.radio,
 .checkbox {
   position: relative;
   display: block;
@@ -218,7 +218,7 @@ input[type="month"] {
     font-weight: normal;
     cursor: pointer;
   }
-}
+}*/
 /*.radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -474,20 +474,20 @@ input[type="checkbox"] {
   // Consistent vertical alignment of radios and checkboxes
   //
   // Labels also get some reset styles, but that is scoped to a media query below.
-  .radio,
+  /*.radio,
   .checkbox,
   .radio-inline,
   .checkbox-inline {
     margin-top: 0;
     margin-bottom: 0;
     padding-top: (@padding-base-vertical + 1); // Default padding plus a border
-  }
+  }*/
   // Account for padding we're adding to ensure the alignment and of help text
   // and other content below items
-  .radio,
+  /*.radio,
   .checkbox {
     min-height: (@line-height-computed + (@padding-base-vertical + 1));
-  }
+  }*/
 
   // Make form groups behave like rows
   .form-group {
@@ -496,22 +496,22 @@ input[type="checkbox"] {
 
   // Reset spacing and right align labels, but scope to media queries so that
   // labels on narrow viewports stack the same as a default form example.
-  @media (min-width: @screen-sm-min) {
+  /*@media (min-width: @screen-sm-min) {
     .control-label {
       text-align: right;
       margin-bottom: 0;
       padding-top: (@padding-base-vertical + 1); // Default padding plus a border
     }
-  }
+  }*/
 
   // Validation states
   //
   // Reposition the icon because it's now within a grid column and columns have
   // `position: relative;` on them. Also accounts for the grid gutter padding.
-  .has-feedback .form-control-feedback {
+  /*.has-feedback .form-control-feedback {
     top: 0;
     right: (@grid-gutter-width / 2);
-  }
+  }*/
 
   // Form group sizes
   //
