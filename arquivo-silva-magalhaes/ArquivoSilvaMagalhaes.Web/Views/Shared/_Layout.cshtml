@@ -15,7 +15,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <meta name="application-name" content="Arquivo Fotográfico Silva Magalhães" />
 
@@ -53,9 +53,9 @@
 
     <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
     <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
-    @Styles.Render("~/bundles/styles/frontoffice")
+    @Styles.Render("~/bundles/css/frontoffice-main")
 
-    @RenderSection("additionalheadcontent", required: false)
+    @RenderSection("head", required: false)
 </head>
 <body>
 
@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/scripts/frontoffice")
+    @Scripts.Render("~/bundles/js/common")
     @RenderSection("scripts", required: false)
 </body>
 </html>

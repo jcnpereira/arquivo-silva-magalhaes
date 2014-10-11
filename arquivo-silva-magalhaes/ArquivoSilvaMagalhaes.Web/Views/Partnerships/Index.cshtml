@@ -14,10 +14,10 @@
 <div class="row">
     @foreach (var img in Model)
     {
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-4" style="height: 400px;">
             <div class="thumbnail">
                 @*<img class="img-responsive" style="height:200px" src="~/Public/Partnerships/@(img.LogoFileName)" />*@
-                <div style="background-image: url('@Url.Content("~/Public/Partnerships/" + img.LogoFileName)'); background-size: contain; background-position: center center; height: 300px; background-repeat: no-repeat">
+                <div style="background-image: url('@Url.Content("~/Public/Partnerships/" + img.LogoFileName)'); background-size: contain; background-position: center center; height: 200px; background-repeat: no-repeat">
 
                 </div>
                 <div class="caption">

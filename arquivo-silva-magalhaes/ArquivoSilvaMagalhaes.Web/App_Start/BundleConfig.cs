@@ -4,81 +4,105 @@ namespace ArquivoSilvaMagalhaes
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            RegisterStyleBundles(bundles);
+            RegisterScriptBundles(bundles);
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap-date-picker").Include(
-                //"~/Scripts/bootstrap-datepicker.js"));
-                        "~/Scripts/bs-datepicker/moment.js",
-                        "~/Scripts/bs-datepicker/bootstrap-datetimepicker.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js"));
-
-
-
-            bundles.Add(new ScriptBundle("~/Scripts/backoffice/extras").Include(
-                       "~/Scripts/BackOffice/modal-dialog.js",
-                       "~/Scripts/BackOffice/code-suggestions.js"));
-
-            // Quill bundle for rich text editors.
-            bundles.Add(new ScriptBundle("~/Scripts/backoffice/quill").Include(
-                "~/Scripts/quill/quill.js",
-                "~/Scripts/backoffice/quill-config.js"));
-
-
-            bundles.Add(new ScriptBundle("~/Scripts/backoffice/gmaps").Include(
-                "~/Scripts/backoffice/gmaps.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/Styles/Bootstrap/bootstrap.css"));
-
-            bundles.Add(new StyleBundle("~/Content/customcss").Include(
-                      "~/Content/Styles/Site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/datepicker-bootstrap").Include(
-                        "~/Content/Styles/DatePicker/bootstrap-datetimepicker.css"));
-
-            RegisterFrontOfficeBundles(bundles);
-            RegisterBackOfficeBundles(bundles);
+            BundleTable.EnableOptimizations = true;
         }
 
-        /// <summary>
-        /// Register back-office specific style and script bundles.
-        /// </summary>
-        private static void RegisterBackOfficeBundles(BundleCollection bundles)
+        private static void RegisterStyleBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/scripts/backoffice/delete-modal").Include(
-                "~/Scripts/BackOffice/delete-modal.js"
-                ));
+            // Style bundle that properly stylizes the datepicker.
+            bundles.Add(new StyleBundle("~/bundles/css/vendor/bs-datetimepicker").Include(
+                "~/Content/Styles/DatePicker/bootstrap-datetimepicker.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/bundles/css/backoffice-main").Include(
+                "~/Content/Styles/Bootstrap/bootstrap.css",
+                "~/Content/Styles/Site.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/bundles/css/frontoffice-main").Include(
+                "~/Content/Styles/frontoffice/main.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/bundles/css/video-overlay").Include(
+                "~/Content/Styles/frontoffice/video-overlay.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/bundles/css/animations").Include(
+                "~/Content/Styles/frontoffice/afsm-animations.css"
+            ));
         }
 
-        private static void RegisterFrontOfficeBundles(BundleCollection bundles)
+        private static void RegisterScriptBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/scripts/frontoffice").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
-                        "~/Scripts/respond.js"));
+            // Common bundle that includes jQuery, Respond.js and Bootstrap.
+            bundles.Add(new ScriptBundle("~/bundles/js/common").Include(
+                "~/Scripts/vendor/jquery/jquery-{version}.js",
+                "~/Scripts/vendor/bootstrap/bootstrap.js",
+                "~/Scripts/vendor/respond/respond.js"
+            ));
 
-            bundles.Add(new StyleBundle("~/bundles/styles/frontoffice").Include(
-                //"~/Content/Styles/frontoffice/bootstrap/bootstrap.css",
-                "~/Content/Styles/frontoffice/main.css"));
+            // Bundle for unobtrusive validation purposes.
+            bundles.Add(new ScriptBundle("~/bundles/js/val").Include(
+                "~/Scripts/vendor/jquery/jquery.validate*"
+            ));
+
+            // Bundle that contains scripts to render modal dialogs and supply
+            // code suggestions.
+            bundles.Add(new ScriptBundle("~/bundles/js/suggestions").Include(
+                "~/Scripts/back-office/modal-dialog.js",
+                "~/Scripts/back-office/code-suggestions.js"
+            ));
+
+            // Read-only version of Google Maps.
+            bundles.Add(new ScriptBundle("~/bundles/js/google-maps-ro").Include(
+                "~/Scripts/configs/google-maps/google-maps-ro.js"
+            ));
+
+            // Version of Google Maps for use in edit views.
+            bundles.Add(new ScriptBundle("~/bundles/js/google-maps-rw").Include(
+                "~/Scripts/configs/google-maps/google-maps-rw.js"
+            ));
+
+            // Bundle that contains both Quill.js (the rich HTML editor)
+            // and configs for it.
+            bundles.Add(new ScriptBundle("~/bundles/js/quill").Include(
+                "~/Scripts/vendor/quill/quill.js",
+                "~/Scripts/configs/quill/quill-config.js"
+            ));
+
+            // Bundle that contains the needed files for the date-pickers
+            // to function. This Bootstrap-themed date picker uses moment.js,
+            // a popular JS library to work with date-time values.
+            // The necessary JS code to initialize the datepicker
+            // is also included.
+            bundles.Add(new ScriptBundle("~/bundles/js/date-picker").Include(
+                "~/Scripts/vendor/bs-datepicker/moment.js",
+                "~/Scripts/vendor/bs-datepicker/bootstrap-datetimepicker.js",
+                "~/Scripts/configs/bs-datepicker/bs-datepicker-config.js"
+            ));
+
+            // Bundle that contains the necessary code to show the "Do you want to delete this?"
+            // modal dialogs in list views.
+            bundles.Add(new ScriptBundle("~/bundles/js/delete-modal").Include(
+                "~/Scripts/back-office/delete-modal.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/video-overlay").Include(
+                "~/Scripts/frontoffice/showcase-video.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/ajax-pagination").Include(
+                "~/Scripts/common/ajax-pagination.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/overlay-image").Include(
+                "~/Scripts/frontoffice/overlay-image-carousel.js"
+            ));
         }
     }
 }
