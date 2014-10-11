@@ -191,7 +191,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     if (logo == null)
                     {
                         model.Collection.LogoLocation =
-                            Guid.NewGuid().ToString() + "_" + model.Logo.FileName;
+                            Guid.NewGuid().ToString() + ".jpg";
 
                         logo = model.Collection.LogoLocation;
                     }

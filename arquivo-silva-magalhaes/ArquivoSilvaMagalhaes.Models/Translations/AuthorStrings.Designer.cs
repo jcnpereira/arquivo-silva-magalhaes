@@ -169,6 +169,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É recomendada uma imagem de 400x400 pixeis. A imagem é opcional..
+        /// </summary>
+        public static string ImageRecommendation {
+            get {
+                return ResourceManager.GetString("ImageRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Último nome.
         /// </summary>
         public static string LastName {

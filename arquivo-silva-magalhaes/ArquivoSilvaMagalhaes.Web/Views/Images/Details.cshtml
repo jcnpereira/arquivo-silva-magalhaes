@@ -39,9 +39,10 @@
 </ol>
 
 <div class="row afsm-detail-header">
-    <div class="col-sm-4">
-        @if (Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage)
-        {
+
+    @if (Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage)
+    {
+        <div class="col-sm-4">
             <a href="@Url.Content("~/Public/Images/" + (Model.Image.Entity.ImageUrl) + "_large.jpg")"
                class="thumbnail">
                 <img data-afsm-show-overlay="true"
@@ -50,18 +51,13 @@
                      data-afsm-description="@Html.DisplayFor(modelItem => Model.Image.Translation.Description)"
                      src="~/Public/Images/@(Model.Image.Entity.ImageUrl)_thumb.jpg" />
             </a>
-
-            @section scripts {
-                @Html.Partial("_ImageOverlay")
-            }
+        </div>
+        @section scripts {
+            @Html.Partial("_ImageOverlay")
         }
-        else
-        {
-            <img src="~/Content/Images/no-image.png" class="img-responsive" />
-        }
-    </div>
+    }
 
-    <div class="col-sm-8">
+    <div class="col-sm-@(Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage ? "8" : "12")">
         <h3>
             @Model.Image.Translation.Title <small>@Model.Image.Entity.ImageCode</small>
         </h3>

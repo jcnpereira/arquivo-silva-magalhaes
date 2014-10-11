@@ -153,6 +153,9 @@
   <data name="FirstName" xml:space="preserve">
     <value>Primeiro nome</value>
   </data>
+  <data name="ImageRecommendation" xml:space="preserve">
+    <value>É recomendada uma imagem de 400x400 pixeis. A imagem é opcional.</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Último nome</value>
   </data>

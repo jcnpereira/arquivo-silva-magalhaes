@@ -21,11 +21,24 @@
     </li>
 </ol>
 
-<h2>@Model.Entity.FirstName @Model.Entity.LastName</h2>
+<div class="row afsm-detail-header">
+    @if (Model.Entity.PictureFileName != null)
+    {
+        <div class="col-sm-3 col-xs-4">
+            <img src="~/Public/Authors/@Model.Entity.PictureFileName"
+                 class="img-responsive img-circle"
+                 alt="@Model.Entity.FirstName @Model.Entity.LastName" />
+        </div>
+    }
 
-<p>@Model.Translation.Nationality</p>
+    <div class="col-sm-@(Model.Entity.PictureFileName != null ? "9" : "12") col-xs-@(Model.Entity.PictureFileName != null ? "8" : "12")">
+        <h2>@Model.Entity.FirstName @Model.Entity.LastName</h2>
 
-<p>@Html.DisplayFor(m => Model.Entity.BirthDate) @(Model.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => Model.Entity.DeathDate) : "")</p>
+        <p>@Model.Translation.Nationality</p>
+
+        <p>@Html.DisplayFor(m => Model.Entity.BirthDate) @(Model.Entity.DeathDate != null ? " - " + Html.DisplayFor(model => Model.Entity.DeathDate) : "")</p>
+    </div>
+</div>
 
 <hr />
 

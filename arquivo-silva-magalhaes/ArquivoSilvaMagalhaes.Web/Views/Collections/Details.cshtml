@@ -28,13 +28,16 @@
 
 
 <div class="row afsm-detail-header">
-    <div class="col-sm-4">
-        <img src="~/@logo"
-             class="img-responsive thumbnail"
-             alt="@Model.Translation.Title" />
-    </div>
+    @if (Model.Entity.LogoLocation != null)
+    {
+        <div class="col-sm-4">
+            <img src="~/@logo"
+                 class="img-responsive thumbnail"
+                 alt="@Model.Translation.Title" />
+        </div>
+    }
 
-    <div class="col-sm-8">
+    <div class="col-sm-@(Model.Entity.LogoLocation != null ? "8" : "12")">
         <h3>
             @Model.Translation.Title <small>@Model.Entity.CatalogCode</small>
         </h3>

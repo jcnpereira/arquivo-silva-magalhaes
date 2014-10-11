@@ -6,7 +6,7 @@
     
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Authors", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -19,6 +19,15 @@
         @Html.PartialFor(model => model.Author, "_AuthorMainFields")
 
         @Html.PartialFor(model => model.Author.Translations[0], "_AuthorTranslateableFields")
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUpload, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.FileUploadFor(model => model.ImageUpload, new { @class = "form-control-static", accept = "image/*" })
+                @Html.ValidationMessageFor(model => model.ImageUpload, "", new { @class = "text-danger" })
+                <p class="help-block">@AuthorStrings.ImageRecommendation</p>
+            </div>
+        </div>
 
         @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
     </div>

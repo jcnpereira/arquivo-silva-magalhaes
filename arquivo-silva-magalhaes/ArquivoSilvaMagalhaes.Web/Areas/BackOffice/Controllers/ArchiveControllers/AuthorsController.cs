@@ -3,6 +3,7 @@ using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.ViewModels;
+using ImageResizer;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -88,17 +89,29 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // POST: BackOffice/Authors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Author author)
+        public async Task<ActionResult> Create(AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Add(author);
+                if (model.ImageUpload != null)
+                {
+                    var newName = Guid.NewGuid().ToString() + ".jpg";
+
+                    FileUploadHelper.SaveImage(model.ImageUpload.InputStream,
+                        400, 400,
+                        Server.MapPath("~/Public/Authors/") + newName,
+                        FitMode.Crop);
+
+                    model.Author.PictureFileName = newName;
+                }
+
+                db.Add(model.Author);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(new AuthorEditViewModel { Author = author });
+            return View(model);
         }
 
         // GET: BackOffice/Authors/Edit/5
@@ -125,14 +138,38 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // POST: BackOffice/Authors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Author author)
+        public async Task<ActionResult> Edit(AuthorEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Update(author);
+                db.Update(model.Author);
+
+                if (model.ImageUpload != null)
+                {
+                    var logo = db.GetValueFromDb(model.Author, c => c.PictureFileName);
+
+                    if (logo == null)
+                    {
+                        model.Author.PictureFileName =
+                            Guid.NewGuid().ToString() + ".jpg";
+
+                        logo = model.Author.PictureFileName;
+                    }
+
+                    FileUploadHelper.SaveImage(model.ImageUpload.InputStream,
+                        400, 400,
+                        Server.MapPath("~/Public/Authors/") + logo,
+                        FitMode.Crop);
+                }
+                else
+                {
+                    db.ExcludeFromUpdate(model.Author, c => new { c.PictureFileName });
+                }
+
+
 
                 // Update each translation.
-                foreach (var t in author.Translations)
+                foreach (var t in model.Author.Translations)
                 {
                     db.UpdateTranslation(t);
                 }
@@ -141,10 +178,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 return RedirectToAction("Index");
             }
 
-            return View(new AuthorEditViewModel
-                {
-                    Author = author
-                });
+            return View(model);
         }
 
         // GET: BackOffice/Authors/Delete/5
