@@ -180,6 +180,9 @@
   <data name="MustChooseDocument" xml:space="preserve">
     <value>You must choose a document first.</value>
   </data>
+  <data name="NoCoordinates" xml:space="preserve">
+    <value>Not available</value>
+  </data>
   <data name="NoImage" xml:space="preserve">
     <value>Image not available</value>
   </data>
@@ -188,6 +191,15 @@
   </data>
   <data name="Publication" xml:space="preserve">
     <value>Published in</value>
+  </data>
+  <data name="ShowCoordinates" xml:space="preserve">
+    <value>Add coordinates</value>
+  </data>
+  <data name="ShowImage" xml:space="preserve">
+    <value>Display image</value>
+  </data>
+  <data name="ShowImageHint" xml:space="preserve">
+    <value>If this checkbox is not checked, the digital representation of this image will not be publicly visible.</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>

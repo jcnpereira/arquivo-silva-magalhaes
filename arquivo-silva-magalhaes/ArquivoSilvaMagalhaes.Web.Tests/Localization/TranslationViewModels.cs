@@ -41,7 +41,7 @@ namespace ArquivoSilvaMagalhaes.Tests.Localization
         /// <summary>
         /// Ensure that, when the translation
         /// doesn't exist for the desired language,
-        /// the default language should be returned instead.
+        /// the default language is returned instead.
         /// </summary>
         [TestMethod]
         public void TranslationViewModel_GetsDefaultTranslation()

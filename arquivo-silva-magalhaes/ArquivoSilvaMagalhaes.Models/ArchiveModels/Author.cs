@@ -52,6 +52,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(AuthorStrings), Name = "DeathDate")]
         public DateTime? DeathDate { get; set; }
 
+        [Display(ResourceType = typeof(AuthorStrings), Name = "PictureFileName")]
+        public string PictureFileName { get; set; }
+
         /// <summary>
         /// Localized texts descibing the biography and other aspects of this
         /// author.

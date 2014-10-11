@@ -26,13 +26,15 @@ namespace ArquivoSilvaMagalhaes.ViewModels
             this.Entity = entity;
 
             // Try to get a translation for the current language.
-            Translation = FindTranslation();
+            _translation = FindTranslation();
         }
 
         /// <summary>
         /// Non-translateable fields.
         /// </summary>
         public TEntity Entity { get; set; }
+
+        private TTranslation _translation;
 
         /// <summary>
         /// Translated fields.
@@ -49,10 +51,6 @@ namespace ArquivoSilvaMagalhaes.ViewModels
                 }
 
                 return _translation;
-            }
-            private set
-            {
-                _translation = value;
             }
         }
 
@@ -85,6 +83,6 @@ namespace ArquivoSilvaMagalhaes.ViewModels
             }
             return translation;
         }
-        private TTranslation _translation;
+
     }
 }

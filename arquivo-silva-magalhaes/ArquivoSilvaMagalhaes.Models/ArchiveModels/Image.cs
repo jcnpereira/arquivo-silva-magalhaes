@@ -29,6 +29,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         public string Longitude { get; set; }
 
+        [Display(ResourceType = typeof(ImageStrings), Name = "ShowCoordinates")]
+        public bool ShowCoordinates { get; set; }
+
         [Required]
         [Index(IsUnique = true)]
         [StringLength(100)]
@@ -41,6 +44,9 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Display(ResourceType = typeof(ImageStrings), Name = "IsVisible")]
         public bool IsVisible { get; set; }
+
+        [Display(ResourceType = typeof(ImageStrings), Name = "ShowImage")]
+        public bool ShowImage { get; set; }
 
         [ForeignKey("DocumentId")]
         [Display(ResourceType = typeof(ImageStrings), Name = "Document")]

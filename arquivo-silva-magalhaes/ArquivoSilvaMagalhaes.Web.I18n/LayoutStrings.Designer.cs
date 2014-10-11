@@ -511,6 +511,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vídeo em destaque.
+        /// </summary>
+        public static string ShowcaseVideo {
+            get {
+                return ResourceManager.GetString("ShowcaseVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portal do Arquivo Fotográfico Silva Magalhães. O acervo deste Arquivo é constituído por diversos fundos e coleções de diversos fotógrafos e colecionadores do séc. XIX..
         /// </summary>
         public static string SiteDescription {

@@ -50,11 +50,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewSpecific\Layout_ShowcasePhoto.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Layout_ShowcasePhoto.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AuthStrings.en.resx" />
@@ -64,17 +59,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\web.config" />
-    <None Include="Resources\web.debug.config" />
-    <None Include="Resources\web.release.config" />
     <EmbeddedResource Include="LayoutStrings.en.resx" />
     <EmbeddedResource Include="LayoutStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LayoutStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewSpecific\Layout_ShowcasePhoto.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Layout_ShowcasePhoto.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

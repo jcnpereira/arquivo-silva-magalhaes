@@ -250,6 +250,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordenadas não disponíveis.
+        /// </summary>
+        public static string NoCoordinates {
+            get {
+                return ResourceManager.GetString("NoCoordinates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imagem não disponível.
         /// </summary>
         public static string NoImage {
@@ -273,6 +282,33 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         public static string Publication {
             get {
                 return ResourceManager.GetString("Publication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fornecer coordenadas.
+        /// </summary>
+        public static string ShowCoordinates {
+            get {
+                return ResourceManager.GetString("ShowCoordinates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mostrar imagem digital.
+        /// </summary>
+        public static string ShowImage {
+            get {
+                return ResourceManager.GetString("ShowImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se esta caixa não estiver ativa, só serão mostrados os detalhes desta imagem. A representação digital permanecerá privada..
+        /// </summary>
+        public static string ShowImageHint {
+            get {
+                return ResourceManager.GetString("ShowImageHint", resourceCulture);
             }
         }
         

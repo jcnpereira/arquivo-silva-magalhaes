@@ -40,7 +40,7 @@
 
 <div class="row afsm-detail-header">
     <div class="col-sm-4">
-        @if (Model.Image.Entity.ImageUrl != null)
+        @if (Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage)
         {
             <a href="@Url.Content("~/Public/Images/" + (Model.Image.Entity.ImageUrl) + "_large.jpg")"
                class="thumbnail">

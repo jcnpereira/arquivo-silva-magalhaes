@@ -162,6 +162,9 @@
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="PictureFileName" xml:space="preserve">
+    <value>Author's picture</value>
+  </data>
   <data name="ValidationError_Dates" xml:space="preserve">
     <value>The birth date can not be later than the date of death.</value>
   </data>

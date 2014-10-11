@@ -72,7 +72,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(300)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Heading")]
         public string Heading { get; set; }
 

@@ -285,4 +285,7 @@
   <data name="ClearFilters" xml:space="preserve">
     <value>Clear filters</value>
   </data>
+  <data name="ShowcaseVideo" xml:space="preserve">
+    <value>Showcase video</value>
+  </data>
 </root>

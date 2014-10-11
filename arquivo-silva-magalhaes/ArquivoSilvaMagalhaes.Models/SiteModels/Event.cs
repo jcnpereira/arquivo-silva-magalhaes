@@ -111,7 +111,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(300)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }

@@ -59,3 +59,14 @@
         <div id="map_canvas" style="width:100%; height: 400px" data-afsm-lat="#@Html.IdFor(model => model.Latitude)" data-afsm-lng="#@Html.IdFor(model => model.Longitude)"></div>
     </div>
 </div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ShowImage, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.ShowImage, new { htmlAttributes = new { @class = "checkbox" } })
+        @Html.ValidationMessageFor(model => model.ShowImage, "", new { @class = "text-danger" })
+        <p class="help-block">
+            @ImageStrings.ShowImageHint
+        </p>
+    </div>
+</div>

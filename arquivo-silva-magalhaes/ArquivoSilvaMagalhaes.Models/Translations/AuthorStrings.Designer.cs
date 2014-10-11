@@ -196,6 +196,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fotografia.
+        /// </summary>
+        public static string PictureFileName {
+            get {
+                return ResourceManager.GetString("PictureFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A data de nascimento não pode ser superior à data de falecimento..
         /// </summary>
         public static string ValidationError_Dates {

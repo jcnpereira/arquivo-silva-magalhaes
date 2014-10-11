@@ -180,6 +180,9 @@
   <data name="MustChooseDocument" xml:space="preserve">
     <value>Tem que primeiro escolher um documento.</value>
   </data>
+  <data name="NoCoordinates" xml:space="preserve">
+    <value>Coordenadas não disponíveis</value>
+  </data>
   <data name="NoImage" xml:space="preserve">
     <value>Imagem não disponível</value>
   </data>
@@ -188,6 +191,15 @@
   </data>
   <data name="Publication" xml:space="preserve">
     <value>Publicação</value>
+  </data>
+  <data name="ShowCoordinates" xml:space="preserve">
+    <value>Fornecer coordenadas</value>
+  </data>
+  <data name="ShowImage" xml:space="preserve">
+    <value>Mostrar imagem digital</value>
+  </data>
+  <data name="ShowImageHint" xml:space="preserve">
+    <value>Se esta caixa não estiver ativa, só serão mostrados os detalhes desta imagem. A representação digital permanecerá privada.</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Assunto</value>
