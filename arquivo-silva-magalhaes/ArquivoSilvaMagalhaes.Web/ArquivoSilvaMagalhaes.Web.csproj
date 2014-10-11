@@ -287,6 +287,9 @@
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
     <Content Include="Content\Fonts\GlyphIcons\glyphicons.css" />
+    <Content Include="Content\Fonts\GlyphIcons\glyphicons.min.css">
+      <DependentUpon>glyphicons.css</DependentUpon>
+    </Content>
     <Content Include="Content\Images\Expo.png" />
     <Content Include="Content\Images\NewsItem.png" />
     <Content Include="Content\Images\no-image-100.png" />

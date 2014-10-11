@@ -211,7 +211,7 @@
     <value>Instituto Politécnico de Tomar</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Língua</value>
+    <value>Idioma</value>
   </data>
   <data name="MustChooseAtLeastOne" xml:space="preserve">
     <value>Tem que escolher pelo menos um item da lista.</value>

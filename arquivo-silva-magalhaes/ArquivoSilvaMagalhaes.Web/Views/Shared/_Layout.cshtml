@@ -4,7 +4,7 @@
 
     var ptRVD = Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request);
     var enRVD = Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request);
-    
+
     ptRVD["culture"] = "pt";
     enRVD["culture"] = "en";
 }
@@ -48,12 +48,12 @@
     <meta name="description" content="@LayoutStrings.SiteDescription" />
 
     <title>
-        @ViewBag.Title @(!string.IsNullOrEmpty(ViewBag.Title) ? "| " : "")Arquivo Fotográfico Silva Magalhães
+        @ViewBag.Title @(!string.IsNullOrEmpty(ViewBag.Title) ? "|" : "") @LayoutStrings.SiteName
     </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
-    <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/css/frontoffice-main")
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Merriweather' rel='stylesheet' type='text/css' />
+    <link href="~/Content/Fonts/GlyphIcons/glyphicons.min.css" rel="stylesheet" type="text/css" />
 
     @RenderSection("head", required: false)
 </head>
@@ -75,10 +75,15 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        @Html.ActionLink("EN", currentAction, currentController, enRVD, new Dictionary<string, object> { { "class", "pull-left" } })
-                        @Html.ActionLink("PT", currentAction, currentController, ptRVD, new Dictionary<string, object> { { "class", "pull-left" } })
-                        <div class="clearfix"></div>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @LayoutStrings.Language
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("EN", currentAction, currentController, enRVD, null)</li>
+                            <li>@Html.ActionLink("PT", currentAction, currentController, ptRVD, null)</li>
+                        </ul>
                     </li>
                     @Html.Partial("_LayoutLinks")
                 </ul>

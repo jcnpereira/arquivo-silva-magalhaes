@@ -367,7 +367,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Língua.
+        ///   Looks up a localized string similar to Idioma.
         /// </summary>
         public static string Language {
             get {
