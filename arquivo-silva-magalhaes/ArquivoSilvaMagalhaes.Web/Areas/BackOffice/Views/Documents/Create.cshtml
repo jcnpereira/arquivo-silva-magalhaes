@@ -21,3 +21,9 @@
         @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
     </div>
 }
+
+@section scripts {
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Collections"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
+}

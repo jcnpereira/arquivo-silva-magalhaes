@@ -321,6 +321,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return Json(suggestedCode, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult AuxList(string query = "", int pageNumber = 1)
+        {
+            return PartialView("_AuxList", db.Entities
+                .Where(c => query == "" || c.CatalogCode.Contains(query) || c.Title.Contains(query))
+                .OrderBy(c => c.Id)
+                .Select(doc => new TranslatedViewModel<Document, DocumentTranslation>
+                {
+                    Entity = doc
+                })
+                .ToPagedList(pageNumber, 10));
+        }
+
         private bool DoesCodeAlreadyExist(Document doc)
         {
             return db.Entities

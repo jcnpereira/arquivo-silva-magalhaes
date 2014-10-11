@@ -368,6 +368,18 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         }
         #endregion
 
+        public ActionResult AuxList(string query = "", int pageNumber = 1)
+        {
+            return PartialView("_AuxList", db.Entities
+                .Where(c => query == "" || c.CatalogCode.Contains(query) || c.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(c => c.Id)
+                .Select(col => new TranslatedViewModel<Collection, CollectionTranslation>
+                {
+                    Entity = col
+                })
+                .ToPagedList(pageNumber, 10));
+        }
+
         private bool DoesCodeAlreadyExist(Collection col)
         {
             return db.Entities

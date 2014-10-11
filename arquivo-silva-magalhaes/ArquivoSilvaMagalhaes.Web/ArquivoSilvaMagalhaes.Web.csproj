@@ -383,6 +383,10 @@
     <Content Include="Content\Images\events.png" />
     <Content Include="Content\Images\news.png" />
     <Content Include="Content\Images\spotlightphoto.png" />
+    <Content Include="Scripts\back-office\aux-selections.js" />
+    <Content Include="Scripts\back-office\aux-selections.min.js">
+      <DependentUpon>aux-selections.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\back-office\code-suggestions.js" />
     <Content Include="Scripts\back-office\code-suggestions.min.js">
       <DependentUpon>code-suggestions.js</DependentUpon>
@@ -745,6 +749,10 @@
     <Content Include="Content\Styles\frontoffice\bootstrap\normalize.css.map">
       <DependentUpon>normalize.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BackOffice\Views\Images\_ImageGrid.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_AjaxSelectionModal.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Collections\_AuxList.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Documents\_AuxList.cshtml" />
     <None Include="Properties\PublishProfiles\Adamastor.pubxml" />
     <Content Include="Scripts\vendor\bootstrap\bootstrap.js" />
     <Content Include="Scripts\vendor\bootstrap\bootstrap.min.js" />
@@ -803,6 +811,9 @@
     </Content>
     <Content Include="Scripts\configs\bs-datepicker\bs-datepicker-config.min.js.map">
       <DependentUpon>bs-datepicker-config.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\back-office\aux-selections.min.js.map">
+      <DependentUpon>aux-selections.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\vendor\jquery\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\vendor\jquery\jquery.validate-vsdoc.js" />

@@ -294,4 +294,10 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Ocorreu um erro.&lt;br /&gt;Pedimos desculpa pelo incómodo.</value>
   </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Escolher</value>
+  </data>
+  <data name="ChooseItemHint" xml:space="preserve">
+    <value>Escolha um dos itens na lista ao clicar nele. Pode usar a caixa de pesquisa acima para fins de pesquisa.</value>
+  </data>
 </root>

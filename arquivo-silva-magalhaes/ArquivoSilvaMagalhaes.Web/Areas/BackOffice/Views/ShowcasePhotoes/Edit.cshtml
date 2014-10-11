@@ -49,3 +49,8 @@
     </div>
 }
 
+@section scripts {
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Images"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
+}

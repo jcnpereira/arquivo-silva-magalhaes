@@ -142,6 +142,24 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Escolher.
+        /// </summary>
+        public static string Choose {
+            get {
+                return ResourceManager.GetString("Choose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Escolha um dos itens na lista ao clicar nele. Pode usar a caixa de pesquisa acima para fins de pesquisa..
+        /// </summary>
+        public static string ChooseItemHint {
+            get {
+                return ResourceManager.GetString("ChooseItemHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pode seleccionar múltiplos itens recorrendo à tecla .
         /// </summary>
         public static string ChooseMultipleSuggestion {

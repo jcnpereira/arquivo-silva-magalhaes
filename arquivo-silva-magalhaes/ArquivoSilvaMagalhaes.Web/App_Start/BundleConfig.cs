@@ -55,7 +55,8 @@ namespace ArquivoSilvaMagalhaes
             // code suggestions.
             bundles.Add(new ScriptBundle("~/bundles/js/suggestions").Include(
                 "~/Scripts/back-office/modal-dialog.js",
-                "~/Scripts/back-office/code-suggestions.js"
+                "~/Scripts/back-office/code-suggestions.js",
+                "~/Scripts/back-office/aux-selections.js"
             ));
 
             // Read-only version of Google Maps.

@@ -291,4 +291,10 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>An error has occured.&lt;br /&gt;We apologise for the inconvenience.</value>
   </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="ChooseItemHint" xml:space="preserve">
+    <value>Choose an item from the list by clicking on it. You can use the search box above to search.</value>
+  </data>
 </root>

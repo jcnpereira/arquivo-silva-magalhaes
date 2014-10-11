@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = SpecimenStrings.EditTitleFormat;
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+    ViewBag.AdditionalParams = new { onlyPublic = false };
 }
 
 @using (Html.BeginForm())
@@ -51,4 +52,8 @@
 
 @section scripts {
     @Html.Partial("_AjaxPostModal")
+
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Images"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
 }

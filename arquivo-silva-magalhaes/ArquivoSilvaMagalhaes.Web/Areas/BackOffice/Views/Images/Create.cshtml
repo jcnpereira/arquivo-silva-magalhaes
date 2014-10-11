@@ -37,4 +37,8 @@
 
     <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
     @Scripts.Render("~/bundles/js/google-maps-rw")
+
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Documents"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
 }

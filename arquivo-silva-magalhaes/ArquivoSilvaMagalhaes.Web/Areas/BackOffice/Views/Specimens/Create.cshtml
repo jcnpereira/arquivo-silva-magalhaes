@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = SpecimenStrings.CreateTitleFormat;
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+    ViewBag.AdditionalParams = new { onlyPublic = false };
 }
 
 @using (Html.BeginForm())
@@ -15,7 +16,7 @@
         @Html.Partial("_SpecimenDropDownLists")
 
         @Html.PartialFor(model => model.Specimen, "_SpecimenMainFields")
-        
+
 
         @Html.PartialFor(model => model.Specimen.Translations[0], "_SpecimenTranslateableFields")
 
@@ -25,4 +26,8 @@
 
 @section scripts {
     @Html.Partial("_AjaxPostModal")
+
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Images"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
 }

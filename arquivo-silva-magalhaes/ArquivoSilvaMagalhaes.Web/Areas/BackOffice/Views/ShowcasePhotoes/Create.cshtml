@@ -4,23 +4,28 @@
     ViewBag.Title = ShowcasePhotoStrings.CreateTitleFormat;
 
     Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
-    
+
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         @Html.PartialFor(model => model.ShowcasePhoto, "_ShowcasePhotoMainFields")
 
         @Html.Partial("_ShowcasePhotoDropDownLists")
-
+        
         @Html.PartialFor(model => model.ShowcasePhoto.Translations[0], "_ShowcasePhotoTranslateableFields")
 
         @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
     </div>
 }
 
+@section scripts {
+    @Html.Partial("_AjaxSelectionModal", new Tuple<string, string>("AuxList", "Images"))
+
+    @Scripts.Render("~/bundles/js/ajax-pagination")
+}

@@ -297,23 +297,22 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             return Json(CodeGenerator.SuggestImageCode(parentId), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult AuxList(string query = "", int pageNumber = 1, bool onlyPublic = true)
+        {
+            var model = db.Entities
+                .Where(i => onlyPublic == false || i.IsVisible && i.ImageUrl != null && i.ShowImage)
+                .Where(i => query == "" || i.ImageCode.Contains(query) || i.Translations.Any(t => t.Title.Contains(query)))
+                .OrderBy(i => i.Id)
+                .Select(i => new TranslatedViewModel<Image, ImageTranslation>
+                {
+                    Entity = i
+                })
+                .ToPagedList(pageNumber, 9);
 
-        //public ActionResult SuggestCode(int? documentId)
-        //{
-        //    if (documentId == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+            ViewBag.Query = query;
 
-        //    var d = db.Set<Document>().FirstOrDefault(doc => doc.Id == documentId.Value);
-
-        //    if (d == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return Json(CodeGenerator.SuggestImageCode(d.Id), JsonRequestBehavior.AllowGet);
-        //}
+            return PartialView("_ImageGrid", model);
+        }
 
         private bool DoesCodeAlreadyExist(Image image)
         {
