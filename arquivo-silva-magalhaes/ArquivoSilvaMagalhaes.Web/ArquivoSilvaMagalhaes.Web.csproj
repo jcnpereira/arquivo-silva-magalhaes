@@ -289,6 +289,9 @@
     <Content Include="Content\Fonts\GlyphIcons\glyphicons.css" />
     <Content Include="Content\Images\Expo.png" />
     <Content Include="Content\Images\NewsItem.png" />
+    <Content Include="Content\Images\no-image-100.png" />
+    <Content Include="Content\Images\no-image-400.png" />
+    <Content Include="Content\Images\no-image-lg.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\Other.png" />
     <Content Include="Content\Images\School.png" />

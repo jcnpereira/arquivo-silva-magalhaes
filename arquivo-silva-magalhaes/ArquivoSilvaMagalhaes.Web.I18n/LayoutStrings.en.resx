@@ -288,4 +288,7 @@
   <data name="ShowcaseVideo" xml:space="preserve">
     <value>Showcase video</value>
   </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>An error has occured.&lt;br /&gt;We apologise for the inconvenience.</value>
+  </data>
 </root>

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Acerca";
+    ViewBag.Title = LayoutStrings.About;
 }
 
 <div class="text-center">
@@ -9,6 +9,6 @@
 
     <hr />
 
-    <p>@LayoutStrings.AboutText</p>
+    <p>@Html.Raw(LayoutStrings.AboutText)</p>
 
 </div>

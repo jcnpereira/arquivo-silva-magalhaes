@@ -6,15 +6,13 @@
         <div class="list-group afsm-dohighlight">
             @foreach (var col in Model)
             {
-                var authors = col.Entity.Authors.ToList();
-
                 var logo = col.Entity.LogoLocation != null ?
                 "Public/Collections/" + col.Entity.LogoLocation :
-                "Content/Images/no-image.png";
+                "Content/Images/no-image-100.png";
                 <a href="@Url.Action("Details", "Collections", new { col.Entity.Id })" class="list-group-item">
                     <div class="media">
                         <div class="pull-left">
-                            <img class="media-object" style="width: 64px; height: 64px"
+                            <img class="media-object" style="width: 96px; height: 96px"
                                  src="~/@logo">
                         </div>
                         <div class="media-body">
@@ -24,13 +22,14 @@
 
                             <dl>
                                 <dt>
-                                    Data:
+                                    @CollectionStrings.ProductionPeriod
                                 </dt>
                                 <dd>
                                     @col.Entity.ProductionPeriod
                                 </dd>
-
                             </dl>
+
+                            <p>@Html.Truncate(col.Translation.Description, 50)</p>
                         </div>
                     </div>
                 </a>

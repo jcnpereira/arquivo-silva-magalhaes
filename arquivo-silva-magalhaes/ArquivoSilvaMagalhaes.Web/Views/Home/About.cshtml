@@ -1,10 +1,10 @@
-﻿@model IList<ArquivoSilvaMagalhaes.ViewModels.PortalViewModel>
+﻿
 @{
-    ViewBag.Title = "About";
+    ViewBag.Title = LayoutStrings.About;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Acerca</h2>
+<h2>@LayoutStrings.About</h2>
 <hr />
 
-<p>@LayoutStrings.AboutText</p>
+<p>@Html.Raw(LayoutStrings.AboutText)</p>

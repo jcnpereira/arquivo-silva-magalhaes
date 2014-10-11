@@ -124,7 +124,7 @@
     <value>Acerca do Arquivo Fotográfico Silva Magalhães</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães. Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito.</value>
+    <value>Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito.</value>
   </data>
   <data name="Actions" xml:space="preserve">
     <value>Ações</value>
@@ -287,5 +287,11 @@
   </data>
   <data name="ShowcaseVideo" xml:space="preserve">
     <value>Vídeo em destaque</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Ocorreu um erro.&lt;br /&gt;Pedimos desculpa pelo incómodo.</value>
   </data>
 </root>

@@ -79,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães. Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito..
+        ///   Looks up a localized string similar to Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito..
         /// </summary>
         public static string AboutText {
             get {
@@ -300,6 +300,24 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erro.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocorreu um erro.&lt;br /&gt;Pedimos desculpa pelo incómodo..
+        /// </summary>
+        public static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
             }
         }
         
