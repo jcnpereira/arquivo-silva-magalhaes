@@ -79,7 +79,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             if (imageId != null && await db.Set<Image>()
                 .AnyAsync(i =>
                     i.Id == imageId &&
-                    i.ImageUrl != null && i.IsVisible && i.Document.Collection.IsVisible))
+                    i.ImageUrl != null && i.IsVisible && i.Document.Collection.IsVisible &&
+                    i.ShowImage))
             {
                 photo.ImageId = imageId.Value;
             }
@@ -185,11 +186,11 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             };
 
             model.AvailableImages = db.Set<Image>()
-                .Where(i => 
+                .Where(i =>
                     i.IsVisible &&
                     i.Document.Collection.IsVisible &&
                     i.ImageUrl != null &&
-                    i.ImageUrl != "")
+                    i.ShowImage)
                 .ToList()
                 .Select(i => new TranslatedViewModel<Image, ImageTranslation>(i))
                 .Select(i => new SelectListItem

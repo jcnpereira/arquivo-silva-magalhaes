@@ -178,6 +178,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocultar itens sem representação digital.
+        /// </summary>
+        public static string HideWithoutImage {
+            get {
+                return ResourceManager.GetString("HideWithoutImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Código de referência.
         /// </summary>
         public static string ImageCode {

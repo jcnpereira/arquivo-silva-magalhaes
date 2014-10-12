@@ -156,6 +156,9 @@
   <data name="EntityNamePlural" xml:space="preserve">
     <value>Images</value>
   </data>
+  <data name="HideWithoutImage" xml:space="preserve">
+    <value>Hide items without a digital representation</value>
+  </data>
   <data name="ImageCode" xml:space="preserve">
     <value>Reference code</value>
   </data>

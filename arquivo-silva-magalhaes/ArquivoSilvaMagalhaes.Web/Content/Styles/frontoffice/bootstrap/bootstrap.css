@@ -1105,12 +1105,12 @@ input[type="search"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/*input[type="radio"],
+/*input[type="radio"],*/
 input[type="checkbox"] {
   margin: 4px 0 0;
-  margin-top: 1px \9; // IE8-9
+  margin-top: 1px \9;
   line-height: normal;
-}*/
+}
 /*input[type="file"] {
   display: block;
 }*/
@@ -1123,10 +1123,12 @@ select[size] {
   height: auto;
 }*/
 /*input[type="file"]:focus,
-input[type="radio"]:focus,
+input[type="radio"]:focus,*/
 input[type="checkbox"]:focus {
-  .tab-focus();
-}*/
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 /*output {
   display: block;
   padding-top: (@padding-base-vertical + 1);
@@ -1196,21 +1198,20 @@ input[type="month"] {
 .form-group {
   margin-bottom: 15px;
 }
-/*.radio,
+/*.radio,*/
 .checkbox {
   position: relative;
   display: block;
-  min-height: @line-height-computed; // clear the floating input if there is no label text
+  min-height: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-
-  label {
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-weight: normal;
-    cursor: pointer;
-  }
-}*/
+}
+.checkbox label {
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
 /*.radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -1407,18 +1408,13 @@ input[type="checkbox"] {
   }
 }*/
 .form-horizontal {
-  /*.radio,
-  .checkbox,
-  .radio-inline,
-  .checkbox-inline {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: (@padding-base-vertical + 1); // Default padding plus a border
-  }*/
-  /*.radio,
-  .checkbox {
-    min-height: (@line-height-computed + (@padding-base-vertical + 1));
-  }*/
+  /*.radio,*/
+  /*.form-group {
+    .make-row();
+  }
+
+  // Reset spacing and right align labels, but scope to media queries so that
+  // labels on narrow viewports stack the same as a default form example.
   /*@media (min-width: @screen-sm-min) {
     .control-label {
       text-align: right;
@@ -1451,9 +1447,14 @@ input[type="checkbox"] {
     }
   }*/
 }
-.form-horizontal .form-group {
-  margin-left: -15px;
-  margin-right: -15px;
+.form-horizontal .radio,
+.form-horizontal .checkbox {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 7px;
+}
+.form-horizontal .checkbox {
+  min-height: 27px;
 }
 .btn {
   display: inline-block;
@@ -3136,8 +3137,6 @@ a.list-group-item:focus {
 .container-fluid:after,
 .row:before,
 .row:after,
-.form-horizontal .form-group:before,
-.form-horizontal .form-group:after,
 .nav:before,
 .nav:after,
 .navbar:before,
@@ -3153,7 +3152,6 @@ a.list-group-item:focus {
 .container:after,
 .container-fluid:after,
 .row:after,
-.form-horizontal .form-group:after,
 .nav:after,
 .navbar:after,
 .navbar-header:after,

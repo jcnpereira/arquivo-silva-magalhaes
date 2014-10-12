@@ -53,6 +53,10 @@
         return false;
     });
 
+    $('[data-afsm-autosubmit="true"]').click(function (e) {
+        $(this).parents('form').submit();
+    });
+
     /**
      * Wire-up an event to the 'click' event
      * on pagination links that should be loaded

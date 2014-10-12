@@ -109,6 +109,11 @@
                 </span>
             </div>
 
+            <div class="form-group checkbox-inline">
+                <input type="checkbox" name="hideWithoutImage" value="true" data-afsm-autosubmit="true" />
+                <label class="control-label">@ImageStrings.HideWithoutImage</label>
+            </div>
+
         </form>
         @Html.Action("List", "Images", new { documentId = Model.Document.Entity.Id })
     </div>

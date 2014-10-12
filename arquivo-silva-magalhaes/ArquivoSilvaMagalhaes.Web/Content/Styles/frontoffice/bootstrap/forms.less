@@ -49,12 +49,12 @@ input[type="search"] {
 }
 
 // Position radios and checkboxes better
-/*input[type="radio"],
+/*input[type="radio"],*/
 input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9; // IE8-9
   line-height: normal;
-}*/
+}
 
 // Set the height of file controls to match text inputs
 /*input[type="file"] {
@@ -75,10 +75,10 @@ select[size] {
 
 // Focus for file, radio, and checkbox
 /*input[type="file"]:focus,
-input[type="radio"]:focus,
+input[type="radio"]:focus,*/
 input[type="checkbox"]:focus {
   .tab-focus();
-}*/
+}
 
 // Adjust output element
 /*output {
@@ -204,7 +204,7 @@ input[type="month"] {
 //
 // Indent the labels to position radios/checkboxes as hanging controls.
 
-/*.radio,
+/*.radio,*/
 .checkbox {
   position: relative;
   display: block;
@@ -218,7 +218,7 @@ input[type="month"] {
     font-weight: normal;
     cursor: pointer;
   }
-}*/
+}
 /*.radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -474,23 +474,23 @@ input[type="checkbox"] {
   // Consistent vertical alignment of radios and checkboxes
   //
   // Labels also get some reset styles, but that is scoped to a media query below.
-  /*.radio,
-  .checkbox,
+  .radio,
+  .checkbox/*,
   .radio-inline,
-  .checkbox-inline {
+  .checkbox-inline*/ {
     margin-top: 0;
     margin-bottom: 0;
     padding-top: (@padding-base-vertical + 1); // Default padding plus a border
-  }*/
+  }
   // Account for padding we're adding to ensure the alignment and of help text
   // and other content below items
-  /*.radio,
+  /*.radio,*/
   .checkbox {
     min-height: (@line-height-computed + (@padding-base-vertical + 1));
-  }*/
+  }
 
   // Make form groups behave like rows
-  .form-group {
+  /*.form-group {
     .make-row();
   }
 

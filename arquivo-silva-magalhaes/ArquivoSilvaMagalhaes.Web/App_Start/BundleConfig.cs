@@ -42,8 +42,13 @@ namespace ArquivoSilvaMagalhaes
             // Common bundle that includes jQuery, Respond.js and Bootstrap.
             bundles.Add(new ScriptBundle("~/bundles/js/common").Include(
                 "~/Scripts/vendor/jquery/jquery-{version}.js",
-                "~/Scripts/vendor/bootstrap/bootstrap.js",
-                "~/Scripts/vendor/respond/respond.js"
+                "~/Scripts/vendor/bootstrap/bootstrap.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/common-frontoffice").Include(
+                "~/Scripts/vendor/jquery/jquery-{version}.js",
+                "~/Scripts/vendor/respond/respond.js",
+                "~/Scripts/vendor/bootstrap/bs-frontoffice/bootstrap.js"
             ));
 
             // Bundle for unobtrusive validation purposes.
