@@ -300,7 +300,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         public ActionResult AuxList(string query = "", int pageNumber = 1, bool onlyPublic = true)
         {
             var model = db.Entities
-                .Where(i => onlyPublic == false || i.IsVisible && i.ImageUrl != null && i.ShowImage)
+                .Where(i => onlyPublic == false || i.IsVisible && i.ImageUrl != null && i.ShowImage && i.Document.Collection.IsVisible)
                 .Where(i => query == "" || i.ImageCode.Contains(query) || i.Translations.Any(t => t.Title.Contains(query)))
                 .OrderBy(i => i.Id)
                 .Select(i => new TranslatedViewModel<Image, ImageTranslation>
