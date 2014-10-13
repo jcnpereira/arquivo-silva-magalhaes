@@ -411,6 +411,8 @@
     <Content Include="Scripts\configs\bs-datepicker\bs-datepicker-config.min.js">
       <DependentUpon>bs-datepicker-config.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\vendor\bootstrap\bs-frontoffice\bootstrap.js" />
+    <Content Include="Scripts\vendor\bootstrap\bs-frontoffice\bootstrap.min.js" />
     <Content Include="Scripts\vendor\bs-datepicker\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\vendor\bs-datepicker\moment.js" />
     <Content Include="Content\Styles\DatePicker\bootstrap-datetimepicker.css" />
