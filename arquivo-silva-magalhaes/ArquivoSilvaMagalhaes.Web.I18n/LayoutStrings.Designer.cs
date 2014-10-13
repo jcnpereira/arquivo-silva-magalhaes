@@ -106,6 +106,24 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aqui pode consultar o acervo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Pode começar por escolher uma das coleções ou autores disponíveis, ou, se preferir, fazer uma {0} simples nos documentos deste acervo..
+        /// </summary>
+        public static string ArchiveHomeMessage {
+            get {
+                return ResourceManager.GetString("ArchiveHomeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternativamente, pode ver todas as {0} do acervo diretamente..
+        /// </summary>
+        public static string ArchiveHomeShowImages {
+            get {
+                return ResourceManager.GetString("ArchiveHomeShowImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Associar fotografias digitais.
         /// </summary>
         public static string AssociatePicture {

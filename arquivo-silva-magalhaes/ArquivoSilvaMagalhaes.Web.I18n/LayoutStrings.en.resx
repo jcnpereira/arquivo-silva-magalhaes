@@ -297,4 +297,10 @@
   <data name="ChooseItemHint" xml:space="preserve">
     <value>Choose an item from the list by clicking on it. You can use the search box above to search.</value>
   </data>
+  <data name="ArchiveHomeMessage" xml:space="preserve">
+    <value>Here you can consult the contents of the Photographic Archive of Silva Magalhães.&lt;br /&gt;You can start by choosing one of the collections or authors, or, if you prefer, do a simple {0} for documents.</value>
+  </data>
+  <data name="ArchiveHomeShowImages" xml:space="preserve">
+    <value>Alternatively, you can see all the {0} from this archive.</value>
+  </data>
 </root>

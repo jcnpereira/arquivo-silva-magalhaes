@@ -48,7 +48,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Include(i => i.Translations)
                 .Where(i =>
                     (i.IsVisible && i.Document.Collection.IsVisible) &&
-                    (!hideWithoutImage || i.ImageUrl != null) &&
+                    (!hideWithoutImage || (i.ImageUrl != null && i.ShowImage)) &&
                     (collectionId == 0 || i.Document.CollectionId == collectionId) &&
                     (documentId == 0 || i.DocumentId == documentId) &&
                     (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&
@@ -66,6 +66,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
             ViewBag.DocumentId = documentId;
             ViewBag.ClassificationId = classificationId;
             ViewBag.KeywordId = keywordId;
+            ViewBag.HideWithoutImage = hideWithoutImage;
 
             return View(model);
         }
@@ -117,7 +118,7 @@ namespace ArquivoSilvaMagalhaes.Controllers
                 .Include(i => i.Translations)
                 .Where(i =>
                     (i.IsVisible && i.Document.Collection.IsVisible) &&
-                    (!hideWithoutImage || i.ImageUrl != null) &&
+                    (!hideWithoutImage || (i.ImageUrl != null && i.ShowImage)) &&
                     (collectionId == 0 || i.Document.CollectionId == collectionId) &&
                     (documentId == 0 || i.DocumentId == documentId) &&
                     (keywordId == 0 || i.Keywords.Any(k => k.Id == keywordId)) &&

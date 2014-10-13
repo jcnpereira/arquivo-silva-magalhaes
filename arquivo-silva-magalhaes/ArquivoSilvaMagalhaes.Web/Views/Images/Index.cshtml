@@ -52,7 +52,7 @@
     <form method="get"
           class="form-horizontal"
           data-afsm-ajax="true"
-          data-afsm-ajaxurl="@Url.Action("List", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))"
+          data-afsm-ajaxurl="@Url.Action("List", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, excludeProperties: new string[] { "hideWithoutImage" }))"
           action="@Url.Action("Index", "Images", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))">
         @*<input type="hidden" name="documentId" value="@ViewBag.DocumentId" />*@
 
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group checkbox-inline" >
-            <input type="checkbox" name="hideWithoutImage" value="true" data-afsm-autosubmit="true" />
+            <input type="checkbox" name="hideWithoutImage" value="true" @(ViewBag.HideWithoutImage == true ? "checked" : "") data-afsm-autosubmit="true" />
             <label class="control-label">@ImageStrings.HideWithoutImage</label>
         </div>
     </form>

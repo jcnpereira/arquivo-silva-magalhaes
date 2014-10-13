@@ -198,6 +198,9 @@
   <data name="ShowCoordinates" xml:space="preserve">
     <value>Fornecer coordenadas</value>
   </data>
+  <data name="ShowCoordinatesHint" xml:space="preserve">
+    <value>Pode deixar esta caixa desligada se não quiser definir a localização da imagem no mapa.</value>
+  </data>
   <data name="ShowImage" xml:space="preserve">
     <value>Mostrar imagem digital</value>
   </data>

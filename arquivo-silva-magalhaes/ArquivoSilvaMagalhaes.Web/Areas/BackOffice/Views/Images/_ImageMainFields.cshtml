@@ -1,5 +1,13 @@
 ﻿@model Image
 
+@section additionalstyles {
+    <style>
+        #map_canvas {
+            height: 400px;
+        }
+    </style>
+}
+
 @Html.HiddenFor(model => model.Id)
 
 <div class="form-group">
@@ -52,11 +60,15 @@
     <label for="map_canvas" class="control-label col-md-2">
         @EventStrings.Coordinates
     </label>
-    <div class="col-md-10">
+    <div class="col-md-10" id="map-container">
+        @Html.CheckBoxFor(model => model.ShowCoordinates, new { data_afsm_toggle = "collapse", data_afsm_target = "#map_canvas" })
+        <p class="help-block">
+            @ImageStrings.ShowCoordinatesHint
+        </p>
         @* Google Map. *@
         @Html.HiddenFor(model => model.Latitude)
         @Html.HiddenFor(model => model.Longitude)
-        <div id="map_canvas" style="width:100%; height: 400px" data-afsm-lat="#@Html.IdFor(model => model.Latitude)" data-afsm-lng="#@Html.IdFor(model => model.Longitude)"></div>
+        <div id="map_canvas" style="width:100%; height: 400px;" data-afsm-lat="#@Html.IdFor(model => model.Latitude)" data-afsm-lng="#@Html.IdFor(model => model.Longitude)"></div>
     </div>
 </div>
 
@@ -70,3 +82,4 @@
         </p>
     </div>
 </div>
+

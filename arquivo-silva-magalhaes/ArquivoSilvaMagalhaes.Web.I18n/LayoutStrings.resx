@@ -300,4 +300,10 @@
   <data name="ChooseItemHint" xml:space="preserve">
     <value>Escolha um dos itens na lista ao clicar nele. Pode usar a caixa de pesquisa acima para fins de pesquisa.</value>
   </data>
+  <data name="ArchiveHomeMessage" xml:space="preserve">
+    <value>Aqui pode consultar o acervo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Pode começar por escolher uma das coleções ou autores disponíveis, ou, se preferir, fazer uma {0} simples nos documentos deste acervo.</value>
+  </data>
+  <data name="ArchiveHomeShowImages" xml:space="preserve">
+    <value>Alternativamente, pode ver todas as {0} do acervo diretamente.</value>
+  </data>
 </root>

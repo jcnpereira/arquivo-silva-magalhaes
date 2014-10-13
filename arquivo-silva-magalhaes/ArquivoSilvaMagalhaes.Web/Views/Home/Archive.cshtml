@@ -8,6 +8,14 @@
 
 <hr />
 
+<p>
+    @Html.Raw(string.Format(LayoutStrings.ArchiveHomeMessage, Html.ActionLink(LayoutStrings.Search.ToLower(), "Search")))
+</p>
+
+<p>
+    @Html.Raw(string.Format(LayoutStrings.ArchiveHomeShowImages, Html.ActionLink(ImageStrings.EntityNamePlural.ToLower(), "Index", "Images", new { hideWithoutImage = true }, null)))
+</p>
+
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">
         <a href="@Url.Action("Index", "Collections")" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-collections" target="_blank">

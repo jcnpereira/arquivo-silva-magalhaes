@@ -304,6 +304,15 @@ namespace ArquivoSilvaMagalhaes.Models.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pode deixar esta caixa desligada se não quiser definir a localização da imagem no mapa..
+        /// </summary>
+        public static string ShowCoordinatesHint {
+            get {
+                return ResourceManager.GetString("ShowCoordinatesHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mostrar imagem digital.
         /// </summary>
         public static string ShowImage {

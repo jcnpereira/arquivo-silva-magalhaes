@@ -198,6 +198,9 @@
   <data name="ShowCoordinates" xml:space="preserve">
     <value>Add coordinates</value>
   </data>
+  <data name="ShowCoordinatesHint" xml:space="preserve">
+    <value>You can leave this checkbox unchecked if you don't want to specify the location on the map.</value>
+  </data>
   <data name="ShowImage" xml:space="preserve">
     <value>Display image</value>
   </data>
