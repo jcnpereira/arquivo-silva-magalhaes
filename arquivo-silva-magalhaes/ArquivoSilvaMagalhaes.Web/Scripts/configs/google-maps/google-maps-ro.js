@@ -21,12 +21,20 @@
     };
 
     var map = new google.maps.Map(
-        document.getElementById("map_canvas"),
+        document.getElementById('map_canvas'),
         mapOptions);
 
     new google.maps.Marker({
         position: position,
         map: map,
         draggable: false
+    });
+
+    // Center the map on a resize.
+    $('a[data-afsm-update-map]').on('shown.bs.tab', function (e) {
+        var mapId = $(this).data('afsm-update-map');
+        
+        google.maps.event.trigger(document.getElementById(mapId), 'resize');
+        map.setCenter(position);
     });
 }(google));

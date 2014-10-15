@@ -79,7 +79,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Este site foi desenvolvido por André Carvalho e Diogo Neto (alunos do Instituto Politécnico de Tomar) com o intuito de divulgar o conteúdo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Todos os direitos reservados. É expressamente proíbida a reprodução na totalidade ou em parte, em qualquer tipo de suporte, sem prévia permissão por escrito..
+        ///   Looks up a localized string similar to &lt;p&gt;O presente trabalho surge da colaboração entre a Câmara Municipal de Tomar (CMT) e o Instituto Politécnico de Tomar (IPT), através dos cursos de Licenciatura em Eng. Informática e Licenciatura em Design e Tecnologia das Artes Gráficas.&lt;/p&gt;&lt;p&gt;Da parte da CMT participou:&lt;ul&gt;&lt;li&gt;Patrícia Marques Romão&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;Da parte do IPT participaram:&lt;ul&gt;&lt;li&gt;Licenciatura em Eng. Informática, os alunos André Carvalho e Diogo Neto Conceição, orientados por José Casimiro Pereira&lt;/li&gt;&lt;li&gt;Licenciatura em Design e Tec [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutText {
             get {
@@ -106,7 +106,7 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aqui pode consultar o acervo do Arquivo Fotográfico Silva Magalhães.&lt;br /&gt;Pode começar por escolher uma das coleções ou autores disponíveis, ou, se preferir, fazer uma {0} simples nos documentos deste acervo..
+        ///   Looks up a localized string similar to &lt;p&gt;O presente trabalho surge da colaboração entre a Câmara Municipal de Tomar (CMT) e o Instituto Politécnico de Tomar (IPT), através dos cursos de Licenciatura em Eng. Informática e Licenciatura em Design e Tecnologia das Artes Gráficas.&lt;/p&gt;&lt;p&gt;Da parte da CMT participou:&lt;ul&gt;    &lt;li&gt;Patrícia Marques Romão&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;Da parte do IPT participaram:&lt;ul&gt;&lt;li&gt;Licenciatura em Eng. Informática, os alunos André Carvalho e Diogo Neto Conceição, orientados por José Casimiro Pereira&lt;/li&gt;&lt;li&gt;Licenciatura em Design e [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ArchiveHomeMessage {
             get {
@@ -543,6 +543,15 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         public static string SearchPlaceholder {
             get {
                 return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver no mapa.
+        /// </summary>
+        public static string SeeMap {
+            get {
+                return ResourceManager.GetString("SeeMap", resourceCulture);
             }
         }
         
