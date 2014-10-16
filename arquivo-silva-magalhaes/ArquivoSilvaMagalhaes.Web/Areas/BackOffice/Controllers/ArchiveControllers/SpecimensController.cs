@@ -3,6 +3,7 @@ using ArquivoSilvaMagalhaes.Common;
 using ArquivoSilvaMagalhaes.Models;
 using ArquivoSilvaMagalhaes.Models.ArchiveModels;
 using ArquivoSilvaMagalhaes.Models.Translations;
+using ArquivoSilvaMagalhaes.ViewModels;
 using ArquivoSilvaMagalhaes.Web.I18n;
 using PagedList;
 using System.Data.Entity;
@@ -340,15 +341,30 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
             });
 
             model.AvailableProcesses.AddRange(
-                db.Set<ProcessTranslation>()
-                   .Where(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage)
-                   .OrderBy(pt => pt.ProcessId)
-                   .Select(pt => new SelectListItem
+                db.Set<Process>()
+                .Select(p => new TranslatedViewModel<Process, ProcessTranslation>
                 {
-                    Value = pt.ProcessId.ToString(),
-                    Text = pt.Value,
-                    Selected = specimen.ProcessId == pt.ProcessId
+                    Entity = p
+                })
+                .ToList()
+                .Select(vm => new SelectListItem
+                {
+                    Value = vm.Entity.Id.ToString(),
+                    Text = vm.Translation.Value,
+                    Selected = specimen.ProcessId == vm.Entity.Id
                 }));
+
+
+            //model.AvailableProcesses.AddRange(
+            //    db.Set<ProcessTranslation>()
+            //       .Where(pt => pt.LanguageCode == LanguageDefinitions.DefaultLanguage)
+            //       .OrderBy(pt => pt.ProcessId)
+            //       .Select(pt => new SelectListItem
+            //    {
+            //        Value = pt.ProcessId.ToString(),
+            //        Text = pt.Value,
+            //        Selected = specimen.ProcessId == pt.ProcessId
+            //    }));
 
             model.AvailableFormats.Add(new SelectListItem
             {

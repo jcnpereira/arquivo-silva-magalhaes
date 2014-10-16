@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Data.Entity;
 using ArquivoSilvaMagalhaes.Common;
 
 namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
@@ -60,10 +61,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         // GET: BackOffice/Formats/Create
         public ActionResult Create()
         {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_FormatFields");
-            }
 
             return View();
         }
@@ -84,27 +81,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 await db.SaveChangesAsync();
 
-                if (Request.IsAjaxRequest())
-                {
-                    var result = new List<object>();
-                    result.Add(new
-                    {
-                        value = "",
-                        text = LayoutStrings.ChooseOne
-                    });
 
-                    result.AddRange(
-                        db.Entities
-                          .OrderBy(f => f.Id)
-                          .Select(f => new
-                          {
-                              value = f.Id.ToString(),
-                              text = f.FormatDescription,
-                              selected = f.Id == format.Id
-                          }));
-
-                    return Json(result);
-                }
 
                 return RedirectToAction("Index");
             }
@@ -176,6 +153,38 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             return db.Entities
                 .Any(f => f.Id != format.Id && f.FormatDescription == format.FormatDescription);
+        }
+
+        public ActionResult AuxAdd()
+        {
+            var model = new Format();
+
+            return PartialView("_FormatFields", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AuxAdd(Format t)
+        {
+            var cl = db.Entities
+                .FirstOrDefault(c => t.FormatDescription == c.FormatDescription);
+
+            if (cl == null)
+            {
+                cl = t;
+                db.Add(t);
+                await db.SaveChangesAsync();
+            }
+
+            return Json((await db.Entities
+                .OrderBy(ct => ct.Id)
+                .ToListAsync())
+                .Select(ct => new
+                {
+                    value = ct.Id.ToString(),
+                    text = ct.FormatDescription,
+                    selected = ct.Id == cl.Id
+                })
+                .ToList());
         }
 
         protected override void Dispose(bool disposing)

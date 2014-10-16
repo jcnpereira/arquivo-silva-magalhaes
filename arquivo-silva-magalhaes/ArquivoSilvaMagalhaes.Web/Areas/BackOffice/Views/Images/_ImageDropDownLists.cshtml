@@ -19,7 +19,7 @@
     <div class="col-md-10">
         <div class="input-group">
             <span class="input-group-btn">
-                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.KeywordIds)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("Create", "Keywords", null)">Adicionar...</button>
+                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.KeywordIds)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("AuxAdd", "Keywords", null)">Adicionar...</button>
             </span>
             @Html.ListBoxFor(model => model.KeywordIds, Model.AvailableKeywords, new { @class = "form-control" })
         </div>
@@ -38,7 +38,7 @@
                         data-afsm-selectlist="#@Html.IdFor(model => model.Image.ClassificationId)"
                         data-afsm-toggle="modal"
                         data-target="#afsm-modal-form"
-                        data-remote="@Url.Action("Create", "Classifications", null)">
+                        data-remote="@Url.Action("AuxAdd", "Classifications", null)">
                     Adicionar...
                 </button>
             </span>

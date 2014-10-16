@@ -74,14 +74,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
         {
             var model = new ClassificationTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage };
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ClassificationFields", model);
-            }
-            else
-            {
-                return View(model);
-            }
+            return View(model);
         }
 
         // POST: BackOffice/Classifications/Create
@@ -103,21 +96,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 db.Add(c);
                 await db.SaveChangesAsync();
-
-                if (Request.IsAjaxRequest())
-                {
-                    return Json((await db.Entities
-                        .OrderBy(ct => ct.Id)
-                        .ToListAsync())
-                        .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
-                        .Select(ct => new
-                        {
-                            value = ct.Entity.Id.ToString(),
-                            text = ct.Translation.Value,
-                            selected = ct.Entity.Id == c.Id
-                        })
-                        .ToList());
-                }
 
                 return RedirectToAction("Index");
             }
@@ -301,6 +279,46 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     t.LanguageCode == p.LanguageCode &&
                     t.Value == p.Value &&
                     t.ClassificationId != p.ClassificationId);
+        }
+
+
+        public ActionResult AuxAdd()
+        {
+            var model = new ClassificationTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage };
+
+            return PartialView("_ClassificationFields", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AuxAdd(ClassificationTranslation t)
+        {
+            var cl = db.Entities
+                .FirstOrDefault(c => c.Translations.Any(ct =>
+                    ct.LanguageCode == t.LanguageCode &&
+                    ct.Value == t.Value &&
+                    ct.ClassificationId != t.ClassificationId)
+                );
+
+            if (cl == null)
+            {
+                cl = new Classification();
+                cl.Translations.Add(t);
+
+                db.Add(cl);
+                await db.SaveChangesAsync();
+            }
+
+            return Json((await db.Entities
+                .OrderBy(ct => ct.Id)
+                .ToListAsync())
+                .Select(ct => new TranslatedViewModel<Classification, ClassificationTranslation>(ct))
+                .Select(ct => new
+                {
+                    value = ct.Entity.Id.ToString(),
+                    text = ct.Translation.Value,
+                    selected = ct.Entity.Id == cl.Id
+                })
+                .ToList());
         }
 
         protected override void Dispose(bool disposing)

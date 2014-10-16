@@ -6,7 +6,7 @@
     <div class="col-sm-10">
         <div class="input-group">
             <span class="input-group-btn">
-                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.Specimen.FormatId)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("Create", "Formats", null)">Adicionar...</button>
+                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.Specimen.FormatId)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("AuxAdd", "Formats", null)">Adicionar...</button>
             </span>
             @Html.DropDownListFor(model => model.Specimen.FormatId, Model.AvailableFormats, new { @class = "form-control" })
         </div>
@@ -20,7 +20,7 @@
     <div class="col-sm-10">
         <div class="input-group">
             <span class="input-group-btn">
-                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.Specimen.ProcessId)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("Create", "Processes", null)">Adicionar...</button>
+                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.Specimen.ProcessId)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("AuxAdd", "Processes", null)">Adicionar...</button>
             </span>
             @Html.DropDownListFor(model => model.Specimen.ProcessId, Model.AvailableProcesses, new { @class = "form-control" })
         </div>
