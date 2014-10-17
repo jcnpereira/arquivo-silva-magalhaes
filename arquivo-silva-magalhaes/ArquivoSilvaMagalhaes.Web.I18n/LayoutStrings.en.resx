@@ -124,7 +124,7 @@
     <value>About the Photographic Archive of Silva Magalhães</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>This site was developed by André Carvalho and Diogo Neto (students of the Polytechnic Institute of Tomar) in order to disclose the contents of the Photographic Archive Silva Magalhães. All rights reserved. It is strictly forbidden to reproduce in whole or in part, in any medium without prior written permission.</value>
+    <value>&lt;p&gt;The present work was born from the collaboration between the Council of Tomar (Câmara Municipal de Tomar, CMT) and the Polytechnic Institute of Tomar (Instituto Politécnico de Tomar, IPT), between the courses of Computer Engineering and Technology and Design of the Graphical Arts.&lt;/p&gt;&lt;p&gt;From the Council of Tomar:&lt;ul&gt;&lt;li&gt;Patrícia Marques Romão&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;From the Polytechnic Institute of Tomar:&lt;ul&gt;&lt;li&gt;Computer Engineering: Students André Carvalho and Diogo Neto Conceição, guided by José Casimiro Pereira&lt;/li&gt;&lt;li&gt;Design and Technology of the Graphical Arts: Student Mickael Pereira, guided by Luís Filipe Moreira&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;Tomar, 15th of October of 2014&lt;/p&gt;</value>
   </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
@@ -298,9 +298,9 @@
     <value>Choose an item from the list by clicking on it. You can use the search box above to search.</value>
   </data>
   <data name="ArchiveHomeMessage" xml:space="preserve">
-    <value>Here you can consult the contents of the Photographic Archive of Silva Magalhães.&lt;br /&gt;You can start by choosing one of the collections or authors, or, if you prefer, do a simple {0} for documents.</value>
+    <value>&lt;p&gt;Here you can consult the contents of the Photographic Archive of Silva Magalhães.&lt;/p&gt;&lt;p&gt;You can start by choosing from one of the available collections or authors, or, if you prefer, {0} the documents of this archive.&lt;/p&gt;&lt;p&gt;Alternatively, you can see all the {1} of the archive directly.&lt;/p&gt;</value>
   </data>
-  <data name="ArchiveHomeShowImages" xml:space="preserve">
-    <value>Alternatively, you can see all the {0} from this archive.</value>
+  <data name="SeeMap" xml:space="preserve">
+    <value>See in map</value>
   </data>
 </root>

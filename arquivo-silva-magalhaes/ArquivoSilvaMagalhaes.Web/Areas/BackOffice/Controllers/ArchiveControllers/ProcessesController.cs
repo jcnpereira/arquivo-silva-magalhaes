@@ -78,11 +78,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 LanguageCode = LanguageDefinitions.DefaultLanguage
             };
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ProcessFields", model);
-            }
-
             return View(model);
         }
 
@@ -104,30 +99,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                 db.Add(process);
 
                 await db.SaveChangesAsync();
-
-                if (Request.IsAjaxRequest())
-                {
-                    var result = new List<object>
-                    {
-                        new {
-                            text = LayoutStrings.ChooseOne,
-                            value = ""
-                        }
-                    };
-
-                    result.AddRange((await db.Entities
-                        .OrderBy(p => p.Id)
-                        .ToListAsync())
-                        .Select(p => new TranslatedViewModel<Process, ProcessTranslation>(p))
-                        .Select(ptr => new
-                        {
-                            text = ptr.Translation.Value,
-                            value = ptr.Entity.Id.ToString(),
-                            selected = ptr.Entity.Id == process.Id
-                        }));
-
-                    return Json(result);
-                }
 
                 return RedirectToAction("Index");
             }
@@ -304,6 +275,45 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     t.LanguageCode == p.LanguageCode &&
                     t.Value == p.Value &&
                     t.ProcessId != p.ProcessId);
+        }
+
+        public ActionResult AuxAdd()
+        {
+            var model = new ProcessTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage };
+
+            return PartialView("_ProcessFields", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AuxAdd(ProcessTranslation t)
+        {
+            var cl = db.Entities
+                .FirstOrDefault(c => c.Translations.Any(ct =>
+                    ct.LanguageCode == t.LanguageCode &&
+                    ct.Value == t.Value &&
+                    ct.ProcessId != t.ProcessId)
+                );
+
+            if (cl == null)
+            {
+                cl = new Process();
+                cl.Translations.Add(t);
+
+                db.Add(cl);
+                await db.SaveChangesAsync();
+            }
+
+            return Json((await db.Entities
+                .OrderBy(ct => ct.Id)
+                .ToListAsync())
+                .Select(ct => new TranslatedViewModel<Process, ProcessTranslation>(ct))
+                .Select(ct => new
+                {
+                    value = ct.Entity.Id.ToString(),
+                    text = ct.Translation.Value,
+                    selected = ct.Entity.Id == cl.Id
+                })
+                .ToList());
         }
 
         protected override void Dispose(bool disposing)

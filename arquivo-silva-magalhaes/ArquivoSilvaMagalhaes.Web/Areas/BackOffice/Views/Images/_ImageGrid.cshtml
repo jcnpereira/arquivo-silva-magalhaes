@@ -18,7 +18,7 @@
                             <img src="~/Content/Images/no-image-400.png" />
                         }
                         <div class="caption">
-                            <h4 class="text-center">@img.Translation.Title <small>@img.Entity.ImageCode</small></h4>
+                            <h4 class="text-center">@Html.Truncate(img.Translation.Title, 30) <small>@img.Entity.ImageCode</small></h4>
                         </div>
                     </a>
                 </div>

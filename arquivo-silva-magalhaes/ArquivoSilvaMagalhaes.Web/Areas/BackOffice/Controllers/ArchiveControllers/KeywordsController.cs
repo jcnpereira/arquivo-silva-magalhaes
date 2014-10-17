@@ -74,14 +74,8 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     LanguageCode = LanguageDefinitions.DefaultLanguage
                 };
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_KeywordFields", model);
-            }
-            else
-            {
-                return View(model);
-            }
+            return View(model);
+
         }
 
         // POST: BackOffice/Keywords/Create
@@ -101,21 +95,6 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
 
                 db.Add(keyword);
                 await db.SaveChangesAsync();
-
-                if (Request.IsAjaxRequest())
-                {
-                    return Json((await db.Entities
-                        .OrderBy(k => k.Id)
-                        .ToListAsync())
-                        .Select(k => new TranslatedViewModel<Keyword, KeywordTranslation>(k))
-                        .Select(ktr => new
-                        {
-                            value = ktr.Entity.Id.ToString(),
-                            text = ktr.Translation.Value,
-                            selected = ktr.Entity.Id == keyword.Id
-                        })
-                        .ToList());
-                }
 
                 return RedirectToAction("Index");
             }
@@ -300,6 +279,45 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.Controllers.ArchiveControllers
                     t.LanguageCode == k.LanguageCode &&
                     t.Value == k.Value &&
                     t.KeywordId != k.KeywordId);
+        }
+
+        public ActionResult AuxAdd()
+        {
+            var model = new KeywordTranslation { LanguageCode = LanguageDefinitions.DefaultLanguage };
+
+            return PartialView("_KeywordFields", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AuxAdd(KeywordTranslation t)
+        {
+            var cl = db.Entities
+                .FirstOrDefault(c => c.Translations.Any(ct =>
+                    ct.LanguageCode == t.LanguageCode &&
+                    ct.Value == t.Value &&
+                    ct.KeywordId != t.KeywordId)
+                );
+
+            if (cl == null)
+            {
+                cl = new Keyword();
+                cl.Translations.Add(t);
+
+                db.Add(cl);
+                await db.SaveChangesAsync();
+            }
+
+            return Json((await db.Entities
+                .OrderBy(ct => ct.Id)
+                .ToListAsync())
+                .Select(ct => new TranslatedViewModel<Keyword, KeywordTranslation>(ct))
+                .Select(ct => new
+                {
+                    value = ct.Entity.Id.ToString(),
+                    text = ct.Translation.Value,
+                    selected = ct.Entity.Id == cl.Id
+                })
+                .ToList());
         }
 
         protected override void Dispose(bool disposing)

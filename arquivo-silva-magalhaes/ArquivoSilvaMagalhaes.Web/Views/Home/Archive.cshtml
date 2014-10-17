@@ -8,13 +8,11 @@
 
 <hr />
 
-<p>
-    @Html.Raw(string.Format(LayoutStrings.ArchiveHomeMessage, Html.ActionLink(LayoutStrings.Search.ToLower(), "Index", "Search")))
-</p>
-
-<p>
-    @Html.Raw(string.Format(LayoutStrings.ArchiveHomeShowImages, Html.ActionLink(ImageStrings.EntityNamePlural.ToLower(), "Index", "Images", new { hideWithoutImage = true }, null)))
-</p>
+@Html.Raw(string.Format(
+    LayoutStrings.ArchiveHomeMessage,
+        Html.ActionLink(LayoutStrings.Search.ToLower(), "Index", "Search"),
+        Html.ActionLink(ImageStrings.EntityNamePlural.ToLower(), "Index", "Images", new { hideWithoutImage = true }, null))
+    )
 
 <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active">

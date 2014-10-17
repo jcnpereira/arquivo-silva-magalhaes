@@ -81,16 +81,16 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public override string LanguageCode { get; set; }
 
         [Required]
-        [StringLength(40)]
+        [StringLength(100)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(500)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Subject")]
         public string Subject { get; set; }
 
-        [StringLength(100)]
+        [StringLength(500)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Publication")]
         public string Publication { get; set; }
 
@@ -100,7 +100,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string Location { get; set; }
 
         [Required]
-        [StringLength(300)]
+        [StringLength(500)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Description")]
         public string Description { get; set; }
 

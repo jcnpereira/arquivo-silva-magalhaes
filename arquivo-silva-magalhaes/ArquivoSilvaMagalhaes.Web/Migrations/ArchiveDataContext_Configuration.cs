@@ -51,6 +51,9 @@ namespace ArquivoSilvaMagalhaes.Migrations
             //SeedDocuments(db);
 
             //SeedImages(db);
+
+            SeedEvents(db);
+            SeedNews(db);
         }
 
         private void SeedAuthors(ArchiveDataContext db)
@@ -62,7 +65,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Id = i,
                     FirstName = "Primeiro " + i,
                     LastName = "Último " + i,
-                    BirthDate = DateTime.Now
+                    BirthDate = new DateTime(1900 + i, (i % 12) + 1, (i % 28) + 1)
                 };
 
                 a.Translations.Add(new AuthorTranslation
@@ -76,7 +79,16 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 if (i % 3 == 0)
                 {
-                    a.DeathDate = DateTime.Now;
+                    a.DeathDate = a.BirthDate.AddYears((i * 90) % 60);
+
+                    a.Translations.Add(new AuthorTranslation
+                    {
+                        AuthorId = a.Id,
+                        Biography = "Biography " + i,
+                        Curriculum = "Curriculum " + i,
+                        Nationality = "Nationality " + i,
+                        LanguageCode = "en"
+                    });
                 }
 
                 db.Authors.AddOrUpdate(author => new { author.Id }, a);
@@ -93,15 +105,15 @@ namespace ArquivoSilvaMagalhaes.Migrations
                     Id = i,
                     CatalogCode = "COL" + i,
                     AttachmentsDescriptions = "Anexos " + i,
-                    IsVisible = i % 2 == 0,
+                    IsVisible = i % 3 == 0,
                     OrganizationSystem = "Org " + i,
                     ProductionPeriod = (1900 + i).ToString(),
                     Type = CollectionType.Collection,
                     Notes = "Notas " + i
                 };
 
-                c.Authors = db.Authors.Where(a => a.Id == (i % 10) + 1)
-                    .Take(5)
+                c.Authors = db.Authors
+                    .Where(a => a.Id == (i % 2) + 1)
                     .ToList();
 
                 c.Translations.Add(new CollectionTranslation
@@ -112,10 +124,26 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         CopyrightInfo = "Copyright " + i,
                         FieldAndContents = "Âmbito " + i,
                         Title = "Coleção " + i,
-                        Provenience = "Proveniência" + i,
+                        Provenience = "Proveniência " + i,
                         Dimension = "Dimensão " + i,
                         Description = "Descrição " + i
                     });
+
+                if (i % 3 == 0)
+                {
+                    c.Translations.Add(new CollectionTranslation
+                    {
+                        CollectionId = c.Id,
+                        LanguageCode = "en",
+                        AdministrativeAndBiographicStory = "History " + i,
+                        CopyrightInfo = "Copyright " + i,
+                        FieldAndContents = "Field " + i,
+                        Title = "Collection " + i,
+                        Provenience = "Provenience " + i,
+                        Dimension = "Dimension " + i,
+                        Description = "Description " + i
+                    });
+                }
 
                 db.Collections.AddOrUpdate(collection => new { collection.CatalogCode }, c);
             }
@@ -149,6 +177,18 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         FieldAndContents = "Âmbito " + i
                     });
 
+                if (i % 3 == 0)
+                {
+                    document.Translations.Add(new DocumentTranslation
+                    {
+                        DocumentId = document.Id,
+                        LanguageCode = "en",
+                        Description = "Description " + i,
+                        DocumentLocation = "Place " + i,
+                        FieldAndContents = "Field " + i
+                    });
+                }
+
                 db.Documents.AddOrUpdate(d => new { d.CatalogCode }, document);
             }
             db.SaveChanges();
@@ -172,7 +212,20 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 classification.Translations.Add(tr);
 
-                db.Classifications.AddOrUpdate(ct => new { ct.Id }, classification);
+                if (i % 3 == 0)
+                {
+                    classification.Translations.Add(new ClassificationTranslation
+                    {
+                        ClassificationId = classification.Id,
+                        LanguageCode = "en",
+                        Value = "Classification " + i
+                    });
+                }
+
+                if (!db.ClassificationTranslations.Any(kt => kt.Value == tr.Value && kt.LanguageCode == tr.LanguageCode))
+                {
+                    db.Classifications.Add(classification);
+                }
             }
             db.SaveChanges();
         }
@@ -195,7 +248,20 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 kw.Translations.Add(tr);
 
-                db.Keywords.AddOrUpdate(kt => new { kt.Id }, kw);
+                if (i % 3 == 0)
+                {
+                    kw.Translations.Add(new KeywordTranslation
+                        {
+                            KeywordId = kw.Id,
+                            LanguageCode = "en",
+                            Value = "Keyword " + i
+                        });
+                }
+
+                if (!db.KeywordTranslations.Any(kt => kt.Value == tr.Value && kt.LanguageCode == tr.LanguageCode))
+                {
+                    db.Keywords.Add(kw);
+                }
             }
             db.SaveChanges();
         }
@@ -210,7 +276,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 {
                     Id = i,
                     DocumentId = (i % 100) + 1,
-                    ClassificationId = (i % 30) + 1,
+                    ClassificationId = (i % 10) + 1,
                     ImageCode = "COL" + ((i % 10) + 1) + "-" + (i % 100) + 1 + "-" + i,
                     IsVisible = i % 3 == 0,
                     ProductionDate = (1940 + (i % 50)) + "-" + ((i % 12) + 1) + "-" + ((i % 20) + 1)
@@ -227,13 +293,125 @@ namespace ArquivoSilvaMagalhaes.Migrations
                         Title = "Título " + i
                     });
 
+                if (i % 3 == 0)
+                {
+                    image.Translations.Add(new ImageTranslation
+                    {
+                        ImageId = image.Id,
+                        LanguageCode = "en",
+                        Description = "Description " + i,
+                        Location = "Place " + i,
+                        Publication = "Published at " + i,
+                        Subject = "Subject " + i,
+                        Title = "Title " + i
+                    });
+                }
+
                 image.Keywords = db.Keywords
-                     .Where(k => k.Id == (i % 5) + 1)
+                     .Where(k => k.Id == (i % 4) + 1)
                      .ToList();
 
                 imgList.Add(image);
             }
             db.Images.AddOrUpdate(img => new { img.ImageCode }, imgList.ToArray());
+            db.SaveChanges();
+        }
+
+        private void SeedNews(ArchiveDataContext db)
+        {
+            db.NewsItems.RemoveRange(db.NewsItems.ToList());
+
+            db.SaveChanges();
+
+            var newsList = new List<NewsItem>();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                var newsItem = new NewsItem
+                {
+                    Id = i,
+                    CreationDate = DateTime.Now,
+                    PublishDate = new DateTime(2014, 10, 17),
+                    ExpiryDate = DateTime.Now.AddDays(i),
+                    HideAfterExpiry = i % 3 == 0
+                };
+
+                newsItem.Translations.Add(new NewsItemTranslation
+                {
+                    NewsItem = newsItem,
+                    Heading = "Destaque " + i,
+                    LanguageCode = "pt",
+                    TextContent = "Texto " + i,
+                    Title = "Notícia " + i
+                });
+
+                if (i % 3 == 0)
+                {
+                    newsItem.Translations.Add(new NewsItemTranslation
+                    {
+                        NewsItem = newsItem,
+                        Heading = "Heading " + i,
+                        LanguageCode = "en",
+                        TextContent = "Text " + i,
+                        Title = "News " + i
+                    });
+                }
+
+                newsList.Add(newsItem);
+            }
+            db.NewsItems.AddOrUpdate(ni => new { ni.PublishDate }, newsList.ToArray());
+            db.SaveChanges();
+        }
+
+        private void SeedEvents(ArchiveDataContext db)
+        {
+            db.Events.RemoveRange(db.Events.ToList());
+
+            db.SaveChanges();
+
+            var eventList = new List<Event>();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                var evt = new Event
+                {
+                    Id = i,
+                    StartMoment = DateTime.Now,
+                    EndMoment = DateTime.Now.AddDays(i),
+
+                    PublishDate = DateTime.Now,
+                    ExpiryDate = DateTime.Now.AddDays(i),
+                    HideAfterExpiry = i % 3 == 0,
+                    EventType = EventType.Expo,
+                    Latitude = "1.0",
+                    Longitude = "1.0",
+                    Place = "Local " + i
+                };
+
+                evt.Translations.Add(new EventTranslation
+                {
+                    Event = evt,
+                    Heading = "Destaque " + i,
+                    LanguageCode = "pt",
+                    TextContent = "Texto " + i,
+                    Title = "Evento " + i
+                });
+
+                if (i % 3 == 0)
+                {
+                    evt.Translations.Add(new EventTranslation
+                    {
+                        Event = evt,
+                        Heading = "Heading " + i,
+                        LanguageCode = "en",
+                        TextContent = "Text " + i,
+                        Title = "Event " + i
+                    });
+                }
+
+                eventList.Add(evt);
+            }
+            db.Events.AddOrUpdate(e => new { e.Place }, eventList.ToArray());
             db.SaveChanges();
         }
     }
