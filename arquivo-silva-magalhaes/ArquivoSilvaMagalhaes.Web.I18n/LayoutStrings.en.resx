@@ -298,10 +298,7 @@
     <value>Choose an item from the list by clicking on it. You can use the search box above to search.</value>
   </data>
   <data name="ArchiveHomeMessage" xml:space="preserve">
-    <value>Here you can consult the contents of the Photographic Archive of Silva Magalhães.&lt;br /&gt;You can start by choosing one of the collections or authors, or, if you prefer, do a simple {0} for documents.</value>
-  </data>
-  <data name="ArchiveHomeShowImages" xml:space="preserve">
-    <value>Alternatively, you can see all the {0} from this archive.</value>
+    <value>&lt;p&gt;Here you can consult the contents of the Photographic Archive of Silva Magalhães.&lt;/p&gt;&lt;p&gt;You can start by choosing from one of the available collections or authors, or, if you prefer, {0} the documents of this archive.&lt;/p&gt;&lt;p&gt;Alternatively, you can see all the {1} of the archive directly.&lt;/p&gt;</value>
   </data>
   <data name="SeeMap" xml:space="preserve">
     <value>See in map</value>

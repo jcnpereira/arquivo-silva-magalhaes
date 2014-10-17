@@ -43,14 +43,14 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 a => new { a.Address },
                 archive);
 
-            SeedClassifications(db);
-            SeedKeywords(db);
+            //SeedClassifications(db);
+            //SeedKeywords(db);
 
-            SeedAuthors(db);
-            SeedCollections(db);
-            SeedDocuments(db);
+            //SeedAuthors(db);
+            //SeedCollections(db);
+            //SeedDocuments(db);
 
-            SeedImages(db);
+            //SeedImages(db);
 
             SeedEvents(db);
             SeedNews(db);
@@ -319,6 +319,10 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         private void SeedNews(ArchiveDataContext db)
         {
+            db.NewsItems.RemoveRange(db.NewsItems.ToList());
+
+            db.SaveChanges();
+
             var newsList = new List<NewsItem>();
 
             for (int i = 1; i <= 20; i++)
@@ -327,8 +331,9 @@ namespace ArquivoSilvaMagalhaes.Migrations
                 {
                     Id = i,
                     CreationDate = DateTime.Now,
-                    PublishDate = DateTime.Now,
-                    ExpiryDate = DateTime.Now.AddDays(i)
+                    PublishDate = new DateTime(2014, 10, 17),
+                    ExpiryDate = DateTime.Now.AddDays(i),
+                    HideAfterExpiry = i % 3 == 0
                 };
 
                 newsItem.Translations.Add(new NewsItemTranslation
@@ -360,6 +365,10 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
         private void SeedEvents(ArchiveDataContext db)
         {
+            db.Events.RemoveRange(db.Events.ToList());
+
+            db.SaveChanges();
+
             var eventList = new List<Event>();
 
             for (int i = 1; i <= 20; i++)
@@ -372,6 +381,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                     PublishDate = DateTime.Now,
                     ExpiryDate = DateTime.Now.AddDays(i),
+                    HideAfterExpiry = i % 3 == 0,
                     EventType = EventType.Expo,
                     Latitude = "1.0",
                     Longitude = "1.0",
@@ -401,7 +411,7 @@ namespace ArquivoSilvaMagalhaes.Migrations
 
                 eventList.Add(evt);
             }
-            db.Events.AddOrUpdate(e => new { e.PublishDate }, eventList.ToArray());
+            db.Events.AddOrUpdate(e => new { e.Place }, eventList.ToArray());
             db.SaveChanges();
         }
     }

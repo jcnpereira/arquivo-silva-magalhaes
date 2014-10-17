@@ -106,20 +106,11 @@ namespace ArquivoSilvaMagalhaes.Web.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;O presente trabalho surge da colaboração entre a Câmara Municipal de Tomar (CMT) e o Instituto Politécnico de Tomar (IPT), através dos cursos de Licenciatura em Eng. Informática e Licenciatura em Design e Tecnologia das Artes Gráficas.&lt;/p&gt;&lt;p&gt;Da parte da CMT participou:&lt;ul&gt;    &lt;li&gt;Patrícia Marques Romão&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;p&gt;Da parte do IPT participaram:&lt;ul&gt;&lt;li&gt;Licenciatura em Eng. Informática, os alunos André Carvalho e Diogo Neto Conceição, orientados por José Casimiro Pereira&lt;/li&gt;&lt;li&gt;Licenciatura em Design e [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;p&gt;Aqui pode consultar o acervo do Arquivo Fotográfico Silva Magalhães.&lt;/p&gt;&lt;p&gt;Pode começar por escolher uma das coleções ou autores disponíveis, ou, se preferir, fazer uma {0} simples nos documentos deste acervo.&lt;/p&gt;&lt;p&gt;Alternativamente, pode ver todas as {1} do acervo diretamente.&lt;/p&gt;.
         /// </summary>
         public static string ArchiveHomeMessage {
             get {
                 return ResourceManager.GetString("ArchiveHomeMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Alternativamente, pode ver todas as {0} do acervo diretamente..
-        /// </summary>
-        public static string ArchiveHomeShowImages {
-            get {
-                return ResourceManager.GetString("ArchiveHomeShowImages", resourceCulture);
             }
         }
         
