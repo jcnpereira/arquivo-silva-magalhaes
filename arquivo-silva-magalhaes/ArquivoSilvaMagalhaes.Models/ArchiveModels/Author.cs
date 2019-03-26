@@ -9,7 +9,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
     /// <summary>
     /// Defines an author of a collection, or an author of a document.
     /// </summary>
-    public partial class Author : IValidatableObject
+    public partial class Author   //  : IValidatableObject
     {
         public Author()
         {
@@ -37,20 +37,28 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(AuthorStrings), Name = "LastName")]
         public string LastName { get; set; }
 
+
+
         /// <summary>
         /// The date on which this author was born.
+        /// Por decisão da Patrícia Romão, a data de nascimento passa a string (2019/03/22)
         /// </summary>
         [Required]
-        [DataType(DataType.Date)]
+        //  [DataType(DataType.Date)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "BirthDate")]
-        public DateTime BirthDate { get; set; }
+        //  public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
 
         /// <summary>
         /// The date on which this author died.
+        /// Por decisão da Patrícia Romão, a data de morte passa a string (2019/03/22)
         /// </summary>
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "DeathDate")]
-        public DateTime? DeathDate { get; set; }
+        //  public DateTime? DeathDate { get; set; }
+        public string DeathDate { get; set; }
+
+
 
         [Display(ResourceType = typeof(AuthorStrings), Name = "PictureFileName")]
         public string PictureFileName { get; set; }
@@ -71,16 +79,20 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// </summary>
         public virtual IList<Collection> Collections { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (DeathDate.HasValue)
-            {
-                if (DeathDate.Value.CompareTo(BirthDate) < 0)
-                {
-                    yield return new ValidationResult(AuthorStrings.ValidationError_Dates, new string[] { "BirthDate", "DeathDate" });
-                }
-            }
-        }
+
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (DeathDate.HasValue)
+        //    {
+        //        if (DeathDate.Value.CompareTo(BirthDate) < 0)
+        //        {
+        //            yield return new ValidationResult(AuthorStrings.ValidationError_Dates, new string[] { "BirthDate", "DeathDate" });
+        //        }
+        //    }
+        //}
+
+
     }
 
     /// <summary>
