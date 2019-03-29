@@ -1,0 +1,79 @@
+﻿@model ApplicationUser
+
+@using Microsoft.AspNet.Identity;
+
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = Model.UserName;
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+    if (ViewBag.Id == null)
+    {
+        ViewBag.Id = Model.Id;
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group">
+                <a class="btn btn-primary" href="@Url.Action("Index")">
+                    <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
+                </a>
+            </div>
+
+            <div class="btn-group">
+                <a class="btn btn-default" title="@AuthStrings.ChangePassword" href="@Url.Action("ChangePassword", new { userName = Model.UserName })">
+                    <span class="glyphicon glyphicon-edit"></span> @AuthStrings.ChangePassword
+                </a>
+
+                @if (Model.UserName.ToLower() != "admin")
+                {
+                    <a class="btn btn-default" title="@AuthStrings.ChangeRole" href="@Url.Action("ChangeRole", new { userName = Model.UserName })">
+                        <span class="glyphicon glyphicon-edit"></span> @AuthStrings.ChangeRole
+                    </a>
+
+                    <a class="btn btn-danger" title="@LayoutStrings.Delete" href="@Url.Action("Delete", new { userName = Model.UserName })" data-afsm-show-modal="true" data-afsm-delete-warning="@LayoutStrings.ConfirmDelete">
+                        <span class="glyphicon glyphicon-floppy-remove"></span> @LayoutStrings.Delete
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RealName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RealName)
+            </dd>
+            <dt>
+                @AuthStrings.Role
+            </dt>
+            <dd>
+                @using (var manager =
+        new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+                {
+                    <ul class="list-inline">
+                        @foreach (var role in Model.Roles.Select(r => manager.FindById(r.RoleId)))
+                        {
+                            <li>@role.Name</li>
+                        }
+                    </ul>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<style>
+    .dl-horizontal dd, .dl-horizontal dt {
+        line-height: 27px;
+    }
+</style>

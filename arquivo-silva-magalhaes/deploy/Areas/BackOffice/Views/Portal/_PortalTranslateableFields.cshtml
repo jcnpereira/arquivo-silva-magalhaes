@@ -1,0 +1,19 @@
+﻿@model ArchiveTranslation
+
+@Html.HiddenFor(model => model.ArchiveId)
+@Html.HiddenFor(model => model.LanguageCode)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ArchiveMission, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.ArchiveMission, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ArchiveMission)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ArchiveHistory, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.EditorFor(model => model.ArchiveHistory, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ArchiveHistory)
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model Classification
+
+
+@{
+    ViewBag.Title = ClassificationStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = ClassificationStrings.DeleteWarningMessage;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
+}
+
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => t.Value)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => t.Value)
+                </dd>
+            </dl>
+        </div>
+    }
+</div>

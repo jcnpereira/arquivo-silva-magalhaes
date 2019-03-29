@@ -1,0 +1,25 @@
+﻿@model AppConfiguration
+
+@{
+    ViewBag.Title = SpotlightVideoStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Key)
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Value, SpotlightVideoStrings.UriPath, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control", @Value = "https://www.youtube.com/watch?v=" + Model.Value } })
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+        </div>
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Done)
+    </div>
+
+}

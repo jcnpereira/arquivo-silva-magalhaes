@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
+
+@{
+    ViewBag.Title = EventStrings.EntityNamePlural;
+}
+
+@*@functions {
+    string GlyphiconForEventType(EventType type)
+    {
+        switch (type)
+        {
+            case EventType.Expo:
+                return "glyphicon-star";
+            case EventType.School:
+                return "glyphicon-pencil";
+            case EventType.Workshop:
+                return "glyphicon-comment";
+            default:
+                return "glyphicon-picture";
+        }
+    }
+}*@
+
+<h2>
+    @EventStrings.EntityNamePlural
+</h2>
+
+<hr class="hidden-xs" />
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Event", "Events", new { item.Entity.Id })" class="list-group-item">
+            <div class="media">
+                <div class="pull-left">
+                    
+                    @switch (item.Entity.EventType)
+                    {
+                    case EventType.Expo:
+                    <img width="70" src="~/Content/Images/Expo.png" />
+                            break;
+                    case EventType.School:
+                    <img width="70" src="~/Content/Images/School.png" />
+                            break;
+                    case EventType.Workshop:
+                    <img width="70" src="~/Content/Images/Workshop.png" />
+                            break;
+                    case EventType.Other:
+                    <img width="70" src="~/Content/Images/Other.png" />
+                            break;
+                    }
+                    
+                    @*<span class="pull-left afsm-xlarge-glyphicon glyphicon @GlyphiconForEventType(item.Entity.EventType.Value)">
+                    </span>*@
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @item.Translation.Title
+                    </h4>
+
+                    <p>
+                        @Html.DisplayFor(model => item.Entity.StartMoment) - @Html.DisplayFor(model => item.Entity.EndMoment)
+                    </p>
+
+                    <p>
+                        @Html.EnumDisplayFor(e => item.Entity.EventType) - @item.Entity.Place
+                    </p>
+
+                    <p>
+                        @Html.Truncate(item.Translation.Heading, 80)
+                    </p>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Events", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+</div>

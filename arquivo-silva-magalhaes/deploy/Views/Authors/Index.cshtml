@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TranslatedViewModel<Author, AuthorTranslation>>
+
+@{
+    ViewBag.Title = AuthorStrings.EntityNamePlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+    <li class="active">
+        @AuthorStrings.EntityNamePlural
+    </li>
+</ol>
+
+<h2>@AuthorStrings.EntityNamePlural</h2>
+
+<hr class="hidden-xs" />
+
+<div id="afsm-collections" data-afsm-ajax="true" data-afsm-id="#afsm-author-list">
+    <form method="get"
+          class="form-horizontal"
+          data-afsm-ajax="true"
+          data-afsm-ajaxurl="@Url.Action("List", "Authors", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))"
+          action="@Url.Action("Index", "Authors", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request))">
+        <div class="input-group">
+            <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+
+    </form>
+
+    @Html.Partial("_AuthorList")
+</div>
+
+
+
+

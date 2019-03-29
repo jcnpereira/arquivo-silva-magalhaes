@@ -1,0 +1,95 @@
+﻿@model ArquivoSilvaMagalhaes.Models.ArchiveModels.Specimen
+
+@{
+    ViewBag.Title = SpecimenStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+    ViewBag.Id = Model.Id;
+}
+
+@section ExtraActions {
+    <div class="btn-group">
+        <a class="btn btn-default" href="@Url.Action("Create", "DigitalPhotographs", new { specimenId = Model.Id })">
+            <span class="glyphicon glyphicon-plus"></span> @SpecimenStrings.AddPhotos
+        </a>
+    </div>
+
+    @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> @LayoutStrings.AddTranslation
+            </a>
+        </div>
+    }
+}
+
+<dl class="dl-horizontal">
+    @Html.Partial("_MainDisplayFields")
+</dl>
+
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.Translations.Count(); i++)
+    {
+        var langCode = Model.Translations[i].LanguageCode;
+        <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+            <a href="#@langCode"
+               role="tab"
+               data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+        </li>
+    }
+</ul>
+
+<div class="tab-content">
+
+    @foreach (var t in Model.Translations)
+    {
+        var langCode = t.LanguageCode;
+
+        <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+             id="@langCode">
+
+            <hr style="visibility: hidden" />
+
+            <dl class="dl-horizontal">
+                @Html.Partial("_TranslatedDisplayFields", t)
+            </dl>
+
+            @if (langCode != LanguageDefinitions.DefaultLanguage)
+            {
+                <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                    Remover tradução
+                </a>
+            }
+        </div>
+    }
+</div>
+
+<hr />
+
+@if (Model.DigitalPhotographs.Count() > 0)
+{
+
+    foreach (var item in Model.DigitalPhotographs)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "large" })">
+                    <img src="@Url.Action("GetImage", "DigitalPhotographs", new { id = item.Id, size = "thumb" })"
+                         style="height: 200px;" />
+                </a>
+                <div class="caption">
+                    <div class="text-center">
+                        <a href="@Url.Action("Delete", "DigitalPhotographs", new { item.Id })"
+                           class="btn btn-danger"
+                           role="button"><span class="glyphicon glyphicon-floppy-remove"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <p>(@SpecimenStrings.NoDigitalPhotographs)</p>
+}

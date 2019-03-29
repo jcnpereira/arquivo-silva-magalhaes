@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+@section AdditionalStyles {
+    @Styles.Render("~/bundles/css/vendor/bs-datetimepicker")
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+@RenderBody()
+
+@section Scripts {
+    @Scripts.Render(
+        "~/bundles/js/date-picker",
+        "~/bundles/js/val",
+        "~/bundles/js/quill", 
+        "~/bundles/js/suggestions"
+    )
+
+    @RenderSection("scripts", required: false)
+}

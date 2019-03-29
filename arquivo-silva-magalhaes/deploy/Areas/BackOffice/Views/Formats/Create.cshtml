@@ -1,0 +1,19 @@
+﻿@model Format
+
+@{
+    ViewBag.Title = FormatStrings.CreateTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @Html.Partial("_FormatFields")
+
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Create)
+    </div>
+}

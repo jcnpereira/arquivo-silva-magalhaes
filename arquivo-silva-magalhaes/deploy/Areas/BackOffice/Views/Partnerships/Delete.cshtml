@@ -1,0 +1,12 @@
+﻿@model Partnership
+
+@{
+    ViewBag.Title = PartnershipStrings.DeleteTitleFormat;
+    ViewBag.AlertMsg = PartnershipStrings.DeleteWarningMessage;
+
+    Layout = "~/Areas/BackOffice/Views/Shared/_DeletePageLayout.cshtml";
+}
+
+<dl class="dl-horizontal">
+    @Html.Partial("_MainDisplayFields")
+</dl>

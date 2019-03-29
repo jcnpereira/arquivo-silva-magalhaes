@@ -30,17 +30,21 @@ namespace ArquivoSilvaMagalhaes.App_Start
                     UserName = userName
                 };
 
-                var userCreateResult = userManager.Create(user, password);
-                roleManager.Create(adminRole);
-                roleManager.Create(siteRole);
-                roleManager.Create(archiveRole);
-
-                if (!userCreateResult.Succeeded)
+                try
                 {
-                    user = userManager.FindByName(userName);
-                }
+                    var userCreateResult = userManager.Create(user, password);
+                    roleManager.Create(adminRole);
+                    roleManager.Create(siteRole);
+                    roleManager.Create(archiveRole);
 
-                userManager.AddToRole(user.Id, adminRole.Name);
+                    if (!userCreateResult.Succeeded)
+                    {
+                        user = userManager.FindByName(userName);
+                    }
+
+                    userManager.AddToRole(user.Id, adminRole.Name);
+                }
+                catch (System.Exception) { }
             }
         }
     }

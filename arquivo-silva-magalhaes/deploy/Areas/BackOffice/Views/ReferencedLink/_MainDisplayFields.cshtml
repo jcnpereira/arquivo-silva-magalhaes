@@ -1,0 +1,17 @@
+﻿@model ReferencedLink
+
+<dt>
+    @Html.DisplayNameFor(model => model.Title)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Title)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Link)
+</dt>
+
+<dd>
+    <a href="(@Model.Link)" target="_blank">@Model.Link</a>
+</dd>

@@ -1,0 +1,41 @@
+﻿@model TranslatedViewModel<NewsItem, NewsItemTranslation>
+
+@{
+    ViewBag.Title = Model.Translation.Title;
+}
+
+@if (Model.Entity.HeaderImage != null)
+{
+    <div class="afsm-header-image afsm-negate-padding"
+         style="background-image: url('@Url.Content("~/Public/News/" + Model.Entity.HeaderImage + "_large.jpg")'); max-height: 300px">
+        <div class="afsm-header">
+            <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
+
+            <p>
+                @Model.Translation.Heading
+            </p>
+
+            <p>
+                @Html.DisplayFor(model => Model.Entity.PublishDate)
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
+
+    <p>
+        @Html.DisplayFor(model => model.Translation.Heading)
+    </p>
+
+    <p>
+        @Html.DisplayFor(model => model.Entity.PublishDate)
+    </p>
+
+    <hr />
+}
+
+<div class="afsm-commentary">
+    @Html.DisplayFor(model => model.Translation.TextContent)
+</div>

@@ -1,0 +1,46 @@
+﻿@model ReferencedLink
+
+@{
+    ViewBag.Title = ReferencedLinkStrings.EditTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        
+        @Html.Partial("_ReferencedLinkMainFields")
+
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Translations.Count(); i++)
+            {
+                var langCode = Model.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            <hr style="visibility: hidden" />
+
+            @for (int i = 0; i < Model.Translations.Count; i++)
+            {
+                var langCode = Model.Translations[i].LanguageCode;
+                ViewBag.Index = i;
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+
+                    @Html.PartialFor(model => model.Translations[i], "_ReferencedLinkTranslateableFields")
+                </div>
+            }
+        </div>
+
+        @Html.Partial("_SubmitBackPartial", LayoutStrings.Done)
+    </div>
+    
+}

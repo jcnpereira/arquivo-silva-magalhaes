@@ -1,0 +1,49 @@
+﻿@model TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>
+
+@{
+    ViewBag.Title = Model.Translation.Title;
+}
+
+<div class="afsm-header-image afsm-negate-padding"
+     data-afsm-slideto="0"
+     data-afsm-show-overlay="true"
+     data-afsm-target="#afsm-overlay-carousel"
+     data-target="#afsm-overlay-carousel"
+     style="cursor: pointer; background-image: url('@Url.Content("~/Public/Images/" + Model.Entity.Image.ImageUrl + "_large.jpg")')">
+    <div class="afsm-header" style="cursor: default">
+        <h2>@Html.DisplayFor(model => model.Translation.Title)</h2>
+
+        <p>
+            @Model.Entity.CommenterName
+
+            @if (Model.Entity.IsEmailVisible)
+            {
+                <small>
+                    @Html.DisplayFor(model => model.Entity.CommenterEmail)
+                </small>
+            }
+        </p>
+
+        <p>
+            @Html.DisplayFor(model => Model.Entity.VisibleSince)
+        </p>
+    </div>
+</div>
+
+<div class="afsm-commentary">
+    @Html.DisplayFor(model => model.Translation.Comment)
+</div>
+
+<hr />
+
+<a href="@Url.Action("Old")">
+    @LayoutStrings.OldArticles
+</a>
+
+@section scripts {
+    @Html.Partial("_ImageOverlayCarousel", new List<TranslatedViewModel<Image, ImageTranslation>> 
+    {
+        new TranslatedViewModel<Image, ImageTranslation>(Model.Entity.Image)
+    })
+    @Scripts.Render("~/bundles/js/overlay-image")
+}

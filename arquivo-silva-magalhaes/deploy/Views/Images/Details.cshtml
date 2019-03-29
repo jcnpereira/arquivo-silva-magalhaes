@@ -1,0 +1,248 @@
+﻿@model ImageDetailsViewModel
+
+@{
+    ViewBag.Title = Model.Image.Translation.Title;
+
+    var logo = Model.Image.Entity.ImageUrl != null ?
+        "Public/Images/" + Model.Image.Entity.ImageUrl + "_thumb.jpg" :
+        "Content/Images/no-image.png";
+}
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Details", "Collections", new { id = Model.Image.Entity.Document.CollectionId })">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Details", "Documents", new { id = Model.Image.Entity.DocumentId })">
+            @DocumentStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Images", new { documentId = Model.Image.Entity.DocumentId })">
+            @ImageStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li class="active">
+        @Model.Image.Translation.Title
+    </li>
+</ol>
+
+<div class="row afsm-detail-header">
+
+    @if (Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage)
+    {
+        <div class="col-sm-4">
+            <a href="@Url.Content("~/Public/Images/" + (Model.Image.Entity.ImageUrl) + "_large.jpg")"
+               class="thumbnail">
+                <img data-afsm-slideto="0"
+                     data-afsm-show-overlay="true"
+                     data-afsm-target="#afsm-overlay-carousel"
+                     data-target="#afsm-overlay-carousel"
+                     src="~/Public/Images/@(Model.Image.Entity.ImageUrl)_thumb.jpg" />
+            </a>
+        </div>
+    }
+
+    <div class="col-sm-@(Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage ? "8" : "12")">
+        <h3>
+            @Model.Image.Translation.Title <small>@Model.Image.Entity.ImageCode</small>
+        </h3>
+
+        <dl class="afsm-dl-vertical">
+
+            <dt>
+                @(Html.DisplayNameFor(model => model.Image.Entity.ProductionDate))
+            </dt>
+
+            <dd>
+                @Model.Image.Entity.ProductionDate
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Entity.Document)
+            </dt>
+
+            <dd>
+                <a href="@Url.Action("Details", "Documents", new { id = Model.Image.Entity.DocumentId })">
+                    @Model.Image.Entity.Document.Title
+                </a>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Classification.Translation.Value)
+            </dt>
+
+            <dd>
+                <a target="_blank" href="@Url.Action("Index", "Images", new { classificationId = Model.Classification.Entity.Id })">
+                    @Model.Classification.Translation.Value
+                </a>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Entity.Keywords)
+            </dt>
+            <dd>
+                <ul class="list-inline">
+                    @foreach (var kw in Model.Keywords)
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("Index", "Images", new { keywordId = kw.Entity.Id })">
+                                @kw.Translation.Value
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<hr class="hidden-xs" />
+
+@if (Model.Image.Entity.ShowCoordinates)
+{
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="active">
+            <a href="#afsm-details" role="tab" data-toggle="tab">
+                Detalhes
+            </a>
+        </li>
+        <li>
+            <a href="#afsm-map" role="tab" data-toggle="tab" data-afsm-update-map="map_canvas">
+                @LayoutStrings.SeeMap
+            </a>
+        </li>
+    </ul>
+}
+
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="afsm-details">
+        <dl class="afsm-dl-vertical">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Translation.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Image.Translation.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Translation.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Image.Translation.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image.Translation.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Image.Translation.Subject)
+            </dd>
+
+
+            @if (!string.IsNullOrEmpty(Model.Image.Translation.Publication))
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Image.Translation.Publication)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Image.Translation.Publication)
+                </dd>
+            }
+
+            @if (Model.Specimens.Count() > 0)
+            {
+                <dt>
+                    @SpecimenStrings.Annotation
+                </dt>
+
+                <dd>
+                    <ul class="list-inline">
+                        @foreach (var refCode in Model.Specimens.Select(s => s.Entity.Annotation))
+                        {
+                            <li>@refCode</li>
+                        }
+                    </ul>
+                </dd>
+
+                <dt>
+                    @SpecimenStrings.AuthorCatalogationCode
+                </dt>
+
+                <dd>
+                    <ul class="list-inline">
+                        @foreach (var authorCode in Model.Specimens.Select(s => s.Entity.AuthorCatalogationCode))
+                        {
+                            <li>@authorCode</li>
+                        }
+                    </ul>
+                </dd>
+
+                <dt>
+                    @FormatStrings.EntityName
+                </dt>
+
+                <dd>
+                    <ul class="list-inline">
+                        @foreach (var format in Model.Formats)
+                        {
+                            <li>@format.FormatDescription</li>
+                        }
+                    </ul>
+                </dd>
+
+                <dt>
+                    @ProcessStrings.EntityName
+                </dt>
+                <dd>
+                    <ul class="list-inline">
+                        @foreach (var process in Model.Processes)
+                        {
+                            <li>@process.Translation.Value</li>
+                        }
+                    </ul>
+                </dd>
+            }
+        </dl>
+
+
+    </div>
+
+    @if (Model.Image.Entity.ShowCoordinates)
+    {
+    <div class="tab-pane fade" id="afsm-map">
+        <div id="map_canvas" style="width:100%; height: 400px"
+             data-afsm-lat="@Model.Image.Entity.Latitude"
+             data-afsm-lng="@Model.Image.Entity.Longitude"></div>
+    </div>
+    }
+</div>
+
+@section scripts {
+    @if (Model.Image.Entity.ImageUrl != null && Model.Image.Entity.ShowImage)
+    {
+        @Html.Partial("_ImageOverlayCarousel", new List<TranslatedViewModel<Image, ImageTranslation>> { Model.Image })
+        @Scripts.Render("~/bundles/js/overlay-image")
+    }
+
+
+    @if (Model.Image.Entity.ShowCoordinates)
+    {
+        <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        @Scripts.Render("~/bundles/js/google-maps-ro")
+    }
+
+}

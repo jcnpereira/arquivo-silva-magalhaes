@@ -1,0 +1,51 @@
+﻿@model Partnership
+
+<dt>
+    @Html.DisplayNameFor(model => model.Name)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Name)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.LogoFileName)
+</dt>
+
+<dd>
+    @if (Model.LogoFileName != null)
+    {
+        <img src="~/Public/Partnerships/@(Model.LogoFileName)" 
+             style="max-height: 200px" 
+             class="img-responsive img-thumbnail" />
+    }
+    else
+    {
+        @LayoutStrings.NoImage
+    }
+
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.SiteLink)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.SiteLink)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.EmailAddress)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.EmailAddress)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Contact)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Contact)
+</dd>

@@ -1,0 +1,105 @@
+﻿@model IndexViewModel
+
+<div id="afsm-carousel" class="carousel slide afsm-negate-padding" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+
+        @for (var i = 0; i < Model.Banners.Count; i++)
+        {
+            <li data-target="#afsm-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+        }
+    </ol>
+
+    <div class="carousel-inner">
+        @for (var i = 0; i < Model.Banners.Count; i++)
+        {
+            var b = Model.Banners[i];
+            <div class="item @(i == 0 ? "active" : "")">
+                @* style="background-image: url(@Url.Content("~/Public/Banners/" + b.Entity.UriPath));" *@
+                <div class="afsm-banner-item-container"
+                     style="background-image: url('@Url.Content("~/Public/Banners/" + b.Entity.UriPath)');">
+                    @*<img src="@Url.Content("~/Public/Banners/" + b.Entity.UriPath)"
+            class="afsm-banner-item" />*@
+                </div>
+                <div class="carousel-caption">
+                    <p>@Html.DisplayFor(modelItem => b.Translation.Caption)</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#afsm-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#afsm-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>@Html.ActionLink(NewsItemStrings.EntityNameShortPlural, "Index", "News")</h4>
+        <a href="@Url.Action("Index", "News")">
+            <img src="~/Content/Images/news.png" />
+        </a>
+        <p>
+            <small>
+                @LayoutStrings.NewsDescription
+            </small>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h4>@Html.ActionLink(EventStrings.EntityNamePlural, "Index", "Events")</h4>
+        <a href="@Url.Action("Index", "Events")">
+            <img src="~/Content/Images/events.png" />
+        </a>
+        <p>
+            <small>
+                @LayoutStrings.EventDescription
+            </small>
+        </p>
+    </div>
+
+    <div class="col-md-3">
+        <h4>@Html.ActionLink(LayoutStrings.Contents, "Archive", "Home")</h4>
+        <a href="@Url.Action("Archive", "Home")">
+            <img src="~/Content/Images/documents.png" />
+        </a>
+        <p>
+            <small>
+                @LayoutStrings.CollectionDescription
+            </small>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h4>@Html.ActionLink(ShowcasePhotoStrings.EntityNameShort, "Index", "Showcase")</h4>
+        <a href="@Url.Action("Index", "ShowcasePhotos")">
+            <img src="~/Content/Images/spotlightphoto.png" />
+        </a>
+        <p>
+            <small>
+                @LayoutStrings.ShowcaseDescription
+            </small>
+        </p>
+    </div>
+</div>
+
+@if (Request.Cookies["afsm-novideo"] == null)
+{
+    @section head {
+        @Styles.Render("~/bundles/css/video-overlay")
+    }
+    
+    @section scripts {
+        @Html.Partial("_VideoDisplayPartial", Model.VideoId)
+    }
+}
+else
+{
+    Response.Cookies["afsm-novideo"].Expires = DateTime.Now.AddYears(2);
+}
+
+
+

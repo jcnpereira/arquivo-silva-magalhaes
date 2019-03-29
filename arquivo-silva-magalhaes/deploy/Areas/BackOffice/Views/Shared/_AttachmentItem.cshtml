@@ -1,0 +1,18 @@
+﻿@model IList<Attachment>
+
+@{
+    Layout = null;
+}
+
+@for (var i = 0; i < Model.Count; i++)
+{
+    @Html.HiddenFor(model => model[i].FileName)
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model[i].Title, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.EditorFor(model => model[i].Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model[i].Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}

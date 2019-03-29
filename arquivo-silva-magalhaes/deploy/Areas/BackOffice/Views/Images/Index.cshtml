@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TranslatedViewModel<Image, ImageTranslation>>
+
+@{
+    ViewBag.Title = ImageStrings.EntityNamePlural;
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+@Html.Partial("_ListPartial")
+

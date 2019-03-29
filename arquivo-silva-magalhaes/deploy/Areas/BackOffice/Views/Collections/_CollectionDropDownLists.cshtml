@@ -1,0 +1,10 @@
+﻿@model CollectionEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AuthorIds, htmlAttributes: new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        @Html.ListBoxFor(model => model.AuthorIds, Model.AvailableAuthors, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AuthorIds, "", new { @class = "text-danger" })
+        <p class="help-block">@LayoutStrings.ChooseMultipleSuggestion <kbd>Ctrl</kbd>.</p>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TranslatedViewModel<Banner, BannerTranslation>>
+
+<div id="afsm-list-contents">
+    <div class="row panel-body afsm-dohighlight">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4" style="height: 400px">
+                <div class="thumbnail">
+                    <img src="@Url.Content("~/Public/Banners/" + item.Entity.UriPath)">
+                    <div class="caption">
+                        <h3 class="text-center">@item.Translation.Caption</h3>
+
+                        <div class="text-center">
+                            <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                                <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Details">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Edit">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+
+                                @Html.AntiForgeryToken()
+                                <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@LayoutStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@BannerStrings.DeleteWarningMessage">
+                                    <span class="glyphicon glyphicon-floppy-remove"></span>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="panel-footer">
+        <div class="text-center afsm-pagination">
+            @*@Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p, query = ViewBag.Query }))*@
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })))
+        </div>
+    </div>
+</div>

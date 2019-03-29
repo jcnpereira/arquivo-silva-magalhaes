@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Partnership>
+
+@{
+    ViewBag.Title = PartnershipStrings.EntityNamePlural;
+}
+
+<h2>
+    @PartnershipStrings.EntityNamePlural
+</h2>
+
+<hr class="hidden-xs" />
+
+
+<div class="row">
+    @foreach (var img in Model)
+    {
+        <div class="col-sm-6 col-lg-4" style="height: 400px;">
+            <div class="thumbnail">
+                @*<img class="img-responsive" style="height:200px" src="~/Public/Partnerships/@(img.LogoFileName)" />*@
+                <div style="background-image: url('@Url.Content("~/Public/Partnerships/" + img.LogoFileName)'); background-size: contain; background-position: center center; height: 200px; background-repeat: no-repeat">
+
+                </div>
+                <div class="caption">
+                    <h4>
+                        @img.Name
+                    </h4>
+                    <p>
+                        @Html.DisplayFor(model => img.EmailAddress)
+                    </p>
+                    <p>
+                        <a href="@img.SiteLink" target="_blank">@img.SiteLink</a>
+                    </p>
+                    <p>
+                        @img.Contact
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", "Parthnerships", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+</div>
+

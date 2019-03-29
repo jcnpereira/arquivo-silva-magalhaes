@@ -1,0 +1,162 @@
+﻿@model TranslatedViewModel<Collection, CollectionTranslation>
+
+@{
+    ViewBag.Title = Model.Translation.Title;
+
+    var logo = Model.Entity.LogoLocation != null ?
+        "Public/Collections/" + Model.Entity.LogoLocation :
+        "Content/Images/no-image.png";
+}
+
+<ol class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Archive", "Home")">
+            @LayoutStrings.Contents
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Collections")">
+            @CollectionStrings.EntityNamePlural
+        </a>
+    </li>
+
+    <li class="active">
+        @Html.Truncate(Model.Translation.Title, 20)
+    </li>
+</ol>
+
+
+<div class="row afsm-detail-header">
+    @if (Model.Entity.LogoLocation != null)
+    {
+        <div class="col-sm-4">
+            <img src="~/@logo"
+                 class="img-responsive thumbnail"
+                 alt="@Model.Translation.Title" />
+        </div>
+    }
+
+    <div class="col-sm-@(Model.Entity.LogoLocation != null ? "8" : "12")">
+        <h3>
+            @Model.Translation.Title <small>@Model.Entity.CatalogCode</small>
+        </h3>
+
+        <dl class="afsm-dl-vertical">
+
+            <dt>
+                @(Html.DisplayNameFor(model => Model.Entity.ProductionPeriod))
+            </dt>
+
+            <dd>
+                @Model.Entity.ProductionPeriod
+            </dd>
+
+            <dt>
+                @CollectionStrings.Authors
+            </dt>
+
+            <dd>
+                <ul class="list-unstyled">
+                    @for (var i = 0; i < Model.Entity.Authors.Count(); i++)
+                    {
+                        var a = Model.Entity.Authors[i];
+                        <li>
+                            <a href="@Url.Action("Details", "Authors", new { id = a.Id })">
+                                @(a.FirstName + " " + a.LastName)
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li class="active">
+        <a href="#afsm-details" role="tab" data-toggle="tab">
+            Detalhes
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Documents", new { collectionId = Model.Entity.Id })" role="tab" data-toggle="tab" data-afsm-switchto="#afsm-documents" target="_blank">
+            @DocumentStrings.EntityNamePlural
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="afsm-details">
+
+        <dl class="afsm-dl-vertical">
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayMultilineFor(model => model.Translation.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.AdministrativeAndBiographicStory)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Translation.AdministrativeAndBiographicStory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.Provenience)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Translation.Provenience)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.Dimension)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Translation.Dimension)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.FieldAndContents)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Translation.FieldAndContents)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translation.CopyrightInfo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Translation.CopyrightInfo)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="tab-pane fade" id="afsm-documents" data-afsm-ajax="true" data-afsm-id="#afsm-document-list">
+        <form method="get"
+              class="form-horizontal"
+              data-afsm-ajax="true"
+              action="@Url.Action("List", "Documents")">
+            <input type="hidden" name="collectionId" value="@Model.Entity.Id" />
+
+            <div class="input-group">
+                <input type="search" placeholder="@LayoutStrings.SearchPlaceholder" class="form-control" name="query" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+
+        </form>
+
+        @Html.Action("List", "Documents", new { collectionId = Model.Entity.Id })
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/js/ajax-pagination")
+}

@@ -1,0 +1,41 @@
+﻿@model ShowcasePhoto
+
+<dt>
+    @Html.DisplayNameFor(model => model.Image.ImageUrl)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Image.ImageUrl)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.CommenterName)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.CommenterName)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.CommenterEmail)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.CommenterEmail)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.IsEmailVisible)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.IsEmailVisible, "YesNoDisplayFor")
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.VisibleSince)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.VisibleSince)
+</dd>

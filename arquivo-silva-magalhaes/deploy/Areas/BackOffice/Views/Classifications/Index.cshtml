@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TranslatedViewModel<Classification, ClassificationTranslation>>
+
+@{
+    ViewBag.Title = ClassificationStrings.EntityNamePlural;
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+@Html.Partial("_ListPartial")
+

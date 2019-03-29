@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TranslatedViewModel<ShowcasePhoto, ShowcasePhotoTranslation>>
+<div id="afsm-list-contents">
+    <table class="table table-striped table-hover afsm-dohighlight">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Translation.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entity.CommenterName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entity.CommenterEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entity.IsEmailVisible)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entity.VisibleSince)
+                </th>
+                <th>
+                    @LayoutStrings.Actions
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Translation.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entity.CommenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entity.CommenterEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entity.IsEmailVisible, "YesNoDisplayFor")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entity.VisibleSince)
+                </td>
+                <td>
+                    <form class="btn-group" method="post" action="@Url.Action("Delete", new { id = item.Entity.Id })">
+                        <a href="@Url.Action("Details", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Details">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+
+                        <a href="@Url.Action("Edit", new { id = item.Entity.Id })" class="btn btn-default" title="@LayoutStrings.Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                        @Html.AntiForgeryToken()
+                        <a href="@Url.Action("Delete", new { id = item.Entity.Id })" class="btn btn-danger" title="@LayoutStrings.Delete" data-afsm-show-modal="true" data-afsm-delete-warning="@ShowcasePhotoStrings.DeleteWarningMessage">
+                            <span class="glyphicon glyphicon-floppy-remove"></span>
+                        </a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="panel-footer">
+        <div class="text-center afsm-pagination">
+            @*@Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", new { pageNumber = p, query = ViewBag.Query }))*@
+            @Html.PagedListPager((IPagedList)Model, (p) => Url.Action("Index", Url.AddQueryStringToRoute(ViewContext.RouteData.Values, Request, new { pageNumber = p })))
+        </div>
+    </div>
+</div>

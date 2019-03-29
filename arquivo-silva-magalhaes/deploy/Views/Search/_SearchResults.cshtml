@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TranslatedViewModel<Document, DocumentTranslation>>
+
+<div id="afsm-search-results">
+    <div class="list-group afsm-dohighlight">
+        @if (Model != null)
+        {
+            if (Model.Count() > 0)
+            {
+                foreach (var doc in Model)
+                {
+                    <a href="@Url.Action("Details", "Documents", new { doc.Entity.Id })" class="list-group-item" target="_blank">
+                        <h4 class="list-group-item-heading">@Html.Truncate(doc.Entity.Title, 60) <small>@doc.Entity.CatalogCode</small></h4>
+                        <dl class="afsm-dl-vertical">
+                            <dt>
+                                @DocumentStrings.DocumentDate
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => doc.Entity.DocumentDate)
+                            </dd>
+
+                            <dt>
+                                @DocumentStrings.DocumentLocation
+                            </dt>
+                            <dd>
+                                @doc.Translation.DocumentLocation
+                            </dd>
+
+                        </dl>
+                    </a>
+                }
+
+                <div class="text-center afsm-pagination">
+                    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "Search", new { pageNumber = p, query = ViewBag.Query }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    @LayoutStrings.NoItems
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">
+                @LayoutStrings.UseBoxForSearch
+            </div>
+        }
+    </div>
+</div>

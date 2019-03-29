@@ -1,0 +1,40 @@
+﻿@model DigitalPhotographPostUploadModel
+
+@{
+    ViewBag.Title = DigitalPhotographStrings.UploadTitleFormat;
+    Layout = Request.IsAjaxRequest() ? null : "~/Areas/BackOffice/Views/Shared/_EditPageLayout.cshtml";
+}
+
+@using (Html.BeginForm("PostUpload", "DigitalPhotographs"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row panel-body">
+        @for (int i = 0; i < Model.UploadedItems.Count; i++)
+        {
+            @Html.HiddenFor(model => model.UploadedItems[i].DigitalPhotograph.SpecimenId)
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="@Url.Action("GetImage", "DigitalPhotographs", new { id = Model.UploadedItems[i].DigitalPhotograph.Id, size = "thumb" })"
+                         style="height: 200px;" />
+                    <div class="caption">
+                        @Html.LabelFor(item => item.UploadedItems[i].Save, new { @class = "control-label" })
+                        @Html.CheckBoxFor(item => item.UploadedItems[i].Save, new { @class = "checkbox" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="container">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-check"></span> @LayoutStrings.Done
+            </button>
+
+            <a href="@Url.Action("Details", "Specimens", new { id = Model.UploadedItems[0].DigitalPhotograph.SpecimenId })" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove"></span> @LayoutStrings.Cancel
+            </a>
+        </div>
+    </div>
+}

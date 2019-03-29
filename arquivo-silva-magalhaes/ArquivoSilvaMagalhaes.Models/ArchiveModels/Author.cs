@@ -53,7 +53,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The date on which this author died.
         /// Por decisão da Patrícia Romão, a data de morte passa a string (2019/03/22)
         /// </summary>
-        [DataType(DataType.Date)]
+        //  [DataType(DataType.Date)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "DeathDate")]
         //  public DateTime? DeathDate { get; set; }
         public string DeathDate { get; set; }

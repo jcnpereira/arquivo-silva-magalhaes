@@ -1,0 +1,42 @@
+﻿@model TranslatedViewModel<Archive, ArchiveTranslation>
+
+@{
+    ViewBag.Title = LayoutStrings.AboutArchive;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    @LayoutStrings.SiteName
+</h2>
+
+<hr />
+
+<h4>
+    @ArchiveStrings.ArchiveMission
+</h4>
+
+<div class="afsm-commentary">
+    @Html.DisplayMultilineFor(model => model.Translation.ArchiveMission)
+</div>
+
+<br />
+
+<h4>
+    @ArchiveStrings.ArchiveHistory
+</h4>
+
+<div class="afsm-commentary">
+    @Html.DisplayMultilineFor(model => model.Translation.ArchiveHistory)
+</div>
+
+<hr />
+
+<h4>
+    @LayoutStrings.ShowcaseVideo
+</h4>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item"
+            src="//www.youtube-nocookie.com/embed/@(ViewBag.VideoId)?rel=0"
+            frameborder="0"></iframe>
+</div>

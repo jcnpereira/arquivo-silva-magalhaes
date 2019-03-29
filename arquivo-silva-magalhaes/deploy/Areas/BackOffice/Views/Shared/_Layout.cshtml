@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>@ViewBag.Title - Arquivo Fotográfico Silva Magalhães</title>
+
+    
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="application-name" content="Arquivo Fotográfico Silva Magalhães" />
+
+    @* Apple Touch Icons *@
+    <link rel="apple-touch-icon" sizes="57x57" href="~/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/apple-touch-icon-152x152.png">
+    <meta name="apple-mobile-web-app-title" content="AFSM">
+
+    @* "Modern" favicons. *@
+    <link rel="icon" type="image/png" href="~/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="~/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="~/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="~/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="~/favicon-32x32.png" sizes="32x32">
+
+    @* Windows 8 Tiles. *@
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="~/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="~/mstile-tiny.png" />
+    <meta name="msapplication-square150x150logo" content="~/mstile-square.png" />
+    <meta name="msapplication-wide310x150logo" content="~/mstile-wide.png" />
+    <meta name="msapplication-square310x310logo" content="~/mstile-large.png" />
+
+
+    <meta name="description" content="@LayoutStrings.SiteDescription" />
+
+    <link href="~/Content/Fonts/GlyphIcons/glyphicons.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/bundles/css/backoffice-main")
+
+    @RenderSection("additionalstyles", required: false)
+
+    @RenderSection("headscripts", required: false)
+</head>
+<body>
+    @* Nav bar. *@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index", "Home", new { Area = "BackOffice" })" class="navbar-brand" title="Início">
+                    <img style="max-height: 30px; margin-top: -5px" src="~/Content/Images/logo.png" />
+                </a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (
+                        User.IsInRole(MembershipUtils.ArchiveRoleName) ||
+                        User.IsInRole(MembershipUtils.ContentRoleName) ||
+                        User.IsInRole(MembershipUtils.AdminRoleName))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acervo <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Autores", "Index", "Authors")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Coleções", "Index", "Collections")</li>
+                                <li>@Html.ActionLink("Documentos", "Index", "Documents")</li>
+                                <li>@Html.ActionLink("Imagens", "Index", "Images")</li>
+                                <li>@Html.ActionLink("Espécies Fotográficas", "Index", "Specimens")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Formatos", "Index", "Formats")</li>
+                                <li>@Html.ActionLink("Indexações", "Index", "Keywords")</li>
+                                <li>@Html.ActionLink("Classificações", "Index", "Classifications")</li>
+                                <li>@Html.ActionLink("Processos", "Index", "Processes")</li>
+                                <li class="divider"></li>
+                                <li>
+                                    @Html.ActionLink("Fotografias em destaque", "Index", "ShowcasePhotoes")
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (
+                        User.IsInRole(MembershipUtils.PortalRoleName) ||
+                        User.IsInRole(MembershipUtils.ContentRoleName) ||
+                        User.IsInRole(MembershipUtils.AdminRoleName))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portal <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Eventos", "Index", "Events")</li>
+                                <li>@Html.ActionLink("Notícias", "Index", "News")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Links", "Index", "ReferencedLink")</li>
+                                <li>@Html.ActionLink("Documentos Técnicos", "Index", "TechnicalDocument")</li>
+                                <li>@Html.ActionLink("Parcerias", "Index", "Partnerships")</li>
+                                <li class="divider"></li>
+                                
+                                <li>@Html.ActionLink("Vídeo destaque", "Index", "SpotLightVideo")</li>
+                                <li>@Html.ActionLink("Fotografias banner", "Index", "BannerPhotograph")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Detalhes sobre o arquivo", "Index", "Portal")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole(MembershipUtils.AdminRoleName))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administração <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Utilizadores", "Index", "Users")</li>
+                                @*<li class="divider"></li>
+                                <li>@Html.ActionLink("Configurações", "Index", "Config")</li>*@
+                            </ul>
+                        </li>
+
+                    }
+
+
+
+
+                    <li class="navbar-link">
+                        @Html.ActionLink("Front-Office", "Index", "Home", new { Area = "" }, null)
+                    </li>
+                </ul>
+
+
+
+
+
+
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content container-fluid">
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <p>
+                <a href="@Url.Action("About", "Home")">
+                    &copy; @DateTime.Now.Year - Arquivo Fotográfico Silva Magalhães &amp; IPT
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/js/common")
+
+    @* Additional scripts and content for specific pages that require it. *@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

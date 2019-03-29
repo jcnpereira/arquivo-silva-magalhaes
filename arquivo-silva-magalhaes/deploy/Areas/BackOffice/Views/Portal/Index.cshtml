@@ -1,0 +1,86 @@
+﻿@model Archive
+
+@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = ArchiveStrings.DetailsTitleFormat;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="btn-toolbar" role="toolbar">
+            <a class="btn btn-primary" href="@Url.Action("Index", "Home", null)">
+                <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
+            </a>
+
+            <a class="btn btn-default" title="@LayoutStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
+                <span class="glyphicon glyphicon-edit"></span> @LayoutStrings.Edit
+            </a>
+
+            @if (Model.Translations.Count < LanguageDefinitions.Languages.Count)
+            {
+                <a class="btn btn-default" href="@Url.Action("AddTranslation", new { id = Model.Id })">
+                    <span class="glyphicon glyphicon-plus"></span> @LayoutStrings.AddTranslation
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+        </dl>
+
+        <ul class="nav nav-tabs">
+            @for (int i = 0; i < Model.Translations.Count(); i++)
+            {
+                var langCode = Model.Translations[i].LanguageCode;
+                <li class="@(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")">
+                    <a href="#@langCode"
+                       role="tab"
+                       data-toggle="tab">@LanguageDefinitions.GetLanguage(langCode)</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+
+            @foreach (var t in Model.Translations)
+            {
+                var langCode = t.LanguageCode;
+
+                <div class="tab-pane @(langCode == LanguageDefinitions.DefaultLanguage ? "active" : "")"
+                     id="@langCode">
+
+                    <hr style="visibility: hidden" />
+
+                    <dl class="dl-horizontal">
+                        @Html.Partial("_TranslatedDisplayFields", t)
+                    </dl>
+
+                    @if (langCode != LanguageDefinitions.DefaultLanguage)
+                    {
+                        <a href="@Url.Action("DeleteTranslation", new { id = Model.Id, languageCode = langCode })">
+                            Remover tradução
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .dl-horizontal dd, .dl-horizontal dt {
+        line-height: 27px;
+    }
+</style>

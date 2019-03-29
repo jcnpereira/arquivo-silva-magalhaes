@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TranslatedViewModel<Event, EventTranslation>>
+
+@{
+    ViewBag.Title = EventStrings.EntityNamePlural;
+    Layout = "~/Areas/BackOffice/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+@Html.Partial("_ListPartial")

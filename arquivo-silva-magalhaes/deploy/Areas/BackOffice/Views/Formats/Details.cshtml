@@ -1,0 +1,17 @@
+﻿@model Format
+
+@{
+    ViewBag.Title = FormatStrings.DetailsTitleFormat;
+    Layout = "~/Areas/BackOffice/Views/Shared/_DetailsPageLayout.cshtml";
+}
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.FormatDescription)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FormatDescription)
+    </dd>
+
+</dl>

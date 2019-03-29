@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+    if (ViewBag.Id == null)
+    {
+        ViewBag.Id = Model.Id;
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group">
+                <a class="btn btn-primary" href="@Url.Action("Index")">
+                    <span class="glyphicon glyphicon-arrow-left"></span> @LayoutStrings.Back
+                </a>
+            </div>
+
+            <div class="btn-group">
+                <a class="btn btn-default" title="@LayoutStrings.Edit" href="@Url.Action("Edit", new { Id = ViewBag.Id })">
+                    <span class="glyphicon glyphicon-edit"></span> @LayoutStrings.Edit
+                </a>
+
+                <a class="btn btn-danger" title="@LayoutStrings.Delete" href="@Url.Action("Delete", new { Id = ViewBag.Id })" data-afsm-show-modal="true" data-afsm-delete-warning="@LayoutStrings.ConfirmDelete">
+                    <span class="glyphicon glyphicon-floppy-remove"></span> @LayoutStrings.Delete
+                </a>
+            </div>
+
+            @RenderSection("ExtraActions", required: false)
+        </div>
+
+
+    </div>
+
+    <div class="panel-body">
+        @RenderBody()
+    </div>
+</div>
+
+<div class="panel-group" id="afsm-details-panel">
+    @RenderSection("additionalContent", required: false)
+</div>
+
+@section scripts {
+    @RenderSection("scripts", required: false)
+}
+
+<style>
+    .dl-horizontal dd, .dl-horizontal dt {
+        line-height: 27px;
+    }
+</style>

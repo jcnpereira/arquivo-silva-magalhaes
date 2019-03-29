@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TranslatedViewModel<NewsItem, NewsItemTranslation>>
+
+@{
+    ViewBag.Title = NewsItemStrings.EntityNameShortPlural;
+    Layout = "~/Views/Shared/_IndexPageLayout.cshtml";
+}
+
+<h2>
+    @NewsItemStrings.EntityNameShortPlural
+</h2>
+
+<hr />
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Details", "News", new { item.Entity.Id })" class="list-group-item">
+            <div class="media">
+                <div class="pull-left">
+                    @*<img class="media-object" style="width: 96px; height: 96px"
+                        src="~/Public/Images/_thumb.jpg">*@
+                    @*<img width="70" src="~/Content/Images/NewsItem.png" />*@
+
+                    @if (item.Entity.HeaderImage != null)
+                    {
+                        <img class="media-object" style="width: 96px; height: 96px"
+                             src="~/Public/News/@(item.Entity.HeaderImage)_thumb.jpg" />
+                    }
+                    else
+                    {
+                        <img class="media-object" style="width: 96px; height: 96px"
+                             src="~/Content/Images/no-image-100.png" />
+                    }
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @Html.Truncate(item.Translation.Title, 60)
+                    </h4>
+
+                    <p>
+                        @Html.Truncate(item.Translation.Heading, 80)
+                    </p>
+
+                    <small>
+                        @Html.DisplayFor(model => item.Entity.PublishDate)
+                    </small>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+<div class="text-center afsm-pagination">
+    @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", "News", new { pageNumber = p }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+</div>

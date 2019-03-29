@@ -1,0 +1,50 @@
+﻿@model ImageEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Image.DocumentId, new { @class = "control-label col-sm-2" })
+    <div class="col-sm-10">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" data-afsm-for="#@Html.IdFor(model => model.Image.DocumentId)" data-afsm-use="modal" data-afsm-modal="#aux-modal">
+                    @LayoutStrings.Choose
+                </button>
+            </span>
+            @Html.DropDownListFor(model => model.Image.DocumentId, Model.AvailableDocuments, new { @class = "form-control", data_afsm_target = "#" + Html.IdFor(model => model.Image.ImageCode), data_afsm_clear = "true" })
+            @Html.ValidationMessageFor(model => model.Image.DocumentId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Image.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-afsm-selectlist="#@Html.IdFor(model => model.KeywordIds)" data-afsm-toggle="modal" data-target="#afsm-modal-form" data-remote="@Url.Action("AuxAdd", "Keywords", null)">Adicionar...</button>
+            </span>
+            @Html.ListBoxFor(model => model.KeywordIds, Model.AvailableKeywords, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => Model.KeywordIds, "", new { @class = "text-danger" })
+        <p class="help-block">@LayoutStrings.ChooseMultipleSuggestion <kbd>Ctrl</kbd>.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Image.ClassificationId, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default"
+                        data-afsm-selectlist="#@Html.IdFor(model => model.Image.ClassificationId)"
+                        data-afsm-toggle="modal"
+                        data-target="#afsm-modal-form"
+                        data-remote="@Url.Action("AuxAdd", "Classifications", null)">
+                    Adicionar...
+                </button>
+            </span>
+            @Html.DropDownListFor(model => model.Image.ClassificationId, Model.AvailableClassifications, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Image.ClassificationId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
