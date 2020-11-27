@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "ShowCoordinates")]
         public bool ShowCoordinates { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Index(IsUnique = true)]
         [StringLength(100)]
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(ImageStrings), ErrorMessageResourceName = "CodeFormat")]
@@ -80,12 +80,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(500)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Subject")]
         public string Subject { get; set; }
@@ -94,12 +94,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ImageStrings), Name = "Publication")]
         public string Publication { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(80)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Location")]
         public string Location { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(500)]
         [Display(ResourceType = typeof(ImageStrings), Name = "Description")]
         public string Description { get; set; }

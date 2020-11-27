@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "Address")]
         public string Address { get; set; }
@@ -33,12 +33,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "ArchiveHistory")]
         public string ArchiveHistory { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ArchiveStrings), Name = "ArchiveMission")]
         public string ArchiveMission { get; set; }
@@ -48,21 +48,21 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
     {
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(80)]
         public string Name { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(80)]
         [Display(ResourceType = typeof(ContactStrings), Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100)]
         public string Address { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(ContactStrings), Name = "PhoneNumber")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }

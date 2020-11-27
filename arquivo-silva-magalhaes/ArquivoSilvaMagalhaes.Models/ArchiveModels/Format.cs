@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [Index(IsUnique = true)]
         [Display(ResourceType = typeof(FormatStrings), Name = "Format")]

@@ -121,7 +121,7 @@
     <value>Administrative and biographic story</value>
   </data>
   <data name="AlphanumericCode" xml:space="preserve">
-    <value>The collection code must be alphanumeric. (0-9, A-Z, a-z)</value>
+    <value>The collection code must be alphanumeric (0-9, A-Z, a-z). It can have, too, the / - _ characters.</value>
   </data>
   <data name="AttachmentDescription" xml:space="preserve">
     <value>Attachment description</value>
@@ -151,7 +151,7 @@
     <value>Collection details</value>
   </data>
   <data name="Dimension" xml:space="preserve">
-    <value>Dimension</value>
+    <value>Dimension and Support</value>
   </data>
   <data name="Documents" xml:space="preserve">
     <value>Documents</value>

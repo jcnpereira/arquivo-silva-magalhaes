@@ -178,7 +178,7 @@
     <value>Indexação</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Localização</value>
+    <value>Cota</value>
   </data>
   <data name="MustChooseDocument" xml:space="preserve">
     <value>Tem que primeiro escolher um documento.</value>

@@ -22,7 +22,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.SiteViewModels
 
         public Banner Banner { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(BannerStrings), Name = "Image")]
         public HttpPostedFileBase Image { get; set; }
     }

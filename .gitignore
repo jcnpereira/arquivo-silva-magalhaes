@@ -12,6 +12,7 @@ App_Data/
 *.suo
 *.user
 *.sln.docstates
+*.docx
 
 # Build results
 [Dd]ebug/
@@ -25,6 +26,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 .vs/
+[Dd]eploy/
 
 # Roslyn cache directories
 *.ide/

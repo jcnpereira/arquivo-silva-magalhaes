@@ -11,7 +11,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public string MimeFormat { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(AttachmentStrings), Name = "FileName")]
         public string FileName { get; set; }
 

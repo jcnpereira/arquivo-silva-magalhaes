@@ -121,7 +121,7 @@
     <value>História administrativa e biográfica</value>
   </data>
   <data name="AlphanumericCode" xml:space="preserve">
-    <value>O código de coleção tem que ser alfanumérico. (0-9, A-Z, a-z)</value>
+    <value>O código de coleção tem que ser alfanumérico (0-9, A-Z, a-z), podendo conter, também, os símbolos / - _ . : ; </value>
   </data>
   <data name="AttachmentDescription" xml:space="preserve">
     <value>Descrição de anexos</value>
@@ -151,7 +151,7 @@
     <value>Detalhes da coleção</value>
   </data>
   <data name="Dimension" xml:space="preserve">
-    <value>Dimensão</value>
+    <value>Dimensão e Suporte</value>
   </data>
   <data name="Documents" xml:space="preserve">
     <value>Documentos desta coleção</value>

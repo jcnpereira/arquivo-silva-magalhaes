@@ -15,12 +15,12 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(40)]
         [Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Url)]
         [Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Link")]
         public string Link { get; set; }
@@ -35,7 +35,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(200)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(ReferencedLinkStrings), Name = "Description")]

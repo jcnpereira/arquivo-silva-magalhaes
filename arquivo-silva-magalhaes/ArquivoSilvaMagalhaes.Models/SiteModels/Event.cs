@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [Display(ResourceType = typeof(EventStrings), Name = "Place")]
         public string Place { get; set; }
@@ -47,17 +47,17 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(EventStrings), Name = "VisitorInformation")]
         public string VisitorInformation { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [Display(ResourceType = typeof(EventStrings), Name = "StartMoment")]
         public DateTime StartMoment { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [Display(ResourceType = typeof(EventStrings), Name = "EndMoment")]
         public DateTime EndMoment { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(EventStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
@@ -72,7 +72,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         /// <summary>
         /// The type of this event.
         /// </summary>
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(EventStrings), Name = "EventType")]
         public EventType? EventType { get; set; }
 
@@ -105,18 +105,18 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(70)]
         [Display(ResourceType = typeof(EventStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(300)]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(EventStrings), Name = "Heading")]
         public string Heading { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Html)]
         [AllowHtml]
         [Display(ResourceType = typeof(EventStrings), Name = "TextContent")]

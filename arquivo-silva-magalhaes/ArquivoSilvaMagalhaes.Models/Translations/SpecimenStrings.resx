@@ -124,7 +124,7 @@
     <value>Cota</value>
   </data>
   <data name="ArchivalCodeFormat" xml:space="preserve">
-    <value>A cota deve apenas conter números e letras. Não são permitidos acentos.</value>
+    <value>A cota deve conter números e letras. Não são permitidos acentos. Pode usar, também, os símbolos - _  , : . ; e /</value>
   </data>
   <data name="AuthorCatalogationCode" xml:space="preserve">
     <value>Código original</value>

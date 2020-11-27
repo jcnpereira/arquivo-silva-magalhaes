@@ -15,7 +15,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
     //    public int KeywordId { get; set; }
 
-    //    [Required]
+    //    [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
     //    public string LanguageCode { get; set; }
 
     //    [Required, Display(ResourceType = typeof(DataStrings), Name = "Keyword")]

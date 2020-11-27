@@ -26,7 +26,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100)]
         [Display(ResourceType = typeof(TechnicalDocumentStrings), Name = "Title")]
         public string Title { get; set; }
@@ -44,7 +44,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
 
         public String Format { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(TechnicalDocumentStrings), Name = "FileSize")]
         public int FileSize { get; set; }
     }

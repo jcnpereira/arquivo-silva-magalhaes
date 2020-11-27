@@ -4,19 +4,19 @@ namespace ArquivoSilvaMagalhaes.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(Name = "Nome de utilizador")]
         public string UserName { get; set; }
     }
 
     public class ManageUserViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]    
@@ -30,11 +30,11 @@ namespace ArquivoSilvaMagalhaes.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Password)]
         [Display(Name = "Palavra-passe")]
         public string Password { get; set; }
@@ -45,15 +45,15 @@ namespace ArquivoSilvaMagalhaes.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        //[Required]
+        //[Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         //[Display(ResourceType = typeof(UiStrings), Name = "User__RealName")]
         //public string RealName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

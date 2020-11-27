@@ -10,7 +10,7 @@ namespace ArquivoSilvaMagalhaes.Models
         [MaxLength(200)]
         public string Key { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         public string Value { get; set; }
     }
 }

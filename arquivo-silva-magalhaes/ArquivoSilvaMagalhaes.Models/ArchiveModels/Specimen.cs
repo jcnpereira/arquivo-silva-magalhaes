@@ -41,37 +41,37 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Notes")]
         public string Notes { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "State")]
         public SpecimenState? State { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Index(IsUnique = true)]
         [StringLength(100)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "ReferenceCode")]
         [RegularExpression("^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "CodeFormat")]
         public string ReferenceCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Annotation")]
-        [RegularExpression("^[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "ArchivalCodeFormat")]
+        [RegularExpression("[0-9A-Za-z/_:.;-]+", ErrorMessageResourceType = typeof(SpecimenStrings), ErrorMessageResourceName = "ArchivalCodeFormat")]
         public string Annotation { get; set; }
         
         #region Navigation Properties
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Image")]
         public int ImageId { get; set; }
         [ForeignKey("ImageId")]
         public virtual Image Image { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Process")]
         public int ProcessId { get; set; }
         [ForeignKey("ProcessId")]
         public virtual Process Process { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Format")]
         public int FormatId { get; set; }
         [ForeignKey("FormatId")]
@@ -93,7 +93,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(300)]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Description")]
         public string Description { get; set; }

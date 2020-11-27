@@ -21,7 +21,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "PublishDate")]
         public DateTime PublishDate { get; set; }
@@ -33,7 +33,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Display(ResourceType = typeof(NewsItemStrings), Name = "HeaderImage")]
         public string HeaderImage { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "HideAfterExpiry")]
         public bool HideAfterExpiry { get; set; }
 
@@ -62,21 +62,21 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         public int NewsItemId { get; set; }
         [ForeignKey("NewsItemId")]
         public NewsItem NewsItem { get; set; }
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Key, Column(Order = 1)]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(70)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(300)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "Heading")]
         public string Heading { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [AllowHtml]
         [DataType(DataType.Html)]
         [Display(ResourceType = typeof(NewsItemStrings), Name = "TextContent")]

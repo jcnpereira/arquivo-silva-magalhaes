@@ -13,7 +13,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         public string FileName { get; set; }
         public string MimeType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         public int SpecimenId { get; set; }
         [ForeignKey("SpecimenId")]
         public virtual Specimen Specimen { get; set; }

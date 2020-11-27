@@ -31,7 +31,7 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
         public int ClassificationId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         public string LanguageCode { get; set; }
 
         [Required, Display(ResourceType = typeof(ClassificationStrings), Name = "Value")]

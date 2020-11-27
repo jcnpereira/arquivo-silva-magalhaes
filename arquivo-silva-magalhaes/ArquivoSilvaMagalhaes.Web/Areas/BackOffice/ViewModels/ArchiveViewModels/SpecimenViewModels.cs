@@ -30,10 +30,10 @@ namespace ArquivoSilvaMagalhaes.Areas.BackOffice.ViewModels.ArchiveViewModels
 
     public class SpecimenPhotoUploadModel
     {
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         public int SpecimenId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [Display(ResourceType = typeof(SpecimenStrings), Name = "Photos")]
         public List<HttpPostedFileBase> Photos { get; set; }
     }

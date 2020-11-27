@@ -18,12 +18,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterName")]
         public string CommenterName { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [DataType(DataType.EmailAddress)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "CommenterEmail")]
@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "IsEmailVisible")]
         public bool IsEmailVisible { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.Date)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "VisibleSince")]
         public DateTime VisibleSince { get; set; }
@@ -66,12 +66,12 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1), Required]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(80)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Title")]
         public string Title { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [AllowHtml]
         [DataType(DataType.Html)]
         [Display(ResourceType = typeof(ShowcasePhotoStrings), Name = "Comment")]

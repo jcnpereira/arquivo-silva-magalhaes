@@ -24,7 +24,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The first name(s) of this author.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(60)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "FirstName")]
         public string FirstName { get; set; }
@@ -32,7 +32,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// The last name(s) of this author.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(60)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "LastName")]
         public string LastName { get; set; }
@@ -43,7 +43,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// The date on which this author was born.
         /// Por decisão da Patrícia Romão, a data de nascimento passa a string (2019/03/22)
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         //  [DataType(DataType.Date)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "BirthDate")]
         //  public DateTime BirthDate { get; set; }
@@ -109,13 +109,13 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
 
         [Key]
         [Column(Order = 1)]
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         public override string LanguageCode { get; set; }
 
         /// <summary>
         /// The nationality of this author. eg. Portuguese.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(50)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "Nationality")]
         public string Nationality { get; set; }
@@ -123,7 +123,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// Text containing the biography of this author.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "Biography")]
         public string Biography { get; set; }
@@ -131,7 +131,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         /// <summary>
         /// Text containing the curriculum of this author.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(AuthorStrings), Name = "Curriculum")]
         public string Curriculum { get; set; }

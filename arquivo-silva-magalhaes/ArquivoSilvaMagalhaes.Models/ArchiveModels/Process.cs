@@ -28,7 +28,7 @@ namespace ArquivoSilvaMagalhaes.Models.ArchiveModels
         [Key, Column(Order = 1), Required]
         public override string LanguageCode { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(100)]
         [Display(ResourceType = typeof(ProcessStrings), Name = "Value")]
         public string Value { get; set; }

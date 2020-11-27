@@ -8,7 +8,7 @@ namespace ArquivoSilvaMagalhaes.Models.SiteModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       [Required(ErrorMessage ="O/A {0} é de preenchimento obrigatório.")]
         [StringLength(80)]
         [Display(ResourceType = typeof(PartnershipStrings), Name = "Name")]
         public string Name { get; set; }
